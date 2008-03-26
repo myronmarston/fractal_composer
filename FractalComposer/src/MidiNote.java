@@ -1,21 +1,23 @@
 import javax.sound.midi.MidiEvent;
 import javax.sound.midi.ShortMessage;
+import javax.sound.midi.InvalidMidiDataException;
 
 /**
  * Handles the Midi events (both note on and note off) for one note.
  */
 public class MidiNote {    
     private int pitch; // 60 = middle C; each value is a half-step
-    private long startTime; // when the note should start playing, in ticks
-    private long duration; // how long the note should last for, in ticks
+    private double startTime; // when the note should start playing, in quarter notes
+    private double duration; // how long the note should last for, in quarter notes
     private int channel; // which of the 16 channels this note is on
     private int velocity; // the loudness or softness of the note    
     private MidiEvent noteOnEvent;
     private MidiEvent noteOffEvent; 
     public static final int DEFAULT_VELOCITY = 64;
     public static final int DEFAULT_CHANNEL = 0;
+    public static final int TICKS_PER_QUARTER_NOTE = 2;
     
-    public MidiNote(int pitch, long startTime, long duration, int channel, int velocity) {
+    public MidiNote(int pitch, double startTime, double duration, int channel, int velocity) {
         this.setPitch(pitch);
         this.setStartTime(startTime);
         this.setDuration(duration);
@@ -23,17 +25,21 @@ public class MidiNote {
         this.setVelocity(velocity);        
     }  
 
-    public MidiNote(int pitch, long startTime, long duration, int channel) {
+    public MidiNote(int pitch, double startTime, double duration, int channel) {
         this(pitch, startTime, duration, channel, DEFAULT_VELOCITY);
     }
     
-    public MidiNote(int pitch, long startTime, long duration) {
+    public MidiNote(int pitch, double startTime, double duration) {
         this(pitch, startTime, duration, DEFAULT_CHANNEL);
     }
     
     public MidiNote() {
         this.setChannel(DEFAULT_CHANNEL);
         this.setVelocity(DEFAULT_VELOCITY);
+    }
+    
+    static protected long convertQuarterNotesToTicks(double quarterNotes) {
+        return (long) (quarterNotes * TICKS_PER_QUARTER_NOTE);
     }
                 
     public int getPitch() {
@@ -44,21 +50,21 @@ public class MidiNote {
         if (this.pitch != pitch) clearNoteEvents();
         this.pitch = pitch;        
     }
-
-    public long getDuration() {
+       
+    public double getDuration() {
         return duration;
     }
 
-    public void setDuration(long duration) {
+    public void setDuration(double duration) {
         if (this.duration != duration) clearNoteEvents();
         this.duration = duration;        
     }
     
-    public long getStartTime() {
+    public double getStartTime() {
         return startTime;
-    }
+    }       
 
-    public void setStartTime(long startTime) {
+    public void setStartTime(double startTime) {
         if (this.startTime != startTime) clearNoteEvents();
         this.startTime = startTime;        
     }
@@ -81,15 +87,19 @@ public class MidiNote {
         this.channel = channel;        
     }   
     
-    public MidiEvent getNoteOnEvent() throws javax.sound.midi.InvalidMidiDataException {
+    public MidiEvent getNoteOnEvent() throws InvalidMidiDataException {
         if (null == noteOnEvent) createNoteEvents(); 
         return noteOnEvent;
     }
 
-    public MidiEvent getNoteOffEvent() throws javax.sound.midi.InvalidMidiDataException {
+    public MidiEvent getNoteOffEvent() throws InvalidMidiDataException {
         if (null == noteOffEvent) createNoteEvents();
         return noteOffEvent;
-    }          
+    }
+    
+    public double getNoteEnd() throws InvalidMidiDataException {
+        return this.getStartTime() + this.getDuration();
+    }
     
     private void clearNoteEvents() {
         this.noteOnEvent = null;
@@ -102,14 +112,14 @@ public class MidiNote {
             this.getChannel(), 
             this.getPitch(), 
             this.getVelocity(),
-            this.getStartTime());  
+            convertQuarterNotesToTicks(this.getStartTime()));  
         
         this.noteOffEvent = createNoteEvent(
             ShortMessage.NOTE_OFF, 
             this.getChannel(), 
             this.getPitch(), 
             0, // velocity should always be 0 for note off events
-            this.getStartTime() + this.getDuration());
+            convertQuarterNotesToTicks(this.getStartTime() + this.getDuration()));
     }
                
     private static MidiEvent createNoteEvent(int command, int channel, int pitch, int velocity, long tick) throws javax.sound.midi.InvalidMidiDataException {	

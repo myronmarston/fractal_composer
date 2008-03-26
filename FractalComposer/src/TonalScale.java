@@ -26,7 +26,7 @@ public abstract class TonalScale implements Scale {
             + (12 * octave); // 12 half steps in an octave
     }
     
-    public MidiNote convertToMidiNote(Note note, long startTime) {
+    public MidiNote convertToMidiNote(Note note, double startTime) {
         MidiNote midiNote = new MidiNote();
         
         midiNote.setDuration(note.getDuration());

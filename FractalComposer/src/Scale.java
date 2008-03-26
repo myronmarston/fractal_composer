@@ -5,5 +5,5 @@
  * @author Myron 
  */
 public interface Scale {
-    MidiNote convertToMidiNote(Note note, long startTime);
+    MidiNote convertToMidiNote(Note note, double startTime);
 }

@@ -8,17 +8,30 @@ public class Note {
     private int scaleStep; //1 = tonic, 8 = octave, 10 = third an octave above, etc.
     private int octave; //which octave the note should be in.  0 begins the first octave in Midi that contains the tonic.
     private int chromaticAdjustment; //-2...2.  If this is an accidental, the number of half steps to adjust it from the diatonic scale note.
-    private long duration; //how long the note should last
+    private double duration; //how long the note should last, in quarter notes.
     private int volume = MidiNote.DEFAULT_VELOCITY; //how loud the note should be on a scale from 0 to 127.
+    private boolean rest = false; // true if this note should be a rest.
     
     public Note() {}
-    
-    public Note(int scaleStep, int octave, int chromaticAdjustment, long duration, int volume) {
+            
+    public Note(int scaleStep, int octave, int chromaticAdjustment, double duration, int volume) {
         this.scaleStep = scaleStep;
         this.octave = octave;
         this.chromaticAdjustment = chromaticAdjustment;
         this.duration = duration;
         this.volume = volume;
+    }
+    
+    static public Note createRest(double duration) {
+        Note rest = new Note();
+        
+        rest.rest = true;
+        rest.duration = duration;
+        rest.volume = 0; 
+        rest.scaleStep = 1;
+        rest.octave = 0;
+        
+        return rest;
     }
 
     public int getScaleStep() {
@@ -45,11 +58,11 @@ public class Note {
         this.chromaticAdjustment = chromaticAdjustment;
     }
 
-    public long getDuration() {
+    public double getDuration() {
         return duration;
     }
 
-    public void setDuration(long duration) {
+    public void setDuration(double duration) {
         this.duration = duration;
     }
 
@@ -59,5 +72,9 @@ public class Note {
 
     public void setVolume(int volume) {
         this.volume = volume;
+    }
+    
+    public boolean getRest() {
+        return rest;
     }
 }
