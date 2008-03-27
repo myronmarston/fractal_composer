@@ -1,3 +1,7 @@
+package com.myronmarston.music;
+
+import com.myronmarston.music.scales.Scale;
+
 import javax.sound.midi.Sequence;
 import javax.sound.midi.Track;
 import javax.sound.midi.InvalidMidiDataException;

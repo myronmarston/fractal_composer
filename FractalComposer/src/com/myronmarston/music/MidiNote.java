@@ -1,6 +1,8 @@
+package com.myronmarston.music;
+
+import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiEvent;
 import javax.sound.midi.ShortMessage;
-import javax.sound.midi.InvalidMidiDataException;
 
 /**
  * Handles the Midi events (both note on and note off) for one note.

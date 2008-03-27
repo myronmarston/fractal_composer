@@ -1,3 +1,8 @@
+import com.myronmarston.music.Note;
+import com.myronmarston.music.NoteList;
+import com.myronmarston.music.transformers.NoteListTransformer;
+import com.myronmarston.music.transformers.OctaveTransformer;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -1,3 +1,5 @@
+package com.myronmarston.music;
+
 /**
  * Enumerates all the valid note names.
  * Also provides a "note number" -- number of half steps the note is above C

@@ -1,3 +1,10 @@
+import com.myronmarston.music.MidiNote;
+import com.myronmarston.music.Note;
+import com.myronmarston.music.NoteList;
+import com.myronmarston.music.NoteName;
+import com.myronmarston.music.scales.MajorScale;
+import com.myronmarston.music.scales.Scale;
+        
 import javax.sound.midi.Track;
 import javax.sound.midi.Sequence;
 import org.junit.After;

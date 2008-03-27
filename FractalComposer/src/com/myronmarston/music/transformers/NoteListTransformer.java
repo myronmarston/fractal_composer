@@ -1,4 +1,6 @@
+package com.myronmarston.music.transformers;
 
+import com.myronmarston.music.NoteList;
 
 /**
  * Implementations of this interface are used to take a NoteList

@@ -1,3 +1,7 @@
+package com.myronmarston.music.scales;
+
+import com.myronmarston.music.NoteName;
+
 /**
  * @author Myron
  */

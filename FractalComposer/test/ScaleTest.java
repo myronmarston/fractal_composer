@@ -1,3 +1,8 @@
+import com.myronmarston.music.MidiNote;
+import com.myronmarston.music.Note;
+import com.myronmarston.music.NoteName;
+import com.myronmarston.music.scales.MajorScale;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

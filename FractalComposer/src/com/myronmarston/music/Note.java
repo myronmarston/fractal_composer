@@ -1,3 +1,5 @@
+package com.myronmarston.music;
+
 /**
  * Represents a note, relative to a particular scale.
  * The note doesn't know or care what scale is being used, but to get a concrete
