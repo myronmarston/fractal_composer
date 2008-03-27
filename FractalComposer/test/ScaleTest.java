@@ -67,22 +67,32 @@ public class ScaleTest {
         MidiNote result;
         Note note;
         
-        note = new Note(1, 4, 0, 6d, 70);                
+        note = new Note(0, 4, 0, 6d, 70);                
         
         result = scale.convertToMidiNote(note, 0d);
         assertMidiNoteValues(result, 60, 70, 0, 6d);                
         
-        note.setScaleStep(6);
+        note.setScaleStep(5);
         note.setOctave(5);
         result = scale.convertToMidiNote(note, 5d);
         assertMidiNoteValues(result, 81, 70, 5d, 6d);                
         
-        note.setScaleStep(3);
+        note.setScaleStep(2);
         note.setOctave(2);
         note.setVolume(40);
         note.setDuration(3d);
         result = scale.convertToMidiNote(note, 2d);
-        assertMidiNoteValues(result, 40, 40, 2d, 3d);                
+        assertMidiNoteValues(result, 40, 40, 2d, 3d); 
+        
+        // try a few unnormalized notes...
+        note.setScaleStep(-3);
+        result = scale.convertToMidiNote(note, 2d);
+        assertMidiNoteValues(result, 31, 40, 2d, 3d); 
+        
+        note.setScaleStep(19);
+        note.setOctave(2);
+        result = scale.convertToMidiNote(note, 2d);
+        assertMidiNoteValues(result, 69, 40, 2d, 3d); 
     }
     
     protected void assertMidiNoteValues(MidiNote midiNote, int pitch, int velocity, double startTime, double duration) {

@@ -24,6 +24,24 @@ public abstract class TonalScale implements Scale {
     }          
        
     abstract protected int getHalfStepsAboveTonicForScaleStep(int scaleStep);
+    abstract protected int getNumScaleStepsInOctave();
+    
+    protected void normalizeNote(Note note) {
+        int numScaleStepsInOctave = this.getNumScaleStepsInOctave(); // cache it
+        
+        // put the note's scaleStep into the normal range (0..numScaleSteps - 1), adjusting the octaves.
+        while(note.getScaleStep() < 0) {
+            note.setScaleStep(note.getScaleStep() + numScaleStepsInOctave);
+            note.setOctave(note.getOctave() - 1);
+        }                
+        
+        while(note.getScaleStep() > numScaleStepsInOctave - 1) {
+            note.setScaleStep(note.getScaleStep() - numScaleStepsInOctave);
+            note.setOctave(note.getOctave() + 1);
+        }
+        
+        assert note.getScaleStep() >= 0 && note.getScaleStep() < numScaleStepsInOctave : note.getScaleStep();
+    }
         
     protected int getMidiPitchNumberForTonicAtOctave(int octave) {
         return MIDI_KEY_OFFSET // A0, the lowest key on a piano
@@ -32,6 +50,7 @@ public abstract class TonalScale implements Scale {
     }
     
     public MidiNote convertToMidiNote(Note note, double startTime) {
+        this.normalizeNote(note);
         MidiNote midiNote = new MidiNote();
         
         midiNote.setDuration(note.getDuration());

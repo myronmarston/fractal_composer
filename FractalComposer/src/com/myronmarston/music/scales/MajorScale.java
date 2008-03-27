@@ -8,19 +8,25 @@ import com.myronmarston.music.NoteName;
 public class MajorScale extends TonalScale {
 
     @Override
+    protected int getNumScaleStepsInOctave() {
+        return 7;
+    }
+
+    @Override
     protected int getHalfStepsAboveTonicForScaleStep(int scaleStep) {        
         switch (scaleStep) {
-            case 1: return 0; // Do           
-            case 2: return 2; // Re
-            case 3: return 4; // Mi
-            case 4: return 5; // Fa
-            case 5: return 7; // So
-            case 6: return 9; // La
-            case 7: return 11; // Ti
-        }
+            case 0: return 0; // Do           
+            case 1: return 2; // Re
+            case 2: return 4; // Mi
+            case 3: return 5; // Fa
+            case 4: return 7; // So
+            case 5: return 9; // La
+            case 6: return 11; // Ti
+            default: assert false : scaleStep;
+        }      
         
-        // we should come back and deal with scale steps in < 1 and > 7
-        throw new IllegalArgumentException();
+        // required so we can compile, but we should never get here; the assert will fire instead.
+        return 0;
     }
 
     public MajorScale(NoteName keyName) {

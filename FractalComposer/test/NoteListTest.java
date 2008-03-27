@@ -42,7 +42,7 @@ public class NoteListTest {
     @Test(expected=UnsupportedOperationException.class)
     public void errorIfChangeRest() {        
         Note n = Note.createRest(5d);
-        n.setScaleStep(3);
+        n.setScaleStep(2);
     }
     
     /**
@@ -52,12 +52,12 @@ public class NoteListTest {
     public void fillMidiTrack() throws Exception {
         System.out.println("fillMidiTrack");
         NoteList germ = new NoteList();        
-        germ.add(new Note(1, 4, 0, 0.5d, 100));
-        germ.add(new Note(2, 4, 0, 0.5d, 64));
-        germ.add(new Note(5, 4, 0, 0.5d, 64));
+        germ.add(new Note(0, 4, 0, 0.5d, 100));
         germ.add(new Note(1, 4, 0, 0.5d, 64));
-        germ.add(new Note(2, 4, 0, 0.5d, 100));
         germ.add(new Note(4, 4, 0, 0.5d, 64));
+        germ.add(new Note(0, 4, 0, 0.5d, 64));
+        germ.add(new Note(1, 4, 0, 0.5d, 100));
+        germ.add(new Note(3, 4, 0, 0.5d, 64));
         
         Scale scale = new MajorScale(NoteName.F);                                
         Sequence sequence = new Sequence(Sequence.PPQ, MidiNote.TICKS_PER_QUARTER_NOTE);

@@ -7,7 +7,7 @@ package com.myronmarston.music;
  * @author Myron
  */
 public class Note {   
-    private int scaleStep; //1 = tonic, 8 = octave, 10 = third an octave above, etc.
+    private int scaleStep; //0 = tonic, 7 = octave, 9 = third an octave above, etc.
     private int octave; //which octave the note should be in.  0 begins the first octave in Midi that contains the tonic.
     private int chromaticAdjustment; //-2...2.  If this is an accidental, the number of half steps to adjust it from the diatonic scale note.
     private double duration; //how long the note should last, in quarter notes.
@@ -35,7 +35,7 @@ public class Note {
         rest.rest = true;
         rest.duration = duration;
         rest.volume = 0; 
-        rest.scaleStep = 1;
+        rest.scaleStep = 0;
         rest.octave = 0;
         
         return rest;
