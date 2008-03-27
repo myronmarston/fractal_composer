@@ -6,7 +6,7 @@ package com.myronmarston.music;
  * MidiNote, the scale must be used to convert it.
  * @author Myron
  */
-public class Note {   
+public class Note {
     private int scaleStep; //0 = tonic, 7 = octave, 9 = third an octave above, etc.
     private int octave; //which octave the note should be in.  0 begins the first octave in Midi that contains the tonic.
     private int chromaticAdjustment; //-2...2.  If this is an accidental, the number of half steps to adjust it from the diatonic scale note.
@@ -20,20 +20,21 @@ public class Note {
         this.scaleStep = scaleStep;
         this.octave = octave;
         this.chromaticAdjustment = chromaticAdjustment;
-        this.duration = duration;
+        this.setDuration(duration);
         this.volume = volume;
     }
     
     // Copy constructor
     public Note(Note inputNote) {
         this(inputNote.getScaleStep(), inputNote.getOctave(), inputNote.getChromaticAdjustment(), inputNote.getDuration(), inputNote.getVolume());
+        this.rest = inputNote.isRest();
     }
     
     static public Note createRest(double duration) {
         Note rest = new Note();
         
         rest.rest = true;
-        rest.duration = duration;
+        rest.setDuration(duration); // use the setter so we get an exception if the duration is 0
         rest.volume = 0; 
         rest.scaleStep = 0;
         rest.octave = 0;
@@ -73,6 +74,7 @@ public class Note {
     }
 
     public void setDuration(double duration) {
+        if (duration <= 0) throw new IllegalArgumentException("The duration must be greater than zero.");
         this.duration = duration;
     }
 
@@ -85,12 +87,12 @@ public class Note {
         this.volume = volume;                
     }
     
-    public boolean getRest() {
+    public boolean isRest() {
         return rest;
     }    
     
     protected void throwUnsupportedOperationExceptionIfRest(String changingField) {
-        if (this.getRest()) {
+        if (this.isRest()) {
             throw new UnsupportedOperationException(String.format("The Note is a rest.  The %s field cannot be changed on a rest.", changingField));
         }
     }

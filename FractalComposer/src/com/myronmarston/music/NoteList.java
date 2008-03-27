@@ -22,6 +22,20 @@ public class NoteList extends ArrayList<Note> {
         super(initialCapacity);        
     }
     
+    /**
+     * Gets the first note you can hear--the first note with a volume > 0;
+     * @return
+     */
+    public Note getFirstAudibleNote() {
+        for (Note n : this) {
+            if (n.getVolume() > 0 && !n.isRest()) {
+                return n;
+            }                
+        }
+        
+        return null;
+    }
+    
     public void fillMidiTrack(Track track, Scale scale, double startTime) throws InvalidMidiDataException {
         MidiNote midiNote = null;
         

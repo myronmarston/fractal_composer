@@ -45,6 +45,37 @@ public class NoteListTest {
         n.setScaleStep(2);
     }
     
+    @Test
+    public void copyConstructorForRest() {
+        Note n = Note.createRest(3d);
+        assertEquals(n, new Note(n));
+    }
+    
+    @Test
+    public void getFirstAudibleNote() {
+        Note soundedNote = new Note(2, 2, 0, 1d, 64);
+        NoteList notes = new NoteList();
+        notes.add(Note.createRest(2d)); // a rest
+        notes.add(soundedNote);
+        assertEquals(soundedNote, notes.getFirstAudibleNote());
+    }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void constructNoDurationNote() {
+        Note n = new Note(2, 2, 0, 0, 64);
+    }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void constructNoDurationRest() {
+        Note n = Note.createRest(0);
+    }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void setNoteDurationToZero() {
+        Note n = new Note(2, 2, 0, 1d, 64);
+        n.setDuration(0);
+    }
+    
     /**
      * Test of fillMidiTrack method, of class NoteList.
      */
