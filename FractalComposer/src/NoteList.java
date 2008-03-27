@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import javax.sound.midi.Track;
 import javax.sound.midi.InvalidMidiDataException;
@@ -10,6 +9,14 @@ import javax.sound.midi.InvalidMidiDataException;
 public class NoteList extends ArrayList<Note> {
     // Used to serialize the class.  Change this if the class has a change significant enough to change the way the class is serialized.
     private static final long serialVersionUID = 1L;
+    
+    public NoteList() {
+        super();
+    }
+    
+    public NoteList(int initialCapacity) {
+        super(initialCapacity);        
+    }
     
     public void fillMidiTrack(Track track, Scale scale, double startTime) throws InvalidMidiDataException {
         MidiNote midiNote = null;

@@ -32,6 +32,12 @@ public class NoteListTest {
     public void tearDown() {
     }
 
+    @Test(expected=UnsupportedOperationException.class)
+    public void errorIfChangeRest() {        
+        Note n = Note.createRest(5d);
+        n.setScaleStep(3);
+    }
+    
     /**
      * Test of fillMidiTrack method, of class NoteList.
      */
