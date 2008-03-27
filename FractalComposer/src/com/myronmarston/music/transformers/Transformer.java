@@ -8,6 +8,6 @@ import com.myronmarston.music.NoteList;
  * These will be combined in various ways to generate the fractal music.
  * @author Myron
  */
-public interface NoteListTransformer {
+public interface Transformer {
     NoteList transform(NoteList input);
 }

@@ -7,7 +7,7 @@ import com.myronmarston.music.NoteList;
  *
  * @author Myron
  */
-public class OctaveTransformer implements NoteListTransformer {
+public class OctaveTransformer implements Transformer {
     private int octaveChange;
     
     public OctaveTransformer(int octaveChange) {

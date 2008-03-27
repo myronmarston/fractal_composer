@@ -1,6 +1,6 @@
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
-import com.myronmarston.music.transformers.NoteListTransformer;
+import com.myronmarston.music.transformers.Transformer;
 import com.myronmarston.music.transformers.OctaveTransformer;
 
 import org.junit.After;
@@ -14,9 +14,9 @@ import static org.junit.Assert.*;
  *
  * @author Myron
  */
-public class NoteListTransformerTest {
+public class TransformerTest {
 
-    public NoteListTransformerTest() {
+    public TransformerTest() {
     }
 
     @BeforeClass
@@ -46,7 +46,7 @@ public class NoteListTransformerTest {
         input.add(new Note(5, 4, 0, 1d, 64));
         input.add(new Note(1, 5, 0, 1d, 64));
 
-        NoteListTransformer t = new OctaveTransformer(2);
+        Transformer t = new OctaveTransformer(2);
         NoteList expectedOutput = new NoteList();
         expectedOutput.add(new Note(1, 6, 0, 1d, 64));
         expectedOutput.add(new Note(3, 6, 0, 1d, 64));
@@ -69,7 +69,7 @@ public class NoteListTransformerTest {
         expectedOutput.add(new Note(1, 5, 0, 1d, 64));
     }
     
-    protected void assertTransformerProducesExpectedOutput(NoteListTransformer t, NoteList input, NoteList expectedOutput) {
+    protected void assertTransformerProducesExpectedOutput(Transformer t, NoteList input, NoteList expectedOutput) {
         NoteList result = t.transform(input);
         assertEquals(expectedOutput.size(), result.size());
         for (int i = 0; i < result.size(); i++) {
