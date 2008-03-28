@@ -23,7 +23,7 @@ public class FractalComposerManager {
     }
     
     public NoteList getGerm() {
-        if (null == germ) germ = new NoteList();
+        if (germ == null) germ = new NoteList();
         return germ;
     }
 

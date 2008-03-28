@@ -92,12 +92,12 @@ public class MidiNote {
     }   
     
     public MidiEvent getNoteOnEvent() throws InvalidMidiDataException {
-        if (null == noteOnEvent) createNoteEvents(); 
+        if (noteOnEvent == null) createNoteEvents(); 
         return noteOnEvent;
     }
 
     public MidiEvent getNoteOffEvent() throws InvalidMidiDataException {
-        if (null == noteOffEvent) createNoteEvents();
+        if (noteOffEvent == null) createNoteEvents();
         return noteOffEvent;
     }
     

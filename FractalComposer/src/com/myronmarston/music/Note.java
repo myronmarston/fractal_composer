@@ -84,7 +84,7 @@ public class Note {
     }
     
     public boolean isRest() {
-        return (0 == this.getVolume());
+        return (this.getVolume() == 0);
     }    
     
     protected void throwUnsupportedOperationExceptionIfRest(String changingField, int value) {

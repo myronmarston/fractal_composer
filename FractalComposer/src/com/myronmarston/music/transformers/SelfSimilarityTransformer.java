@@ -13,7 +13,7 @@ public class SelfSimilarityTransformer implements Transformer {
     private SelfSimilaritySettings settings;        
 
     public SelfSimilaritySettings getSettings() {
-        if (null == settings) settings = new SelfSimilaritySettings(true, true, true);
+        if (settings == null) settings = new SelfSimilaritySettings(true, true, true);
         return this.settings;
     }
     
