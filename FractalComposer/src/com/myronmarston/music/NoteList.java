@@ -23,12 +23,12 @@ public class NoteList extends ArrayList<Note> {
     }
     
     /**
-     * Gets the first note you can hear--the first note with a volume > 0;
+     * Gets the first note you can hear--the first note that's not a rest;
      * @return
      */
     public Note getFirstAudibleNote() {
         for (Note n : this) {
-            if (n.getVolume() > 0 && !n.isRest()) {
+            if (!n.isRest()) {
                 return n;
             }                
         }
