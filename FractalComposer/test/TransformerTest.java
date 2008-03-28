@@ -119,58 +119,129 @@ public class TransformerTest {
     }
     
     @Test
-    public void selfSimilarityTransformer() {
+    public void volumeTransformer() {
         NoteList input = new NoteList();
         input.add(new Note(0, 4, 0, 1d, 64));
-        input.add(new Note(1, 4, 0, 0.5d, 64));
-        input.add(new Note(2, 4, 0, 0.5d, 64));
+        input.add(new Note(1, 4, 0, 0.5d, 96));
+        input.add(new Note(2, 4, 0, 0.5d, 32));
         input.add(new Note(0, 4, 0, 1d, 64));
         
-        Transformer t = new SelfSimilarityTransformer(false);
+        Transformer t = new VolumeTransformer(0.5d);
         NoteList expectedOutput = new NoteList();
-        expectedOutput.add(new Note(0, 4, 0, 1d, 64));
-        expectedOutput.add(new Note(1, 4, 0, 0.5d, 64));
-        expectedOutput.add(new Note(2, 4, 0, 0.5d, 64));
-        expectedOutput.add(new Note(0, 4, 0, 1d, 64));
-        
-        expectedOutput.add(new Note(1, 4, 0, 1d, 64));
-        expectedOutput.add(new Note(2, 4, 0, 0.5d, 64));
-        expectedOutput.add(new Note(3, 4, 0, 0.5d, 64));
-        expectedOutput.add(new Note(1, 4, 0, 1d, 64));
-        
-        expectedOutput.add(new Note(2, 4, 0, 1d, 64));
-        expectedOutput.add(new Note(3, 4, 0, 0.5d, 64));
-        expectedOutput.add(new Note(4, 4, 0, 0.5d, 64));
-        expectedOutput.add(new Note(2, 4, 0, 1d, 64));
-        
-        expectedOutput.add(new Note(0, 4, 0, 1d, 64));
-        expectedOutput.add(new Note(1, 4, 0, 0.5d, 64));
-        expectedOutput.add(new Note(2, 4, 0, 0.5d, 64));
-        expectedOutput.add(new Note(0, 4, 0, 1d, 64));
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        expectedOutput.add(new Note(1, 4, 0, 0.5d, 112));
+        expectedOutput.add(new Note(2, 4, 0, 0.5d, 80));
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
-        t = new SelfSimilarityTransformer(true);
+        t = new VolumeTransformer(-0.5d);
         expectedOutput.clear();
-        expectedOutput.add(new Note(0, 4, 0, 1d, 64));
-        expectedOutput.add(new Note(1, 4, 0, 0.5d, 64));
-        expectedOutput.add(new Note(2, 4, 0, 0.5d, 64));
-        expectedOutput.add(new Note(0, 4, 0, 1d, 64));
+        expectedOutput.add(new Note(0, 4, 0, 1d, 32));
+        expectedOutput.add(new Note(1, 4, 0, 0.5d, 48));
+        expectedOutput.add(new Note(2, 4, 0, 0.5d, 16));
+        expectedOutput.add(new Note(0, 4, 0, 1d, 32));
+        assertTransformerProducesExpectedOutput(t, input, expectedOutput);        
+    }
+    
+    @Test
+    public void selfSimilarityTransformer() {
+        NoteList input = new NoteList();
+        input.add(new Note(0, 4, 0, 1d, 96));
+        input.add(new Note(1, 4, 0, 0.5d, 64));
+        input.add(new Note(2, 4, 0, 0.5d, 112));
+        input.add(new Note(0, 4, 0, 1d, 96));
         
-        expectedOutput.add(new Note(1, 4, 0, 0.5, 64));
-        expectedOutput.add(new Note(2, 4, 0, 0.25d, 64));
-        expectedOutput.add(new Note(3, 4, 0, 0.25d, 64));
+        Transformer t = new SelfSimilarityTransformer(true, false, false);
+        NoteList expectedOutput = new NoteList();
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
         expectedOutput.add(new Note(1, 4, 0, 0.5d, 64));
+        expectedOutput.add(new Note(2, 4, 0, 0.5d, 112));
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
         
+        expectedOutput.add(new Note(1, 4, 0, 1d, 96));
         expectedOutput.add(new Note(2, 4, 0, 0.5d, 64));
-        expectedOutput.add(new Note(3, 4, 0, 0.25d, 64));
-        expectedOutput.add(new Note(4, 4, 0, 0.25d, 64));
-        expectedOutput.add(new Note(2, 4, 0, 0.5d, 64));
+        expectedOutput.add(new Note(3, 4, 0, 0.5d, 112));
+        expectedOutput.add(new Note(1, 4, 0, 1d, 96));
         
-        expectedOutput.add(new Note(0, 4, 0, 1d, 64));
+        expectedOutput.add(new Note(2, 4, 0, 1d, 96));
+        expectedOutput.add(new Note(3, 4, 0, 0.5d, 64));
+        expectedOutput.add(new Note(4, 4, 0, 0.5d, 112));
+        expectedOutput.add(new Note(2, 4, 0, 1d, 96));
+        
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
         expectedOutput.add(new Note(1, 4, 0, 0.5d, 64));
-        expectedOutput.add(new Note(2, 4, 0, 0.5d, 64));
-        expectedOutput.add(new Note(0, 4, 0, 1d, 64));
+        expectedOutput.add(new Note(2, 4, 0, 0.5d, 112));
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
+        
+        t = new SelfSimilarityTransformer(true, true, false);
+        expectedOutput.clear();
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        expectedOutput.add(new Note(1, 4, 0, 0.5d, 64));
+        expectedOutput.add(new Note(2, 4, 0, 0.5d, 112));
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        
+        expectedOutput.add(new Note(1, 4, 0, 0.5, 96));
+        expectedOutput.add(new Note(2, 4, 0, 0.25d, 64));
+        expectedOutput.add(new Note(3, 4, 0, 0.25d, 112));
+        expectedOutput.add(new Note(1, 4, 0, 0.5d, 96));
+        
+        expectedOutput.add(new Note(2, 4, 0, 0.5d, 96));
+        expectedOutput.add(new Note(3, 4, 0, 0.25d, 64));
+        expectedOutput.add(new Note(4, 4, 0, 0.25d, 112));
+        expectedOutput.add(new Note(2, 4, 0, 0.5d, 96));
+        
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        expectedOutput.add(new Note(1, 4, 0, 0.5d, 64));
+        expectedOutput.add(new Note(2, 4, 0, 0.5d, 112));
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        assertTransformerProducesExpectedOutput(t, input, expectedOutput);
+        
+        t = new SelfSimilarityTransformer(false, true, true);
+        expectedOutput.clear();
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        expectedOutput.add(new Note(1, 4, 0, 0.5d, 64));
+        expectedOutput.add(new Note(2, 4, 0, 0.5d, 112));
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        
+        expectedOutput.add(new Note(0, 4, 0, 0.5d, 64));
+        expectedOutput.add(new Note(1, 4, 0, 0.25d, 43));
+        expectedOutput.add(new Note(2, 4, 0, 0.25d, 75));
+        expectedOutput.add(new Note(0, 4, 0, 0.5d, 64));
+        
+        expectedOutput.add(new Note(0, 4, 0, 0.5d, 112));
+        expectedOutput.add(new Note(1, 4, 0, 0.25d, 97));
+        expectedOutput.add(new Note(2, 4, 0, 0.25d, 120));
+        expectedOutput.add(new Note(0, 4, 0, 0.5d, 112));
+        
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        expectedOutput.add(new Note(1, 4, 0, 0.5d, 64));
+        expectedOutput.add(new Note(2, 4, 0, 0.5d, 112));
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        assertTransformerProducesExpectedOutput(t, input, expectedOutput);
+        
+        t = new SelfSimilarityTransformer(false, false, false);
+        expectedOutput.clear();
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        expectedOutput.add(new Note(1, 4, 0, 0.5d, 64));
+        expectedOutput.add(new Note(2, 4, 0, 0.5d, 112));
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        expectedOutput.add(new Note(1, 4, 0, 0.5d, 64));
+        expectedOutput.add(new Note(2, 4, 0, 0.5d, 112));
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        expectedOutput.add(new Note(1, 4, 0, 0.5d, 64));
+        expectedOutput.add(new Note(2, 4, 0, 0.5d, 112));
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        expectedOutput.add(new Note(1, 4, 0, 0.5d, 64));
+        expectedOutput.add(new Note(2, 4, 0, 0.5d, 112));
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        
     }
     
     protected void assertTransformerProducesExpectedOutput(Transformer t, NoteList input, NoteList expectedOutput) {

@@ -18,6 +18,8 @@ public class MidiNote {
     public static final int DEFAULT_VELOCITY = 64;
     public static final int DEFAULT_CHANNEL = 0;
     public static final int TICKS_PER_QUARTER_NOTE = 2;
+    public static final int MAX_VELOCITY = 127;
+    public static final int MIN_VELOCITY = 0;
     
     public MidiNote(int pitch, double startTime, double duration, int channel, int velocity) {
         this.setPitch(pitch);
