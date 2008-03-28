@@ -240,8 +240,65 @@ public class TransformerTest {
         expectedOutput.add(new Note(0, 4, 0, 1d, 96));
         expectedOutput.add(new Note(1, 4, 0, 0.5d, 64));
         expectedOutput.add(new Note(2, 4, 0, 0.5d, 112));
-        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));   
+        assertTransformerProducesExpectedOutput(t, input, expectedOutput);
+    }
+    
+    @Test
+    public void inversionTransformer() {
+        NoteList input = new NoteList();
+        input.add(new Note(0, 4, 0, 1d, 96));
+        input.add(new Note(5, 4, 0, 0.5d, 64));
+        input.add(new Note(2, 4, 0, 0.5d, 112));
+        input.add(new Note(1, 4, 0, 0.5d, 112));
+        input.add(new Note(0, 4, 0, 1d, 96));
         
+        Transformer t = new InversionTransformer();
+        NoteList expectedOutput = new NoteList();
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        expectedOutput.add(new Note(-5, 4, 0, 0.5d, 64));
+        expectedOutput.add(new Note(-2, 4, 0, 0.5d, 112));
+        expectedOutput.add(new Note(-1, 4, 0, 0.5d, 112));
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        assertTransformerProducesExpectedOutput(t, input, expectedOutput);
+        
+        //inverting an inversion should produce the original
+        assertTransformerProducesExpectedOutput(t, expectedOutput, input);
+    }
+    
+    @Test
+    public void retrogradeTransformer() {
+        NoteList input = new NoteList();
+        input.add(new Note(0, 4, 0, 1d, 96));
+        input.add(new Note(5, 4, 0, 0.5d, 64));
+        input.add(new Note(2, 4, 0, 0.5d, 112));
+        input.add(new Note(1, 4, 0, 0.5d, 112));
+        input.add(new Note(0, 4, 0, 1d, 96));
+        
+        Transformer t = new RetrogradeTransformer();
+        NoteList expectedOutput = new NoteList();
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));
+        expectedOutput.add(new Note(1, 4, 0, 0.5d, 112));        
+        expectedOutput.add(new Note(2, 4, 0, 0.5d, 112));        
+        expectedOutput.add(new Note(5, 4, 0, 0.5d, 64));        
+        expectedOutput.add(new Note(0, 4, 0, 1d, 96));        
+        assertTransformerProducesExpectedOutput(t, input, expectedOutput);
+        
+        //inverting an inversion should produce the original
+        assertTransformerProducesExpectedOutput(t, expectedOutput, input);
+    }
+    
+    @Test 
+    public void copyTransformer() {
+        NoteList input = new NoteList();
+        input.add(new Note(0, 4, 0, 1d, 96));
+        input.add(new Note(5, 4, 0, 0.5d, 64));
+        input.add(new Note(2, 4, 0, 0.5d, 112));
+        input.add(new Note(1, 4, 0, 0.5d, 112));
+        input.add(new Note(0, 4, 0, 1d, 96));
+        
+        Transformer t = new CopyTransformer();             
+        assertTransformerProducesExpectedOutput(t, input, input);
     }
     
     protected void assertTransformerProducesExpectedOutput(Transformer t, NoteList input, NoteList expectedOutput) {
