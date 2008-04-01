@@ -6,25 +6,52 @@ import com.myronmarston.music.NoteList;
 import com.myronmarston.music.settings.SelfSimilaritySettings;
 
 /**
- *
+ * Transformer that applies the self-similarity algorithm to the given NoteList.
+ * This can apply to the pitch, rhythm and/or volume, depending on the 
+ * SelfSimilaritySettings.  
+ * Example: G5 A5 B5 G5 -> G5 A5 B5 G5, A5 B5 C6 A5, B5 C6 D6 B5, G5 A5 B5 G5
+ * 
  * @author Myron
  */
 public class SelfSimilarityTransformer implements Transformer {   
     private SelfSimilaritySettings settings;        
 
+    /**
+     * Gets the self-similarity settings to be used by this transformer.  
+     * Guarenteed to never be null.  The settings determine whether or not 
+     * self-similarity is applied to the pitch, rhythm and/or volume.
+     * 
+     * @return the self-similarity settings
+     */
     public SelfSimilaritySettings getSettings() {
         if (settings == null) settings = new SelfSimilaritySettings(true, true, true);
         return this.settings;
     }
     
+    /**
+     * Constructor.
+     * 
+     * @param settings the self-similarity settings to use
+     */
     public SelfSimilarityTransformer(SelfSimilaritySettings settings) {
         this.settings = settings;
     }         
     
+    /**
+     * Constructor.  Use this constructor to provide values for the 
+     * self-similarity settings.
+     * 
+     * @param applyToPitch true to apply self-similarity to the pitch
+     * @param applyToRhythm true to apply self-similarity to the rhythm
+     * @param applyToVolume true to apply self-similarity to the volume
+     */
     public SelfSimilarityTransformer(boolean applyToPitch, boolean applyToRhythm, boolean applyToVolume) {
         this(new SelfSimilaritySettings(applyToPitch, applyToRhythm, applyToVolume));
     }
     
+    /**
+     * Default Constructor.
+     */
     public SelfSimilarityTransformer() {};
     
     public NoteList transform(NoteList input) {                             
@@ -43,7 +70,7 @@ public class SelfSimilarityTransformer implements Transformer {
         return output;
     }
 
-    protected NoteList transform_pitch(NoteList input, Note firstNote, Note inputNote) {
+    private NoteList transform_pitch(NoteList input, Note firstNote, Note inputNote) {
         if (!this.getSettings().getApplyToPitch()) return input;
                                    
         // transpose the input to the correct octave...
@@ -55,7 +82,7 @@ public class SelfSimilarityTransformer implements Transformer {
         return transposer.transform(octaveTransformedList);
     }
 
-    protected NoteList transform_rhythm(NoteList input, Note firstNote, Note inputNote) {
+    private NoteList transform_rhythm(NoteList input, Note firstNote, Note inputNote) {
         if (!this.getSettings().getApplyToRhythm()) return input;                
         
         // scale the rhythm...
@@ -64,7 +91,7 @@ public class SelfSimilarityTransformer implements Transformer {
         return rhythmScaler.transform(input);
     }
     
-    protected NoteList transform_volume(NoteList input, Note firstNote, Note inputNote) {
+    private NoteList transform_volume(NoteList input, Note firstNote, Note inputNote) {
         if (!this.getSettings().getApplyToVolume()) return input;
                         
         int remainingVolumeRange = // get the above or below volume range based on the volume of the current note relative to the first note

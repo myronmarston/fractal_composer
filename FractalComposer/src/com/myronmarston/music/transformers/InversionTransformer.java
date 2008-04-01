@@ -4,7 +4,9 @@ import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
 
 /**
- *
+ * Transformer that applies inversion to the given note list.
+ * Example: C5 G5 D5 C5 -> C5 F4 B4 C5
+ * 
  * @author Myron
  */
 public class InversionTransformer implements Transformer {

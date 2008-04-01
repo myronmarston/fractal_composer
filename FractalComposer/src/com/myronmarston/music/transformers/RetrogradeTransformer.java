@@ -5,7 +5,9 @@ import java.util.Collections;
 
 
 /**
- *
+ * Transformer that applies retrograde to the given NoteList.
+ * Example: C5 G5 D5 C5 -> C5 D5 G5 C5
+ * 
  * @author Myron
  */
 public class RetrogradeTransformer implements Transformer {
