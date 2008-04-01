@@ -3,6 +3,9 @@ package com.myronmarston.music.scales;
 import com.myronmarston.music.NoteName;
 
 /**
+ * The most common scale used in western music.  This scale uses the following
+ * whole step (W) / half step (H): WWHWWWH
+ * 
  * @author Myron
  */
 public class MajorScale extends TonalScale {
@@ -29,6 +32,11 @@ public class MajorScale extends TonalScale {
         return 0;
     }
 
+    /**
+     * Constructor.
+     * 
+     * @param keyName the name of the tonal center
+     */
     public MajorScale(NoteName keyName) {
         super(keyName);
     }                  

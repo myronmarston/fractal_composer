@@ -2,7 +2,8 @@ package com.myronmarston.music;
 
 /**
  * Enumerates all the valid note names.
- * Also provides a "note number" -- number of half steps the note is above C
+ * Also provides a "note number" -- number of half steps the note is above C.
+ * 
  * @author Myron
  */
 public enum NoteName {
@@ -40,10 +41,23 @@ public enum NoteName {
         this.defaultNoteNameForNumber = defaultNoteNameForNumber;
     }
 
+    /**
+     * Gets the number of half steps this note name is above C.
+     * 
+     * @return the number of half steps this note name is above C
+     */
     public int getNoteNumber() {
         return this.noteNumber;
     }
     
+    /**
+     * Gets the default note name for the given number.  For example, "5" would 
+     * yield "F" rather than "E_SHARP".
+     * 
+     * @param noteNumber the number of half steps above C
+     * @return the NoteName
+     * @throws java.lang.IllegalArgumentException if the number is < 0 or > 11
+     */
     static public NoteName getDefaultNoteNameForNumber(int noteNumber) throws IllegalArgumentException {
         for (NoteName noteName : NoteName.values()) {
             if ((noteNumber == noteName.getNoteNumber()) && (noteName.defaultNoteNameForNumber)) {
