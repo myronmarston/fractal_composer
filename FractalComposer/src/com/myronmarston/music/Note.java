@@ -33,17 +33,17 @@ public class Note {
      * @param volume how loud the note should be (0-127)
      */
     public Note(int scaleStep, int octave, int chromaticAdjustment, double duration, int volume) {
-        this.scaleStep = scaleStep;
-        this.octave = octave;
-        this.chromaticAdjustment = chromaticAdjustment;
+        this.setScaleStep(scaleStep);
+        this.setOctave(octave);
+        this.setChromaticAdjustment(chromaticAdjustment);
         this.setDuration(duration);
-        this.volume = volume;
+        this.setVolume(volume);        
     }
     
     /**
      * Copy Constructor.
      * 
-     * @param inputNote note to copy
+     * @param inputNote note to copy     
      */
     public Note(Note inputNote) {
         this(inputNote.getScaleStep(), inputNote.getOctave(), inputNote.getChromaticAdjustment(), inputNote.getDuration(), inputNote.getVolume());        
@@ -53,13 +53,13 @@ public class Note {
      * Creates a note that is a rest.
      * 
      * @param duration how long the rest should last, in quarter notes
-     * @return the rest
+     * @return the rest     
      */
     static public Note createRest(double duration) {
         Note rest = new Note();
                 
         rest.setDuration(duration); // use the setter so we get an exception if the duration is 0
-        rest.setVolume(0);
+        rest.setVolume(MidiNote.MIN_VELOCITY);              
         
         assert rest.isRest() : rest;
         return rest;
@@ -163,6 +163,10 @@ public class Note {
      * @param volume the volume
      */
     public void setVolume(int volume) {
+        if (volume < MidiNote.MIN_VELOCITY || volume > MidiNote.MAX_VELOCITY) {
+            throw new UnsupportedOperationException(String.format("The volume must be between %d and %d.  The passed volume was %d.", MidiNote.MIN_VELOCITY, MidiNote.MAX_VELOCITY, volume));
+        }
+        
         this.volume = volume;
         
         // set the pitch fields to default values. We do this so that our
