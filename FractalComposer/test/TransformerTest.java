@@ -101,7 +101,7 @@ public class TransformerTest {
         input.add(new Note(2, 4, 0, 0.5d, 64));
         input.add(new Note(0, 4, 0, 1d, 64));
         
-        Transformer t = new RhythmicDurationTransformer(2);
+        Transformer t = new RhythmicDurationTransformer(0.5d);
         NoteList expectedOutput = new NoteList();
         expectedOutput.add(new Note(0, 4, 0, 2d, 64));
         expectedOutput.add(new Note(1, 4, 0, 1d, 64));
@@ -109,7 +109,7 @@ public class TransformerTest {
         expectedOutput.add(new Note(0, 4, 0, 2d, 64));        
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
-        t = new RhythmicDurationTransformer(0.5d);
+        t = new RhythmicDurationTransformer(2d);
         expectedOutput.clear();
         expectedOutput.add(new Note(0, 4, 0, 0.5d, 64));
         expectedOutput.add(new Note(1, 4, 0, 0.25d, 64));
@@ -117,6 +117,12 @@ public class TransformerTest {
         expectedOutput.add(new Note(0, 4, 0, 0.5d, 64));        
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
     }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void rhythmicTransformerZeroScaleFactor() {
+        // this should throw an exception...
+        Transformer t = new RhythmicDurationTransformer(0);
+    }    
     
     @Test
     public void volumeTransformer() {
@@ -141,6 +147,12 @@ public class TransformerTest {
         expectedOutput.add(new Note(2, 4, 0, 0.5d, 16));
         expectedOutput.add(new Note(0, 4, 0, 1d, 32));
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);        
+    }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void volumeTransformerBadScaleFactor() {
+        // a scale factor < -1 or > 1 should throw an exception
+        Transformer t = new VolumeTransformer(-2);
     }
     
     @Test

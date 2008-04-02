@@ -164,7 +164,7 @@ public class Note {
      */
     public void setVolume(int volume) {
         if (volume < MidiNote.MIN_VELOCITY || volume > MidiNote.MAX_VELOCITY) {
-            throw new UnsupportedOperationException(String.format("The volume must be between %d and %d.  The passed volume was %d.", MidiNote.MIN_VELOCITY, MidiNote.MAX_VELOCITY, volume));
+            throw new IllegalArgumentException(String.format("The volume must be between %d and %d.  The passed volume was %d.", MidiNote.MIN_VELOCITY, MidiNote.MAX_VELOCITY, volume));
         }
         
         this.volume = volume;

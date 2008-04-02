@@ -1,5 +1,8 @@
 package com.myronmarston.music.settings;
 
+import com.myronmarston.music.NoteList;
+import com.myronmarston.music.transformers.OctaveTransformer;
+import com.myronmarston.music.transformers.RhythmicDurationTransformer;
 import java.util.List;
 
 /**
@@ -13,7 +16,8 @@ import java.util.List;
  */
 public class Voice extends AbstractVoiceOrSection<Voice, Section> {
     private int octaveAdjustment;
-    private double speedScaleFactor;    
+    private double speedScaleFactor;
+    private NoteList modifiedGerm;
     
     /**
      * Constructor.
@@ -39,6 +43,7 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
      * @param val number of octaves to adjust
      */
     public void setOctaveAdjustment(int val) {
+        if (this.getOctaveAdjustment() != val) clearModifiedGerm();
         this.octaveAdjustment = val;
     }
 
@@ -57,7 +62,39 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
      * @param val the speed scale factor
      */
     public void setSpeedScaleFactor(double val) {
+        if (this.speedScaleFactor != val) clearModifiedGerm();
         this.speedScaleFactor = val;
+    }
+    
+    /**
+     * Gets the modified germ, based on the current settings.
+     * 
+     * @return the modified germ
+     */
+    public NoteList getModifiedGerm() {
+        if (modifiedGerm == null) this.modifiedGerm = this.generateModifiedGerm();
+        return modifiedGerm;
+    }
+    
+    /**
+     * Sets the modifiedGerm field to null.  Should be called anytime a field
+     * that affects the modified germ changes.
+     */
+    protected void clearModifiedGerm() {
+        this.modifiedGerm = null;
+    }
+    
+    /**
+     * Generates the modified germ based on the current settings.
+     * 
+     * @return the modified germ.
+     */
+    protected NoteList generateModifiedGerm() {
+        OctaveTransformer octaveT = new OctaveTransformer(this.getOctaveAdjustment());
+        RhythmicDurationTransformer speedT = new RhythmicDurationTransformer(this.getSpeedScaleFactor());
+        
+        NoteList temp = octaveT.transform(this.getFractalPiece().getGerm());
+        return speedT.transform(temp);
     }
     
     @Override

@@ -86,8 +86,8 @@ public class SelfSimilarityTransformer implements Transformer {
         if (!this.getSettings().getApplyToRhythm()) return input;                
         
         // scale the rhythm...
-        assert (firstNote.getDuration() > 0) : firstNote.getDuration(); // we would get div-by-zero below if the duration is zero, and less than zero is nonsensical
-        RhythmicDurationTransformer rhythmScaler = new RhythmicDurationTransformer(inputNote.getDuration() / firstNote.getDuration());
+        assert (inputNote.getDuration() > 0) : inputNote.getDuration(); // we would get div-by-zero below if the duration is zero, and less than zero is nonsensical
+        RhythmicDurationTransformer rhythmScaler = new RhythmicDurationTransformer(firstNote.getDuration() / inputNote.getDuration());
         return rhythmScaler.transform(input);
     }
     

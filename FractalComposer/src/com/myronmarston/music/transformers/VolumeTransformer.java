@@ -35,6 +35,7 @@ public class VolumeTransformer implements Transformer {
      *        reduce the volume; positive values will increase the volume.
      */
     public VolumeTransformer(double scaleFactor) {
+        if (Math.abs(scaleFactor) > 1) throw new IllegalArgumentException("The scale factor must be between -1 and 1.");
         this.scaleFactor = scaleFactor;
     }
     

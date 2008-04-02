@@ -19,18 +19,19 @@ public class RhythmicDurationTransformer implements Transformer {
      * 
      * @return the scale factor
      */
-    public double getScaleFactor() {
+    public double getScaleFactor() {        
         return scaleFactor;
     }
     
     /**
      * Constructor.
      * 
-     * @param scaleFactor the scale factor. Factors less than 1 will increase 
-     *        the speed of the NoteList; factors greater than 1 will slow it 
+     * @param scaleFactor the scale factor. Factors greater than 1 will increase 
+     *        the speed of the NoteList; factors less than 1 will slow it 
      *        down.
      */
-    public RhythmicDurationTransformer(double scaleFactor) {
+    public RhythmicDurationTransformer(double scaleFactor) {        
+        if (scaleFactor <= 0) throw new IllegalArgumentException("The scaleFactor must be greater than 0.");
         this.scaleFactor = scaleFactor;
     }
     
@@ -40,7 +41,7 @@ public class RhythmicDurationTransformer implements Transformer {
         
         for (Note inputNote : input) {
             newNote = new Note(inputNote);
-            newNote.setDuration(newNote.getDuration() * this.getScaleFactor());            
+            newNote.setDuration(newNote.getDuration() / this.getScaleFactor());            
             
             output.add(newNote);
         }

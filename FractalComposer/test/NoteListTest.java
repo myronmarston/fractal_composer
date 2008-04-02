@@ -76,7 +76,7 @@ public class NoteListTest {
         n.setDuration(0);
     }
     
-    @Test(expected=UnsupportedOperationException.class)
+    @Test(expected=IllegalArgumentException.class)
     public void setBadVolume() {
         Note n = new Note(2, 2, 0, 1d, 128);
     }

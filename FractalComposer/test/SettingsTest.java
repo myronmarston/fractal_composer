@@ -1,12 +1,14 @@
 import com.myronmarston.music.settings.*;
 
+import com.myronmarston.music.Note;
+import com.myronmarston.music.NoteList;
+import java.util.ConcurrentModificationException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import java.util.ConcurrentModificationException;
 
 /**
  *
@@ -179,5 +181,48 @@ public class SettingsTest {
         Section s2 = fp.createSection();
         
         v2.getVoiceSections().remove(0);
+    }
+    
+    @Test
+    public void generateVoiceGerm() {
+        FractalPiece fp = new FractalPiece();
+        fp.getGerm().add(new Note(0, 4, 0, 1d, 96));
+        fp.getGerm().add(new Note(1, 4, 0, 0.5d, 64));
+        fp.getGerm().add(new Note(2, 4, 0, 0.5d, 64));
+        fp.getGerm().add(new Note(0, 4, 0, 1d, 96));
+        
+        Voice v1 = fp.createVoice();
+        v1.setOctaveAdjustment(2);
+        v1.setSpeedScaleFactor(4);
+        
+        NoteList expected = new NoteList();
+        expected.add(new Note(0, 6, 0, 0.25d, 96));
+        expected.add(new Note(1, 6, 0, 0.125d, 64));
+        expected.add(new Note(2, 6, 0, 0.125d, 64));
+        expected.add(new Note(0, 6, 0, 0.25d, 96));
+        assertNoteListsEqual(expected, v1.getModifiedGerm());
+        
+        v1.setSpeedScaleFactor(0.5d);
+        expected.clear();
+        expected.add(new Note(0, 6, 0, 2d, 96));
+        expected.add(new Note(1, 6, 0, 1d, 64));
+        expected.add(new Note(2, 6, 0, 1d, 64));
+        expected.add(new Note(0, 6, 0, 2d, 96));
+        assertNoteListsEqual(expected, v1.getModifiedGerm());
+        
+        v1.setOctaveAdjustment(-1);
+        expected.clear();
+        expected.add(new Note(0, 3, 0, 2d, 96));
+        expected.add(new Note(1, 3, 0, 1d, 64));
+        expected.add(new Note(2, 3, 0, 1d, 64));
+        expected.add(new Note(0, 3, 0, 2d, 96));
+        assertNoteListsEqual(expected, v1.getModifiedGerm());
+    }
+    
+    static protected void assertNoteListsEqual(NoteList expected, NoteList actual) {
+        assertEquals(expected.size(), actual.size());
+        for (int i = 0; i < expected.size(); i++) {
+            assertEquals(expected.get(i), actual.get(i));
+        }
     }
 }
