@@ -52,7 +52,7 @@ public class SettingsTest {
     }     
     
     @Test
-    public void creatingVoiceOrSettingsCreatesVoiceSections() {
+    public void creatingOrRemovingVoicesOrSettingsManagesVoiceSections() {
         FractalPiece fp = new FractalPiece();
         Voice v1 = fp.createVoice();
         assertEquals(0, v1.getVoiceSections().size());
@@ -98,7 +98,17 @@ public class SettingsTest {
         assertNotNull(vs6);
         assertEquals(vs4, s2.getVoiceSections().get(0));
         assertEquals(vs5, s2.getVoiceSections().get(1));
-        assertEquals(vs6, s2.getVoiceSections().get(2));                   
+        assertEquals(vs6, s2.getVoiceSections().get(2));   
+        
+        // now let's remove some Voices and Sections...
+        fp.getVoices().remove(v1);        
+        assertEquals(0, v1.getVoiceSections().size());
+        assertEquals(2, s1.getVoiceSections().size());
+        assertEquals(2, s2.getVoiceSections().size());
+        assertEquals(vs2, s1.getVoiceSections().get(0));
+        assertEquals(vs3, s1.getVoiceSections().get(1));
+        assertEquals(vs5, s2.getVoiceSections().get(0));
+        assertEquals(vs6, s2.getVoiceSections().get(1));
     }
     
     @Test(expected=ConcurrentModificationException.class)
@@ -114,6 +124,38 @@ public class SettingsTest {
             // modify the list be creating another section...
             if (!sectionCreated) fp.createSection();
             sectionCreated = true;
+        }
+    }
+    
+    @Test(expected=ConcurrentModificationException.class)
+    public void exceptionIfModifyVoiceListWhileIterating() {
+        FractalPiece fp = new FractalPiece();
+        Voice v1 = fp.createVoice();
+        Voice v2 = fp.createVoice();
+        Section s1 = fp.createSection();
+        Section s2 = fp.createSection();
+        
+        boolean voiceCreated = false;
+        for (Voice v : fp.getVoices()) {
+            // modify the list be creating another voice...
+            if (!voiceCreated) fp.createVoice();
+            voiceCreated = true;            
+        }
+    }
+    
+    @Test(expected=ConcurrentModificationException.class)
+    public void exceptionIfModifySectionListWhileIterating() {
+        FractalPiece fp = new FractalPiece();
+        Voice v1 = fp.createVoice();
+        Voice v2 = fp.createVoice();
+        Section s1 = fp.createSection();
+        Section s2 = fp.createSection();
+        
+        boolean sectionCreated = false;
+        for (Section s : fp.getSections()) {
+            // modify the list be creating another voice...
+            if (!sectionCreated) fp.createSection();
+            sectionCreated = true;            
         }
     }
     

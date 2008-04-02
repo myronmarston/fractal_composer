@@ -4,13 +4,13 @@ import java.util.List;
 
 /**
  * The entire fractal piece is composed of a series of sections.  Each section
- * represents a group of bars of the piece of music, e.g., bars 8-15.
- * The section is responsible to make sure each voice in this section
- * is the same length.
+ * represents a group of bars of the piece of music, e.g., bars 8-15. The 
+ * section is responsible to make sure each voice in this section is the same 
+ * length.
  * 
  * @author Myron
  */
-public class Section extends AbstractVoiceOrSection {    
+public class Section extends AbstractVoiceOrSection<Section, Voice> {    
     
     /**
      * Constructor.
@@ -19,16 +19,26 @@ public class Section extends AbstractVoiceOrSection {
      */
     protected Section(FractalPiece fractalPiece) {
         super(fractalPiece);
-    }       
+    }      
     
     @Override
-    public List getListOfIntersectingType() {
+    protected List<Section> getListOfThisType() {
+        return this.getFractalPiece().getSections();
+    }
+    
+    @Override
+    protected List<Voice> getListOfOtherType() {
         return this.getFractalPiece().getVoices();
+    }    
+
+    @Override
+    protected VoiceSectionHashMapKey getHashMapKeyForOtherTypeIndex(int index) {
+        Voice indexedVoice = this.getFractalPiece().getVoices().get(index);
+        return new VoiceSectionHashMapKey(indexedVoice, this);
     }
 
     @Override
-    public VoiceSectionHashMapKey getHashMapKeyForIntersectingTypeIndex(int index) {
-        Voice indexedVoice = this.getFractalPiece().getVoices().get(index);
-        return new VoiceSectionHashMapKey(indexedVoice, this);
-    }    
+    protected VoiceSection instantiateVoiceSection(Voice vOrS) {
+        return new VoiceSection(vOrS, this);
+    }   
 }

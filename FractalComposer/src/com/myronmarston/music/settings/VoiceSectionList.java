@@ -35,25 +35,29 @@ public class VoiceSectionList extends AbstractList<VoiceSection> {
     
     @Override
     public VoiceSection get(int index) {
-        VoiceSectionHashMapKey key = this.constantVoiceOrSection.getHashMapKeyForIntersectingTypeIndex(index);
+        VoiceSectionHashMapKey key = this.constantVoiceOrSection.getHashMapKeyForOtherTypeIndex(index);
         return this.voiceSectionHash.get(key);
     }
 
     @Override
     public int size() {
-        return this.constantVoiceOrSection.getListOfIntersectingType().size();
+        if (this.constantVoiceOrSection.getListOfThisType().contains(this.constantVoiceOrSection)) {
+            return this.constantVoiceOrSection.getListOfOtherType().size();
+        }        
+        
+        return 0;
     }
     
     /**
      * Increments the modCount, in order to properly trigger a 
      * ConcurrentModificationException.  Should be called when a voice section 
-     * that is part of this list is created.  This is a bit hack-ish, but with 
+     * is added or removed from the hash map.  This is a bit hack-ish, but with 
      * Java's lack of built in event support (a la .NET), this is the easiest 
      * work around.  I would have liked to use Observable and Observer, but with
      * Observable being a class rather than an interface, and Java's lack of
      * multiple inheritance, that's not feasible.
      */
-    protected void voiceSectionCreated() {
+    protected void incrementModCount() {
         this.modCount++;
     }         
 }

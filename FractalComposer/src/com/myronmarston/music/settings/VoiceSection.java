@@ -1,8 +1,5 @@
 package com.myronmarston.music.settings;
 
-import com.myronmarston.music.NoteList; 
-
-
 /**
  * Represents the smallest unit of the fractal piece for which the user can
  * specify settings.  One of these exists for each combination of a Voice and
@@ -26,13 +23,9 @@ public class VoiceSection {
      */
     protected VoiceSection(Voice voice, Section section) {
         this.voice = voice;
-        this.section = section;
+        this.section = section;        
+    }        
         
-        this.voice.getVoiceSections().voiceSectionCreated();
-        this.section.getVoiceSections().voiceSectionCreated();
-    }
-    
-    
     /**
      * The Section this VoiceSection plays with simultaneously.
      * 
@@ -120,6 +113,14 @@ public class VoiceSection {
     public SelfSimilaritySettings getSelfSimilaritySettings() {
         if (selfSimilaritySettings == null) selfSimilaritySettings = new SelfSimilaritySettings();
         return selfSimilaritySettings;
+    }
+    
+    /**
+     * Creates a hash map key using the Voice and Section for this VoiceSection.
+     * @return the hash map key
+     */
+    protected VoiceSectionHashMapKey createHashMapKey() {
+        return new VoiceSectionHashMapKey(this.getVoice(), this.getSection());
     }
 }
 

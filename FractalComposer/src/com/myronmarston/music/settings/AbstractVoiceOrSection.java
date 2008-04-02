@@ -6,9 +6,12 @@ import java.util.List;
  * An abstract class containing a common interface and common logic shared
  * by the Voice and Section classes.
  *   
+ * @param M the main type--Voice or Section
+ * @param O the other type--Voice, if this is a Section, or Section,
+ *        if this is a voice
  * @author Myron
  */
-public abstract class AbstractVoiceOrSection {
+public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O extends AbstractVoiceOrSection> {
     private FractalPiece fractalPiece;
     private VoiceSectionList voiceSections;
 
@@ -48,24 +51,42 @@ public abstract class AbstractVoiceOrSection {
     }
     
     /**
-     * When implemented by the Voice class, this should 
-     * return a list of all the Sections in the fractal piece.
-     * When implemented by the Section class, this should 
-     * return a list of all the Voices in the fractal piece.
+     * Returns the FractalPiece's list of this type.  When implemented by the 
+     * Voice class, this should return a list of all Voices in the fractal 
+     * piece.  When implemented by the Section class, this should return a list
+     * of al the Sections in the fractal piece.
      * 
-     * @return a List<Voice> (if the implementing type is Section) 
-     *         or List<Section> (if the implementing type is Voice)
+     * @return a List of Voices (if the implementing type is Voice) or a list
+     *         of Sections (if the implementing type is Section)
      */
-    public abstract List getListOfIntersectingType();
+    protected abstract List<M> getListOfThisType();
+    
+    /**
+     * When implemented by the Voice class, this should return a list of all the 
+     * Sections in the fractal piece.  When implemented by the Section class, 
+     * this should return a list of all the Voices in the fractal piece.
+     * 
+     * @return a List of Voices (if the implementing type is Section) or a List 
+     *         of Sections (if the implementing type is Voice)
+     */
+    protected abstract List<O> getListOfOtherType();    
     
     /**
      * Creates a VoiceSectionHashMapKey, combining this object with an object 
-     * of the intersecting type, based on the index.
+     * of the other type, based on the index.
      * 
-     * @param index The index in the list of the intersecting type to combine 
+     * @param index The index in the list of the other type to combine 
      *        with to create the hash map key
      * @return A VoiceSectionHashMapKey that can be used to get a 
      *         specific VoiceSection
      */
-    public abstract VoiceSectionHashMapKey getHashMapKeyForIntersectingTypeIndex(int index);
+    protected abstract VoiceSectionHashMapKey getHashMapKeyForOtherTypeIndex(int index);
+    
+    /**
+     * Instantiates and returns a VoiceSection, using this and the passed voice 
+     * or section.
+     * @param vOrS a Voice or Section to use in the instantiating
+     * @return a new VoiceSection
+     */
+    protected abstract VoiceSection instantiateVoiceSection(O vOrS);
 }

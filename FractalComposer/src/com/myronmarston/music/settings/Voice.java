@@ -11,7 +11,7 @@ import java.util.List;
  * 
  * @author Myron
  */
-public class Voice extends AbstractVoiceOrSection {
+public class Voice extends AbstractVoiceOrSection<Voice, Section> {
     private int octaveAdjustment;
     private double speedScaleFactor;    
     
@@ -32,7 +32,6 @@ public class Voice extends AbstractVoiceOrSection {
     public int getOctaveAdjustment() {
         return octaveAdjustment;
     }
-
     
     /**
      * Sets how many octaves to adjust the germ for use by this voice.
@@ -51,7 +50,6 @@ public class Voice extends AbstractVoiceOrSection {
     public double getSpeedScaleFactor() {
         return speedScaleFactor;
     }
-
     
     /**
      * Sets the speed scale factor to apply to the germ for use by this voice.
@@ -63,14 +61,24 @@ public class Voice extends AbstractVoiceOrSection {
     }
     
     @Override
-    public List getListOfIntersectingType() {
+    protected List<Voice> getListOfThisType() {
+        return this.getFractalPiece().getVoices();
+    }
+    
+    @Override
+    protected List<Section> getListOfOtherType() {
         return this.getFractalPiece().getSections();
     }
 
     @Override
-    public VoiceSectionHashMapKey getHashMapKeyForIntersectingTypeIndex(int index) {
+    protected VoiceSectionHashMapKey getHashMapKeyForOtherTypeIndex(int index) {
         Section indexedSection = this.getFractalPiece().getSections().get(index);
         return new VoiceSectionHashMapKey(this, indexedSection);
     }
+
+    @Override
+    protected VoiceSection instantiateVoiceSection(Section vOrS) {
+        return new VoiceSection(this, vOrS);
+    }   
 }
 

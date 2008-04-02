@@ -2,7 +2,7 @@ package com.myronmarston.music.settings;
 
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.scales.Scale;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 
 /**
@@ -16,8 +16,8 @@ import java.util.HashMap;
 public class FractalPiece {
     private NoteList germ;
     private Scale scale;
-    private ArrayList<Voice> voices;
-    private ArrayList<Section> sections;
+    private VoiceOrSectionList<Voice, Section> voices = new VoiceOrSectionList<Voice, Section>(this.getVoiceSections());
+    private VoiceOrSectionList<Section, Voice> sections = new VoiceOrSectionList<Section, Voice>(this.getVoiceSections());
     private HashMap<VoiceSectionHashMapKey, VoiceSection> voiceSections;
 
     /**
@@ -71,8 +71,7 @@ public class FractalPiece {
      * 
      * @return the list of Voices
      */
-    public ArrayList<Voice> getVoices() {
-        if (voices == null) voices = new ArrayList<Voice>();
+    public List<Voice> getVoices() {        
         return voices;
     }
         
@@ -83,11 +82,9 @@ public class FractalPiece {
      * 
      * @return the list of Sections
      */
-    public ArrayList<Section> getSections() {
-        if (sections == null) sections = new ArrayList<Section>();
+    public List<Section> getSections() {        
         return sections;
     }
-    
     
     /**
      * Creates a Voice for the FractalPiece, and adds it to the Voice list.
@@ -95,24 +92,10 @@ public class FractalPiece {
      * @return the created Voice
      */
     public Voice createVoice() {
-        int sectionIndex = 0;
-        int voiceIndex = this.getVoices().size();
-        VoiceSection vs;
         Voice v = new Voice(this);
-        this.getVoices().add(v);
-        
-        // add the voice sections to our hash map...
-        for (Section s : this.getSections()) {  
-            vs = new VoiceSection(v, s);
-            this.getVoiceSections().put(new VoiceSectionHashMapKey(v, s), vs);
-            
-            // assert that our lists have it...
-            assert v.getVoiceSections().get(sectionIndex++) == vs;
-            assert s.getVoiceSections().get(voiceIndex) == vs;
-        }        
-        
-        return v;        
-    }    
+        this.voices.add(v);
+        return v;
+    }
     
     /**
      * Creates a Section for the FractalPiece, and adds it to the Section list.
@@ -120,22 +103,8 @@ public class FractalPiece {
      * @return the created Section
      */
     public Section createSection() {
-        int sectionIndex = this.getSections().size();
-        int voiceIndex = 0;
-        VoiceSection vs;
         Section s = new Section(this);
-        this.getSections().add(s);
-        
-        // add the voice sections to our hash map...
-        for (Voice v : this.getVoices()) {  
-            vs = new VoiceSection(v, s);
-            this.getVoiceSections().put(new VoiceSectionHashMapKey(v, s), vs);
-            
-            // assert that our lists have it...
-            assert v.getVoiceSections().get(sectionIndex) == vs;
-            assert s.getVoiceSections().get(voiceIndex++) == vs;
-        }        
-        
-        return s;       
-    }           
+        this.sections.add(s);
+        return s;
+    }        
 }
