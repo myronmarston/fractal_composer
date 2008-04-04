@@ -59,7 +59,7 @@ public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O
      * @return a List of Voices (if the implementing type is Voice) or a list
      *         of Sections (if the implementing type is Section)
      */
-    protected abstract List<M> getListOfThisType();
+    protected abstract List<M> getListOfMainType();
     
     /**
      * When implemented by the Voice class, this should return a list of all the 

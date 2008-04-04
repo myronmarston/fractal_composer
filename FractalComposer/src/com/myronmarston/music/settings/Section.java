@@ -22,7 +22,7 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
     }      
     
     @Override
-    protected List<Section> getListOfThisType() {
+    protected List<Section> getListOfMainType() {
         return this.getFractalPiece().getSections();
     }
     

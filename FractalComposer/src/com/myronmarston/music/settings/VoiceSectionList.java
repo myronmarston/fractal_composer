@@ -41,7 +41,7 @@ public class VoiceSectionList extends AbstractList<VoiceSection> {
 
     @Override
     public int size() {
-        if (this.constantVoiceOrSection.getListOfThisType().contains(this.constantVoiceOrSection)) {
+        if (this.constantVoiceOrSection.getListOfMainType().contains(this.constantVoiceOrSection)) {
             return this.constantVoiceOrSection.getListOfOtherType().size();
         }        
         

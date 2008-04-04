@@ -98,7 +98,7 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
     }
     
     @Override
-    protected List<Voice> getListOfThisType() {
+    protected List<Voice> getListOfMainType() {
         return this.getFractalPiece().getVoices();
     }
     
