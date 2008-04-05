@@ -219,6 +219,77 @@ public class SettingsTest {
         assertNoteListsEqual(expected, v1.getModifiedGerm());
     }
     
+    @Test
+    public void voiceSectionGetVoiceSectionResult() {
+        FractalPiece fp = new FractalPiece();
+        fp.getGerm().add(new Note(0, 4, 0, 1d, 96));
+        fp.getGerm().add(new Note(1, 4, 0, 0.5d, 64));
+        fp.getGerm().add(new Note(2, 4, 0, 0.5d, 64));
+        fp.getGerm().add(new Note(0, 4, 0, 1d, 96));
+        
+        Voice v1 = fp.createVoice();
+        v1.setOctaveAdjustment(2);
+        v1.setSpeedScaleFactor(4);
+        
+        Section s1 = fp.createSection();
+        VoiceSection vs1 = v1.getVoiceSections().get(0);
+        
+        NoteList expected = new NoteList();
+        expected.add(new Note(0, 6, 0, 0.25d, 96));
+        expected.add(new Note(1, 6, 0, 0.125d, 64));
+        expected.add(new Note(2, 6, 0, 0.125d, 64));
+        expected.add(new Note(0, 6, 0, 0.25d, 96));
+        
+        expected.add(new Note(0, 6, 0, 0.25d, 96));
+        expected.add(new Note(1, 6, 0, 0.125d, 64));
+        expected.add(new Note(2, 6, 0, 0.125d, 64));
+        expected.add(new Note(0, 6, 0, 0.25d, 96));
+        
+        expected.add(new Note(0, 6, 0, 0.25d, 96));
+        expected.add(new Note(1, 6, 0, 0.125d, 64));
+        expected.add(new Note(2, 6, 0, 0.125d, 64));
+        expected.add(new Note(0, 6, 0, 0.25d, 96));
+        
+        expected.add(new Note(0, 6, 0, 0.25d, 96));
+        expected.add(new Note(1, 6, 0, 0.125d, 64));
+        expected.add(new Note(2, 6, 0, 0.125d, 64));
+        expected.add(new Note(0, 6, 0, 0.25d, 96));
+        assertNoteListsEqual(expected, vs1.getVoiceSectionResult());
+                
+        expected.clear();
+        vs1.setApplyInversion(true);
+        vs1.setApplyRetrograde(true);
+        vs1.getSelfSimilaritySettings().setApplyToPitch(true);
+        vs1.getSelfSimilaritySettings().setApplyToRhythm(true);
+        vs1.getSelfSimilaritySettings().setApplyToVolume(true);
+        
+        expected.add(new Note(0, 6, 0, 0.25d, 96));
+        expected.add(new Note(-2, 6, 0, 0.125d, 64));
+        expected.add(new Note(-1, 6, 0, 0.125d, 64));
+        expected.add(new Note(0, 6, 0, 0.25d, 96));
+        
+        expected.add(new Note(-2, 6, 0, 0.125d, 64));
+        expected.add(new Note(-4, 6, 0, 0.0625d, 43));
+        expected.add(new Note(-3, 6, 0, 0.0625d, 43));
+        expected.add(new Note(-2, 6, 0, 0.125d, 64));
+        
+        expected.add(new Note(-1, 6, 0, 0.125d, 64));
+        expected.add(new Note(-3, 6, 0, 0.0625d, 43));
+        expected.add(new Note(-2, 6, 0, 0.0625d, 43));
+        expected.add(new Note(-1, 6, 0, 0.125d, 64));
+        
+        expected.add(new Note(0, 6, 0, 0.25d, 96));
+        expected.add(new Note(-2, 6, 0, 0.125d, 64));
+        expected.add(new Note(-1, 6, 0, 0.125d, 64));
+        expected.add(new Note(0, 6, 0, 0.25d, 96));
+        assertNoteListsEqual(expected, vs1.getVoiceSectionResult());
+        
+        vs1.setRest(true);
+        expected.clear();
+        expected.add(new Note(0, 0, 0, 0.75d, 0));
+        assertNoteListsEqual(expected, vs1.getVoiceSectionResult());
+    }
+    
     static protected void assertNoteListsEqual(NoteList expected, NoteList actual) {
         assertEquals(expected.size(), actual.size());
         for (int i = 0; i < expected.size(); i++) {

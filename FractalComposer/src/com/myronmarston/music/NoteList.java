@@ -47,6 +47,17 @@ public class NoteList extends ArrayList<Note> {
     }
     
     /**
+     * Gets the total length of the note list.
+     * 
+     * @return the duration of the note list
+     */
+    public double getDuration() {
+        double duration = 0d;
+        for (Note n : this) duration += n.getDuration();        
+        return duration;        
+    }
+    
+    /**
      * Fills the given midi track with the notes from this NoteList.
      * 
      * @param track the midi track to fill

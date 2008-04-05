@@ -1,5 +1,11 @@
 package com.myronmarston.music.settings;
 
+import com.myronmarston.music.Note;
+import com.myronmarston.music.NoteList;
+import com.myronmarston.music.transformers.InversionTransformer;
+import com.myronmarston.music.transformers.RetrogradeTransformer;
+import com.myronmarston.music.transformers.SelfSimilarityTransformer;
+        
 /**
  * Represents the smallest unit of the fractal piece for which the user can
  * specify settings.  One of these exists for each combination of a Voice and
@@ -9,9 +15,9 @@ package com.myronmarston.music.settings;
  */
 public class VoiceSection {
     private SelfSimilaritySettings selfSimilaritySettings;
-    private boolean rest;
-    private boolean applyInversion;
-    private boolean applyRetrograde;    
+    private boolean rest = false;
+    private boolean applyInversion = false;
+    private boolean applyRetrograde = false;    
     private Voice voice;
     private Section section;
 
@@ -121,6 +127,36 @@ public class VoiceSection {
      */
     protected VoiceSectionHashMapKey createHashMapKey() {
         return new VoiceSectionHashMapKey(this.getVoice(), this.getSection());
+    }
+    
+    /**
+     * Applies this VoiceSection's settings to the germ.
+     * 
+     * @return a NoteList containing the result of applying the settings to the 
+     *         germ
+     */
+    public NoteList getVoiceSectionResult() {        
+        NoteList temp = this.getVoice().getModifiedGerm();
+        
+        if (this.getRest()) {
+            // create a note list of a single rest, the duration of the germ            
+            NoteList restResult = new NoteList();
+            restResult.add(Note.createRest(temp.getDuration()));            
+            return restResult;
+        } 
+        
+        if (this.getApplyInversion()) {
+            InversionTransformer iT = new InversionTransformer();
+            temp = iT.transform(temp);
+        }
+        
+        if (this.getApplyRetrograde()) {
+            RetrogradeTransformer rT = new RetrogradeTransformer();
+            temp = rT.transform(temp);
+        }
+               
+        SelfSimilarityTransformer ssT = new SelfSimilarityTransformer(this.getSelfSimilaritySettings());
+        return ssT.transform(temp);                        
     }
 }
 

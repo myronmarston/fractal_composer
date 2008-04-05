@@ -81,9 +81,18 @@ public class NoteListTest {
         Note n = new Note(2, 2, 0, 1d, 128);
     }
     
-    /**
-     * Test of fillMidiTrack method, of class NoteList.
-     */
+    @Test
+    public void getDuration() {
+        NoteList germ = new NoteList();
+        
+        germ.add(new Note(0, 4, 0, 1d, 96));
+        germ.add(new Note(1, 4, 0, 0.5d, 64));
+        germ.add(new Note(2, 4, 0, 0.5d, 64));
+        germ.add(new Note(0, 4, 0, 1d, 96));
+        
+        assertEquals(3d, germ.getDuration());
+    }
+    
     @Test
     public void fillMidiTrack() throws Exception {
         System.out.println("fillMidiTrack");
