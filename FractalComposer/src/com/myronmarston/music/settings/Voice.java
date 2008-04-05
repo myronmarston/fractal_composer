@@ -15,8 +15,8 @@ import java.util.List;
  * @author Myron
  */
 public class Voice extends AbstractVoiceOrSection<Voice, Section> {
-    private int octaveAdjustment;
-    private double speedScaleFactor;
+    private int octaveAdjustment = 0;
+    private double speedScaleFactor = 1d;
     private NoteList modifiedGerm;
     
     /**
@@ -74,6 +74,24 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
     public NoteList getModifiedGerm() {
         if (modifiedGerm == null) this.modifiedGerm = this.generateModifiedGerm();
         return modifiedGerm;
+    }
+    
+    /**
+     * Gets a NoteList containing the notes for all sections of this voice.
+     * 
+     * @return a NoteList for the entire voice
+     */
+    public NoteList getEntireVoice() {
+        NoteList entireVoice = new NoteList();        
+        double sectionDuration;
+        
+        for (VoiceSection vs : this.getVoiceSections()) {
+            sectionDuration = vs.getSection().getDuration();
+            
+            entireVoice.addAll(vs.getLengthenedVoiceSectionResult(sectionDuration));
+        }
+        
+        return entireVoice;
     }
     
     /**

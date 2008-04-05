@@ -5,6 +5,8 @@ import com.myronmarston.music.NoteList;
 import com.myronmarston.music.transformers.InversionTransformer;
 import com.myronmarston.music.transformers.RetrogradeTransformer;
 import com.myronmarston.music.transformers.SelfSimilarityTransformer;
+import java.util.Observable;
+import java.util.Observer;
         
 /**
  * Represents the smallest unit of the fractal piece for which the user can
@@ -13,13 +15,14 @@ import com.myronmarston.music.transformers.SelfSimilarityTransformer;
  * 
  * @author Myron
  */
-public class VoiceSection {
+public class VoiceSection implements Observer {
     private SelfSimilaritySettings selfSimilaritySettings;
     private boolean rest = false;
     private boolean applyInversion = false;
     private boolean applyRetrograde = false;    
     private Voice voice;
     private Section section;
+    private NoteList voiceSectionResult;
 
     /**
      * Constructor.
@@ -29,7 +32,11 @@ public class VoiceSection {
      */
     protected VoiceSection(Voice voice, Section section) {
         this.voice = voice;
-        this.section = section;        
+        this.section = section;    
+        
+        // observe our self similarity settings...
+        selfSimilaritySettings = new SelfSimilaritySettings();
+        selfSimilaritySettings.addObserver(this);
     }        
         
     /**
@@ -67,6 +74,7 @@ public class VoiceSection {
      * @param val whether or not to invert the germ
      */
     public void setApplyInversion(boolean val) {
+        if (val != this.applyInversion) clearVoiceSectionResult();
         this.applyInversion = val;
     }
     
@@ -76,7 +84,7 @@ public class VoiceSection {
      * 
      * @return whether or not to use the retrograde of the germ
      */
-    public boolean getApplyRetrograde() {
+    public boolean getApplyRetrograde() {        
         return applyRetrograde;
     }
     
@@ -87,6 +95,7 @@ public class VoiceSection {
      * @param val whether or not to use the retrograde of the germ
      */
     public void setApplyRetrograde(boolean val) {
+        if (val != this.applyRetrograde) clearVoiceSectionResult();
         this.applyRetrograde = val;
     }
 
@@ -107,6 +116,7 @@ public class VoiceSection {
      * @param val whether or not to make this VoiceSection one long rest
      */
     public void setRest(boolean val) {
+        if (val != this.rest) clearVoiceSectionResult();
         this.rest = val;
     }
 
@@ -116,8 +126,7 @@ public class VoiceSection {
      * 
      * @return the self-similarity settings to be used by this voice section
      */
-    public SelfSimilaritySettings getSelfSimilaritySettings() {
-        if (selfSimilaritySettings == null) selfSimilaritySettings = new SelfSimilaritySettings();
+    public SelfSimilaritySettings getSelfSimilaritySettings() {        
         return selfSimilaritySettings;
     }
     
@@ -130,12 +139,62 @@ public class VoiceSection {
     }
     
     /**
-     * Applies this VoiceSection's settings to the germ.
+     * Gets the result of applying this VoiceSection's settings to the germ.
      * 
      * @return a NoteList containing the result of applying the settings to the 
      *         germ
      */
-    public NoteList getVoiceSectionResult() {        
+    public NoteList getVoiceSectionResult() {
+        if (voiceSectionResult == null) voiceSectionResult = this.generateVoiceSectionResult();
+        return voiceSectionResult;
+    }
+    
+    /**
+     * Returns the voice section result, set to a particular length by padding 
+     * it with repeats and/or rests as appropriate.
+     * 
+     * @param length the length to set the voice section to
+     * @return the voice section result, set to the given length
+     */
+    public NoteList getLengthenedVoiceSectionResult(double length) {
+        // get a clone of the result, so we can modify the clone rather than the original result.
+        NoteList temp = (NoteList) this.getVoiceSectionResult().clone();
+        double originalVoiceSectionLength = temp.getDuration();
+        if (originalVoiceSectionLength > length) {
+            throw new IllegalArgumentException(String.format("The voice section length (%f) is longer than the passed argument (%f).  The passed argument must be greater than or equal to the voice section length.", originalVoiceSectionLength, length));
+        }
+                
+        // pad the length with additional copies of the entire voice section 
+        // while there is space left...
+        while (temp.getDuration() + originalVoiceSectionLength <= length) {
+            temp.addAll(this.getVoiceSectionResult());
+        }
+        
+        // fill in the rest of the length with a rest...
+        if (temp.getDuration() < length) {
+            temp.add(Note.createRest(length - temp.getDuration()));
+        }
+        
+        assert temp.getDuration() == length : temp;
+        return temp;
+    }
+    
+    /**
+     * Sets the voiceSectionResult field to null.  Should be called anytime a field
+     * that affects the voiceSectionResult changes. 
+     */
+    protected void clearVoiceSectionResult() {
+        this.voiceSectionResult = null;
+    }
+    
+    /**
+     * Generates the NoteList containing the result of applying this 
+     * VoiceSection's settings to the germ.
+     * 
+     * @return a NoteList containing the result of applying the settings to the 
+     *         germ
+     */
+    protected NoteList generateVoiceSectionResult() {
         NoteList temp = this.getVoice().getModifiedGerm();
         
         if (this.getRest()) {
@@ -157,6 +216,14 @@ public class VoiceSection {
                
         SelfSimilarityTransformer ssT = new SelfSimilarityTransformer(this.getSelfSimilaritySettings());
         return ssT.transform(temp);                        
+    }
+
+    public void update(Observable o, Object arg) {
+        // we expect the observable object to be our selfSimilaritySettings...
+        assert o == this.getSelfSimilaritySettings() : o;
+        
+        // if the self similarity settings change, it affects our result, so clear it...
+        this.clearVoiceSectionResult();
     }
 }
 

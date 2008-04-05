@@ -1,12 +1,13 @@
 package com.myronmarston.music.settings;
 
+import java.util.Observable;
 
 /**
  * Specifies settings for what to apply self-similarity to.
  * 
  * @author Myron
  */
-public class SelfSimilaritySettings {
+public class SelfSimilaritySettings extends Observable {
     private boolean applyToPitch;
     private boolean applyToRhythm;
     private boolean applyToVolume;
@@ -53,7 +54,8 @@ public class SelfSimilaritySettings {
      * @param val whether or not to apply self-similarity to the pitch
      */
     public void setApplyToPitch(boolean val) {
-        this.applyToPitch = val;
+        this.applyToPitch = val;     
+        setChangedAndNotifyObservers();
     }
 
     
@@ -77,6 +79,7 @@ public class SelfSimilaritySettings {
      */
     public void setApplyToRhythm(boolean val) {
         this.applyToRhythm = val;
+        setChangedAndNotifyObservers();
     }
 
     /**
@@ -103,6 +106,16 @@ public class SelfSimilaritySettings {
      */
     public void setApplyToVolume(boolean val) {
         this.applyToVolume = val;
+        setChangedAndNotifyObservers();
+    }
+    
+    /**
+     * Calls setChanged() and notifyObservers().  Call this to notify the 
+     * observers in one step.
+     */
+    protected void setChangedAndNotifyObservers() {
+        this.setChanged();
+        this.notifyObservers();
     }
 }
 

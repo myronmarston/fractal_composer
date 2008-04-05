@@ -1,9 +1,13 @@
 package com.myronmarston.music.settings;
 
+import com.myronmarston.music.MidiNote;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.scales.Scale;
 import java.util.List;
 import java.util.HashMap;
+import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.Sequence;
+import javax.sound.midi.Track;
 
 /**
  * The GrandDaddy of them all.  This class controls the entire piece of music.
@@ -106,5 +110,23 @@ public class FractalPiece {
         Section s = new Section(this);
         this.sections.add(s);
         return s;
-    }        
+    }      
+    
+    /**
+     * Generates a midi sequence for the entire fractal piece, based on the 
+     * settings on the voices and sections.
+     * 
+     * @return the generated fractal piece
+     * @throws javax.sound.midi.InvalidMidiDataException
+     */
+    public Sequence generatePiece() throws InvalidMidiDataException {
+        Sequence sequence = new Sequence(Sequence.PPQ, MidiNote.TICKS_PER_QUARTER_NOTE);
+        
+        for (Voice v : this.getVoices()) {
+            Track track = sequence.createTrack();
+            v.getEntireVoice().fillMidiTrack(track, scale, 0d);                
+        }        
+        
+        return sequence;
+    }
 }
