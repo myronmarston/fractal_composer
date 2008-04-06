@@ -41,7 +41,7 @@ public class MidiNoteTest {
     public void getPitch() {
         System.out.println("getPitch");        
         int expResult = 60;
-        MidiNote instance = new MidiNote(expResult, 10d, 10d);
+        MidiNote instance = new MidiNote(expResult, 10, 10);
         int result = instance.getPitch();
         assertEquals(expResult, result);        
     }
@@ -65,9 +65,9 @@ public class MidiNoteTest {
     @Test
     public void getDuration() {
         System.out.println("getDuration");
-        double expResult = 3d;
-        MidiNote instance = new MidiNote(60, 10d, expResult);
-        double result = instance.getDuration();
+        long expResult = 3;
+        MidiNote instance = new MidiNote(60, 10, expResult);
+        long result = instance.getDuration();
         assertEquals(expResult, result);        
     }
 
@@ -77,10 +77,10 @@ public class MidiNoteTest {
     @Test
     public void setDuration() {
         System.out.println("setDuration");
-        double duration = 0d;
+        long duration = 5;
         MidiNote instance = new MidiNote();
         instance.setDuration(duration);
-        double result = instance.getDuration();
+        long result = instance.getDuration();
         assertEquals(duration, result);        
     }
 
@@ -90,9 +90,9 @@ public class MidiNoteTest {
     @Test
     public void getStartTime() {
         System.out.println("getStartTime");
-        double expResult = 5L;
-        MidiNote instance = new MidiNote(55, expResult, 6d);        
-        double result = instance.getStartTime();
+        long expResult = 5L;
+        MidiNote instance = new MidiNote(55, expResult, 6);        
+        long result = instance.getStartTime();
         assertEquals(expResult, result);        
     }
 
@@ -102,10 +102,10 @@ public class MidiNoteTest {
     @Test
     public void setStartTime() {
         System.out.println("setStartTime");
-        double startTime = 20d;
+        long startTime = 20;
         MidiNote instance = new MidiNote();
         instance.setStartTime(startTime);
-        double result = instance.getStartTime();
+        long result = instance.getStartTime();
         assertEquals(startTime, result);
     }
 
@@ -116,7 +116,7 @@ public class MidiNoteTest {
     public void getVelocity() {
         System.out.println("getVelocity");
         int expResult = 0;
-        MidiNote instance = new MidiNote(40, 10d, 10d, 0, expResult);        
+        MidiNote instance = new MidiNote(40, 10, 10, 0, expResult);        
         int result = instance.getVelocity();
         assertEquals(expResult, result);        
     }
@@ -141,7 +141,7 @@ public class MidiNoteTest {
     public void getChannel() {
         System.out.println("getChannel");
         int expResult = 3;
-        MidiNote instance = new MidiNote(76, 10d, 10d, expResult, 64);        
+        MidiNote instance = new MidiNote(76, 10, 10, expResult, 64);        
         int result = instance.getChannel();
         assertEquals(expResult, result);        
     }
@@ -175,8 +175,8 @@ public class MidiNoteTest {
     
     @Test
     public void getNoteEnd() throws InvalidMidiDataException {
-        MidiNote instance = new MidiNote(70, 35d, 4d, 0, 80);
-        assertEquals(39d, instance.getNoteEnd());
+        MidiNote instance = new MidiNote(70, 35, 4, 0, 80);
+        assertEquals(39L, instance.getNoteEnd());
     }
 
     /**
@@ -185,11 +185,11 @@ public class MidiNoteTest {
     @Test
     public void getNoteEvents() throws InvalidMidiDataException {
         System.out.println("getNoteEvents");
-        MidiNote instance = new MidiNote(70, 35d, 4d, 0, 80);
+        MidiNote instance = new MidiNote(70, 35, 4, 0, 80);
         MidiEvent noteOnEvent = instance.getNoteOnEvent();
         MidiEvent noteOffEvent = instance.getNoteOffEvent();                
-        assertNoteEventEqual(noteOnEvent, 35d, (byte) -112, (byte) 70, (byte) 80);
-        assertNoteEventEqual(noteOffEvent, 39d, (byte) -128, (byte) 70, (byte) 0);
+        assertNoteEventEqual(noteOnEvent, 35, (byte) -112, (byte) 70, (byte) 80);
+        assertNoteEventEqual(noteOffEvent, 39, (byte) -128, (byte) 70, (byte) 0);
     }
     
     @Test
@@ -199,42 +199,42 @@ public class MidiNoteTest {
         MidiEvent noteOnEvent = instance.getNoteOnEvent();
         MidiEvent noteOffEvent = instance.getNoteOffEvent();                
         
-        assertNoteEventEqual(noteOnEvent, 0d, (byte) -112, (byte) 0, (byte) 64);
-        assertNoteEventEqual(noteOffEvent, 0d, (byte) -128, (byte) 0, (byte) 0);
+        assertNoteEventEqual(noteOnEvent, 0, (byte) -112, (byte) 0, (byte) 64);
+        assertNoteEventEqual(noteOffEvent, 0, (byte) -128, (byte) 0, (byte) 0);
         
         instance.setPitch(92);
         noteOnEvent = instance.getNoteOnEvent();
         noteOffEvent = instance.getNoteOffEvent();
-        assertNoteEventEqual(noteOnEvent, 0d, (byte) -112, (byte) 92, (byte) 64);
-        assertNoteEventEqual(noteOffEvent, 0d, (byte) -128, (byte) 92, (byte) 0);
+        assertNoteEventEqual(noteOnEvent, 0, (byte) -112, (byte) 92, (byte) 64);
+        assertNoteEventEqual(noteOffEvent, 0, (byte) -128, (byte) 92, (byte) 0);
         
         instance.setStartTime(16L);
         noteOnEvent = instance.getNoteOnEvent();
         noteOffEvent = instance.getNoteOffEvent();
-        assertNoteEventEqual(noteOnEvent, 16d, (byte) -112, (byte) 92, (byte) 64);
-        assertNoteEventEqual(noteOffEvent, 16d, (byte) -128, (byte) 92, (byte) 0);
+        assertNoteEventEqual(noteOnEvent, 16, (byte) -112, (byte) 92, (byte) 64);
+        assertNoteEventEqual(noteOffEvent, 16, (byte) -128, (byte) 92, (byte) 0);
         
         instance.setDuration(8L);
         noteOnEvent = instance.getNoteOnEvent();
         noteOffEvent = instance.getNoteOffEvent();
-        assertNoteEventEqual(noteOnEvent, 16d, (byte) -112, (byte) 92, (byte) 64);
-        assertNoteEventEqual(noteOffEvent, 24d, (byte) -128, (byte) 92, (byte) 0);
+        assertNoteEventEqual(noteOnEvent, 16, (byte) -112, (byte) 92, (byte) 64);
+        assertNoteEventEqual(noteOffEvent, 24, (byte) -128, (byte) 92, (byte) 0);
         
         instance.setVelocity(120);
         noteOnEvent = instance.getNoteOnEvent();
         noteOffEvent = instance.getNoteOffEvent();
-        assertNoteEventEqual(noteOnEvent, 16d, (byte) -112, (byte) 92, (byte) 120);
-        assertNoteEventEqual(noteOffEvent, 24d, (byte) -128, (byte) 92, (byte) 0);                
+        assertNoteEventEqual(noteOnEvent, 16, (byte) -112, (byte) 92, (byte) 120);
+        assertNoteEventEqual(noteOffEvent, 24, (byte) -128, (byte) 92, (byte) 0);                
         
         instance.setChannel(2);
         noteOnEvent = instance.getNoteOnEvent();
         noteOffEvent = instance.getNoteOffEvent();
-        assertNoteEventEqual(noteOnEvent, 16d, (byte) -110, (byte) 92, (byte) 120);
-        assertNoteEventEqual(noteOffEvent, 24d, (byte) -126, (byte) 92, (byte) 0);                
+        assertNoteEventEqual(noteOnEvent, 16, (byte) -110, (byte) 92, (byte) 120);
+        assertNoteEventEqual(noteOffEvent, 24, (byte) -126, (byte) 92, (byte) 0);                
     }
     
-    static public void assertNoteEventEqual(MidiEvent noteEvent, double tick, byte byte1, byte byte2, byte byte3) {
-        assertEquals((long) (tick * MidiNote.TICKS_PER_QUARTER_NOTE), noteEvent.getTick());
+    static public void assertNoteEventEqual(MidiEvent noteEvent, long tick, byte byte1, byte byte2, byte byte3) {
+        assertEquals(tick, noteEvent.getTick());
         javax.sound.midi.MidiMessage msg = noteEvent.getMessage();
         assertEquals(byte1, msg.getMessage()[0]);        
         assertEquals(byte2, msg.getMessage()[1]);

@@ -2,7 +2,10 @@ package com.myronmarston.music;
 
 import com.myronmarston.music.scales.Scale;
 
+import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
+
 import java.util.ArrayList;
+import javax.sound.midi.Sequence;
 import javax.sound.midi.Track;
 import javax.sound.midi.InvalidMidiDataException;
 
@@ -51,33 +54,37 @@ public class NoteList extends ArrayList<Note> {
      * 
      * @return the duration of the note list
      */
-    public double getDuration() {
-        double duration = 0d;
-        for (Note n : this) duration += n.getDuration();        
+    public Fraction getDuration() {
+        Fraction duration = new Fraction(0, 1);
+        for (Note n : this) duration = duration.plus(n.getDuration());        
         return duration;        
     }
     
     /**
      * Fills the given midi track with the notes from this NoteList.
      * 
-     * @param track the midi track to fill
+     * @param sequence the midi sequence to add the track to
      * @param scale the scale to use
      * @param startTime the time the first note should be played, in quarter 
      *        notes
-     * @throws javax.sound.midi.InvalidMidiDataException if there is any invalid 
+     * @return the midi track that was created and filled
+     * @throws javax.sound.midi.InvalidMidiDataException if there is any invalid
      *         midi data
      */
-    public void fillMidiTrack(Track track, Scale scale, double startTime) throws InvalidMidiDataException {
+    public Track createAndFillMidiTrack(Sequence sequence, Scale scale, Fraction startTime) throws InvalidMidiDataException {
         MidiNote midiNote = null;
+        Track track = sequence.createTrack();
         
         for (Note note : this) {
-            midiNote = scale.convertToMidiNote(note, startTime);
+            midiNote = scale.convertToMidiNote(note, startTime, sequence.getResolution());
             
             track.add(midiNote.getNoteOnEvent());
             track.add(midiNote.getNoteOffEvent());
             
             //The next note start time will be the end of this note...
-            startTime = midiNote.getNoteEnd();
-        }                
+            startTime = startTime.plus(note.getDuration());
+        }       
+        
+        return track;
     }
 }

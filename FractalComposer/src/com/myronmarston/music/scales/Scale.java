@@ -3,6 +3,8 @@ package com.myronmarston.music.scales;
 import com.myronmarston.music.MidiNote;
 import com.myronmarston.music.Note;
 
+import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
+
 /**
  * The Scale interface will be used to convert a Note to a MidiNote.
  * Since each Note contains data on its identity relative to a given scale,
@@ -18,7 +20,9 @@ public interface Scale {
      * 
      * @param note the note to convert
      * @param startTime when the note should be sounded, in quarter notes
+     * @param midiTickResolution the number of ticks per quarer note for the 
+     *        midi sequence
      * @return the MidiNote
      */
-    MidiNote convertToMidiNote(Note note, double startTime);
+    MidiNote convertToMidiNote(Note note, Fraction startTime, int midiTickResolution);
 }

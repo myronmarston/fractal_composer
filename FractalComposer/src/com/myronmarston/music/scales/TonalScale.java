@@ -4,6 +4,8 @@ import com.myronmarston.music.MidiNote;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteName;
 
+import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
+
 /**
  * An abstract implementation of the Scale interface for all Tonal scales.  A
  * tonal scale is any scale that has a tonal center.  Concrete scales (e.g., 
@@ -100,17 +102,37 @@ public abstract class TonalScale implements Scale {
             + (12 * octave); // 12 half steps in an octave
     }
     
-    public MidiNote convertToMidiNote(Note note, double startTime) {
+    /**
+     * Converts from quarter notes to ticks, based on the midi tick resolution.
+     * 
+     * @param quarterNotes the number of quarter notes
+     * @param midiTickResolution the number of ticks per quarter note set on the
+     *        midi sequence
+     * @return the number of ticks
+     */
+    protected static long convertQuarterNotesToTicks(Fraction quarterNotes, int midiTickResolution) {
+        Fraction converted = quarterNotes.times(midiTickResolution);
+        
+        // converting to midi ticks should result in an integral number of ticks
+        // because our tick resolution should be chosen based on what will
+        // produce this.  Test that this is in fact the case...
+        assert converted.denominator() == 1 : converted;
+     
+        // since the denominator is 1, the converted value is equal to the numerator...
+        return converted.numerator();
+    }
+
+    public MidiNote convertToMidiNote(Note note, Fraction startTime, int midiTickResolution) {
         this.normalizeNote(note);
         MidiNote midiNote = new MidiNote();
-        
-        midiNote.setDuration(note.getDuration());
-        midiNote.setStartTime(startTime);
+                        
+        midiNote.setDuration(convertQuarterNotesToTicks(note.getDuration(), midiTickResolution));
+        midiNote.setStartTime(convertQuarterNotesToTicks(startTime, midiTickResolution));
         midiNote.setVelocity(note.getVolume());
         
         midiNote.setPitch(this.getHalfStepsAboveTonicForScaleStep(note.getScaleStep()) 
             + this.getMidiPitchNumberForTonicAtOctave(note.getOctave()));
         
         return midiNote;
-    }
+    }        
 }

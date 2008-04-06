@@ -3,6 +3,9 @@ package com.myronmarston.music.settings;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.transformers.OctaveTransformer;
 import com.myronmarston.music.transformers.RhythmicDurationTransformer;
+
+import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
+
 import java.util.List;
 
 /**
@@ -16,7 +19,7 @@ import java.util.List;
  */
 public class Voice extends AbstractVoiceOrSection<Voice, Section> {
     private int octaveAdjustment = 0;
-    private double speedScaleFactor = 1d;
+    private Fraction speedScaleFactor = new Fraction(1, 1);
     private NoteList modifiedGerm;
     
     /**
@@ -52,7 +55,7 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
      * 
      * @return the speed scale factor
      */
-    public double getSpeedScaleFactor() {
+    public Fraction getSpeedScaleFactor() {
         return speedScaleFactor;
     }
     
@@ -61,7 +64,7 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
      * 
      * @param val the speed scale factor
      */
-    public void setSpeedScaleFactor(double val) {
+    public void setSpeedScaleFactor(Fraction val) {
         if (this.speedScaleFactor != val) clearModifiedGerm();
         this.speedScaleFactor = val;
     }
@@ -83,7 +86,7 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
      */
     public NoteList getEntireVoice() {
         NoteList entireVoice = new NoteList();        
-        double sectionDuration;
+        Fraction sectionDuration;
         
         for (VoiceSection vs : this.getVoiceSections()) {
             sectionDuration = vs.getSection().getDuration();

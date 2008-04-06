@@ -1,8 +1,11 @@
 package com.myronmarston.music.settings;
 
+import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
+
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Collections;
+import java.util.List;
+
 
 /**
  * The entire fractal piece is composed of a series of sections.  Each section
@@ -27,8 +30,8 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
      * 
      * @return the duration of this entire section
      */
-    public double getDuration() {
-        ArrayList<Double> voiceSectionDurations = new ArrayList<Double>(this.getListOfOtherType().size());
+    public Fraction getDuration() {
+        ArrayList<Fraction> voiceSectionDurations = new ArrayList<Fraction>(this.getListOfOtherType().size());
         
         for (VoiceSection vs : this.getVoiceSections()) {
             voiceSectionDurations.add(vs.getVoiceSectionResult().getDuration());

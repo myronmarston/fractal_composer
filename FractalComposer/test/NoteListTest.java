@@ -1,9 +1,10 @@
-import com.myronmarston.music.MidiNote;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.NoteName;
 import com.myronmarston.music.scales.MajorScale;
 import com.myronmarston.music.scales.Scale;
+
+import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
         
 import javax.sound.midi.Track;
 import javax.sound.midi.Sequence;
@@ -41,91 +42,90 @@ public class NoteListTest {
 
     @Test(expected=UnsupportedOperationException.class)
     public void errorIfChangeRest() {        
-        Note n = Note.createRest(5d);
+        Note n = Note.createRest(new Fraction(5, 1));
         n.setScaleStep(2);
     }
     
     @Test
     public void copyConstructorForRest() {
-        Note n = Note.createRest(3d);
+        Note n = Note.createRest(new Fraction(3, 1));
         assertEquals(n, new Note(n));
     }
     
     @Test
     public void getFirstAudibleNote() {
-        Note soundedNote = new Note(2, 2, 0, 1d, 64);
+        Note soundedNote = new Note(2, 2, 0, new Fraction(1, 1), 64);
         NoteList notes = new NoteList();
-        notes.add(Note.createRest(2d)); // a rest
+        notes.add(Note.createRest(new Fraction(2, 1))); // a rest
         notes.add(soundedNote);
         assertEquals(soundedNote, notes.getFirstAudibleNote());
     }
     
     @Test(expected=IllegalArgumentException.class)
     public void constructNoDurationNote() {
-        Note n = new Note(2, 2, 0, 0, 64);
+        Note n = new Note(2, 2, 0, new Fraction(0, 1), 64);
     }
     
     @Test(expected=IllegalArgumentException.class)
     public void constructNoDurationRest() {
-        Note n = Note.createRest(0);
+        Note n = Note.createRest(new Fraction(0, 1));
     }
     
     @Test(expected=IllegalArgumentException.class)
     public void setNoteDurationToZero() {
-        Note n = new Note(2, 2, 0, 1d, 64);
-        n.setDuration(0);
+        Note n = new Note(2, 2, 0, new Fraction(1, 1), 64);
+        n.setDuration(new Fraction(0, 1));
     }
     
     @Test(expected=IllegalArgumentException.class)
     public void setBadVolume() {
-        Note n = new Note(2, 2, 0, 1d, 128);
+        Note n = new Note(2, 2, 0, new Fraction(1, 1), 128);
     }
     
     @Test
     public void getDuration() {
         NoteList germ = new NoteList();
         
-        germ.add(new Note(0, 4, 0, 1d, 96));
-        germ.add(new Note(1, 4, 0, 0.5d, 64));
-        germ.add(new Note(2, 4, 0, 0.5d, 64));
-        germ.add(new Note(0, 4, 0, 1d, 96));
+        germ.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        germ.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
+        germ.add(new Note(2, 4, 0, new Fraction(1, 2), 64));
+        germ.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
         
-        assertEquals(3d, germ.getDuration());
+        assertEquals(new Fraction(3, 1), germ.getDuration());
     }
     
     @Test
-    public void fillMidiTrack() throws Exception {
+    public void createAndFillMidiTrack() throws Exception {
         System.out.println("fillMidiTrack");
         NoteList germ = new NoteList();        
-        germ.add(new Note(0, 4, 0, 0.5d, 100));
-        germ.add(new Note(1, 4, 0, 0.5d, 64));
-        germ.add(new Note(4, 4, 0, 0.5d, 64));
-        germ.add(new Note(0, 4, 0, 0.5d, 64));
-        germ.add(new Note(1, 4, 0, 0.5d, 100));
-        germ.add(new Note(3, 4, 0, 0.5d, 64));
+        germ.add(new Note(0, 4, 0, new Fraction(1, 2), 100));
+        germ.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
+        germ.add(new Note(4, 4, 0, new Fraction(1, 2), 64));
+        germ.add(new Note(0, 4, 0, new Fraction(1, 2), 64));
+        germ.add(new Note(1, 4, 0, new Fraction(1, 2), 100));
+        germ.add(new Note(3, 4, 0, new Fraction(1, 2), 64));
         
         Scale scale = new MajorScale(NoteName.F);                                
-        Sequence sequence = new Sequence(Sequence.PPQ, MidiNote.TICKS_PER_QUARTER_NOTE);
-        Track track = sequence.createTrack();        
+        Sequence sequence = new Sequence(Sequence.PPQ, 8);
+                 
+        Track track = germ.createAndFillMidiTrack(sequence, scale, new Fraction(0, 1));
+        MidiNoteTest.assertNoteEventEqual(track.get(0), 0, (byte) -112, (byte) 65, (byte) 100);
+        MidiNoteTest.assertNoteEventEqual(track.get(1), 4, (byte) -128, (byte) 65, (byte) 0);
         
-        germ.fillMidiTrack(track, scale, 0d);
-        MidiNoteTest.assertNoteEventEqual(track.get(0), 0d, (byte) -112, (byte) 65, (byte) 100);
-        MidiNoteTest.assertNoteEventEqual(track.get(1), 0.5d, (byte) -128, (byte) 65, (byte) 0);
+        MidiNoteTest.assertNoteEventEqual(track.get(2), 4, (byte) -112, (byte) 67, (byte) 64);
+        MidiNoteTest.assertNoteEventEqual(track.get(3), 8, (byte) -128, (byte) 67, (byte) 0);
         
-        MidiNoteTest.assertNoteEventEqual(track.get(2), 0.5d, (byte) -112, (byte) 67, (byte) 64);
-        MidiNoteTest.assertNoteEventEqual(track.get(3), 1d, (byte) -128, (byte) 67, (byte) 0);
+        MidiNoteTest.assertNoteEventEqual(track.get(4), 8, (byte) -112, (byte) 72, (byte) 64);
+        MidiNoteTest.assertNoteEventEqual(track.get(5), 12, (byte) -128, (byte) 72, (byte) 0);
         
-        MidiNoteTest.assertNoteEventEqual(track.get(4), 1d, (byte) -112, (byte) 72, (byte) 64);
-        MidiNoteTest.assertNoteEventEqual(track.get(5), 1.5d, (byte) -128, (byte) 72, (byte) 0);
+        MidiNoteTest.assertNoteEventEqual(track.get(6), 12, (byte) -112, (byte) 65, (byte) 64);
+        MidiNoteTest.assertNoteEventEqual(track.get(7), 16, (byte) -128, (byte) 65, (byte) 0);
         
-        MidiNoteTest.assertNoteEventEqual(track.get(6), 1.5d, (byte) -112, (byte) 65, (byte) 64);
-        MidiNoteTest.assertNoteEventEqual(track.get(7), 2d, (byte) -128, (byte) 65, (byte) 0);
+        MidiNoteTest.assertNoteEventEqual(track.get(8), 16, (byte) -112, (byte) 67, (byte) 100);
+        MidiNoteTest.assertNoteEventEqual(track.get(9), 20, (byte) -128, (byte) 67, (byte) 0);
         
-        MidiNoteTest.assertNoteEventEqual(track.get(8), 2d, (byte) -112, (byte) 67, (byte) 100);
-        MidiNoteTest.assertNoteEventEqual(track.get(9), 2.5d, (byte) -128, (byte) 67, (byte) 0);
-        
-        MidiNoteTest.assertNoteEventEqual(track.get(10), 2.5d, (byte) -112, (byte) 70, (byte) 64);
-        MidiNoteTest.assertNoteEventEqual(track.get(11), 3d, (byte) -128, (byte) 70, (byte) 0);                
+        MidiNoteTest.assertNoteEventEqual(track.get(10), 20, (byte) -112, (byte) 70, (byte) 64);
+        MidiNoteTest.assertNoteEventEqual(track.get(11), 24, (byte) -128, (byte) 70, (byte) 0);                
     }
 
 }

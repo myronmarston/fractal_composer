@@ -1,13 +1,18 @@
 package com.myronmarston.music.settings;
 
-import com.myronmarston.music.MidiNote;
+import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.scales.Scale;
-import java.util.List;
+import com.myronmarston.util.MathHelper;
+
+import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.Sequence;
-import javax.sound.midi.Track;
 
 /**
  * The GrandDaddy of them all.  This class controls the entire piece of music.
@@ -120,11 +125,27 @@ public class FractalPiece {
      * @throws javax.sound.midi.InvalidMidiDataException
      */
     public Sequence generatePiece() throws InvalidMidiDataException {
-        Sequence sequence = new Sequence(Sequence.PPQ, MidiNote.TICKS_PER_QUARTER_NOTE);
+        // first, get all our voice results, and cache them in a list...
+        ArrayList<NoteList> voiceResults = new ArrayList<NoteList>();
+        for (Voice v : this.getVoices()) voiceResults.add(v.getEntireVoice());
         
-        for (Voice v : this.getVoices()) {
-            Track track = sequence.createTrack();
-            v.getEntireVoice().fillMidiTrack(track, scale, 0d);                
+        // next, figure out the resolution of our Midi sequence...
+        ArrayList<Long> uniqueDurationDenominators = new ArrayList<Long>();
+        for (NoteList nl : voiceResults) {
+            for (Note n : nl) {
+                if (!uniqueDurationDenominators.contains(n.getDuration().denominator())) {
+                    uniqueDurationDenominators.add(n.getDuration().denominator());
+                }                
+            }
+        }        
+        long midiTickResolution = MathHelper.leastCommonMultiple(uniqueDurationDenominators);
+         
+        // next, contruct our sequence...
+        Sequence sequence = new Sequence(Sequence.PPQ, (int) midiTickResolution);
+        
+        // finally, create and fill our midi tracks...
+        for (NoteList nl : voiceResults) {            
+            nl.createAndFillMidiTrack(sequence, scale, new Fraction(0, 1));                
         }        
         
         return sequence;

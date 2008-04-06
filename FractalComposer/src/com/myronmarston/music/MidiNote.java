@@ -13,8 +13,8 @@ import javax.sound.midi.ShortMessage;
  */
 public class MidiNote {
     private int pitch; // 60 = middle C; each value is a half-step
-    private double startTime; // when the note should start playing, in quarter notes
-    private double duration; // how long the note should last, in quarter notes
+    private long startTime; // when the note should start playing, in midi ticks
+    private long duration; // how long the note should last, in midi ticks
     private int channel; // which of the 16 channels this note is on
     private int velocity; // the loudness or softness of the note    
     private MidiEvent noteOnEvent;
@@ -29,14 +29,7 @@ public class MidiNote {
     /**
      * The default channel of the note--0.
      */
-    public static final int DEFAULT_CHANNEL = 0;
-    
-    
-    /**
-     * The "resolution" of the Midi Sequence.  How many ticks per quarter note.
-     */
-    public static final int TICKS_PER_QUARTER_NOTE = 2;
-    
+    public static final int DEFAULT_CHANNEL = 0;          
     
     /**
      * The maximum allowed velocity, 127.
@@ -52,13 +45,13 @@ public class MidiNote {
     /**
      * Constructor.  Takes all of the main parameters of a MidiNote.
      * 
-     * @param pitch the pitch of the note.  60 is middle C.
-     * @param startTime when the note should start playing, in quarter notes
-     * @param duration how long the note should last, in quarter notes
+     * @param pitch the pitch of the note.  60 is middle C
+     * @param startTime when the note should start playing, in midi ticks
+     * @param duration how long the note should last, in midi ticks
      * @param channel which of the 16 channels (0-15) to place the note on
      * @param velocity the volume of the note, 0-127
      */
-    public MidiNote(int pitch, double startTime, double duration, int channel, int velocity) {
+    public MidiNote(int pitch, long startTime, long duration, int channel, int velocity) {
         this.setPitch(pitch);
         this.setStartTime(startTime);
         this.setDuration(duration);
@@ -69,23 +62,23 @@ public class MidiNote {
     /**
      * Constructor.  Creates a MidiNote with the default velocity.
      * 
-     * @param pitch the pitch of the note.  60 is middle C.
-     * @param startTime when the note should start playing, in quarter notes
-     * @param duration how long the note should last, in quarter notes
+     * @param pitch the pitch of the note.  60 is middle C
+     * @param startTime when the note should start playing, in midi ticks
+     * @param duration how long the note should last, in midi ticks
      * @param channel which of the 16 channels (0-15) to place the note on
      */
-    public MidiNote(int pitch, double startTime, double duration, int channel) {
+    public MidiNote(int pitch, long startTime, long duration, int channel) {
         this(pitch, startTime, duration, channel, DEFAULT_VELOCITY);
     }
     
     /**
      * Constructor.  Creates a MidiNote with the default velocity and channel.
      * 
-     * @param pitch the pitch of the note.  60 is middle C.
-     * @param startTime when the note should start playing, in quarter notes
-     * @param duration how long the note should last, in quarter notes
+     * @param pitch the pitch of the note.  60 is middle C
+     * @param startTime when the note should start playing, in midi ticks
+     * @param duration how long the note should last, in midi ticks
      */
-    public MidiNote(int pitch, double startTime, double duration) {
+    public MidiNote(int pitch, long startTime, long duration) {
         this(pitch, startTime, duration, DEFAULT_CHANNEL);
     }
     
@@ -98,18 +91,7 @@ public class MidiNote {
         this.setChannel(DEFAULT_CHANNEL);
         this.setVelocity(DEFAULT_VELOCITY);
     }
-    
-    /**
-     * Converts between quarter notes (a musical measurement) to ticks (the
-     * measurement defined by the Midi specification).
-     * 
-     * @param quarterNotes a note duration, in quarter notes
-     * @return how many ticks the duration is equivalent to 
-     */
-    static protected long convertQuarterNotesToTicks(double quarterNotes) {
-        return (long) (quarterNotes * TICKS_PER_QUARTER_NOTE);
-    }
-                
+                   
     /**
      * Gets the note's pitch, in half-step increments.
      * 
@@ -118,7 +100,6 @@ public class MidiNote {
     public int getPitch() {
         return pitch;
     }
-
     
     /**
      * Sets the note's pitch, in half-step increments.
@@ -131,39 +112,39 @@ public class MidiNote {
     }
        
     /**
-     * Gets how long the note should be, in quarter notes.
+     * Gets how long the note should be, in midi ticks.
      * 
-     * @return how long the note should be, in quarter notes
+     * @return how long the note should be, in midi ticks
      */
-    public double getDuration() {
+    public long getDuration() {
         return duration;
     }
 
     /**
-     * Sets how long the note should be, in quarter notes.
+     * Sets how long the note should be, in midi ticks.
      * 
-     * @param duration how long the note should be, in quarter notes
+     * @param duration how long the note should be, in midi ticks
      */
-    public void setDuration(double duration) {
+    public void setDuration(long duration) {
         if (this.duration != duration) clearNoteEvents();
         this.duration = duration;        
     }
     
     /**
-     * Gets when this note should sound, in quarter notes.
+     * Gets when this note should sound, in midi ticks.
      * 
-     * @return when this note should sound, in quarter notes
+     * @return when this note should sound, in midi ticks
      */
-    public double getStartTime() {
+    public long getStartTime() {
         return startTime;
     }       
 
     /**
-     * Sets when this note should sound, in quarter notes.
+     * Sets when this note should sound, in midi ticks.
      *      
-     * @param startTime when this note should sound, in quarter notes
+     * @param startTime when this note should sound, in midi ticks
      */
-    public void setStartTime(double startTime) {
+    public void setStartTime(long startTime) {
         if (this.startTime != startTime) clearNoteEvents();
         this.startTime = startTime;        
     }
@@ -233,11 +214,11 @@ public class MidiNote {
     }
     
     /**
-     * Gets the time, in quarter notes, when this note will end.
+     * Gets the time, in midi ticks, when this note will end.
      * 
      * @return the start time plus the duration of the note 
      */
-    public double getNoteEnd() {
+    public long getNoteEnd() {
         return this.getStartTime() + this.getDuration();
     }
     
@@ -262,14 +243,14 @@ public class MidiNote {
             this.getChannel(), 
             this.getPitch(), 
             this.getVelocity(),
-            convertQuarterNotesToTicks(this.getStartTime()));  
+            this.getStartTime());  
         
         this.noteOffEvent = createNoteEvent(
             ShortMessage.NOTE_OFF, 
             this.getChannel(), 
             this.getPitch(), 
             0, // velocity should always be 0 for note off events
-            convertQuarterNotesToTicks(this.getStartTime() + this.getDuration()));
+            this.getStartTime() + this.getDuration());
     }
                
     /**

@@ -7,6 +7,8 @@ import com.myronmarston.music.transformers.RetrogradeTransformer;
 import com.myronmarston.music.transformers.SelfSimilarityTransformer;
 import java.util.Observable;
 import java.util.Observer;
+
+import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
         
 /**
  * Represents the smallest unit of the fractal piece for which the user can
@@ -156,23 +158,23 @@ public class VoiceSection implements Observer {
      * @param length the length to set the voice section to
      * @return the voice section result, set to the given length
      */
-    public NoteList getLengthenedVoiceSectionResult(double length) {
+    public NoteList getLengthenedVoiceSectionResult(Fraction length) {
         // get a clone of the result, so we can modify the clone rather than the original result.
         NoteList temp = (NoteList) this.getVoiceSectionResult().clone();
-        double originalVoiceSectionLength = temp.getDuration();
-        if (originalVoiceSectionLength > length) {
+        Fraction originalVoiceSectionLength = temp.getDuration();
+        if (originalVoiceSectionLength.compareTo(length) > 0) {
             throw new IllegalArgumentException(String.format("The voice section length (%f) is longer than the passed argument (%f).  The passed argument must be greater than or equal to the voice section length.", originalVoiceSectionLength, length));
         }
                 
         // pad the length with additional copies of the entire voice section 
         // while there is space left...
-        while (temp.getDuration() + originalVoiceSectionLength <= length) {
+        while (temp.getDuration().plus(originalVoiceSectionLength).compareTo(length) <= 0) {
             temp.addAll(this.getVoiceSectionResult());
         }
         
         // fill in the rest of the length with a rest...
-        if (temp.getDuration() < length) {
-            temp.add(Note.createRest(length - temp.getDuration()));
+        if (temp.getDuration().compareTo(length) < 0) {
+            temp.add(Note.createRest(length.minus(temp.getDuration())));
         }
         
         assert temp.getDuration() == length : temp;
