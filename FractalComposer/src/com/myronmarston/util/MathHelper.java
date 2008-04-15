@@ -59,5 +59,15 @@ public class MathHelper {
         
         // get the LCM of this smaller list...
         return leastCommonMultiple(restOfList);
-    }
+    }        
+    
+    /**
+     * Calculates the base two logarithm of the given number.
+     * 
+     * @param a number to take the log of     
+     * @return the base 2 logarithm
+     */
+    public static double log2(double a) {
+        return Math.log(a) / Math.log(2);        
+    }    
 }

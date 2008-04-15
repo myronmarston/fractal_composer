@@ -77,5 +77,20 @@ public class MathHelperTest {
         long result = MathHelper.leastCommonMultiple(list);
         assertEquals(expResult, result);        
     }
+    
+    @Test
+    public void log2() {
+        assertEquals(-3d, MathHelper.log2(0.125d));
+        assertEquals(-2d, MathHelper.log2(0.25d));
+        assertEquals(-1d, MathHelper.log2(0.5d));
+        assertEquals(0d, MathHelper.log2(1));
+        assertEquals(1d, MathHelper.log2(2));
+        assertEquals(2d, MathHelper.log2(4));
+        assertEquals(3d, MathHelper.log2(8));
+        assertEquals(4d, MathHelper.log2(16));      
+        
+        // this should be 0.5, but doubles are not completely accurate....
+        assertEquals(0.5000000000000001d, MathHelper.log2(Math.sqrt(2)));
+    }
 
 }

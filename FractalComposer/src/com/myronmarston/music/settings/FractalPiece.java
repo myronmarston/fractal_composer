@@ -1,8 +1,10 @@
 package com.myronmarston.music.settings;
 
+import com.myronmarston.music.settings.InvalidTimeSignatureException;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.scales.Scale;
+import com.myronmarston.music.settings.TimeSignature;
 import com.myronmarston.util.MathHelper;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
@@ -13,6 +15,7 @@ import java.util.List;
 
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.Sequence;
+import javax.sound.midi.Track;
 
 /**
  * The GrandDaddy of them all.  This class controls the entire piece of music.
@@ -25,6 +28,7 @@ import javax.sound.midi.Sequence;
 public class FractalPiece {
     private NoteList germ;
     private Scale scale;
+    private TimeSignature timeSignature;
     private VoiceOrSectionList<Voice, Section> voices = new VoiceOrSectionList<Voice, Section>(this.getVoiceSections());
     private VoiceOrSectionList<Section, Voice> sections = new VoiceOrSectionList<Section, Voice>(this.getVoiceSections());
     private HashMap<VoiceSectionHashMapKey, VoiceSection> voiceSections;
@@ -61,6 +65,34 @@ public class FractalPiece {
     public void setScale(Scale scale) {
         this.scale = scale;
     }
+
+    /**
+     * Gets the time signature for this piece.  If none has been set, a default
+     * signature of 4/4 will be created.
+     * 
+     * @return the time signature
+     */
+    public TimeSignature getTimeSignature() {
+        if (timeSignature == null) {
+            try {
+                // create a default time signature
+                timeSignature = new TimeSignature(4, 4);
+            } catch (InvalidTimeSignatureException ex) {                
+                // 4/4 should always be a valid time signature, so just catch this exception so we don't have to declare it...
+                assert false : ex;
+            }
+        }
+        return timeSignature;
+    }
+
+    /**
+     * Sets the time signature for this piece.
+     * 
+     * @param timeSignature the time signature
+     */
+    public void setTimeSignature(TimeSignature timeSignature) {
+        this.timeSignature = timeSignature;
+    }        
     
     /**
      * Gets the hash table containing all the VoiceSections for the entire
@@ -140,8 +172,12 @@ public class FractalPiece {
         }        
         long midiTickResolution = MathHelper.leastCommonMultiple(uniqueDurationDenominators);
          
-        // next, contruct our sequence...
+        // next, create our sequence...
         Sequence sequence = new Sequence(Sequence.PPQ, (int) midiTickResolution);
+        
+        // next, use the first track to set time signature...
+        Track track0 = sequence.createTrack();
+        track0.add(this.getTimeSignature().createMidiTimeSignatureEvent());
         
         // finally, create and fill our midi tracks...
         for (NoteList nl : voiceResults) {            
