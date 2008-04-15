@@ -1,3 +1,5 @@
+package com.myronmarston.music.scales;
+
 import com.myronmarston.music.MidiNote;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteName;

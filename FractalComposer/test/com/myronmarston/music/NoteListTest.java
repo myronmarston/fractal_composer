@@ -1,3 +1,5 @@
+package com.myronmarston.music;
+
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.NoteName;

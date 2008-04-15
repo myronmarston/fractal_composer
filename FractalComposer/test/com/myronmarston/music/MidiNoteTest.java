@@ -1,3 +1,5 @@
+package com.myronmarston.music;
+
 import com.myronmarston.music.MidiNote;
 
 import javax.sound.midi.MidiEvent;

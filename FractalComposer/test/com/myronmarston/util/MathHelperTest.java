@@ -1,3 +1,5 @@
+package com.myronmarston.util;
+
 import com.myronmarston.util.MathHelper;
 
 import java.util.ArrayList;
