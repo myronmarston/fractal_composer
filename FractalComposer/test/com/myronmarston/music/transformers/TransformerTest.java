@@ -2,7 +2,6 @@ package com.myronmarston.music.transformers;
 
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
-import com.myronmarston.music.transformers.*;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 

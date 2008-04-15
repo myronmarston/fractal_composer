@@ -3,7 +3,6 @@ package com.myronmarston.music.scales;
 import com.myronmarston.music.MidiNote;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteName;
-import com.myronmarston.music.scales.MajorScale;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
