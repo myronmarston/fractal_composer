@@ -101,7 +101,7 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
      * Sets the modifiedGerm field to null.  Should be called anytime a field
      * that affects the modified germ changes.
      */
-    protected void clearModifiedGerm() {
+    private void clearModifiedGerm() {
         this.modifiedGerm = null;
     }
     
@@ -110,7 +110,7 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
      * 
      * @return the modified germ.
      */
-    protected NoteList generateModifiedGerm() {
+    private NoteList generateModifiedGerm() {
         OctaveTransformer octaveT = new OctaveTransformer(this.getOctaveAdjustment());
         RhythmicDurationTransformer speedT = new RhythmicDurationTransformer(this.getSpeedScaleFactor());
         

@@ -4,7 +4,7 @@
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <TITLE>
-MajorScale
+HarmonicMinorScale
 </TITLE>
 
 
@@ -14,7 +14,7 @@ MajorScale
 function windowTitle()
 {
     if (location.href.indexOf('is-external=true') == -1) {
-        parent.document.title="MajorScale";
+        parent.document.title="HarmonicMinorScale";
     }
 }
 </SCRIPT>
@@ -39,7 +39,7 @@ function windowTitle()
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/MajorScale.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/HarmonicMinorScale.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -54,11 +54,11 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/myronmarston/music/scales/KeySignature.MajorOrMinor.html" title="enum in com.myronmarston.music.scales"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;PREV CLASS&nbsp;
+&nbsp;<A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/myronmarston/music/scales/MajorScale.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="MajorScale.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/myronmarston/music/scales/HarmonicMinorScale.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="HarmonicMinorScale.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -75,9 +75,9 @@ function windowTitle()
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.myronmarston.music.scales.MinorScale">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_top"></A>
@@ -89,20 +89,20 @@ DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor
 <FONT SIZE="-1">
 com.myronmarston.music.scales</FONT>
 <BR>
-Class MajorScale</H2>
+Class HarmonicMinorScale</H2>
 <PRE>
 java.lang.Object
   <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">com.myronmarston.music.scales.Scale</A>
-      <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.scales.MajorScale</B>
+      <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales">com.myronmarston.music.scales.MinorScale</A>
+          <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.scales.HarmonicMinorScale</B>
 </PRE>
 <HR>
 <DL>
-<DT><PRE>public class <B>MajorScale</B><DT>extends <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></DL>
+<DT><PRE>public class <B>HarmonicMinorScale</B><DT>extends <A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales">MinorScale</A></DL>
 </PRE>
 
 <P>
-The most common scale used in western music.  This scale uses the following
- whole step (W) / half step (H): WWHWWWH
+A minor scale with a leading tone, i.e. a raised 7th scale step.
 <P>
 
 <P>
@@ -117,14 +117,14 @@ The most common scale used in western music.  This scale uses the following
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Field Summary</B></FONT></TH>
 </TR>
+</TABLE>
+&nbsp;<A NAME="fields_inherited_from_class_com.myronmarston.music.scales.MinorScale"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Fields inherited from class com.myronmarston.music.scales.<A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales">MinorScale</A></B></TH>
+</TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/MajorScale.html#NOT_A_VALID_MAJOR_KEY">NOT_A_VALID_MAJOR_KEY</A></B></CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A constant that indicates a given note name cannot be used as a valid 
- major key.</TD>
+<TD><CODE><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#NOT_A_VALID_MINOR_KEY">NOT_A_VALID_MINOR_KEY</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -137,7 +137,7 @@ The most common scale used in western music.  This scale uses the following
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/MajorScale.html#MajorScale(com.myronmarston.music.NoteName)">MajorScale</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/HarmonicMinorScale.html#HarmonicMinorScale(com.myronmarston.music.NoteName)">HarmonicMinorScale</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
@@ -155,34 +155,19 @@ The most common scale used in western music.  This scale uses the following
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>protected &nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/MajorScale.html#getHalfStepsAboveTonicForScaleStep(int)">getHalfStepsAboveTonicForScaleStep</A></B>(int&nbsp;scaleStep)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/HarmonicMinorScale.html#getHalfStepsAboveTonicForScaleStep(int)">getHalfStepsAboveTonicForScaleStep</A></B>(int&nbsp;scaleStep)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets how many half steps the given scale step is above the tonic.</TD>
 </TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/MajorScale.html#getKeySignature()">getKeySignature</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the key signature for this scale.</TD>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.scales.MinorScale"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.scales.<A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales">MinorScale</A></B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/MajorScale.html#getNumScaleStepsInOctave()">getNumScaleStepsInOctave</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets how many scale steps are in one octave for this scale.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/MajorScale.html#isInvalidKeyName(com.myronmarston.music.NoteName)">isInvalidKeyName</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets whether or not the passed key name is valid.</TD>
+<TD><CODE><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#getKeySignature()">getKeySignature</A>, <A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#getNumScaleStepsInOctave()">getNumScaleStepsInOctave</A>, <A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#isInvalidKeyName(com.myronmarston.music.NoteName)">isInvalidKeyName</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.scales.Scale"><!-- --></A>
@@ -206,28 +191,6 @@ The most common scale used in western music.  This scale uses the following
 &nbsp;
 <P>
 
-<!-- ============ FIELD DETAIL =========== -->
-
-<A NAME="field_detail"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
-<B>Field Detail</B></FONT></TH>
-</TR>
-</TABLE>
-
-<A NAME="NOT_A_VALID_MAJOR_KEY"><!-- --></A><H3>
-NOT_A_VALID_MAJOR_KEY</H3>
-<PRE>
-public static final int <B>NOT_A_VALID_MAJOR_KEY</B></PRE>
-<DL>
-<DD>A constant that indicates a given note name cannot be used as a valid 
- major key.
-<P>
-<DL>
-<DT><B>See Also:</B><DD><A HREF="../../../../constant-values.html#com.myronmarston.music.scales.MajorScale.NOT_A_VALID_MAJOR_KEY">Constant Field Values</A></DL>
-</DL>
-
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 
 <A NAME="constructor_detail"><!-- --></A>
@@ -238,11 +201,11 @@ public static final int <B>NOT_A_VALID_MAJOR_KEY</B></PRE>
 </TR>
 </TABLE>
 
-<A NAME="MajorScale(com.myronmarston.music.NoteName)"><!-- --></A><H3>
-MajorScale</H3>
+<A NAME="HarmonicMinorScale(com.myronmarston.music.NoteName)"><!-- --></A><H3>
+HarmonicMinorScale</H3>
 <PRE>
-public <B>MajorScale</B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)
-           throws <A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></PRE>
+public <B>HarmonicMinorScale</B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)
+                   throws <A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></PRE>
 <DL>
 <DD>Constructor.
 <P>
@@ -263,26 +226,6 @@ public <B>MajorScale</B>(<A HREF="../../../../com/myronmarston/music/NoteName.ht
 </TR>
 </TABLE>
 
-<A NAME="getNumScaleStepsInOctave()"><!-- --></A><H3>
-getNumScaleStepsInOctave</H3>
-<PRE>
-protected int <B>getNumScaleStepsInOctave</B>()</PRE>
-<DL>
-<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getNumScaleStepsInOctave()">Scale</A></CODE></B></DD>
-<DD>Gets how many scale steps are in one octave for this scale.  Examples:
- major scales have 7.  Pentatonic scales have 5.  Subtypes must implement
- this.
-<P>
-<DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getNumScaleStepsInOctave()">getNumScaleStepsInOctave</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></DL>
-</DD>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>the number of scale steps in one octave</DL>
-</DD>
-</DL>
-<HR>
-
 <A NAME="getHalfStepsAboveTonicForScaleStep(int)"><!-- --></A><H3>
 getHalfStepsAboveTonicForScaleStep</H3>
 <PRE>
@@ -293,50 +236,11 @@ protected int <B>getHalfStepsAboveTonicForScaleStep</B>(int&nbsp;scaleStep)</PRE
  will be different for each scale, so subtypes must implement this.
 <P>
 <DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getHalfStepsAboveTonicForScaleStep(int)">getHalfStepsAboveTonicForScaleStep</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></DL>
+<DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#getHalfStepsAboveTonicForScaleStep(int)">getHalfStepsAboveTonicForScaleStep</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales">MinorScale</A></CODE></DL>
 </DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>scaleStep</CODE> - the given scale step, normalized
 <DT><B>Returns:</B><DD>the number of half steps between the tonic and the scale step</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getKeySignature()"><!-- --></A><H3>
-getKeySignature</H3>
-<PRE>
-public <A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A> <B>getKeySignature</B>()</PRE>
-<DL>
-<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeySignature()">Scale</A></CODE></B></DD>
-<DD>Gets the key signature for this scale.
-<P>
-<DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeySignature()">getKeySignature</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></DL>
-</DD>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>the key signature</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="isInvalidKeyName(com.myronmarston.music.NoteName)"><!-- --></A><H3>
-isInvalidKeyName</H3>
-<PRE>
-protected boolean <B>isInvalidKeyName</B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</PRE>
-<DL>
-<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#isInvalidKeyName(com.myronmarston.music.NoteName)">Scale</A></CODE></B></DD>
-<DD>Gets whether or not the passed key name is valid.  For example, G# major
- is invalid, because it requires 8 sharps (i.e. 6 sharps and 1 double 
- sharp) and the midi specification does not allow that.  However, G# minor
- is a valid key, so the scale must determine what is valid and invalid.
-<P>
-<DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#isInvalidKeyName(com.myronmarston.music.NoteName)">isInvalidKeyName</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></DL>
-</DD>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>keyName</CODE> - the key name to test
-<DT><B>Returns:</B><DD>true if the key is not allowed by the midi specification</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
@@ -355,7 +259,7 @@ protected boolean <B>isInvalidKeyName</B>(<A HREF="../../../../com/myronmarston/
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/MajorScale.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/HarmonicMinorScale.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -370,11 +274,11 @@ protected boolean <B>isInvalidKeyName</B>(<A HREF="../../../../com/myronmarston/
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/myronmarston/music/scales/KeySignature.MajorOrMinor.html" title="enum in com.myronmarston.music.scales"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;PREV CLASS&nbsp;
+&nbsp;<A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/myronmarston/music/scales/MajorScale.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="MajorScale.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/myronmarston/music/scales/HarmonicMinorScale.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="HarmonicMinorScale.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -391,9 +295,9 @@ protected boolean <B>isInvalidKeyName</B>(<A HREF="../../../../com/myronmarston/
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.myronmarston.music.scales.MinorScale">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_bottom"></A>

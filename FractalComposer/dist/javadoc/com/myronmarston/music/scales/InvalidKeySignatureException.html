@@ -4,7 +4,7 @@
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <TITLE>
-TransposeTransformer
+InvalidKeySignatureException
 </TITLE>
 
 
@@ -14,7 +14,7 @@ TransposeTransformer
 function windowTitle()
 {
     if (location.href.indexOf('is-external=true') == -1) {
-        parent.document.title="TransposeTransformer";
+        parent.document.title="InvalidKeySignatureException";
     }
 }
 </SCRIPT>
@@ -39,7 +39,7 @@ function windowTitle()
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/TransposeTransformer.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/InvalidKeySignatureException.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -54,11 +54,11 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/myronmarston/music/transformers/Transformer.html" title="interface in com.myronmarston.music.transformers"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/transformers/VolumeTransformer.html" title="class in com.myronmarston.music.transformers"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/myronmarston/music/scales/HarmonicMinorScale.html" title="class in com.myronmarston.music.scales"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/myronmarston/music/transformers/TransposeTransformer.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="TransposeTransformer.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/myronmarston/music/scales/InvalidKeySignatureException.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="InvalidKeySignatureException.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -75,9 +75,9 @@ function windowTitle()
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#methods_inherited_from_class_java.lang.Throwable">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;METHOD</FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_top"></A>
@@ -87,30 +87,30 @@ DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&n
 <!-- ======== START OF CLASS DATA ======== -->
 <H2>
 <FONT SIZE="-1">
-com.myronmarston.music.transformers</FONT>
+com.myronmarston.music.scales</FONT>
 <BR>
-Class TransposeTransformer</H2>
+Class InvalidKeySignatureException</H2>
 <PRE>
 java.lang.Object
-  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.transformers.TransposeTransformer</B>
+  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by ">java.lang.Throwable
+      <IMG SRC="../../../../resources/inherit.gif" ALT="extended by ">java.lang.Exception
+          <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.scales.InvalidKeySignatureException</B>
 </PRE>
 <DL>
-<DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../../com/myronmarston/music/transformers/Transformer.html" title="interface in com.myronmarston.music.transformers">Transformer</A></DD>
+<DT><B>All Implemented Interfaces:</B> <DD>java.io.Serializable</DD>
 </DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>TransposeTransformer</B><DT>extends java.lang.Object<DT>implements <A HREF="../../../../com/myronmarston/music/transformers/Transformer.html" title="interface in com.myronmarston.music.transformers">Transformer</A></DL>
+<DT><PRE>public class <B>InvalidKeySignatureException</B><DT>extends java.lang.Exception</DL>
 </PRE>
 
 <P>
-Transformer that transposes the notes of the NoteList to a different pitch
- level.  This does not imply a key change as the term "transpose" is normally
- used in music theory.  Rather, each note in the given NoteList is moved the
- same number of scale steps to a different pitch level.  
- Example: G5 A5 B5 G5 -> A5 B5 C6 A5
+Exception that is thrown when a key signature is invalid.
 <P>
 
 <P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../serialized-form.html#com.myronmarston.music.scales.InvalidKeySignatureException">Serialized Form</A></DL>
 <HR>
 
 <P>
@@ -124,7 +124,7 @@ Transformer that transposes the notes of the NoteList to a different pitch
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/transformers/TransposeTransformer.html#TransposeTransformer(int)">TransposeTransformer</A></B>(int&nbsp;transposeSteps)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html#InvalidKeySignatureException(java.lang.String)">InvalidKeySignatureException</A></B>(java.lang.String&nbsp;keyName)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
@@ -139,21 +139,14 @@ Transformer that transposes the notes of the NoteList to a different pitch
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Method Summary</B></FONT></TH>
 </TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/transformers/TransposeTransformer.html#getTransposeSteps()">getTransposeSteps</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the number of scale steps to transpose the given NoteList.</TD>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_java.lang.Throwable"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class java.lang.Throwable</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/transformers/TransposeTransformer.html#transform(com.myronmarston.music.NoteList)">transform</A></B>(<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&nbsp;input)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transforms the given NoteList to a new note list.</TD>
+<TD><CODE>fillInStackTrace, getCause, getLocalizedMessage, getMessage, getStackTrace, initCause, printStackTrace, printStackTrace, printStackTrace, setStackTrace, toString</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -162,7 +155,7 @@ Transformer that transposes the notes of the NoteList to a different pitch
 <TH ALIGN="left"><B>Methods inherited from class java.lang.Object</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</CODE></TD>
+<TD><CODE>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -178,59 +171,15 @@ Transformer that transposes the notes of the NoteList to a different pitch
 </TR>
 </TABLE>
 
-<A NAME="TransposeTransformer(int)"><!-- --></A><H3>
-TransposeTransformer</H3>
+<A NAME="InvalidKeySignatureException(java.lang.String)"><!-- --></A><H3>
+InvalidKeySignatureException</H3>
 <PRE>
-public <B>TransposeTransformer</B>(int&nbsp;transposeSteps)</PRE>
+public <B>InvalidKeySignatureException</B>(java.lang.String&nbsp;keyName)</PRE>
 <DL>
 <DD>Constructor.
 <P>
 <DL>
-<DT><B>Parameters:</B><DD><CODE>transposeSteps</CODE> - the number of scale steps to transpose the given NoteList</DL>
-</DL>
-
-<!-- ============ METHOD DETAIL ========== -->
-
-<A NAME="method_detail"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
-<B>Method Detail</B></FONT></TH>
-</TR>
-</TABLE>
-
-<A NAME="getTransposeSteps()"><!-- --></A><H3>
-getTransposeSteps</H3>
-<PRE>
-public int <B>getTransposeSteps</B>()</PRE>
-<DL>
-<DD>Gets the number of scale steps to transpose the given NoteList.
-<P>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>the transpose steps</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="transform(com.myronmarston.music.NoteList)"><!-- --></A><H3>
-transform</H3>
-<PRE>
-public <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A> <B>transform</B>(<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&nbsp;input)</PRE>
-<DL>
-<DD><B>Description copied from interface: <CODE><A HREF="../../../../com/myronmarston/music/transformers/Transformer.html#transform(com.myronmarston.music.NoteList)">Transformer</A></CODE></B></DD>
-<DD>Transforms the given NoteList to a new note list.
-<P>
-<DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/transformers/Transformer.html#transform(com.myronmarston.music.NoteList)">transform</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/transformers/Transformer.html" title="interface in com.myronmarston.music.transformers">Transformer</A></CODE></DL>
-</DD>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>input</CODE> - the NoteList to transform
-<DT><B>Returns:</B><DD>the transformed NoteList</DL>
-</DD>
+<DT><B>Parameters:</B><DD><CODE>keyName</CODE> - the name of the key</DL>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
 <HR>
@@ -248,7 +197,7 @@ public <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class i
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/TransposeTransformer.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/InvalidKeySignatureException.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -263,11 +212,11 @@ public <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class i
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/myronmarston/music/transformers/Transformer.html" title="interface in com.myronmarston.music.transformers"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/transformers/VolumeTransformer.html" title="class in com.myronmarston.music.transformers"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/myronmarston/music/scales/HarmonicMinorScale.html" title="class in com.myronmarston.music.scales"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/myronmarston/music/transformers/TransposeTransformer.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="TransposeTransformer.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/myronmarston/music/scales/InvalidKeySignatureException.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="InvalidKeySignatureException.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -284,9 +233,9 @@ public <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class i
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#methods_inherited_from_class_java.lang.Throwable">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;METHOD</FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_bottom"></A>

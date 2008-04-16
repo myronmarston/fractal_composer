@@ -113,7 +113,7 @@ public class SelfSimilaritySettings extends Observable {
      * Calls setChanged() and notifyObservers().  Call this to notify the 
      * observers in one step.
      */
-    protected void setChangedAndNotifyObservers() {
+    private void setChangedAndNotifyObservers() {
         this.setChanged();
         this.notifyObservers();
     }

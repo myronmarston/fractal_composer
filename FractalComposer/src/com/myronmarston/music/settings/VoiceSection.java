@@ -185,7 +185,7 @@ public class VoiceSection implements Observer {
      * Sets the voiceSectionResult field to null.  Should be called anytime a field
      * that affects the voiceSectionResult changes. 
      */
-    protected void clearVoiceSectionResult() {
+    private void clearVoiceSectionResult() {
         this.voiceSectionResult = null;
     }
     
@@ -196,7 +196,7 @@ public class VoiceSection implements Observer {
      * @return a NoteList containing the result of applying the settings to the 
      *         germ
      */
-    protected NoteList generateVoiceSectionResult() {
+    private NoteList generateVoiceSectionResult() {
         NoteList temp = this.getVoice().getModifiedGerm();
         
         if (this.getRest()) {
