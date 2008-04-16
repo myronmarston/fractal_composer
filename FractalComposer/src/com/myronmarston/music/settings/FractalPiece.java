@@ -178,7 +178,7 @@ public class FractalPiece {
         // next, use the first track to set key signature and time signature...
         Track track1 = sequence.createTrack();
         track1.add(this.getScale().getKeySignature().getKeySignatureMidiEvent());        
-        track1.add(this.getTimeSignature().createMidiTimeSignatureEvent());
+        track1.add(this.getTimeSignature().getMidiTimeSignatureEvent());
         
         // finally, create and fill our midi tracks...
         for (NoteList nl : voiceResults) {            

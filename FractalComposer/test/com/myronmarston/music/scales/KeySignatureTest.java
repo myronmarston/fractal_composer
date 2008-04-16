@@ -38,8 +38,13 @@ public class KeySignatureTest {
         assertKeySignatureEventEqual(ks.getKeySignatureMidiEvent(), (byte) -2, (byte) 1);
     }
     
+    @Test(expected=InvalidKeySignatureException.class)
+    public void majorScaleInvalidKeySignature() throws InvalidKeySignatureException {
+        MajorScale s = new MajorScale(NoteName.A_SHARP);
+    }
+    
     @Test
-    public void majorScaleGetKeySignature() throws InvalidMidiDataException {
+    public void majorScaleGetKeySignature() throws InvalidMidiDataException, InvalidKeySignatureException {
         MajorScale s = new MajorScale(NoteName.D);
         assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(), (byte) 2, (byte) 0);
         

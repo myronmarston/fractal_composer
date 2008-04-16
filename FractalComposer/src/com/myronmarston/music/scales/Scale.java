@@ -23,7 +23,7 @@ public abstract class Scale {
      * 
      * @param keyName the tonal center of the scale
      */
-    public Scale(NoteName keyName) {
+    public Scale(NoteName keyName) throws InvalidKeySignatureException {
         this.setKeyName(keyName); 
     }
 
@@ -41,9 +41,9 @@ public abstract class Scale {
      * 
      * @param keyName the key name
      */
-    public void setKeyName(NoteName keyName) {
+    public void setKeyName(NoteName keyName) throws InvalidKeySignatureException {
         if (this.isInvalidKeyName(keyName))
-            throw new IllegalArgumentException("The passed key name is invalid.");
+            throw new InvalidKeySignatureException(keyName.toString());
         this.keyName = keyName;
     }    
     

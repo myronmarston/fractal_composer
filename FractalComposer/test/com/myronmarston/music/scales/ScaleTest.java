@@ -59,11 +59,8 @@ public class ScaleTest {
         NoteName k = NoteName.getDefaultNoteNameForNumber(12);
     }   
     
-    /**
-     * Test of convertToMidiNote method, of class MajorScale.
-     */
     @Test
-    public void majorScale_convertToMidiNote() {
+    public void majorScale_convertToMidiNote() throws InvalidKeySignatureException {
         System.out.println("convertToMidiNote");
         
         MajorScale scale = new MajorScale(NoteName.C);

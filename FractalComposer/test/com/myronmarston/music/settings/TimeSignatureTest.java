@@ -53,15 +53,17 @@ public class TimeSignatureTest {
     }
     
     @Test
-    public void createMidiTimeSignatureEvent() throws InvalidTimeSignatureException, InvalidMidiDataException {
+    public void getMidiTimeSignatureEvent() throws InvalidTimeSignatureException, InvalidMidiDataException {
         TimeSignature ts = new TimeSignature(4, 4);
-        assertTimeSignatureEventEqual(ts.createMidiTimeSignatureEvent(), (byte) 4, (byte) 2);
+        assertTimeSignatureEventEqual(ts.getMidiTimeSignatureEvent(), (byte) 4, (byte) 2);
         
-        ts = new TimeSignature(6, 8);
-        assertTimeSignatureEventEqual(ts.createMidiTimeSignatureEvent(), (byte) 6, (byte) 3);
-        
-        ts = new TimeSignature(15, 16);
-        assertTimeSignatureEventEqual(ts.createMidiTimeSignatureEvent(), (byte) 15, (byte) 4);        
+        ts.setNumerator(6);        
+        ts.setDenominator(8);        
+        assertTimeSignatureEventEqual(ts.getMidiTimeSignatureEvent(), (byte) 6, (byte) 3);
+                
+        ts.setNumerator(15);
+        ts.setDenominator(16);
+        assertTimeSignatureEventEqual(ts.getMidiTimeSignatureEvent(), (byte) 15, (byte) 4);        
     }
     
     static public void assertTimeSignatureEventEqual(MidiEvent timeSignatureEvent, byte byte1, byte byte2) {

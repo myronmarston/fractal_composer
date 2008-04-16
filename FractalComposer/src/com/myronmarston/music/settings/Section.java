@@ -30,6 +30,7 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
      * 
      * @return the duration of this entire section
      */
+    @SuppressWarnings("unchecked")
     public Fraction getDuration() {
         ArrayList<Fraction> voiceSectionDurations = new ArrayList<Fraction>(this.getListOfOtherType().size());
         

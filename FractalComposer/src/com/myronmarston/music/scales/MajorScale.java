@@ -41,8 +41,10 @@ public class MajorScale extends Scale {
      * Constructor.
      * 
      * @param keyName the name of the tonal center
+     * @throws com.myronmarston.music.scales.InvalidKeySignatureException thrown
+     *         when the key is invalid
      */
-    public MajorScale(NoteName keyName) {        
+    public MajorScale(NoteName keyName) throws InvalidKeySignatureException {        
         super(keyName);        
     }
 

@@ -16,6 +16,7 @@ public class TimeSignature {
     private int numerator;
     private int denominator;
     private int denominatorPowerOf2;
+    private MidiEvent midiTimeSignatureEvent;
 
     /**
      * Constructor.
@@ -58,6 +59,7 @@ public class TimeSignature {
         
         this.denominatorPowerOf2 = (int) log2Result;
         this.denominator = denominator;
+        this.clearMidiTimeSignatureEvent();
     }
 
     /**
@@ -79,6 +81,7 @@ public class TimeSignature {
     public void setNumerator(int numerator) throws NonPositiveTimeSignatureException {
         if (numerator <= 0) throw new NonPositiveTimeSignatureException(numerator);
         this.numerator = numerator;
+        this.clearMidiTimeSignatureEvent();
     }
 
     /**
@@ -97,7 +100,16 @@ public class TimeSignature {
      * @throws javax.sound.midi.InvalidMidiDataException thrown when the midi 
      *         data is invalid
      */
-    public MidiEvent createMidiTimeSignatureEvent() throws InvalidMidiDataException {
+    public MidiEvent getMidiTimeSignatureEvent() throws InvalidMidiDataException {
+        if (this.midiTimeSignatureEvent == null) this.midiTimeSignatureEvent = this.createMidiTimeSignatureEvent();
+        return this.midiTimeSignatureEvent;
+    }
+    
+    private void clearMidiTimeSignatureEvent() {
+        this.midiTimeSignatureEvent = null;
+    }
+    
+    private MidiEvent createMidiTimeSignatureEvent() throws InvalidMidiDataException {
         // See http://www.sonicspot.com/guide/midifiles.html for a description of the contents of this message.
         MetaMessage tsMessage = new MetaMessage();
         
@@ -107,9 +119,9 @@ public class TimeSignature {
         tsMessageData[2] = 24; // metronome pulse
         tsMessageData[3] = 8;  // number of 32nds per quarter note
        
-        tsMessage.setMessage(88,            // 88 is the type for a time signature message
-                             tsMessageData, // the time signature data
-                             4);            // the size of the data array
+        tsMessage.setMessage(88,                    // 88 is the type for a time signature message
+                             tsMessageData,         // the time signature data
+                             tsMessageData.length); // the size of the data array
         
         return new MidiEvent(tsMessage, 0);
     }
