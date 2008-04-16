@@ -175,9 +175,10 @@ public class FractalPiece {
         // next, create our sequence...
         Sequence sequence = new Sequence(Sequence.PPQ, (int) midiTickResolution);
         
-        // next, use the first track to set time signature...
-        Track track0 = sequence.createTrack();
-        track0.add(this.getTimeSignature().createMidiTimeSignatureEvent());
+        // next, use the first track to set key signature and time signature...
+        Track track1 = sequence.createTrack();
+        track1.add(this.getScale().getKeySignature().getKeySignatureMidiEvent());        
+        track1.add(this.getTimeSignature().createMidiTimeSignatureEvent());
         
         // finally, create and fill our midi tracks...
         for (NoteList nl : voiceResults) {            

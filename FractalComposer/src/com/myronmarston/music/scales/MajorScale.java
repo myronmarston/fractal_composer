@@ -8,8 +8,13 @@ import com.myronmarston.music.NoteName;
  * 
  * @author Myron
  */
-public class MajorScale extends TonalScale {
-
+public class MajorScale extends Scale {     
+    /**
+     * A constant that indicates a given note name cannot be used as a valid 
+     * major key.
+     */
+    public final static int NOT_A_VALID_MAJOR_KEY = Integer.MAX_VALUE;
+        
     @Override
     protected int getNumScaleStepsInOctave() {
         return 7;
@@ -37,7 +42,17 @@ public class MajorScale extends TonalScale {
      * 
      * @param keyName the name of the tonal center
      */
-    public MajorScale(NoteName keyName) {
-        super(keyName);
-    }                  
+    public MajorScale(NoteName keyName) {        
+        super(keyName);        
+    }
+
+    @Override
+    public KeySignature getKeySignature() {
+        return new KeySignature(this.getKeyName().getMajorKeySharpsOrFlats(), KeySignature.MajorOrMinor.Major);       
+    }   
+
+    @Override
+    protected boolean isInvalidKeyName(NoteName keyName) {
+        return keyName.getMajorKeySharpsOrFlats() == NOT_A_VALID_MAJOR_KEY;
+    }        
 }
