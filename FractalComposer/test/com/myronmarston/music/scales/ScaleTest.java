@@ -60,9 +60,7 @@ public class ScaleTest {
     }   
     
     @Test
-    public void majorScale_convertToMidiNote() throws InvalidKeySignatureException {
-        System.out.println("convertToMidiNote");
-        
+    public void majorScale_convertToMidiNote() throws InvalidKeySignatureException {                
         MajorScale scale = new MajorScale(NoteName.C);
         MidiNote result;
         Note note;
@@ -94,6 +92,76 @@ public class ScaleTest {
         note.setOctave(2);
         result = scale.convertToMidiNote(note, new Fraction(2, 1), midiTickResolution);
         assertMidiNoteValues(result, 69, 40, 16, 24); 
+    }
+    
+    @Test
+    public void minorScale_convertToMidiNote() throws InvalidKeySignatureException {                
+        MinorScale scale = new MinorScale(NoteName.C);
+        MidiNote result;
+        Note note;
+        
+        note = new Note(6, 4, 0, new Fraction(6, 1), 70);      
+        int midiTickResolution = 8;
+        
+        result = scale.convertToMidiNote(note, new Fraction(0, 1), midiTickResolution);
+        assertMidiNoteValues(result, 70, 70, 0, 48);                
+        
+        note.setScaleStep(5);
+        note.setOctave(5);
+        result = scale.convertToMidiNote(note, new Fraction(5, 1), midiTickResolution);
+        assertMidiNoteValues(result, 80, 70, 40, 48);                
+        
+        note.setScaleStep(3);
+        note.setOctave(2);
+        note.setVolume(40);
+        note.setDuration(new Fraction(3, 1));
+        result = scale.convertToMidiNote(note, new Fraction(2, 1), midiTickResolution);
+        assertMidiNoteValues(result, 41, 40, 16, 24); 
+        
+        // try a few unnormalized notes...
+        note.setScaleStep(-3);
+        result = scale.convertToMidiNote(note, new Fraction(2, 1), midiTickResolution);
+        assertMidiNoteValues(result, 31, 40, 16, 24); 
+        
+        note.setScaleStep(19);
+        note.setOctave(2);
+        result = scale.convertToMidiNote(note, new Fraction(2, 1), midiTickResolution);
+        assertMidiNoteValues(result, 68, 40, 16, 24); 
+    }
+    
+    @Test
+    public void harmonicMinorScale_convertToMidiNote() throws InvalidKeySignatureException {                
+        HarmonicMinorScale scale = new HarmonicMinorScale(NoteName.C);
+        MidiNote result;
+        Note note;
+        
+        note = new Note(6, 4, 0, new Fraction(6, 1), 70);      
+        int midiTickResolution = 8;
+        
+        result = scale.convertToMidiNote(note, new Fraction(0, 1), midiTickResolution);
+        assertMidiNoteValues(result, 71, 70, 0, 48);                
+        
+        note.setScaleStep(5);
+        note.setOctave(5);
+        result = scale.convertToMidiNote(note, new Fraction(5, 1), midiTickResolution);
+        assertMidiNoteValues(result, 80, 70, 40, 48);                
+        
+        note.setScaleStep(3);
+        note.setOctave(2);
+        note.setVolume(40);
+        note.setDuration(new Fraction(3, 1));
+        result = scale.convertToMidiNote(note, new Fraction(2, 1), midiTickResolution);
+        assertMidiNoteValues(result, 41, 40, 16, 24); 
+        
+        // try a few unnormalized notes...
+        note.setScaleStep(-3);
+        result = scale.convertToMidiNote(note, new Fraction(2, 1), midiTickResolution);
+        assertMidiNoteValues(result, 31, 40, 16, 24); 
+        
+        note.setScaleStep(19);
+        note.setOctave(2);
+        result = scale.convertToMidiNote(note, new Fraction(2, 1), midiTickResolution);
+        assertMidiNoteValues(result, 68, 40, 16, 24); 
     }
     
     protected void assertMidiNoteValues(MidiNote midiNote, int pitch, int velocity, long startTime, long duration) {

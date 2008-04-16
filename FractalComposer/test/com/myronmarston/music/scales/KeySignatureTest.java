@@ -43,6 +43,11 @@ public class KeySignatureTest {
         MajorScale s = new MajorScale(NoteName.A_SHARP);
     }
     
+    @Test(expected=InvalidKeySignatureException.class)
+    public void minorScaleInvalidKeySignature() throws InvalidKeySignatureException {
+        MinorScale s = new MinorScale(NoteName.G_FLAT);
+    }
+    
     @Test
     public void majorScaleGetKeySignature() throws InvalidMidiDataException, InvalidKeySignatureException {
         MajorScale s = new MajorScale(NoteName.D);
@@ -50,6 +55,15 @@ public class KeySignatureTest {
         
         s.setKeyName(NoteName.A_FLAT);
         assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(), (byte) -4, (byte) 0);
+    }
+    
+    @Test
+    public void minorScaleGetKeySignature() throws InvalidMidiDataException, InvalidKeySignatureException {
+        MinorScale s = new MinorScale(NoteName.D);
+        assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(), (byte) -1, (byte) 1);
+        
+        s.setKeyName(NoteName.G_SHARP);
+        assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(), (byte) 5, (byte) 1);
     }
 
     static public void assertKeySignatureEventEqual(MidiEvent keySignatureEvent, byte byte1, byte byte2) {
