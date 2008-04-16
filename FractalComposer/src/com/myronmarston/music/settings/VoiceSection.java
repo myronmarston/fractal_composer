@@ -163,7 +163,7 @@ public class VoiceSection implements Observer {
         NoteList temp = (NoteList) this.getVoiceSectionResult().clone();
         Fraction originalVoiceSectionLength = temp.getDuration();
         if (originalVoiceSectionLength.compareTo(length) > 0) {
-            throw new IllegalArgumentException(String.format("The voice section length (%f) is longer than the passed argument (%f).  The passed argument must be greater than or equal to the voice section length.", originalVoiceSectionLength, length));
+            throw new IllegalArgumentException(String.format("The voice section length (%f) is longer than the passed argument (%f).  The passed argument must be greater than or equal to the voice section length.", originalVoiceSectionLength.asDouble(), length.asDouble()));
         }
                 
         // pad the length with additional copies of the entire voice section 
