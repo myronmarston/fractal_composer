@@ -22,8 +22,8 @@ public class TimeSignature {
      * 
      * @param numerator the number of counts per measure
      * @param denominator the kind of note that gets one count
-     * @throws com.myronmarston.music.InvalidTimeSignatureException thrown when
-     *         invalid values are passed
+     * @throws com.myronmarston.music.settings.InvalidTimeSignatureException
+     *         thrown when invalid values are passed 
      */
     public TimeSignature(int numerator, int denominator) throws InvalidTimeSignatureException {
         // call the setters instead of setting the fields directly in order to invoke their logic
@@ -44,8 +44,8 @@ public class TimeSignature {
      * Sets the kind of note that gets one count.  Should be a power of 2.
      * 
      * @param denominator the value
-     * @throws com.myronmarston.music.InvalidTimeSignatureException thrown when
-     *         the denominator is non-positive or not a power of 2.
+     * @throws com.myronmarston.music.settings.InvalidTimeSignatureException 
+     *         thrown when the denominator is non-positive or not a power of 2.     
      */
     public void setDenominator(int denominator) throws InvalidTimeSignatureException {
         if (denominator <= 0) throw new NonPositiveTimeSignatureException(denominator);
@@ -73,8 +73,8 @@ public class TimeSignature {
      * Sets the number of counts per bar.
      * 
      * @param numerator the value
-     * @throws com.myronmarston.music.NonPositiveTimeSignatureException thrown 
-     *         when the passed value is not positive
+     * @throws com.myronmarston.music.settings.NonPositiveTimeSignatureException 
+     *         thrown when the passed value is not positive
      */
     public void setNumerator(int numerator) throws NonPositiveTimeSignatureException {
         if (numerator <= 0) throw new NonPositiveTimeSignatureException(numerator);
