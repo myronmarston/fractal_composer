@@ -242,22 +242,7 @@ public class SettingsTest {
         expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
         expected.add(new Note(1, 6, 0, new Fraction(1, 8), 64));
         expected.add(new Note(2, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
-        
-        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
-        expected.add(new Note(1, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(2, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
-        
-        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
-        expected.add(new Note(1, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(2, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
-        
-        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
-        expected.add(new Note(1, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(2, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
+        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));                
         assertNoteListsEqual(expected, vs1.getVoiceSectionResult());
                 
         expected.clear();
@@ -338,7 +323,7 @@ public class SettingsTest {
         Section s1 = fp.createSection();
         s1.getVoiceSections().get(2).setRest(true);
         
-        assertEquals(new Fraction(12, 1), s1.getDuration());
+        assertEquals(new Fraction(6, 1), s1.getDuration());
     }
     
     @Test(expected=IllegalArgumentException.class)    
@@ -353,7 +338,7 @@ public class SettingsTest {
         Section s1 = fp.createSection();
         VoiceSection vs1 = v1.getVoiceSections().get(0);
         
-        vs1.getLengthenedVoiceSectionResult(new Fraction(11, 1));
+        vs1.getLengthenedVoiceSectionResult(new Fraction(5, 2));
     }
     
     @Test
@@ -368,22 +353,22 @@ public class SettingsTest {
         Section s1 = fp.createSection();
         VoiceSection vs1 = v1.getVoiceSections().get(0);
                 
-        assertEquals(new Fraction(12, 1), vs1.getVoiceSectionResult().getDuration());
+        assertEquals(new Fraction(3, 1), vs1.getVoiceSectionResult().getDuration());
         
         NoteList expected = new NoteList();
-        expected.addAll(vs1.getVoiceSectionResult());
-        assertNoteListsEqual(expected, vs1.getLengthenedVoiceSectionResult(new Fraction(12, 1)));
+        expected.addAll(vs1.getVoiceSectionResult());        
+        assertNoteListsEqual(expected, vs1.getLengthenedVoiceSectionResult(new Fraction(3, 1)));
         
-        expected.add(Note.createRest(new Fraction(7, 2)));
-        assertNoteListsEqual(expected, vs1.getLengthenedVoiceSectionResult(new Fraction(31, 2)));
+        expected.add(Note.createRest(new Fraction(5, 2)));
+        assertNoteListsEqual(expected, vs1.getLengthenedVoiceSectionResult(new Fraction(11, 2)));
         
         expected.clear();
         expected.addAll(vs1.getVoiceSectionResult());
         expected.addAll(vs1.getVoiceSectionResult());
-        assertNoteListsEqual(expected, vs1.getLengthenedVoiceSectionResult(new Fraction(24, 1)));
+        assertNoteListsEqual(expected, vs1.getLengthenedVoiceSectionResult(new Fraction(6, 1)));
         
         expected.add(Note.createRest(new Fraction(2, 1)));
-        assertNoteListsEqual(expected, vs1.getLengthenedVoiceSectionResult(new Fraction(26, 1)));
+        assertNoteListsEqual(expected, vs1.getLengthenedVoiceSectionResult(new Fraction(8, 1)));
         
         expected.clear();
         expected.addAll(vs1.getVoiceSectionResult());
@@ -391,7 +376,7 @@ public class SettingsTest {
         expected.addAll(vs1.getVoiceSectionResult());
         expected.addAll(vs1.getVoiceSectionResult());
         expected.add(Note.createRest(new Fraction(1, 2)));
-        assertNoteListsEqual(expected, vs1.getLengthenedVoiceSectionResult(new Fraction(97, 2)));        
+        assertNoteListsEqual(expected, vs1.getLengthenedVoiceSectionResult(new Fraction(25, 2)));        
     }
     
     @Test
@@ -507,6 +492,122 @@ public class SettingsTest {
         expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
         
         assertNoteListsEqual(expected, v1.getEntireVoice());
+    }
+    
+    @Test
+    public void sectionSetApplyInversionRetrogradeOnAllVoices() {
+        FractalPiece fp = new FractalPiece();
+        Voice v1 = fp.createVoice();                
+        Voice v2 = fp.createVoice();
+        Voice v3 = fp.createVoice();
+        Section s1 = fp.createSection();
+        VoiceSection vs1 = v1.getVoiceSections().get(0);
+        VoiceSection vs2 = v2.getVoiceSections().get(0);
+        VoiceSection vs3 = v3.getVoiceSections().get(0);
+        
+        s1.setApplyInversionOnAllVoiceSections(true);
+        assertEquals(true, vs1.getApplyInversion());
+        assertEquals(true, vs2.getApplyInversion());
+        assertEquals(true, vs3.getApplyInversion());
+        
+        s1.setApplyInversionOnAllVoiceSections(false);
+        assertEquals(false, vs1.getApplyInversion());
+        assertEquals(false, vs2.getApplyInversion());
+        assertEquals(false, vs3.getApplyInversion());
+        
+        s1.setApplyInversionOnAllVoiceSections(true);
+        assertEquals(true, vs1.getApplyInversion());
+        assertEquals(true, vs2.getApplyInversion());
+        assertEquals(true, vs3.getApplyInversion());
+        
+        s1.setApplyRetrogradeOnAllVoiceSections(true);
+        assertEquals(true, vs1.getApplyRetrograde());
+        assertEquals(true, vs2.getApplyRetrograde());
+        assertEquals(true, vs3.getApplyRetrograde());
+        
+        s1.setApplyRetrogradeOnAllVoiceSections(false);
+        assertEquals(false, vs1.getApplyRetrograde());
+        assertEquals(false, vs2.getApplyRetrograde());
+        assertEquals(false, vs3.getApplyRetrograde());
+        
+        s1.setApplyRetrogradeOnAllVoiceSections(true);
+        assertEquals(true, vs1.getApplyRetrograde());
+        assertEquals(true, vs2.getApplyRetrograde());
+        assertEquals(true, vs3.getApplyRetrograde());
+    }
+    
+    @Test
+    public void setSelfSimilaritySettingsOnAllVoices() {
+        FractalPiece fp = new FractalPiece();
+        Voice v1 = fp.createVoice();                
+        Voice v2 = fp.createVoice();
+        Voice v3 = fp.createVoice();
+        Section s1 = fp.createSection();
+        VoiceSection vs1 = v1.getVoiceSections().get(0);
+        VoiceSection vs2 = v2.getVoiceSections().get(0);
+        VoiceSection vs3 = v3.getVoiceSections().get(0);
+        
+        s1.setApplySelfSimilarityToPitchOnAllVoiceSections(true);
+        assertEquals(true, vs1.getSelfSimilaritySettings().getApplyToPitch());
+        assertEquals(true, vs2.getSelfSimilaritySettings().getApplyToPitch());
+        assertEquals(true, vs3.getSelfSimilaritySettings().getApplyToPitch());
+        
+        s1.setApplySelfSimilarityToPitchOnAllVoiceSections(false);
+        assertEquals(false, vs1.getSelfSimilaritySettings().getApplyToPitch());
+        assertEquals(false, vs2.getSelfSimilaritySettings().getApplyToPitch());
+        assertEquals(false, vs3.getSelfSimilaritySettings().getApplyToPitch());
+        
+        s1.setApplySelfSimilarityToPitchOnAllVoiceSections(true);
+        assertEquals(true, vs1.getSelfSimilaritySettings().getApplyToPitch());
+        assertEquals(true, vs2.getSelfSimilaritySettings().getApplyToPitch());
+        assertEquals(true, vs3.getSelfSimilaritySettings().getApplyToPitch());
+        
+        s1.setApplySelfSimilarityToRhythmOnAllVoiceSections(true);
+        assertEquals(true, vs1.getSelfSimilaritySettings().getApplyToRhythm());
+        assertEquals(true, vs2.getSelfSimilaritySettings().getApplyToRhythm());
+        assertEquals(true, vs3.getSelfSimilaritySettings().getApplyToRhythm());
+        
+        s1.setApplySelfSimilarityToRhythmOnAllVoiceSections(false);
+        assertEquals(false, vs1.getSelfSimilaritySettings().getApplyToRhythm());
+        assertEquals(false, vs2.getSelfSimilaritySettings().getApplyToRhythm());
+        assertEquals(false, vs3.getSelfSimilaritySettings().getApplyToRhythm());
+        
+        s1.setApplySelfSimilarityToRhythmOnAllVoiceSections(true);
+        assertEquals(true, vs1.getSelfSimilaritySettings().getApplyToRhythm());
+        assertEquals(true, vs2.getSelfSimilaritySettings().getApplyToRhythm());
+        assertEquals(true, vs3.getSelfSimilaritySettings().getApplyToRhythm());
+        
+        s1.setApplySelfSimilarityToVolumeOnAllVoiceSections(true);
+        assertEquals(true, vs1.getSelfSimilaritySettings().getApplyToVolume());
+        assertEquals(true, vs2.getSelfSimilaritySettings().getApplyToVolume());
+        assertEquals(true, vs3.getSelfSimilaritySettings().getApplyToVolume());
+        
+        s1.setApplySelfSimilarityToVolumeOnAllVoiceSections(false);
+        assertEquals(false, vs1.getSelfSimilaritySettings().getApplyToVolume());
+        assertEquals(false, vs2.getSelfSimilaritySettings().getApplyToVolume());
+        assertEquals(false, vs3.getSelfSimilaritySettings().getApplyToVolume());
+        
+        s1.setApplySelfSimilarityToVolumeOnAllVoiceSections(true);
+        assertEquals(true, vs1.getSelfSimilaritySettings().getApplyToVolume());
+        assertEquals(true, vs2.getSelfSimilaritySettings().getApplyToVolume());
+        assertEquals(true, vs3.getSelfSimilaritySettings().getApplyToVolume());
+        
+        vs1.getSelfSimilaritySettings().setApplyToPitch(true);
+        vs2.getSelfSimilaritySettings().setApplyToPitch(false);
+        vs3.getSelfSimilaritySettings().setApplyToPitch(true);
+        
+        s1.setSelfSimilaritySettingsOnAllVoiceSections(null, false, true);
+        assertEquals(true, vs1.getSelfSimilaritySettings().getApplyToPitch());
+        assertEquals(false, vs2.getSelfSimilaritySettings().getApplyToPitch());
+        assertEquals(true, vs3.getSelfSimilaritySettings().getApplyToPitch());
+        
+        assertEquals(false, vs1.getSelfSimilaritySettings().getApplyToRhythm());
+        assertEquals(false, vs2.getSelfSimilaritySettings().getApplyToRhythm());
+        assertEquals(false, vs3.getSelfSimilaritySettings().getApplyToRhythm());
+        
+        assertEquals(true, vs1.getSelfSimilaritySettings().getApplyToVolume());
+        assertEquals(true, vs2.getSelfSimilaritySettings().getApplyToVolume());
+        assertEquals(true, vs3.getSelfSimilaritySettings().getApplyToVolume());
     }
     
     static protected void assertNoteListsEqual(NoteList expected, NoteList actual) {

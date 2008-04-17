@@ -240,22 +240,7 @@ public class TransformerTest {
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 2), 112));
-        expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
-        
-        expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
-        expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
-        expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 2), 112));
-        expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
-        
-        expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
-        expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
-        expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 2), 112));
-        expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
-        
-        expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
-        expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
-        expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 2), 112));
-        expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));   
+        expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));                
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
     }
     

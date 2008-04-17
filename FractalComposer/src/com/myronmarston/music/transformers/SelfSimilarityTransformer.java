@@ -54,7 +54,16 @@ public class SelfSimilarityTransformer implements Transformer {
      */
     public SelfSimilarityTransformer() {};
     
-    public NoteList transform(NoteList input) {                             
+    public NoteList transform(NoteList input) {
+        if (!this.getSettings().getApplyToPitch() &&
+            !this.getSettings().getApplyToRhythm() &&
+            !this.getSettings().getApplyToVolume()) {
+            // there is no self-similarity, so just return a copy of the input
+            
+            CopyTransformer ct = new CopyTransformer();
+            return ct.transform(input);
+        }            
+        
         Note firstNote = input.getFirstAudibleNote(); // the note we will compare against for the self-similarity
         NoteList transformedList; // used to store the temporary results of the transformations                
         NoteList output = new NoteList(input.size() * input.size()); // the final output

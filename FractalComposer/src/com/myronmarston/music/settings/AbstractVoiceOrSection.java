@@ -89,4 +89,81 @@ public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O
      * @return a new VoiceSection
      */
     protected abstract VoiceSection instantiateVoiceSection(O vOrS);
+
+    /**
+     * Update applyInversion on all voice sections.
+     * 
+     * @param val new value for applyInversion
+     */
+    public void setApplyInversionOnAllVoiceSections(boolean val) {
+        for (VoiceSection vs : this.getVoiceSections()) {
+            vs.setApplyInversion(val);
+        }
+    }
+
+    /**
+     * Update applyRetrograde on all voice sections.
+     * 
+     * @param val new value for applyRetrograde
+     */
+    public void setApplyRetrogradeOnAllVoiceSections(boolean val) {
+        for (VoiceSection vs : this.getVoiceSections()) {
+            vs.setApplyRetrograde(val);
+        }
+    }
+
+    /**
+     * Update applyToPitch on the self-similarity settings of all voice 
+     * sections.
+     * 
+     * @param val new value for applyToPitch
+     */
+    public void setApplySelfSimilarityToPitchOnAllVoiceSections(boolean val) {
+        for (VoiceSection vs : this.getVoiceSections()) {
+            vs.getSelfSimilaritySettings().setApplyToPitch(val);
+        }
+    }
+
+    /**
+     * Update applyToRhythm on the self-similarity settings of all voice 
+     * sections.
+     * 
+     * @param val new value for applyToRhythm
+     */
+    public void setApplySelfSimilarityToRhythmOnAllVoiceSections(boolean val) {
+        for (VoiceSection vs : this.getVoiceSections()) {
+            vs.getSelfSimilaritySettings().setApplyToRhythm(val);
+        }
+    }
+
+    /**
+     * Update applyToVolume on the self-similarity settings of all voice 
+     * sections.
+     * 
+     * @param val new value for applyToVolume
+     */
+    public void setApplySelfSimilarityToVolumeOnAllVoiceSections(boolean val) {
+        for (VoiceSection vs : this.getVoiceSections()) {
+            vs.getSelfSimilaritySettings().setApplyToVolume(val);
+        }
+    }
+    
+    /**
+     * Updates the self-similarity settings of all voice sections.
+     * 
+     * @param applyToPitch new value; pass null to leave existing values
+     * @param applyToRhythm new value; pass null to leave existing values
+     * @param applyToVolume new value; pass null to leave existing values
+     */
+    public void setSelfSimilaritySettingsOnAllVoiceSections(Boolean applyToPitch, Boolean applyToRhythm, Boolean applyToVolume) {
+        if (applyToPitch != null) {
+            this.setApplySelfSimilarityToPitchOnAllVoiceSections(applyToPitch);
+        }
+        if (applyToRhythm != null) {
+            this.setApplySelfSimilarityToRhythmOnAllVoiceSections(applyToRhythm);
+        }
+        if (applyToVolume != null) {
+            this.setApplySelfSimilarityToVolumeOnAllVoiceSections(applyToVolume);
+        }
+    }
 }

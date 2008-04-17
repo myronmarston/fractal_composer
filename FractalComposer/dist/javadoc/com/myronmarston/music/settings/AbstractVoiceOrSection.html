@@ -189,6 +189,59 @@ An abstract class containing a common interface and common logic shared
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instantiates and returns a VoiceSection, using this and the passed voice 
  or section.</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setApplyInversionOnAllVoiceSections(boolean)">setApplyInversionOnAllVoiceSections</A></B>(boolean&nbsp;val)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update applyInversion on all voice sections.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setApplyRetrogradeOnAllVoiceSections(boolean)">setApplyRetrogradeOnAllVoiceSections</A></B>(boolean&nbsp;val)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update applyRetrograde on all voice sections.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setApplySelfSimilarityToPitchOnAllVoiceSections(boolean)">setApplySelfSimilarityToPitchOnAllVoiceSections</A></B>(boolean&nbsp;val)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update applyToPitch on the self-similarity settings of all voice 
+ sections.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setApplySelfSimilarityToRhythmOnAllVoiceSections(boolean)">setApplySelfSimilarityToRhythmOnAllVoiceSections</A></B>(boolean&nbsp;val)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update applyToRhythm on the self-similarity settings of all voice 
+ sections.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setApplySelfSimilarityToVolumeOnAllVoiceSections(boolean)">setApplySelfSimilarityToVolumeOnAllVoiceSections</A></B>(boolean&nbsp;val)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update applyToVolume on the self-similarity settings of all voice 
+ sections.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setSelfSimilaritySettingsOnAllVoiceSections(java.lang.Boolean, java.lang.Boolean, java.lang.Boolean)">setSelfSimilaritySettingsOnAllVoiceSections</A></B>(java.lang.Boolean&nbsp;applyToPitch,
+                                            java.lang.Boolean&nbsp;applyToRhythm,
+                                            java.lang.Boolean&nbsp;applyToVolume)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updates the self-similarity settings of all voice sections.</TD>
+</TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
@@ -330,6 +383,89 @@ protected abstract <A HREF="../../../../com/myronmarston/music/settings/VoiceSec
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>vOrS</CODE> - a Voice or Section to use in the instantiating
 <DT><B>Returns:</B><DD>a new VoiceSection</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setApplyInversionOnAllVoiceSections(boolean)"><!-- --></A><H3>
+setApplyInversionOnAllVoiceSections</H3>
+<PRE>
+public void <B>setApplyInversionOnAllVoiceSections</B>(boolean&nbsp;val)</PRE>
+<DL>
+<DD>Update applyInversion on all voice sections.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>val</CODE> - new value for applyInversion</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setApplyRetrogradeOnAllVoiceSections(boolean)"><!-- --></A><H3>
+setApplyRetrogradeOnAllVoiceSections</H3>
+<PRE>
+public void <B>setApplyRetrogradeOnAllVoiceSections</B>(boolean&nbsp;val)</PRE>
+<DL>
+<DD>Update applyRetrograde on all voice sections.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>val</CODE> - new value for applyRetrograde</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setApplySelfSimilarityToPitchOnAllVoiceSections(boolean)"><!-- --></A><H3>
+setApplySelfSimilarityToPitchOnAllVoiceSections</H3>
+<PRE>
+public void <B>setApplySelfSimilarityToPitchOnAllVoiceSections</B>(boolean&nbsp;val)</PRE>
+<DL>
+<DD>Update applyToPitch on the self-similarity settings of all voice 
+ sections.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>val</CODE> - new value for applyToPitch</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setApplySelfSimilarityToRhythmOnAllVoiceSections(boolean)"><!-- --></A><H3>
+setApplySelfSimilarityToRhythmOnAllVoiceSections</H3>
+<PRE>
+public void <B>setApplySelfSimilarityToRhythmOnAllVoiceSections</B>(boolean&nbsp;val)</PRE>
+<DL>
+<DD>Update applyToRhythm on the self-similarity settings of all voice 
+ sections.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>val</CODE> - new value for applyToRhythm</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setApplySelfSimilarityToVolumeOnAllVoiceSections(boolean)"><!-- --></A><H3>
+setApplySelfSimilarityToVolumeOnAllVoiceSections</H3>
+<PRE>
+public void <B>setApplySelfSimilarityToVolumeOnAllVoiceSections</B>(boolean&nbsp;val)</PRE>
+<DL>
+<DD>Update applyToVolume on the self-similarity settings of all voice 
+ sections.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>val</CODE> - new value for applyToVolume</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setSelfSimilaritySettingsOnAllVoiceSections(java.lang.Boolean, java.lang.Boolean, java.lang.Boolean)"><!-- --></A><H3>
+setSelfSimilaritySettingsOnAllVoiceSections</H3>
+<PRE>
+public void <B>setSelfSimilaritySettingsOnAllVoiceSections</B>(java.lang.Boolean&nbsp;applyToPitch,
+                                                        java.lang.Boolean&nbsp;applyToRhythm,
+                                                        java.lang.Boolean&nbsp;applyToVolume)</PRE>
+<DL>
+<DD>Updates the self-similarity settings of all voice sections.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>applyToPitch</CODE> - new value; pass null to leave existing values<DD><CODE>applyToRhythm</CODE> - new value; pass null to leave existing values<DD><CODE>applyToVolume</CODE> - new value; pass null to leave existing values</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
