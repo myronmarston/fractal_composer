@@ -36,14 +36,27 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
         return internalList.size();
     }
 
-    @Override    
-    @SuppressWarnings("unchecked")
+    @Override        
     public boolean add(M mainVorS) {
+        this.add(this.size(), mainVorS);
+        return true; // return true since our collection changed...
+    }
+
+    /**
+     * Insert the given Voice or Section into the list at the given index.
+     * 
+     * @param index the insertion index
+     * @param mainVorS the voice or section to add
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public void add(int index, M mainVorS) {
         int otherTypeIndex = 0;
         int mainTypeIndex = this.size();
-        boolean result = internalList.add(mainVorS);        
+        internalList.add(index, mainVorS);        
         VoiceSection vs;                
         
+        // create the necessary Voice Sections...
         for (AbstractVoiceOrSection otherVOrS : (List<O>) mainVorS.getListOfOtherType()) {
             vs = mainVorS.instantiateVoiceSection(otherVOrS);
             this.voiceSections.put(vs.createHashMapKey(), vs);
@@ -57,10 +70,9 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
             vs.getSection().getVoiceSections().incrementModCount();
         }
         
-        this.modCount++;
-        return result;
+        this.modCount++;        
     }
-    
+            
     @Override
     public M remove(int index) {
         M itemToRemove = this.internalList.get(index);

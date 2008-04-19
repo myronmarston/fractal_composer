@@ -32,8 +32,7 @@ public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O
      */
     public FractalPiece getFractalPiece() {
         return this.fractalPiece;
-    }
-    
+    }    
     
     /**
      * Gets a list of VoiceSections.  This is guarenteed to never return null.
@@ -109,6 +108,17 @@ public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O
     public void setApplyRetrogradeOnAllVoiceSections(boolean val) {
         for (VoiceSection vs : this.getVoiceSections()) {
             vs.setApplyRetrograde(val);
+        }
+    }
+    
+    /**
+     * Sets all voice sections for this voice or section to rest.
+     * 
+     * @param val true to rest; false to not rest
+     */
+    public void setRestOnAllVoiceSections(boolean val) {
+        for (VoiceSection vs : this.getVoiceSections()) {
+            vs.setRest(val);
         }
     }
 

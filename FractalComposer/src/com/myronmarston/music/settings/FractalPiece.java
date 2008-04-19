@@ -1,15 +1,15 @@
 package com.myronmarston.music.settings;
 
-import com.myronmarston.music.settings.InvalidTimeSignatureException;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.scales.Scale;
-import com.myronmarston.music.settings.TimeSignature;
 import com.myronmarston.util.MathHelper;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,13 +25,17 @@ import javax.sound.midi.Track;
  * 
  * @author Myron
  */
-public class FractalPiece {
+public class FractalPiece {    
+    private static interface InsertIndexProvider { int getInsertIndex(List l); }
     private NoteList germ;
     private Scale scale;
     private TimeSignature timeSignature;
     private VoiceOrSectionList<Voice, Section> voices = new VoiceOrSectionList<Voice, Section>(this.getVoiceSections());
     private VoiceOrSectionList<Section, Voice> sections = new VoiceOrSectionList<Section, Voice>(this.getVoiceSections());
     private HashMap<VoiceSectionHashMapKey, VoiceSection> voiceSections;
+    private boolean generateLayeredIntro = true;
+    private boolean generateLayeredOutro = true;
+    private List<Section> tempIntroOutroSections = new ArrayList<Section>();
 
     /**
      * Returns the germ NoteList.  Guarenteed to never be null.  
@@ -67,6 +71,46 @@ public class FractalPiece {
     }
 
     /**
+     * Gets whether or not a layered intro should be included in the generated
+     * fractal piece.
+     * 
+     * @return whether or not to generate the layered intro
+     */
+    public boolean getGenerateLayeredIntro() {
+        return generateLayeredIntro;
+    }
+
+    /**
+     * Sets whether or not a layered intro should be included in the generated
+     * fractal piece.
+     * 
+     * @param generateLayeredIntro whether or not to generate the layered intro
+     */
+    public void setGenerateLayeredIntro(boolean generateLayeredIntro) {
+        this.generateLayeredIntro = generateLayeredIntro;
+    }
+
+    /**
+     * Gets whether or not a layered outro should be included in the generated
+     * fractal piece.
+     * 
+     * @return whether or not to generate the layered outro
+     */
+    public boolean getGenerateLayeredOutro() {
+        return generateLayeredOutro;
+    }
+
+    /**
+     * Sets whether or not a layered outro should be included in the generated
+     * fractal piece.
+     * 
+     * @param generateLayeredOutro whether or not to generate the layered outro
+     */
+    public void setGenerateLayeredOutro(boolean generateLayeredOutro) {
+        this.generateLayeredOutro = generateLayeredOutro;
+    }
+        
+    /**
      * Gets the time signature for this piece.  If none has been set, a default
      * signature of 4/4 will be created.
      * 
@@ -92,7 +136,7 @@ public class FractalPiece {
      */
     public void setTimeSignature(TimeSignature timeSignature) {
         this.timeSignature = timeSignature;
-    }        
+    }   
     
     /**
      * Gets the hash table containing all the VoiceSections for the entire
@@ -115,6 +159,26 @@ public class FractalPiece {
     public List<Voice> getVoices() {        
         return voices;
     }
+    
+    /**
+     * Gets an unmodifiable list of voices, in order from the fastest to the
+     * slowest.
+     * 
+     * @return an unmodifiable list
+     */
+    private List<Voice> getVoices_FastToSlow() {
+        List<Voice> sortableVoiceList = new ArrayList<Voice>(this.getVoices());  
+        
+        // sort the list using a fast-to-slow comparator...
+        Collections.sort(sortableVoiceList, new Comparator<Voice>() {
+                public int compare(Voice v1, Voice v2) {        
+                    return v2.getSpeedScaleFactor().compareTo(v1.getSpeedScaleFactor());
+                }
+             }
+        );
+        
+        return Collections.unmodifiableList(sortableVoiceList);
+    }
         
     /**
      * Gets a list of Sections for the FractalPiece.  To add a Section, use the
@@ -133,8 +197,19 @@ public class FractalPiece {
      * @return the created Voice
      */
     public Voice createVoice() {
+        return this.createVoice(this.getVoices().size());
+    }
+    
+    /**
+     * Creates a Voice for the FractalPiece, and adds it to a particular point 
+     * in the voice list.
+     * 
+     * @param index the point to insert the voice
+     * @return the created voice
+     */
+    public Voice createVoice(int index) {
         Voice v = new Voice(this);
-        this.voices.add(v);
+        this.voices.add(index, v);
         return v;
     }
     
@@ -144,11 +219,170 @@ public class FractalPiece {
      * @return the created Section
      */
     public Section createSection() {
-        Section s = new Section(this);
-        this.sections.add(s);
-        return s;
-    }      
+        return this.createSection(this.getSections().size());
+    }   
     
+    /**
+     * Creates a Section for the FractalPiece, and inserts it at a particular
+     * point in the Section list.
+     * 
+     * @param index the point in the list to insert the section
+     * @return the created Section
+     */
+    public Section createSection(int index) {
+        Section s = new Section(this);
+        this.sections.add(index, s);        
+        return s;
+    }
+    
+    /**
+     * Sets up the default settings.  If there are already voices, they will be 
+     * left alone and no new voices will be created.  Any section settings will
+     * be overriden with new ones.
+     */
+    public void createDefaultSettings() {
+        createDefaultVoices();
+        createDefaultSections();
+    }
+    
+    /**
+     * Creates the default voice settings.  If there are already voices, this
+     * method will not do anything.
+     */
+    public void createDefaultVoices() {
+        // if there are already voices, then leave them alone...
+        if (this.getVoices().size() > 0) return;
+        
+        int defaultVoiceCount = 3;
+        Fraction voiceSpeedFactor = new Fraction(2, 1);
+        int voiceOctaveAdjustment = 1;
+        
+        while(this.getVoices().size() < defaultVoiceCount) {
+            Voice v = this.createVoice();
+            v.setSpeedScaleFactor(voiceSpeedFactor);
+            v.setOctaveAdjustment(voiceOctaveAdjustment);
+         
+            voiceSpeedFactor = voiceSpeedFactor.dividedBy(2L);
+            voiceOctaveAdjustment -= 1;
+        }
+    }
+    
+    /**
+     * Sets up default section settings.  Any existing sections will be 
+     * overriden.  This generates one normal section, one inversion section,
+     * one retrograde inversion section, and one retrograde section.  For each
+     * section, the self-similarity is applied to only the fastest voice.
+     */
+    public void createDefaultSections() {
+        this.sections.clear();
+        
+        createDefaultSection(false, false); // normal
+        createDefaultSection(true, false);  // inversion
+        createDefaultSection(true, true);   // retrograde inversion     
+        createDefaultSection(false, true);  // retrograde       
+    }
+    
+    /**
+     * Creates a default section. 
+     *
+     * @param applyInversion whether or not to apply inversion to this section
+     * @param applyRetrograde whether or not to apply retrograde to this section
+     */
+    private void createDefaultSection(boolean applyInversion, boolean applyRetrograde) {       
+        Section section = this.createSection();
+        
+        // apply inversion and retrograde based on the passed settings...
+        section.setApplyInversionOnAllVoiceSections(applyInversion);
+        section.setApplyRetrogradeOnAllVoiceSections(applyRetrograde);
+        
+        // we can't set the options on the voice sections if there are no voices...
+        if (this.getVoices().size() == 0) return;
+        
+        // get the fastest voice...
+        Voice fastestVoice = this.getVoices_FastToSlow().get(0);
+        
+        // apply self-similarity to the fastest voice...        
+        for (Voice v : this.getVoices()) {
+            boolean isFastestVoice = (v == fastestVoice);
+            VoiceSection vs = this.getVoiceSections().get(new VoiceSectionHashMapKey(v, section));
+            
+            vs.getSelfSimilaritySettings().setApplyToPitch(isFastestVoice);
+            vs.getSelfSimilaritySettings().setApplyToRhythm(isFastestVoice);
+            vs.getSelfSimilaritySettings().setApplyToVolume(isFastestVoice);
+        }
+    }
+    
+    /**
+     * Creates the layered intro sections.
+     */
+    protected void createIntroSections() {
+        if (!this.getGenerateLayeredIntro()) return;
+        
+        createLayeredSections(
+            new InsertIndexProvider() { 
+                public int getInsertIndex(List l) { return 0; }                
+            }
+        );
+    }
+    
+    /**
+     * Creates the layered outro sections.
+     */
+    protected void createOutroSections() {
+        if (!this.getGenerateLayeredOutro()) return;
+        
+        createLayeredSections(
+            new InsertIndexProvider() {                 
+                public int getInsertIndex(List l) { return l.size(); }                
+            }
+        );
+    }
+        
+    /**
+     * Creates the necessary layered intro or outro sections.
+     * 
+     * @param insertIndexProvider object that provides index into the start of
+     *        the list (for the intro) or the end of the list (for the outro)
+     */
+    private void createLayeredSections(InsertIndexProvider insertIndexProvider) {
+        List<Voice> fastToSlowVoices = this.getVoices_FastToSlow();
+        
+        for (int sectionIndex = 0; sectionIndex < fastToSlowVoices.size(); sectionIndex++) {
+            // create the section at the appropriate index...
+            Section s = this.createSection(insertIndexProvider.getInsertIndex(this.getSections()));
+            
+            // add our section to our temp list, since the layered sections are
+            // only created during fractal piece generation and should never be
+            // available for editing
+            this.tempIntroOutroSections.add(s);    
+            
+            // set defaults...
+            s.setApplyInversionOnAllVoiceSections(false);
+            s.setApplyRetrogradeOnAllVoiceSections(false);
+            s.setSelfSimilaritySettingsOnAllVoiceSections(false, false, false);
+            s.setRestOnAllVoiceSections(false);
+            
+            // set some of the voice sections to rests, to create our layered effect...
+            for (int voiceIndex = 0; voiceIndex < sectionIndex; voiceIndex++) {  
+                VoiceSection vs = this.getVoiceSections().get(new VoiceSectionHashMapKey(fastToSlowVoices.get(voiceIndex), s));
+                vs.setRest(true);
+            }                        
+        }
+    }            
+    
+    /**
+     * Clears out any temporary intro or outro sections.  These are created 
+     * during fractal piece generation and should not be available the rest of 
+     * the time.
+     */
+    protected void clearTempIntroOutroSections() {
+        // clear out any sections that were temporarily created...
+        for (Section s : this.tempIntroOutroSections) {
+            this.getSections().remove(s);
+        }
+        this.tempIntroOutroSections.clear();
+    }
+                
     /**
      * Generates a midi sequence for the entire fractal piece, based on the 
      * settings on the voices and sections.
@@ -157,34 +391,42 @@ public class FractalPiece {
      * @throws javax.sound.midi.InvalidMidiDataException
      */
     public Sequence generatePiece() throws InvalidMidiDataException {
-        // first, get all our voice results, and cache them in a list...
-        ArrayList<NoteList> voiceResults = new ArrayList<NoteList>();
-        for (Voice v : this.getVoices()) voiceResults.add(v.getEntireVoice());
-        
-        // next, figure out the resolution of our Midi sequence...
-        ArrayList<Long> uniqueDurationDenominators = new ArrayList<Long>();
-        for (NoteList nl : voiceResults) {
-            for (Note n : nl) {
-                if (!uniqueDurationDenominators.contains(n.getDuration().denominator())) {
-                    uniqueDurationDenominators.add(n.getDuration().denominator());
-                }                
-            }
+        try {
+            // first, create our intro and outro...
+            this.createIntroSections();
+            this.createOutroSections();
+            
+            // next, get all our voice results, and cache them in a list...
+            ArrayList<NoteList> voiceResults = new ArrayList<NoteList>();
+            for (Voice v : this.getVoices()) voiceResults.add(v.getEntireVoice());
+
+            // next, figure out the resolution of our Midi sequence...
+            ArrayList<Long> uniqueDurationDenominators = new ArrayList<Long>();
+            for (NoteList nl : voiceResults) {
+                for (Note n : nl) {
+                    if (!uniqueDurationDenominators.contains(n.getDuration().denominator())) {
+                        uniqueDurationDenominators.add(n.getDuration().denominator());
+                    }                
+                }
+            }        
+            long midiTickResolution = MathHelper.leastCommonMultiple(uniqueDurationDenominators);
+
+            // next, create our sequence...
+            Sequence sequence = new Sequence(Sequence.PPQ, (int) midiTickResolution);
+
+            // next, use the first track to set key signature and time signature...
+            Track track1 = sequence.createTrack();
+            track1.add(this.getScale().getKeySignature().getKeySignatureMidiEvent());        
+            track1.add(this.getTimeSignature().getMidiTimeSignatureEvent());
+
+            // finally, create and fill our midi tracks...
+            for (NoteList nl : voiceResults) {            
+                nl.createAndFillMidiTrack(sequence, scale, new Fraction(0, 1));                
+            }        
+
+            return sequence;
+        } finally {
+            this.clearTempIntroOutroSections();
         }        
-        long midiTickResolution = MathHelper.leastCommonMultiple(uniqueDurationDenominators);
-         
-        // next, create our sequence...
-        Sequence sequence = new Sequence(Sequence.PPQ, (int) midiTickResolution);
-        
-        // next, use the first track to set key signature and time signature...
-        Track track1 = sequence.createTrack();
-        track1.add(this.getScale().getKeySignature().getKeySignatureMidiEvent());        
-        track1.add(this.getTimeSignature().getMidiTimeSignatureEvent());
-        
-        // finally, create and fill our midi tracks...
-        for (NoteList nl : voiceResults) {            
-            nl.createAndFillMidiTrack(sequence, scale, new Fraction(0, 1));                
-        }        
-        
-        return sequence;
     }
 }

@@ -84,6 +84,9 @@ function windowTitle()
 <DT><A HREF="../com/myronmarston/music/scales/KeySignature.html#clearMidiKeySignatureEvent()"><B>clearMidiKeySignatureEvent()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>
 <DD>Clears the midi key signature event field.
+<DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#clearTempIntroOutroSections()"><B>clearTempIntroOutroSections()</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
+<DD>Clears out any temporary intro or outro sections.
 <DT><A HREF="../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html#clone()"><B>clone()</B></A> - 
 Method in class EDU.oswego.cs.dl.util.concurrent.misc.<A HREF="../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>
 <DD>&nbsp;
@@ -109,18 +112,41 @@ Constructor for class com.myronmarston.music.transformers.<A HREF="../com/myronm
 <DT><A HREF="../com/myronmarston/music/NoteList.html#createAndFillMidiTrack(javax.sound.midi.Sequence, com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction)"><B>createAndFillMidiTrack(Sequence, Scale, Fraction)</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>
 <DD>Fills the given midi track with the notes from this NoteList.
+<DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#createDefaultSections()"><B>createDefaultSections()</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
+<DD>Sets up default section settings.
+<DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#createDefaultSettings()"><B>createDefaultSettings()</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
+<DD>Sets up the default settings.
+<DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#createDefaultVoices()"><B>createDefaultVoices()</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
+<DD>Creates the default voice settings.
 <DT><A HREF="../com/myronmarston/music/settings/VoiceSection.html#createHashMapKey()"><B>createHashMapKey()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A>
 <DD>Creates a hash map key using the Voice and Section for this VoiceSection.
+<DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#createIntroSections()"><B>createIntroSections()</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
+<DD>Creates the layered intro sections.
+<DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#createOutroSections()"><B>createOutroSections()</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
+<DD>Creates the layered outro sections.
 <DT><A HREF="../com/myronmarston/music/Note.html#createRest(EDU.oswego.cs.dl.util.concurrent.misc.Fraction)"><B>createRest(Fraction)</B></A> - 
 Static method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
 <DD>Creates a note that is a rest.
 <DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#createSection()"><B>createSection()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
 <DD>Creates a Section for the FractalPiece, and adds it to the Section list.
+<DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#createSection(int)"><B>createSection(int)</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
+<DD>Creates a Section for the FractalPiece, and inserts it at a particular
+ point in the Section list.
 <DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#createVoice()"><B>createVoice()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
 <DD>Creates a Voice for the FractalPiece, and adds it to the Voice list.
+<DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#createVoice(int)"><B>createVoice(int)</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
+<DD>Creates a Voice for the FractalPiece, and adds it to a particular point 
+ in the voice list.
 </DL>
 <HR>
 
