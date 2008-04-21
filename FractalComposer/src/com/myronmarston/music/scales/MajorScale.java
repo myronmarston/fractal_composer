@@ -13,29 +13,8 @@ public class MajorScale extends Scale {
      * A constant that indicates a given note name cannot be used as a valid 
      * major key.
      */
-    public final static int NOT_A_VALID_MAJOR_KEY = Integer.MAX_VALUE;
-        
-    @Override
-    protected int getNumScaleStepsInOctave() {
-        return 7;
-    }
-
-    @Override
-    protected int getHalfStepsAboveTonicForScaleStep(int scaleStep) {        
-        switch (scaleStep) {
-            case 0: return 0; // Do           
-            case 1: return 2; // Re
-            case 2: return 4; // Mi
-            case 3: return 5; // Fa
-            case 4: return 7; // So
-            case 5: return 9; // La
-            case 6: return 11; // Ti
-            default: assert false : scaleStep;
-        }      
-        
-        // required so we can compile, but we should never get here; the assert will fire instead.
-        return 0;
-    }
+    public final static int NOT_A_VALID_MAJOR_KEY = Integer.MAX_VALUE;    
+    private final static int[] SCALE_STEPS = new int[] {0, 2, 4, 5, 7, 9, 11};    
 
     /**
      * Constructor.
@@ -56,5 +35,10 @@ public class MajorScale extends Scale {
     @Override
     protected boolean isInvalidKeyName(NoteName keyName) {
         return keyName.getMajorKeySharpsOrFlats() == NOT_A_VALID_MAJOR_KEY;
-    }        
+    }
+
+    @Override
+    protected int[] getScaleStepArray() {
+        return MajorScale.SCALE_STEPS;
+    }
 }

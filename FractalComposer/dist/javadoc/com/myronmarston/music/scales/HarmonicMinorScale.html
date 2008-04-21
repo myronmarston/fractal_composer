@@ -154,11 +154,12 @@ A minor scale with a leading tone, i.e. a raised 7th scale step.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/HarmonicMinorScale.html#getHalfStepsAboveTonicForScaleStep(int)">getHalfStepsAboveTonicForScaleStep</A></B>(int&nbsp;scaleStep)</CODE>
+<CODE>protected &nbsp;int[]</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/HarmonicMinorScale.html#getScaleStepArray()">getScaleStepArray</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets how many half steps the given scale step is above the tonic.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets an array of integers representing the number of half steps above
+ the tonic for each scale step.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.scales.MinorScale"><!-- --></A>
@@ -167,7 +168,7 @@ A minor scale with a leading tone, i.e. a raised 7th scale step.
 <TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.scales.<A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales">MinorScale</A></B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#getKeySignature()">getKeySignature</A>, <A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#getNumScaleStepsInOctave()">getNumScaleStepsInOctave</A>, <A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#isInvalidKeyName(com.myronmarston.music.NoteName)">isInvalidKeyName</A></CODE></TD>
+<TD><CODE><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#getKeySignature()">getKeySignature</A>, <A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#isInvalidKeyName(com.myronmarston.music.NoteName)">isInvalidKeyName</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.scales.Scale"><!-- --></A>
@@ -176,7 +177,7 @@ A minor scale with a leading tone, i.e. a raised 7th scale step.
 <TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.scales.<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#convertQuarterNotesToTicks(EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int)">convertQuarterNotesToTicks</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#convertToMidiNote(com.myronmarston.music.Note, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int)">convertToMidiNote</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeyName()">getKeyName</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getMidiPitchNumberForTonicAtOctave(int)">getMidiPitchNumberForTonicAtOctave</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#normalizeNote(com.myronmarston.music.Note)">normalizeNote</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#setKeyName(com.myronmarston.music.NoteName)">setKeyName</A></CODE></TD>
+<TD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#convertToMidiNote(com.myronmarston.music.Note, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int)">convertToMidiNote</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeyName()">getKeyName</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#setKeyName(com.myronmarston.music.NoteName)">setKeyName</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -226,21 +227,21 @@ public <B>HarmonicMinorScale</B>(<A HREF="../../../../com/myronmarston/music/Not
 </TR>
 </TABLE>
 
-<A NAME="getHalfStepsAboveTonicForScaleStep(int)"><!-- --></A><H3>
-getHalfStepsAboveTonicForScaleStep</H3>
+<A NAME="getScaleStepArray()"><!-- --></A><H3>
+getScaleStepArray</H3>
 <PRE>
-protected int <B>getHalfStepsAboveTonicForScaleStep</B>(int&nbsp;scaleStep)</PRE>
+protected int[] <B>getScaleStepArray</B>()</PRE>
 <DL>
-<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getHalfStepsAboveTonicForScaleStep(int)">Scale</A></CODE></B></DD>
-<DD>Gets how many half steps the given scale step is above the tonic.  This
- will be different for each scale, so subtypes must implement this.
+<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getScaleStepArray()">Scale</A></CODE></B></DD>
+<DD>Gets an array of integers representing the number of half steps above
+ the tonic for each scale step.
 <P>
 <DD><DL>
-<DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#getHalfStepsAboveTonicForScaleStep(int)">getHalfStepsAboveTonicForScaleStep</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales">MinorScale</A></CODE></DL>
+<DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#getScaleStepArray()">getScaleStepArray</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales">MinorScale</A></CODE></DL>
 </DD>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>scaleStep</CODE> - the given scale step, normalized
-<DT><B>Returns:</B><DD>the number of half steps between the tonic and the scale step</DL>
+
+<DT><B>Returns:</B><DD>array of integers</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

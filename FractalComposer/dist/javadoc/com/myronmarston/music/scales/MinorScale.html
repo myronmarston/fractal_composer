@@ -157,14 +157,6 @@ A natural minor scale: WHWWHWW.  This is also known as Aeolian mode when
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#getHalfStepsAboveTonicForScaleStep(int)">getHalfStepsAboveTonicForScaleStep</A></B>(int&nbsp;scaleStep)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets how many half steps the given scale step is above the tonic.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#getKeySignature()">getKeySignature</A></B>()</CODE>
 
@@ -173,11 +165,12 @@ A natural minor scale: WHWWHWW.  This is also known as Aeolian mode when
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#getNumScaleStepsInOctave()">getNumScaleStepsInOctave</A></B>()</CODE>
+<CODE>protected &nbsp;int[]</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#getScaleStepArray()">getScaleStepArray</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets how many scale steps are in one octave for this scale.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets an array of integers representing the number of half steps above
+ the tonic for each scale step.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -194,7 +187,7 @@ A natural minor scale: WHWWHWW.  This is also known as Aeolian mode when
 <TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.scales.<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#convertQuarterNotesToTicks(EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int)">convertQuarterNotesToTicks</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#convertToMidiNote(com.myronmarston.music.Note, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int)">convertToMidiNote</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeyName()">getKeyName</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getMidiPitchNumberForTonicAtOctave(int)">getMidiPitchNumberForTonicAtOctave</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#normalizeNote(com.myronmarston.music.Note)">normalizeNote</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#setKeyName(com.myronmarston.music.NoteName)">setKeyName</A></CODE></TD>
+<TD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#convertToMidiNote(com.myronmarston.music.Note, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int)">convertToMidiNote</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeyName()">getKeyName</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#setKeyName(com.myronmarston.music.NoteName)">setKeyName</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -266,45 +259,6 @@ public <B>MinorScale</B>(<A HREF="../../../../com/myronmarston/music/NoteName.ht
 </TR>
 </TABLE>
 
-<A NAME="getHalfStepsAboveTonicForScaleStep(int)"><!-- --></A><H3>
-getHalfStepsAboveTonicForScaleStep</H3>
-<PRE>
-protected int <B>getHalfStepsAboveTonicForScaleStep</B>(int&nbsp;scaleStep)</PRE>
-<DL>
-<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getHalfStepsAboveTonicForScaleStep(int)">Scale</A></CODE></B></DD>
-<DD>Gets how many half steps the given scale step is above the tonic.  This
- will be different for each scale, so subtypes must implement this.
-<P>
-<DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getHalfStepsAboveTonicForScaleStep(int)">getHalfStepsAboveTonicForScaleStep</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></DL>
-</DD>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>scaleStep</CODE> - the given scale step, normalized
-<DT><B>Returns:</B><DD>the number of half steps between the tonic and the scale step</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getNumScaleStepsInOctave()"><!-- --></A><H3>
-getNumScaleStepsInOctave</H3>
-<PRE>
-protected int <B>getNumScaleStepsInOctave</B>()</PRE>
-<DL>
-<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getNumScaleStepsInOctave()">Scale</A></CODE></B></DD>
-<DD>Gets how many scale steps are in one octave for this scale.  Examples:
- major scales have 7.  Pentatonic scales have 5.  Subtypes must implement
- this.
-<P>
-<DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getNumScaleStepsInOctave()">getNumScaleStepsInOctave</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></DL>
-</DD>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>the number of scale steps in one octave</DL>
-</DD>
-</DL>
-<HR>
-
 <A NAME="getKeySignature()"><!-- --></A><H3>
 getKeySignature</H3>
 <PRE>
@@ -340,6 +294,25 @@ protected boolean <B>isInvalidKeyName</B>(<A HREF="../../../../com/myronmarston/
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>keyName</CODE> - the key name to test
 <DT><B>Returns:</B><DD>true if the key is not allowed by the midi specification</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getScaleStepArray()"><!-- --></A><H3>
+getScaleStepArray</H3>
+<PRE>
+protected int[] <B>getScaleStepArray</B>()</PRE>
+<DL>
+<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getScaleStepArray()">Scale</A></CODE></B></DD>
+<DD>Gets an array of integers representing the number of half steps above
+ the tonic for each scale step.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getScaleStepArray()">getScaleStepArray</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>array of integers</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

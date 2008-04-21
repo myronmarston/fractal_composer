@@ -60,6 +60,64 @@ public class ScaleTest {
     }   
     
     @Test
+    public void majorScale_convertToMidiNote_accidental() throws InvalidKeySignatureException {
+        MajorScale scale = new MajorScale(NoteName.C);
+        MidiNote result;
+        Note note;
+        int midiTickResolution = 8;
+        
+        // F# - this chromatic note should convert OK.
+        note = new Note(3, 4, 1, new Fraction(1, 1), 70);                      
+        result = scale.convertToMidiNote(note, new Fraction(0, 1), midiTickResolution);
+        assertMidiNoteValues(result, 66, 70, 0, midiTickResolution); 
+        
+        // Fx - this is the same as G, another note in the scale, so we will use F# instead
+        note = new Note(3, 4, 2, new Fraction(1, 1), 70);                      
+        result = scale.convertToMidiNote(note, new Fraction(0, 1), midiTickResolution);
+        assertMidiNoteValues(result, 66, 70, 0, midiTickResolution); 
+        
+        // B# - this is the same as C, another note in the scale, so we will use B instead
+        note = new Note(6, 4, 1, new Fraction(1, 1), 70);                      
+        result = scale.convertToMidiNote(note, new Fraction(0, 1), midiTickResolution);
+        assertMidiNoteValues(result, 71, 70, 0, midiTickResolution); 
+        
+        // Bx - this chromatic note should convert OK.
+        note = new Note(6, 4, 2, new Fraction(1, 1), 70);                      
+        result = scale.convertToMidiNote(note, new Fraction(0, 1), midiTickResolution);
+        assertMidiNoteValues(result, 73, 70, 0, midiTickResolution); 
+        
+        // Eb - this chromatic note should convert OK.
+        note = new Note(2, 4, -1, new Fraction(1, 1), 70);                      
+        result = scale.convertToMidiNote(note, new Fraction(0, 1), midiTickResolution);
+        assertMidiNoteValues(result, 63, 70, 0, midiTickResolution); 
+        
+        // Ebb - this is the same as D, another note in the scale, so we will use Eb instead
+        note = new Note(2, 4, -2, new Fraction(1, 1), 70);                      
+        result = scale.convertToMidiNote(note, new Fraction(0, 1), midiTickResolution);
+        assertMidiNoteValues(result, 63, 70, 0, midiTickResolution); 
+        
+        // Fb - this is the same as E, another note in the scale, so we will use F instead
+        note = new Note(3, 4, -1, new Fraction(1, 1), 70);                      
+        result = scale.convertToMidiNote(note, new Fraction(0, 1), midiTickResolution);
+        assertMidiNoteValues(result, 65, 70, 0, midiTickResolution);
+        
+        // Fbb - this note should convert ok.
+        note = new Note(3, 4, -2, new Fraction(1, 1), 70);                      
+        result = scale.convertToMidiNote(note, new Fraction(0, 1), midiTickResolution);
+        assertMidiNoteValues(result, 63, 70, 0, midiTickResolution);
+        
+        // Cb - this is the same as B, another note in the scale, so we will use C instead
+        note = new Note(0, 4, -1, new Fraction(1, 1), 70);                      
+        result = scale.convertToMidiNote(note, new Fraction(0, 1), midiTickResolution);
+        assertMidiNoteValues(result, 60, 70, 0, midiTickResolution); 
+        
+        // Cbb - this note should convert ok.
+        note = new Note(0, 4, -2, new Fraction(1, 1), 70);                      
+        result = scale.convertToMidiNote(note, new Fraction(0, 1), midiTickResolution);
+        assertMidiNoteValues(result, 58, 70, 0, midiTickResolution); 
+    }
+    
+    @Test
     public void majorScale_convertToMidiNote() throws InvalidKeySignatureException {                
         MajorScale scale = new MajorScale(NoteName.C);
         MidiNote result;

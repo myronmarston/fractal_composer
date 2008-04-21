@@ -140,15 +140,6 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected static&nbsp;long</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#convertQuarterNotesToTicks(EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int)">convertQuarterNotesToTicks</A></B>(<A HREF="../../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;quarterNotes,
-                           int&nbsp;midiTickResolution)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts from quarter notes to ticks, based on the midi tick resolution.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#convertToMidiNote(com.myronmarston.music.Note, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int)">convertToMidiNote</A></B>(<A HREF="../../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&nbsp;note,
                   <A HREF="../../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime,
@@ -157,14 +148,6 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the given note to a Midi Note, that can then be used to get the
  actual Midi note on and note off events.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected abstract &nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getHalfStepsAboveTonicForScaleStep(int)">getHalfStepsAboveTonicForScaleStep</A></B>(int&nbsp;scaleStep)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets how many half steps the given scale step is above the tonic.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -184,20 +167,12 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getMidiPitchNumberForTonicAtOctave(int)">getMidiPitchNumberForTonicAtOctave</A></B>(int&nbsp;octave)</CODE>
+<CODE>protected abstract &nbsp;int[]</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getScaleStepArray()">getScaleStepArray</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the midi pitch number for the tonic of this scale at the given 
- octave.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected abstract &nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getNumScaleStepsInOctave()">getNumScaleStepsInOctave</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets how many scale steps are in one octave for this scale.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets an array of integers representing the number of half steps above
+ the tonic for each scale step.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -206,15 +181,6 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets whether or not the passed key name is valid.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#normalizeNote(com.myronmarston.music.Note)">normalizeNote</A></B>(<A HREF="../../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&nbsp;note)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sometimes after transformations are applied to a note, the scale step is
- less than 0 or greater than the number of scale steps in an octave.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -258,7 +224,8 @@ public <B>Scale</B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" t
 <DL>
 <DT><B>Parameters:</B><DD><CODE>keyName</CODE> - the tonal center of the scale
 <DT><B>Throws:</B>
-<DD><CODE><A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></CODE></DL>
+<DD><CODE><A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></CODE> - thrown
+         if the given key has more than 7 sharps or flats</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -301,52 +268,6 @@ public void <B>setKeyName</B>(<A HREF="../../../../com/myronmarston/music/NoteNa
 </DL>
 <HR>
 
-<A NAME="getMidiPitchNumberForTonicAtOctave(int)"><!-- --></A><H3>
-getMidiPitchNumberForTonicAtOctave</H3>
-<PRE>
-protected int <B>getMidiPitchNumberForTonicAtOctave</B>(int&nbsp;octave)</PRE>
-<DL>
-<DD>Gets the midi pitch number for the tonic of this scale at the given 
- octave.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>octave</CODE> - the octave
-<DT><B>Returns:</B><DD>the midi pitch number</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getHalfStepsAboveTonicForScaleStep(int)"><!-- --></A><H3>
-getHalfStepsAboveTonicForScaleStep</H3>
-<PRE>
-protected abstract int <B>getHalfStepsAboveTonicForScaleStep</B>(int&nbsp;scaleStep)</PRE>
-<DL>
-<DD>Gets how many half steps the given scale step is above the tonic.  This
- will be different for each scale, so subtypes must implement this.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>scaleStep</CODE> - the given scale step, normalized
-<DT><B>Returns:</B><DD>the number of half steps between the tonic and the scale step</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getNumScaleStepsInOctave()"><!-- --></A><H3>
-getNumScaleStepsInOctave</H3>
-<PRE>
-protected abstract int <B>getNumScaleStepsInOctave</B>()</PRE>
-<DL>
-<DD>Gets how many scale steps are in one octave for this scale.  Examples:
- major scales have 7.  Pentatonic scales have 5.  Subtypes must implement
- this.
-<P>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>the number of scale steps in one octave</DL>
-</DD>
-</DL>
-<HR>
-
 <A NAME="getKeySignature()"><!-- --></A><H3>
 getKeySignature</H3>
 <PRE>
@@ -378,35 +299,17 @@ protected abstract boolean <B>isInvalidKeyName</B>(<A HREF="../../../../com/myro
 </DL>
 <HR>
 
-<A NAME="normalizeNote(com.myronmarston.music.Note)"><!-- --></A><H3>
-normalizeNote</H3>
+<A NAME="getScaleStepArray()"><!-- --></A><H3>
+getScaleStepArray</H3>
 <PRE>
-protected void <B>normalizeNote</B>(<A HREF="../../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&nbsp;note)</PRE>
+protected abstract int[] <B>getScaleStepArray</B>()</PRE>
 <DL>
-<DD>Sometimes after transformations are applied to a note, the scale step is
- less than 0 or greater than the number of scale steps in an octave.  
- This method "normalizes" the note--adjusts its scaleStep and octave so 
- that it is the same note, but the scaleStep is between 0 and the number 
- of scale steps.
+<DD>Gets an array of integers representing the number of half steps above
+ the tonic for each scale step.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>note</CODE> - the note to normalize</DL>
-</DD>
-</DL>
-<HR>
 
-<A NAME="convertQuarterNotesToTicks(EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int)"><!-- --></A><H3>
-convertQuarterNotesToTicks</H3>
-<PRE>
-protected static long <B>convertQuarterNotesToTicks</B>(<A HREF="../../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;quarterNotes,
-                                                 int&nbsp;midiTickResolution)</PRE>
-<DL>
-<DD>Converts from quarter notes to ticks, based on the midi tick resolution.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>quarterNotes</CODE> - the number of quarter notes<DD><CODE>midiTickResolution</CODE> - the number of ticks per quarter note set on the
-        midi sequence
-<DT><B>Returns:</B><DD>the number of ticks</DL>
+<DT><B>Returns:</B><DD>array of integers</DL>
 </DD>
 </DL>
 <HR>

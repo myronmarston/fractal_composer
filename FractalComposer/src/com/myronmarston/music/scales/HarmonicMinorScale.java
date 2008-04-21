@@ -8,6 +8,7 @@ import com.myronmarston.music.NoteName;
  * @author Myron
  */
 public class HarmonicMinorScale extends MinorScale {
+    private final static int[] SCALE_STEPS = new int[] {0, 2, 3, 5, 7, 8, 11};
     
     /**
      * Constructor.
@@ -18,11 +19,10 @@ public class HarmonicMinorScale extends MinorScale {
      */
     public HarmonicMinorScale(NoteName keyName) throws InvalidKeySignatureException {        
         super(keyName);        
-    }
-
+    }     
+    
     @Override
-    protected int getHalfStepsAboveTonicForScaleStep(int scaleStep) {
-        if (scaleStep == 6) return 11;
-        return super.getHalfStepsAboveTonicForScaleStep(scaleStep);        
-    }        
+    protected int[] getScaleStepArray() {
+        return HarmonicMinorScale.SCALE_STEPS;
+    }
 }
