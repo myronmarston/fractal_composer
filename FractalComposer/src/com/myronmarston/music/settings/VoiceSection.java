@@ -177,7 +177,7 @@ public class VoiceSection implements Observer {
             temp.add(Note.createRest(length.minus(temp.getDuration())));
         }
         
-        assert temp.getDuration() == length : temp;
+        assert temp.getDuration().equals(length) : temp;
         return temp;
     }
     

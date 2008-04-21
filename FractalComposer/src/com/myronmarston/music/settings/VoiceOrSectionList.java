@@ -51,8 +51,7 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
     @Override
     @SuppressWarnings("unchecked")
     public void add(int index, M mainVorS) {
-        int otherTypeIndex = 0;
-        int mainTypeIndex = this.size();
+        int otherTypeIndex = 0;        
         internalList.add(index, mainVorS);        
         VoiceSection vs;                
         
@@ -63,7 +62,7 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
             
             // assert that our lists have it...
             assert mainVorS.getVoiceSections().get(otherTypeIndex++) == vs;
-            assert otherVOrS.getVoiceSections().get(mainTypeIndex) == vs;
+            assert otherVOrS.getVoiceSections().get(index) == vs;
             
             // notify the VoiceSectionLists that they have been modified...
             vs.getVoice().getVoiceSections().incrementModCount();
@@ -89,10 +88,7 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
         
         for (VoiceSection vs : voiceSectionsToRemove) {
             this.voiceSections.remove(vs.createHashMapKey());
-                        
-            // assert that our list has shrunk...
-            assert itemToRemove.getVoiceSections().size() == --voiceSectionListSize;            
-            
+                                               
             // notify the VoiceSectionLists that they have been modified...
             vs.getVoice().getVoiceSections().incrementModCount();
             vs.getSection().getVoiceSections().incrementModCount();
