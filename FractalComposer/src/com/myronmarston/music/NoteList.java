@@ -65,7 +65,7 @@ public class NoteList extends ArrayList<Note> {
      * 
      * @param sequence the midi sequence to add the track to
      * @param scale the scale to use
-     * @param startTime the time the first note should be played, in quarter 
+     * @param startTime the time the first note should be played, in whole 
      *        notes
      * @return the midi track that was created and filled
      * @throws javax.sound.midi.InvalidMidiDataException if there is any invalid
@@ -74,9 +74,11 @@ public class NoteList extends ArrayList<Note> {
     public Track createAndFillMidiTrack(Sequence sequence, Scale scale, Fraction startTime) throws InvalidMidiDataException {
         MidiNote midiNote = null;
         Track track = sequence.createTrack();
+        // in Midi, the tick resolution is based on quarter notes, but we use whole notes...
+        int midiTicksPerWholeNote = sequence.getResolution() * 4; 
         
         for (Note note : this) {
-            midiNote = scale.convertToMidiNote(note, startTime, sequence.getResolution());
+            midiNote = scale.convertToMidiNote(note, startTime, midiTicksPerWholeNote);
             
             track.add(midiNote.getNoteOnEvent());
             track.add(midiNote.getNoteOffEvent());

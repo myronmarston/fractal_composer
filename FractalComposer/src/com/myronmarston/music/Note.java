@@ -14,7 +14,7 @@ public class Note {
     private int scaleStep; // number of scale steps above the tonic; 0 = tonic, 7 = octave, 9 = third an octave above, etc.
     private int octave; // which octave the note should be in.  0 begins the first octave in Midi that contains the tonic.
     private int chromaticAdjustment; // the number of half steps to adjust from the diatonic note; used if this note is an accidental
-    private Fraction duration; //how long the note should last, in quarter notes.
+    private Fraction duration; //how long the note should last, in whole notes.
     private int volume = MidiNote.DEFAULT_VELOCITY; //how loud the note should be on a scale from 0 to 127.    
     
     /**
@@ -31,7 +31,7 @@ public class Note {
      *        octave in Midi that contains the tonic.
      * @param chromaticAdjustment the number of half steps to adjust from the
      *        diatonic note; used if this note is an accidental
-     * @param duration how long the note should last, in quarter notes
+     * @param duration how long the note should last, in whole notes
      * @param volume how loud the note should be (0-127)
      */
     public Note(int scaleStep, int octave, int chromaticAdjustment, Fraction duration, int volume) {
@@ -54,7 +54,7 @@ public class Note {
     /**
      * Creates a note that is a rest.
      * 
-     * @param duration how long the rest should last, in quarter notes
+     * @param duration how long the rest should last, in whole notes
      * @return the rest     
      */
     static public Note createRest(Fraction duration) {
@@ -132,7 +132,7 @@ public class Note {
     }
 
     /**
-     * Gets how long the note should last, in quarter notes.
+     * Gets how long the note should last, in whole notes.
      * 
      * @return the duration
      */
@@ -141,7 +141,7 @@ public class Note {
     }       
 
     /**
-     * Sets how long the note should last, in quarter notes.
+     * Sets how long the note should last, in whole notes.
      * 
      * @param duration the duration
      */

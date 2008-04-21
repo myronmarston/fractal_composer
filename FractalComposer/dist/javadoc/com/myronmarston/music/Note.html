@@ -182,7 +182,7 @@ Represents a note, relative to a particular scale.  This note will need to be
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#getDuration()">getDuration</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets how long the note should last, in quarter notes.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets how long the note should last, in whole notes.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -240,7 +240,7 @@ Represents a note, relative to a particular scale.  This note will need to be
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#setDuration(EDU.oswego.cs.dl.util.concurrent.misc.Fraction)">setDuration</A></B>(<A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;duration)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets how long the note should last, in quarter notes.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets how long the note should last, in whole notes.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -333,7 +333,7 @@ public <B>Note</B>(int&nbsp;scaleStep,
 <DT><B>Parameters:</B><DD><CODE>scaleStep</CODE> - number of scale steps above the tonic; 0 = tonic, 
         7 = octave, 9 = third an octave above, etc.<DD><CODE>octave</CODE> - which octave the note should be in.  0 begins the first 
         octave in Midi that contains the tonic.<DD><CODE>chromaticAdjustment</CODE> - the number of half steps to adjust from the
-        diatonic note; used if this note is an accidental<DD><CODE>duration</CODE> - how long the note should last, in quarter notes<DD><CODE>volume</CODE> - how loud the note should be (0-127)</DL>
+        diatonic note; used if this note is an accidental<DD><CODE>duration</CODE> - how long the note should last, in whole notes<DD><CODE>volume</CODE> - how loud the note should be (0-127)</DL>
 </DL>
 <HR>
 
@@ -366,7 +366,7 @@ public static <A HREF="../../../com/myronmarston/music/Note.html" title="class i
 <DD>Creates a note that is a rest.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>duration</CODE> - how long the rest should last, in quarter notes
+<DT><B>Parameters:</B><DD><CODE>duration</CODE> - how long the rest should last, in whole notes
 <DT><B>Returns:</B><DD>the rest</DL>
 </DD>
 </DL>
@@ -466,7 +466,7 @@ getDuration</H3>
 <PRE>
 public <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A> <B>getDuration</B>()</PRE>
 <DL>
-<DD>Gets how long the note should last, in quarter notes.
+<DD>Gets how long the note should last, in whole notes.
 <P>
 <DD><DL>
 
@@ -480,7 +480,7 @@ setDuration</H3>
 <PRE>
 public void <B>setDuration</B>(<A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;duration)</PRE>
 <DL>
-<DD>Sets how long the note should last, in quarter notes.
+<DD>Sets how long the note should last, in whole notes.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>duration</CODE> - the duration</DL>

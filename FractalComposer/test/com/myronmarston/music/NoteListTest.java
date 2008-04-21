@@ -97,12 +97,12 @@ public class NoteListTest {
     public void createAndFillMidiTrack() throws Exception {
         System.out.println("fillMidiTrack");
         NoteList germ = new NoteList();        
-        germ.add(new Note(0, 4, 0, new Fraction(1, 2), 100));
-        germ.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
-        germ.add(new Note(4, 4, 0, new Fraction(1, 2), 64));
-        germ.add(new Note(0, 4, 0, new Fraction(1, 2), 64));
-        germ.add(new Note(1, 4, 0, new Fraction(1, 2), 100));
-        germ.add(new Note(3, 4, 0, new Fraction(1, 2), 64));
+        germ.add(new Note(0, 4, 0, new Fraction(1, 8), 100));
+        germ.add(new Note(1, 4, 0, new Fraction(1, 8), 64));
+        germ.add(new Note(4, 4, 0, new Fraction(1, 8), 64));
+        germ.add(new Note(0, 4, 0, new Fraction(1, 8), 64));
+        germ.add(new Note(1, 4, 0, new Fraction(1, 8), 100));
+        germ.add(new Note(3, 4, 0, new Fraction(1, 8), 64));
         
         Scale scale = new MajorScale(NoteName.F);                                
         Sequence sequence = new Sequence(Sequence.PPQ, 8);

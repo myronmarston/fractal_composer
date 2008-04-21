@@ -122,15 +122,14 @@ public abstract class Scale {
     }
     
     /**
-     * Converts from quarter notes to ticks, based on the midi tick resolution.
+     * Converts from whole notes to ticks, based on the midi tick resolution.
      * 
-     * @param quarterNotes the number of quarter notes
-     * @param midiTickResolution the number of ticks per quarter note set on the
-     *        midi sequence
+     * @param wholeNotes the number of whole notes
+     * @param midiTickResolution the number of ticks per whole note
      * @return the number of ticks
      */
-    private static long convertQuarterNotesToTicks(Fraction quarterNotes, int midiTickResolution) {
-        Fraction converted = quarterNotes.times(midiTickResolution);
+    private static long convertWholeNotesToTicks(Fraction wholeNotes, int midiTickResolution) {
+        Fraction converted = wholeNotes.times(midiTickResolution);        
         
         // converting to midi ticks should result in an integral number of ticks
         // because our tick resolution should be chosen based on what will
@@ -187,16 +186,16 @@ public abstract class Scale {
      * actual Midi note on and note off events.
      * 
      * @param note the note to convert
-     * @param startTime when the note should be sounded, in quarter notes
-     * @param midiTickResolution the number of ticks per quarer note for the 
+     * @param startTime when the note should be sounded, in whole notes
+     * @param midiTickResolution the number of ticks per whole note for the 
      *        midi sequence
      * @return the MidiNote
      */
     public MidiNote convertToMidiNote(Note note, Fraction startTime, int midiTickResolution) {        
         MidiNote midiNote = new MidiNote();
                         
-        midiNote.setDuration(convertQuarterNotesToTicks(note.getDuration(), midiTickResolution));
-        midiNote.setStartTime(convertQuarterNotesToTicks(startTime, midiTickResolution));
+        midiNote.setDuration(convertWholeNotesToTicks(note.getDuration(), midiTickResolution));
+        midiNote.setStartTime(convertWholeNotesToTicks(startTime, midiTickResolution));
         midiNote.setVelocity(note.getVolume());        
         midiNote.setPitch(getMidiPitchNumber(note));
         
