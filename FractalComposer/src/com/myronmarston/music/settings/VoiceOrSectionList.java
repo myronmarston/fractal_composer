@@ -75,7 +75,7 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
     @Override
     public M remove(int index) {
         M itemToRemove = this.internalList.get(index);
-        int voiceSectionListSize = itemToRemove.getVoiceSections().size();        
+        int voiceSectionListSize = itemToRemove.getVoiceSections().size();                
         
         // remove the related voice sections...
         // we can't modify the list while iterating over it or we'll get a
@@ -86,15 +86,19 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
             voiceSectionsToRemove.add((vs));
         }
         
+        this.modCount++;
+        this.internalList.remove(index);
+        
         for (VoiceSection vs : voiceSectionsToRemove) {
             this.voiceSections.remove(vs.createHashMapKey());
                                                
             // notify the VoiceSectionLists that they have been modified...
             vs.getVoice().getVoiceSections().incrementModCount();
-            vs.getSection().getVoiceSections().incrementModCount();
-        }
-                                        
-        this.modCount++;
-        return this.internalList.remove(index);
+            vs.getSection().getVoiceSections().incrementModCount();                        
+        }      
+        
+        assert itemToRemove.getVoiceSections().size() == 0 : itemToRemove.getVoiceSections().size();
+        
+        return itemToRemove;
     }        
 }
