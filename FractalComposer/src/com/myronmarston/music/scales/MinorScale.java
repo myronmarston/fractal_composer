@@ -38,7 +38,7 @@ public class MinorScale extends Scale {
     }
 
     @Override
-    protected int[] getScaleStepArray() {
+    public int[] getScaleStepArray() {
         return MinorScale.SCALE_STEPS;
     }
 }

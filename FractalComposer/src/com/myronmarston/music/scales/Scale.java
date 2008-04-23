@@ -1,12 +1,6 @@
 package com.myronmarston.music.scales;
 
-import com.myronmarston.music.MidiNote;
-import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteName;
-
-import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
-
-import java.util.Arrays;
 
 /**
  * Scales are used to convert a Note to a MidiNote and to provide the midi file
@@ -19,7 +13,11 @@ import java.util.Arrays;
 public abstract class Scale {  
     private NoteName keyName;    
     private final static int MIDI_KEY_OFFSET = 12; //C0 is Midi pitch 12 (http://www.phys.unsw.edu.au/jw/notes.html)    
-    private final static int NUM_CHROMATIC_PITCHES_PER_OCTAVE = 12;
+    
+    /**
+     * The number of chromatic pitches in one octave: 12.
+     */
+    public final static int NUM_CHROMATIC_PITCHES_PER_OCTAVE = 12;    
     
     /**
      * Constructor.
@@ -30,7 +28,7 @@ public abstract class Scale {
      */
     public Scale(NoteName keyName) throws InvalidKeySignatureException {
         this.setKeyName(keyName); 
-    }
+    }        
 
     /**
      * Gets the tonal center of the scale.
@@ -45,6 +43,8 @@ public abstract class Scale {
      * Sets the tonal center of the scale.
      * 
      * @param keyName the key name
+     * @throws com.myronmarston.music.scales.InvalidKeySignatureException thrown 
+     *         if the key has more than 7 flats or sharps
      */
     public void setKeyName(NoteName keyName) throws InvalidKeySignatureException {
         if (this.isInvalidKeyName(keyName))
@@ -59,10 +59,10 @@ public abstract class Scale {
      * @param octave the octave
      * @return the midi pitch number
      */
-    private int getMidiPitchNumberForTonicAtOctave(int octave) {
+    public int getMidiPitchNumberForTonicAtOctave(int octave) {
         return MIDI_KEY_OFFSET // C0, our base pitch...
-            + this.getKeyName().getNoteNumber() // the number of half steps to the key
-            + (12 * octave); // 12 half steps in an octave
+            + this.getKeyName().getNoteNumber() // the number of half steps to the key            
+            + (NUM_CHROMATIC_PITCHES_PER_OCTAVE * octave); // 12 half steps in an octave
     }          
        
     /**
@@ -89,116 +89,5 @@ public abstract class Scale {
      * 
      * @return array of integers
      */
-    abstract protected int[] getScaleStepArray();
-    
-    /**
-     * Sometimes after transformations are applied to a note, the scale step is
-     * less than 0 or greater than the number of scale steps in an octave.  
-     * This method "normalizes" the note--adjusts its scaleStep and octave so 
-     * that it is the same note, but the scaleStep is between 0 and the number 
-     * of scale steps.
-     * 
-     * @param note the note to normalize
-     * @return the normalized note
-     */
-    private Note getNormalizedNote(Note note) {
-        Note tempNote = new Note(note);
-        int numScaleStepsInOctave = this.getScaleStepArray().length; // cache it
-        
-        // put the note's scaleStep into the normal range (0..numScaleSteps - 1), adjusting the octaves.
-        while(tempNote.getScaleStep() < 0) {
-            tempNote.setScaleStep(tempNote.getScaleStep() + numScaleStepsInOctave);
-            tempNote.setOctave(tempNote.getOctave() - 1);
-        }                
-        
-        while(tempNote.getScaleStep() > numScaleStepsInOctave - 1) {
-            tempNote.setScaleStep(tempNote.getScaleStep() - numScaleStepsInOctave);
-            tempNote.setOctave(tempNote.getOctave() + 1);
-        }
-        
-        assert tempNote.getScaleStep() >= 0 && tempNote.getScaleStep() < numScaleStepsInOctave : tempNote.getScaleStep();
-        
-        return tempNote;
-    }
-    
-    /**
-     * Converts from whole notes to ticks, based on the midi tick resolution.
-     * 
-     * @param wholeNotes the number of whole notes
-     * @param midiTickResolution the number of ticks per whole note
-     * @return the number of ticks
-     */
-    private static long convertWholeNotesToTicks(Fraction wholeNotes, int midiTickResolution) {
-        Fraction converted = wholeNotes.times(midiTickResolution);        
-        
-        // converting to midi ticks should result in an integral number of ticks
-        // because our tick resolution should be chosen based on what will
-        // produce this.  Test that this is in fact the case...
-        assert converted.denominator() == 1 : converted;
-     
-        // since the denominator is 1, the converted value is equal to the numerator...
-        return converted.numerator();
-    }
-    
-    /**
-     * Gets the midi pitch number for this note, taking into account the scale
-     * step, octave and chromatic adjustment.
-     * 
-     * @param note input note
-     * @return the midi pitch number
-     */
-    private int getMidiPitchNumber(Note note) {
-        int[] scaleSteps = this.getScaleStepArray(); // cache it
-        Note tempNote = this.getNormalizedNote(note); 
-        int chromaticAdjustment = tempNote.getChromaticAdjustment();
-        int chromaticAdjustmentDecrementer = chromaticAdjustment > 0 ? 1 : -1;
-        int testPitchNum;
-        
-        // Figure out the chromatic adjustment to use for the note.  We attempt to
-        // use the given chromatic adjustment, but if it results in producing a pitch
-        // that is already present in our scale, we reduce the chromatic adjustment
-        // until we get a pitch not present in our scale or we reach 0.
-        // We do this because of cases such as a phrase F# G in the key of C.
-        // When our fractal algorithm transposes this and it becomes B# C, we
-        // wind up with two of the same pitches in a row.  This loses the "shape"
-        // that we are dealing with, so we adjust the accidental as necessary.        
-        while (Math.abs(chromaticAdjustment) > 0) {
-            testPitchNum = (scaleSteps[tempNote.getScaleStep()] // the raw (natural) pitch number
-                    + chromaticAdjustment                       // the chromatic adjustment to test...                    
-                    + NUM_CHROMATIC_PITCHES_PER_OCTAVE)         // necessary for notes like Cb, to prevent testPitchNum from being negative
-                    % NUM_CHROMATIC_PITCHES_PER_OCTAVE;         // mod it, to put it in the range 0-12
-            
-            assert testPitchNum >= 0 && testPitchNum < 12 : testPitchNum;                        
-            
-            // stop decrementing our chromatic adjustment if our scale lacks this pitch...
-            if (Arrays.binarySearch(scaleSteps, testPitchNum) < 0) break;
-            
-            // move the chromatic adjustment towards zero...
-            chromaticAdjustment -= chromaticAdjustmentDecrementer;
-        }
-        
-        return scaleSteps[tempNote.getScaleStep()] + chromaticAdjustment         
-            + this.getMidiPitchNumberForTonicAtOctave(tempNote.getOctave());
-    }
-
-    /**
-     * Converts the given note to a Midi Note, that can then be used to get the
-     * actual Midi note on and note off events.
-     * 
-     * @param note the note to convert
-     * @param startTime when the note should be sounded, in whole notes
-     * @param midiTickResolution the number of ticks per whole note for the 
-     *        midi sequence
-     * @return the MidiNote
-     */
-    public MidiNote convertToMidiNote(Note note, Fraction startTime, int midiTickResolution) {        
-        MidiNote midiNote = new MidiNote();
-                        
-        midiNote.setDuration(convertWholeNotesToTicks(note.getDuration(), midiTickResolution));
-        midiNote.setStartTime(convertWholeNotesToTicks(startTime, midiTickResolution));
-        midiNote.setVelocity(note.getVolume());        
-        midiNote.setPitch(getMidiPitchNumber(note));
-        
-        return midiNote;
-    }          
+    abstract public int[] getScaleStepArray();                    
 }

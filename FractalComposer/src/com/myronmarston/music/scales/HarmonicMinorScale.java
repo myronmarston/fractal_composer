@@ -22,7 +22,7 @@ public class HarmonicMinorScale extends MinorScale {
     }     
     
     @Override
-    protected int[] getScaleStepArray() {
+    public int[] getScaleStepArray() {
         return HarmonicMinorScale.SCALE_STEPS;
     }
 }

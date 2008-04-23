@@ -78,7 +78,7 @@ public class NoteList extends ArrayList<Note> {
         int midiTicksPerWholeNote = sequence.getResolution() * 4; 
         
         for (Note note : this) {
-            midiNote = scale.convertToMidiNote(note, startTime, midiTicksPerWholeNote);
+            midiNote = note.convertToMidiNote(scale, startTime, midiTicksPerWholeNote);
             
             track.add(midiNote.getNoteOnEvent());
             track.add(midiNote.getNoteOffEvent());

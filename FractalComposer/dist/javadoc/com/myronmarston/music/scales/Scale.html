@@ -75,9 +75,9 @@ function windowTitle()
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_top"></A>
@@ -113,7 +113,24 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 <HR>
 
 <P>
+<!-- =========== FIELD SUMMARY =========== -->
 
+<A NAME="field_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Field Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#NUM_CHROMATIC_PITCHES_PER_OCTAVE">NUM_CHROMATIC_PITCHES_PER_OCTAVE</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The number of chromatic pitches in one octave: 12.</TD>
+</TR>
+</TABLE>
+&nbsp;
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 
 <A NAME="constructor_summary"><!-- --></A>
@@ -140,17 +157,6 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#convertToMidiNote(com.myronmarston.music.Note, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int)">convertToMidiNote</A></B>(<A HREF="../../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&nbsp;note,
-                  <A HREF="../../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime,
-                  int&nbsp;midiTickResolution)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the given note to a Midi Note, that can then be used to get the
- actual Midi note on and note off events.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeyName()">getKeyName</A></B>()</CODE>
 
@@ -167,7 +173,16 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected abstract &nbsp;int[]</CODE></FONT></TD>
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getMidiPitchNumberForTonicAtOctave(int)">getMidiPitchNumberForTonicAtOctave</A></B>(int&nbsp;octave)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the midi pitch number for the tonic of this scale at the given 
+ octave.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>abstract &nbsp;int[]</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getScaleStepArray()">getScaleStepArray</A></B>()</CODE>
 
 <BR>
@@ -202,6 +217,27 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 </TABLE>
 &nbsp;
 <P>
+
+<!-- ============ FIELD DETAIL =========== -->
+
+<A NAME="field_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Field Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="NUM_CHROMATIC_PITCHES_PER_OCTAVE"><!-- --></A><H3>
+NUM_CHROMATIC_PITCHES_PER_OCTAVE</H3>
+<PRE>
+public static final int <B>NUM_CHROMATIC_PITCHES_PER_OCTAVE</B></PRE>
+<DL>
+<DD>The number of chromatic pitches in one octave: 12.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../constant-values.html#com.myronmarston.music.scales.Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE">Constant Field Values</A></DL>
+</DL>
 
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 
@@ -263,7 +299,23 @@ public void <B>setKeyName</B>(<A HREF="../../../../com/myronmarston/music/NoteNa
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>keyName</CODE> - the key name
 <DT><B>Throws:</B>
-<DD><CODE><A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></CODE></DL>
+<DD><CODE><A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></CODE> - thrown 
+         if the key has more than 7 flats or sharps</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMidiPitchNumberForTonicAtOctave(int)"><!-- --></A><H3>
+getMidiPitchNumberForTonicAtOctave</H3>
+<PRE>
+public int <B>getMidiPitchNumberForTonicAtOctave</B>(int&nbsp;octave)</PRE>
+<DL>
+<DD>Gets the midi pitch number for the tonic of this scale at the given 
+ octave.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>octave</CODE> - the octave
+<DT><B>Returns:</B><DD>the midi pitch number</DL>
 </DD>
 </DL>
 <HR>
@@ -302,7 +354,7 @@ protected abstract boolean <B>isInvalidKeyName</B>(<A HREF="../../../../com/myro
 <A NAME="getScaleStepArray()"><!-- --></A><H3>
 getScaleStepArray</H3>
 <PRE>
-protected abstract int[] <B>getScaleStepArray</B>()</PRE>
+public abstract int[] <B>getScaleStepArray</B>()</PRE>
 <DL>
 <DD>Gets an array of integers representing the number of half steps above
  the tonic for each scale step.
@@ -310,24 +362,6 @@ protected abstract int[] <B>getScaleStepArray</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>array of integers</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="convertToMidiNote(com.myronmarston.music.Note, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int)"><!-- --></A><H3>
-convertToMidiNote</H3>
-<PRE>
-public <A HREF="../../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A> <B>convertToMidiNote</B>(<A HREF="../../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&nbsp;note,
-                                  <A HREF="../../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime,
-                                  int&nbsp;midiTickResolution)</PRE>
-<DL>
-<DD>Converts the given note to a Midi Note, that can then be used to get the
- actual Midi note on and note off events.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>note</CODE> - the note to convert<DD><CODE>startTime</CODE> - when the note should be sounded, in whole notes<DD><CODE>midiTickResolution</CODE> - the number of ticks per whole note for the 
-        midi sequence
-<DT><B>Returns:</B><DD>the MidiNote</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
@@ -382,9 +416,9 @@ public <A HREF="../../../../com/myronmarston/music/MidiNote.html" title="class i
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_bottom"></A>

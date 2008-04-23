@@ -3,6 +3,7 @@ package com.myronmarston.music.transformers;
 import com.myronmarston.music.MidiNote;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
+import com.myronmarston.music.settings.SegmentSettings;
 import com.myronmarston.music.settings.SelfSimilaritySettings;
 
 /**
@@ -54,7 +55,7 @@ public class SelfSimilarityTransformer implements Transformer {
      */
     public SelfSimilarityTransformer() {};
     
-    public NoteList transform(NoteList input) {
+    public NoteList transform(NoteList input) {        
         if (!this.getSettings().getApplyToPitch() &&
             !this.getSettings().getApplyToRhythm() &&
             !this.getSettings().getApplyToVolume()) {
@@ -81,14 +82,20 @@ public class SelfSimilarityTransformer implements Transformer {
 
     private NoteList transform_pitch(NoteList input, Note firstNote, Note inputNote) {
         if (!this.getSettings().getApplyToPitch()) return input;
-                                   
+                                                   
         // transpose the input to the correct octave...
         OctaveTransformer octaveTransformer = new OctaveTransformer(inputNote.getOctave() - firstNote.getOctave());
         NoteList octaveTransformedList = octaveTransformer.transform(input);
 
-        // transpose the input to the correct pitch level...
+        // transpose the input to the correct pitch level...        
         TransposeTransformer transposer = new TransposeTransformer(inputNote.getScaleStep() - firstNote.getScaleStep());
-        return transposer.transform(octaveTransformedList);
+        NoteList transposedList = transposer.transform(octaveTransformedList);
+
+        // set the chromatic adjustment on this note segment as necessary...
+        SegmentSettings segmentSettings = new SegmentSettings(inputNote.getChromaticAdjustment() - firstNote.getChromaticAdjustment());
+        for (Note n : transposedList) n.setSegmentSettings(segmentSettings);
+        
+        return transposedList;
     }
 
     private NoteList transform_rhythm(NoteList input, Note firstNote, Note inputNote) {

@@ -102,8 +102,7 @@ java.lang.Object
 <P>
 Represents a note, relative to a particular scale.  This note will need to be
  converted to midi events using the MidiNote class before it can be used in
- a Midi track.  The note doesn't know or care what scale is being used, but to 
- get a concrete MidiNote, the scale must be used to convert it.
+ a Midi track.
 <P>
 
 <P>
@@ -136,6 +135,17 @@ Represents a note, relative to a particular scale.  This note will need to be
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#Note(int, int, int, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int, com.myronmarston.music.settings.SegmentSettings)">Note</A></B>(int&nbsp;scaleStep,
+     int&nbsp;octave,
+     int&nbsp;chromaticAdjustment,
+     <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;duration,
+     int&nbsp;volume,
+     <A HREF="../../../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings">SegmentSettings</A>&nbsp;segmentSettings)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#Note(com.myronmarston.music.Note)">Note</A></B>(<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&nbsp;inputNote)</CODE>
 
 <BR>
@@ -150,6 +160,17 @@ Represents a note, relative to a particular scale.  This note will need to be
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#convertToMidiNote(com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int)">convertToMidiNote</A></B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
+                  <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime,
+                  int&nbsp;midiTickResolution)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the note to a Midi Note, that can then be used to get the
+ actual Midi note on and note off events.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -200,6 +221,14 @@ Represents a note, relative to a particular scale.  This note will need to be
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the number of scale steps above the tonic; In an 7-note scale, 
  0 = tonic, 7 = octave, 9 = third an octave above, etc.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings">SegmentSettings</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#getSegmentSettings()">getSegmentSettings</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the settings for the segment this note is a part of.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -258,6 +287,14 @@ Represents a note, relative to a particular scale.  This note will need to be
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the number of scale steps above the tonic; In an 7-note scale, 
  0 = tonic, 7 = octave, 9 = third an octave above, etc.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#setSegmentSettings(com.myronmarston.music.settings.SegmentSettings)">setSegmentSettings</A></B>(<A HREF="../../../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings">SegmentSettings</A>&nbsp;segmentSettings)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the settings for the segment this note is a part of.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -334,6 +371,27 @@ public <B>Note</B>(int&nbsp;scaleStep,
         7 = octave, 9 = third an octave above, etc.<DD><CODE>octave</CODE> - which octave the note should be in.  0 begins the first 
         octave in Midi that contains the tonic.<DD><CODE>chromaticAdjustment</CODE> - the number of half steps to adjust from the
         diatonic note; used if this note is an accidental<DD><CODE>duration</CODE> - how long the note should last, in whole notes<DD><CODE>volume</CODE> - how loud the note should be (0-127)</DL>
+</DL>
+<HR>
+
+<A NAME="Note(int, int, int, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int, com.myronmarston.music.settings.SegmentSettings)"><!-- --></A><H3>
+Note</H3>
+<PRE>
+public <B>Note</B>(int&nbsp;scaleStep,
+            int&nbsp;octave,
+            int&nbsp;chromaticAdjustment,
+            <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;duration,
+            int&nbsp;volume,
+            <A HREF="../../../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings">SegmentSettings</A>&nbsp;segmentSettings)</PRE>
+<DL>
+<DD>Constructor.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>scaleStep</CODE> - number of scale steps above the tonic; 0 = tonic, 
+        7 = octave, 9 = third an octave above, etc.<DD><CODE>octave</CODE> - which octave the note should be in.  0 begins the first 
+        octave in Midi that contains the tonic.<DD><CODE>chromaticAdjustment</CODE> - the number of half steps to adjust from the
+        diatonic note; used if this note is an accidental<DD><CODE>duration</CODE> - how long the note should last, in whole notes<DD><CODE>volume</CODE> - how loud the note should be (0-127)<DD><CODE>segmentSettings</CODE> - additional settings for a group of notes this note
+        is a part of</DL>
 </DL>
 <HR>
 
@@ -461,6 +519,33 @@ public void <B>setChromaticAdjustment</B>(int&nbsp;chromaticAdjustment)</PRE>
 </DL>
 <HR>
 
+<A NAME="getSegmentSettings()"><!-- --></A><H3>
+getSegmentSettings</H3>
+<PRE>
+public <A HREF="../../../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings">SegmentSettings</A> <B>getSegmentSettings</B>()</PRE>
+<DL>
+<DD>Gets the settings for the segment this note is a part of.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the segment settings</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setSegmentSettings(com.myronmarston.music.settings.SegmentSettings)"><!-- --></A><H3>
+setSegmentSettings</H3>
+<PRE>
+public void <B>setSegmentSettings</B>(<A HREF="../../../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings">SegmentSettings</A>&nbsp;segmentSettings)</PRE>
+<DL>
+<DD>Sets the settings for the segment this note is a part of.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>segmentSettings</CODE> - the segment settings</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="getDuration()"><!-- --></A><H3>
 getDuration</H3>
 <PRE>
@@ -540,6 +625,24 @@ protected void <B>throwUnsupportedOperationExceptionIfRest</B>(java.lang.String&
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>changingField</CODE> - the field being changed<DD><CODE>value</CODE> - the value the field is being changed to</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="convertToMidiNote(com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int)"><!-- --></A><H3>
+convertToMidiNote</H3>
+<PRE>
+public <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A> <B>convertToMidiNote</B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
+                                  <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime,
+                                  int&nbsp;midiTickResolution)</PRE>
+<DL>
+<DD>Converts the note to a Midi Note, that can then be used to get the
+ actual Midi note on and note off events.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>scale</CODE> - the scale to use<DD><CODE>startTime</CODE> - the time this note should be played<DD><CODE>midiTickResolution</CODE> - the number of ticks per whole note for the
+        midi sequence
+<DT><B>Returns:</B><DD>the MidiNote</DL>
 </DD>
 </DL>
 <HR>

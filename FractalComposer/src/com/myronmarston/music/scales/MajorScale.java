@@ -38,7 +38,7 @@ public class MajorScale extends Scale {
     }
 
     @Override
-    protected int[] getScaleStepArray() {
+    public int[] getScaleStepArray() {
         return MajorScale.SCALE_STEPS;
     }
 }
