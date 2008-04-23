@@ -48,14 +48,16 @@ public class VolumeTransformer implements Transformer {
         for (Note inputNote : input) {
             newNote = new Note(inputNote);
             
-            remainingVolumeRange = 
-                (this.getScaleFactor() < 0) ?
-                newNote.getVolume() - MidiNote.MIN_VELOCITY :
-                MidiNote.MAX_VELOCITY - newNote.getVolume();
-            
-            volumeAdjustment = (int) Math.round(remainingVolumeRange * this.getScaleFactor());
-            
-            newNote.setVolume(newNote.getVolume() + volumeAdjustment);
+            if (!newNote.isRest()) { // don't change the volume of rests...                    
+                remainingVolumeRange = 
+                    (this.getScaleFactor() < 0) ?
+                    newNote.getVolume() - MidiNote.MIN_VELOCITY :
+                    MidiNote.MAX_VELOCITY - newNote.getVolume();
+
+                volumeAdjustment = (int) Math.round(remainingVolumeRange * this.getScaleFactor());
+
+                newNote.setVolume(newNote.getVolume() + volumeAdjustment);
+            }
             
             output.add(newNote);
         }

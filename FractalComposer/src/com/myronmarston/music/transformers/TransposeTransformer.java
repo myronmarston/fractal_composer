@@ -39,7 +39,10 @@ public class TransposeTransformer implements Transformer {
         
         for (Note inputNote : input) {
             newNote = new Note(inputNote);
-            newNote.setScaleStep(newNote.getScaleStep() + this.getTransposeSteps());
+            
+            if (!newNote.isRest()) { // don't change a rest...
+                newNote.setScaleStep(newNote.getScaleStep() + this.getTransposeSteps());
+            }            
             
             output.add(newNote);
         }

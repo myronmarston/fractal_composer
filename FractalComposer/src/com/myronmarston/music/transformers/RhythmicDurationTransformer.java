@@ -43,6 +43,10 @@ public class RhythmicDurationTransformer implements Transformer {
         
         for (Note inputNote : input) {
             newNote = new Note(inputNote);
+            
+            // if the scale factor is zero, we'll get a div-by-zero exception.  
+            // our code should prevent it from ever reaching here if it's zero...
+            assert this.getScaleFactor().asDouble() != 0d : this.getScaleFactor();
             newNote.setDuration(newNote.getDuration().dividedBy(this.getScaleFactor()));            
             
             output.add(newNote);

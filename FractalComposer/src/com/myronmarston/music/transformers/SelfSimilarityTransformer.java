@@ -68,13 +68,18 @@ public class SelfSimilarityTransformer implements Transformer {
         Note firstNote = input.getFirstAudibleNote(); // the note we will compare against for the self-similarity
         NoteList transformedList; // used to store the temporary results of the transformations                
         NoteList output = new NoteList(input.size() * input.size()); // the final output
-        
-        for (Note inputNote : input) {                        
-            transformedList = transform_pitch(input, firstNote, inputNote);
-            transformedList = transform_rhythm(transformedList, firstNote, inputNote);
-            transformedList = transform_volume(transformedList, firstNote, inputNote);
-                       
-            output.addAll(transformedList);
+                
+        for (Note inputNote : input) {                  
+            if (inputNote.isRest()) {
+                transformedList = new NoteList();
+                transformedList.add(Note.createRest(input.getDuration()));                
+                transformedList = transform_rhythm(transformedList, firstNote, inputNote);
+            } else {
+                transformedList = transform_pitch(input, firstNote, inputNote);
+                transformedList = transform_rhythm(transformedList, firstNote, inputNote);
+                transformedList = transform_volume(transformedList, firstNote, inputNote);
+            }
+            output.addAll(transformedList);            
         }
         
         return output;

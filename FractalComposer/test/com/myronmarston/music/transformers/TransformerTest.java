@@ -47,13 +47,15 @@ public class TransformerTest {
         input.add(new Note(2, 4, 0, new Fraction(1, 1), 64));
         input.add(new Note(4, 4, 0, new Fraction(1, 1), 64));
         input.add(new Note(0, 5, 0, new Fraction(1, 1), 64));
+        input.add(Note.createRest(new Fraction(1, 1)));
 
         Transformer t = new OctaveTransformer(2);
         NoteList expectedOutput = new NoteList();
         expectedOutput.add(new Note(0, 6, 0, new Fraction(1, 1), 64));
         expectedOutput.add(new Note(2, 6, 0, new Fraction(1, 1), 64));
         expectedOutput.add(new Note(4, 6, 0, new Fraction(1, 1), 64));
-        expectedOutput.add(new Note(0, 7, 0, new Fraction(1, 1), 64));        
+        expectedOutput.add(new Note(0, 7, 0, new Fraction(1, 1), 64));   
+        expectedOutput.add(Note.createRest(new Fraction(1, 1)));
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
         t = new OctaveTransformer(-3);
@@ -62,6 +64,8 @@ public class TransformerTest {
         expectedOutput.add(new Note(2, 1, 0, new Fraction(1, 1), 64));
         expectedOutput.add(new Note(4, 1, 0, new Fraction(1, 1), 64));
         expectedOutput.add(new Note(0, 2, 0, new Fraction(1, 1), 64));
+        expectedOutput.add(Note.createRest(new Fraction(1, 1)));
+        assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
         t = new OctaveTransformer(0);
         expectedOutput.clear();
@@ -69,6 +73,8 @@ public class TransformerTest {
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 1), 64));
         expectedOutput.add(new Note(4, 4, 0, new Fraction(1, 1), 64));
         expectedOutput.add(new Note(0, 5, 0, new Fraction(1, 1), 64));
+        expectedOutput.add(Note.createRest(new Fraction(1, 1)));
+        assertTransformerProducesExpectedOutput(t, input, expectedOutput);
     }
     
     @Test
@@ -78,13 +84,15 @@ public class TransformerTest {
         input.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
         input.add(new Note(2, 4, 0, new Fraction(1, 2), 64));
         input.add(new Note(0, 4, 0, new Fraction(1, 1), 64));
+        input.add(Note.createRest(new Fraction(1, 1)));
         
         Transformer t = new TransposeTransformer(4);
         NoteList expectedOutput = new NoteList();
         expectedOutput.add(new Note(4, 4, 0, new Fraction(1, 1), 64));
         expectedOutput.add(new Note(5, 4, 0, new Fraction(1, 2), 64));
         expectedOutput.add(new Note(6, 4, 0, new Fraction(1, 2), 64));
-        expectedOutput.add(new Note(4, 4, 0, new Fraction(1, 1), 64));        
+        expectedOutput.add(new Note(4, 4, 0, new Fraction(1, 1), 64));     
+        expectedOutput.add(Note.createRest(new Fraction(1, 1)));
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
         t = new TransposeTransformer(-2);
@@ -93,6 +101,7 @@ public class TransformerTest {
         expectedOutput.add(new Note(-1, 4, 0, new Fraction(1, 2), 64));
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 2), 64));
         expectedOutput.add(new Note(-2, 4, 0, new Fraction(1, 1), 64));
+        expectedOutput.add(Note.createRest(new Fraction(1, 1)));
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
     }
     
@@ -103,13 +112,15 @@ public class TransformerTest {
         input.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
         input.add(new Note(2, 4, 0, new Fraction(1, 2), 64));
         input.add(new Note(0, 4, 0, new Fraction(1, 1), 64));
+        input.add(Note.createRest(new Fraction(1, 1)));
         
         Transformer t = new RhythmicDurationTransformer(new Fraction(1, 2));
         NoteList expectedOutput = new NoteList();
         expectedOutput.add(new Note(0, 4, 0, new Fraction(2, 1), 64));
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 1), 64));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 1), 64));
-        expectedOutput.add(new Note(0, 4, 0, new Fraction(2, 1), 64));        
+        expectedOutput.add(new Note(0, 4, 0, new Fraction(2, 1), 64));   
+        expectedOutput.add(Note.createRest(new Fraction(2, 1)));
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
         t = new RhythmicDurationTransformer(new Fraction(2, 1));
@@ -117,7 +128,8 @@ public class TransformerTest {
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 2), 64));
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 4), 64));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 4), 64));
-        expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 2), 64));        
+        expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 2), 64));
+        expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
     }
     
@@ -134,6 +146,7 @@ public class TransformerTest {
         input.add(new Note(1, 4, 0, new Fraction(1, 2), 96));
         input.add(new Note(2, 4, 0, new Fraction(1, 2), 32));
         input.add(new Note(0, 4, 0, new Fraction(1, 1), 64));
+        input.add(Note.createRest(new Fraction(1, 2)));
         
         Transformer t = new VolumeTransformer(0.5d);
         NoteList expectedOutput = new NoteList();
@@ -141,6 +154,7 @@ public class TransformerTest {
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 2), 112));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 2), 80));
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
         t = new VolumeTransformer(-0.5d);
@@ -149,6 +163,7 @@ public class TransformerTest {
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 2), 48));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 2), 16));
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 32));
+        expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);        
     }
     
@@ -165,6 +180,7 @@ public class TransformerTest {
         input.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
         input.add(new Note(2, 4, 0, new Fraction(1, 2), 112));
         input.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        input.add(Note.createRest(new Fraction(1, 2)));
         
         Transformer t = new SelfSimilarityTransformer(true, false, false);
         NoteList expectedOutput = new NoteList();
@@ -172,21 +188,27 @@ public class TransformerTest {
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 2), 112));
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 1), 96));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 2), 64));
         expectedOutput.add(new Note(3, 4, 0, new Fraction(1, 2), 112));
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 1), 96));
+        expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 1), 96));
         expectedOutput.add(new Note(3, 4, 0, new Fraction(1, 2), 64));
         expectedOutput.add(new Note(4, 4, 0, new Fraction(1, 2), 112));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 1), 96));
+        expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 2), 112));
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        expectedOutput.add(Note.createRest(new Fraction(1, 2)));
+        
+        expectedOutput.add(Note.createRest(new Fraction(7, 2)));        
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
         t = new SelfSimilarityTransformer(true, true, false);
@@ -195,21 +217,28 @@ public class TransformerTest {
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 2), 112));
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 2), 96));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 4), 64));
         expectedOutput.add(new Note(3, 4, 0, new Fraction(1, 4), 112));
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 2), 96));
+        expectedOutput.add(Note.createRest(new Fraction(1, 4)));
         
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 2), 96));
         expectedOutput.add(new Note(3, 4, 0, new Fraction(1, 4), 64));
         expectedOutput.add(new Note(4, 4, 0, new Fraction(1, 4), 112));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 2), 96));
+        expectedOutput.add(Note.createRest(new Fraction(1, 4)));
         
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 2), 112));
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        expectedOutput.add(Note.createRest(new Fraction(1, 2)));
+        
+        expectedOutput.add(Note.createRest(new Fraction(7, 4)));
+        
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
         t = new SelfSimilarityTransformer(false, true, true);
@@ -218,21 +247,28 @@ public class TransformerTest {
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 2), 112));
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 2), 64));
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 4), 43));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 4), 75));
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 2), 64));
+        expectedOutput.add(Note.createRest(new Fraction(1, 4)));
         
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 2), 112));
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 4), 97));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 4), 120));
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 2), 112));
+        expectedOutput.add(Note.createRest(new Fraction(1, 4)));
         
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 2), 112));
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        expectedOutput.add(Note.createRest(new Fraction(1, 2)));
+        
+        expectedOutput.add(Note.createRest(new Fraction(7, 4)));
+        
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
         t = new SelfSimilarityTransformer(false, false, false);
@@ -240,7 +276,8 @@ public class TransformerTest {
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 2), 112));
-        expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));                
+        expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
     }
     
@@ -252,6 +289,7 @@ public class TransformerTest {
         input.add(new Note(2, 4, 0, new Fraction(1, 2), 112));
         input.add(new Note(1, 4, 0, new Fraction(1, 2), 112));
         input.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        input.add(Note.createRest(new Fraction(1, 2)));
         
         Transformer t = new InversionTransformer();
         NoteList expectedOutput = new NoteList();
@@ -260,6 +298,7 @@ public class TransformerTest {
         expectedOutput.add(new Note(-2, 4, 0, new Fraction(1, 2), 112));
         expectedOutput.add(new Note(-1, 4, 0, new Fraction(1, 2), 112));
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
         //inverting an inversion should produce the original
@@ -318,9 +357,11 @@ public class TransformerTest {
         input.add(new Note(2, 4, 0, new Fraction(1, 2), 112));
         input.add(new Note(1, 4, 0, new Fraction(1, 2), 112));
         input.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        input.add(Note.createRest(new Fraction(1, 2)));
         
         Transformer t = new RetrogradeTransformer();
         NoteList expectedOutput = new NoteList();
+        expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
         expectedOutput.add(new Note(1, 4, 0, new Fraction(1, 2), 112));        
         expectedOutput.add(new Note(2, 4, 0, new Fraction(1, 2), 112));        
@@ -340,6 +381,7 @@ public class TransformerTest {
         input.add(new Note(2, 4, 0, new Fraction(1, 2), 112));
         input.add(new Note(1, 4, 0, new Fraction(1, 2), 112));
         input.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        input.add(Note.createRest(new Fraction(1, 4)));
         
         Transformer t = new CopyTransformer();             
         assertTransformerProducesExpectedOutput(t, input, input);

@@ -37,7 +37,10 @@ public class OctaveTransformer implements Transformer {
         
         for (Note inputNote : input) {
             newNote = new Note(inputNote);
-            newNote.setOctave(newNote.getOctave() + this.getOctaveChange());
+                        
+            if (!newNote.isRest()) { // don't change the octave on a rest...
+                newNote.setOctave(newNote.getOctave() + this.getOctaveChange());
+            }                        
             
             output.add(newNote);
         }
