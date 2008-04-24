@@ -222,6 +222,64 @@ public class ScaleTest {
         assertMidiNoteValues(result, 68, 40, 16, 24); 
     }
     
+    @Test
+    public void majorPentatonicScale_convertToMidiNote() throws InvalidKeySignatureException {                
+        MajorPentatonicScale scale = new MajorPentatonicScale(NoteName.C);
+        MidiNote result;
+        Note note;
+        
+        note = new Note(4, 4, 0, new Fraction(6, 1), 70);      
+        int midiTickResolution = 8;
+        
+        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution);
+        assertMidiNoteValues(result, 69, 70, 0, 48);                
+        
+        note.setScaleStep(3);        
+        result = note.convertToMidiNote(scale, new Fraction(5, 1), midiTickResolution);
+        assertMidiNoteValues(result, 67, 70, 40, 48);                        
+        
+        // try a few unnormalized notes...
+        note.setScaleStep(-3);
+        note.setVolume(40);
+        note.setDuration(new Fraction(3, 1));
+        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution);
+        assertMidiNoteValues(result, 52, 40, 16, 24); 
+        
+        note.setScaleStep(19);
+        note.setOctave(2);
+        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution);
+        assertMidiNoteValues(result, 81, 40, 16, 24); 
+    }
+    
+    @Test
+    public void minorPentatonicScale_convertToMidiNote() throws InvalidKeySignatureException {                
+        MinorPentatonicScale scale = new MinorPentatonicScale(NoteName.C);
+        MidiNote result;
+        Note note;
+        
+        note = new Note(4, 4, 0, new Fraction(6, 1), 70);      
+        int midiTickResolution = 8;
+        
+        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution);
+        assertMidiNoteValues(result, 70, 70, 0, 48);                
+        
+        note.setScaleStep(3);        
+        result = note.convertToMidiNote(scale, new Fraction(5, 1), midiTickResolution);
+        assertMidiNoteValues(result, 67, 70, 40, 48);                        
+        
+        // try a few unnormalized notes...
+        note.setScaleStep(-3);
+        note.setVolume(40);
+        note.setDuration(new Fraction(3, 1));
+        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution);
+        assertMidiNoteValues(result, 53, 40, 16, 24); 
+        
+        note.setScaleStep(19);
+        note.setOctave(2);
+        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution);
+        assertMidiNoteValues(result, 82, 40, 16, 24); 
+    }
+    
     protected void assertMidiNoteValues(MidiNote midiNote, int pitch, int velocity, long startTime, long duration) {
         assertEquals(pitch, midiNote.getPitch());
         assertEquals(velocity, midiNote.getVelocity());
