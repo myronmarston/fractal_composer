@@ -256,6 +256,17 @@ Represents a note, relative to a particular scale.  This note will need to be
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#parseNoteString(java.lang.String, com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, java.lang.Integer)">parseNoteString</A></B>(java.lang.String&nbsp;noteString,
+                <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
+                <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;defaultDuration,
+                java.lang.Integer&nbsp;defaultVolume)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parses a note string such as F#4,1/8,MF.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#setChromaticAdjustment(int)">setChromaticAdjustment</A></B>(int&nbsp;chromaticAdjustment)</CODE>
 
@@ -625,6 +636,30 @@ protected void <B>throwUnsupportedOperationExceptionIfRest</B>(java.lang.String&
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>changingField</CODE> - the field being changed<DD><CODE>value</CODE> - the value the field is being changed to</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="parseNoteString(java.lang.String, com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, java.lang.Integer)"><!-- --></A><H3>
+parseNoteString</H3>
+<PRE>
+public static <A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A> <B>parseNoteString</B>(java.lang.String&nbsp;noteString,
+                                   <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
+                                   <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;defaultDuration,
+                                   java.lang.Integer&nbsp;defaultVolume)
+                            throws <A HREF="../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music">NoteStringParseException</A></PRE>
+<DL>
+<DD>Parses a note string such as F#4,1/8,MF.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>noteString</CODE> - string to parse<DD><CODE>scale</CODE> - the scale to use to determine the scaleStep and 
+        chromaticAdjustment<DD><CODE>defaultDuration</CODE> - duration to use if the noteString does not contain
+        a duration<DD><CODE>defaultVolume</CODE> - volume to use if the noteString does not contain a 
+        volume
+<DT><B>Returns:</B><DD>a new Note with fields set based on the parsed noteString
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music">NoteStringParseException</A></CODE> - thrown when the
+         noteString cannot be parsed</DL>
 </DD>
 </DL>
 <HR>

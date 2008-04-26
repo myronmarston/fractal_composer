@@ -92,6 +92,10 @@ Packages that use <A HREF="../../../../com/myronmarston/music/Note.html" title="
 <TD><A HREF="#com.myronmarston.music"><B>com.myronmarston.music</B></A></TD>
 <TD>&nbsp;&nbsp;</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><A HREF="#com.myronmarston.music.scales"><B>com.myronmarston.music.scales</B></A></TD>
+<TD>&nbsp;&nbsp;</TD>
+</TR>
 </TABLE>
 &nbsp;
 <P>
@@ -125,6 +129,17 @@ Uses of <A HREF="../../../../com/myronmarston/music/Note.html" title="class in c
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the first note you can hear--the first note that's not a rest.</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A></CODE></FONT></TD>
+<TD><CODE><B>Note.</B><B><A HREF="../../../../com/myronmarston/music/Note.html#parseNoteString(java.lang.String, com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, java.lang.Integer)">parseNoteString</A></B>(java.lang.String&nbsp;noteString,
+                <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
+                <A HREF="../../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;defaultDuration,
+                java.lang.Integer&nbsp;defaultVolume)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parses a note string such as F#4,1/8,MF.</TD>
+</TR>
 </TABLE>
 &nbsp;
 <P>
@@ -138,6 +153,43 @@ Uses of <A HREF="../../../../com/myronmarston/music/Note.html" title="class in c
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copy Constructor.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+<A NAME="com.myronmarston.music.scales"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+Uses of <A HREF="../../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A> in <A HREF="../../../../com/myronmarston/music/scales/package-summary.html">com.myronmarston.music.scales</A></FONT></TH>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left" COLSPAN="2">Methods in <A HREF="../../../../com/myronmarston/music/scales/package-summary.html">com.myronmarston.music.scales</A> with parameters of type <A HREF="../../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B>Scale.</B><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#setNotePitchValues_Helper(com.myronmarston.music.Note, com.myronmarston.music.NoteName, int)">setNotePitchValues_Helper</A></B>(<A HREF="../../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&nbsp;note,
+                          <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;noteNameForPitch,
+                          int&nbsp;scaleStepIndex)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Helper method for setNotePitchValues().</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B>Scale.</B><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#setNotePitchValues(com.myronmarston.music.Note, com.myronmarston.music.NoteName)">setNotePitchValues</A></B>(<A HREF="../../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&nbsp;note,
+                   <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;noteName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the scaleStep and chromaticAdjustment on the given note, based on
+ the passed noteName.</TD>
 </TR>
 </TABLE>
 &nbsp;
