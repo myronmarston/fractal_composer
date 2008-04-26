@@ -1,6 +1,9 @@
 package com.myronmarston.music.scales;
 
+import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteName;
+
+import java.util.Arrays;
 
 /**
  * Scales are used to convert a Note to a MidiNote and to provide the midi file
@@ -89,5 +92,96 @@ public abstract class Scale {
      * 
      * @return array of integers
      */
-    abstract public int[] getScaleStepArray();                    
+    abstract public int[] getScaleStepArray();
+    
+    /**
+     * Gets an array of integers of letter numbers above the tonic letter number.
+     * 
+     * @return letter number array.
+     */
+    abstract public int[] getLetterNumberArray();
+    
+    /**
+     * Normalizes a chromatic adjustment, putting it in the range -6 to 6.
+     * 
+     * @param chromaticAdjustment the chromatic adjustment to normalize
+     * @return the normalized value
+     */
+    static private int getNormalizedChromaticAdjustment(int chromaticAdjustment) {
+        // put it in the range -6..6 if it is outside of that...
+        if (chromaticAdjustment > (Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE / 2)) {            
+            return chromaticAdjustment - Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE;
+        }
+        
+        if (chromaticAdjustment < -(Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE / 2)) {
+            return chromaticAdjustment + Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE;
+        }
+        
+        return chromaticAdjustment;
+    }
+    
+    /**
+     * Sets the scaleStep and chromaticAdjustment on the given note, based on
+     * the passed noteName.  
+     * 
+     * @param note the scaleStep and chromatic adjustment will be set on this 
+     *        note
+     * @param noteName the noteName of the pitch that should be used to
+     *        determine the pitch values
+     */
+    public void setNotePitchValues(Note note, NoteName noteName) {
+        int intervalAboveTonic = this.getKeyName().getPositiveIntervalSize(noteName);
+        int scaleStepIndex = Arrays.binarySearch(this.getLetterNumberArray(), intervalAboveTonic);
+        
+        if (scaleStepIndex >= 0) { 
+            // our scale contains this letter, so we can use it to determine our scale step
+            // and then figure out our necessary chromaticAdjustment
+            setNotePitchValues_Helper(note, noteName, scaleStepIndex);
+        } else {
+            // our scale does not contain this letter (example: F# for C major 
+            // pentatonic-C D E G A).  We need to figure out which of our scale
+            // steps this is closest to, and use that, modifying the chromatic
+            // adjustment accordingly            
+            
+            // find the two closest note letters...
+            int letterNumberArrayInsertionPt = -scaleStepIndex - 1;
+            int nearestLowerScaleStepIndex = (letterNumberArrayInsertionPt == 0 ? this.getLetterNumberArray().length - 1 : letterNumberArrayInsertionPt - 1);
+            int nearestHigherScaleStepIndex = (letterNumberArrayInsertionPt == this.getLetterNumberArray().length ?  0 : letterNumberArrayInsertionPt);
+            
+            // figure out which of these two is closest to our given note...
+            int lowerScaleStepNumHalfStepsAboveTonic = this.getScaleStepArray()[nearestLowerScaleStepIndex];
+            int higherScaleStepNumHalfStepsAboveTonic = this.getScaleStepArray()[nearestHigherScaleStepIndex];
+            int givenNoteHalfStepsAboveTonic = this.getKeyName().getPositiveChromaticSteps(noteName);
+                        
+            int distanceFromLowerScaleStep = Math.abs(getNormalizedChromaticAdjustment(givenNoteHalfStepsAboveTonic - lowerScaleStepNumHalfStepsAboveTonic));
+            int distanceFromHigherScaleStep = Math.abs(getNormalizedChromaticAdjustment(higherScaleStepNumHalfStepsAboveTonic - givenNoteHalfStepsAboveTonic));
+                        
+            if (distanceFromLowerScaleStep < distanceFromHigherScaleStep) {
+                setNotePitchValues_Helper(note, noteName, nearestLowerScaleStepIndex);
+            } else {
+                setNotePitchValues_Helper(note, noteName, nearestHigherScaleStepIndex);
+            }    
+        }    
+    }
+
+    /**
+     * Helper method for setNotePitchValues().  Sets the scaleStep and 
+     * chromatic adjustment on the note, given a noteName and a scaleStepIndex.
+     * 
+     * @param note the scaleStep and chromatic adjustment will be set on this 
+     *        note
+     * @param noteNameForPitch the noteName of the pitch that should be used to
+     *        determine the pitch values
+     * @param scaleStepIndex the index of the scaleStep withing this scales's
+     *        scaleStepArray that should be used
+     */
+    protected void setNotePitchValues_Helper(Note note, NoteName noteNameForPitch, int scaleStepIndex) {        
+        note.setScaleStep(scaleStepIndex);
+
+        int givenNoteHalfStepAboveTonic = this.getKeyName().getPositiveChromaticSteps(noteNameForPitch);
+        int diatonicNoteHalfStepsAboveTonic = this.getScaleStepArray()[scaleStepIndex];
+        int chromaticAdjustment = getNormalizedChromaticAdjustment(givenNoteHalfStepAboveTonic - diatonicNoteHalfStepsAboveTonic);
+                
+        note.setChromaticAdjustment(chromaticAdjustment);
+    }
 }

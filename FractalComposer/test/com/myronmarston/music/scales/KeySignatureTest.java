@@ -40,12 +40,12 @@ public class KeySignatureTest {
     
     @Test(expected=InvalidKeySignatureException.class)
     public void majorScaleInvalidKeySignature() throws InvalidKeySignatureException {
-        MajorScale s = new MajorScale(NoteName.A_SHARP);
+        MajorScale s = new MajorScale(NoteName.As);
     }
     
     @Test(expected=InvalidKeySignatureException.class)
     public void minorScaleInvalidKeySignature() throws InvalidKeySignatureException {
-        MinorScale s = new MinorScale(NoteName.G_FLAT);
+        MinorScale s = new MinorScale(NoteName.Gb);
     }
     
     @Test
@@ -53,7 +53,7 @@ public class KeySignatureTest {
         MajorScale s = new MajorScale(NoteName.D);
         assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(), (byte) 2, (byte) 0);
         
-        s.setKeyName(NoteName.A_FLAT);
+        s.setKeyName(NoteName.Ab);
         assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(), (byte) -4, (byte) 0);
     }
     
@@ -62,7 +62,7 @@ public class KeySignatureTest {
         MinorScale s = new MinorScale(NoteName.D);
         assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(), (byte) -1, (byte) 1);
         
-        s.setKeyName(NoteName.G_SHARP);
+        s.setKeyName(NoteName.Gs);
         assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(), (byte) 5, (byte) 1);
     }
 

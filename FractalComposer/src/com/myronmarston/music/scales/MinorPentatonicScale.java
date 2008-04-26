@@ -9,6 +9,7 @@ import com.myronmarston.music.NoteName;
  */
 public class MinorPentatonicScale extends MinorScale {
     private final static int[] SCALE_STEPS = new int[] {0, 3, 5, 7, 10};
+    protected final static int[] LETTER_NUMBERS = new int[] {0, 2, 3, 4, 6};
     
    /**
      * Constructor.
@@ -25,4 +26,9 @@ public class MinorPentatonicScale extends MinorScale {
     public int[] getScaleStepArray() {
         return SCALE_STEPS;
     }  
+    
+    @Override
+    public int[] getLetterNumberArray() {
+        return MinorPentatonicScale.LETTER_NUMBERS;
+    } 
 }

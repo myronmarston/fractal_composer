@@ -2,10 +2,13 @@ package com.myronmarston.music;
 
 import com.myronmarston.music.settings.SegmentSettings;
 import com.myronmarston.music.scales.Scale;
+import com.myronmarston.music.NoteStringInvalidPartException.NoteStringPart;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
 import java.util.Arrays;
+import java.util.Locale;
+import java.util.regex.*;
 
 /**
  * Represents a note, relative to a particular scale.  This note will need to be
@@ -14,13 +17,15 @@ import java.util.Arrays;
  * 
  * @author Myron
  */
-public class Note {   
+public class Note {
+   
     private int scaleStep; // number of scale steps above the tonic; 0 = tonic, 7 = octave, 9 = third an octave above, etc.
     private int octave; // which octave the note should be in.  0 begins the first octave in Midi that contains the tonic.
     private int chromaticAdjustment; // the number of half steps to adjust from the diatonic note; used if this note is an accidental
     private Fraction duration; // how long the note should last, in whole notes.
     private int volume = MidiNote.DEFAULT_VELOCITY; // how loud the note should be on a scale from 0 to 127.    
     private SegmentSettings segmentSettings; // an object containing settings to apply to a segment of notes
+    private static Pattern noteParser;
     
     /**
      * Default constructor.
@@ -89,7 +94,7 @@ public class Note {
         
         assert rest.isRest() : rest;
         return rest;
-    }   
+    }
 
     /**
      * Gets the number of scale steps above the tonic; In an 7-note scale, 
@@ -257,6 +262,174 @@ public class Note {
     }
     
     /**
+     * Gets a regular expression pattern that can be used to parse a note string.
+     * 
+     * @return the regEx pattern
+     */
+    static private Pattern getNoteParser() {
+        if (Note.noteParser == null) {
+                        
+            Note.noteParser = Pattern.compile(                   
+                NoteName.getRegexPattern() +                // NoteName--everything before the first digit or comma                
+                "(-1|[^,])?" +                              // octave, optional if the note name is a rest; can be -1..9
+                "(?:,(\\d?\\d?\\d?)\\/?(\\d?\\d?\\d?))?" +  // duration in fractional form, e.g. 1/4; up to 3 digits allowed to allow for 128th notes                
+                "(?:,(.*))?",                               // the dynamic--this will catch the rest of the string; our parsing code will handle this or throw an exception as necessary
+                Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE | Pattern.CANON_EQ);
+        }        
+        
+        return Note.noteParser;
+    }
+    
+    /**
+     * Parses a note string such as F#4,1/8,MF.
+     * 
+     * @param noteString string to parse
+     * @param scale the scale to use to determine the scaleStep and 
+     *        chromaticAdjustment
+     * @param defaultDuration duration to use if the noteString does not contain
+     *        a duration
+     * @param defaultVolume volume to use if the noteString does not contain a 
+     *        volume
+     * @return a new Note with fields set based on the parsed noteString
+     * @throws com.myronmarston.music.NoteStringParseException thrown when the
+     *         noteString cannot be parsed
+     */
+    public static Note parseNoteString(String noteString, Scale scale, Fraction defaultDuration, Integer defaultVolume) throws NoteStringParseException {
+        if (defaultDuration == null) defaultDuration = new Fraction(1, 4);
+        if (defaultVolume == null) defaultVolume = Dynamic.MF.getMidiVolume();
+        
+        Matcher match = Note.getNoteParser().matcher(noteString);        
+        if (match.matches()) {     
+            NoteName noteName = parseNoteString_getNoteName(noteString, match, 1);   
+            Fraction duration = parseNoteString_getDuration(noteString, match, 3, 4, defaultDuration);
+            Note newNote;
+            
+            if (noteName == null) { // indicates the note is a rest...
+                newNote = Note.createRest(duration);
+            } else {                
+                int octave = parseNoteString_getOctave(noteString, match, 2);                
+                int volume = parseNoteString_getVolume(noteString, match, 5, defaultVolume);                
+            
+                newNote = new Note();
+                scale.setNotePitchValues(newNote, noteName);
+                newNote.setOctave(octave);
+                newNote.setDuration(duration);
+                newNote.setVolume(volume);
+            }            
+            
+            return newNote;
+        } else {
+            throw new IncorrectNoteStringException(noteString);            
+        }                
+    }       
+    
+    /**
+     * Gets the note name for the parseNoteString method.
+     * 
+     * @param noteString the noteString being parsed
+     * @param match the regex match object
+     * @param matchGroupIndex the index for the captured group containing 
+     *        noteName
+     * @return the NoteName, or null if the note should be a rest
+     * @throws com.myronmarston.music.NoteStringInvalidPartException
+     *         thrown if the noteString is missing a note name or 'R' for rest
+     */
+    static private NoteName parseNoteString_getNoteName(String noteString, Matcher match, int matchGroupIndex) throws NoteStringInvalidPartException {
+        assert match.matches() : match;
+        String noteNameStr = match.group(matchGroupIndex);
+        
+        if (noteNameStr == null) throw new NoteStringInvalidPartException(noteString, NoteStringPart.NOTE_NAME);
+        if (noteNameStr.toUpperCase(Locale.ENGLISH).contentEquals("R")) return null;
+        
+        NoteName noteName = NoteName.getNoteName(noteNameStr);
+        if (noteName == null) throw new NoteStringInvalidPartException(noteString, NoteStringPart.NOTE_NAME);
+        return noteName;         
+    }
+    
+    /**
+     * Gets the octave for the parseNoteString method.
+     * 
+     * @param noteString the noteString being parsed
+     * @param match the regex match object
+     * @param matchGroupIndex the index for the captured group containing the
+     *        octave
+     * @return the octave
+     * @throws com.myronmarston.music.NoteStringInvalidPartException 
+     *         thrown if the noteString does not contain an octave
+     */
+    private static int parseNoteString_getOctave(String noteString, Matcher match, int matchGroupIndex) throws NoteStringInvalidPartException {
+        assert match.matches() : match;
+        String octaveStr = match.group(matchGroupIndex);
+        if (octaveStr == null) throw new NoteStringInvalidPartException(noteString, NoteStringPart.OCTAVE);
+        
+        try {
+            return Integer.parseInt(octaveStr);
+        } catch (NumberFormatException ex) {
+            throw new NoteStringInvalidPartException(noteString, NoteStringPart.OCTAVE);
+        }        
+    }
+    
+    /**
+     * Gets the duration fraction for the parseNoteString method.
+     * 
+     * @param noteString the noteString being parsed
+     * @param match the regex match object
+     * @param numeratorMatchGroupIndex the index for the captured group 
+     *        containing the duration fraction numerator
+     * @param denominatorMatchGroupIndex the index for the captured group 
+     *        containing the duration fraction denominator
+     * @param defaultDuration duration to use if the noteString does not have a
+     *        duration
+     * @return the duration fraction
+     * @throws com.myronmarston.music.NoteStringInvalidPartException
+     *         thrown if the noteString contains part of the duration fraction
+     *         but not all of it
+     */
+    private static Fraction parseNoteString_getDuration(String noteString, Matcher match, int numeratorMatchGroupIndex, int denominatorMatchGroupIndex, Fraction defaultDuration) throws NoteStringInvalidPartException {        
+        assert match.matches() : match;
+        String durationNumStr = match.group(numeratorMatchGroupIndex);
+        String durationDenStr = match.group(denominatorMatchGroupIndex);
+        if (durationNumStr == null && durationDenStr == null) {
+            // This note doesn't have a duration; instead use the default duration
+            return defaultDuration;
+        } else if (durationNumStr == null || durationNumStr.isEmpty() || durationDenStr == null || durationDenStr.isEmpty()) {
+            // The note string contains part of a duration, but not a complete one.
+            throw new NoteStringInvalidPartException(noteString, NoteStringPart.RHYTHMIC_DURATION);
+        } else {
+            int durationNum = Integer.parseInt(durationNumStr);
+            int durationDen = Integer.parseInt(durationDenStr);
+
+            if (durationDen == 0) {
+                throw new NoteStringInvalidPartException(noteString, NoteStringPart.RHYTHMIC_DURATION);
+            }
+            return new Fraction(durationNum, durationDen);
+        }
+    }
+    
+    /**
+     * Gets the volume for the parseNoteString method.
+     * 
+     * @param match the regex match object
+     * @param matchGroupIndex the index for the captured group containing the
+     *        dynamic
+     * @param defaultVolume volume to use if the noteString does not have a 
+     *        dynamic
+     * @return the volume
+     */
+    private static int parseNoteString_getVolume(String noteString, Matcher match, int matchGroupIndex, int defaultVolume) throws NoteStringInvalidPartException {        
+        String dynamicStr = match.group(matchGroupIndex);
+        if (dynamicStr == null || dynamicStr.isEmpty()) {
+            return defaultVolume;
+        } else {             
+            try {
+                return Dynamic.valueOf(dynamicStr.toUpperCase(Locale.ENGLISH)).getMidiVolume();
+            } catch (IllegalArgumentException ex) {
+                throw new NoteStringInvalidPartException(noteString, NoteStringPart.DYNAMIC);
+            }            
+        }
+    }
+            
+    /**
      * Sometimes after transformations are applied to a note, the scale step is
      * less than 0 or greater than the number of scale steps in an octave.  
      * This method "normalizes" the note--adjusts its scaleStep and octave so 
@@ -367,12 +540,11 @@ public class Note {
         midiNote.setPitch(this.getMidiPitchNumber(scale));
         
         return midiNote;
-    }   
-    
+    }               
     
     @Override
     public String toString() {
-        return String.format("Note = scaleStep %d, octave %d, chromaticAdjustment %d, duration %f, volume %d", this.scaleStep, this.octave, this.chromaticAdjustment, this.duration.asDouble(), this.volume);
+        return String.format("Note = scaleStep %d, octave %d, chromaticAdjustment %d, duration %s, volume %d", this.scaleStep, this.octave, this.chromaticAdjustment, this.duration.toString(), this.volume);
     }
 
     // equals and hashCode were auto-generated by the Netbeans IDE, and modified

@@ -15,6 +15,7 @@ public class MajorScale extends Scale {
      */
     public final static int NOT_A_VALID_MAJOR_KEY = Integer.MAX_VALUE;    
     private final static int[] SCALE_STEPS = new int[] {0, 2, 4, 5, 7, 9, 11};    
+    private final static int[] LETTER_NUMBERS = new int[] {0, 1, 2, 3, 4, 5, 6};
 
     /**
      * Constructor.
@@ -41,4 +42,9 @@ public class MajorScale extends Scale {
     public int[] getScaleStepArray() {
         return MajorScale.SCALE_STEPS;
     }
+    
+    @Override
+    public int[] getLetterNumberArray() {
+        return MajorScale.LETTER_NUMBERS;
+    } 
 }

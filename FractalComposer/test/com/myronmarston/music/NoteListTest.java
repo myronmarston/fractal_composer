@@ -1,5 +1,6 @@
 package com.myronmarston.music;
 
+import com.myronmarston.music.scales.InvalidKeySignatureException;
 import com.myronmarston.music.scales.MajorScale;
 import com.myronmarston.music.scales.Scale;
 
@@ -37,19 +38,7 @@ public class NoteListTest {
 
     @After
     public void tearDown() {
-    }
-
-    @Test(expected=UnsupportedOperationException.class)
-    public void errorIfChangeRest() {        
-        Note n = Note.createRest(new Fraction(5, 1));
-        n.setScaleStep(2);
-    }
-    
-    @Test
-    public void copyConstructorForRest() {
-        Note n = Note.createRest(new Fraction(3, 1));
-        assertEquals(n, new Note(n));
-    }
+    }   
     
     @Test
     public void getFirstAudibleNote() {
@@ -58,28 +47,7 @@ public class NoteListTest {
         notes.add(Note.createRest(new Fraction(2, 1))); // a rest
         notes.add(soundedNote);
         assertEquals(soundedNote, notes.getFirstAudibleNote());
-    }
-    
-    @Test(expected=IllegalArgumentException.class)
-    public void constructNoDurationNote() {
-        Note n = new Note(2, 2, 0, new Fraction(0, 1), 64);
-    }
-    
-    @Test(expected=IllegalArgumentException.class)
-    public void constructNoDurationRest() {
-        Note n = Note.createRest(new Fraction(0, 1));
-    }
-    
-    @Test(expected=IllegalArgumentException.class)
-    public void setNoteDurationToZero() {
-        Note n = new Note(2, 2, 0, new Fraction(1, 1), 64);
-        n.setDuration(new Fraction(0, 1));
-    }
-    
-    @Test(expected=IllegalArgumentException.class)
-    public void setBadVolume() {
-        Note n = new Note(2, 2, 0, new Fraction(1, 1), 128);
-    }
+    }        
     
     @Test
     public void getDuration() {
@@ -127,4 +95,24 @@ public class NoteListTest {
         MidiNoteTest.assertNoteEventEqual(track.get(11), 24, (byte) -128, (byte) 70, (byte) 0);                
     }
 
+    @Test
+    public void parseNoteListString() throws InvalidKeySignatureException, NoteStringParseException { 
+        NoteList germ = new NoteList();
+        germ.parseNoteListString("D4,1/4,MF E4,1/8 F#4,F D4,1/4", new MajorScale(NoteName.D));
+        
+        NoteList expected = new NoteList();
+        expected.add(new Note(0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        expected.add(new Note(1, 4, 0, new Fraction(1, 8), Dynamic.MF.getMidiVolume()));
+        expected.add(new Note(2, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume()));
+        expected.add(new Note(0, 4, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume()));
+        
+        assertNoteListsEqual(expected, germ);        
+    }
+    
+    protected void assertNoteListsEqual(NoteList expected, NoteList actual) {        
+        assertEquals(expected.size(), actual.size());
+        for (int i = 0; i < actual.size(); i++) {
+            assertEquals(expected.get(i), actual.get(i));
+        }                                
+    }
 }

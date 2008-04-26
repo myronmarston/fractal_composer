@@ -5,6 +5,7 @@ import com.myronmarston.music.scales.Scale;
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 import javax.sound.midi.Sequence;
 import javax.sound.midi.Track;
 import javax.sound.midi.InvalidMidiDataException;
@@ -58,6 +59,32 @@ public class NoteList extends ArrayList<Note> {
         Fraction duration = new Fraction(0, 1);
         for (Note n : this) duration = duration.plus(n.getDuration());        
         return duration;        
+    }
+    
+    /**
+     * Fills the note list with notes based on the given note list string.
+     * 
+     * @param noteListString string containing space-seperated notes, each of 
+     *        the form 'F#4,1/4,PP'
+     * @param scale the scale to use to determine the note's pitch information
+     * @throws com.myronmarston.music.NoteStringParseException thrown if the 
+     *         note list string is invalid
+     */
+    public void parseNoteListString(String noteListString, Scale scale) throws NoteStringParseException {
+        Note note = null;
+        Fraction defaultDuration = null;
+        Integer defaultVolume = null;
+        StringTokenizer st = new StringTokenizer(noteListString);
+        
+        while (st.hasMoreTokens()) {
+            note = Note.parseNoteString(st.nextToken(), scale, defaultDuration, defaultVolume);
+            
+            // get our defaults for the next note from this note...
+            defaultDuration = note.getDuration();
+            defaultVolume = note.getVolume();
+            
+            this.add(note);
+        }
     }
     
     /**

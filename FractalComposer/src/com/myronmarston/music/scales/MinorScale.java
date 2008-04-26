@@ -15,6 +15,7 @@ public class MinorScale extends Scale {
      */
     public final static int NOT_A_VALID_MINOR_KEY = Integer.MIN_VALUE;
     private final static int[] SCALE_STEPS = new int[] {0, 2, 3, 5, 7, 8, 10};
+    private final static int[] LETTER_NUMBERS = new int[] {0, 1, 2, 3, 4, 5, 6};
 
     /**
      * Constructor.
@@ -41,4 +42,9 @@ public class MinorScale extends Scale {
     public int[] getScaleStepArray() {
         return MinorScale.SCALE_STEPS;
     }
+
+    @Override
+    public int[] getLetterNumberArray() {
+        return MinorScale.LETTER_NUMBERS;
+    }        
 }

@@ -36,28 +36,227 @@ public class ScaleTest {
 
     @After
     public void tearDown() {
-    }
+    }      
     
     @Test
-    public void keyNameDefaultNumberCorrect() {
-        assertEquals(NoteName.C, NoteName.getDefaultNoteNameForNumber(0));
-        assertEquals(NoteName.C_SHARP, NoteName.getDefaultNoteNameForNumber(1));
-        assertEquals(NoteName.D, NoteName.getDefaultNoteNameForNumber(2));
-        assertEquals(NoteName.E_FLAT, NoteName.getDefaultNoteNameForNumber(3));
-        assertEquals(NoteName.E, NoteName.getDefaultNoteNameForNumber(4));
-        assertEquals(NoteName.F, NoteName.getDefaultNoteNameForNumber(5));
-        assertEquals(NoteName.F_SHARP, NoteName.getDefaultNoteNameForNumber(6));
-        assertEquals(NoteName.G, NoteName.getDefaultNoteNameForNumber(7));
-        assertEquals(NoteName.A_FLAT, NoteName.getDefaultNoteNameForNumber(8));
-        assertEquals(NoteName.A, NoteName.getDefaultNoteNameForNumber(9));
-        assertEquals(NoteName.B_FLAT, NoteName.getDefaultNoteNameForNumber(10));
-        assertEquals(NoteName.B, NoteName.getDefaultNoteNameForNumber(11));                
+    public void setNotePitchValues() throws InvalidKeySignatureException {
+        Note n = new Note();
+        
+        Scale s = new MajorScale(NoteName.G); // G A B C D E F# G         
+        testSetNotePitchValues(s, n, NoteName.Abb, 1, -2);
+        testSetNotePitchValues(s, n, NoteName.Ab, 1, -1);
+        testSetNotePitchValues(s, n, NoteName.A, 1, 0);
+        testSetNotePitchValues(s, n, NoteName.As, 1, 1);
+        testSetNotePitchValues(s, n, NoteName.Ax, 1, 2); 
+        
+        testSetNotePitchValues(s, n, NoteName.Bbb, 2, -2);
+        testSetNotePitchValues(s, n, NoteName.Bb, 2, -1);
+        testSetNotePitchValues(s, n, NoteName.B, 2, 0);
+        testSetNotePitchValues(s, n, NoteName.Bs, 2, 1);
+        testSetNotePitchValues(s, n, NoteName.Bx, 2, 2);
+        
+        testSetNotePitchValues(s, n, NoteName.Cbb, 3, -2);
+        testSetNotePitchValues(s, n, NoteName.Cb, 3, -1);
+        testSetNotePitchValues(s, n, NoteName.C, 3, 0);
+        testSetNotePitchValues(s, n, NoteName.Cs, 3, 1);
+        testSetNotePitchValues(s, n, NoteName.Cx, 3, 2);
+        
+        testSetNotePitchValues(s, n, NoteName.Dbb, 4, -2);
+        testSetNotePitchValues(s, n, NoteName.Db, 4, -1);
+        testSetNotePitchValues(s, n, NoteName.D, 4, 0);
+        testSetNotePitchValues(s, n, NoteName.Ds, 4, 1);
+        testSetNotePitchValues(s, n, NoteName.Dx, 4, 2);
+        
+        testSetNotePitchValues(s, n, NoteName.Ebb, 5, -2);
+        testSetNotePitchValues(s, n, NoteName.Eb, 5, -1);
+        testSetNotePitchValues(s, n, NoteName.E, 5, 0);
+        testSetNotePitchValues(s, n, NoteName.Es, 5, 1);
+        testSetNotePitchValues(s, n, NoteName.Ex, 5, 2);
+        
+        testSetNotePitchValues(s, n, NoteName.Fbb, 6, -3);
+        testSetNotePitchValues(s, n, NoteName.Fb, 6, -2);
+        testSetNotePitchValues(s, n, NoteName.F, 6, -1);
+        testSetNotePitchValues(s, n, NoteName.Fs, 6, 0);
+        testSetNotePitchValues(s, n, NoteName.Fx, 6, 1);
+        
+        testSetNotePitchValues(s, n, NoteName.Gbb, 0, -2);
+        testSetNotePitchValues(s, n, NoteName.Gb, 0, -1);
+        testSetNotePitchValues(s, n, NoteName.G, 0, 0);
+        testSetNotePitchValues(s, n, NoteName.Gs, 0, 1);
+        testSetNotePitchValues(s, n, NoteName.Gx, 0, 2);     
+        
+        s = new MinorScale(NoteName.Ab); // Ab Bb Cb Db Eb Fb Gb Ab     
+        testSetNotePitchValues(s, n, NoteName.Abb, 0, -1);
+        testSetNotePitchValues(s, n, NoteName.Ab, 0, 0);
+        testSetNotePitchValues(s, n, NoteName.A, 0, 1);
+        testSetNotePitchValues(s, n, NoteName.As, 0, 2);
+        testSetNotePitchValues(s, n, NoteName.Ax, 0, 3); 
+        
+        testSetNotePitchValues(s, n, NoteName.Bbb, 1, -1);
+        testSetNotePitchValues(s, n, NoteName.Bb, 1, 0);
+        testSetNotePitchValues(s, n, NoteName.B, 1, 1);
+        testSetNotePitchValues(s, n, NoteName.Bs, 1, 2);
+        testSetNotePitchValues(s, n, NoteName.Bx, 1, 3);
+        
+        testSetNotePitchValues(s, n, NoteName.Cbb, 2, -1);
+        testSetNotePitchValues(s, n, NoteName.Cb, 2, 0);
+        testSetNotePitchValues(s, n, NoteName.C, 2, 1);
+        testSetNotePitchValues(s, n, NoteName.Cs, 2, 2);
+        testSetNotePitchValues(s, n, NoteName.Cx, 2, 3);
+        
+        testSetNotePitchValues(s, n, NoteName.Dbb, 3, -1);
+        testSetNotePitchValues(s, n, NoteName.Db, 3, 0);
+        testSetNotePitchValues(s, n, NoteName.D, 3, 1);
+        testSetNotePitchValues(s, n, NoteName.Ds, 3, 2);
+        testSetNotePitchValues(s, n, NoteName.Dx, 3, 3);
+        
+        testSetNotePitchValues(s, n, NoteName.Ebb, 4, -1);
+        testSetNotePitchValues(s, n, NoteName.Eb, 4, 0);
+        testSetNotePitchValues(s, n, NoteName.E, 4, 1);
+        testSetNotePitchValues(s, n, NoteName.Es, 4, 2);
+        testSetNotePitchValues(s, n, NoteName.Ex, 4, 3);
+        
+        testSetNotePitchValues(s, n, NoteName.Fbb, 5, -1);
+        testSetNotePitchValues(s, n, NoteName.Fb, 5, 0);
+        testSetNotePitchValues(s, n, NoteName.F, 5, 1);
+        testSetNotePitchValues(s, n, NoteName.Fs, 5, 2);
+        testSetNotePitchValues(s, n, NoteName.Fx, 5, 3);
+        
+        testSetNotePitchValues(s, n, NoteName.Gbb, 6, -1);
+        testSetNotePitchValues(s, n, NoteName.Gb, 6, 0);
+        testSetNotePitchValues(s, n, NoteName.G, 6, 1);
+        testSetNotePitchValues(s, n, NoteName.Gs, 6, 2);
+        testSetNotePitchValues(s, n, NoteName.Gx, 6, 3);
+        
+        s = new HarmonicMinorScale(NoteName.Ab); // Ab Bb Cb Db Eb Fb G Ab               
+        testSetNotePitchValues(s, n, NoteName.Abb, 0, -1);
+        testSetNotePitchValues(s, n, NoteName.Ab, 0, 0);
+        testSetNotePitchValues(s, n, NoteName.A, 0, 1);
+        testSetNotePitchValues(s, n, NoteName.As, 0, 2);
+        testSetNotePitchValues(s, n, NoteName.Ax, 0, 3); 
+        
+        testSetNotePitchValues(s, n, NoteName.Bbb, 1, -1);
+        testSetNotePitchValues(s, n, NoteName.Bb, 1, 0);
+        testSetNotePitchValues(s, n, NoteName.B, 1, 1);
+        testSetNotePitchValues(s, n, NoteName.Bs, 1, 2);
+        testSetNotePitchValues(s, n, NoteName.Bx, 1, 3);
+        
+        testSetNotePitchValues(s, n, NoteName.Cbb, 2, -1);
+        testSetNotePitchValues(s, n, NoteName.Cb, 2, 0);
+        testSetNotePitchValues(s, n, NoteName.C, 2, 1);
+        testSetNotePitchValues(s, n, NoteName.Cs, 2, 2);
+        testSetNotePitchValues(s, n, NoteName.Cx, 2, 3);
+        
+        testSetNotePitchValues(s, n, NoteName.Dbb, 3, -1);
+        testSetNotePitchValues(s, n, NoteName.Db, 3, 0);
+        testSetNotePitchValues(s, n, NoteName.D, 3, 1);
+        testSetNotePitchValues(s, n, NoteName.Ds, 3, 2);
+        testSetNotePitchValues(s, n, NoteName.Dx, 3, 3);
+        
+        testSetNotePitchValues(s, n, NoteName.Ebb, 4, -1);
+        testSetNotePitchValues(s, n, NoteName.Eb, 4, 0);
+        testSetNotePitchValues(s, n, NoteName.E, 4, 1);
+        testSetNotePitchValues(s, n, NoteName.Es, 4, 2);
+        testSetNotePitchValues(s, n, NoteName.Ex, 4, 3);
+        
+        testSetNotePitchValues(s, n, NoteName.Fbb, 5, -1);
+        testSetNotePitchValues(s, n, NoteName.Fb, 5, 0);
+        testSetNotePitchValues(s, n, NoteName.F, 5, 1);
+        testSetNotePitchValues(s, n, NoteName.Fs, 5, 2);
+        testSetNotePitchValues(s, n, NoteName.Fx, 5, 3);
+        
+        testSetNotePitchValues(s, n, NoteName.Gbb, 6, -2);
+        testSetNotePitchValues(s, n, NoteName.Gb, 6, -1);
+        testSetNotePitchValues(s, n, NoteName.G, 6, 0);
+        testSetNotePitchValues(s, n, NoteName.Gs, 6, 1);
+        testSetNotePitchValues(s, n, NoteName.Gx, 6, 2);
+                
+        s = new MajorPentatonicScale(NoteName.B); // B C# D# F# G# B
+        testSetNotePitchValues(s, n, NoteName.Abb, 4, -1);
+        testSetNotePitchValues(s, n, NoteName.Ab, 4, 0);
+        testSetNotePitchValues(s, n, NoteName.A, 4, 1);
+        testSetNotePitchValues(s, n, NoteName.As, 0, -1);
+        testSetNotePitchValues(s, n, NoteName.Ax, 0, 0); 
+        
+        testSetNotePitchValues(s, n, NoteName.Bbb, 0, -2);
+        testSetNotePitchValues(s, n, NoteName.Bb, 0, -1);
+        testSetNotePitchValues(s, n, NoteName.B, 0, 0);
+        testSetNotePitchValues(s, n, NoteName.Bs, 0, 1);
+        testSetNotePitchValues(s, n, NoteName.Bx, 0, 2);
+        
+        testSetNotePitchValues(s, n, NoteName.Cbb, 1, -3);
+        testSetNotePitchValues(s, n, NoteName.Cb, 1, -2);
+        testSetNotePitchValues(s, n, NoteName.C, 1, -1);
+        testSetNotePitchValues(s, n, NoteName.Cs, 1, 0);
+        testSetNotePitchValues(s, n, NoteName.Cx, 1, 1);
+        
+        testSetNotePitchValues(s, n, NoteName.Dbb, 2, -3);
+        testSetNotePitchValues(s, n, NoteName.Db, 2, -2);
+        testSetNotePitchValues(s, n, NoteName.D, 2, -1);
+        testSetNotePitchValues(s, n, NoteName.Ds, 2, 0);
+        testSetNotePitchValues(s, n, NoteName.Dx, 2, 1);
+        
+        testSetNotePitchValues(s, n, NoteName.Ebb, 2, -1);
+        testSetNotePitchValues(s, n, NoteName.Eb, 2, 0);
+        testSetNotePitchValues(s, n, NoteName.E, 2, 1);
+        testSetNotePitchValues(s, n, NoteName.Es, 3, -1);
+        testSetNotePitchValues(s, n, NoteName.Ex, 3, 0);
+        
+        testSetNotePitchValues(s, n, NoteName.Fbb, 3, -3);
+        testSetNotePitchValues(s, n, NoteName.Fb, 3, -2);
+        testSetNotePitchValues(s, n, NoteName.F, 3, -1);
+        testSetNotePitchValues(s, n, NoteName.Fs, 3, 0);
+        testSetNotePitchValues(s, n, NoteName.Fx, 3, 1);
+        
+        testSetNotePitchValues(s, n, NoteName.Gbb, 4, -3);
+        testSetNotePitchValues(s, n, NoteName.Gb, 4, -2);
+        testSetNotePitchValues(s, n, NoteName.G, 4, -1);
+        testSetNotePitchValues(s, n, NoteName.Gs, 4, 0);
+        testSetNotePitchValues(s, n, NoteName.Gx, 4, 1);
+        
+        s = new MinorPentatonicScale(NoteName.F);  // F Ab Bb C Eb F                
+        testSetNotePitchValues(s, n, NoteName.Abb, 1, -1);
+        testSetNotePitchValues(s, n, NoteName.Ab, 1, 0);
+        testSetNotePitchValues(s, n, NoteName.A, 1, 1);
+        testSetNotePitchValues(s, n, NoteName.As, 1, 2);
+        testSetNotePitchValues(s, n, NoteName.Ax, 1, 3); 
+        
+        testSetNotePitchValues(s, n, NoteName.Bbb, 2, -1);
+        testSetNotePitchValues(s, n, NoteName.Bb, 2, 0);
+        testSetNotePitchValues(s, n, NoteName.B, 2, 1);
+        testSetNotePitchValues(s, n, NoteName.Bs, 2, 2);
+        testSetNotePitchValues(s, n, NoteName.Bx, 2, 3);
+        
+        testSetNotePitchValues(s, n, NoteName.Cbb, 3, -2);
+        testSetNotePitchValues(s, n, NoteName.Cb, 3, -1);
+        testSetNotePitchValues(s, n, NoteName.C, 3, 0);
+        testSetNotePitchValues(s, n, NoteName.Cs, 3, 1);
+        testSetNotePitchValues(s, n, NoteName.Cx, 3, 2);
+        
+        testSetNotePitchValues(s, n, NoteName.Dbb, 3, 0);
+        testSetNotePitchValues(s, n, NoteName.Db, 3, 1);
+        testSetNotePitchValues(s, n, NoteName.D, 4, -1);
+        testSetNotePitchValues(s, n, NoteName.Ds, 4, 0);
+        testSetNotePitchValues(s, n, NoteName.Dx, 4, 1);
+        
+        testSetNotePitchValues(s, n, NoteName.Ebb, 4, -1);
+        testSetNotePitchValues(s, n, NoteName.Eb, 4, 0);
+        testSetNotePitchValues(s, n, NoteName.E, 4, 1);
+        testSetNotePitchValues(s, n, NoteName.Es, 4, 2);
+        testSetNotePitchValues(s, n, NoteName.Ex, 4, 3);
+        
+        testSetNotePitchValues(s, n, NoteName.Fbb, 0, -2);
+        testSetNotePitchValues(s, n, NoteName.Fb, 0, -1);
+        testSetNotePitchValues(s, n, NoteName.F, 0, 0);
+        testSetNotePitchValues(s, n, NoteName.Fs, 0, 1);
+        testSetNotePitchValues(s, n, NoteName.Fx, 0, 2);
+        
+        testSetNotePitchValues(s, n, NoteName.Gbb, 0, 0);
+        testSetNotePitchValues(s, n, NoteName.Gb, 0, 1);
+        testSetNotePitchValues(s, n, NoteName.G, 1, -1);
+        testSetNotePitchValues(s, n, NoteName.Gs, 1, 0);
+        testSetNotePitchValues(s, n, NoteName.Gx, 1, 1);                
     }
-    
-    @Test(expected=IllegalArgumentException.class)
-    public void getDefaultKeyNameForNumber_ThrowsException() {
-        NoteName k = NoteName.getDefaultNoteNameForNumber(12);
-    }   
     
     @Test
     public void majorScale_convertToMidiNote_accidental() throws InvalidKeySignatureException {
@@ -280,7 +479,13 @@ public class ScaleTest {
         assertMidiNoteValues(result, 82, 40, 16, 24); 
     }
     
-    protected void assertMidiNoteValues(MidiNote midiNote, int pitch, int velocity, long startTime, long duration) {
+    protected static void testSetNotePitchValues(Scale s, Note n, NoteName nn, int scaleStep, int chromaticAdjustment) {
+        s.setNotePitchValues(n, nn);
+        assertEquals(scaleStep, n.getScaleStep());
+        assertEquals(chromaticAdjustment, n.getChromaticAdjustment());
+    }
+    
+    protected static void assertMidiNoteValues(MidiNote midiNote, int pitch, int velocity, long startTime, long duration) {
         assertEquals(pitch, midiNote.getPitch());
         assertEquals(velocity, midiNote.getVelocity());
         assertEquals(startTime, midiNote.getStartTime());
