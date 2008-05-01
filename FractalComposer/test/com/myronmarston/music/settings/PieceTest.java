@@ -29,6 +29,127 @@ public class PieceTest {
     }
 
     @Test
+    public void simplePieceTest() throws InvalidKeySignatureException, NoteStringParseException, InvalidMidiDataException {
+        FractalPiece fp = new FractalPiece();
+        fp.setScale(new MajorScale(NoteName.G));
+        fp.getGerm().parseNoteListString("G4,1/4 A4,1/8 B4,1/8 G4,1/4", fp.getScale());
+        fp.createDefaultVoices();
+        Section s = fp.createSection();
+        s.setSelfSimilaritySettingsOnAllVoiceSections(true, true, true);
+        Sequence seq = fp.generatePiece();
+                
+        // array of voices, notes, pitches/durations
+        int[][][] noteValues = {
+            // first voice...
+            {   
+                // intro...
+                {-1, 384}, // -1 means rest...                
+                {79, 16}, {81, 8}, {83, 8}, {79, 16},
+                {79, 16}, {81, 8}, {83, 8}, {79, 16},
+                {79, 16}, {81, 8}, {83, 8}, {79, 16},
+                {79, 16}, {81, 8}, {83, 8}, {79, 16},
+                        
+                //self-similar section...
+                {79, 16}, {81, 8}, {83, 8}, {79, 16},
+                {81, 8}, {83, 4}, {84, 4}, {81, 8},
+                {83, 8}, {84, 4}, {86, 4}, {83, 8},
+                {79, 16}, {81, 8}, {83, 8}, {79, 16},
+                        
+                {79, 16}, {81, 8}, {83, 8}, {79, 16},
+                {81, 8}, {83, 4}, {84, 4}, {81, 8},
+                {83, 8}, {84, 4}, {86, 4}, {83, 8},
+                {79, 16}, {81, 8}, {83, 8}, {79, 16},
+                        
+                {79, 16}, {81, 8}, {83, 8}, {79, 16},
+                {81, 8}, {83, 4}, {84, 4}, {81, 8},
+                {83, 8}, {84, 4}, {86, 4}, {83, 8},
+                {79, 16}, {81, 8}, {83, 8}, {79, 16},
+                        
+                {79, 16}, {81, 8}, {83, 8}, {79, 16},
+                {81, 8}, {83, 4}, {84, 4}, {81, 8},
+                {83, 8}, {84, 4}, {86, 4}, {83, 8},
+                {79, 16}, {81, 8}, {83, 8}, {79, 16},
+                
+                //outro..
+                {79, 16}, {81, 8}, {83, 8}, {79, 16},
+                {79, 16}, {81, 8}, {83, 8}, {79, 16},
+                {79, 16}, {81, 8}, {83, 8}, {79, 16},
+                {79, 16}, {81, 8}, {83, 8}, {79, 16},
+                {-1, 384}                
+            },
+                       
+            // second voice...
+            {
+                // intro...
+                {-1, 192},                        
+                {67, 32}, {69, 16}, {71, 16}, {67, 32},
+                {67, 32}, {69, 16}, {71, 16}, {67, 32},
+                {67, 32}, {69, 16}, {71, 16}, {67, 32},
+                {67, 32}, {69, 16}, {71, 16}, {67, 32},
+                        
+                // self-similar section...           
+                {67, 32}, {69, 16}, {71, 16}, {67, 32},
+                {69, 16}, {71, 8}, {72, 8}, {69, 16},        
+                {71, 16}, {72, 8}, {74, 8}, {71, 16},        
+                {67, 32}, {69, 16}, {71, 16}, {67, 32},
+                        
+                {67, 32}, {69, 16}, {71, 16}, {67, 32},
+                {69, 16}, {71, 8}, {72, 8}, {69, 16},        
+                {71, 16}, {72, 8}, {74, 8}, {71, 16},        
+                {67, 32}, {69, 16}, {71, 16}, {67, 32},                         
+                        
+                // outro...                                        
+                {67, 32}, {69, 16}, {71, 16}, {67, 32},
+                {67, 32}, {69, 16}, {71, 16}, {67, 32},
+                {67, 32}, {69, 16}, {71, 16}, {67, 32},
+                {67, 32}, {69, 16}, {71, 16}, {67, 32},
+                {-1, 192}
+            },
+            
+            {
+                // intro...
+                {55, 64}, {57, 32}, {59, 32}, {55, 64},
+                {55, 64}, {57, 32}, {59, 32}, {55, 64},
+                {55, 64}, {57, 32}, {59, 32}, {55, 64},
+                
+                // self-similar section...        
+                {55, 64}, {57, 32}, {59, 32}, {55, 64},
+                {57, 32}, {59, 16}, {60, 16}, {57, 32},
+                {59, 32}, {60, 16}, {62, 16}, {59, 32},
+                {55, 64}, {57, 32}, {59, 32}, {55, 64},
+                        
+                // outro...
+                {55, 64}, {57, 32}, {59, 32}, {55, 64},
+                {55, 64}, {57, 32}, {59, 32}, {55, 64},
+                {55, 64}, {57, 32}, {59, 32}, {55, 64}
+            }
+        };
+        
+        int MFVolume = Dynamic.MF.getMidiVolume();
+        
+        for (int trackIndex = 0; trackIndex < noteValues.length; trackIndex++) {
+            System.out.println(String.format("  simplePieceTest track: %d", trackIndex));
+            
+            Track track = seq.getTracks()[trackIndex + 1]; //skip track 0, which has time signature and key signature
+            int trackNoteValues[][] = noteValues[trackIndex];
+            long ticksSoFar = 0;
+            
+            // make sure we have the right number of events. 
+            // there is always one extra event - the end-of-track event, so we add 1 for that.
+            assertEquals(trackNoteValues.length * 2 + 1, track.size());
+            
+            for (int noteIndex = 0; noteIndex < trackNoteValues.length; noteIndex++) {
+                if (trackNoteValues[noteIndex][0] == -1)  { // rest
+                    assertTrackMidiNoteEqual(track, noteIndex, ticksSoFar, trackNoteValues[noteIndex][1], 0, 0, trackIndex + 1);
+                } else {                                        
+                    assertTrackMidiNoteEqual(track, noteIndex, ticksSoFar, trackNoteValues[noteIndex][1], trackNoteValues[noteIndex][0], MFVolume, trackIndex + 1);
+                }
+                ticksSoFar += trackNoteValues[noteIndex][1];
+            }  
+        }
+    }
+    
+    @Test
     public void complicatedChromaticSelfSimilarityTest() throws InvalidKeySignatureException, InvalidMidiDataException {
         
         FractalPiece fp = new FractalPiece();
@@ -98,18 +219,19 @@ public class PieceTest {
         assertEquals(pitchNumbers.length * 2 + 1, t.size());
         
         for (int i = 0; i < pitchNumbers.length; i++) {
-            assertTrackMidiNoteEqual(t, i, i * 4, 4, pitchNumbers[i], MidiNote.DEFAULT_VELOCITY);
+            assertTrackMidiNoteEqual(t, i, i * 4, 4, pitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 1);
         }                
     }
     
-    public static void assertTrackMidiNoteEqual(Track t, int trackIndex, long tick, long duration, int pitchNum, int velocity) {
-        MidiEvent noteOnEvent = t.get(2 * trackIndex);
-        MidiEvent noteOffEvent = t.get((2 * trackIndex) + 1);
+    public static void assertTrackMidiNoteEqual(Track t, int noteIndex, long tick, long duration, int pitchNum, int velocity, int channelNum) {
+        MidiEvent noteOnEvent = t.get(2 * noteIndex);
+        MidiEvent noteOffEvent = t.get((2 * noteIndex) + 1);
         
-        byte noteOnEventByte1 = -112;
-        byte noteOffEventByte1 = -128;
+        byte noteOnEventByte1 = (byte) (-112 + channelNum);
+        byte noteOffEventByte1 = (byte) (-128 + channelNum);
+        //pitchNum -= 60;
         
-        System.out.println(String.format("assertTrackMidiNoteEqual index: %d", trackIndex));
+        System.out.println(String.format("assertTrackMidiNoteEqual index: %d", noteIndex));
         
         MidiNoteTest.assertNoteEventEqual(noteOnEvent, tick, noteOnEventByte1, (byte) pitchNum, (byte) velocity);
         MidiNoteTest.assertNoteEventEqual(noteOffEvent, tick + duration, noteOffEventByte1, (byte) pitchNum, (byte) 0);

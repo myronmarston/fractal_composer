@@ -486,6 +486,8 @@ public class Note {
      * @return the midi pitch number
      */
     private int getMidiPitchNumber(Scale scale) {
+        if (this.isRest()) return 0;
+        
         int[] scaleSteps = scale.getScaleStepArray(); // cache it
         Note normalizedNote = this.getNormalizedNote(scale);        
         int chromaticAdj = normalizedNote.getChromaticAdjustment();
@@ -531,13 +533,29 @@ public class Note {
      *        midi sequence
      * @return the MidiNote
      */
-    public MidiNote convertToMidiNote(Scale scale, Fraction startTime, int midiTickResolution) {        
+    public MidiNote convertToMidiNote(Scale scale, Fraction startTime, int midiTickResolution) {       
+        return convertToMidiNote(scale, startTime, midiTickResolution, MidiNote.DEFAULT_CHANNEL);
+    }
+    
+    /**
+     * Converts the note to a Midi Note, that can then be used to get the
+     * actual Midi note on and note off events.
+     * 
+     * @param scale the scale to use
+     * @param startTime the time this note should be played
+     * @param midiTickResolution the number of ticks per whole note for the
+     *        midi sequence
+     * @param channel the midi channel for this note, 0-15
+     * @return the MidiNote
+     */
+    public MidiNote convertToMidiNote(Scale scale, Fraction startTime, int midiTickResolution, int channel) {        
         MidiNote midiNote = new MidiNote();       
             
         midiNote.setDuration(convertWholeNotesToTicks(this.getDuration(), midiTickResolution));
         midiNote.setStartTime(convertWholeNotesToTicks(startTime, midiTickResolution));
         midiNote.setVelocity(this.getVolume());        
         midiNote.setPitch(this.getMidiPitchNumber(scale));
+        midiNote.setChannel(channel);
         
         return midiNote;
     }               

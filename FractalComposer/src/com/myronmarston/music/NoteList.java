@@ -5,6 +5,7 @@ import com.myronmarston.music.scales.Scale;
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 import javax.sound.midi.Sequence;
 import javax.sound.midi.Track;
@@ -87,6 +88,33 @@ public class NoteList extends ArrayList<Note> {
         }
     }
     
+    private List<Note> getListWithNormalizedRests() {
+        ArrayList<Note> newList = new ArrayList<Note>();
+        
+        Fraction currentRestDuration = new Fraction(0, 1);
+        for (Note n : this) {
+            if (n.isRest()) {
+                // sum up the rest durations...
+                currentRestDuration = currentRestDuration.plus(n.getDuration());
+            } else {
+                if (currentRestDuration.numerator() != 0) {
+                    // the note(s) previous to this one were rests, and we now have
+                    // the total duration.  Create a rest of this length.
+                    newList.add(Note.createRest(currentRestDuration));
+                    
+                    // rest the current rest duration to zero
+                    currentRestDuration = new Fraction(0, 1);
+                } 
+                
+                newList.add(n);
+            }
+        }
+        
+        if (currentRestDuration.numerator() != 0) newList.add(Note.createRest(currentRestDuration)); 
+        
+        return newList;
+    }
+    
     /**
      * Fills the given midi track with the notes from this NoteList.
      * 
@@ -100,12 +128,14 @@ public class NoteList extends ArrayList<Note> {
      */
     public Track createAndFillMidiTrack(Sequence sequence, Scale scale, Fraction startTime) throws InvalidMidiDataException {
         MidiNote midiNote = null;
+        // make each track be on a different channel, but make sure we don't go over our total number of channels...
+        int midiChannel = sequence.getTracks().length % MidiNote.MAX_CHANNEL;
         Track track = sequence.createTrack();
         // in Midi, the tick resolution is based on quarter notes, but we use whole notes...
         int midiTicksPerWholeNote = sequence.getResolution() * 4; 
-        
-        for (Note note : this) {
-            midiNote = note.convertToMidiNote(scale, startTime, midiTicksPerWholeNote);
+                
+        for (Note note : this.getListWithNormalizedRests()) {
+            midiNote = note.convertToMidiNote(scale, startTime, midiTicksPerWholeNote, midiChannel);
             
             track.add(midiNote.getNoteOnEvent());
             track.add(midiNote.getNoteOffEvent());

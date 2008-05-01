@@ -29,7 +29,17 @@ public class MidiNote {
     /**
      * The default channel of the note--0.
      */
-    public static final int DEFAULT_CHANNEL = 0;          
+    public static final int DEFAULT_CHANNEL = 0;      
+    
+    /**
+     * The minimum chanel value.
+     */
+    public static final int MIN_CHANNEL = 0;      
+    
+    /**
+     * The maximum channel value.
+     */
+    public static final int MAX_CHANNEL = 15;
     
     /**
      * The maximum allowed velocity, 127.
@@ -183,6 +193,7 @@ public class MidiNote {
      * @param channel which channel (0-15) this note should be on
      */
     public void setChannel(int channel) {
+        if (channel < MIN_CHANNEL || channel > MAX_CHANNEL) throw new IllegalArgumentException(String.format("The channel must be between %d and %d.", MIN_CHANNEL, MAX_CHANNEL));
         if (this.channel != channel) clearNoteEvents();
         this.channel = channel;        
     }   

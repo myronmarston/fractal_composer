@@ -4,6 +4,7 @@ import com.myronmarston.music.NoteStringInvalidPartException.NoteStringPart;
 import com.myronmarston.music.scales.*;
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
+import javax.sound.midi.InvalidMidiDataException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -155,5 +156,13 @@ public class NoteTest {
         }                              
         
         Note.parseNoteString("Gb4,MF", s, null, null); // valid note string!
+    }
+    
+    @Test
+    public void convertRestToMidiNote() throws InvalidKeySignatureException, InvalidMidiDataException {
+        Note n = Note.createRest(new Fraction(1, 4));
+        MidiNote mn = n.convertToMidiNote(new MajorScale(NoteName.C), new Fraction(4, 1), 4);
+        MidiNoteTest.assertNoteEventEqual(mn.getNoteOnEvent(), 16, (byte) -112, (byte) 0, (byte) 0);
+        MidiNoteTest.assertNoteEventEqual(mn.getNoteOffEvent(), 17, (byte) -128, (byte) 0, (byte) 0);
     }
 }

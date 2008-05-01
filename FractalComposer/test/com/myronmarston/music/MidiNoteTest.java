@@ -233,6 +233,12 @@ public class MidiNoteTest {
         assertNoteEventEqual(noteOffEvent, 24, (byte) -126, (byte) 92, (byte) 0);                
     }
     
+    @Test(expected=IllegalArgumentException.class)
+    public void channelIllegalArgumentException() {
+        MidiNote mn = new MidiNote();
+        mn.setChannel(16);
+    }
+    
     static public void assertNoteEventEqual(MidiEvent noteEvent, long tick, byte byte1, byte byte2, byte byte3) {
         assertEquals(tick, noteEvent.getTick());
         javax.sound.midi.MidiMessage msg = noteEvent.getMessage();
