@@ -1,14 +1,15 @@
 package com.myronmarston.music.settings;
 
-import com.myronmarston.music.Note;
-import com.myronmarston.music.NoteList;
+import com.myronmarston.music.*;
+import com.myronmarston.music.scales.*;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
-import com.myronmarston.music.scales.InvalidKeySignatureException;
+import java.io.File;
+import java.io.IOException;
 import java.util.ConcurrentModificationException;
 
-import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -769,6 +770,37 @@ public class SettingsTest {
         assertVoiceSectionEqual(v3.getVoiceSections().get(1), false, false, true, false, false, false);
         assertVoiceSectionEqual(v3.getVoiceSections().get(2), false, false, true, false, false, false);
         fp.clearTempIntroOutroSections();  
+    }
+    
+    @Test
+    public void setGerm() throws NoteStringParseException, InvalidKeySignatureException {
+        FractalPiece fp = new FractalPiece();
+        fp.setScale(new MajorScale(NoteName.G));
+        
+        NoteList expected = new NoteList();
+        expected.add(new Note(0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        expected.add(new Note(1, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume()));
+        expected.add(new Note(2, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume()));
+        expected.add(new Note(0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        
+        fp.setGerm("G4,1/4,MF A4,1/8,F B4,1/8,F G4,1/4,MF");
+        assertNoteListsEqual(expected, fp.getGerm());
+    }
+    
+    @Test
+    public void createAndSaveMidiFile() throws IOException, InvalidKeySignatureException, NoteStringParseException, InvalidMidiDataException {
+        File temp = File.createTempFile("TempMidiFile", ".mid");
+        temp.deleteOnExit();
+        String fileName = temp.getCanonicalPath();        
+                
+        FractalPiece fp = new FractalPiece();
+        fp.setScale(new MajorScale(NoteName.G));
+        fp.setGerm("G4,1/4,MF A4,1/8,F B4,1/8,F G4,1/4,MF");  
+        fp.createDefaultSettings();
+        fp.createAndSaveMidiFile(fileName);
+        
+        // this will throw an exception if the midi file was not saved...
+        Sequence seq = MidiSystem.getSequence(temp);        
     }
     
     static protected void assertNoteListsEqual(NoteList expected, NoteList actual) {

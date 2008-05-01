@@ -2,11 +2,15 @@ package com.myronmarston.music.settings;
 
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
+import com.myronmarston.music.NoteStringParseException;
 import com.myronmarston.music.scales.Scale;
 import com.myronmarston.util.MathHelper;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
+import java.io.File;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -14,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MidiSystem;
 import javax.sound.midi.Sequence;
 import javax.sound.midi.Track;
 
@@ -46,6 +51,17 @@ public class FractalPiece {
     public NoteList getGerm() {
         if (germ == null) germ = new NoteList();
         return germ;
+    }
+    
+    /**
+     * Sets the notes for the germ.
+     * 
+     * @param noteListString string containing a list of notes
+     * @throws com.myronmarston.music.NoteStringParseException if the note list
+     *         string cannot be parsed
+     */
+    public void setGerm(String noteListString) throws NoteStringParseException {
+        this.getGerm().parseNoteListString(noteListString, this.getScale());
     }
 
     /**
@@ -428,5 +444,22 @@ public class FractalPiece {
         } finally {
             this.clearTempIntroOutroSections();
         }        
+    }
+    
+    /**
+     * Creates and saves a midi file based on the existing fractal piece 
+     * settings.
+     * 
+     * @param fileName the file name for the midi file
+     * @throws javax.sound.midi.InvalidMidiDataException if there is some 
+     *         invalid midi data
+     * @throws java.io.IOException if the file cannot be written
+     */
+    public void createAndSaveMidiFile(String fileName) throws InvalidMidiDataException, IOException {
+        File outputFile = new File(fileName);        
+        Sequence sequence = this.generatePiece();   
+        
+        // Midi file type 1 is for multi-track sequences
+        MidiSystem.write(sequence, 1, outputFile);
     }
 }
