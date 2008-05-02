@@ -6,6 +6,7 @@ import com.myronmarston.music.NoteName;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
+import java.util.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -477,6 +478,27 @@ public class ScaleTest {
         note.setOctave(2);
         result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution);
         assertMidiNoteValues(result, 82, 40, 16, 24); 
+    }
+    
+    @Test
+    public void getScaleTypes() {
+        Map<String, Class> scaleTypes = Scale.getScaleTypes();
+        
+        // Test that we have all the scales (at least all of them at the time 
+        // of writing this test).  There shouldn't be a need to add more scales
+        // to this test--if this tests pass, it is getting the scales 
+        // dynamically and there's no reason it won't pick up new scales as well.
+        
+        assertTrue(scaleTypes.containsKey("Major"));
+        assertEquals(scaleTypes.get("Major"), MajorScale.class);
+        assertTrue(scaleTypes.containsKey("Minor"));
+        assertEquals(scaleTypes.get("Minor"), MinorScale.class);
+        assertTrue(scaleTypes.containsKey("Harmonic Minor"));
+        assertEquals(scaleTypes.get("Harmonic Minor"), HarmonicMinorScale.class);
+        assertTrue(scaleTypes.containsKey("Major Pentatonic"));
+        assertEquals(scaleTypes.get("Major Pentatonic"), MajorPentatonicScale.class);
+        assertTrue(scaleTypes.containsKey("Minor Pentatonic"));
+        assertEquals(scaleTypes.get("Minor Pentatonic"), MinorPentatonicScale.class);        
     }
     
     protected static void testSetNotePitchValues(Scale s, Note n, NoteName nn, int scaleStep, int chromaticAdjustment) {

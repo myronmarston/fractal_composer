@@ -3,7 +3,8 @@ package com.myronmarston.music.scales;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteName;
 
-import java.util.Arrays;
+import com.myronmarston.util.ClassHelper;
+import java.util.*;
 
 /**
  * Scales are used to convert a Note to a MidiNote and to provide the midi file
@@ -15,6 +16,7 @@ import java.util.Arrays;
  */
 public abstract class Scale {  
     private NoteName keyName;    
+    private static Map<String, Class> scaleTypes;
     private final static int MIDI_KEY_OFFSET = 12; //C0 is Midi pitch 12 (http://www.phys.unsw.edu.au/jw/notes.html)    
     
     /**
@@ -183,5 +185,40 @@ public abstract class Scale {
         int chromaticAdjustment = getNormalizedChromaticAdjustment(givenNoteHalfStepAboveTonic - diatonicNoteHalfStepsAboveTonic);
                 
         note.setChromaticAdjustment(chromaticAdjustment);
+    }
+    
+    /**
+     * Gets a list of all the classes in this package that subClass this type.
+     * 
+     * @return list of scale types    
+     */
+    public static Map<String, Class> getScaleTypes() {
+        if (scaleTypes == null) {
+            List<Class> scaleTypeList;
+            try {
+                scaleTypeList = ClassHelper.getSubclassesInPackage(Scale.class.getPackage().getName(), Scale.class);
+            } catch (ClassNotFoundException ex) {
+                // our code above is guarenteed to pass a valid package name, so we 
+                // should never get this exception; if we do, there is a bug in the
+                // code somewhere, so throw an assertion error.
+                throw new AssertionError("getScaleTypes() failed for some unknown reason.  The exception was: " + ex.getMessage());
+            }
+
+            scaleTypes = new HashMap<String, Class>(scaleTypeList.size());
+            String humanReadableName;
+            for (Class c : scaleTypeList) {
+                // change the string from 'CamelCasing' to 'Human Readable Format'
+                humanReadableName = c.getSimpleName().replaceAll("[A-Z]", " $0");
+                
+                // remove the redundant word 'Scale' from the string
+                humanReadableName = humanReadableName.replaceAll(" Scale", "");                
+                
+                // remove the leading space
+                humanReadableName = humanReadableName.replaceFirst("^ ", "");
+                scaleTypes.put(humanReadableName, c);
+            }
+        }    
+        
+        return scaleTypes;
     }
 }
