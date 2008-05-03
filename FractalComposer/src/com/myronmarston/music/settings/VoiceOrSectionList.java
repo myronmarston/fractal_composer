@@ -1,21 +1,20 @@
 package com.myronmarston.music.settings;
 
-import java.util.AbstractList;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import org.simpleframework.xml.load.*;
 
 /**
  * List of Voices or Sections that manages the creation and deletion of the 
  * VoiceSection objects as necessitated by add() and remove().
  * 
- * @param M the main type for this list (Voice or Section)
- * @param O the other type (Voice or Section)
+ * @param <M> the main type for this list (Voice or Section)
+ * @param <O> the other type (Voice or Section)
  * @author Myron
  */
 public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends AbstractVoiceOrSection> extends AbstractList<M> {
     private ArrayList<M> internalList = new ArrayList<M>();
     private HashMap<VoiceSectionHashMapKey, VoiceSection> voiceSections;
+    private boolean isDeserializing = false;
 
     /**
      * Constructor.
@@ -24,6 +23,13 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
      */
     public VoiceOrSectionList(HashMap<VoiceSectionHashMapKey, VoiceSection> voiceSections) {
         this.voiceSections = voiceSections;
+    }
+    
+    /**
+     * Provided for xml deserialization.
+     */
+    private VoiceOrSectionList() {
+        isDeserializing = true;
     }
     
     @Override
@@ -50,15 +56,24 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
      */
     @Override
     @SuppressWarnings("unchecked")
-    public void add(int index, M mainVorS) {
-        int otherTypeIndex = 0;        
-        internalList.add(index, mainVorS);        
-        VoiceSection vs;                
+    public void add(int index, M mainVorS) {               
+        internalList.add(index, mainVorS); 
+                
+        // the rest of this method is only intended to be run during normal
+        // object usage, not during deserialization.
+        if (isDeserializing) return;
+        
+        int otherTypeIndex = 0; 
+        VoiceSection vs;             
+        VoiceSectionHashMapKey key;
         
         // create the necessary Voice Sections...
         for (AbstractVoiceOrSection otherVOrS : (List<O>) mainVorS.getListOfOtherType()) {
             vs = mainVorS.instantiateVoiceSection(otherVOrS);
-            this.voiceSections.put(vs.createHashMapKey(), vs);
+            
+            key = vs.createHashMapKey();
+            assert !this.voiceSections.containsKey(key) : this.voiceSections.get(key);
+            this.voiceSections.put(key, vs);
             
             // assert that our lists have it...
             assert mainVorS.getVoiceSections().get(otherTypeIndex++) == vs;
@@ -101,4 +116,9 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
         
         return itemToRemove;
     }        
+    
+    @Commit
+    private void deserializationComplete() {
+        this.isDeserializing = false;
+    }
 }

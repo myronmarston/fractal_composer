@@ -1,17 +1,21 @@
 package com.myronmarston.music.settings;
 
+import org.simpleframework.xml.*;
+
 import java.util.List;
 
 /**
  * An abstract class containing a common interface and common logic shared
  * by the Voice and Section classes.
  *   
- * @param M the main type--Voice or Section
- * @param O the other type--Voice, if this is a Section, or Section,
+ * @param <M> the main type--Voice or Section
+ * @param <O> the other type--Voice, if this is a Section, or Section,
  *        if this is a voice
  * @author Myron
  */
+@Root
 public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O extends AbstractVoiceOrSection> {
+    @Element
     private FractalPiece fractalPiece;
     private VoiceSectionList voiceSections;
 
@@ -175,5 +179,5 @@ public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O
         if (applyToVolume != null) {
             this.setApplySelfSimilarityToVolumeOnAllVoiceSections(applyToVolume);
         }
-    }
+    }   
 }

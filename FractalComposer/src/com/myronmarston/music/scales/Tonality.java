@@ -1,5 +1,7 @@
 package com.myronmarston.music.scales;
 
+import org.simpleframework.xml.*;
+
 import com.myronmarston.music.NoteName;
 import java.util.*;
 
@@ -11,21 +13,13 @@ import java.util.*;
 public enum Tonality {      
     /**
      * Major tonality.
-     */
-    Major((byte) 0) {
-        public int getSharpsOrFlatsForKeyName(NoteName keyName) { 
-            return keyName.getMajorKeySharpsOrFlats();
-        }
-    },
+     */    
+    Major((byte) 0), 
 
     /**
      * Minor tonality.
-     */
-    Minor((byte) 1) {
-        public int getSharpsOrFlatsForKeyName(NoteName keyName) { 
-            return keyName.getMinorKeySharpsOrFlats();
-        }
-    };
+     */    
+    Minor((byte) 1);
     
     /**
      * Value for a NoteName's sharps or flats that indicates it is an invalid
@@ -94,5 +88,11 @@ public enum Tonality {
      * @param keyName the tonal center 
      * @return the number of flats (negative) or sharps (positive)
      */
-    public abstract int getSharpsOrFlatsForKeyName(NoteName keyName);
+    public int getSharpsOrFlatsForKeyName(NoteName keyName) {
+        switch (this) {
+            case Major: return keyName.getMajorKeySharpsOrFlats();
+            case Minor: return keyName.getMinorKeySharpsOrFlats();
+            default: throw new AssertionError("Unknown tonality.");
+        }
+    }
 }

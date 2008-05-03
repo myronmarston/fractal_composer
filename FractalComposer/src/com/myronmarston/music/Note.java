@@ -6,6 +6,8 @@ import com.myronmarston.music.NoteStringInvalidPartException.NoteStringPart;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
+import org.simpleframework.xml.*;
+
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.regex.*;
@@ -17,13 +19,24 @@ import java.util.regex.*;
  * 
  * @author Myron
  */
+@Root
 public class Note {
-   
+    @Attribute
     private int scaleStep; // number of scale steps above the tonic; 0 = tonic, 7 = octave, 9 = third an octave above, etc.
+    
+    @Attribute
     private int octave; // which octave the note should be in.  0 begins the first octave in Midi that contains the tonic.
+    
+    @Attribute
     private int chromaticAdjustment; // the number of half steps to adjust from the diatonic note; used if this note is an accidental
+    
+    @Element(required=false)
     private Fraction duration; // how long the note should last, in whole notes.
+    
+    @Attribute
     private int volume = MidiNote.DEFAULT_VELOCITY; // how loud the note should be on a scale from 0 to 127.    
+    
+    @Element(required=false)
     private SegmentSettings segmentSettings; // an object containing settings to apply to a segment of notes
     private static Pattern noteParser;
     

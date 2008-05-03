@@ -4,6 +4,8 @@ import com.myronmarston.music.NoteList;
 import com.myronmarston.music.transformers.OctaveTransformer;
 import com.myronmarston.music.transformers.RhythmicDurationTransformer;
 
+import org.simpleframework.xml.*;
+
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
 import java.util.List;
@@ -17,8 +19,12 @@ import java.util.List;
  * 
  * @author Myron
  */
-public class Voice extends AbstractVoiceOrSection<Voice, Section> {
+@Root
+public class Voice extends AbstractVoiceOrSection<Voice, Section> {   
+    @Attribute
     private int octaveAdjustment = 0;
+    
+    @Element
     private Fraction speedScaleFactor = new Fraction(1, 1);
     private NoteList modifiedGerm;
     
@@ -30,6 +36,13 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
     protected Voice(FractalPiece fractalPiece) {
         super(fractalPiece);
     }    
+    
+    /**
+     * Provided for xml deserialization.
+     */
+    private Voice() {
+        this(null);
+    }
         
     /**
      * Gets how many octaves to adjust the germ for use by this voice.
@@ -137,6 +150,6 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
     @Override
     protected VoiceSection instantiateVoiceSection(Section vOrS) {
         return new VoiceSection(this, vOrS);
-    }   
+    }        
 }
 

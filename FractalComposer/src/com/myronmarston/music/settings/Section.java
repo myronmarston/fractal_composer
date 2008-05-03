@@ -1,10 +1,8 @@
 package com.myronmarston.music.settings;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import org.simpleframework.xml.*;
+import java.util.*;
 
 
 /**
@@ -13,6 +11,7 @@ import java.util.List;
  * 
  * @author Myron
  */
+@Root
 public class Section extends AbstractVoiceOrSection<Section, Voice> {    
     
     /**
@@ -23,6 +22,13 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
     protected Section(FractalPiece fractalPiece) {
         super(fractalPiece);
     }     
+    
+    /**
+     * Provided for xml deserialization.
+     */
+    private Section() {
+        this(null);
+    }
     
     /**
      * Gets the duration for this entire section.  This will be the duration of
@@ -60,5 +66,5 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
     @Override
     protected VoiceSection instantiateVoiceSection(Voice vOrS) {
         return new VoiceSection(vOrS, this);
-    }   
+    }           
 }

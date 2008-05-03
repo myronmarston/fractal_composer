@@ -109,7 +109,7 @@ public class NoteListTest {
         assertNoteListsEqual(expected, germ);        
     }
     
-    protected void assertNoteListsEqual(NoteList expected, NoteList actual) {        
+    public static void assertNoteListsEqual(NoteList expected, NoteList actual) {        
         assertEquals(expected.size(), actual.size());
         for (int i = 0; i < actual.size(); i++) {
             assertEquals(expected.get(i), actual.get(i));

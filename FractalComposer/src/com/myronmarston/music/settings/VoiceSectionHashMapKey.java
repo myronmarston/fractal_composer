@@ -1,12 +1,18 @@
 package com.myronmarston.music.settings;
 
+import org.simpleframework.xml.*;
+
 /**
  * Used as a hash key to access a particular VoiceSection.
  * 
  * @author Myron
  */
+@Root
 public class VoiceSectionHashMapKey {
+    @Element
     private Voice voice;
+    
+    @Element
     private Section section;
     
     /**
@@ -19,6 +25,11 @@ public class VoiceSectionHashMapKey {
         this.voice = voice;
         this.section = section;
     }    
+    
+    /**
+     * Provided for xml deserialization.
+     */
+    private VoiceSectionHashMapKey() {}
     
     /**
      * Gets the Section for this key.

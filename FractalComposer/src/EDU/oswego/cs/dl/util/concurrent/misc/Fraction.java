@@ -15,21 +15,32 @@
 
 package EDU.oswego.cs.dl.util.concurrent.misc;
 
+import org.simpleframework.xml.*;
+
 
 /**
  * An immutable class representing fractions as pairs of longs.
  * Fractions are always maintained in reduced form.
  **/
+@Root
 public class Fraction implements Cloneable, Comparable, java.io.Serializable {
+  @Attribute
   protected final long numerator_;
+  
+  @Attribute
   protected final long denominator_;
 
-  /** Return the numerator **/
+  /** Return the numerator **/  
   public final long numerator() { return numerator_; }
 
   /** Return the denominator **/
   public final long denominator() { return denominator_; }
 
+  /** Exists to allow xml deserialization using the simple framework **/   
+  private Fraction() {
+      this(0, 1);
+  };
+  
   /** Create a Fraction equal in value to num / den **/
   public Fraction(long num, long den) {
     // normalize while constructing

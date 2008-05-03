@@ -8,7 +8,12 @@ import com.myronmarston.util.MathHelper;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
+import org.simpleframework.xml.*;
+import org.simpleframework.xml.graph.CycleStrategy;
+import org.simpleframework.xml.load.Persister;
+
 import java.io.*;
+import java.lang.reflect.UndeclaredThrowableException;
 import java.util.*;
 import javax.sound.midi.*;
 
@@ -20,15 +25,32 @@ import javax.sound.midi.*;
  * 
  * @author Myron
  */
+@Root
 public class FractalPiece {    
     private static interface InsertIndexProvider { int getInsertIndex(List l); }
+    
+    @ElementList(type=Note.class, required=false)
     private NoteList germ;
+    
+    @Element(required=false)
     private Scale scale;
+    
+    @Element(required=false)
     private TimeSignature timeSignature;
+    
+    @ElementList(type=Voice.class)
     private VoiceOrSectionList<Voice, Section> voices = new VoiceOrSectionList<Voice, Section>(this.getVoiceSections());
+    
+    @ElementList(type=Section.class)
     private VoiceOrSectionList<Section, Voice> sections = new VoiceOrSectionList<Section, Voice>(this.getVoiceSections());
+    
+    @ElementMap(entry="voiceSection")
     private HashMap<VoiceSectionHashMapKey, VoiceSection> voiceSections;
+    
+    @Attribute
     private boolean generateLayeredIntro = true;
+    
+    @Attribute
     private boolean generateLayeredOutro = true;
     private List<Section> tempIntroOutroSections = new ArrayList<Section>();
 
@@ -451,5 +473,38 @@ public class FractalPiece {
         
         // Midi file type 1 is for multi-track sequences
         MidiSystem.write(sequence, 1, outputFile);
+    }
+    
+    /**
+     * Creates and loads a fractal piece from a serialized xml string.
+     * 
+     * @param xml string containing an xml representation of the fractal piece
+     * @return the new fractal piece
+     * @throws java.lang.Exception if there is a deserialization error
+     */
+    public static FractalPiece loadFromXml(String xml) throws Exception {
+        Serializer serializer = new Persister(new CycleStrategy());
+        return serializer.read(FractalPiece.class, xml);        
+    }
+    
+    /**
+     * Serializes the fractal piece to xml.
+     * 
+     * @return the xml representation of the fractal piece
+     */
+    public String getXmlRepresentation() {
+        Serializer serializer = new Persister(new CycleStrategy());
+        StringWriter xml = new StringWriter();
+        
+        try {
+          serializer.write(this, xml);    
+        } catch (Exception ex) {
+            // Our serialization annotations and accompanying code should prevent
+            // this from ever occuring; if it does it is a programming error.
+            // We do this so that we don't have to declare it as a checked exception.
+            throw new UndeclaredThrowableException(ex, "An error occurred while serializing the fractal piece to xml.");
+        }        
+        
+        return xml.toString();
     }
 }

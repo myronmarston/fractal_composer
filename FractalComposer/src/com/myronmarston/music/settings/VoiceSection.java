@@ -5,8 +5,9 @@ import com.myronmarston.music.NoteList;
 import com.myronmarston.music.transformers.InversionTransformer;
 import com.myronmarston.music.transformers.RetrogradeTransformer;
 import com.myronmarston.music.transformers.SelfSimilarityTransformer;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
+
+import org.simpleframework.xml.*;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
         
@@ -17,12 +18,24 @@ import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
  * 
  * @author Myron
  */
+@Root
 public class VoiceSection implements Observer {
+    @Element
     private SelfSimilaritySettings selfSimilaritySettings;
+    
+    @Attribute
     private boolean rest = false;
+    
+    @Attribute
     private boolean applyInversion = false;
+    
+    @Attribute
     private boolean applyRetrograde = false;    
+    
+    @Element
     private Voice voice;
+    
+    @Element
     private Section section;
     private NoteList voiceSectionResult;
 
@@ -39,7 +52,12 @@ public class VoiceSection implements Observer {
         // observe our self similarity settings...
         selfSimilaritySettings = new SelfSimilaritySettings();
         selfSimilaritySettings.addObserver(this);
-    }        
+    }      
+    
+    /**
+     * Provided for xml deserialization.
+     */
+    private VoiceSection() {}
         
     /**
      * The Section this VoiceSection plays with simultaneously.
@@ -226,6 +244,5 @@ public class VoiceSection implements Observer {
         
         // if the self similarity settings change, it affects our result, so clear it...
         this.clearVoiceSectionResult();
-    }
+    }    
 }
-

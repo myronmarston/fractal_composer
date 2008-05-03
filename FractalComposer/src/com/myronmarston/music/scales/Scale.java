@@ -2,8 +2,10 @@ package com.myronmarston.music.scales;
 
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteName;
-
 import com.myronmarston.util.ClassHelper;
+
+import org.simpleframework.xml.*;
+
 import java.util.*;
 
 /**
@@ -14,7 +16,9 @@ import java.util.*;
  * 
  * @author Myron 
  */
-public abstract class Scale {      
+@Root
+public abstract class Scale {    
+    @Element
     private KeySignature keySignature;
     private static List<Class> scaleTypes;
     private final static int MIDI_KEY_OFFSET = 12; //C0 is Midi pitch 12 (http://www.phys.unsw.edu.au/jw/notes.html)    
@@ -193,4 +197,26 @@ public abstract class Scale {
         
         return scaleTypes;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Scale other = (Scale) obj;
+        if (this.keySignature != other.keySignature && (this.keySignature == null || !this.keySignature.equals(other.keySignature))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 79 * hash + (this.keySignature != null ? this.keySignature.hashCode() : 0);
+        return hash;
+    }        
 }

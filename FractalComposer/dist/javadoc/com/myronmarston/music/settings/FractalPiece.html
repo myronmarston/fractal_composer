@@ -304,6 +304,22 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#getXmlRepresentation()">getXmlRepresentation</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Serializes the fractal piece to xml.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#loadFromXml(java.lang.String)">loadFromXml</A></B>(java.lang.String&nbsp;xml)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates and loads a fractal piece from a serialized xml string.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#setGenerateLayeredIntro(boolean)">setGenerateLayeredIntro</A></B>(boolean&nbsp;generateLayeredIntro)</CODE>
 
@@ -758,6 +774,37 @@ public void <B>createAndSaveMidiFile</B>(java.lang.String&nbsp;fileName)
 <DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - if there is some 
          invalid midi data
 <DD><CODE>java.io.IOException</CODE> - if the file cannot be written</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="loadFromXml(java.lang.String)"><!-- --></A><H3>
+loadFromXml</H3>
+<PRE>
+public static <A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A> <B>loadFromXml</B>(java.lang.String&nbsp;xml)
+                                throws java.lang.Exception</PRE>
+<DL>
+<DD>Creates and loads a fractal piece from a serialized xml string.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>xml</CODE> - string containing an xml representation of the fractal piece
+<DT><B>Returns:</B><DD>the new fractal piece
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.Exception</CODE> - if there is a deserialization error</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getXmlRepresentation()"><!-- --></A><H3>
+getXmlRepresentation</H3>
+<PRE>
+public java.lang.String <B>getXmlRepresentation</B>()</PRE>
+<DL>
+<DD>Serializes the fractal piece to xml.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the xml representation of the fractal piece</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

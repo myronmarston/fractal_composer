@@ -1,5 +1,7 @@
 package com.myronmarston.music.settings;
 
+import org.simpleframework.xml.*;
+
 /**
  * Contains some settings that apply to an arbitrary group of notes.  For example,
  * when pitch self-similarity is applied to a germ with an accidental, the segment
@@ -8,8 +10,10 @@ package com.myronmarston.music.settings;
  * 
  * @author Myron
  */
+@Root
 public class SegmentSettings {
-    private int chromaticAdjustment;
+    @Attribute
+    private int chromaticAdjustment;        
     
     /**
      * Gets the chromatic adjustment for this segment.

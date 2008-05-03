@@ -2,12 +2,15 @@ package com.myronmarston.music.scales;
 
 import com.myronmarston.music.NoteName;
 
+import org.simpleframework.xml.*;
+
 /**
  * A natural minor scale: WHWWHWW.  This is also known as Aeolian mode when 
  * analyzing music modally.
  * 
  * @author Myron
  */
+@Root
 public class MinorScale extends Scale {        
     private final static int[] SCALE_STEPS = new int[] {0, 2, 3, 5, 7, 8, 10};
     private final static int[] LETTER_NUMBERS = new int[] {0, 1, 2, 3, 4, 5, 6};
@@ -21,7 +24,17 @@ public class MinorScale extends Scale {
      */
     public MinorScale(NoteName keyName) throws InvalidKeySignatureException {        
         super(new KeySignature(Tonality.Minor, keyName));        
-    }        
+    }    
+    
+    /**
+     * Provided to allow xml deserialization.
+     * 
+     * @throws com.myronmarston.music.scales.InvalidKeySignatureException thrown
+     *         when the key is invalid.
+     */
+    private MinorScale() throws InvalidKeySignatureException {
+        this(null);
+    }
 
     @Override
     public int[] getScaleStepArray() {
