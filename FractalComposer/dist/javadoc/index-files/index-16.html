@@ -82,7 +82,7 @@ function windowTitle()
 <B>S</B></H2>
 <DL>
 <DT><A HREF="../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales"><B>Scale</B></A> - Class in <A HREF="../com/myronmarston/music/scales/package-summary.html">com.myronmarston.music.scales</A><DD>Scales are used to convert a Note to a MidiNote and to provide the midi file
- with a time signature.<DT><A HREF="../com/myronmarston/music/scales/Scale.html#Scale(com.myronmarston.music.NoteName)"><B>Scale(NoteName)</B></A> - 
+ with a time signature.<DT><A HREF="../com/myronmarston/music/scales/Scale.html#Scale(com.myronmarston.music.scales.KeySignature)"><B>Scale(KeySignature)</B></A> - 
 Constructor for class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>
 <DD>Constructor.
 <DT><A HREF="../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings"><B>Section</B></A> - Class in <A HREF="../com/myronmarston/music/settings/package-summary.html">com.myronmarston.music.settings</A><DD>The entire fractal piece is composed of a series of sections.<DT><A HREF="../com/myronmarston/music/settings/Section.html#Section(com.myronmarston.music.settings.FractalPiece)"><B>Section(FractalPiece)</B></A> - 
@@ -170,12 +170,15 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
 <DD>Sets whether or not a layered outro should be included in the generated
  fractal piece.
+<DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#setGerm(java.lang.String)"><B>setGerm(String)</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
+<DD>Sets the notes for the germ.
+<DT><A HREF="../com/myronmarston/music/scales/KeySignature.html#setKeyName(com.myronmarston.music.NoteName)"><B>setKeyName(NoteName)</B></A> - 
+Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>
+<DD>Sets the note name of the tonal center.
 <DT><A HREF="../com/myronmarston/music/scales/Scale.html#setKeyName(com.myronmarston.music.NoteName)"><B>setKeyName(NoteName)</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>
 <DD>Sets the tonal center of the scale.
-<DT><A HREF="../com/myronmarston/music/scales/KeySignature.html#setMajorOrMinor(com.myronmarston.music.scales.KeySignature.MajorOrMinor)"><B>setMajorOrMinor(KeySignature.MajorOrMinor)</B></A> - 
-Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>
-<DD>Sets the tonality of this key.
 <DT><A HREF="../com/myronmarston/music/scales/Scale.html#setNotePitchValues(com.myronmarston.music.Note, com.myronmarston.music.NoteName)"><B>setNotePitchValues(Note, NoteName)</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>
 <DD>Sets the scaleStep and chromaticAdjustment on the given note, based on
@@ -183,9 +186,6 @@ Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music
 <DT><A HREF="../com/myronmarston/music/scales/Scale.html#setNotePitchValues_Helper(com.myronmarston.music.Note, com.myronmarston.music.NoteName, int)"><B>setNotePitchValues_Helper(Note, NoteName, int)</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>
 <DD>Helper method for setNotePitchValues().
-<DT><A HREF="../com/myronmarston/music/scales/KeySignature.html#setNumberOfFlatsOrSharps(int)"><B>setNumberOfFlatsOrSharps(int)</B></A> - 
-Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>
-<DD>Sets the number of flats or sharps for this key.
 <DT><A HREF="../com/myronmarston/music/settings/TimeSignature.html#setNumerator(int)"><B>setNumerator(int)</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A>
 <DD>Sets the number of counts per bar.

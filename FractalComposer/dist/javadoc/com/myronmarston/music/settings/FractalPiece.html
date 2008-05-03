@@ -146,6 +146,15 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#createAndSaveMidiFile(java.lang.String)">createAndSaveMidiFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates and saves a midi file based on the existing fractal piece 
+ settings.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#createDefaultSections()">createDefaultSections</A></B>()</CODE>
 
 <BR>
@@ -314,6 +323,14 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#setGerm(java.lang.String)">setGerm</A></B>(java.lang.String&nbsp;noteListString)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the notes for the germ.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#setScale(com.myronmarston.music.scales.Scale)">setScale</A></B>(<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</CODE>
 
 <BR>
@@ -378,6 +395,23 @@ public <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class i
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the germ NoteList</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setGerm(java.lang.String)"><!-- --></A><H3>
+setGerm</H3>
+<PRE>
+public void <B>setGerm</B>(java.lang.String&nbsp;noteListString)
+             throws <A HREF="../../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music">NoteStringParseException</A></PRE>
+<DL>
+<DD>Sets the notes for the germ.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>noteListString</CODE> - string containing a list of notes
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="../../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music">NoteStringParseException</A></CODE> - if the note list
+         string cannot be parsed</DL>
 </DD>
 </DL>
 <HR>
@@ -704,6 +738,26 @@ public javax.sound.midi.Sequence <B>generatePiece</B>()
 <DT><B>Returns:</B><DD>the generated fractal piece
 <DT><B>Throws:</B>
 <DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="createAndSaveMidiFile(java.lang.String)"><!-- --></A><H3>
+createAndSaveMidiFile</H3>
+<PRE>
+public void <B>createAndSaveMidiFile</B>(java.lang.String&nbsp;fileName)
+                           throws javax.sound.midi.InvalidMidiDataException,
+                                  java.io.IOException</PRE>
+<DL>
+<DD>Creates and saves a midi file based on the existing fractal piece 
+ settings.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name for the midi file
+<DT><B>Throws:</B>
+<DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - if there is some 
+         invalid midi data
+<DD><CODE>java.io.IOException</CODE> - if the file cannot be written</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

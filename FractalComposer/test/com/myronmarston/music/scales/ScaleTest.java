@@ -482,23 +482,17 @@ public class ScaleTest {
     
     @Test
     public void getScaleTypes() {
-        Map<String, Class> scaleTypes = Scale.getScaleTypes();
+        List<Class> scaleTypes = Scale.getScaleTypes();
         
         // Test that we have all the scales (at least all of them at the time 
         // of writing this test).  There shouldn't be a need to add more scales
         // to this test--if this tests pass, it is getting the scales 
         // dynamically and there's no reason it won't pick up new scales as well.
-        
-        assertTrue(scaleTypes.containsKey("Major"));
-        assertEquals(scaleTypes.get("Major"), MajorScale.class);
-        assertTrue(scaleTypes.containsKey("Minor"));
-        assertEquals(scaleTypes.get("Minor"), MinorScale.class);
-        assertTrue(scaleTypes.containsKey("Harmonic Minor"));
-        assertEquals(scaleTypes.get("Harmonic Minor"), HarmonicMinorScale.class);
-        assertTrue(scaleTypes.containsKey("Major Pentatonic"));
-        assertEquals(scaleTypes.get("Major Pentatonic"), MajorPentatonicScale.class);
-        assertTrue(scaleTypes.containsKey("Minor Pentatonic"));
-        assertEquals(scaleTypes.get("Minor Pentatonic"), MinorPentatonicScale.class);        
+        assertTrue(scaleTypes.contains(MajorScale.class));
+        assertTrue(scaleTypes.contains(MinorScale.class));
+        assertTrue(scaleTypes.contains(HarmonicMinorScale.class));
+        assertTrue(scaleTypes.contains(MajorPentatonicScale.class));
+        assertTrue(scaleTypes.contains(MinorPentatonicScale.class));              
     }
     
     protected static void testSetNotePitchValues(Scale s, Note n, NoteName nn, int scaleStep, int chromaticAdjustment) {

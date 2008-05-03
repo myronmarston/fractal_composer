@@ -14,35 +14,42 @@ import java.util.*;
  * 
  * @author Myron 
  */
-public abstract class Scale {  
-    private NoteName keyName;    
-    private static Map<String, Class> scaleTypes;
+public abstract class Scale {      
+    private KeySignature keySignature;
+    private static List<Class> scaleTypes;
     private final static int MIDI_KEY_OFFSET = 12; //C0 is Midi pitch 12 (http://www.phys.unsw.edu.au/jw/notes.html)    
     
     /**
      * The number of chromatic pitches in one octave: 12.
      */
-    public final static int NUM_CHROMATIC_PITCHES_PER_OCTAVE = 12;    
+    public final static int NUM_CHROMATIC_PITCHES_PER_OCTAVE = 12;         
     
     /**
      * Constructor.
      * 
-     * @param keyName the tonal center of the scale
-     * @throws com.myronmarston.music.scales.InvalidKeySignatureException thrown
-     *         if the given key has more than 7 sharps or flats
+     * @param keySignature the key signature of the scale
      */
-    public Scale(NoteName keyName) throws InvalidKeySignatureException {
-        this.setKeyName(keyName); 
-    }        
+    protected Scale(KeySignature keySignature) {
+        this.keySignature = keySignature;
+    }
 
     /**
      * Gets the tonal center of the scale.
      * 
      * @return the key name
      */
-    public NoteName getKeyName() {
-        return keyName;
+    public NoteName getKeyName() {        
+        return keySignature.getKeyName();
     }
+
+    /**
+     * Gets the key signature of the scale.
+     * 
+     * @return the key signature
+     */
+    public KeySignature getKeySignature() {
+        return keySignature;
+    }        
 
     /**
      * Sets the tonal center of the scale.
@@ -52,9 +59,7 @@ public abstract class Scale {
      *         if the key has more than 7 flats or sharps
      */
     public void setKeyName(NoteName keyName) throws InvalidKeySignatureException {
-        if (this.isInvalidKeyName(keyName))
-            throw new InvalidKeySignatureException(keyName.toString());
-        this.keyName = keyName;
+        this.getKeySignature().setKeyName(keyName);
     }    
     
     /**
@@ -70,24 +75,6 @@ public abstract class Scale {
             + (NUM_CHROMATIC_PITCHES_PER_OCTAVE * octave); // 12 half steps in an octave
     }          
        
-    /**
-     * Gets the key signature for this scale.
-     * 
-     * @return the key signature
-     */
-    abstract public KeySignature getKeySignature();
-    
-    /**
-     * Gets whether or not the passed key name is valid.  For example, G# major
-     * is invalid, because it requires 8 sharps (i.e. 6 sharps and 1 double 
-     * sharp) and the midi specification does not allow that.  However, G# minor
-     * is a valid key, so the scale must determine what is valid and invalid.
-     * 
-     * @param keyName the key name to test
-     * @return true if the key is not allowed by the midi specification
-     */
-    abstract protected boolean isInvalidKeyName(NoteName keyName);
-    
     /**
      * Gets an array of integers representing the number of half steps above
      * the tonic for each scale step.
@@ -185,39 +172,24 @@ public abstract class Scale {
         int chromaticAdjustment = getNormalizedChromaticAdjustment(givenNoteHalfStepAboveTonic - diatonicNoteHalfStepsAboveTonic);
                 
         note.setChromaticAdjustment(chromaticAdjustment);
-    }
+    }     
     
     /**
      * Gets a list of all the classes in this package that subClass this type.
      * 
      * @return list of scale types    
      */
-    public static Map<String, Class> getScaleTypes() {
-        if (scaleTypes == null) {
-            List<Class> scaleTypeList;
-            try {
-                scaleTypeList = ClassHelper.getSubclassesInPackage(Scale.class.getPackage().getName(), Scale.class);
+    public synchronized static List<Class> getScaleTypes() {
+        if (scaleTypes == null) {            
+            try {                
+                return ClassHelper.getSubclassesInPackage(Scale.class.getPackage().getName(), Scale.class);
             } catch (ClassNotFoundException ex) {
                 // our code above is guarenteed to pass a valid package name, so we 
                 // should never get this exception; if we do, there is a bug in the
                 // code somewhere, so throw an assertion error.
                 throw new AssertionError("getScaleTypes() failed for some unknown reason.  The exception was: " + ex.getMessage());
             }
-
-            scaleTypes = new HashMap<String, Class>(scaleTypeList.size());
-            String humanReadableName;
-            for (Class c : scaleTypeList) {
-                // change the string from 'CamelCasing' to 'Human Readable Format'
-                humanReadableName = c.getSimpleName().replaceAll("[A-Z]", " $0");
-                
-                // remove the redundant word 'Scale' from the string
-                humanReadableName = humanReadableName.replaceAll(" Scale", "");                
-                
-                // remove the leading space
-                humanReadableName = humanReadableName.replaceFirst("^ ", "");
-                scaleTypes.put(humanReadableName, c);
-            }
-        }    
+        }
         
         return scaleTypes;
     }

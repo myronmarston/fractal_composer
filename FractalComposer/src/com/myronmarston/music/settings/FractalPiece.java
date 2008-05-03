@@ -8,19 +8,9 @@ import com.myronmarston.util.MathHelper;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
-import java.io.File;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-
-import javax.sound.midi.InvalidMidiDataException;
-import javax.sound.midi.MidiSystem;
-import javax.sound.midi.Sequence;
-import javax.sound.midi.Track;
+import java.io.*;
+import java.util.*;
+import javax.sound.midi.*;
 
 /**
  * The GrandDaddy of them all.  This class controls the entire piece of music.

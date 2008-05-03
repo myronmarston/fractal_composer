@@ -191,6 +191,14 @@ Uses of <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum i
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
+<TD><CODE><B>KeySignature.</B><B><A HREF="../../../../com/myronmarston/music/scales/KeySignature.html#getKeyName()">getKeyName</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the note name of the tonal center.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
 <TD><CODE><B>Scale.</B><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeyName()">getKeyName</A></B>()</CODE>
 
 <BR>
@@ -202,31 +210,48 @@ Uses of <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum i
 
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
 <TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left" COLSPAN="2">Methods in <A HREF="../../../../com/myronmarston/music/scales/package-summary.html">com.myronmarston.music.scales</A> that return types with arguments of type <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B>Tonality.</B><B><A HREF="../../../../com/myronmarston/music/scales/Tonality.html#getValidKeyNames()">getValidKeyNames</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a list of all valid key names for this tonality.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
 <TH ALIGN="left" COLSPAN="2">Methods in <A HREF="../../../../com/myronmarston/music/scales/package-summary.html">com.myronmarston.music.scales</A> with parameters of type <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B>MajorScale.</B><B><A HREF="../../../../com/myronmarston/music/scales/MajorScale.html#isInvalidKeyName(com.myronmarston.music.NoteName)">isInvalidKeyName</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
+<CODE>abstract &nbsp;int</CODE></FONT></TD>
+<TD><CODE><B>Tonality.</B><B><A HREF="../../../../com/myronmarston/music/scales/Tonality.html#getSharpsOrFlatsForKeyName(com.myronmarston.music.NoteName)">getSharpsOrFlatsForKeyName</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the number of flats or sharps used in the key signature of the 
+ given key for this tonality.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B>MinorScale.</B><B><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#isInvalidKeyName(com.myronmarston.music.NoteName)">isInvalidKeyName</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B>Tonality.</B><B><A HREF="../../../../com/myronmarston/music/scales/Tonality.html#isValidKeyName(com.myronmarston.music.NoteName)">isValidKeyName</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;key)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets whether or not the given key name is valid for this tonality.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected abstract &nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B>Scale.</B><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#isInvalidKeyName(com.myronmarston.music.NoteName)">isInvalidKeyName</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B>KeySignature.</B><B><A HREF="../../../../com/myronmarston/music/scales/KeySignature.html#setKeyName(com.myronmarston.music.NoteName)">setKeyName</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets whether or not the passed key name is valid.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the note name of the tonal center.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -271,6 +296,13 @@ Uses of <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum i
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/KeySignature.html#KeySignature(com.myronmarston.music.scales.Tonality, com.myronmarston.music.NoteName)">KeySignature</A></B>(<A HREF="../../../../com/myronmarston/music/scales/Tonality.html" title="enum in com.myronmarston.music.scales">Tonality</A>&nbsp;tonality,
+             <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/MajorPentatonicScale.html#MajorPentatonicScale(com.myronmarston.music.NoteName)">MajorPentatonicScale</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
 
 <BR>
@@ -290,12 +322,6 @@ Uses of <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum i
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#MinorScale(com.myronmarston.music.NoteName)">MinorScale</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#Scale(com.myronmarston.music.NoteName)">Scale</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>

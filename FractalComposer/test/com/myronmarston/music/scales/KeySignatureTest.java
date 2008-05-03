@@ -27,15 +27,15 @@ public class KeySignatureTest {
     }
     
     @Test
-    public void getKeySignatureMidiEvent() throws InvalidMidiDataException {
-        KeySignature ks = new KeySignature(4, KeySignature.MajorOrMinor.Major);
+    public void getKeySignatureMidiEvent() throws InvalidKeySignatureException {
+        KeySignature ks = new KeySignature(Tonality.Major, NoteName.E);        
         assertKeySignatureEventEqual(ks.getKeySignatureMidiEvent(), (byte) 4, (byte) 0);
         
-        ks.setNumberOfFlatsOrSharps(-2);
+        ks.setKeyName(NoteName.Bb);        
         assertKeySignatureEventEqual(ks.getKeySignatureMidiEvent(), (byte) -2, (byte) 0);
         
-        ks.setMajorOrMinor(KeySignature.MajorOrMinor.Minor);
-        assertKeySignatureEventEqual(ks.getKeySignatureMidiEvent(), (byte) -2, (byte) 1);
+        ks = new KeySignature(Tonality.Minor, NoteName.Bb);        
+        assertKeySignatureEventEqual(ks.getKeySignatureMidiEvent(), (byte) -5, (byte) 1);
     }
     
     @Test(expected=InvalidKeySignatureException.class)

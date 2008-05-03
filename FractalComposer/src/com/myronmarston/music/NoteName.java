@@ -1,8 +1,7 @@
 package com.myronmarston.music;
 
 import com.myronmarston.music.scales.Scale;
-import com.myronmarston.music.scales.MajorScale;
-import com.myronmarston.music.scales.MinorScale;
+import com.myronmarston.music.scales.Tonality;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -16,15 +15,15 @@ import java.util.Locale;
  */
 public enum NoteName {    
     Cbb(0, 10),
-    Cb(0, 11, -7, MinorScale.NOT_A_VALID_MINOR_KEY),
+    Cb(0, 11, -7, Tonality.INVALID_KEY),
     C(0, 0, 0, -3, true), // C is 0 because the octave designations begin with C as the first note
     Cs(0, 1, 7, 4, true),    
     Cx(0, 2),
     
     Dbb(1, 0),
-    Db(1, 1, -5, MinorScale.NOT_A_VALID_MINOR_KEY),    
+    Db(1, 1, -5, Tonality.INVALID_KEY),    
     D(1, 2, 2, -1, true),
-    Ds(1, 3, MajorScale.NOT_A_VALID_MAJOR_KEY, 6),
+    Ds(1, 3, Tonality.INVALID_KEY, 6),
     Dx(1, 4),
     
     Ebb(2, 2),
@@ -40,15 +39,15 @@ public enum NoteName {
     Fx(3, 7),
     
     Gbb(4, 5),
-    Gb(4, 6, -6, MinorScale.NOT_A_VALID_MINOR_KEY),
+    Gb(4, 6, -6, Tonality.INVALID_KEY),
     G(4, 7, 1, -2, true),
-    Gs(4, 8, MajorScale.NOT_A_VALID_MAJOR_KEY, 5),
+    Gs(4, 8, Tonality.INVALID_KEY, 5),
     Gx(4, 9),
     
     Abb(5, 7),
     Ab(5, 8, -4, -7, true),
     A(5, 9, 3, 0, true), 
-    As(5, 10, MajorScale.NOT_A_VALID_MAJOR_KEY, 7),
+    As(5, 10, Tonality.INVALID_KEY, 7),
     Ax(5, 11),
     
     Bbb(6, 9),
@@ -66,7 +65,7 @@ public enum NoteName {
     public static final int NUM_LETTER_NAMES = 7;
     
     private NoteName(int letterNumber, int noteNumber) {
-        this(letterNumber, noteNumber, MajorScale.NOT_A_VALID_MAJOR_KEY, MinorScale.NOT_A_VALID_MINOR_KEY);
+        this(letterNumber, noteNumber, Tonality.INVALID_KEY, Tonality.INVALID_KEY);
     }
     
     private NoteName(int letterNumber, int noteNumber, int majorKeySharpsOrFlats, int minorKeySharpsOrFlats) {

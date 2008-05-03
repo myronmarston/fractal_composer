@@ -55,7 +55,7 @@ function windowTitle()
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;<A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;NEXT CLASS</FONT></TD>
+&nbsp;<A HREF="../../../../com/myronmarston/music/scales/Tonality.html" title="enum in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/myronmarston/music/scales/Scale.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="Scale.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
@@ -140,7 +140,9 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#Scale(com.myronmarston.music.NoteName)">Scale</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected </CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#Scale(com.myronmarston.music.scales.KeySignature)">Scale</A></B>(<A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>&nbsp;keySignature)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
@@ -165,11 +167,11 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>abstract &nbsp;<A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A></CODE></FONT></TD>
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeySignature()">getKeySignature</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the key signature for this scale.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the key signature of the scale.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -199,11 +201,11 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected abstract &nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#isInvalidKeyName(com.myronmarston.music.NoteName)">isInvalidKeyName</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
+<CODE>static&nbsp;java.util.List&lt;java.lang.Class&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getScaleTypes()">getScaleTypes</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets whether or not the passed key name is valid.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a list of all the classes in this package that subClass this type.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -277,19 +279,15 @@ public static final int <B>NUM_CHROMATIC_PITCHES_PER_OCTAVE</B></PRE>
 </TR>
 </TABLE>
 
-<A NAME="Scale(com.myronmarston.music.NoteName)"><!-- --></A><H3>
+<A NAME="Scale(com.myronmarston.music.scales.KeySignature)"><!-- --></A><H3>
 Scale</H3>
 <PRE>
-public <B>Scale</B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)
-      throws <A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></PRE>
+protected <B>Scale</B>(<A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>&nbsp;keySignature)</PRE>
 <DL>
 <DD>Constructor.
 <P>
 <DL>
-<DT><B>Parameters:</B><DD><CODE>keyName</CODE> - the tonal center of the scale
-<DT><B>Throws:</B>
-<DD><CODE><A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></CODE> - thrown
-         if the given key has more than 7 sharps or flats</DL>
+<DT><B>Parameters:</B><DD><CODE>keySignature</CODE> - the key signature of the scale</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -312,6 +310,20 @@ public <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the key name</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getKeySignature()"><!-- --></A><H3>
+getKeySignature</H3>
+<PRE>
+public <A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A> <B>getKeySignature</B>()</PRE>
+<DL>
+<DD>Gets the key signature of the scale.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the key signature</DL>
 </DD>
 </DL>
 <HR>
@@ -344,37 +356,6 @@ public int <B>getMidiPitchNumberForTonicAtOctave</B>(int&nbsp;octave)</PRE>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>octave</CODE> - the octave
 <DT><B>Returns:</B><DD>the midi pitch number</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getKeySignature()"><!-- --></A><H3>
-getKeySignature</H3>
-<PRE>
-public abstract <A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A> <B>getKeySignature</B>()</PRE>
-<DL>
-<DD>Gets the key signature for this scale.
-<P>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>the key signature</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="isInvalidKeyName(com.myronmarston.music.NoteName)"><!-- --></A><H3>
-isInvalidKeyName</H3>
-<PRE>
-protected abstract boolean <B>isInvalidKeyName</B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</PRE>
-<DL>
-<DD>Gets whether or not the passed key name is valid.  For example, G# major
- is invalid, because it requires 8 sharps (i.e. 6 sharps and 1 double 
- sharp) and the midi specification does not allow that.  However, G# minor
- is a valid key, so the scale must determine what is valid and invalid.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>keyName</CODE> - the key name to test
-<DT><B>Returns:</B><DD>true if the key is not allowed by the midi specification</DL>
 </DD>
 </DL>
 <HR>
@@ -442,6 +423,20 @@ protected void <B>setNotePitchValues_Helper</B>(<A HREF="../../../../com/myronma
         scaleStepArray that should be used</DL>
 </DD>
 </DL>
+<HR>
+
+<A NAME="getScaleTypes()"><!-- --></A><H3>
+getScaleTypes</H3>
+<PRE>
+public static java.util.List&lt;java.lang.Class&gt; <B>getScaleTypes</B>()</PRE>
+<DL>
+<DD>Gets a list of all the classes in this package that subClass this type.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>list of scale types</DL>
+</DD>
+</DL>
 <!-- ========= END OF CLASS DATA ========= -->
 <HR>
 
@@ -474,7 +469,7 @@ protected void <B>setNotePitchValues_Helper</B>(<A HREF="../../../../com/myronma
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;<A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;NEXT CLASS</FONT></TD>
+&nbsp;<A HREF="../../../../com/myronmarston/music/scales/Tonality.html" title="enum in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/myronmarston/music/scales/Scale.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="Scale.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;

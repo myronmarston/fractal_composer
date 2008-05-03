@@ -1,5 +1,8 @@
 package com.myronmarston.music.scales;
 
+import com.myronmarston.music.NoteName;
+
+import java.lang.reflect.UndeclaredThrowableException;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MetaMessage;
 import javax.sound.midi.MidiEvent;
@@ -9,52 +12,24 @@ import javax.sound.midi.MidiEvent;
  * 
  * @author Myron
  */
-public class KeySignature {
-    /**
-     * Enumerates the two main tonalities: Major and Minor.
-     */
-    public enum MajorOrMinor {
-        /**
-         * Major tonality.
-         */
-        Major((byte) 0),
-        
-        
-        /**
-         * Minor tonality.
-         */
-        Minor((byte) 1);
-        
-        private final byte midiValue;
-
-        /**
-         * Gets the midi value for this tonality.
-         * 
-         * @return 0 for major, 1 for minor
-         */
-        public byte getMidiValue() {
-            return midiValue;
-        }
-
-        private MajorOrMinor(byte midiValue) {
-            this.midiValue = midiValue;
-        }        
-    }
+public class KeySignature {       
+    private NoteName keyName;
+    private Tonality tonality;
+    private MidiEvent keySignatureMidiEvent;           
     
-    private int numberOfFlatsOrSharps;
-    private MajorOrMinor majorOrMinor;
-    private MidiEvent keySignatureMidiEvent;
-        
     /**
      * Constructor.
      * 
-     * @param numberOfFlatsOrSharps a negative value indicates a number of flats
-     *        and a positive value indicates a number of sharps
-     * @param majorOrMinor this tonality of this key
+     * @param tonality major or minor
+     * @param keyName the tonal center of the key
+     * @throws com.myronmarston.music.scales.InvalidKeySignatureException 
+     *         if the the key is invalid-e.g., a key that would have double 
+     *         flats or sharps, such as A# major.
      */
-    public KeySignature(int numberOfFlatsOrSharps, MajorOrMinor majorOrMinor) {
-        this.setNumberOfFlatsOrSharps(numberOfFlatsOrSharps);
-        this.setMajorOrMinor(majorOrMinor);        
+    public KeySignature(Tonality tonality, NoteName keyName) throws InvalidKeySignatureException {
+        checkValidityOfKeySignature(keyName, tonality);         
+        this.tonality = tonality;
+        this.keyName = keyName;
     }
     
     /**
@@ -62,18 +37,8 @@ public class KeySignature {
      * 
      * @return either major or minor
      */
-    public MajorOrMinor getMajorOrMinor() {
-        return majorOrMinor;
-    }
-
-    /**
-     * Sets the tonality of this key.
-     * 
-     * @param majorOrMinor either major or minor
-     */
-    public void setMajorOrMinor(MajorOrMinor majorOrMinor) {
-        this.majorOrMinor = majorOrMinor;
-        this.clearMidiKeySignatureEvent();
+    public Tonality getTonality() {
+        return tonality;
     }
 
     /**
@@ -83,35 +48,56 @@ public class KeySignature {
      * @return the number of flats or sharps
      */
     public int getNumberOfFlatsOrSharps() {
-        return numberOfFlatsOrSharps;
+        return this.getTonality().getSharpsOrFlatsForKeyName(this.getKeyName());
     }
 
     /**
-     * Sets the number of flats or sharps for this key.  A negative number 
-     * indicates flats and a positive number indicates sharps.
+     * Gets the note name of the tonal center.
      * 
-     * @param numberOfFlatsOrSharps the number of flats or sharps
+     * @return the name of the key
      */
-    public void setNumberOfFlatsOrSharps(int numberOfFlatsOrSharps) {
-        // Only values between -7 and 7 are valid
-        // Users will never set the key signature directly; they will just choose
-        // a scale.  So, I'm using an assertion rather than an exception since
-        // a bad value will be a programmer error, not a user error.
-        assert numberOfFlatsOrSharps >= -7 && numberOfFlatsOrSharps <= 7 : numberOfFlatsOrSharps;
-        
-        this.numberOfFlatsOrSharps = numberOfFlatsOrSharps;  
+    public NoteName getKeyName() {
+        return keyName;
+    }
+
+    /**
+     * Sets the note name of the tonal center.
+     * 
+     * @param keyName the name of the key
+     * @throws com.myronmarston.music.scales.InvalidKeySignatureException
+     *         if the the key is invalid-e.g., a key that would have double 
+     *         flats or sharps, such as A# major.
+     */
+    public void setKeyName(NoteName keyName) throws InvalidKeySignatureException {
+        checkValidityOfKeySignature(keyName, this.getTonality());
+        this.keyName = keyName;
         this.clearMidiKeySignatureEvent();
+    }        
+    
+    private static void checkValidityOfKeySignature(NoteName keyName, Tonality tonality) throws InvalidKeySignatureException {
+        if (keyName == null || tonality == null) return;
+        
+        if (!tonality.isValidKeyName(keyName)) {
+            throw new InvalidKeySignatureException(keyName.toString());
+        }
     }
     
     /**
      * Gets the midi key signature event.  This is cached to improve performance.
      * 
-     * @return the midi event
-     * @throws javax.sound.midi.InvalidMidiDataException thrown if there is
-     *         invalid midi data
+     * @return the midi event     
      */
-    public MidiEvent getKeySignatureMidiEvent() throws InvalidMidiDataException {
-        if (this.keySignatureMidiEvent == null) this.keySignatureMidiEvent = generateMidiKeySignatureEvent();
+    public MidiEvent getKeySignatureMidiEvent() {
+        if (this.keySignatureMidiEvent == null) { 
+            try {
+                this.keySignatureMidiEvent = generateMidiKeySignatureEvent();
+            } catch (InvalidMidiDataException ex) {
+                // our logic should prevent this exception from ever occurring, 
+                // so we transform this to an unchecked exception instead of 
+                // having to declare it on our method.
+                throw new UndeclaredThrowableException(ex, "The key signature midi event could not be created.  This indicates a programming error of some sort.");                
+            }
+        }
         return this.keySignatureMidiEvent;
     }
     
@@ -128,7 +114,7 @@ public class KeySignature {
         
         byte[] ksMessageData = new byte[2];
         ksMessageData[0] = (byte) this.getNumberOfFlatsOrSharps();
-        ksMessageData[1] = this.getMajorOrMinor().getMidiValue();       
+        ksMessageData[1] = this.getTonality().getMidiValue();       
        
         ksMessage.setMessage(89,            // 89 is the type for a key signature message
                              ksMessageData, // the key signature data
@@ -141,7 +127,7 @@ public class KeySignature {
      * Clears the midi key signature event field.  Should be called anytime a
      * field that is used to generate the midi event changes.
      */
-    protected void clearMidiKeySignatureEvent() {
+    private void clearMidiKeySignatureEvent() {
         this.keySignatureMidiEvent = null;
     }
 }

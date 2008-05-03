@@ -4,7 +4,7 @@
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <TITLE>
-MathHelper
+ClassHelper
 </TITLE>
 
 
@@ -14,7 +14,7 @@ MathHelper
 function windowTitle()
 {
     if (location.href.indexOf('is-external=true') == -1) {
-        parent.document.title="MathHelper";
+        parent.document.title="ClassHelper";
     }
 }
 </SCRIPT>
@@ -39,7 +39,7 @@ function windowTitle()
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/MathHelper.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ClassHelper.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -54,11 +54,11 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../com/myronmarston/util/ClassHelper.html" title="class in com.myronmarston.util"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;NEXT CLASS</FONT></TD>
+&nbsp;PREV CLASS&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/util/MathHelper.html" title="class in com.myronmarston.util"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../index.html?com/myronmarston/util/MathHelper.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="MathHelper.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?com/myronmarston/util/ClassHelper.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="ClassHelper.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -89,20 +89,15 @@ DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&n
 <FONT SIZE="-1">
 com.myronmarston.util</FONT>
 <BR>
-Class MathHelper</H2>
+Class ClassHelper</H2>
 <PRE>
 java.lang.Object
-  <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.util.MathHelper</B>
+  <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.util.ClassHelper</B>
 </PRE>
 <HR>
 <DL>
-<DT><PRE>public class <B>MathHelper</B><DT>extends java.lang.Object</DL>
+<DT><PRE>public class <B>ClassHelper</B><DT>extends java.lang.Object</DL>
 </PRE>
-
-<P>
-A class containing static helper methods for some math functions used to
- generate fractal music.
-<P>
 
 <P>
 <HR>
@@ -118,7 +113,7 @@ A class containing static helper methods for some math functions used to
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../com/myronmarston/util/MathHelper.html#MathHelper()">MathHelper</A></B>()</CODE>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/ClassHelper.html#ClassHelper()">ClassHelper</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -135,38 +130,29 @@ A class containing static helper methods for some math functions used to
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;long</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/util/MathHelper.html#greatestCommonDivisor(long, long)">greatestCommonDivisor</A></B>(long&nbsp;m,
-                      long&nbsp;n)</CODE>
+<CODE>static&nbsp;java.util.List&lt;java.lang.Class&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/ClassHelper.html#getClassesInPackage(java.lang.String)">getClassesInPackage</A></B>(java.lang.String&nbsp;packageName)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calculates the greatest common divisor of two numbers, using Euclid's 
- algorithm.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a list of all classes found in a particular package.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;long</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/util/MathHelper.html#leastCommonMultiple(java.util.List)">leastCommonMultiple</A></B>(java.util.List&lt;java.lang.Long&gt;&nbsp;integers)</CODE>
+<CODE>static&nbsp;java.util.List&lt;java.lang.Class&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/ClassHelper.html#getSubclassesInPackage(java.lang.String, java.lang.Class)">getSubclassesInPackage</A></B>(java.lang.String&nbsp;packageName,
+                       java.lang.Class&nbsp;superClass)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calculates the least common multiple of a list of numbers.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a list of classes in a package that are subclasses of a given class.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;long</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/util/MathHelper.html#leastCommonMultiple(long, long)">leastCommonMultiple</A></B>(long&nbsp;m,
-                    long&nbsp;n)</CODE>
+<CODE>static&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/ClassHelper.html#isClassSubclassOfClass(java.lang.Class, java.lang.Class)">isClassSubclassOfClass</A></B>(java.lang.Class&nbsp;classToTest,
+                       java.lang.Class&nbsp;superClass)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calculates the least common multiple of two numbers.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;double</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/util/MathHelper.html#log2(double)">log2</A></B>(double&nbsp;a)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calculates the base two logarithm of the given number.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checks to see if a given class is a subclass of a given super class.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -191,10 +177,10 @@ A class containing static helper methods for some math functions used to
 </TR>
 </TABLE>
 
-<A NAME="MathHelper()"><!-- --></A><H3>
-MathHelper</H3>
+<A NAME="ClassHelper()"><!-- --></A><H3>
+ClassHelper</H3>
 <PRE>
-public <B>MathHelper</B>()</PRE>
+public <B>ClassHelper</B>()</PRE>
 <DL>
 </DL>
 
@@ -208,61 +194,59 @@ public <B>MathHelper</B>()</PRE>
 </TR>
 </TABLE>
 
-<A NAME="greatestCommonDivisor(long, long)"><!-- --></A><H3>
-greatestCommonDivisor</H3>
+<A NAME="getClassesInPackage(java.lang.String)"><!-- --></A><H3>
+getClassesInPackage</H3>
 <PRE>
-public static long <B>greatestCommonDivisor</B>(long&nbsp;m,
-                                         long&nbsp;n)</PRE>
+public static java.util.List&lt;java.lang.Class&gt; <B>getClassesInPackage</B>(java.lang.String&nbsp;packageName)
+                                                           throws java.lang.ClassNotFoundException</PRE>
 <DL>
-<DD>Calculates the greatest common divisor of two numbers, using Euclid's 
- algorithm.
+<DD>Gets a list of all classes found in a particular package.  This method 
+ was taken from http://forum.java.sun.com/thread.jspa?threadID=341935&start=15.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>m</CODE> - a number<DD><CODE>n</CODE> - another number
-<DT><B>Returns:</B><DD>the greatest common divisor of these two numbers</DL>
+<DT><B>Parameters:</B><DD><CODE>packageName</CODE> - the name of the package to search for classes
+<DT><B>Returns:</B><DD>a list of classes in the given package
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.ClassNotFoundException</CODE> - if there is an error while 
+         searching for the classes</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="leastCommonMultiple(long, long)"><!-- --></A><H3>
-leastCommonMultiple</H3>
+<A NAME="getSubclassesInPackage(java.lang.String, java.lang.Class)"><!-- --></A><H3>
+getSubclassesInPackage</H3>
 <PRE>
-public static long <B>leastCommonMultiple</B>(long&nbsp;m,
-                                       long&nbsp;n)</PRE>
+public static java.util.List&lt;java.lang.Class&gt; <B>getSubclassesInPackage</B>(java.lang.String&nbsp;packageName,
+                                                                     java.lang.Class&nbsp;superClass)
+                                                              throws java.lang.ClassNotFoundException</PRE>
 <DL>
-<DD>Calculates the least common multiple of two numbers.
+<DD>Gets a list of classes in a package that are subclasses of a given class.
+ This list will include both direct subclasses, and classes that are
+ subclassed through multiple levels of inheritance.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>m</CODE> - a number<DD><CODE>n</CODE> - another number
-<DT><B>Returns:</B><DD>the least common multiple of these two numbers</DL>
+<DT><B>Parameters:</B><DD><CODE>packageName</CODE> - the name of the package to search<DD><CODE>superClass</CODE> - all classes that are subclasses of this will be 
+        included in the list
+<DT><B>Returns:</B><DD>list of subclasses of the given superClass
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.ClassNotFoundException</CODE> - if there is a problem searching
+         the package for classes</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="leastCommonMultiple(java.util.List)"><!-- --></A><H3>
-leastCommonMultiple</H3>
+<A NAME="isClassSubclassOfClass(java.lang.Class, java.lang.Class)"><!-- --></A><H3>
+isClassSubclassOfClass</H3>
 <PRE>
-public static long <B>leastCommonMultiple</B>(java.util.List&lt;java.lang.Long&gt;&nbsp;integers)</PRE>
+public static boolean <B>isClassSubclassOfClass</B>(java.lang.Class&nbsp;classToTest,
+                                             java.lang.Class&nbsp;superClass)</PRE>
 <DL>
-<DD>Calculates the least common multiple of a list of numbers.
+<DD>Checks to see if a given class is a subclass of a given super class.
+ All levels of the super class hierarchy are checked.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>integers</CODE> - a list of integers
-<DT><B>Returns:</B><DD>the least common multiple of this list</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="log2(double)"><!-- --></A><H3>
-log2</H3>
-<PRE>
-public static double <B>log2</B>(double&nbsp;a)</PRE>
-<DL>
-<DD>Calculates the base two logarithm of the given number.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>a</CODE> - number to take the log of
-<DT><B>Returns:</B><DD>the base 2 logarithm</DL>
+<DT><B>Parameters:</B><DD><CODE>classToTest</CODE> - the class to test<DD><CODE>superClass</CODE> - the super class to test against
+<DT><B>Returns:</B><DD>true if classToTest is a subclass of superClass; false otherwise</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
@@ -281,7 +265,7 @@ public static double <B>log2</B>(double&nbsp;a)</PRE>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/MathHelper.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ClassHelper.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -296,11 +280,11 @@ public static double <B>log2</B>(double&nbsp;a)</PRE>
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../com/myronmarston/util/ClassHelper.html" title="class in com.myronmarston.util"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;NEXT CLASS</FONT></TD>
+&nbsp;PREV CLASS&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/util/MathHelper.html" title="class in com.myronmarston.util"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../index.html?com/myronmarston/util/MathHelper.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="MathHelper.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?com/myronmarston/util/ClassHelper.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="ClassHelper.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
