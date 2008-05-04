@@ -7,6 +7,7 @@ import com.myronmarston.util.ClassHelper;
 import org.simpleframework.xml.*;
 
 import java.util.*;
+import java.lang.reflect.UndeclaredThrowableException;
 
 /**
  * Scales are used to convert a Note to a MidiNote and to provide the midi file
@@ -53,18 +54,7 @@ public abstract class Scale {
      */
     public KeySignature getKeySignature() {
         return keySignature;
-    }        
-
-    /**
-     * Sets the tonal center of the scale.
-     * 
-     * @param keyName the key name
-     * @throws com.myronmarston.music.scales.InvalidKeySignatureException thrown 
-     *         if the key has more than 7 flats or sharps
-     */
-    public void setKeyName(NoteName keyName) throws InvalidKeySignatureException {
-        this.getKeySignature().setKeyName(keyName);
-    }    
+    }         
     
     /**
      * Gets the midi pitch number for the tonic of this scale at the given 
@@ -179,6 +169,20 @@ public abstract class Scale {
     }     
     
     /**
+     * Gets the scale that should be used by default before the user specifies
+     * one.  
+     * 
+     * @return a chromatic scale
+     */
+    public static Scale getDefault() {
+        try {
+            return new ChromaticScale();
+        } catch (InvalidKeySignatureException ex) {
+            throw new UndeclaredThrowableException(ex, "An exception occurred while instantiating a ChromaticScale.  This indicates a programming error.");
+        }
+    }
+    
+    /**
      * Gets a list of all the classes in this package that subClass this type.
      * 
      * @return list of scale types    
@@ -191,12 +195,17 @@ public abstract class Scale {
                 // our code above is guarenteed to pass a valid package name, so we 
                 // should never get this exception; if we do, there is a bug in the
                 // code somewhere, so throw an assertion error.
-                throw new AssertionError("getScaleTypes() failed for some unknown reason.  The exception was: " + ex.getMessage());
+                throw new UndeclaredThrowableException(ex, "An exception occurred while getting the scale types.  This indicates a programming error.");
             }
         }
         
         return scaleTypes;
     }
+
+    @Override
+    public String toString() {
+        return this.getKeyName().toString() + this.getClass().getSimpleName().replaceAll("([A-Z])", " $1");
+    }        
 
     @Override
     public boolean equals(Object obj) {

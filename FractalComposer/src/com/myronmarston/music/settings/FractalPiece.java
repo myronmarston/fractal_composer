@@ -4,7 +4,6 @@ import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.NoteStringParseException;
 import com.myronmarston.music.scales.Scale;
-import com.myronmarston.util.MathHelper;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
@@ -30,13 +29,16 @@ public class FractalPiece {
     private static interface InsertIndexProvider { int getInsertIndex(List l); }
     
     @ElementList(type=Note.class, required=false)
-    private NoteList germ;
+    private NoteList germ = new NoteList();
     
-    @Element(required=false)
-    private Scale scale;
+    @Attribute
+    private String germString = "";
     
-    @Element(required=false)
-    private TimeSignature timeSignature;
+    @Element
+    private Scale scale = Scale.getDefault();
+    
+    @Element
+    private TimeSignature timeSignature = TimeSignature.getDefault();
     
     @ElementList(type=Voice.class)
     private VoiceOrSectionList<Voice, Section> voices = new VoiceOrSectionList<Voice, Section>(this.getVoiceSections());
@@ -53,27 +55,38 @@ public class FractalPiece {
     @Attribute
     private boolean generateLayeredOutro = true;
     private List<Section> tempIntroOutroSections = new ArrayList<Section>();
-
+    
     /**
      * Returns the germ NoteList.  Guarenteed to never be null.  
      * The germ is the short melody from which the entire piece is generated.
      * 
      * @return the germ NoteList
      */
-    public NoteList getGerm() {
-        if (germ == null) germ = new NoteList();
+    public NoteList getGerm() {   
+        assert germ != null : germ; // germ should never be null!
         return germ;
     }
+
+    /**
+     * Gets the germ string.
+     * 
+     * @return the germ string
+     */
+    public String getGermString() {
+        assert germString != null : germString; // germString should never be null!
+        return germString;
+    }        
     
     /**
      * Sets the notes for the germ.
      * 
-     * @param noteListString string containing a list of notes
+     * @param germString string containing a list of notes
      * @throws com.myronmarston.music.NoteStringParseException if the note list
      *         string cannot be parsed
      */
-    public void setGerm(String noteListString) throws NoteStringParseException {
-        this.getGerm().parseNoteListString(noteListString, this.getScale());
+    public void setGermString(String germString) throws NoteStringParseException {
+        this.germ = NoteList.parseNoteListString(germString, this.getScale());
+        this.germString = germString;
     }
 
     /**
@@ -84,6 +97,7 @@ public class FractalPiece {
      * @return the Scale used by this FractalPiece
      */
     public Scale getScale() {
+        assert scale != null : scale; // scale should never be null!
         return scale;
     }
 
@@ -95,6 +109,21 @@ public class FractalPiece {
      * @param scale the Scale to be used by this FractalPiece
      */
     public void setScale(Scale scale) {
+        if (scale == null) throw new IllegalArgumentException("Scale cannot be set to null.");        
+        
+        if (this.getGermString() != null && !this.getGermString().isEmpty()) {
+            try {
+                this.germ = NoteList.parseNoteListString(this.getGermString(), scale);
+            } catch (NoteStringParseException ex) {                
+                // All scales should be able to handle a valid note list string.
+                // if we have a germString, it was valid with the existing scale,
+                // so it should also be valid with this scale.  We should only
+                // get a NoteStringParseException in the case of a programming
+                // error.
+                throw new UndeclaredThrowableException(ex, "An error occured while parsing the note list string '" + this.getGermString() + "' using the scale " + scale.toString() + ".  This indicates a programming error.");        
+            }
+        }     
+        
         this.scale = scale;
     }
 
@@ -144,16 +173,8 @@ public class FractalPiece {
      * 
      * @return the time signature
      */
-    public TimeSignature getTimeSignature() {
-        if (timeSignature == null) {
-            try {
-                // create a default time signature
-                timeSignature = new TimeSignature(4, 4);
-            } catch (InvalidTimeSignatureException ex) {                
-                // 4/4 should always be a valid time signature, so just catch this exception so we don't have to declare it...
-                assert false : ex;
-            }
-        }
+    public TimeSignature getTimeSignature() {  
+        assert timeSignature != null : timeSignature; // timeSignature should never be null...
         return timeSignature;
     }
 
@@ -163,6 +184,7 @@ public class FractalPiece {
      * @param timeSignature the time signature
      */
     public void setTimeSignature(TimeSignature timeSignature) {
+        if (timeSignature == null) throw new IllegalArgumentException("TimeSignature cannot be set to null.");
         this.timeSignature = timeSignature;
     }   
     
@@ -185,6 +207,7 @@ public class FractalPiece {
      * @return the list of Voices
      */
     public List<Voice> getVoices() {        
+        assert voices != null : voices; // voices should never be null!
         return voices;
     }
     
@@ -215,7 +238,8 @@ public class FractalPiece {
      * 
      * @return the list of Sections
      */
-    public List<Section> getSections() {        
+    public List<Section> getSections() {  
+        assert sections != null : sections; // sections should never be null!
         return sections;
     }
     
@@ -409,7 +433,7 @@ public class FractalPiece {
             this.getSections().remove(s);
         }
         this.tempIntroOutroSections.clear();
-    }
+    }        
                 
     /**
      * Generates a midi sequence for the entire fractal piece, based on the 
@@ -428,17 +452,10 @@ public class FractalPiece {
             ArrayList<NoteList> voiceResults = new ArrayList<NoteList>();
             for (Voice v : this.getVoices()) voiceResults.add(v.getEntireVoice());
 
-            // next, figure out the resolution of our Midi sequence...
-            ArrayList<Long> uniqueDurationDenominators = new ArrayList<Long>();
-            for (NoteList nl : voiceResults) {
-                for (Note n : nl) {
-                    if (!uniqueDurationDenominators.contains(n.getDuration().denominator())) {
-                        uniqueDurationDenominators.add(n.getDuration().denominator());
-                    }                
-                }
-            }        
-            long midiTickResolution = MathHelper.leastCommonMultiple(uniqueDurationDenominators);
-
+            // get our midi tick resolution...
+            long midiTickResolution = NoteList.getMidiTickResolution(voiceResults);
+            assert midiTickResolution <= Integer.MAX_VALUE;
+            
             // next, create our sequence...
             Sequence sequence = new Sequence(Sequence.PPQ, (int) midiTickResolution);
 
@@ -471,6 +488,35 @@ public class FractalPiece {
         File outputFile = new File(fileName);        
         Sequence sequence = this.generatePiece();   
         
+        // Midi file type 1 is for multi-track sequences
+        MidiSystem.write(sequence, 1, outputFile);
+    }
+    
+    /**
+     * Saves the germ to a midi file so that the user can listen to it.
+     * 
+     * @param fileName the filename for the midi file
+     * @throws javax.sound.midi.InvalidMidiDataException if there is some 
+     *         invalid midi data
+     * @throws java.io.IOException if there is an IO problem with the file
+     */
+    public void saveGermToMidiFile(String fileName) throws InvalidMidiDataException, IOException {        
+        // get our midi tick resolution...
+        long midiTickResolution = NoteList.getMidiTickResolution(Arrays.asList(this.getGerm()));
+        assert midiTickResolution <= Integer.MAX_VALUE;
+
+        // next, create our sequence...
+        Sequence sequence = new Sequence(Sequence.PPQ, (int) midiTickResolution);   
+        
+        // next, use the first track to set key signature and time signature...
+        Track track1 = sequence.createTrack();
+        track1.add(this.getScale().getKeySignature().getKeySignatureMidiEvent());        
+        track1.add(this.getTimeSignature().getMidiTimeSignatureEvent());
+        
+        this.getGerm().createAndFillMidiTrack(sequence, scale, new Fraction(0, 1));                        
+
+        File outputFile = new File(fileName);
+         
         // Midi file type 1 is for multi-track sequences
         MidiSystem.write(sequence, 1, outputFile);
     }

@@ -256,7 +256,50 @@ public class ScaleTest {
         testSetNotePitchValues(s, n, NoteName.Gb, 0, 1);
         testSetNotePitchValues(s, n, NoteName.G, 1, -1);
         testSetNotePitchValues(s, n, NoteName.Gs, 1, 0);
-        testSetNotePitchValues(s, n, NoteName.Gx, 1, 1);                
+        testSetNotePitchValues(s, n, NoteName.Gx, 1, 1);
+        
+        s = new ChromaticScale();  // C C# D D# E F F# G G# A A# B
+        testSetNotePitchValues(s, n, NoteName.Abb, 7, 0);
+        testSetNotePitchValues(s, n, NoteName.Ab, 8, 0);
+        testSetNotePitchValues(s, n, NoteName.A, 9, 0);
+        testSetNotePitchValues(s, n, NoteName.As, 10, 0);
+        testSetNotePitchValues(s, n, NoteName.Ax, 11, 0); 
+        
+        testSetNotePitchValues(s, n, NoteName.Bbb, 9, 0);
+        testSetNotePitchValues(s, n, NoteName.Bb, 10, 0);
+        testSetNotePitchValues(s, n, NoteName.B, 11, 0);
+        testSetNotePitchValues(s, n, NoteName.Bs, 0, 0);
+        testSetNotePitchValues(s, n, NoteName.Bx, 1, 0);
+        
+        testSetNotePitchValues(s, n, NoteName.Cbb, 10, 0);
+        testSetNotePitchValues(s, n, NoteName.Cb, 11, 0);
+        testSetNotePitchValues(s, n, NoteName.C, 0, 0);
+        testSetNotePitchValues(s, n, NoteName.Cs, 1, 0);
+        testSetNotePitchValues(s, n, NoteName.Cx, 2, 0);
+        
+        testSetNotePitchValues(s, n, NoteName.Dbb, 0, 0);
+        testSetNotePitchValues(s, n, NoteName.Db, 1, 0);
+        testSetNotePitchValues(s, n, NoteName.D, 2, 0);
+        testSetNotePitchValues(s, n, NoteName.Ds, 3, 0);
+        testSetNotePitchValues(s, n, NoteName.Dx, 4, 0);
+        
+        testSetNotePitchValues(s, n, NoteName.Ebb, 2, 0);
+        testSetNotePitchValues(s, n, NoteName.Eb, 3, 0);
+        testSetNotePitchValues(s, n, NoteName.E, 4, 0);
+        testSetNotePitchValues(s, n, NoteName.Es, 5, 0);
+        testSetNotePitchValues(s, n, NoteName.Ex, 6, 0);
+        
+        testSetNotePitchValues(s, n, NoteName.Fbb, 3, 0);
+        testSetNotePitchValues(s, n, NoteName.Fb, 4, 0);
+        testSetNotePitchValues(s, n, NoteName.F, 5, 0);
+        testSetNotePitchValues(s, n, NoteName.Fs, 6, 0);
+        testSetNotePitchValues(s, n, NoteName.Fx, 7, 0);
+        
+        testSetNotePitchValues(s, n, NoteName.Gbb, 5, 0);
+        testSetNotePitchValues(s, n, NoteName.Gb, 6, 0);
+        testSetNotePitchValues(s, n, NoteName.G, 7, 0);
+        testSetNotePitchValues(s, n, NoteName.Gs, 8, 0);
+        testSetNotePitchValues(s, n, NoteName.Gx, 9, 0); 
     }
     
     @Test
@@ -349,7 +392,9 @@ public class ScaleTest {
         note.setScaleStep(19);
         note.setOctave(2);
         result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution);
-        assertMidiNoteValues(result, 69, 40, 16, 24); 
+        assertMidiNoteValues(result, 69, 40, 16, 24);
+        
+        // TODO: check something at the octave change...        
     }
     
     @Test
@@ -481,6 +526,47 @@ public class ScaleTest {
     }
     
     @Test
+    public void chromaticScale_convertToMidiNote() throws InvalidKeySignatureException {
+        ChromaticScale scale = new ChromaticScale();
+        MidiNote result;
+        Note note;
+        
+        note = new Note(4, 4, 0, new Fraction(6, 1), 70);      
+        int midiTickResolution = 8;
+        
+        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution);
+        assertMidiNoteValues(result, 64, 70, 0, 48);                
+        
+        note.setScaleStep(3);        
+        result = note.convertToMidiNote(scale, new Fraction(5, 1), midiTickResolution);
+        assertMidiNoteValues(result, 63, 70, 40, 48);                        
+        
+        // try a few unnormalized notes...
+        note.setScaleStep(-3);
+        note.setVolume(40);
+        note.setDuration(new Fraction(3, 1));
+        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution);
+        assertMidiNoteValues(result, 57, 40, 16, 24); 
+        
+        note.setScaleStep(19);
+        note.setOctave(2);
+        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution);
+        assertMidiNoteValues(result, 55, 40, 16, 24); 
+        
+        // try some notes with chromatic adjustments...
+        // chromatic adjustments should be ignored since all notes are part of
+        // the scale
+        note.setScaleStep(3);
+        note.setChromaticAdjustment(-2);
+        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution);
+        assertMidiNoteValues(result, 39, 40, 16, 24);
+        
+        note.setChromaticAdjustment(5);
+        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution);
+        assertMidiNoteValues(result, 39, 40, 16, 24);
+    }
+    
+    @Test
     public void getScaleTypes() {
         List<Class> scaleTypes = Scale.getScaleTypes();
         
@@ -492,7 +578,18 @@ public class ScaleTest {
         assertTrue(scaleTypes.contains(MinorScale.class));
         assertTrue(scaleTypes.contains(HarmonicMinorScale.class));
         assertTrue(scaleTypes.contains(MajorPentatonicScale.class));
-        assertTrue(scaleTypes.contains(MinorPentatonicScale.class));              
+        assertTrue(scaleTypes.contains(MinorPentatonicScale.class));
+        assertTrue(scaleTypes.contains(ChromaticScale.class));
+    }
+    
+    @Test
+    public void getDefaultScale() {
+        assertEquals(ChromaticScale.class, Scale.getDefault().getClass());
+    }
+    
+    @Test
+    public void toStringTest() throws InvalidKeySignatureException {
+        assertEquals("F# Minor Pentatonic Scale", (new MinorPentatonicScale(NoteName.Fs)).toString());
     }
     
     protected static void testSetNotePitchValues(Scale s, Note n, NoteName nn, int scaleStep, int chromaticAdjustment) {

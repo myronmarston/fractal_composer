@@ -31,7 +31,7 @@ public class KeySignatureTest {
         KeySignature ks = new KeySignature(Tonality.Major, NoteName.E);        
         assertKeySignatureEventEqual(ks.getKeySignatureMidiEvent(), (byte) 4, (byte) 0);
         
-        ks.setKeyName(NoteName.Bb);        
+        ks = new KeySignature(Tonality.Major, NoteName.Bb);        
         assertKeySignatureEventEqual(ks.getKeySignatureMidiEvent(), (byte) -2, (byte) 0);
         
         ks = new KeySignature(Tonality.Minor, NoteName.Bb);        
@@ -53,7 +53,7 @@ public class KeySignatureTest {
         MajorScale s = new MajorScale(NoteName.D);
         assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(), (byte) 2, (byte) 0);
         
-        s.setKeyName(NoteName.Ab);
+        s = new MajorScale(NoteName.Ab);
         assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(), (byte) -4, (byte) 0);
     }
     
@@ -62,7 +62,7 @@ public class KeySignatureTest {
         MinorScale s = new MinorScale(NoteName.D);
         assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(), (byte) -1, (byte) 1);
         
-        s.setKeyName(NoteName.Gs);
+        s = new MinorScale(NoteName.Gs);
         assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(), (byte) 5, (byte) 1);
     }
 

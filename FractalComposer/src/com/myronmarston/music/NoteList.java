@@ -1,15 +1,11 @@
 package com.myronmarston.music;
 
 import com.myronmarston.music.scales.Scale;
-
+import com.myronmarston.util.MathHelper;
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
-import javax.sound.midi.Sequence;
-import javax.sound.midi.Track;
-import javax.sound.midi.InvalidMidiDataException;
+import java.util.*;
+import javax.sound.midi.*;
 
 /**
  * NoteList contains a sequence of notes.
@@ -63,19 +59,21 @@ public class NoteList extends ArrayList<Note> {
     }
     
     /**
-     * Fills the note list with notes based on the given note list string.
+     * Creates a new note list based on the given note list string.
      * 
      * @param noteListString string containing space-seperated notes, each of 
      *        the form 'F#4,1/4,PP'
      * @param scale the scale to use to determine the note's pitch information
-     * @throws com.myronmarston.music.NoteStringParseException thrown if the 
+     * @return the new note list
+     * @throws com.myronmarston.music.NoteStringParseException thrown if the
      *         note list string is invalid
      */
-    public void parseNoteListString(String noteListString, Scale scale) throws NoteStringParseException {
+    public static NoteList parseNoteListString(String noteListString, Scale scale) throws NoteStringParseException {                
         Note note = null;
         Fraction defaultDuration = null;
-        Integer defaultVolume = null;
+        Integer defaultVolume = null;                        
         StringTokenizer st = new StringTokenizer(noteListString);
+        NoteList list = new NoteList();
         
         while (st.hasMoreTokens()) {
             note = Note.parseNoteString(st.nextToken(), scale, defaultDuration, defaultVolume);
@@ -84,8 +82,10 @@ public class NoteList extends ArrayList<Note> {
             defaultDuration = note.getDuration();
             defaultVolume = note.getVolume();
             
-            this.add(note);
+            list.add(note);
         }
+        
+        return list;
     }
     
     private List<Note> getListWithNormalizedRests() {
@@ -145,5 +145,26 @@ public class NoteList extends ArrayList<Note> {
         }       
         
         return track;
+    }        
+
+    /**
+     * Calculates the optimal midi tick resolution for the given collection of 
+     * noteLists, based on the duration of the notes.
+     * 
+     * @param noteLists collection of noteLists
+     * @return the midi tick resolution
+     */
+    public static long getMidiTickResolution(Collection<NoteList> noteLists) {
+        // next, figure out the resolution of our Midi sequence...
+        ArrayList<Long> uniqueDurationDenominators = new ArrayList<Long>();
+        for (NoteList nl : noteLists) {
+            for (Note n : nl) {
+                if (!uniqueDurationDenominators.contains(n.getDuration().denominator())) {
+                    uniqueDurationDenominators.add(n.getDuration().denominator());
+                }                
+            }
+        }        
+        
+        return MathHelper.leastCommonMultiple(uniqueDurationDenominators);
     }
 }

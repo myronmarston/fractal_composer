@@ -192,12 +192,21 @@ NoteList contains a sequence of notes.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
+<CODE>static&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#getMidiTickResolution(java.util.Collection)">getMidiTickResolution</A></B>(java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calculates the optimal midi tick resolution for the given collection of 
+ noteLists, based on the duration of the notes.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#parseNoteListString(java.lang.String, com.myronmarston.music.scales.Scale)">parseNoteListString</A></B>(java.lang.String&nbsp;noteListString,
                     <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fills the note list with notes based on the given note list string.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new note list based on the given note list string.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.util.ArrayList"><!-- --></A>
@@ -320,17 +329,18 @@ public <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" ti
 <A NAME="parseNoteListString(java.lang.String, com.myronmarston.music.scales.Scale)"><!-- --></A><H3>
 parseNoteListString</H3>
 <PRE>
-public void <B>parseNoteListString</B>(java.lang.String&nbsp;noteListString,
-                                <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)
-                         throws <A HREF="../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music">NoteStringParseException</A></PRE>
+public static <A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A> <B>parseNoteListString</B>(java.lang.String&nbsp;noteListString,
+                                           <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)
+                                    throws <A HREF="../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music">NoteStringParseException</A></PRE>
 <DL>
-<DD>Fills the note list with notes based on the given note list string.
+<DD>Creates a new note list based on the given note list string.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>noteListString</CODE> - string containing space-seperated notes, each of 
         the form 'F#4,1/4,PP'<DD><CODE>scale</CODE> - the scale to use to determine the note's pitch information
+<DT><B>Returns:</B><DD>the new note list
 <DT><B>Throws:</B>
-<DD><CODE><A HREF="../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music">NoteStringParseException</A></CODE> - thrown if the 
+<DD><CODE><A HREF="../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music">NoteStringParseException</A></CODE> - thrown if the
          note list string is invalid</DL>
 </DD>
 </DL>
@@ -353,6 +363,21 @@ public javax.sound.midi.Track <B>createAndFillMidiTrack</B>(javax.sound.midi.Seq
 <DT><B>Throws:</B>
 <DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - if there is any invalid
          midi data</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMidiTickResolution(java.util.Collection)"><!-- --></A><H3>
+getMidiTickResolution</H3>
+<PRE>
+public static long <B>getMidiTickResolution</B>(java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists)</PRE>
+<DL>
+<DD>Calculates the optimal midi tick resolution for the given collection of 
+ noteLists, based on the duration of the notes.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>noteLists</CODE> - collection of noteLists
+<DT><B>Returns:</B><DD>the midi tick resolution</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

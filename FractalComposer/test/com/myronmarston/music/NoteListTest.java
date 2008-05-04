@@ -6,6 +6,8 @@ import com.myronmarston.music.scales.Scale;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
         
+import java.util.*;
+
 import javax.sound.midi.Track;
 import javax.sound.midi.Sequence;
 import org.junit.After;
@@ -97,8 +99,7 @@ public class NoteListTest {
 
     @Test
     public void parseNoteListString() throws InvalidKeySignatureException, NoteStringParseException { 
-        NoteList germ = new NoteList();
-        germ.parseNoteListString("D4,1/4,MF E4,1/8 F#4,F D4,1/4", new MajorScale(NoteName.D));
+        NoteList germ = NoteList.parseNoteListString("D4,1/4,MF E4,1/8 F#4,F D4,1/4", new MajorScale(NoteName.D));
         
         NoteList expected = new NoteList();
         expected.add(new Note(0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
@@ -106,7 +107,13 @@ public class NoteListTest {
         expected.add(new Note(2, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume()));
         expected.add(new Note(0, 4, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume()));
         
-        assertNoteListsEqual(expected, germ);        
+        assertNoteListsEqual(expected, germ);             
+    }
+    
+    @Test
+    public void getMidiTickResolution() throws InvalidKeySignatureException, NoteStringParseException {
+        NoteList nl = NoteList.parseNoteListString("C4,1/8 C4,1/4 C4,1/16 C4,3/8 C4,1/3", new MajorScale(NoteName.C));
+        assertEquals(48L, NoteList.getMidiTickResolution(Arrays.asList(nl)));
     }
     
     public static void assertNoteListsEqual(NoteList expected, NoteList actual) {        

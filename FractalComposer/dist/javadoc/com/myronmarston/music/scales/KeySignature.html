@@ -143,14 +143,6 @@ Represents a Midi key signature.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;javax.sound.midi.MidiEvent</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/KeySignature.html#generateMidiKeySignatureEvent()">generateMidiKeySignatureEvent</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Generates the midi key signature event.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/KeySignature.html#getKeyName()">getKeyName</A></B>()</CODE>
 
@@ -188,14 +180,6 @@ Represents a Midi key signature.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/KeySignature.html#setKeyName(com.myronmarston.music.NoteName)">setKeyName</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the note name of the tonal center.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -289,23 +273,6 @@ public <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in
 </DL>
 <HR>
 
-<A NAME="setKeyName(com.myronmarston.music.NoteName)"><!-- --></A><H3>
-setKeyName</H3>
-<PRE>
-public void <B>setKeyName</B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)
-                throws <A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></PRE>
-<DL>
-<DD>Sets the note name of the tonal center.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>keyName</CODE> - the name of the key
-<DT><B>Throws:</B>
-<DD><CODE><A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></CODE> - if the the key is invalid-e.g., a key that would have double 
-         flats or sharps, such as A# major.</DL>
-</DD>
-</DL>
-<HR>
-
 <A NAME="getKeySignatureMidiEvent()"><!-- --></A><H3>
 getKeySignatureMidiEvent</H3>
 <PRE>
@@ -316,24 +283,6 @@ public javax.sound.midi.MidiEvent <B>getKeySignatureMidiEvent</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the midi event</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="generateMidiKeySignatureEvent()"><!-- --></A><H3>
-generateMidiKeySignatureEvent</H3>
-<PRE>
-protected javax.sound.midi.MidiEvent <B>generateMidiKeySignatureEvent</B>()
-                                                            throws javax.sound.midi.InvalidMidiDataException</PRE>
-<DL>
-<DD>Generates the midi key signature event.
-<P>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>the midi event
-<DT><B>Throws:</B>
-<DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - thrown if there is 
-         invalid midi data</DL>
 </DD>
 </DL>
 <HR>

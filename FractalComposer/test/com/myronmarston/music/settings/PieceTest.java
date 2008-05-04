@@ -32,7 +32,7 @@ public class PieceTest {
     public void simplePieceTest() throws InvalidKeySignatureException, NoteStringParseException, InvalidMidiDataException {
         FractalPiece fp = new FractalPiece();
         fp.setScale(new MajorScale(NoteName.G));
-        fp.getGerm().parseNoteListString("G4,1/4 A4,1/8 B4,1/8 G4,1/4", fp.getScale());
+        fp.setGermString("G4,1/4 A4,1/8 B4,1/8 G4,1/4");
         fp.createDefaultVoices();
         Section s = fp.createSection();
         s.setSelfSimilaritySettingsOnAllVoiceSections(true, true, true);

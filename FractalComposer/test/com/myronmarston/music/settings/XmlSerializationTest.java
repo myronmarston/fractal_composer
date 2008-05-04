@@ -79,9 +79,9 @@ public class XmlSerializationTest {
         "   <selfSimilaritySettings id=\"1\" applyToPitch=\"true\" applyToRhythm=\"true\" applyToVolume=\"true\"/>\n" +
         "   <voice id=\"2\" octaveAdjustment=\"1\">\n" +
         // fractal piece section that gets stripped goes here...
-        "      <speedScaleFactor id=\"49\" numerator_=\"2\" denominator_=\"1\"/>\n" +
+        "      <speedScaleFactor id=\"53\" numerator_=\"2\" denominator_=\"1\"/>\n" +
         "   </voice>\n" +
-        "   <section reference=\"10\"/>\n" +        
+        "   <section reference=\"14\"/>\n" +        
         "</voiceSection>";
         
         //printSerializationResults(vs);
@@ -95,7 +95,7 @@ public class XmlSerializationTest {
         String expected = 
         "<voice id=\"0\" octaveAdjustment=\"1\">\n" +
         // fractal piece section that gets stripped goes here...
-        "   <speedScaleFactor id=\"49\" numerator_=\"2\" denominator_=\"1\"/>\n" +
+        "   <speedScaleFactor id=\"53\" numerator_=\"2\" denominator_=\"1\"/>\n" +
         "</voice>";
         
         //printSerializationResults(v);
@@ -119,12 +119,12 @@ public class XmlSerializationTest {
     public void serializeScale() throws InvalidKeySignatureException, Exception {
         String expectedFormat = 
         "<%1$s id=\"0\">\n"+
-        "   <keySignature id=\"1\" keyName=\"D\" tonality=\"%2$s\"/>\n" +
+        "   <keySignature id=\"1\" keyName=\"%3$s\" tonality=\"%2$s\"/>\n" +
         "</%1$s>";
                 
         for (Scale s : getScales()) {                 
             String className = s.getClass().getSimpleName().substring(0, 1).toLowerCase(Locale.ENGLISH) + s.getClass().getSimpleName().substring(1);
-            String expected = String.format(expectedFormat, className, s.getKeySignature().getTonality().name());
+            String expected = String.format(expectedFormat, className, s.getKeySignature().getTonality().name(), s.getKeySignature().getKeyName().name());
             testSerialization(s, expected);            
         }        
     }       
@@ -133,7 +133,7 @@ public class XmlSerializationTest {
     public void serializeAndDeserializeFractalPiece() throws Exception {
         FractalPiece fp = this.fpWithDefaultSettings;
         fp.setScale(new MinorScale(NoteName.A));
-        fp.setGerm("A4,1/4 B4,1/8,F C4,1/2");        
+        fp.setGermString("A4,1/4 B4,1/8,F C4,1/2");        
         
         //modify the piece a bit...
         fp.setTimeSignature(new TimeSignature(7, 4));  
@@ -150,6 +150,7 @@ public class XmlSerializationTest {
         assertEquals(fp.getTimeSignature(), newFp.getTimeSignature());
         assertEquals(fp.getGenerateLayeredIntro(), newFp.getGenerateLayeredIntro());
         assertEquals(fp.getGenerateLayeredOutro(), newFp.getGenerateLayeredOutro());
+        assertEquals(fp.getGermString(), newFp.getGermString());
         
         // check voices...
         assertEquals(fp.getVoices().size(), newFp.getVoices().size());
@@ -201,6 +202,7 @@ public class XmlSerializationTest {
         testSerializeAndDeserialize(fpWithDefaultSettings.getVoices().get(0).getVoiceSections().get(0), false);                
     }
     
+    // this method is provided to assist with debugging purposes...
     private static void printSerializationResults(Object object) throws Exception {
         String result = serializeObject(object);
         System.out.println(stripFractalPieceSection(result));
@@ -209,9 +211,19 @@ public class XmlSerializationTest {
     private static List<Scale> getScales() throws Exception {
         List<Scale> list = new ArrayList<Scale>();
         for (Class c : Scale.getScaleTypes()) {     
-            @SuppressWarnings("unchecked")
-            Constructor constructor = c.getConstructor(NoteName.class);
-            list.add((Scale) constructor.newInstance(NoteName.D));            
+            // originally we used getConstructor(NoteName.class) but that seems
+            // to only get public constructors.  Our chromatic scale has this
+            // constructor declared private, so we have to iterate over
+            // getDeclaredConstructors (which includes private ones) and pick
+            // out the right one.
+            for (Constructor con : c.getDeclaredConstructors()) {
+                Class[] paramTypes = con.getParameterTypes();
+                if (paramTypes.length == 1 && paramTypes[0] == NoteName.class) {
+                    con.setAccessible(true); // in case it is private
+                    list.add((Scale) con.newInstance(NoteName.D));                       
+                    break;
+                }
+            }                                 
         }
         
         return list;

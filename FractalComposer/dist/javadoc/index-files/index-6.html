@@ -84,9 +84,6 @@ function windowTitle()
 <DT><A HREF="../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html#gcd(long, long)"><B>gcd(long, long)</B></A> - 
 Static method in class EDU.oswego.cs.dl.util.concurrent.misc.<A HREF="../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>
 <DD>Compute the nonnegative greatest common divisor of a and b.
-<DT><A HREF="../com/myronmarston/music/scales/KeySignature.html#generateMidiKeySignatureEvent()"><B>generateMidiKeySignatureEvent()</B></A> - 
-Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>
-<DD>Generates the midi key signature event.
 <DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#generatePiece()"><B>generatePiece()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
 <DD>Generates a midi sequence for the entire fractal piece, based on the 
@@ -129,6 +126,13 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/util/ClassHelper.html#getClassesInPackage(java.lang.String)"><B>getClassesInPackage(String)</B></A> - 
 Static method in class com.myronmarston.util.<A HREF="../com/myronmarston/util/ClassHelper.html" title="class in com.myronmarston.util">ClassHelper</A>
 <DD>Gets a list of all classes found in a particular package.
+<DT><A HREF="../com/myronmarston/music/scales/Scale.html#getDefault()"><B>getDefault()</B></A> - 
+Static method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>
+<DD>Gets the scale that should be used by default before the user specifies
+ one.
+<DT><A HREF="../com/myronmarston/music/settings/TimeSignature.html#getDefault()"><B>getDefault()</B></A> - 
+Static method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A>
+<DD>Gets a time signature that should be used before the user specifies one.
 <DT><A HREF="../com/myronmarston/music/NoteName.html#getDefaultNoteNameForNumber(int)"><B>getDefaultNoteNameForNumber(int)</B></A> - 
 Static method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>
 <DD>Gets the default note name for the given number.
@@ -179,6 +183,9 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#getGerm()"><B>getGerm()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
 <DD>Returns the germ NoteList.
+<DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#getGermString()"><B>getGermString()</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
+<DD>Gets the germ string.
 <DT><A HREF="../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getHashMapKeyForOtherTypeIndex(int)"><B>getHashMapKeyForOtherTypeIndex(int)</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSection</A>
 <DD>Creates a VoiceSectionHashMapKey, combining this object with an object 
@@ -212,6 +219,9 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 Method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>
 <DD>Gets the size of the interval of this note name's musical letter compared 
  to C.
+<DT><A HREF="../com/myronmarston/music/scales/ChromaticScale.html#getLetterNumberArray()"><B>getLetterNumberArray()</B></A> - 
+Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/ChromaticScale.html" title="class in com.myronmarston.music.scales">ChromaticScale</A>
+<DD>Note supported by Chromatic Scale.
 <DT><A HREF="../com/myronmarston/music/scales/MajorPentatonicScale.html#getLetterNumberArray()"><B>getLetterNumberArray()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/MajorPentatonicScale.html" title="class in com.myronmarston.music.scales">MajorPentatonicScale</A>
 <DD>&nbsp;
@@ -253,6 +263,10 @@ Method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteNam
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>
 <DD>Gets the midi pitch number for the tonic of this scale at the given 
  octave.
+<DT><A HREF="../com/myronmarston/music/NoteList.html#getMidiTickResolution(java.util.Collection)"><B>getMidiTickResolution(Collection&lt;NoteList&gt;)</B></A> - 
+Static method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>
+<DD>Calculates the optimal midi tick resolution for the given collection of 
+ noteLists, based on the duration of the notes.
 <DT><A HREF="../com/myronmarston/music/settings/TimeSignature.html#getMidiTimeSignatureEvent()"><B>getMidiTimeSignatureEvent()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A>
 <DD>Creates the Midi time signature event.
@@ -338,6 +352,9 @@ Method in class com.myronmarston.music.transformers.<A HREF="../com/myronmarston
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
 <DD>Gets the number of scale steps above the tonic; In an 7-note scale, 
  0 = tonic, 7 = octave, 9 = third an octave above, etc.
+<DT><A HREF="../com/myronmarston/music/scales/ChromaticScale.html#getScaleStepArray()"><B>getScaleStepArray()</B></A> - 
+Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/ChromaticScale.html" title="class in com.myronmarston.music.scales">ChromaticScale</A>
+<DD>&nbsp;
 <DT><A HREF="../com/myronmarston/music/scales/HarmonicMinorScale.html#getScaleStepArray()"><B>getScaleStepArray()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/HarmonicMinorScale.html" title="class in com.myronmarston.music.scales">HarmonicMinorScale</A>
 <DD>&nbsp;

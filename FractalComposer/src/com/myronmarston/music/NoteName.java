@@ -146,6 +146,11 @@ public enum NoteName {
         return (other.getNoteNumber() - this.getNoteNumber()
                 + Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE) 
                 % Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE; 
+    }
+
+    @Override
+    public String toString() {
+        return super.toString().replace('s', '#');
     }        
     
     /**
@@ -170,7 +175,8 @@ public enum NoteName {
         if (noteNameHash == null) {
             noteNameHash = new HashMap<String, NoteName>(NoteName.values().length);
             for (NoteName nn : NoteName.values()) {
-                noteNameHash.put(nn.toString().replace('s', '#').toUpperCase(Locale.ENGLISH), nn);
+                // convert to upper case so that the case doesn't matter...
+                noteNameHash.put(nn.toString().toUpperCase(Locale.ENGLISH), nn);
             }
         }
         
@@ -184,6 +190,7 @@ public enum NoteName {
      * @return the NoteName, or null if the string does not match any NoteName
      */
     public static NoteName getNoteName(String str) {
+        // convert to upper case so that the case doesn't matter...
         return NoteName.getNoteNameHash().get(str.toUpperCase(Locale.ENGLISH));
     }        
     

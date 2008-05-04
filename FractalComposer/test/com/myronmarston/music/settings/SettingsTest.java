@@ -783,7 +783,7 @@ public class SettingsTest {
         expected.add(new Note(2, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume()));
         expected.add(new Note(0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
         
-        fp.setGerm("G4,1/4,MF A4,1/8,F B4,1/8,F G4,1/4,MF");
+        fp.setGermString("G4,1/4,MF A4,1/8,F B4,1/8,F G4,1/4,MF");
         assertNoteListsEqual(expected, fp.getGerm());
     }
     
@@ -795,12 +795,68 @@ public class SettingsTest {
                 
         FractalPiece fp = new FractalPiece();
         fp.setScale(new MajorScale(NoteName.G));
-        fp.setGerm("G4,1/4,MF A4,1/8,F B4,1/8,F G4,1/4,MF");  
+        fp.setGermString("G4,1/4,MF A4,1/8,F B4,1/8,F G4,1/4,MF");  
         fp.createDefaultSettings();
         fp.createAndSaveMidiFile(fileName);
         
         // this will throw an exception if the midi file was not saved...
         Sequence seq = MidiSystem.getSequence(temp);        
+    }
+    
+    @Test
+    public void saveGermToMidiFile() throws IOException, InvalidKeySignatureException, NoteStringParseException, InvalidMidiDataException {
+        File temp = File.createTempFile("TempMidiFile", ".mid");
+        temp.deleteOnExit();
+        String fileName = temp.getCanonicalPath(); 
+        
+        FractalPiece fp = new FractalPiece();        
+        fp.setGermString("C4,MF D4,Mf");          
+        fp.saveGermToMidiFile(fileName);
+        
+        // this will throw an exception if the midi file was not saved...
+        Sequence seq = MidiSystem.getSequence(temp);    
+        Track t2 = seq.getTracks()[1];
+        assertEquals(5, t2.size()); // 2 note on events, 2 not off events, end-of-track event
+        // we could test each event, but that's overkill.
+        // all our other tests test the various parts of this, so there's no 
+        // need to duplicate that here
+    }
+    
+    @Test(expected=IllegalArgumentException.class) 
+    public void setScaleToNull() {
+        FractalPiece fp = new FractalPiece();
+        fp.setScale(null);        
+    }
+    
+    @Test(expected=IllegalArgumentException.class) 
+    public void setTimeSignatureToNull() {
+        FractalPiece fp = new FractalPiece();
+        fp.setTimeSignature(null);
+    }
+    
+    @Test
+    public void setScaleReparsesGerm() throws InvalidKeySignatureException, NoteStringParseException {
+        FractalPiece fp = new FractalPiece();
+        fp.setScale(new MajorScale(NoteName.C));
+        fp.setGermString("C4 E4 F4 G4");
+        
+        NoteList expected = new NoteList();
+        expected.add(new Note(0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        expected.add(new Note(2, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        expected.add(new Note(3, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        expected.add(new Note(4, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        
+        assertNoteListsEqual(expected, fp.getGerm());
+        
+        fp.setScale(new MajorScale(NoteName.G));
+        expected.clear();
+        // TODO: the octaves should actually be 3 3 3 4
+        expected.add(new Note(3, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        expected.add(new Note(5, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        expected.add(new Note(6, 4, -1, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        expected.add(new Note(0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        
+        assertNoteListsEqual(expected, fp.getGerm());
     }
     
     static protected void assertNoteListsEqual(NoteList expected, NoteList actual) {

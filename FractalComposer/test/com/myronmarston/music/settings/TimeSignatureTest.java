@@ -66,6 +66,13 @@ public class TimeSignatureTest {
         assertTimeSignatureEventEqual(ts.getMidiTimeSignatureEvent(), (byte) 15, (byte) 4);        
     }
     
+    @Test
+    public void getDefault() {
+        TimeSignature ts = TimeSignature.getDefault();
+        assertEquals(4, ts.getDenominator());
+        assertEquals(4, ts.getNumerator());
+    }
+    
     static public void assertTimeSignatureEventEqual(MidiEvent timeSignatureEvent, byte byte1, byte byte2) {
         assertEquals(0L, timeSignatureEvent.getTick());
         javax.sound.midi.MidiMessage msg = timeSignatureEvent.getMessage();

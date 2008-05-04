@@ -4,7 +4,7 @@
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <TITLE>
-HarmonicMinorScale
+ChromaticScale
 </TITLE>
 
 
@@ -14,7 +14,7 @@ HarmonicMinorScale
 function windowTitle()
 {
     if (location.href.indexOf('is-external=true') == -1) {
-        parent.document.title="HarmonicMinorScale";
+        parent.document.title="ChromaticScale";
     }
 }
 </SCRIPT>
@@ -39,7 +39,7 @@ function windowTitle()
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/HarmonicMinorScale.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ChromaticScale.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -54,11 +54,11 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/myronmarston/music/scales/ChromaticScale.html" title="class in com.myronmarston.music.scales"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;PREV CLASS&nbsp;
+&nbsp;<A HREF="../../../../com/myronmarston/music/scales/HarmonicMinorScale.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/myronmarston/music/scales/HarmonicMinorScale.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="HarmonicMinorScale.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/myronmarston/music/scales/ChromaticScale.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="ChromaticScale.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -89,20 +89,22 @@ DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&n
 <FONT SIZE="-1">
 com.myronmarston.music.scales</FONT>
 <BR>
-Class HarmonicMinorScale</H2>
+Class ChromaticScale</H2>
 <PRE>
 java.lang.Object
   <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">com.myronmarston.music.scales.Scale</A>
-      <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales">com.myronmarston.music.scales.MinorScale</A>
-          <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.scales.HarmonicMinorScale</B>
+      <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.scales.ChromaticScale</B>
 </PRE>
 <HR>
 <DL>
-<DT><PRE>public class <B>HarmonicMinorScale</B><DT>extends <A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales">MinorScale</A></DL>
+<DT><PRE>public class <B>ChromaticScale</B><DT>extends <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></DL>
 </PRE>
 
 <P>
-A minor scale with a leading tone, i.e. a raised 7th scale step.
+Chromatic Scale--a scale containing all 12 pitches.  This scale does not have
+ a true tonal center; instead, the key signature is set to C major just so we
+ don't have any flats or sharps in our key signature and all notes will have
+ their own accidentals.
 <P>
 
 <P>
@@ -137,7 +139,7 @@ A minor scale with a leading tone, i.e. a raised 7th scale step.
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/HarmonicMinorScale.html#HarmonicMinorScale(com.myronmarston.music.NoteName)">HarmonicMinorScale</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/ChromaticScale.html#ChromaticScale()">ChromaticScale</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
@@ -155,20 +157,29 @@ A minor scale with a leading tone, i.e. a raised 7th scale step.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;int[]</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/HarmonicMinorScale.html#getScaleStepArray()">getScaleStepArray</A></B>()</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/ChromaticScale.html#getLetterNumberArray()">getLetterNumberArray</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note supported by Chromatic Scale.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int[]</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/ChromaticScale.html#getScaleStepArray()">getScaleStepArray</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets an array of integers representing the number of half steps above
  the tonic for each scale step.</TD>
 </TR>
-</TABLE>
-&nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.scales.MinorScale"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.scales.<A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales">MinorScale</A></B></TH>
-</TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#getLetterNumberArray()">getLetterNumberArray</A></CODE></TD>
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/ChromaticScale.html#setNotePitchValues(com.myronmarston.music.Note, com.myronmarston.music.NoteName)">setNotePitchValues</A></B>(<A HREF="../../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&nbsp;note,
+                   <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;noteName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the scaleStep and chromaticAdjustment on the given note, based on
+ the passed noteName.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.scales.Scale"><!-- --></A>
@@ -177,7 +188,7 @@ A minor scale with a leading tone, i.e. a raised 7th scale step.
 <TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.scales.<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#equals(java.lang.Object)">equals</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getDefault()">getDefault</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeyName()">getKeyName</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeySignature()">getKeySignature</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getMidiPitchNumberForTonicAtOctave(int)">getMidiPitchNumberForTonicAtOctave</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getScaleTypes()">getScaleTypes</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#hashCode()">hashCode</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#setNotePitchValues_Helper(com.myronmarston.music.Note, com.myronmarston.music.NoteName, int)">setNotePitchValues_Helper</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#setNotePitchValues(com.myronmarston.music.Note, com.myronmarston.music.NoteName)">setNotePitchValues</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#toString()">toString</A></CODE></TD>
+<TD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#equals(java.lang.Object)">equals</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getDefault()">getDefault</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeyName()">getKeyName</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeySignature()">getKeySignature</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getMidiPitchNumberForTonicAtOctave(int)">getMidiPitchNumberForTonicAtOctave</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getScaleTypes()">getScaleTypes</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#hashCode()">hashCode</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#setNotePitchValues_Helper(com.myronmarston.music.Note, com.myronmarston.music.NoteName, int)">setNotePitchValues_Helper</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#toString()">toString</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -202,19 +213,19 @@ A minor scale with a leading tone, i.e. a raised 7th scale step.
 </TR>
 </TABLE>
 
-<A NAME="HarmonicMinorScale(com.myronmarston.music.NoteName)"><!-- --></A><H3>
-HarmonicMinorScale</H3>
+<A NAME="ChromaticScale()"><!-- --></A><H3>
+ChromaticScale</H3>
 <PRE>
-public <B>HarmonicMinorScale</B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)
-                   throws <A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></PRE>
+public <B>ChromaticScale</B>()
+               throws <A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></PRE>
 <DL>
 <DD>Constructor.
 <P>
 <DL>
-<DT><B>Parameters:</B><DD><CODE>keyName</CODE> - the name of the tonal center
+
 <DT><B>Throws:</B>
-<DD><CODE><A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></CODE> - thrown
-         when the key is invalid</DL>
+<DD><CODE><A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></CODE> - should never be thrown but must be
+         declared because the super class constructor can throw it</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -237,11 +248,49 @@ public int[] <B>getScaleStepArray</B>()</PRE>
  the tonic for each scale step.
 <P>
 <DD><DL>
-<DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html#getScaleStepArray()">getScaleStepArray</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales">MinorScale</A></CODE></DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getScaleStepArray()">getScaleStepArray</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></DL>
 </DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>array of integers</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLetterNumberArray()"><!-- --></A><H3>
+getLetterNumberArray</H3>
+<PRE>
+public int[] <B>getLetterNumberArray</B>()</PRE>
+<DL>
+<DD>Note supported by Chromatic Scale.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getLetterNumberArray()">getLetterNumberArray</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>throws an UnsupportedOperationException</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setNotePitchValues(com.myronmarston.music.Note, com.myronmarston.music.NoteName)"><!-- --></A><H3>
+setNotePitchValues</H3>
+<PRE>
+public void <B>setNotePitchValues</B>(<A HREF="../../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&nbsp;note,
+                               <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;noteName)</PRE>
+<DL>
+<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#setNotePitchValues(com.myronmarston.music.Note, com.myronmarston.music.NoteName)">Scale</A></CODE></B></DD>
+<DD>Sets the scaleStep and chromaticAdjustment on the given note, based on
+ the passed noteName.
+<P>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#setNotePitchValues(com.myronmarston.music.Note, com.myronmarston.music.NoteName)">setNotePitchValues</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>note</CODE> - the scaleStep and chromatic adjustment will be set on this 
+        note<DD><CODE>noteName</CODE> - the noteName of the pitch that should be used to
+        determine the pitch values</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
@@ -260,7 +309,7 @@ public int[] <B>getScaleStepArray</B>()</PRE>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/HarmonicMinorScale.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ChromaticScale.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -275,11 +324,11 @@ public int[] <B>getScaleStepArray</B>()</PRE>
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/myronmarston/music/scales/ChromaticScale.html" title="class in com.myronmarston.music.scales"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;PREV CLASS&nbsp;
+&nbsp;<A HREF="../../../../com/myronmarston/music/scales/HarmonicMinorScale.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/myronmarston/music/scales/HarmonicMinorScale.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="HarmonicMinorScale.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/myronmarston/music/scales/ChromaticScale.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="ChromaticScale.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {

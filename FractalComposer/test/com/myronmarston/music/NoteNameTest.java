@@ -57,5 +57,10 @@ public class NoteNameTest {
         assertEquals(6, NoteName.B.getPositiveChromaticSteps(NoteName.F));
         assertEquals(4, NoteName.F.getPositiveChromaticSteps(NoteName.Bbb));
         assertEquals(2, NoteName.Gbb.getPositiveChromaticSteps(NoteName.Fx)); 
-    }            
+    }      
+    
+    @Test
+    public void toStringTest() {
+        assertEquals("F#", NoteName.Fs.toString());
+    }
 }

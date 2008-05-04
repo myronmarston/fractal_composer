@@ -145,6 +145,14 @@ Class that holds the time signature for the fractal piece.  A time signature
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html#getDefault()">getDefault</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a time signature that should be used before the user specifies one.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html#getDenominator()">getDenominator</A></B>()</CODE>
 
@@ -335,6 +343,20 @@ public javax.sound.midi.MidiEvent <B>getMidiTimeSignatureEvent</B>()
 <DT><B>Throws:</B>
 <DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - thrown when the midi 
          data is invalid</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getDefault()"><!-- --></A><H3>
+getDefault</H3>
+<PRE>
+public static <A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A> <B>getDefault</B>()</PRE>
+<DL>
+<DD>Gets a time signature that should be used before the user specifies one.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>common time (i.e. 4/4)</DL>
 </DD>
 </DL>
 <HR>

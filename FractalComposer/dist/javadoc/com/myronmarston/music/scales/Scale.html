@@ -95,7 +95,7 @@ java.lang.Object
   <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.scales.Scale</B>
 </PRE>
 <DL>
-<DT><B>Direct Known Subclasses:</B> <DD><A HREF="../../../../com/myronmarston/music/scales/MajorScale.html" title="class in com.myronmarston.music.scales">MajorScale</A>, <A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales">MinorScale</A></DD>
+<DT><B>Direct Known Subclasses:</B> <DD><A HREF="../../../../com/myronmarston/music/scales/ChromaticScale.html" title="class in com.myronmarston.music.scales">ChromaticScale</A>, <A HREF="../../../../com/myronmarston/music/scales/MajorScale.html" title="class in com.myronmarston.music.scales">MajorScale</A>, <A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales">MinorScale</A></DD>
 </DL>
 <HR>
 <DL>
@@ -167,6 +167,15 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getDefault()">getDefault</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the scale that should be used by default before the user specifies
+ one.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeyName()">getKeyName</A></B>()</CODE>
 
@@ -225,14 +234,6 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#setKeyName(com.myronmarston.music.NoteName)">setKeyName</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the tonal center of the scale.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>protected &nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#setNotePitchValues_Helper(com.myronmarston.music.Note, com.myronmarston.music.NoteName, int)">setNotePitchValues_Helper</A></B>(<A HREF="../../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&nbsp;note,
                           <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;noteNameForPitch,
@@ -251,6 +252,14 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the scaleStep and chromaticAdjustment on the given note, based on
  the passed noteName.</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#toString()">toString</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
@@ -258,7 +267,7 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 <TH ALIGN="left"><B>Methods inherited from class java.lang.Object</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>clone, finalize, getClass, notify, notifyAll, toString, wait, wait, wait</CODE></TD>
+<TD><CODE>clone, finalize, getClass, notify, notifyAll, wait, wait, wait</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -344,23 +353,6 @@ public <A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" tit
 </DL>
 <HR>
 
-<A NAME="setKeyName(com.myronmarston.music.NoteName)"><!-- --></A><H3>
-setKeyName</H3>
-<PRE>
-public void <B>setKeyName</B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)
-                throws <A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></PRE>
-<DL>
-<DD>Sets the tonal center of the scale.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>keyName</CODE> - the key name
-<DT><B>Throws:</B>
-<DD><CODE><A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></CODE> - thrown 
-         if the key has more than 7 flats or sharps</DL>
-</DD>
-</DL>
-<HR>
-
 <A NAME="getMidiPitchNumberForTonicAtOctave(int)"><!-- --></A><H3>
 getMidiPitchNumberForTonicAtOctave</H3>
 <PRE>
@@ -441,6 +433,21 @@ protected void <B>setNotePitchValues_Helper</B>(<A HREF="../../../../com/myronma
 </DL>
 <HR>
 
+<A NAME="getDefault()"><!-- --></A><H3>
+getDefault</H3>
+<PRE>
+public static <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A> <B>getDefault</B>()</PRE>
+<DL>
+<DD>Gets the scale that should be used by default before the user specifies
+ one.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>a chromatic scale</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="getScaleTypes()"><!-- --></A><H3>
 getScaleTypes</H3>
 <PRE>
@@ -451,6 +458,20 @@ public static java.util.List&lt;java.lang.Class&gt; <B>getScaleTypes</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>list of scale types</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="toString()"><!-- --></A><H3>
+toString</H3>
+<PRE>
+public java.lang.String <B>toString</B>()</PRE>
+<DL>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>toString</CODE> in class <CODE>java.lang.Object</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>

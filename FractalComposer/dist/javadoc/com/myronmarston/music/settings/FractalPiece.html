@@ -263,6 +263,14 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#getGermString()">getGermString</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the germ string.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#getScale()">getScale</A></B>()</CODE>
 
@@ -321,6 +329,14 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#saveGermToMidiFile(java.lang.String)">saveGermToMidiFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the germ to a midi file so that the user can listen to it.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#setGenerateLayeredIntro(boolean)">setGenerateLayeredIntro</A></B>(boolean&nbsp;generateLayeredIntro)</CODE>
 
 <BR>
@@ -339,7 +355,7 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#setGerm(java.lang.String)">setGerm</A></B>(java.lang.String&nbsp;noteListString)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#setGermString(java.lang.String)">setGermString</A></B>(java.lang.String&nbsp;germString)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the notes for the germ.</TD>
@@ -415,16 +431,30 @@ public <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class i
 </DL>
 <HR>
 
-<A NAME="setGerm(java.lang.String)"><!-- --></A><H3>
-setGerm</H3>
+<A NAME="getGermString()"><!-- --></A><H3>
+getGermString</H3>
 <PRE>
-public void <B>setGerm</B>(java.lang.String&nbsp;noteListString)
-             throws <A HREF="../../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music">NoteStringParseException</A></PRE>
+public java.lang.String <B>getGermString</B>()</PRE>
+<DL>
+<DD>Gets the germ string.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the germ string</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setGermString(java.lang.String)"><!-- --></A><H3>
+setGermString</H3>
+<PRE>
+public void <B>setGermString</B>(java.lang.String&nbsp;germString)
+                   throws <A HREF="../../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music">NoteStringParseException</A></PRE>
 <DL>
 <DD>Sets the notes for the germ.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>noteListString</CODE> - string containing a list of notes
+<DT><B>Parameters:</B><DD><CODE>germString</CODE> - string containing a list of notes
 <DT><B>Throws:</B>
 <DD><CODE><A HREF="../../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music">NoteStringParseException</A></CODE> - if the note list
          string cannot be parsed</DL>
@@ -774,6 +804,25 @@ public void <B>createAndSaveMidiFile</B>(java.lang.String&nbsp;fileName)
 <DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - if there is some 
          invalid midi data
 <DD><CODE>java.io.IOException</CODE> - if the file cannot be written</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="saveGermToMidiFile(java.lang.String)"><!-- --></A><H3>
+saveGermToMidiFile</H3>
+<PRE>
+public void <B>saveGermToMidiFile</B>(java.lang.String&nbsp;fileName)
+                        throws javax.sound.midi.InvalidMidiDataException,
+                               java.io.IOException</PRE>
+<DL>
+<DD>Saves the germ to a midi file so that the user can listen to it.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the filename for the midi file
+<DT><B>Throws:</B>
+<DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - if there is some 
+         invalid midi data
+<DD><CODE>java.io.IOException</CODE> - if there is an IO problem with the file</DL>
 </DD>
 </DL>
 <HR>
