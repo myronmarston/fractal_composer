@@ -21,9 +21,9 @@ public class MidiNote {
     private MidiEvent noteOffEvent; 
     
     /**
-     * The default velocity (volume) of the note--64.
+     * The default velocity (volume) of the note
      */
-    public static final int DEFAULT_VELOCITY = 64;
+    public static final int DEFAULT_VELOCITY = Dynamic.MF.getMidiVolume();
     
     
     /**

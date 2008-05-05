@@ -10,10 +10,6 @@ import java.util.*;
 
 import javax.sound.midi.Track;
 import javax.sound.midi.Sequence;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -22,25 +18,6 @@ import static org.junit.Assert.*;
  * @author Myron
  */
 public class NoteListTest {
-
-    public NoteListTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }   
     
     @Test
     public void getFirstAudibleNote() {
@@ -96,13 +73,14 @@ public class NoteListTest {
         MidiNoteTest.assertNoteEventEqual(track.get(10), 20, (byte) -112, (byte) 70, (byte) 64);
         MidiNoteTest.assertNoteEventEqual(track.get(11), 24, (byte) -128, (byte) 70, (byte) 0);                
     }
-
+   
     @Test
     public void parseNoteListString() throws InvalidKeySignatureException, NoteStringParseException { 
-        NoteList germ = NoteList.parseNoteListString("D4,1/4,MF E4,1/8 F#4,F D4,1/4", new MajorScale(NoteName.D));
+        NoteList germ = NoteList.parseNoteListString("D4,1/4,MF R,1/8 E4 F#4,F D4,1/4", new MajorScale(NoteName.D));
         
         NoteList expected = new NoteList();
         expected.add(new Note(0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        expected.add(Note.createRest(new Fraction(1,8)));
         expected.add(new Note(1, 4, 0, new Fraction(1, 8), Dynamic.MF.getMidiVolume()));
         expected.add(new Note(2, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume()));
         expected.add(new Note(0, 4, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume()));
@@ -113,7 +91,7 @@ public class NoteListTest {
     @Test
     public void getMidiTickResolution() throws InvalidKeySignatureException, NoteStringParseException {
         NoteList nl = NoteList.parseNoteListString("C4,1/8 C4,1/4 C4,1/16 C4,3/8 C4,1/3", new MajorScale(NoteName.C));
-        assertEquals(48L, NoteList.getMidiTickResolution(Arrays.asList(nl)));
+        assertEquals(48, NoteList.getMidiTickResolution(Arrays.asList(nl)));
     }
     
     public static void assertNoteListsEqual(NoteList expected, NoteList actual) {        

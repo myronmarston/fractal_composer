@@ -21,8 +21,36 @@ import java.lang.reflect.UndeclaredThrowableException;
 public abstract class Scale {    
     @Element
     private KeySignature keySignature;
-    private static List<Class> scaleTypes;
-    private final static int MIDI_KEY_OFFSET = 12; //C0 is Midi pitch 12 (http://www.phys.unsw.edu.au/jw/notes.html)    
+    
+    /**
+     * A list of all valid scale types.
+     */
+    public final static List<Class> SCALE_TYPES;    
+    
+    /**
+     * The scale that should be used before the user specifies one--a chromatic scale.
+     */
+    public final static Scale DEFAULT;
+    
+    /**
+     * Initializes the default scale and the scale types list.
+     */
+    static {
+        try {
+            DEFAULT = new ChromaticScale();
+        } catch (InvalidKeySignatureException ex) {
+            throw new UndeclaredThrowableException(ex, "An exception occurred while instantiating a ChromaticScale.  This indicates a programming error.");
+        }
+                            
+        try {                
+            SCALE_TYPES = Collections.unmodifiableList(ClassHelper.getSubclassesInPackage(Scale.class.getPackage().getName(), Scale.class));
+        } catch (ClassNotFoundException ex) {
+            // our code above is guarenteed to pass a valid package name, so we 
+            // should never get this exception; if we do, there is a bug in the
+            // code somewhere, so throw an assertion error.
+            throw new UndeclaredThrowableException(ex, "An exception occurred while getting the scale types.  This indicates a programming error.");
+        }
+    }
     
     /**
      * The number of chromatic pitches in one octave: 12.
@@ -56,19 +84,6 @@ public abstract class Scale {
         return keySignature;
     }         
     
-    /**
-     * Gets the midi pitch number for the tonic of this scale at the given 
-     * octave.
-     * 
-     * @param octave the octave
-     * @return the midi pitch number
-     */
-    public int getMidiPitchNumberForTonicAtOctave(int octave) {
-        return MIDI_KEY_OFFSET // C0, our base pitch...
-            + this.getKeyName().getNoteNumber() // the number of half steps to the key            
-            + (NUM_CHROMATIC_PITCHES_PER_OCTAVE * octave); // 12 half steps in an octave
-    }          
-       
     /**
      * Gets an array of integers representing the number of half steps above
      * the tonic for each scale step.
@@ -166,41 +181,7 @@ public abstract class Scale {
         int chromaticAdjustment = getNormalizedChromaticAdjustment(givenNoteHalfStepAboveTonic - diatonicNoteHalfStepsAboveTonic);
                 
         note.setChromaticAdjustment(chromaticAdjustment);
-    }     
-    
-    /**
-     * Gets the scale that should be used by default before the user specifies
-     * one.  
-     * 
-     * @return a chromatic scale
-     */
-    public static Scale getDefault() {
-        try {
-            return new ChromaticScale();
-        } catch (InvalidKeySignatureException ex) {
-            throw new UndeclaredThrowableException(ex, "An exception occurred while instantiating a ChromaticScale.  This indicates a programming error.");
-        }
-    }
-    
-    /**
-     * Gets a list of all the classes in this package that subClass this type.
-     * 
-     * @return list of scale types    
-     */
-    public synchronized static List<Class> getScaleTypes() {
-        if (scaleTypes == null) {            
-            try {                
-                return ClassHelper.getSubclassesInPackage(Scale.class.getPackage().getName(), Scale.class);
-            } catch (ClassNotFoundException ex) {
-                // our code above is guarenteed to pass a valid package name, so we 
-                // should never get this exception; if we do, there is a bug in the
-                // code somewhere, so throw an assertion error.
-                throw new UndeclaredThrowableException(ex, "An exception occurred while getting the scale types.  This indicates a programming error.");
-            }
-        }
-        
-        return scaleTypes;
-    }
+    }             
 
     @Override
     public String toString() {

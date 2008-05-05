@@ -5,8 +5,6 @@ import com.myronmarston.music.scales.*;
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
 import javax.sound.midi.InvalidMidiDataException;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -15,17 +13,6 @@ import static org.junit.Assert.*;
  * @author Myron
  */
 public class NoteTest {
-
-    public NoteTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
 
     @Test(expected=UnsupportedOperationException.class)
     public void errorIfChangeRest() {        
@@ -63,19 +50,19 @@ public class NoteTest {
     @Test
     public void parseNoteString() throws InvalidKeySignatureException, NoteStringParseException {
         // basic test...
-        parseNoteStringTestHelper(new Note(2, 4, 0, new Fraction(3, 16), Dynamic.PP.getMidiVolume()), "D#4,3/16,PP", new MajorScale(NoteName.B), null, null);                
+        parseNoteStringTestHelper(new Note(2, 3, 0, new Fraction(3, 16), Dynamic.PP.getMidiVolume()), "D#4,3/16,PP", new MajorScale(NoteName.B), null, null);                
         
         // an accidental...
-        parseNoteStringTestHelper(new Note(0, 2, -1, new Fraction(1, 2), Dynamic.FFF.getMidiVolume()), "B2,1/2,FFF", new MajorPentatonicScale(NoteName.C), null, null);
+        parseNoteStringTestHelper(new Note(0, 3, -1, new Fraction(1, 2), Dynamic.FFF.getMidiVolume()), "B2,1/2,FFF", new MajorPentatonicScale(NoteName.C), null, null);
         
         // a non-standard rhythm and using a default volume
         parseNoteStringTestHelper(new Note(3, 2, -2, new Fraction(1, 7), 37), "Gbb2,1/7", new MajorScale(NoteName.D), null, 37);
         
         // a default volume and default rhythm
-        parseNoteStringTestHelper(new Note(1, 3, 1, new Fraction(2, 1), 67), "Cx3", new MajorScale(NoteName.B), new Fraction(2, 1), 67);
+        parseNoteStringTestHelper(new Note(1, 2, 1, new Fraction(2, 1), 67), "Cx3", new MajorScale(NoteName.B), new Fraction(2, 1), 67);
         
         // a default rhythm, and an entered volume
-        parseNoteStringTestHelper(new Note(4, 3, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()), "F#3,MF", new MinorScale(NoteName.B), new Fraction(1, 4), null);
+        parseNoteStringTestHelper(new Note(4, 2, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()), "F#3,MF", new MinorScale(NoteName.B), new Fraction(1, 4), null);
         
         // a rest
         parseNoteStringTestHelper(Note.createRest(new Fraction(1, 3)), "R,1/3", new MajorScale(NoteName.B), null, null);
@@ -161,7 +148,7 @@ public class NoteTest {
     @Test
     public void convertRestToMidiNote() throws InvalidKeySignatureException, InvalidMidiDataException {
         Note n = Note.createRest(new Fraction(1, 4));
-        MidiNote mn = n.convertToMidiNote(new MajorScale(NoteName.C), new Fraction(4, 1), 4);
+        MidiNote mn = n.convertToMidiNote(new MajorScale(NoteName.C), new Fraction(4, 1), 4, MidiNote.DEFAULT_CHANNEL, true);
         MidiNoteTest.assertNoteEventEqual(mn.getNoteOnEvent(), 16, (byte) -112, (byte) 0, (byte) 0);
         MidiNoteTest.assertNoteEventEqual(mn.getNoteOffEvent(), 17, (byte) -128, (byte) 0, (byte) 0);
     }

@@ -120,21 +120,11 @@ Uses of <A HREF="../../../../../com/myronmarston/music/scales/Scale.html" title=
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A></CODE></FONT></TD>
-<TD><CODE><B>Note.</B><B><A HREF="../../../../../com/myronmarston/music/Note.html#convertToMidiNote(com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int)">convertToMidiNote</A></B>(<A HREF="../../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
-                  <A HREF="../../../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime,
-                  int&nbsp;midiTickResolution)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the note to a Midi Note, that can then be used to get the
- actual Midi note on and note off events.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A></CODE></FONT></TD>
-<TD><CODE><B>Note.</B><B><A HREF="../../../../../com/myronmarston/music/Note.html#convertToMidiNote(com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int, int)">convertToMidiNote</A></B>(<A HREF="../../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
+<TD><CODE><B>Note.</B><B><A HREF="../../../../../com/myronmarston/music/Note.html#convertToMidiNote(com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int, int, boolean)">convertToMidiNote</A></B>(<A HREF="../../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
                   <A HREF="../../../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime,
                   int&nbsp;midiTickResolution,
-                  int&nbsp;channel)</CODE>
+                  int&nbsp;channel,
+                  boolean&nbsp;keepExactPitch)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the note to a Midi Note, that can then be used to get the
@@ -241,16 +231,15 @@ Uses of <A HREF="../../../../../com/myronmarston/music/scales/Scale.html" title=
 
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
 <TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
-<TH ALIGN="left" COLSPAN="2">Methods in <A HREF="../../../../../com/myronmarston/music/scales/package-summary.html">com.myronmarston.music.scales</A> that return <A HREF="../../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></FONT></TH>
+<TH ALIGN="left" COLSPAN="2">Fields in <A HREF="../../../../../com/myronmarston/music/scales/package-summary.html">com.myronmarston.music.scales</A> declared as <A HREF="../../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;<A HREF="../../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></FONT></TD>
-<TD><CODE><B>Scale.</B><B><A HREF="../../../../../com/myronmarston/music/scales/Scale.html#getDefault()">getDefault</A></B>()</CODE>
+<TD><CODE><B>Scale.</B><B><A HREF="../../../../../com/myronmarston/music/scales/Scale.html#DEFAULT">DEFAULT</A></B></CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the scale that should be used by default before the user specifies
- one.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The scale that should be used before the user specifies one--a chromatic scale.</TD>
 </TR>
 </TABLE>
 &nbsp;

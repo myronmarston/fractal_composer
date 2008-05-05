@@ -164,21 +164,11 @@ Represents a note, relative to a particular scale.  This note will need to be
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#convertToMidiNote(com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int)">convertToMidiNote</A></B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
-                  <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime,
-                  int&nbsp;midiTickResolution)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the note to a Midi Note, that can then be used to get the
- actual Midi note on and note off events.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#convertToMidiNote(com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int, int)">convertToMidiNote</A></B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#convertToMidiNote(com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int, int, boolean)">convertToMidiNote</A></B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
                   <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime,
                   int&nbsp;midiTickResolution,
-                  int&nbsp;channel)</CODE>
+                  int&nbsp;channel,
+                  boolean&nbsp;keepExactPitch)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the note to a Midi Note, that can then be used to get the
@@ -676,38 +666,23 @@ public static <A HREF="../../../com/myronmarston/music/Note.html" title="class i
 </DL>
 <HR>
 
-<A NAME="convertToMidiNote(com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int)"><!-- --></A><H3>
-convertToMidiNote</H3>
-<PRE>
-public <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A> <B>convertToMidiNote</B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
-                                  <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime,
-                                  int&nbsp;midiTickResolution)</PRE>
-<DL>
-<DD>Converts the note to a Midi Note, that can then be used to get the
- actual Midi note on and note off events.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>scale</CODE> - the scale to use<DD><CODE>startTime</CODE> - the time this note should be played<DD><CODE>midiTickResolution</CODE> - the number of ticks per whole note for the
-        midi sequence
-<DT><B>Returns:</B><DD>the MidiNote</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="convertToMidiNote(com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int, int)"><!-- --></A><H3>
+<A NAME="convertToMidiNote(com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, int, int, boolean)"><!-- --></A><H3>
 convertToMidiNote</H3>
 <PRE>
 public <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A> <B>convertToMidiNote</B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
                                   <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime,
                                   int&nbsp;midiTickResolution,
-                                  int&nbsp;channel)</PRE>
+                                  int&nbsp;channel,
+                                  boolean&nbsp;keepExactPitch)</PRE>
 <DL>
 <DD>Converts the note to a Midi Note, that can then be used to get the
  actual Midi note on and note off events.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>scale</CODE> - the scale to use<DD><CODE>startTime</CODE> - the time this note should be played<DD><CODE>midiTickResolution</CODE> - the number of ticks per whole note for the
-        midi sequence<DD><CODE>channel</CODE> - the midi channel for this note, 0-15
+        midi sequence<DD><CODE>channel</CODE> - the midi channel for this note, 0-15<DD><CODE>keepExactPitch</CODE> - true to keep the exact pitch specified by the note
+        parameters; false to allow the chromaticAdjustment to be changed
+        if it would create a note that is already found in the scale
 <DT><B>Returns:</B><DD>the MidiNote</DL>
 </DD>
 </DL>

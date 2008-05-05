@@ -123,11 +123,27 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#DEFAULT">DEFAULT</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The scale that should be used before the user specifies one--a chromatic scale.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#NUM_CHROMATIC_PITCHES_PER_OCTAVE">NUM_CHROMATIC_PITCHES_PER_OCTAVE</A></B></CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The number of chromatic pitches in one octave: 12.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;java.util.List&lt;java.lang.Class&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#SCALE_TYPES">SCALE_TYPES</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A list of all valid scale types.</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -167,15 +183,6 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getDefault()">getDefault</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the scale that should be used by default before the user specifies
- one.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeyName()">getKeyName</A></B>()</CODE>
 
@@ -200,29 +207,12 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getMidiPitchNumberForTonicAtOctave(int)">getMidiPitchNumberForTonicAtOctave</A></B>(int&nbsp;octave)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the midi pitch number for the tonic of this scale at the given 
- octave.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>abstract &nbsp;int[]</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getScaleStepArray()">getScaleStepArray</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets an array of integers representing the number of half steps above
  the tonic for each scale step.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;java.util.List&lt;java.lang.Class&gt;</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getScaleTypes()">getScaleTypes</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a list of all the classes in this package that subClass this type.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -282,6 +272,30 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 <B>Field Detail</B></FONT></TH>
 </TR>
 </TABLE>
+
+<A NAME="SCALE_TYPES"><!-- --></A><H3>
+SCALE_TYPES</H3>
+<PRE>
+public static final java.util.List&lt;java.lang.Class&gt; <B>SCALE_TYPES</B></PRE>
+<DL>
+<DD>A list of all valid scale types.
+<P>
+<DL>
+</DL>
+</DL>
+<HR>
+
+<A NAME="DEFAULT"><!-- --></A><H3>
+DEFAULT</H3>
+<PRE>
+public static final <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A> <B>DEFAULT</B></PRE>
+<DL>
+<DD>The scale that should be used before the user specifies one--a chromatic scale.
+<P>
+<DL>
+</DL>
+</DL>
+<HR>
 
 <A NAME="NUM_CHROMATIC_PITCHES_PER_OCTAVE"><!-- --></A><H3>
 NUM_CHROMATIC_PITCHES_PER_OCTAVE</H3>
@@ -353,21 +367,6 @@ public <A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" tit
 </DL>
 <HR>
 
-<A NAME="getMidiPitchNumberForTonicAtOctave(int)"><!-- --></A><H3>
-getMidiPitchNumberForTonicAtOctave</H3>
-<PRE>
-public int <B>getMidiPitchNumberForTonicAtOctave</B>(int&nbsp;octave)</PRE>
-<DL>
-<DD>Gets the midi pitch number for the tonic of this scale at the given 
- octave.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>octave</CODE> - the octave
-<DT><B>Returns:</B><DD>the midi pitch number</DL>
-</DD>
-</DL>
-<HR>
-
 <A NAME="getScaleStepArray()"><!-- --></A><H3>
 getScaleStepArray</H3>
 <PRE>
@@ -429,35 +428,6 @@ protected void <B>setNotePitchValues_Helper</B>(<A HREF="../../../../com/myronma
         note<DD><CODE>noteNameForPitch</CODE> - the noteName of the pitch that should be used to
         determine the pitch values<DD><CODE>scaleStepIndex</CODE> - the index of the scaleStep withing this scales's
         scaleStepArray that should be used</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getDefault()"><!-- --></A><H3>
-getDefault</H3>
-<PRE>
-public static <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A> <B>getDefault</B>()</PRE>
-<DL>
-<DD>Gets the scale that should be used by default before the user specifies
- one.
-<P>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>a chromatic scale</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getScaleTypes()"><!-- --></A><H3>
-getScaleTypes</H3>
-<PRE>
-public static java.util.List&lt;java.lang.Class&gt; <B>getScaleTypes</B>()</PRE>
-<DL>
-<DD>Gets a list of all the classes in this package that subClass this type.
-<P>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>list of scale types</DL>
 </DD>
 </DL>
 <HR>

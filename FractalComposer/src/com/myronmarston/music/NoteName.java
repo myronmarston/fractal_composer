@@ -14,8 +14,8 @@ import java.util.Locale;
  * @author Myron
  */
 public enum NoteName {    
-    Cbb(0, 10),
-    Cb(0, 11, -7, Tonality.INVALID_KEY),
+    Cbb(0, -2),
+    Cb(0, -1, -7, Tonality.INVALID_KEY),
     C(0, 0, 0, -3, true), // C is 0 because the octave designations begin with C as the first note
     Cs(0, 1, 7, 4, true),    
     Cx(0, 2),
@@ -53,16 +53,29 @@ public enum NoteName {
     Bbb(6, 9),
     Bb(6, 10, -2, -5, true),
     B(6, 11, 5, 2, true),  
-    Bs(6, 0),
-    Bx(6, 1);
+    Bs(6, 12),
+    Bx(6, 13);
     
+    private final int pitchNumberAtOctaveZero;
     private final int noteNumber;
     private final int letterNumber;
     private final boolean defaultNoteNameForNumber;
     private final int majorKeySharpsOrFlats;
     private final int minorKeySharpsOrFlats;      
-    private static HashMap<String, NoteName> noteNameHash;
-    public static final int NUM_LETTER_NAMES = 7;
+    private final static HashMap<String, NoteName> NOTE_NAME_HASH;
+    public final static int NUM_LETTER_NAMES = 7;
+    private final static int MIDI_KEY_OFFSET = 12; //C0 is Midi pitch 12 (http://www.phys.unsw.edu.au/jw/notes.html)    
+    
+    /**
+     * Initializes our note name hash.
+     */
+    static {            
+        NOTE_NAME_HASH = new HashMap<String, NoteName>(NoteName.values().length);
+        for (NoteName nn : NoteName.values()) {
+            // convert to upper case so that the case doesn't matter...
+            NOTE_NAME_HASH.put(nn.toString().toUpperCase(Locale.ENGLISH), nn);
+        }        
+    }
     
     private NoteName(int letterNumber, int noteNumber) {
         this(letterNumber, noteNumber, Tonality.INVALID_KEY, Tonality.INVALID_KEY);
@@ -74,7 +87,8 @@ public enum NoteName {
     
     private NoteName(int letterNumber, int noteNumber, int majorKeySharpsOrFlats, int minorKeySharpsOrFlats, boolean defaultNoteNameForNumber) {
         this.letterNumber = letterNumber;
-        this.noteNumber = noteNumber;
+        this.pitchNumberAtOctaveZero = noteNumber + MIDI_KEY_OFFSET;
+        this.noteNumber = getNormalizedValue(pitchNumberAtOctaveZero, Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE);
         this.defaultNoteNameForNumber = defaultNoteNameForNumber;
         this.majorKeySharpsOrFlats = majorKeySharpsOrFlats;
         this.minorKeySharpsOrFlats = minorKeySharpsOrFlats;
@@ -86,7 +100,17 @@ public enum NoteName {
      * @return the number of half steps this note name is above C
      */
     public int getNoteNumber() {
-        return noteNumber;
+        return this.noteNumber;
+    }
+    
+    /**
+     * Gets the midi pitch number for this note name at the given octave.
+     * 
+     * @param octave the octave
+     * @return the midi pitch number
+     */
+    public int getMidiPitchNumberAtOctave(int octave) {
+        return this.pitchNumberAtOctaveZero + (Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE * octave);
     }
 
     /**
@@ -131,9 +155,7 @@ public enum NoteName {
      * @return the size of the interval
      */
     public int getPositiveIntervalSize(NoteName other) {
-        return (other.getLetterNumber() - this.getLetterNumber()
-                + NoteName.NUM_LETTER_NAMES) 
-                % NoteName.NUM_LETTER_NAMES; 
+        return getNormalizedValue(other.getLetterNumber() - this.getLetterNumber(), NoteName.NUM_LETTER_NAMES);                
     }
     
     /**
@@ -143,9 +165,16 @@ public enum NoteName {
      * @return the number of positive chromatic steps
      */
     public int getPositiveChromaticSteps(NoteName other) {
-        return (other.getNoteNumber() - this.getNoteNumber()
-                + Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE) 
-                % Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE; 
+        return getNormalizedValue(other.getNoteNumber() - this.getNoteNumber(), Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE);                
+    }        
+       
+    private static int getNormalizedValue(int value, int max) {
+        // the value could be negative, but it should not be more negative then our mod
+        assert value > 0 - max : value;        
+        int returnVal = (value + max) % max;
+        assert returnVal >= 0 && returnVal < max : returnVal;
+        
+        return returnVal;
     }
 
     @Override
@@ -170,19 +199,7 @@ public enum NoteName {
         
         throw new IllegalArgumentException(String.format("%d is not a valid keyNumber.  The keyNumber should be between 0 and 11.", noteNumber));
     }
-    
-    private static HashMap<String, NoteName> getNoteNameHash() {
-        if (noteNameHash == null) {
-            noteNameHash = new HashMap<String, NoteName>(NoteName.values().length);
-            for (NoteName nn : NoteName.values()) {
-                // convert to upper case so that the case doesn't matter...
-                noteNameHash.put(nn.toString().toUpperCase(Locale.ENGLISH), nn);
-            }
-        }
         
-        return noteNameHash;
-    }
-    
     /**
      * Gets the NoteName that corresponds to the given string.
      * 
@@ -191,7 +208,7 @@ public enum NoteName {
      */
     public static NoteName getNoteName(String str) {
         // convert to upper case so that the case doesn't matter...
-        return NoteName.getNoteNameHash().get(str.toUpperCase(Locale.ENGLISH));
+        return NOTE_NAME_HASH.get(str.toUpperCase(Locale.ENGLISH));
     }        
     
     /**

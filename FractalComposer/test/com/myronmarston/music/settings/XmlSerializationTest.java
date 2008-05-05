@@ -210,7 +210,7 @@ public class XmlSerializationTest {
     
     private static List<Scale> getScales() throws Exception {
         List<Scale> list = new ArrayList<Scale>();
-        for (Class c : Scale.getScaleTypes()) {     
+        for (Class c : Scale.SCALE_TYPES) {     
             // originally we used getConstructor(NoteName.class) but that seems
             // to only get public constructors.  Our chromatic scale has this
             // constructor declared private, so we have to iterate over

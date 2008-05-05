@@ -79,8 +79,8 @@ public class NoteList extends ArrayList<Note> {
             note = Note.parseNoteString(st.nextToken(), scale, defaultDuration, defaultVolume);
             
             // get our defaults for the next note from this note...
-            defaultDuration = note.getDuration();
-            defaultVolume = note.getVolume();
+            defaultDuration = note.getDuration();            
+            if (!note.isRest()) defaultVolume = note.getVolume();
             
             list.add(note);
         }
@@ -127,22 +127,51 @@ public class NoteList extends ArrayList<Note> {
      *         midi data
      */
     public Track createAndFillMidiTrack(Sequence sequence, Scale scale, Fraction startTime) throws InvalidMidiDataException {
-        MidiNote midiNote = null;
+        MidiNote thisMidiNote, lastMidiNote = null;
+        Note lastNote = null;
+        
         // make each track be on a different channel, but make sure we don't go over our total number of channels...
         int midiChannel = sequence.getTracks().length % MidiNote.MAX_CHANNEL;
         Track track = sequence.createTrack();
         // in Midi, the tick resolution is based on quarter notes, but we use whole notes...
         int midiTicksPerWholeNote = sequence.getResolution() * 4; 
-                
-        for (Note note : this.getListWithNormalizedRests()) {
-            midiNote = note.convertToMidiNote(scale, startTime, midiTicksPerWholeNote, midiChannel);
+        
+        for (Note thisNote : this.getListWithNormalizedRests()) {
+            thisMidiNote = thisNote.convertToMidiNote(scale, startTime, midiTicksPerWholeNote, midiChannel, true);                        
             
-            track.add(midiNote.getNoteOnEvent());
-            track.add(midiNote.getNoteOffEvent());
+            if (lastMidiNote != null) {
+                assert lastNote != null : lastNote;
+                                
+                if (thisMidiNote.getPitch() == lastMidiNote.getPitch() && lastNote.getScaleStep() != thisNote.getScaleStep()) {               
+                    // the notes are different scale steps and should have different pitches.
+                    // This can happen with notes like B# and C in the key of C.
+
+                    if (lastNote.getChromaticAdjustment() != 0) {
+                        lastMidiNote = lastNote.convertToMidiNote(scale, startTime.minus(thisNote.getDuration()), midiTicksPerWholeNote, midiChannel, false);
+                    } else if (thisNote.getChromaticAdjustment() != 0) {
+                        thisMidiNote = thisNote.convertToMidiNote(scale, startTime, midiTicksPerWholeNote, midiChannel, false);
+                    } else {
+                        // one of these notes should always have a chromatic 
+                        // adjustment--otherwise, how do they have the same pitches
+                        // but different scale steps?
+                        assert false : "Neither last note '" + lastNote.toString() + "' nor this note '" + thisNote.toString() + "' have a chromatic adjustment.";
+                    }
+                    
+                    assert thisMidiNote.getPitch() != lastMidiNote.getPitch() : "The midi notes have the same pitch and should not: " + thisMidiNote.getPitch();
+                }                
+                track.add(lastMidiNote.getNoteOnEvent());
+                track.add(lastMidiNote.getNoteOffEvent());
+            }                                      
             
             //The next note start time will be the end of this note...
-            startTime = startTime.plus(note.getDuration());
-        }       
+            startTime = startTime.plus(thisNote.getDuration());
+            
+            lastMidiNote = thisMidiNote;
+            lastNote = thisNote;
+        }           
+        
+        track.add(lastMidiNote.getNoteOnEvent());
+        track.add(lastMidiNote.getNoteOffEvent());
         
         return track;
     }        
@@ -154,7 +183,7 @@ public class NoteList extends ArrayList<Note> {
      * @param noteLists collection of noteLists
      * @return the midi tick resolution
      */
-    public static long getMidiTickResolution(Collection<NoteList> noteLists) {
+    public static int getMidiTickResolution(Collection<NoteList> noteLists) {        
         // next, figure out the resolution of our Midi sequence...
         ArrayList<Long> uniqueDurationDenominators = new ArrayList<Long>();
         for (NoteList nl : noteLists) {
@@ -165,6 +194,8 @@ public class NoteList extends ArrayList<Note> {
             }
         }        
         
-        return MathHelper.leastCommonMultiple(uniqueDurationDenominators);
+        long resolution = MathHelper.leastCommonMultiple(uniqueDurationDenominators);
+        assert resolution < Integer.MAX_VALUE;
+        return (int) resolution;
     }
 }

@@ -217,7 +217,7 @@ public class Note {
      * @param duration the duration
      */
     public void setDuration(Fraction duration) {
-        if (duration.asDouble() <= 0) throw new IllegalArgumentException("The duration must be greater than zero.");
+        if (duration != null && duration.asDouble() <= 0) throw new IllegalArgumentException("The duration must be greater than zero.");
         this.duration = duration;
     }
 
@@ -281,10 +281,10 @@ public class Note {
      */
     static private Pattern getNoteParser() {
         if (Note.noteParser == null) {
-                        
+                               
             Note.noteParser = Pattern.compile(                   
                 NoteName.getRegexPattern() +                // NoteName--everything before the first digit or comma                
-                "(-1|[^,])?" +                              // octave, optional if the note name is a rest; can be -1..9
+                "([^,])?" +                                 // octave, optional if the note name is a rest; can be 0..9
                 "(?:,(\\d?\\d?\\d?)\\/?(\\d?\\d?\\d?))?" +  // duration in fractional form, e.g. 1/4; up to 3 digits allowed to allow for 128th notes                
                 "(?:,(.*))?",                               // the dynamic--this will catch the rest of the string; our parsing code will handle this or throw an exception as necessary
                 Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE | Pattern.CANON_EQ);
@@ -324,17 +324,43 @@ public class Note {
                 int volume = parseNoteString_getVolume(noteString, match, 5, defaultVolume);                
             
                 newNote = new Note();
-                scale.setNotePitchValues(newNote, noteName);
-                newNote.setOctave(octave);
                 newNote.setDuration(duration);
                 newNote.setVolume(volume);
+                scale.setNotePitchValues(newNote, noteName);
+                                
+                // The octave number is dependent on the scale.  For example, 
+                // the note C4 (middle C) should parse as scale step 2, octave 3 
+                // for the A minor scale, because the A octave is higher than 
+                // the C octave.
+                // I tried figuring out the logic for this, but it's very 
+                // complicated and I couldn't figure it out after a few hours.
+                // So, instead we use the result of parsing the note using
+                // the chromatic scale as our baseline, and compare to that,
+                // using the difference between the baseline midi pitch number
+                // and the midi pitch number we get from our scale to calculate
+                // the correct octave.                
+                if (scale == Scale.DEFAULT) {
+                    // this is the chromatic scale, so just set the octave directly...
+                    newNote.setOctave(octave);                                
+                } else {                    
+                    Note testNote = parseNoteString(noteString, Scale.DEFAULT, defaultDuration, defaultVolume);
+                    int midiPitchNum = testNote.getMidiPitchNumber(Scale.DEFAULT, true); 
+                    int midiPitchNumWithoutOctave = newNote.getMidiPitchNumber(scale, true);
+                    int difference = midiPitchNum - midiPitchNumWithoutOctave;
+                    
+                    assert difference % Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE == 0 : difference;
+                    octave = difference / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE;
+                    newNote.setOctave(octave);
+                    
+                    assert newNote.getMidiPitchNumber(scale, true) == midiPitchNum;
+                }                
             }            
             
             return newNote;
         } else {
             throw new IncorrectNoteStringException(noteString);            
         }                
-    }       
+    }             
     
     /**
      * Gets the note name for the parseNoteString method.
@@ -495,10 +521,13 @@ public class Note {
      * Gets the midi pitch number for this note, taking into account the scale
      * step, octave and chromatic adjustment.
      * 
-     * @param note input note
+     * @param scale the scale to use to determine the pitch
+     * @param keepExactPitch true to keep the exact pitch specified by the note
+     *        parameters; false to allow the chromaticAdjustment to be changed
+     *        if it would create a note that is already found in the scale
      * @return the midi pitch number
      */
-    private int getMidiPitchNumber(Scale scale) {
+    private int getMidiPitchNumber(Scale scale, boolean keepExactPitch) {
         if (this.isRest()) return 0;
         
         int[] scaleSteps = scale.getScaleStepArray(); // cache it
@@ -515,7 +544,7 @@ public class Note {
         // When our fractal algorithm transposes this and it becomes B# C, we
         // wind up with two of the same pitches in a row.  This loses the "shape"
         // that we are dealing with, so we adjust the accidental as necessary.        
-        while (Math.abs(chromaticAdj) > 0) {
+        while (!keepExactPitch && Math.abs(chromaticAdj) > 0) {
             testPitchNum = (scaleSteps[normalizedNote.getScaleStep()] // the raw (natural) pitch number                    
                     + chromaticAdj                                    // the chromatic adjustment to test...                    
                     + Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE)         // necessary for notes like Cb, to prevent testPitchNum from being negative
@@ -533,21 +562,7 @@ public class Note {
         return scaleSteps[normalizedNote.getScaleStep()]       // half steps above tonic
                 + chromaticAdj                                 // the note's chromatic adjustment
                 + this.getSegmentSettingsChromaticAdjustment() // chromatic adjustment for the segment
-                + scale.getMidiPitchNumberForTonicAtOctave(normalizedNote.getOctave()); // take into account the octave
-    }
-    
-    /**
-     * Converts the note to a Midi Note, that can then be used to get the
-     * actual Midi note on and note off events.
-     * 
-     * @param scale the scale to use
-     * @param startTime the time this note should be played
-     * @param midiTickResolution the number of ticks per whole note for the
-     *        midi sequence
-     * @return the MidiNote
-     */
-    public MidiNote convertToMidiNote(Scale scale, Fraction startTime, int midiTickResolution) {       
-        return convertToMidiNote(scale, startTime, midiTickResolution, MidiNote.DEFAULT_CHANNEL);
+                + scale.getKeyName().getMidiPitchNumberAtOctave(normalizedNote.getOctave()); // take into account the octave
     }
     
     /**
@@ -559,15 +574,18 @@ public class Note {
      * @param midiTickResolution the number of ticks per whole note for the
      *        midi sequence
      * @param channel the midi channel for this note, 0-15
+     * @param keepExactPitch true to keep the exact pitch specified by the note
+     *        parameters; false to allow the chromaticAdjustment to be changed
+     *        if it would create a note that is already found in the scale
      * @return the MidiNote
      */
-    public MidiNote convertToMidiNote(Scale scale, Fraction startTime, int midiTickResolution, int channel) {        
+    public MidiNote convertToMidiNote(Scale scale, Fraction startTime, int midiTickResolution, int channel, boolean keepExactPitch) {        
         MidiNote midiNote = new MidiNote();       
             
         midiNote.setDuration(convertWholeNotesToTicks(this.getDuration(), midiTickResolution));
         midiNote.setStartTime(convertWholeNotesToTicks(startTime, midiTickResolution));
         midiNote.setVelocity(this.getVolume());        
-        midiNote.setPitch(this.getMidiPitchNumber(scale));
+        midiNote.setPitch(this.getMidiPitchNumber(scale, keepExactPitch));
         midiNote.setChannel(channel);
         
         return midiNote;

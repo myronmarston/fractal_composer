@@ -35,10 +35,10 @@ public class FractalPiece {
     private String germString = "";
     
     @Element
-    private Scale scale = Scale.getDefault();
+    private Scale scale = Scale.DEFAULT;
     
     @Element
-    private TimeSignature timeSignature = TimeSignature.getDefault();
+    private TimeSignature timeSignature = TimeSignature.DEFAULT;
     
     @ElementList(type=Voice.class)
     private VoiceOrSectionList<Voice, Section> voices = new VoiceOrSectionList<Voice, Section>(this.getVoiceSections());
@@ -451,13 +451,9 @@ public class FractalPiece {
             // next, get all our voice results, and cache them in a list...
             ArrayList<NoteList> voiceResults = new ArrayList<NoteList>();
             for (Voice v : this.getVoices()) voiceResults.add(v.getEntireVoice());
-
-            // get our midi tick resolution...
-            long midiTickResolution = NoteList.getMidiTickResolution(voiceResults);
-            assert midiTickResolution <= Integer.MAX_VALUE;
             
             // next, create our sequence...
-            Sequence sequence = new Sequence(Sequence.PPQ, (int) midiTickResolution);
+            Sequence sequence = new Sequence(Sequence.PPQ, NoteList.getMidiTickResolution(voiceResults));
 
             // next, use the first track to set key signature and time signature...
             Track track1 = sequence.createTrack();
@@ -502,11 +498,10 @@ public class FractalPiece {
      */
     public void saveGermToMidiFile(String fileName) throws InvalidMidiDataException, IOException {        
         // get our midi tick resolution...
-        long midiTickResolution = NoteList.getMidiTickResolution(Arrays.asList(this.getGerm()));
-        assert midiTickResolution <= Integer.MAX_VALUE;
+        int midiTickResolution = NoteList.getMidiTickResolution(Arrays.asList(this.getGerm()));        
 
         // next, create our sequence...
-        Sequence sequence = new Sequence(Sequence.PPQ, (int) midiTickResolution);   
+        Sequence sequence = new Sequence(Sequence.PPQ, midiTickResolution);   
         
         // next, use the first track to set key signature and time signature...
         Track track1 = sequence.createTrack();

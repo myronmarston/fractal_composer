@@ -7,7 +7,8 @@ import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ConcurrentModificationException;
+import java.util.*;
+import java.lang.reflect.*;
 
 import javax.sound.midi.*;
 import org.junit.After;
@@ -788,33 +789,29 @@ public class SettingsTest {
     }
     
     @Test
-    public void createAndSaveMidiFile() throws IOException, InvalidKeySignatureException, NoteStringParseException, InvalidMidiDataException {
-        File temp = File.createTempFile("TempMidiFile", ".mid");
-        temp.deleteOnExit();
-        String fileName = temp.getCanonicalPath();        
+    public void createAndSaveMidiFile() throws IOException, InvalidKeySignatureException, NoteStringParseException, InvalidMidiDataException {     
+        String tempFileName = getTempFileName();        
                 
         FractalPiece fp = new FractalPiece();
         fp.setScale(new MajorScale(NoteName.G));
         fp.setGermString("G4,1/4,MF A4,1/8,F B4,1/8,F G4,1/4,MF");  
         fp.createDefaultSettings();
-        fp.createAndSaveMidiFile(fileName);
+        fp.createAndSaveMidiFile(tempFileName);
         
         // this will throw an exception if the midi file was not saved...
-        Sequence seq = MidiSystem.getSequence(temp);        
+        Sequence seq = MidiSystem.getSequence(new File(tempFileName));        
     }
     
     @Test
     public void saveGermToMidiFile() throws IOException, InvalidKeySignatureException, NoteStringParseException, InvalidMidiDataException {
-        File temp = File.createTempFile("TempMidiFile", ".mid");
-        temp.deleteOnExit();
-        String fileName = temp.getCanonicalPath(); 
+        String tempFileName = getTempFileName();
         
         FractalPiece fp = new FractalPiece();        
         fp.setGermString("C4,MF D4,Mf");          
-        fp.saveGermToMidiFile(fileName);
+        fp.saveGermToMidiFile(tempFileName);
         
         // this will throw an exception if the midi file was not saved...
-        Sequence seq = MidiSystem.getSequence(temp);    
+        Sequence seq = MidiSystem.getSequence(new File(tempFileName));    
         Track t2 = seq.getTracks()[1];
         assertEquals(5, t2.size()); // 2 note on events, 2 not off events, end-of-track event
         // we could test each event, but that's overkill.
@@ -851,12 +848,91 @@ public class SettingsTest {
         fp.setScale(new MajorScale(NoteName.G));
         expected.clear();
         // TODO: the octaves should actually be 3 3 3 4
-        expected.add(new Note(3, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
-        expected.add(new Note(5, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
-        expected.add(new Note(6, 4, -1, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        expected.add(new Note(3, 3, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        expected.add(new Note(5, 3, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        expected.add(new Note(6, 3, -1, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
         expected.add(new Note(0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
         
         assertNoteListsEqual(expected, fp.getGerm());
+    }
+    
+    @Test
+    public void germMidiSameForAllScales() throws Exception {
+        FractalPiece fp = new FractalPiece();        
+        fp.setGermString("C4 E4 F4 G4");
+        String tempFileName = getTempFileName();
+        fp.saveGermToMidiFile(tempFileName);
+                
+        Track baselineTrack = MidiSystem.getSequence(new File(tempFileName)).getTracks()[1];
+        
+        for (Scale s : getAllScalePossibilities()) {
+            System.out.println("Testing " + s.toString());
+            fp.setScale(s);
+            
+            tempFileName = getTempFileName();
+            fp.saveGermToMidiFile(tempFileName);
+            
+            Track t = MidiSystem.getSequence(new File(tempFileName)).getTracks()[1];            
+            assertTracksEqual(baselineTrack, t);
+        }
+    }
+    
+    static protected List<Scale> getAllScalePossibilities() throws IllegalAccessException, IllegalArgumentException, InstantiationException {
+        Scale s;
+        List<Scale> list = new ArrayList<Scale>();
+        for (Class c : Scale.SCALE_TYPES) {              
+            // originally we used getConstructor(NoteName.class) but that seems
+            // to only get public constructors.  Our chromatic scale has this
+            // constructor declared private, so we have to iterate over
+            // getDeclaredConstructors (which includes private ones) and pick
+            // out the right one.
+            for (Constructor con : c.getDeclaredConstructors()) {
+                Class[] paramTypes = con.getParameterTypes();
+                if (paramTypes.length == 1 && paramTypes[0] == NoteName.class) {
+                    con.setAccessible(true); // in case it is private
+                    
+                    for (NoteName nn : NoteName.values()) { 
+                        //if (nn.getLetterNumber() == NoteName.C.getLetterNumber()) continue;
+                        try {
+                            s = (Scale) con.newInstance(nn);                       
+                            if (!list.contains(s)) list.add(s);        
+                        } catch (InvocationTargetException ex) {
+                            // we expect some of these exceptions,
+                            // such as for when an invalid key signature is created
+                            // in this case, we just simply ignore that scale instance.
+                        }                                        
+                    }                    
+                    break;
+                }
+            }                                 
+        }
+        
+        return list;
+    }
+    
+    static protected void assertTracksEqual(Track t1, Track t2) {
+        assertEquals(t1.size(), t2.size());
+        assertEquals(t2.ticks(), t2.ticks());
+        for (int i = 0; i < t1.size(); i++) {
+            System.out.println("    Testing midi event " + i);
+            MidiEvent me1 = t1.get(i);
+            MidiEvent me2 = t2.get(i);
+            
+            assertEquals(me1.getTick(), me2.getTick());
+            assertEquals(me1.getMessage().getClass(), me2.getMessage().getClass());
+            assertEquals(me1.getMessage().getStatus(), me2.getMessage().getStatus());
+            assertEquals(me1.getMessage().getLength(), me2.getMessage().getLength());
+            for (int j = 0; j < me1.getMessage().getLength(); j++) {
+                System.out.println("        Testing message byte " + j);
+                assertEquals(me1.getMessage().getMessage()[j], me2.getMessage().getMessage()[j]);            
+            }            
+        }
+    }        
+    
+    static protected String getTempFileName() throws IOException {
+        File temp = File.createTempFile("TempMidiFile", ".mid");
+        temp.deleteOnExit();
+        return temp.getCanonicalPath();         
     }
     
     static protected void assertNoteListsEqual(NoteList expected, NoteList actual) {

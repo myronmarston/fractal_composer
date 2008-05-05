@@ -68,7 +68,7 @@ public class TimeSignatureTest {
     
     @Test
     public void getDefault() {
-        TimeSignature ts = TimeSignature.getDefault();
+        TimeSignature ts = TimeSignature.DEFAULT;
         assertEquals(4, ts.getDenominator());
         assertEquals(4, ts.getNumerator());
     }
