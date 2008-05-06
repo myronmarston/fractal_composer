@@ -6,28 +6,16 @@ import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
 import javax.sound.midi.*;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Contains tests to test entire fractal pieces, checking the results.
+ * 
  * @author Myron
  */
-public class PieceTest {
-
-    public PieceTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
+public class PieceTest {   
+    
     @Test
     public void simplePieceTest() throws InvalidKeySignatureException, NoteStringParseException, InvalidMidiDataException {
         FractalPiece fp = new FractalPiece();
