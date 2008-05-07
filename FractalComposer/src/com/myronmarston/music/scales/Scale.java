@@ -4,6 +4,7 @@ import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteName;
 import com.myronmarston.util.ClassHelper;
 
+import java.lang.reflect.Constructor;
 import org.simpleframework.xml.*;
 
 import java.util.*;
@@ -15,6 +16,11 @@ import java.lang.reflect.UndeclaredThrowableException;
  * relative to a given scale, the Scale must be used to convert it to a concrete 
  * MidiNote (e.g., pitch, etc).
  * 
+ * All extending classes need to have the @Root annotation to be serializable
+ * by the simple XML framework and also need to provide two constructors:
+ * a no-argument one (which should set the scale with some reasonable default
+ * key) and one that takes a note name to specify the key.
+ * 
  * @author Myron 
  */
 @Root
@@ -23,9 +29,10 @@ public abstract class Scale {
     private KeySignature keySignature;
     
     /**
-     * A list of all valid scale types.
+     * A list of all valid scale types, mapped to a list of valid key names for
+     * that scale type.
      */
-    public final static List<Class> SCALE_TYPES;    
+    public final static Map<Class, List<NoteName>> SCALE_TYPES;    
     
     /**
      * The scale that should be used before the user specifies one--a chromatic scale.
@@ -41,14 +48,39 @@ public abstract class Scale {
         } catch (InvalidKeySignatureException ex) {
             throw new UndeclaredThrowableException(ex, "An exception occurred while instantiating a ChromaticScale.  This indicates a programming error.");
         }
-                            
+                     
+        // The JRuby current thread context class loader doesn't seem to have 
+        // our classes in it, so we don't get any scale types.
+        // We can work around this by temporarily changing the class loader to
+        // the class loader that was used to load this class.
+        ClassLoader oldLoader = Thread.currentThread().getContextClassLoader();
+        List<Class> scaleTypeList;
         try {                
-            SCALE_TYPES = Collections.unmodifiableList(ClassHelper.getSubclassesInPackage(Scale.class.getPackage().getName(), Scale.class));
+            Thread.currentThread().setContextClassLoader(Scale.class.getClassLoader());
+            scaleTypeList = ClassHelper.getSubclassesInPackage(Scale.class.getPackage().getName(), Scale.class);            
         } catch (ClassNotFoundException ex) {
             // our code above is guarenteed to pass a valid package name, so we 
             // should never get this exception; if we do, there is a bug in the
             // code somewhere, so throw an assertion error.
             throw new UndeclaredThrowableException(ex, "An exception occurred while getting the scale types.  This indicates a programming error.");
+        } finally {
+            Thread.currentThread().setContextClassLoader(oldLoader);
+        }
+        
+        SCALE_TYPES = new LinkedHashMap<Class, List<NoteName>>(scaleTypeList.size());
+        for (Class scaleType : scaleTypeList) {   
+            try {
+                @SuppressWarnings("unchecked")
+                Constructor constructor = scaleType.getDeclaredConstructor();
+                Scale s = (Scale) constructor.newInstance();
+                SCALE_TYPES.put(scaleType, s.getValidKeyNames());    
+            } catch (Exception ex) {
+                // the reflection code above has lots of declared exceptions,
+                // but they should only occur if we have a programming error,
+                // so we'll just wrap them in an undeclared exception if they 
+                // occur...
+                throw new UndeclaredThrowableException(ex, "An exception occurred while getting the valid key names.  This indicates a programming error.");
+            }                    
         }
     }
     
@@ -181,7 +213,16 @@ public abstract class Scale {
         int chromaticAdjustment = getNormalizedChromaticAdjustment(givenNoteHalfStepAboveTonic - diatonicNoteHalfStepsAboveTonic);
                 
         note.setChromaticAdjustment(chromaticAdjustment);
-    }             
+    }        
+    
+    /**
+     * Gets a list of valid keys for this scale type.
+     * 
+     * @return a list of valid keys
+     */
+    public List<NoteName> getValidKeyNames() {
+        return this.getKeySignature().getTonality().getValidKeyNames();
+    }
 
     @Override
     public String toString() {

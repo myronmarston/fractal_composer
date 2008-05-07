@@ -30,8 +30,8 @@ public class HarmonicMinorScale extends MinorScale {
      * @throws com.myronmarston.music.scales.InvalidKeySignatureException thrown
      *         when the key is invalid.
      */
-    private HarmonicMinorScale() throws InvalidKeySignatureException {
-        this(null);
+    public HarmonicMinorScale() throws InvalidKeySignatureException {
+        super();
     }
     
     @Override

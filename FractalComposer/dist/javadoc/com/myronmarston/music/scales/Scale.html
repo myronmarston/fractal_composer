@@ -107,6 +107,11 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
  with a time signature.  Since each Note contains data on its identity 
  relative to a given scale, the Scale must be used to convert it to a concrete 
  MidiNote (e.g., pitch, etc).
+ 
+ All extending classes need to have the @Root annotation to be serializable
+ by the simple XML framework and also need to provide two constructors:
+ a no-argument one (which should set the scale with some reasonable default
+ key) and one that takes a note name to specify the key.
 <P>
 
 <P>
@@ -139,11 +144,12 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;java.util.List&lt;java.lang.Class&gt;</CODE></FONT></TD>
+<CODE>static&nbsp;java.util.Map&lt;java.lang.Class,java.util.List&lt;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&gt;&gt;</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#SCALE_TYPES">SCALE_TYPES</A></B></CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A list of all valid scale types.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A list of all valid scale types, mapped to a list of valid key names for
+ that scale type.</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -216,6 +222,14 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getValidKeyNames()">getValidKeyNames</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a list of valid keys for this scale type.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#hashCode()">hashCode</A></B>()</CODE>
 
@@ -276,9 +290,10 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 <A NAME="SCALE_TYPES"><!-- --></A><H3>
 SCALE_TYPES</H3>
 <PRE>
-public static final java.util.List&lt;java.lang.Class&gt; <B>SCALE_TYPES</B></PRE>
+public static final java.util.Map&lt;java.lang.Class,java.util.List&lt;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&gt;&gt; <B>SCALE_TYPES</B></PRE>
 <DL>
-<DD>A list of all valid scale types.
+<DD>A list of all valid scale types, mapped to a list of valid key names for
+ that scale type.
 <P>
 <DL>
 </DL>
@@ -428,6 +443,20 @@ protected void <B>setNotePitchValues_Helper</B>(<A HREF="../../../../com/myronma
         note<DD><CODE>noteNameForPitch</CODE> - the noteName of the pitch that should be used to
         determine the pitch values<DD><CODE>scaleStepIndex</CODE> - the index of the scaleStep withing this scales's
         scaleStepArray that should be used</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getValidKeyNames()"><!-- --></A><H3>
+getValidKeyNames</H3>
+<PRE>
+public java.util.List&lt;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&gt; <B>getValidKeyNames</B>()</PRE>
+<DL>
+<DD>Gets a list of valid keys for this scale type.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>a list of valid keys</DL>
 </DD>
 </DL>
 <HR>

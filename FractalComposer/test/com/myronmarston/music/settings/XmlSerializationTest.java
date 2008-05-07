@@ -210,20 +210,10 @@ public class XmlSerializationTest {
     
     private static List<Scale> getScales() throws Exception {
         List<Scale> list = new ArrayList<Scale>();
-        for (Class c : Scale.SCALE_TYPES) {     
-            // originally we used getConstructor(NoteName.class) but that seems
-            // to only get public constructors.  Our chromatic scale has this
-            // constructor declared private, so we have to iterate over
-            // getDeclaredConstructors (which includes private ones) and pick
-            // out the right one.
-            for (Constructor con : c.getDeclaredConstructors()) {
-                Class[] paramTypes = con.getParameterTypes();
-                if (paramTypes.length == 1 && paramTypes[0] == NoteName.class) {
-                    con.setAccessible(true); // in case it is private
-                    list.add((Scale) con.newInstance(NoteName.D));                       
-                    break;
-                }
-            }                                 
+        for (Class c : Scale.SCALE_TYPES.keySet()) {                 
+            @SuppressWarnings("unchecked")
+            Constructor con = c.getConstructor(NoteName.class);
+            list.add((Scale) con.newInstance(NoteName.D));                                                                         
         }
         
         return list;

@@ -524,8 +524,19 @@ public class FractalPiece {
      * @throws java.lang.Exception if there is a deserialization error
      */
     public static FractalPiece loadFromXml(String xml) throws Exception {
-        Serializer serializer = new Persister(new CycleStrategy());
-        return serializer.read(FractalPiece.class, xml);        
+        // Sometimes we get ClassNotFoundExceptions when this is called from
+        // JRuby, because the JRuby current thread context class loader doesn't
+        // seem to have our classes in it.
+        // We can work around this by temporarily changing the class loader to
+        // the class loader that was used to load this class.
+        ClassLoader oldLoader = Thread.currentThread().getContextClassLoader();
+        try {
+            Thread.currentThread().setContextClassLoader(FractalPiece.class.getClassLoader());
+            Serializer serializer = new Persister(new CycleStrategy());
+            return serializer.read(FractalPiece.class, xml);        
+        } finally {
+            Thread.currentThread().setContextClassLoader(oldLoader);
+        }
     }
     
     /**

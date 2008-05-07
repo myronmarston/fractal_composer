@@ -144,6 +144,13 @@ Chromatic Scale--a scale containing all 12 pitches.  This scale does not have
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/ChromaticScale.html#ChromaticScale(com.myronmarston.music.NoteName)">ChromaticScale</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We have some code that uses reflection to instantiate scales, passing
+ the key name.</TD>
+</TR>
 </TABLE>
 &nbsp;
 <!-- ========== METHOD SUMMARY =========== -->
@@ -170,6 +177,14 @@ Chromatic Scale--a scale containing all 12 pitches.  This scale does not have
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets an array of integers representing the number of half steps above
  the tonic for each scale step.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/ChromaticScale.html#getValidKeyNames()">getValidKeyNames</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a list of valid keys for this scale type.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -226,6 +241,23 @@ public <B>ChromaticScale</B>()
 <DT><B>Throws:</B>
 <DD><CODE><A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></CODE> - should never be thrown but must be
          declared because the super class constructor can throw it</DL>
+</DL>
+<HR>
+
+<A NAME="ChromaticScale(com.myronmarston.music.NoteName)"><!-- --></A><H3>
+ChromaticScale</H3>
+<PRE>
+public <B>ChromaticScale</B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;keyName)
+               throws <A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></PRE>
+<DL>
+<DD>We have some code that uses reflection to instantiate scales, passing
+ the key name.  All other scales have this constructor, so to make this
+ one conform, we provide this one as well.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>keyName</CODE> - ignored
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></CODE> - should never be thrown</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -291,6 +323,24 @@ public void <B>setNotePitchValues</B>(<A HREF="../../../../com/myronmarston/musi
 <DT><B>Parameters:</B><DD><CODE>note</CODE> - the scaleStep and chromatic adjustment will be set on this 
         note<DD><CODE>noteName</CODE> - the noteName of the pitch that should be used to
         determine the pitch values</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getValidKeyNames()"><!-- --></A><H3>
+getValidKeyNames</H3>
+<PRE>
+public java.util.List&lt;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&gt; <B>getValidKeyNames</B>()</PRE>
+<DL>
+<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getValidKeyNames()">Scale</A></CODE></B></DD>
+<DD>Gets a list of valid keys for this scale type.
+<P>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getValidKeyNames()">getValidKeyNames</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>a list of valid keys</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

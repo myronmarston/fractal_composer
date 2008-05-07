@@ -1,7 +1,5 @@
 package com.myronmarston.music.scales;
 
-import org.simpleframework.xml.*;
-
 import com.myronmarston.music.NoteName;
 import java.util.*;
 
@@ -14,12 +12,12 @@ public enum Tonality {
     /**
      * Major tonality.
      */    
-    Major((byte) 0), 
+    Major((byte) 0, NoteName.C), 
 
     /**
      * Minor tonality.
      */    
-    Minor((byte) 1);
+    Minor((byte) 1, NoteName.A);
     
     /**
      * Value for a NoteName's sharps or flats that indicates it is an invalid
@@ -28,9 +26,11 @@ public enum Tonality {
     public final static int INVALID_KEY = Integer.MAX_VALUE;  
     private List<NoteName> validKeyNames;
     private final byte midiValue;
+    private final NoteName defaultKey;
 
-    private Tonality(byte midiValue) {
+    private Tonality(byte midiValue, NoteName defaultKey) {
         this.midiValue = midiValue;
+        this.defaultKey = defaultKey;
     } 
     
     /**
@@ -40,7 +40,16 @@ public enum Tonality {
      */
     public byte getMidiValue() {
         return midiValue;
-    }       
+    }
+
+    /**
+     * Gets the key with no sharps or flats for this tonality.
+     * 
+     * @return the default key
+     */
+    public NoteName getDefaultKey() {
+        return defaultKey;
+    }        
     
     /**
      * Gets whether or not the given key name is valid for this tonality.  

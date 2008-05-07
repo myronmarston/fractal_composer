@@ -283,34 +283,27 @@ public class FractalPieceTest {
         }
     }
     
-    static protected List<Scale> getAllScalePossibilities() throws IllegalAccessException, IllegalArgumentException, InstantiationException {
+    static protected List<Scale> getAllScalePossibilities() throws IllegalAccessException, IllegalArgumentException, InstantiationException, NoSuchMethodException {
         Scale s;
         List<Scale> list = new ArrayList<Scale>();
-        for (Class c : Scale.SCALE_TYPES) {              
+        for (Class c : Scale.SCALE_TYPES.keySet()) {              
             // originally we used getConstructor(NoteName.class) but that seems
             // to only get public constructors.  Our chromatic scale has this
             // constructor declared private, so we have to iterate over
             // getDeclaredConstructors (which includes private ones) and pick
             // out the right one.
-            for (Constructor con : c.getDeclaredConstructors()) {
-                Class[] paramTypes = con.getParameterTypes();
-                if (paramTypes.length == 1 && paramTypes[0] == NoteName.class) {
-                    con.setAccessible(true); // in case it is private
-                    
-                    for (NoteName nn : NoteName.values()) { 
-                        //if (nn.getLetterNumber() == NoteName.C.getLetterNumber()) continue;
-                        try {
-                            s = (Scale) con.newInstance(nn);                       
-                            if (!list.contains(s)) list.add(s);        
-                        } catch (InvocationTargetException ex) {
-                            // we expect some of these exceptions,
-                            // such as for when an invalid key signature is created
-                            // in this case, we just simply ignore that scale instance.
-                        }                                        
-                    }                    
-                    break;
+            @SuppressWarnings("unchecked")
+            Constructor con = c.getConstructor(NoteName.class);
+            for (NoteName nn : NoteName.values()) { 
+                try {
+                    s = (Scale) con.newInstance(nn);                       
+                    if (!list.contains(s)) list.add(s);        
+                } catch (InvocationTargetException ex) {
+                    // we expect some of these exceptions,
+                    // such as for when an invalid key signature is created
+                    // in this case, we just simply ignore that scale instance.
                 }
-            }                                 
+            }                                                   
         }
         
         return list;

@@ -2,8 +2,6 @@ package com.myronmarston.music.scales;
 
 import com.myronmarston.music.NoteName;
 import java.util.List;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -12,17 +10,6 @@ import static org.junit.Assert.*;
  * @author Myron
  */
 public class TonalityTest {
-
-    public TonalityTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
     
     @Test
     public void testIsValidKeyName() {
@@ -74,6 +61,7 @@ public class TonalityTest {
 
     @Test
     public void testGetSharpsOrFlatsForKeyName() {
+        // just test a few cases for Major and for Minor...
         assertEquals(Tonality.Major.getSharpsOrFlatsForKeyName(NoteName.G), 1);
         assertEquals(Tonality.Major.getSharpsOrFlatsForKeyName(NoteName.E), 4);
         assertEquals(Tonality.Major.getSharpsOrFlatsForKeyName(NoteName.Ab), -4);
@@ -82,4 +70,9 @@ public class TonalityTest {
         assertEquals(Tonality.Minor.getSharpsOrFlatsForKeyName(NoteName.B), 2);
     }
 
+    @Test
+    public void getDefaultKey() {
+        assertEquals(NoteName.C, Tonality.Major.getDefaultKey());
+        assertEquals(NoteName.A, Tonality.Minor.getDefaultKey());
+    }
 }

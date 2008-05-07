@@ -32,8 +32,8 @@ public class MinorScale extends Scale {
      * @throws com.myronmarston.music.scales.InvalidKeySignatureException thrown
      *         when the key is invalid.
      */
-    private MinorScale() throws InvalidKeySignatureException {
-        this(null);
+    public MinorScale() throws InvalidKeySignatureException {
+        this(Tonality.Minor.getDefaultKey());
     }
 
     @Override

@@ -31,8 +31,8 @@ public class MajorPentatonicScale extends MajorScale {
      * @throws com.myronmarston.music.scales.InvalidKeySignatureException thrown
      *         when the key is invalid.
      */
-    private MajorPentatonicScale() throws InvalidKeySignatureException {
-        this(null);
+    public MajorPentatonicScale() throws InvalidKeySignatureException {
+        super();
     }
 
     @Override

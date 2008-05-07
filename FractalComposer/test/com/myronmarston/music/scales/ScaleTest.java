@@ -551,17 +551,23 @@ public class ScaleTest {
     }
     
     @Test
-    public void getScaleTypes() {                
+    public void getScaleTypes() throws InvalidKeySignatureException {                
         // Test that we have all the scales (at least all of them at the time 
         // of writing this test).  There shouldn't be a need to add more scales
         // to this test--if this tests pass, it is getting the scales 
         // dynamically and there's no reason it won't pick up new scales as well.
-        assertTrue(Scale.SCALE_TYPES.contains(MajorScale.class));
-        assertTrue(Scale.SCALE_TYPES.contains(MinorScale.class));
-        assertTrue(Scale.SCALE_TYPES.contains(HarmonicMinorScale.class));
-        assertTrue(Scale.SCALE_TYPES.contains(MajorPentatonicScale.class));
-        assertTrue(Scale.SCALE_TYPES.contains(MinorPentatonicScale.class));
-        assertTrue(Scale.SCALE_TYPES.contains(ChromaticScale.class));
+        assertTrue(Scale.SCALE_TYPES.containsKey(MajorScale.class));
+        assertEquals(Scale.SCALE_TYPES.get(MajorScale.class), Tonality.Major.getValidKeyNames());
+        assertTrue(Scale.SCALE_TYPES.containsKey(MinorScale.class));
+        assertEquals(Scale.SCALE_TYPES.get(MinorScale.class), Tonality.Minor.getValidKeyNames());
+        assertTrue(Scale.SCALE_TYPES.containsKey(HarmonicMinorScale.class));
+        assertEquals(Scale.SCALE_TYPES.get(MinorScale.class), Tonality.Minor.getValidKeyNames());
+        assertTrue(Scale.SCALE_TYPES.containsKey(MajorPentatonicScale.class));
+        assertEquals(Scale.SCALE_TYPES.get(MajorScale.class), Tonality.Major.getValidKeyNames());
+        assertTrue(Scale.SCALE_TYPES.containsKey(MinorPentatonicScale.class));
+        assertEquals(Scale.SCALE_TYPES.get(MinorScale.class), Tonality.Minor.getValidKeyNames());
+        assertTrue(Scale.SCALE_TYPES.containsKey(ChromaticScale.class));
+        assertEquals(Scale.SCALE_TYPES.get(ChromaticScale.class), (new ChromaticScale()).getValidKeyNames());
     }
     
     @Test
@@ -573,6 +579,26 @@ public class ScaleTest {
     public void toStringTest() throws InvalidKeySignatureException {
         assertEquals("F# Minor Pentatonic Scale", (new MinorPentatonicScale(NoteName.Fs)).toString());
     }    
+    
+    @Test
+    public void getValidKeyNames() throws InvalidKeySignatureException {
+        assertEquals(Tonality.Major.getValidKeyNames(), (new MajorScale()).getValidKeyNames());
+        assertEquals(Tonality.Major.getValidKeyNames(), (new MajorPentatonicScale()).getValidKeyNames());
+        assertEquals(Tonality.Minor.getValidKeyNames(), (new MinorScale()).getValidKeyNames());
+        assertEquals(Tonality.Minor.getValidKeyNames(), (new HarmonicMinorScale()).getValidKeyNames());
+        assertEquals(Tonality.Minor.getValidKeyNames(), (new MinorPentatonicScale()).getValidKeyNames());        
+        assertEquals(Collections.EMPTY_LIST, (new ChromaticScale()).getValidKeyNames());
+    }
+    
+    @Test
+    public void scaleDefaultKeys() throws InvalidKeySignatureException {
+        assertEquals(NoteName.C, (new MajorScale()).getKeyName());
+        assertEquals(NoteName.C, (new MajorPentatonicScale()).getKeyName());
+        assertEquals(NoteName.C, (new ChromaticScale()).getKeyName());
+        assertEquals(NoteName.A, (new MinorScale()).getKeyName());
+        assertEquals(NoteName.A, (new MinorPentatonicScale()).getKeyName());
+        assertEquals(NoteName.A, (new HarmonicMinorScale()).getKeyName());        
+    }
     
     protected static void testSetNotePitchValues(Scale s, Note n, NoteName nn, int scaleStep, int chromaticAdjustment) {
         s.setNotePitchValues(n, nn);

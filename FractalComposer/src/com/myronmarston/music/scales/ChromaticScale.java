@@ -3,6 +3,7 @@ package com.myronmarston.music.scales;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteName;
 
+import java.util.*;
 import org.simpleframework.xml.*;
 
 /**
@@ -16,7 +17,8 @@ import org.simpleframework.xml.*;
 @Root
 public class ChromaticScale extends Scale {
     private final static int[] SCALE_STEPS = new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};        
-
+    private final static List<NoteName> VALID_KEY_NAMES = Collections.unmodifiableList(new ArrayList<NoteName>());
+    
     /**
      * Constructor.       
      *    
@@ -24,20 +26,19 @@ public class ChromaticScale extends Scale {
      *         declared because the super class constructor can throw it
      */
     public ChromaticScale() throws InvalidKeySignatureException {           
-        super(new KeySignature(Tonality.Major, NoteName.C));                
+        super(new KeySignature(Tonality.Major, Tonality.Major.getDefaultKey()));                
     }
     
     /**
      * We have some code that uses reflection to instantiate scales, passing
      * the key name.  All other scales have this constructor, so to make this
-     * one conform, we provide this one as well.  It is private to avoid regular
-     * code from calling it.
+     * one conform, we provide this one as well.  
      * 
      * @param keyName ignored
      * @throws com.myronmarston.music.scales.InvalidKeySignatureException 
      *         should never be thrown
      */
-    private ChromaticScale(NoteName keyName) throws InvalidKeySignatureException {
+    public ChromaticScale(NoteName keyName) throws InvalidKeySignatureException {
         this();
     }
         
@@ -62,5 +63,10 @@ public class ChromaticScale extends Scale {
         // which won't work in this case, and it's actually much easier for a
         // chromatic scale...
         this.setNotePitchValues_Helper(note, noteName, noteName.getNoteNumber());
+    }
+
+    @Override
+    public List<NoteName> getValidKeyNames() {
+        return VALID_KEY_NAMES;
     }        
 }
