@@ -1,7 +1,6 @@
 package com.myronmarston.music.settings;
 
 import java.util.*;
-import org.simpleframework.xml.load.*;
 
 /**
  * List of Voices or Sections that manages the creation and deletion of the 
@@ -116,9 +115,14 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
         
         return itemToRemove;
     }        
-    
-    @Commit
-    private void deserializationComplete() {
+     
+    /**
+     * Should be called when deserialization is complete.
+     * 
+     * @param fractalPiece the parent fractal piece
+     */
+    protected void deserializationComplete(FractalPiece fractalPiece) {
         this.isDeserializing = false;
+        this.voiceSections = fractalPiece.getVoiceSections();
     }
 }

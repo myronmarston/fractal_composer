@@ -8,8 +8,8 @@ import com.myronmarston.music.scales.Scale;
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
 import org.simpleframework.xml.*;
-import org.simpleframework.xml.graph.CycleStrategy;
-import org.simpleframework.xml.load.Persister;
+import org.simpleframework.xml.graph.*;
+import org.simpleframework.xml.load.*;;
 
 import java.io.*;
 import java.lang.reflect.UndeclaredThrowableException;
@@ -54,8 +54,9 @@ public class FractalPiece {
     
     @Attribute
     private boolean generateLayeredOutro = true;
+        
     private List<Section> tempIntroOutroSections = new ArrayList<Section>();
-    
+                                    
     /**
      * Returns the germ NoteList.  Guarenteed to never be null.  
      * The germ is the short melody from which the entire piece is generated.
@@ -537,6 +538,12 @@ public class FractalPiece {
         } finally {
             Thread.currentThread().setContextClassLoader(oldLoader);
         }
+    }
+    
+    @Commit
+    private void deserializationComplete() {
+        this.sections.deserializationComplete(this);
+        this.voices.deserializationComplete(this);            
     }
     
     /**

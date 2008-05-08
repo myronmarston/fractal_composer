@@ -17,7 +17,6 @@ import static org.junit.Assert.*;
  * @author Myron
  */
 public class FractalPieceTest {
-
     
     @Test
     public void createDefaultVoices() {
@@ -260,6 +259,18 @@ public class FractalPieceTest {
         expected.add(new Note(0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
         
         NoteListTest.assertNoteListsEqual(expected, fp.getGerm());
+    }
+    
+    @Test
+    public void createDefaultSettingsAfterDeserialization() throws Exception {
+        FractalPiece fp = new FractalPiece();        
+        fp.setGermString("C4 E4 F4 G4");
+        fp = FractalPiece.loadFromXml(fp.getXmlRepresentation());
+        
+        // at one point we were getting null pointer exceptions when calling createDefaultSettings()
+        // after deserialization, because we didn't setup the section list and voice list
+        // correctly.  This tests that it is now correct...
+        fp.createDefaultSettings();
     }
     
     @Test
