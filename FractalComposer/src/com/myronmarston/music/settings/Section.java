@@ -1,6 +1,6 @@
 package com.myronmarston.music.settings;
 
-import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
+import edu.oswego.cs.dl.util.concurrent.misc.Fraction;
 import com.myronmarston.music.NoteList;
 import java.io.IOException;
 import org.simpleframework.xml.*;

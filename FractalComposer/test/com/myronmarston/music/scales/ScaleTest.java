@@ -4,7 +4,7 @@ import com.myronmarston.music.MidiNote;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteName;
 
-import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
+import edu.oswego.cs.dl.util.concurrent.misc.Fraction;
 
 import java.util.*;
 import org.junit.After;

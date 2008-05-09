@@ -2,7 +2,7 @@ package com.myronmarston.music.settings;
 
 import com.myronmarston.music.*;
 import com.myronmarston.music.scales.*;
-import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
+import edu.oswego.cs.dl.util.concurrent.misc.Fraction;
 
 import javax.sound.midi.*;
 

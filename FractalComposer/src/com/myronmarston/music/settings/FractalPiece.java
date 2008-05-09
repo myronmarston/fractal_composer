@@ -7,7 +7,7 @@ import com.myronmarston.music.NoteStringParseException;
 import com.myronmarston.music.scales.Scale;
 import com.myronmarston.music.Tempo;
 
-import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
+import edu.oswego.cs.dl.util.concurrent.misc.Fraction;
 
 import java.io.IOException;
 import javax.sound.midi.InvalidMidiDataException;

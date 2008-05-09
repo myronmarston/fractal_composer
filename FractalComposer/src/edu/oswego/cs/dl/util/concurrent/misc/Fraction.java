@@ -13,7 +13,7 @@
   11Oct1999 dl               add hashCode
 */
 
-package EDU.oswego.cs.dl.util.concurrent.misc;
+package edu.oswego.cs.dl.util.concurrent.misc;
 
 import org.simpleframework.xml.*;
 

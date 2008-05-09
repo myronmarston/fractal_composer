@@ -9,7 +9,7 @@ import java.util.*;
 
 import org.simpleframework.xml.*;
 
-import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
+import edu.oswego.cs.dl.util.concurrent.misc.Fraction;
 import java.io.IOException;
 import javax.sound.midi.InvalidMidiDataException;
         

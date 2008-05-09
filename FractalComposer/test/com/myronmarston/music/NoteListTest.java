@@ -4,7 +4,7 @@ import com.myronmarston.music.scales.InvalidKeySignatureException;
 import com.myronmarston.music.scales.MajorScale;
 import com.myronmarston.music.scales.Scale;
 
-import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
+import edu.oswego.cs.dl.util.concurrent.misc.Fraction;
         
 import java.util.*;
 
