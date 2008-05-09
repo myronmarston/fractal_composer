@@ -1,5 +1,6 @@
 package com.myronmarston.music.settings;
 
+import com.myronmarston.music.Instrument;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.transformers.OctaveTransformer;
 import com.myronmarston.music.transformers.RhythmicDurationTransformer;
@@ -7,7 +8,6 @@ import com.myronmarston.music.transformers.RhythmicDurationTransformer;
 import org.simpleframework.xml.*;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
-
 import java.util.List;
 
 /**
@@ -24,9 +24,12 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
     @Attribute
     private int octaveAdjustment = 0;
     
+    @Attribute
+    private String instrumentName = Instrument.getDefault().getName();
+    
     @Element
     private Fraction speedScaleFactor = new Fraction(1, 1);
-    private NoteList modifiedGerm;
+    private NoteList modifiedGerm;    
     
     /**
      * Constructor.
@@ -43,6 +46,30 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
     private Voice() {
         this(null);
     }
+
+    /**
+     * Gets the name of the instrument used by this voice.
+     * 
+     * @return the name of the instrument used by this voice.
+     */
+    public String getInstrumentName() {
+        return instrumentName;
+    }
+
+    /**
+     * Sets the name of the instrument used by this voice.  
+     * 
+     * @param instrumentName
+     * @throws IllegalArgumentException thrown if the given instrument is
+     *         unavailable
+     */
+    public void setInstrumentName(String instrumentName) throws IllegalArgumentException {
+        if (!Instrument.AVAILABLE_INSTRUMENTS.contains(instrumentName)) {
+            throw new IllegalArgumentException(instrumentName + " is not one of the available instruments.");
+        }
+        
+        this.instrumentName = instrumentName;
+    }        
         
     /**
      * Gets how many octaves to adjust the germ for use by this voice.

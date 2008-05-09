@@ -24,6 +24,11 @@ public class PieceTest {
         fp.createDefaultVoices();
         Section s = fp.createSection();
         s.setSelfSimilaritySettingsOnAllVoiceSections(true, true, true);
+        
+        fp.getVoices().get(0).setInstrumentName("Violin");
+        fp.getVoices().get(1).setInstrumentName("Viola");
+        fp.getVoices().get(2).setInstrumentName("Cello");
+        
         Sequence seq = fp.generatePiece();
                 
         // array of voices, notes, pitches/durations
@@ -114,23 +119,27 @@ public class PieceTest {
         };
         
         int MFVolume = Dynamic.MF.getMidiVolume();
-        
+        int[] instrumentProgramNumbers = {40, 41, 42}; // the program numbers for violin, viola, cello
         for (int trackIndex = 0; trackIndex < noteValues.length; trackIndex++) {
             System.out.println(String.format("  simplePieceTest track: %d", trackIndex));
             
             Track track = seq.getTracks()[trackIndex + 1]; //skip track 0, which has time signature and key signature
             int trackNoteValues[][] = noteValues[trackIndex];
             long ticksSoFar = 0;
+            int channelNum = trackIndex + 1;
             
             // make sure we have the right number of events. 
-            // there is always one extra event - the end-of-track event, so we add 1 for that.
-            assertEquals(trackNoteValues.length * 2 + 1, track.size());
+            // there are always two extra events - instrument event, and the end-of-track event, so we add 1 for that.
+            assertEquals(trackNoteValues.length * 2 + 2, track.size());
+            
+            // test that the instrument event is correct...
+            InstrumentTest.assertMidiProgramChangeEventEquals(track.get(0), ticksSoFar, channelNum, instrumentProgramNumbers[trackIndex]);            
             
             for (int noteIndex = 0; noteIndex < trackNoteValues.length; noteIndex++) {
                 if (trackNoteValues[noteIndex][0] == -1)  { // rest
-                    assertTrackMidiNoteEqual(track, noteIndex, ticksSoFar, trackNoteValues[noteIndex][1], 0, 0, trackIndex + 1);
+                    assertTrackMidiNoteEqual(track, noteIndex, ticksSoFar, trackNoteValues[noteIndex][1], 0, 0, channelNum);
                 } else {                                        
-                    assertTrackMidiNoteEqual(track, noteIndex, ticksSoFar, trackNoteValues[noteIndex][1], trackNoteValues[noteIndex][0], MFVolume, trackIndex + 1);
+                    assertTrackMidiNoteEqual(track, noteIndex, ticksSoFar, trackNoteValues[noteIndex][1], trackNoteValues[noteIndex][0], MFVolume, channelNum);
                 }
                 ticksSoFar += trackNoteValues[noteIndex][1];
             }  
@@ -203,8 +212,8 @@ public class PieceTest {
         };
         
         // make sure we have the right number of events. 
-        // there is always one extra event - the end-of-track event, so we add 1 for that.
-        assertEquals(pitchNumbers.length * 2 + 1, t.size());
+        // there are always two extra events - instrument event and the end-of-track event, so we add 1 for that.
+        assertEquals(pitchNumbers.length * 2 + 2, t.size());
         
         for (int i = 0; i < pitchNumbers.length; i++) {
             assertTrackMidiNoteEqual(t, i, i * 4, 4, pitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 1);
@@ -212,8 +221,8 @@ public class PieceTest {
     }
     
     public static void assertTrackMidiNoteEqual(Track t, int noteIndex, long tick, long duration, int pitchNum, int velocity, int channelNum) {
-        MidiEvent noteOnEvent = t.get(2 * noteIndex);
-        MidiEvent noteOffEvent = t.get((2 * noteIndex) + 1);
+        MidiEvent noteOnEvent = t.get(2 * noteIndex + 1);
+        MidiEvent noteOffEvent = t.get((2 * noteIndex) + 2);
         
         byte noteOnEventByte1 = (byte) (-112 + channelNum);
         byte noteOffEventByte1 = (byte) (-128 + channelNum);

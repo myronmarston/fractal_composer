@@ -219,7 +219,7 @@ public class FractalPieceTest {
         // this will throw an exception if the midi file was not saved...
         Sequence seq = MidiSystem.getSequence(new File(tempFileName));    
         Track t2 = seq.getTracks()[1];
-        assertEquals(5, t2.size()); // 2 note on events, 2 not off events, end-of-track event
+        assertEquals(6, t2.size()); // instrument event, 2 note on events, 2 not off events, end-of-track event
         // we could test each event, but that's overkill.
         // all our other tests test the various parts of this, so there's no 
         // need to duplicate that here

@@ -167,9 +167,10 @@ NoteList contains a sequence of notes.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;javax.sound.midi.Track</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#createAndFillMidiTrack(javax.sound.midi.Sequence, com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction)">createAndFillMidiTrack</A></B>(javax.sound.midi.Sequence&nbsp;sequence,
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#createAndFillMidiTrack(javax.sound.midi.Sequence, com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, com.myronmarston.music.Instrument)">createAndFillMidiTrack</A></B>(javax.sound.midi.Sequence&nbsp;sequence,
                        <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
-                       <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime)</CODE>
+                       <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime,
+                       <A HREF="../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>&nbsp;instrument)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fills the given midi track with the notes from this NoteList.</TD>
@@ -346,19 +347,20 @@ public static <A HREF="../../../com/myronmarston/music/NoteList.html" title="cla
 </DL>
 <HR>
 
-<A NAME="createAndFillMidiTrack(javax.sound.midi.Sequence, com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction)"><!-- --></A><H3>
+<A NAME="createAndFillMidiTrack(javax.sound.midi.Sequence, com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, com.myronmarston.music.Instrument)"><!-- --></A><H3>
 createAndFillMidiTrack</H3>
 <PRE>
 public javax.sound.midi.Track <B>createAndFillMidiTrack</B>(javax.sound.midi.Sequence&nbsp;sequence,
                                                      <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
-                                                     <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime)
+                                                     <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime,
+                                                     <A HREF="../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>&nbsp;instrument)
                                               throws javax.sound.midi.InvalidMidiDataException</PRE>
 <DL>
 <DD>Fills the given midi track with the notes from this NoteList.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>sequence</CODE> - the midi sequence to add the track to<DD><CODE>scale</CODE> - the scale to use<DD><CODE>startTime</CODE> - the time the first note should be played, in whole 
-        notes
+        notes<DD><CODE>instrument</CODE> - the instrument to use
 <DT><B>Returns:</B><DD>the midi track that was created and filled
 <DT><B>Throws:</B>
 <DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - if there is any invalid

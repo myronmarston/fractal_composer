@@ -160,5 +160,5 @@ public class VoiceTest {
         expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
         
         NoteListTest.assertNoteListsEqual(expected, v1.getEntireVoice());
-    }
+    }        
 }

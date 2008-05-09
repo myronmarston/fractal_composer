@@ -54,24 +54,24 @@ public class NoteListTest {
         Scale scale = new MajorScale(NoteName.F);                                
         Sequence sequence = new Sequence(Sequence.PPQ, 8);
                  
-        Track track = germ.createAndFillMidiTrack(sequence, scale, new Fraction(0, 1));
-        MidiNoteTest.assertNoteEventEqual(track.get(0), 0, (byte) -112, (byte) 65, (byte) 100);
-        MidiNoteTest.assertNoteEventEqual(track.get(1), 4, (byte) -128, (byte) 65, (byte) 0);
+        Track track = germ.createAndFillMidiTrack(sequence, scale, new Fraction(0, 1), null);
+        MidiNoteTest.assertNoteEventEqual(track.get(1), 0, (byte) -112, (byte) 65, (byte) 100);
+        MidiNoteTest.assertNoteEventEqual(track.get(2), 4, (byte) -128, (byte) 65, (byte) 0);
         
-        MidiNoteTest.assertNoteEventEqual(track.get(2), 4, (byte) -112, (byte) 67, (byte) 64);
-        MidiNoteTest.assertNoteEventEqual(track.get(3), 8, (byte) -128, (byte) 67, (byte) 0);
+        MidiNoteTest.assertNoteEventEqual(track.get(3), 4, (byte) -112, (byte) 67, (byte) 64);
+        MidiNoteTest.assertNoteEventEqual(track.get(4), 8, (byte) -128, (byte) 67, (byte) 0);
         
-        MidiNoteTest.assertNoteEventEqual(track.get(4), 8, (byte) -112, (byte) 72, (byte) 64);
-        MidiNoteTest.assertNoteEventEqual(track.get(5), 12, (byte) -128, (byte) 72, (byte) 0);
+        MidiNoteTest.assertNoteEventEqual(track.get(5), 8, (byte) -112, (byte) 72, (byte) 64);
+        MidiNoteTest.assertNoteEventEqual(track.get(6), 12, (byte) -128, (byte) 72, (byte) 0);
         
-        MidiNoteTest.assertNoteEventEqual(track.get(6), 12, (byte) -112, (byte) 65, (byte) 64);
-        MidiNoteTest.assertNoteEventEqual(track.get(7), 16, (byte) -128, (byte) 65, (byte) 0);
+        MidiNoteTest.assertNoteEventEqual(track.get(7), 12, (byte) -112, (byte) 65, (byte) 64);
+        MidiNoteTest.assertNoteEventEqual(track.get(8), 16, (byte) -128, (byte) 65, (byte) 0);
         
-        MidiNoteTest.assertNoteEventEqual(track.get(8), 16, (byte) -112, (byte) 67, (byte) 100);
-        MidiNoteTest.assertNoteEventEqual(track.get(9), 20, (byte) -128, (byte) 67, (byte) 0);
+        MidiNoteTest.assertNoteEventEqual(track.get(9), 16, (byte) -112, (byte) 67, (byte) 100);
+        MidiNoteTest.assertNoteEventEqual(track.get(10), 20, (byte) -128, (byte) 67, (byte) 0);
         
-        MidiNoteTest.assertNoteEventEqual(track.get(10), 20, (byte) -112, (byte) 70, (byte) 64);
-        MidiNoteTest.assertNoteEventEqual(track.get(11), 24, (byte) -128, (byte) 70, (byte) 0);                
+        MidiNoteTest.assertNoteEventEqual(track.get(11), 20, (byte) -112, (byte) 70, (byte) 64);
+        MidiNoteTest.assertNoteEventEqual(track.get(12), 24, (byte) -128, (byte) 70, (byte) 0);                
     }
    
     @Test

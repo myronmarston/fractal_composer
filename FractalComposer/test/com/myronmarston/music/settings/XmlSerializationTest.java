@@ -77,7 +77,7 @@ public class XmlSerializationTest {
         String expected = 
         "<voiceSection id=\"0\" rest=\"false\" applyInversion=\"false\" applyRetrograde=\"false\">\n" +
         "   <selfSimilaritySettings id=\"1\" applyToPitch=\"true\" applyToRhythm=\"true\" applyToVolume=\"true\"/>\n" +
-        "   <voice id=\"2\" octaveAdjustment=\"1\">\n" +
+        "   <voice id=\"2\" octaveAdjustment=\"1\" instrumentName=\"Piano\">\n" +
         // fractal piece section that gets stripped goes here...
         "      <speedScaleFactor id=\"53\" numerator_=\"2\" denominator_=\"1\"/>\n" +
         "   </voice>\n" +
@@ -93,7 +93,7 @@ public class XmlSerializationTest {
         Voice v = fpWithDefaultSettings.getVoices().get(0);
         
         String expected = 
-        "<voice id=\"0\" octaveAdjustment=\"1\">\n" +
+        "<voice id=\"0\" octaveAdjustment=\"1\" instrumentName=\"Piano\">\n" +
         // fractal piece section that gets stripped goes here...
         "   <speedScaleFactor id=\"53\" numerator_=\"2\" denominator_=\"1\"/>\n" +
         "</voice>";
@@ -140,6 +140,7 @@ public class XmlSerializationTest {
         fp.getSections().remove(0);
         fp.getVoices().remove(2);
         fp.setGenerateLayeredOutro(false);
+        fp.getVoices().get(0).setInstrumentName("Violin");
         
         String xml = fp.getXmlRepresentation();        
         FractalPiece newFp = FractalPiece.loadFromXml(xml);
@@ -159,6 +160,7 @@ public class XmlSerializationTest {
             Voice newV = newFp.getVoices().get(i);
             assertEquals(v.getOctaveAdjustment(), newV.getOctaveAdjustment());
             assertEquals(v.getSpeedScaleFactor(), newV.getSpeedScaleFactor());
+            assertEquals(v.getInstrumentName(), newV.getInstrumentName());
             NoteListTest.assertNoteListsEqual(v.getModifiedGerm(), newV.getModifiedGerm());
             NoteListTest.assertNoteListsEqual(v.getEntireVoice(), newV.getEntireVoice());
             assertEquals(newFp, newV.getFractalPiece());

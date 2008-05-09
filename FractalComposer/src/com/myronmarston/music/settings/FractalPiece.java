@@ -1,5 +1,6 @@
 package com.myronmarston.music.settings;
 
+import com.myronmarston.music.Instrument;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.NoteStringParseException;
@@ -461,10 +462,12 @@ public class FractalPiece {
             track1.add(this.getScale().getKeySignature().getKeySignatureMidiEvent());        
             track1.add(this.getTimeSignature().getMidiTimeSignatureEvent());
 
+            Instrument voiceInstrument;            
             // finally, create and fill our midi tracks...
-            for (NoteList nl : voiceResults) {            
-                nl.createAndFillMidiTrack(sequence, scale, new Fraction(0, 1));                
-            }        
+            for (int i = 0; i < voiceResults.size(); i++) {
+                voiceInstrument = Instrument.getInstrument(this.getVoices().get(i).getInstrumentName());                
+                voiceResults.get(i).createAndFillMidiTrack(sequence, scale, new Fraction(0, 1), voiceInstrument);                
+            }    
 
             return sequence;
         } finally {
@@ -509,7 +512,7 @@ public class FractalPiece {
         track1.add(this.getScale().getKeySignature().getKeySignatureMidiEvent());        
         track1.add(this.getTimeSignature().getMidiTimeSignatureEvent());
         
-        this.getGerm().createAndFillMidiTrack(sequence, scale, new Fraction(0, 1));                        
+        this.getGerm().createAndFillMidiTrack(sequence, scale, new Fraction(0, 1), null);                        
 
         File outputFile = new File(fileName);
          
@@ -540,6 +543,9 @@ public class FractalPiece {
         }
     }
     
+    /**
+     * Called when the simple framework completes deserialization.
+     */
     @Commit
     private void deserializationComplete() {
         this.sections.deserializationComplete(this);

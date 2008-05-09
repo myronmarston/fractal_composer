@@ -158,6 +158,14 @@ A FractalPiece is composed of several voices.  A Voice is analogous to
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Voice.html#getInstrumentName()">getInstrumentName</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the name of the instrument used by this voice.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>protected &nbsp;java.util.List&lt;<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>&gt;</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Voice.html#getListOfMainType()">getListOfMainType</A></B>()</CODE>
 
@@ -205,6 +213,14 @@ A FractalPiece is composed of several voices.  A Voice is analogous to
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instantiates and returns a VoiceSection, using this and the passed voice 
  or section.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Voice.html#setInstrumentName(java.lang.String)">setInstrumentName</A></B>(java.lang.String&nbsp;instrumentName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the name of the instrument used by this voice.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -274,6 +290,37 @@ protected <B>Voice</B>(<A HREF="../../../../com/myronmarston/music/settings/Frac
 <B>Method Detail</B></FONT></TH>
 </TR>
 </TABLE>
+
+<A NAME="getInstrumentName()"><!-- --></A><H3>
+getInstrumentName</H3>
+<PRE>
+public java.lang.String <B>getInstrumentName</B>()</PRE>
+<DL>
+<DD>Gets the name of the instrument used by this voice.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the name of the instrument used by this voice.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setInstrumentName(java.lang.String)"><!-- --></A><H3>
+setInstrumentName</H3>
+<PRE>
+public void <B>setInstrumentName</B>(java.lang.String&nbsp;instrumentName)
+                       throws java.lang.IllegalArgumentException</PRE>
+<DL>
+<DD>Sets the name of the instrument used by this voice.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>instrumentName</CODE> - 
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.IllegalArgumentException</CODE> - thrown if the given instrument is
+         unavailable</DL>
+</DD>
+</DL>
+<HR>
 
 <A NAME="getOctaveAdjustment()"><!-- --></A><H3>
 getOctaveAdjustment</H3>

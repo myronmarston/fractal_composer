@@ -122,17 +122,23 @@ public class NoteList extends ArrayList<Note> {
      * @param scale the scale to use
      * @param startTime the time the first note should be played, in whole 
      *        notes
+     * @param instrument the instrument to use
      * @return the midi track that was created and filled
      * @throws javax.sound.midi.InvalidMidiDataException if there is any invalid
      *         midi data
      */
-    public Track createAndFillMidiTrack(Sequence sequence, Scale scale, Fraction startTime) throws InvalidMidiDataException {
+    public Track createAndFillMidiTrack(Sequence sequence, Scale scale, Fraction startTime, Instrument instrument) throws InvalidMidiDataException {
         MidiNote thisMidiNote, lastMidiNote = null;
         Note lastNote = null;
+        
+        // get a default instrument if we were not passed one...
+        if (instrument == null) instrument = Instrument.getDefault();
         
         // make each track be on a different channel, but make sure we don't go over our total number of channels...
         int midiChannel = sequence.getTracks().length % MidiNote.MAX_CHANNEL;
         Track track = sequence.createTrack();
+        track.add(instrument.getProgramChangeMidiEvent(midiChannel));
+        
         // in Midi, the tick resolution is based on quarter notes, but we use whole notes...
         int midiTicksPerWholeNote = sequence.getResolution() * 4; 
         
