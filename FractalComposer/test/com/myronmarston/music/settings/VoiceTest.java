@@ -161,4 +161,16 @@ public class VoiceTest {
         
         NoteListTest.assertNoteListsEqual(expected, v1.getEntireVoice());
     }        
+    
+    @Test
+    public void saveVoiceToMidiFile() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        fp.createDefaultSettings();
+        fp.setGermString("G4 A4");
+        
+        Voice v = fp.getVoices().get(0);
+        // these will throw an exception if they fail...
+        v.saveEntireVoiceToMidiFile(FractalPieceTest.getTempFileName());
+        v.saveModifiedGermToMidiFile(FractalPieceTest.getTempFileName());
+    }
 }

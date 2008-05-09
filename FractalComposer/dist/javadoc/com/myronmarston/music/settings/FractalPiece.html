@@ -344,6 +344,16 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#saveNoteListsAsMidiFile(java.util.Collection, java.lang.String)">saveNoteListsAsMidiFile</A></B>(java.util.Collection&lt;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists,
+                        java.lang.String&nbsp;fileName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructs a midi sequence using the given note lists and saves it to a 
+ file.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#setGenerateLayeredIntro(boolean)">setGenerateLayeredIntro</A></B>(boolean&nbsp;generateLayeredIntro)</CODE>
 
@@ -831,6 +841,27 @@ public javax.sound.midi.Sequence <B>generatePiece</B>()
 <DT><B>Returns:</B><DD>the generated fractal piece
 <DT><B>Throws:</B>
 <DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="saveNoteListsAsMidiFile(java.util.Collection, java.lang.String)"><!-- --></A><H3>
+saveNoteListsAsMidiFile</H3>
+<PRE>
+protected void <B>saveNoteListsAsMidiFile</B>(java.util.Collection&lt;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists,
+                                       java.lang.String&nbsp;fileName)
+                                throws java.io.IOException,
+                                       javax.sound.midi.InvalidMidiDataException</PRE>
+<DL>
+<DD>Constructs a midi sequence using the given note lists and saves it to a 
+ file.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>noteLists</CODE> - the note lists to use for the midi sequence<DD><CODE>fileName</CODE> - the name of the file to save
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE> - if there is a problem writing the file
+<DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - if there is invalid 
+         midi data</DL>
 </DD>
 </DL>
 <HR>

@@ -1,8 +1,11 @@
 package com.myronmarston.music.settings;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
+import com.myronmarston.music.NoteList;
+import java.io.IOException;
 import org.simpleframework.xml.*;
 import java.util.*;
+import javax.sound.midi.InvalidMidiDataException;
 
 
 /**
@@ -45,6 +48,23 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
         }
         
         return Collections.max(voiceSectionDurations);
+    }
+    
+    /**
+     * Constructs a midi sequence for this section and saves it to a midi file.
+     * 
+     * @param fileName the filename to use
+     * @throws java.io.IOException if there is a problem writing to the file
+     * @throws javax.sound.midi.InvalidMidiDataException if there is invalid
+     *         midi data
+     */
+    public void saveSectionResultToMidiFile(String fileName) throws IOException, InvalidMidiDataException {
+        List<NoteList> voiceSectionResults = new ArrayList<NoteList>(this.getVoiceSections().size());
+        for (VoiceSection vs : this.getVoiceSections()) {
+            voiceSectionResults.add(vs.getVoiceSectionResult());
+        }
+        
+        this.getFractalPiece().saveNoteListsAsMidiFile(voiceSectionResults, fileName);
     }
     
     @Override

@@ -167,10 +167,9 @@ NoteList contains a sequence of notes.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;javax.sound.midi.Track</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#createAndFillMidiTrack(javax.sound.midi.Sequence, com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, com.myronmarston.music.Instrument)">createAndFillMidiTrack</A></B>(javax.sound.midi.Sequence&nbsp;sequence,
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#createAndFillMidiTrack(javax.sound.midi.Sequence, com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction)">createAndFillMidiTrack</A></B>(javax.sound.midi.Sequence&nbsp;sequence,
                        <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
-                       <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime,
-                       <A HREF="../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>&nbsp;instrument)</CODE>
+                       <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fills the given midi track with the notes from this NoteList.</TD>
@@ -193,6 +192,14 @@ NoteList contains a sequence of notes.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#getInstrument()">getInstrument</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the instrument for this note list.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#getMidiTickResolution(java.util.Collection)">getMidiTickResolution</A></B>(java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists)</CODE>
 
@@ -208,6 +215,14 @@ NoteList contains a sequence of notes.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new note list based on the given note list string.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#setInstrument(com.myronmarston.music.Instrument)">setInstrument</A></B>(<A HREF="../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>&nbsp;instrument)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the instrument to use for this note list.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.util.ArrayList"><!-- --></A>
@@ -299,6 +314,33 @@ public <B>NoteList</B>(int&nbsp;initialCapacity)</PRE>
 </TR>
 </TABLE>
 
+<A NAME="getInstrument()"><!-- --></A><H3>
+getInstrument</H3>
+<PRE>
+public <A HREF="../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A> <B>getInstrument</B>()</PRE>
+<DL>
+<DD>Gets the instrument for this note list.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the instrument</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setInstrument(com.myronmarston.music.Instrument)"><!-- --></A><H3>
+setInstrument</H3>
+<PRE>
+public void <B>setInstrument</B>(<A HREF="../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>&nbsp;instrument)</PRE>
+<DL>
+<DD>Sets the instrument to use for this note list.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>instrument</CODE> - the instrument</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="getFirstAudibleNote()"><!-- --></A><H3>
 getFirstAudibleNote</H3>
 <PRE>
@@ -347,20 +389,19 @@ public static <A HREF="../../../com/myronmarston/music/NoteList.html" title="cla
 </DL>
 <HR>
 
-<A NAME="createAndFillMidiTrack(javax.sound.midi.Sequence, com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction, com.myronmarston.music.Instrument)"><!-- --></A><H3>
+<A NAME="createAndFillMidiTrack(javax.sound.midi.Sequence, com.myronmarston.music.scales.Scale, EDU.oswego.cs.dl.util.concurrent.misc.Fraction)"><!-- --></A><H3>
 createAndFillMidiTrack</H3>
 <PRE>
 public javax.sound.midi.Track <B>createAndFillMidiTrack</B>(javax.sound.midi.Sequence&nbsp;sequence,
                                                      <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
-                                                     <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime,
-                                                     <A HREF="../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>&nbsp;instrument)
+                                                     <A HREF="../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html" title="class in EDU.oswego.cs.dl.util.concurrent.misc">Fraction</A>&nbsp;startTime)
                                               throws javax.sound.midi.InvalidMidiDataException</PRE>
 <DL>
 <DD>Fills the given midi track with the notes from this NoteList.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>sequence</CODE> - the midi sequence to add the track to<DD><CODE>scale</CODE> - the scale to use<DD><CODE>startTime</CODE> - the time the first note should be played, in whole 
-        notes<DD><CODE>instrument</CODE> - the instrument to use
+        notes
 <DT><B>Returns:</B><DD>the midi track that was created and filled
 <DT><B>Throws:</B>
 <DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - if there is any invalid

@@ -54,7 +54,7 @@ public class NoteListTest {
         Scale scale = new MajorScale(NoteName.F);                                
         Sequence sequence = new Sequence(Sequence.PPQ, 8);
                  
-        Track track = germ.createAndFillMidiTrack(sequence, scale, new Fraction(0, 1), null);
+        Track track = germ.createAndFillMidiTrack(sequence, scale, new Fraction(0, 1));
         MidiNoteTest.assertNoteEventEqual(track.get(1), 0, (byte) -112, (byte) 65, (byte) 100);
         MidiNoteTest.assertNoteEventEqual(track.get(2), 4, (byte) -128, (byte) 65, (byte) 0);
         

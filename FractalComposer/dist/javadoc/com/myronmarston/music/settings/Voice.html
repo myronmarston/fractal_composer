@@ -217,6 +217,24 @@ A FractalPiece is composed of several voices.  A Voice is analogous to
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Voice.html#saveEntireVoiceToMidiFile(java.lang.String)">saveEntireVoiceToMidiFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructs a midi sequence using the entire voice and saves it to a midi 
+ file.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Voice.html#saveModifiedGermToMidiFile(java.lang.String)">saveModifiedGermToMidiFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructs a midi sequence using the modified germ and saves it to a midi 
+ file.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Voice.html#setInstrumentName(java.lang.String)">setInstrumentName</A></B>(java.lang.String&nbsp;instrumentName)</CODE>
 
 <BR>
@@ -400,6 +418,46 @@ public <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class i
 <DD><DL>
 
 <DT><B>Returns:</B><DD>a NoteList for the entire voice</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="saveModifiedGermToMidiFile(java.lang.String)"><!-- --></A><H3>
+saveModifiedGermToMidiFile</H3>
+<PRE>
+public void <B>saveModifiedGermToMidiFile</B>(java.lang.String&nbsp;fileName)
+                                throws java.io.IOException,
+                                       javax.sound.midi.InvalidMidiDataException</PRE>
+<DL>
+<DD>Constructs a midi sequence using the modified germ and saves it to a midi 
+ file.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the filename to use
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE> - if there is a problem writing to the file
+<DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - if there is invalid
+         midi data</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="saveEntireVoiceToMidiFile(java.lang.String)"><!-- --></A><H3>
+saveEntireVoiceToMidiFile</H3>
+<PRE>
+public void <B>saveEntireVoiceToMidiFile</B>(java.lang.String&nbsp;fileName)
+                               throws java.io.IOException,
+                                      javax.sound.midi.InvalidMidiDataException</PRE>
+<DL>
+<DD>Constructs a midi sequence using the entire voice and saves it to a midi 
+ file.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the filename to use
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE> - if there is a problem writing to the file
+<DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - if there is invalid
+         midi data</DL>
 </DD>
 </DL>
 <HR>

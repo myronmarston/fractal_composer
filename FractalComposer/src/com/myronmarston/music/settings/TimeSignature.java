@@ -32,8 +32,12 @@ public class TimeSignature {
      * The time signature that should be used if the user does not specify
      * one--common time, i.e. 4/4.
      */
-    public final static TimeSignature DEFAULT;
-    
+    public final static TimeSignature DEFAULT;        
+        
+    /**
+     * Taken from http://www.sonicspot.com/guide/midifiles.html.
+     */    
+    private final static int TIME_SIGNATURE_META_MESSAGE_TYPE = 88;    
     
     /**
      * Initializes the default time signature.
@@ -156,9 +160,8 @@ public class TimeSignature {
         tsMessageData[1] = (byte) this.getDenominatorPowerOf2();
         tsMessageData[2] = 24; // metronome pulse
         tsMessageData[3] = 8;  // number of 32nds per quarter note
-       
-        // TODO: use a constant...
-        tsMessage.setMessage(88,                    // 88 is the type for a time signature message
+               
+        tsMessage.setMessage(TIME_SIGNATURE_META_MESSAGE_TYPE,  
                              tsMessageData,         // the time signature data
                              tsMessageData.length); // the size of the data array
         

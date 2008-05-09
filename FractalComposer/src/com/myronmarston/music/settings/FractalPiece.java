@@ -9,6 +9,8 @@ import com.myronmarston.music.Tempo;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
+import java.io.IOException;
+import javax.sound.midi.InvalidMidiDataException;
 import org.simpleframework.xml.*;
 import org.simpleframework.xml.graph.*;
 import org.simpleframework.xml.load.*;;
@@ -61,6 +63,7 @@ public class FractalPiece {
     private boolean generateLayeredOutro = true;
         
     private List<Section> tempIntroOutroSections = new ArrayList<Section>();
+    private static final int MIDI_FILE_TYPE_FOR_MULTI_TRACK_SEQUENCE = 1;
                                     
     /**
      * Returns the germ NoteList.  Guarenteed to never be null.  
@@ -471,34 +474,56 @@ public class FractalPiece {
      */
     public Sequence generatePiece() throws InvalidMidiDataException {
         try {
-            // first, create our intro and outro...
+            // create our intro and outro...
             this.createIntroSections();
             this.createOutroSections();
             
-            // next, get all our voice results, and cache them in a list...
+            // get all our voice results, and cache them in a list...
             ArrayList<NoteList> voiceResults = new ArrayList<NoteList>();
             for (Voice v : this.getVoices()) voiceResults.add(v.getEntireVoice());
             
-            // next, create our sequence...
-            Sequence sequence = new Sequence(Sequence.PPQ, NoteList.getMidiTickResolution(voiceResults));
-
-            // next, use the first track to set key signature and time signature...
-            Track track1 = sequence.createTrack();
-            track1.add(this.getScale().getKeySignature().getKeySignatureMidiEvent());        
-            track1.add(this.getTimeSignature().getMidiTimeSignatureEvent());
-            track1.add(Tempo.getMidiTempoEvent(this.getTempo()));
-
-            Instrument voiceInstrument;            
-            // finally, create and fill our midi tracks...
-            for (int i = 0; i < voiceResults.size(); i++) {
-                voiceInstrument = Instrument.getInstrument(this.getVoices().get(i).getInstrumentName());                
-                voiceResults.get(i).createAndFillMidiTrack(sequence, scale, new Fraction(0, 1), voiceInstrument);                
-            }    
-
-            return sequence;
+            // create the sequence for this...
+            return createMidiSequence(voiceResults);
         } finally {
             this.clearTempIntroOutroSections();
         }        
+    }
+    
+    private Sequence createMidiSequence(Collection<NoteList> noteLists) throws InvalidMidiDataException {
+        // first, create our sequence...
+        Sequence sequence = new Sequence(Sequence.PPQ, NoteList.getMidiTickResolution(noteLists));
+
+        // next, use the first track to set key signature, time signature and tempo...
+        Track track1 = sequence.createTrack();
+        track1.add(this.getScale().getKeySignature().getKeySignatureMidiEvent());        
+        track1.add(this.getTimeSignature().getMidiTimeSignatureEvent());
+        track1.add(Tempo.getMidiTempoEvent(this.getTempo()));
+
+        // finally, create and fill our midi tracks...
+        for (NoteList nl : noteLists) {
+            nl.createAndFillMidiTrack(sequence, scale, new Fraction(0, 1));                
+        }
+
+        return sequence;
+    }
+    
+    /**
+     * Constructs a midi sequence using the given note lists and saves it to a 
+     * file.
+     * 
+     * @param noteLists the note lists to use for the midi sequence
+     * @param fileName the name of the file to save
+     * @throws java.io.IOException if there is a problem writing the file
+     * @throws javax.sound.midi.InvalidMidiDataException if there is invalid 
+     *         midi data
+     */
+    protected void saveNoteListsAsMidiFile(Collection<NoteList> noteLists, String fileName) throws IOException, InvalidMidiDataException {
+        saveMidiSequenceToFile(this.createMidiSequence(noteLists), fileName);        
+    }
+    
+    private static void saveMidiSequenceToFile(Sequence seq, String fileName) throws IOException {
+        File outputFile = new File(fileName);                        
+        MidiSystem.write(seq, MIDI_FILE_TYPE_FOR_MULTI_TRACK_SEQUENCE, outputFile);
     }
     
     /**
@@ -511,11 +536,7 @@ public class FractalPiece {
      * @throws java.io.IOException if the file cannot be written
      */
     public void createAndSaveMidiFile(String fileName) throws InvalidMidiDataException, IOException {
-        File outputFile = new File(fileName);        
-        Sequence sequence = this.generatePiece();   
-        
-        // Midi file type 1 is for multi-track sequences
-        MidiSystem.write(sequence, 1, outputFile);
+        saveMidiSequenceToFile(this.generatePiece(), fileName);        
     }
     
     /**
@@ -526,25 +547,8 @@ public class FractalPiece {
      *         invalid midi data
      * @throws java.io.IOException if there is an IO problem with the file
      */
-    public void saveGermToMidiFile(String fileName) throws InvalidMidiDataException, IOException {        
-        // get our midi tick resolution...
-        int midiTickResolution = NoteList.getMidiTickResolution(Arrays.asList(this.getGerm()));        
-
-        // next, create our sequence...
-        Sequence sequence = new Sequence(Sequence.PPQ, midiTickResolution);   
-        
-        // next, use the first track to set key signature and time signature...
-        Track track1 = sequence.createTrack();
-        track1.add(this.getScale().getKeySignature().getKeySignatureMidiEvent());        
-        track1.add(this.getTimeSignature().getMidiTimeSignatureEvent());
-        track1.add(Tempo.getMidiTempoEvent(this.getTempo()));
-        
-        this.getGerm().createAndFillMidiTrack(sequence, scale, new Fraction(0, 1), null);                        
-
-        File outputFile = new File(fileName);
-         
-        // Midi file type 1 is for multi-track sequences
-        MidiSystem.write(sequence, 1, outputFile);
+    public void saveGermToMidiFile(String fileName) throws InvalidMidiDataException, IOException {                        
+        saveMidiSequenceToFile(createMidiSequence(Arrays.asList(this.getGerm())), fileName);        
     }
     
     /**

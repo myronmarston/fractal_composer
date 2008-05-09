@@ -218,6 +218,15 @@ Represents the smallest unit of the fractal piece for which the user can
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#saveVoiceSectionResultToMidiFile(java.lang.String)">saveVoiceSectionResultToMidiFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructs a midi sequence using this voice section and saves it to a
+ file.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#setApplyInversion(boolean)">setApplyInversion</A></B>(boolean&nbsp;val)</CODE>
 
 <BR>
@@ -483,6 +492,29 @@ public <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class i
 
 <DT><B>Returns:</B><DD>a NoteList containing the result of applying the settings to the 
          germ</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="saveVoiceSectionResultToMidiFile(java.lang.String)"><!-- --></A><H3>
+saveVoiceSectionResultToMidiFile</H3>
+<PRE>
+public void <B>saveVoiceSectionResultToMidiFile</B>(java.lang.String&nbsp;fileName)
+                                      throws java.io.IOException,
+                                             javax.sound.midi.InvalidMidiDataException</PRE>
+<DL>
+<DD>Constructs a midi sequence using this voice section and saves it to a
+ file.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the filename to use
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE> - if there is a problem writing to the file
+<DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - if there is invalid
+         midi data</DL>
 </DD>
 </DL>
 <HR>

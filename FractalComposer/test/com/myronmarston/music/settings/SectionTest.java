@@ -151,4 +151,15 @@ public class SectionTest {
         assertEquals(true, vs2.getSelfSimilaritySettings().getApplyToVolume());
         assertEquals(true, vs3.getSelfSimilaritySettings().getApplyToVolume());
     }
+    
+    @Test
+    public void saveSectionResultToMidiFile() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        fp.createDefaultSettings();
+        fp.setGermString("G4 A4");
+        
+        Section s = fp.getSections().get(0);
+        // this will throw an exception if it fails...
+        s.saveSectionResultToMidiFile(FractalPieceTest.getTempFileName());
+    }
 }

@@ -5,10 +5,12 @@ import com.myronmarston.music.NoteList;
 import com.myronmarston.music.transformers.OctaveTransformer;
 import com.myronmarston.music.transformers.RhythmicDurationTransformer;
 
+import java.io.IOException;
+import javax.sound.midi.InvalidMidiDataException;
 import org.simpleframework.xml.*;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
-import java.util.List;
+import java.util.*;
 
 /**
  * A FractalPiece is composed of several voices.  A Voice is analogous to 
@@ -68,7 +70,7 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
             throw new IllegalArgumentException(instrumentName + " is not one of the available instruments.");
         }
         
-        this.instrumentName = instrumentName;
+        this.instrumentName = instrumentName;        
     }        
         
     /**
@@ -116,6 +118,7 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
      */
     public NoteList getModifiedGerm() {
         if (modifiedGerm == null) this.modifiedGerm = this.generateModifiedGerm();
+        this.modifiedGerm.setInstrument(Instrument.getInstrument(this.getInstrumentName()));
         return modifiedGerm;
     }
     
@@ -134,7 +137,34 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
             entireVoice.addAll(vs.getLengthenedVoiceSectionResult(sectionDuration));
         }
         
+        entireVoice.setInstrument(Instrument.getInstrument(this.getInstrumentName()));
         return entireVoice;
+    }   
+    
+    /**
+     * Constructs a midi sequence using the modified germ and saves it to a midi 
+     * file.
+     * 
+     * @param fileName the filename to use
+     * @throws java.io.IOException if there is a problem writing to the file
+     * @throws javax.sound.midi.InvalidMidiDataException if there is invalid
+     *         midi data
+     */
+    public void saveModifiedGermToMidiFile(String fileName) throws IOException, InvalidMidiDataException {
+        this.getFractalPiece().saveNoteListsAsMidiFile(Arrays.asList(this.getModifiedGerm()), fileName);
+    }
+    
+    /**
+     * Constructs a midi sequence using the entire voice and saves it to a midi 
+     * file.
+     * 
+     * @param fileName the filename to use
+     * @throws java.io.IOException if there is a problem writing to the file
+     * @throws javax.sound.midi.InvalidMidiDataException if there is invalid
+     *         midi data
+     */
+    public void saveEntireVoiceToMidiFile(String fileName) throws IOException, InvalidMidiDataException {
+        this.getFractalPiece().saveNoteListsAsMidiFile(Arrays.asList(this.getEntireVoice()), fileName);
     }
     
     /**
@@ -155,7 +185,7 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
         RhythmicDurationTransformer speedT = new RhythmicDurationTransformer(this.getSpeedScaleFactor());
         
         NoteList temp = octaveT.transform(this.getFractalPiece().getGerm());
-        return speedT.transform(temp);
+        return speedT.transform(temp);        
     }
     
     @Override

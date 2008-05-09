@@ -5,7 +5,9 @@ import com.myronmarston.util.MathHelper;
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
 import java.util.*;
-import javax.sound.midi.*;
+import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.Sequence;
+import javax.sound.midi.Track;
 
 /**
  * NoteList contains a sequence of notes.
@@ -15,6 +17,8 @@ import javax.sound.midi.*;
 public class NoteList extends ArrayList<Note> {
     // Used to serialize the class.  Change this if the class has a change significant enough to change the way the class is serialized.
     private static final long serialVersionUID = 1L;
+    
+    private Instrument instrument;
     
     /**
      * Default constructor.
@@ -31,6 +35,24 @@ public class NoteList extends ArrayList<Note> {
     public NoteList(int initialCapacity) {
         super(initialCapacity);        
     }
+
+    /**
+     * Gets the instrument for this note list.
+     * 
+     * @return the instrument
+     */
+    public Instrument getInstrument() {
+        return instrument;
+    }
+
+    /**
+     * Sets the instrument to use for this note list.
+     *  
+     * @param instrument the instrument
+     */     
+    public void setInstrument(Instrument instrument) {
+        this.instrument = instrument;
+    }        
     
     /**
      * Gets the first note you can hear--the first note that's not a rest.
@@ -121,13 +143,12 @@ public class NoteList extends ArrayList<Note> {
      * @param sequence the midi sequence to add the track to
      * @param scale the scale to use
      * @param startTime the time the first note should be played, in whole 
-     *        notes
-     * @param instrument the instrument to use
+     *        notes     
      * @return the midi track that was created and filled
      * @throws javax.sound.midi.InvalidMidiDataException if there is any invalid
      *         midi data
      */
-    public Track createAndFillMidiTrack(Sequence sequence, Scale scale, Fraction startTime, Instrument instrument) throws InvalidMidiDataException {
+    public Track createAndFillMidiTrack(Sequence sequence, Scale scale, Fraction startTime) throws InvalidMidiDataException {
         MidiNote thisMidiNote, lastMidiNote = null;
         Note lastNote = null;
         

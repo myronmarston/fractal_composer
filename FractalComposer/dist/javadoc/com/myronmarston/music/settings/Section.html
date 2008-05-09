@@ -179,6 +179,14 @@ The entire fractal piece is composed of a series of sections.  Each section
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instantiates and returns a VoiceSection, using this and the passed voice 
  or section.</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Section.html#saveSectionResultToMidiFile(java.lang.String)">saveSectionResultToMidiFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructs a midi sequence for this section and saves it to a midi file.</TD>
+</TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.settings.AbstractVoiceOrSection"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
@@ -243,6 +251,25 @@ public <A HREF="../../../../EDU/oswego/cs/dl/util/concurrent/misc/Fraction.html"
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the duration of this entire section</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="saveSectionResultToMidiFile(java.lang.String)"><!-- --></A><H3>
+saveSectionResultToMidiFile</H3>
+<PRE>
+public void <B>saveSectionResultToMidiFile</B>(java.lang.String&nbsp;fileName)
+                                 throws java.io.IOException,
+                                        javax.sound.midi.InvalidMidiDataException</PRE>
+<DL>
+<DD>Constructs a midi sequence for this section and saves it to a midi file.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the filename to use
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE> - if there is a problem writing to the file
+<DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - if there is invalid
+         midi data</DL>
 </DD>
 </DL>
 <HR>

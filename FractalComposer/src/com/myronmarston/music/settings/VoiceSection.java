@@ -10,6 +10,8 @@ import java.util.*;
 import org.simpleframework.xml.*;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
+import java.io.IOException;
+import javax.sound.midi.InvalidMidiDataException;
         
 /**
  * Represents the smallest unit of the fractal piece for which the user can
@@ -167,6 +169,19 @@ public class VoiceSection implements Observer {
     public NoteList getVoiceSectionResult() {
         if (voiceSectionResult == null) voiceSectionResult = this.generateVoiceSectionResult();
         return voiceSectionResult;
+    }
+            
+    /**
+     * Constructs a midi sequence using this voice section and saves it to a
+     * file.
+     * 
+     * @param fileName the filename to use
+     * @throws java.io.IOException if there is a problem writing to the file
+     * @throws javax.sound.midi.InvalidMidiDataException if there is invalid
+     *         midi data
+     */
+    public void saveVoiceSectionResultToMidiFile(String fileName) throws IOException, InvalidMidiDataException {
+        this.getVoice().getFractalPiece().saveNoteListsAsMidiFile(Arrays.asList(this.getVoiceSectionResult()), fileName);
     }
     
     /**
