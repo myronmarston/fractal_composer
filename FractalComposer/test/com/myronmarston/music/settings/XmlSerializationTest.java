@@ -136,6 +136,7 @@ public class XmlSerializationTest {
         fp.setGermString("A4,1/4 B4,1/8,F C4,1/2");        
         
         //modify the piece a bit...
+        fp.setTempo(160);
         fp.setTimeSignature(new TimeSignature(7, 4));  
         fp.getSections().remove(0);
         fp.getVoices().remove(2);
@@ -152,6 +153,7 @@ public class XmlSerializationTest {
         assertEquals(fp.getGenerateLayeredIntro(), newFp.getGenerateLayeredIntro());
         assertEquals(fp.getGenerateLayeredOutro(), newFp.getGenerateLayeredOutro());
         assertEquals(fp.getGermString(), newFp.getGermString());
+        assertEquals(fp.getTempo(), newFp.getTempo());
         
         // check voices...
         assertEquals(fp.getVoices().size(), newFp.getVoices().size());

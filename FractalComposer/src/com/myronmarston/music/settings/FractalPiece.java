@@ -5,6 +5,7 @@ import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.NoteStringParseException;
 import com.myronmarston.music.scales.Scale;
+import com.myronmarston.music.Tempo;
 
 import EDU.oswego.cs.dl.util.concurrent.misc.Fraction;
 
@@ -34,6 +35,9 @@ public class FractalPiece {
     
     @Attribute
     private String germString = "";
+    
+    @Attribute
+    private int tempo = Tempo.DEFAULT;
     
     @Element
     private Scale scale = Scale.DEFAULT;
@@ -91,6 +95,27 @@ public class FractalPiece {
         this.germString = germString;
     }
 
+    /**
+     * Gets the tempo of the piece, in beats per minute.
+     * 
+     * @return the tempo of the piece
+     */
+    public int getTempo() {
+        return tempo;
+    }
+
+    /**
+     * Sets the tempo of the piece, in beats per minute.
+     * 
+     * @param tempo the tempo of the piece
+     * @throws IllegalArgumentException if the tempo is outside of the 
+     *         acceptable range
+     */
+    public void setTempo(int tempo) throws IllegalArgumentException {
+        Tempo.checkTempoValidity(tempo);
+        this.tempo = tempo;
+    }
+        
     /**
      * Returns the Scale.  The Scale is used to determine the tonality of the
      * piece, and will also be used to set the key signature of the Midi 
@@ -461,6 +486,7 @@ public class FractalPiece {
             Track track1 = sequence.createTrack();
             track1.add(this.getScale().getKeySignature().getKeySignatureMidiEvent());        
             track1.add(this.getTimeSignature().getMidiTimeSignatureEvent());
+            track1.add(Tempo.getMidiTempoEvent(this.getTempo()));
 
             Instrument voiceInstrument;            
             // finally, create and fill our midi tracks...
@@ -511,6 +537,7 @@ public class FractalPiece {
         Track track1 = sequence.createTrack();
         track1.add(this.getScale().getKeySignature().getKeySignatureMidiEvent());        
         track1.add(this.getTimeSignature().getMidiTimeSignatureEvent());
+        track1.add(Tempo.getMidiTempoEvent(this.getTempo()));
         
         this.getGerm().createAndFillMidiTrack(sequence, scale, new Fraction(0, 1), null);                        
 

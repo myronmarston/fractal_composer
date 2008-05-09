@@ -46,7 +46,7 @@ public class InstrumentTest {
         assertEquals(tick, event.getTick());
         javax.sound.midi.MidiMessage msg = event.getMessage();
         assertEquals(2, msg.getMessage().length);
-        byte byte1 = (byte) (javax.sound.midi.ShortMessage.PROGRAM_CHANGE - 256 + channel);
+        byte byte1 = (byte) (javax.sound.midi.ShortMessage.PROGRAM_CHANGE + channel);
         byte byte2 = (byte) patch;        
         assertEquals(byte1, msg.getMessage()[0]);        
         assertEquals(byte2, msg.getMessage()[1]);        

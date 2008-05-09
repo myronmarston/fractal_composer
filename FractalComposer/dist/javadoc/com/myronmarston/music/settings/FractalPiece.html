@@ -287,6 +287,14 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#getTempo()">getTempo</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the tempo of the piece, in beats per minute.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#getTimeSignature()">getTimeSignature</A></B>()</CODE>
 
@@ -367,6 +375,14 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the Scale used by this FractalPiece.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#setTempo(int)">setTempo</A></B>(int&nbsp;tempo)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the tempo of the piece, in beats per minute.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -458,6 +474,37 @@ public void <B>setGermString</B>(java.lang.String&nbsp;germString)
 <DT><B>Throws:</B>
 <DD><CODE><A HREF="../../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music">NoteStringParseException</A></CODE> - if the note list
          string cannot be parsed</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getTempo()"><!-- --></A><H3>
+getTempo</H3>
+<PRE>
+public int <B>getTempo</B>()</PRE>
+<DL>
+<DD>Gets the tempo of the piece, in beats per minute.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the tempo of the piece</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setTempo(int)"><!-- --></A><H3>
+setTempo</H3>
+<PRE>
+public void <B>setTempo</B>(int&nbsp;tempo)
+              throws java.lang.IllegalArgumentException</PRE>
+<DL>
+<DD>Sets the tempo of the piece, in beats per minute.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>tempo</CODE> - the tempo of the piece
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.IllegalArgumentException</CODE> - if the tempo is outside of the 
+         acceptable range</DL>
 </DD>
 </DL>
 <HR>
