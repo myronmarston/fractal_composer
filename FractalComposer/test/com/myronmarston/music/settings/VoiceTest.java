@@ -1,7 +1,7 @@
 package com.myronmarston.music.settings;
 
 import com.myronmarston.music.*;
-import edu.oswego.cs.dl.util.concurrent.misc.Fraction;        
+import com.myronmarston.util.Fraction;        
 import org.junit.Test;
 import static org.junit.Assert.*;
 

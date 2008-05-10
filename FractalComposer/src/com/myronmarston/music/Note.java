@@ -4,7 +4,7 @@ import com.myronmarston.music.settings.SegmentSettings;
 import com.myronmarston.music.scales.Scale;
 import com.myronmarston.music.NoteStringInvalidPartException.NoteStringPart;
 
-import edu.oswego.cs.dl.util.concurrent.misc.Fraction;
+import com.myronmarston.util.Fraction;
 
 import org.simpleframework.xml.*;
 

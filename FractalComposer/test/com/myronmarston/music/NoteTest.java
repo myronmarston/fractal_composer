@@ -2,7 +2,7 @@ package com.myronmarston.music;
 
 import com.myronmarston.music.NoteStringInvalidPartException.NoteStringPart;
 import com.myronmarston.music.scales.*;
-import edu.oswego.cs.dl.util.concurrent.misc.Fraction;
+import com.myronmarston.util.Fraction;
 
 import javax.sound.midi.InvalidMidiDataException;
 import org.junit.Test;

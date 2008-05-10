@@ -3,7 +3,7 @@ package com.myronmarston.music.transformers;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
 
-import edu.oswego.cs.dl.util.concurrent.misc.Fraction;
+import com.myronmarston.util.Fraction;
 
 /**
  * Transformer that scales the the rhythmic duration of the notes by some scale

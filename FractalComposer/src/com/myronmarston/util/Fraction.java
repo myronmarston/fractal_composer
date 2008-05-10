@@ -1,6 +1,8 @@
 /*
   File: Fraction.java
   Downloaded from: http://gee.cs.oswego.edu/dl/classes/EDU/oswego/cs/dl/util/concurrent/misc/Fraction.java
+  This has been moved to the com.myronmarston.util package because JRuby seems
+  to have issues importing from an edu package.
 
   Originally written by Doug Lea and released into the public domain.
   This may be used for any purposes whatsoever without acknowledgment.
@@ -13,7 +15,7 @@
   11Oct1999 dl               add hashCode
 */
 
-package edu.oswego.cs.dl.util.concurrent.misc;
+package com.myronmarston.util;
 
 import org.simpleframework.xml.*;
 
