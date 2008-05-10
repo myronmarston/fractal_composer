@@ -18,6 +18,7 @@
 package com.myronmarston.util;
 
 import org.simpleframework.xml.*;
+import java.util.regex.*;
 
 
 /**
@@ -31,6 +32,13 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
   
   @Attribute
   protected final long denominator_;
+  
+  /** Regular expression string to parse a fraction string. */
+  public final static String REGEX_STRING = "^(0|(?:[1-9](?:\\d)*))(?:\\/([1-9](?:\\d)*))?$";
+  
+  /** Regular expression pattern to parse a fraction string. */
+  private final static Pattern REGEX_PATTERN = Pattern.compile(REGEX_STRING);
+  
 
   /** Return the numerator **/  
   public final long numerator() { return numerator_; }
@@ -43,8 +51,41 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
       this(0, 1);
   };
   
+  /**
+   * Constructs a fraction by parsing a fraction string.
+   * 
+   * @param fractionStr a string in fraction ("1/4") or integer ("23") form
+   * @throws java.lang.IllegalArgumentException if the string does not match
+   *         the expected pattern or if the denominator is zero
+   */
+  public Fraction(String fractionStr) throws IllegalArgumentException {
+    Matcher match = REGEX_PATTERN.matcher(fractionStr);
+    if (!match.matches()) throw new IllegalArgumentException("The fraction string '" + fractionStr + "' is not in a recognized form.");
+    String numStr = match.group(1);
+    String denStr = match.group(2);
+    Long num = Long.parseLong(numStr);
+    Long den = (denStr == null || denStr.isEmpty() ? 1L : Long.parseLong(denStr));    
+    
+    // the code below is copied from the other constructor.
+    // it would be better to make a helper method with this logic,
+    // but numerator_ and denominator_ are final, so we can only set them
+    // in a constructor.  Besides, this code has been well tested, so there is
+    // no reason to expect this to ever change.
+    
+    // normalize while constructing    
+    boolean numNonnegative = (num >= 0);
+    boolean denNonnegative = (den >= 0);
+    long a = numNonnegative? num : -num;
+    long b = denNonnegative? den : -den;
+    long g = gcd(a, b);
+    numerator_ = (numNonnegative == denNonnegative)? (a / g) : (-a / g);
+    denominator_ = b / g;
+  }
+  
   /** Create a Fraction equal in value to num / den **/
-  public Fraction(long num, long den) {
+  public Fraction(long num, long den) throws IllegalArgumentException {
+    if (den == 0L) throw new IllegalArgumentException("The fraction denominator cannot be zero."); 
+      
     // normalize while constructing
     boolean numNonnegative = (num >= 0);
     boolean denNonnegative = (den >= 0);
@@ -59,7 +100,7 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
   public Fraction(Fraction f) {
     numerator_ = f.numerator();
     denominator_ = f.denominator();
-  }
+  }  
 
   public String toString() { 
     if (denominator() == 1) 
@@ -226,5 +267,4 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
   public int hashCode() {
     return (int) (numerator_ ^ denominator_);
   }
-
 }

@@ -30,7 +30,7 @@ public class Note {
     @Attribute
     private int chromaticAdjustment; // the number of half steps to adjust from the diatonic note; used if this note is an accidental
     
-    @Element(required=false)
+    @Element(required=false)    
     private Fraction duration; // how long the note should last, in whole notes.
     
     @Attribute
@@ -280,6 +280,7 @@ public class Note {
      * @return the regEx pattern
      */
     static private Pattern getNoteParser() {
+        // TODO: make this thread safe
         if (Note.noteParser == null) {
                                
             Note.noteParser = Pattern.compile(                   

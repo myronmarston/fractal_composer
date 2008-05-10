@@ -137,6 +137,14 @@ An immutable class representing fractions as pairs of longs.
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#REGEX_STRING">REGEX_STRING</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Regular expression string to parse a fraction string.</TD>
+</TR>
 </TABLE>
 &nbsp;
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -159,6 +167,12 @@ An immutable class representing fractions as pairs of longs.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a Fraction equal in value to num / den</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#Fraction(java.lang.String)">Fraction</A></B>(java.lang.String&nbsp;fractionStr)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructs a fraction by parsing a fraction string.</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -383,6 +397,18 @@ protected final long <B>denominator_</B></PRE>
 <DL>
 </DL>
 </DL>
+<HR>
+
+<A NAME="REGEX_STRING"><!-- --></A><H3>
+REGEX_STRING</H3>
+<PRE>
+public static final java.lang.String <B>REGEX_STRING</B></PRE>
+<DL>
+<DD>Regular expression string to parse a fraction string.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../constant-values.html#com.myronmarston.util.Fraction.REGEX_STRING">Constant Field Values</A></DL>
+</DL>
 
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 
@@ -394,14 +420,35 @@ protected final long <B>denominator_</B></PRE>
 </TR>
 </TABLE>
 
+<A NAME="Fraction(java.lang.String)"><!-- --></A><H3>
+Fraction</H3>
+<PRE>
+public <B>Fraction</B>(java.lang.String&nbsp;fractionStr)
+         throws java.lang.IllegalArgumentException</PRE>
+<DL>
+<DD>Constructs a fraction by parsing a fraction string.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>fractionStr</CODE> - a string in fraction ("1/4") or integer ("23") form
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.IllegalArgumentException</CODE> - if the string does not match
+         the expected pattern or if the denominator is zero</DL>
+</DL>
+<HR>
+
 <A NAME="Fraction(long, long)"><!-- --></A><H3>
 Fraction</H3>
 <PRE>
 public <B>Fraction</B>(long&nbsp;num,
-                long&nbsp;den)</PRE>
+                long&nbsp;den)
+         throws java.lang.IllegalArgumentException</PRE>
 <DL>
 <DD>Create a Fraction equal in value to num / den
 <P>
+<DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.IllegalArgumentException</CODE></DL>
 </DL>
 <HR>
 
