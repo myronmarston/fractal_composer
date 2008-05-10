@@ -73,9 +73,11 @@ public class XmlSerializationTest {
     @Test
     public void serializeVoiceSection() throws Exception {
         VoiceSection vs = fpWithDefaultSettings.getVoices().get(0).getVoiceSections().get(0);        
+        // set retrograde, but leave inversion as null...
+        vs.setApplyRetrograde(true);
         
         String expected = 
-        "<voiceSection id=\"0\" rest=\"false\" applyInversion=\"false\" applyRetrograde=\"false\">\n" +
+        "<voiceSection id=\"0\" rest=\"false\" applyRetrograde=\"true\">\n" +
         "   <selfSimilaritySettings id=\"1\" applyToPitch=\"true\" applyToRhythm=\"true\" applyToVolume=\"true\"/>\n" +
         "   <voice id=\"2\" octaveAdjustment=\"1\" instrumentName=\"Piano\">\n" +
         // fractal piece section that gets stripped goes here...
@@ -105,9 +107,11 @@ public class XmlSerializationTest {
     @Test
     public void serializeSection() throws Exception {
         Section s = fpWithDefaultSettings.getSections().get(0);
+        s.setApplyInversion(true);
+        s.setApplyRetrograde(false);
         
         String expected = 
-        "<section id=\"0\">\n" +
+        "<section id=\"0\" applyInversion=\"true\" applyRetrograde=\"false\">\n" +
         // fractal piece section that gets stripped goes here...
         "</section>";
 
@@ -171,9 +175,11 @@ public class XmlSerializationTest {
         // check sections...
         assertEquals(fp.getSections().size(), newFp.getSections().size());
         for (int i = 0; i < fp.getSections().size(); i++) {
-            // our sections don't have any fields to compare, 
-            // but we can at least check that the duration of each is the same...
-            assertEquals(fp.getSections().get(i).getDuration(), newFp.getSections().get(i).getDuration());
+            Section s = fp.getSections().get(i);
+            Section newS = newFp.getSections().get(i);
+            assertEquals(s.getApplyInversion(), newS.getApplyInversion());
+            assertEquals(s.getApplyRetrograde(), newS.getApplyRetrograde());
+            assertEquals(s.getDuration(), newS.getDuration());
             assertEquals(newFp, newFp.getSections().get(i).getFractalPiece());
         }        
         

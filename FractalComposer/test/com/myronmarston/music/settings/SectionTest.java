@@ -34,49 +34,49 @@ public class SectionTest {
         
         assertEquals(new Fraction(6, 1), s1.getDuration());
     }    
-                  
-    @Test
-    public void sectionSetApplyInversionRetrogradeOnAllVoices() {
-        FractalPiece fp = new FractalPiece();
-        Voice v1 = fp.createVoice();                
-        Voice v2 = fp.createVoice();
-        Voice v3 = fp.createVoice();
-        Section s1 = fp.createSection();
-        VoiceSection vs1 = v1.getVoiceSections().get(0);
-        VoiceSection vs2 = v2.getVoiceSections().get(0);
-        VoiceSection vs3 = v3.getVoiceSections().get(0);
-        
-        s1.setApplyInversionOnAllVoiceSections(true);
-        assertEquals(true, vs1.getApplyInversion());
-        assertEquals(true, vs2.getApplyInversion());
-        assertEquals(true, vs3.getApplyInversion());
-        
-        s1.setApplyInversionOnAllVoiceSections(false);
-        assertEquals(false, vs1.getApplyInversion());
-        assertEquals(false, vs2.getApplyInversion());
-        assertEquals(false, vs3.getApplyInversion());
-        
-        s1.setApplyInversionOnAllVoiceSections(true);
-        assertEquals(true, vs1.getApplyInversion());
-        assertEquals(true, vs2.getApplyInversion());
-        assertEquals(true, vs3.getApplyInversion());
-        
-        s1.setApplyRetrogradeOnAllVoiceSections(true);
-        assertEquals(true, vs1.getApplyRetrograde());
-        assertEquals(true, vs2.getApplyRetrograde());
-        assertEquals(true, vs3.getApplyRetrograde());
-        
-        s1.setApplyRetrogradeOnAllVoiceSections(false);
-        assertEquals(false, vs1.getApplyRetrograde());
-        assertEquals(false, vs2.getApplyRetrograde());
-        assertEquals(false, vs3.getApplyRetrograde());
-        
-        s1.setApplyRetrogradeOnAllVoiceSections(true);
-        assertEquals(true, vs1.getApplyRetrograde());
-        assertEquals(true, vs2.getApplyRetrograde());
-        assertEquals(true, vs3.getApplyRetrograde());
-    }  
-    
+//TODO: replace this test...       
+//    @Test
+//    public void sectionSetApplyInversionRetrogradeOnAllVoices() {
+//        FractalPiece fp = new FractalPiece();
+//        Voice v1 = fp.createVoice();                
+//        Voice v2 = fp.createVoice();
+//        Voice v3 = fp.createVoice();
+//        Section s1 = fp.createSection();
+//        VoiceSection vs1 = v1.getVoiceSections().get(0);
+//        VoiceSection vs2 = v2.getVoiceSections().get(0);
+//        VoiceSection vs3 = v3.getVoiceSections().get(0);
+//        
+//        s1.setApplyInversionOnAllVoiceSections(true);
+//        assertEquals(true, vs1.getApplyInversion());
+//        assertEquals(true, vs2.getApplyInversion());
+//        assertEquals(true, vs3.getApplyInversion());
+//        
+//        s1.setApplyInversionOnAllVoiceSections(false);
+//        assertEquals(false, vs1.getApplyInversion());
+//        assertEquals(false, vs2.getApplyInversion());
+//        assertEquals(false, vs3.getApplyInversion());
+//        
+//        s1.setApplyInversionOnAllVoiceSections(true);
+//        assertEquals(true, vs1.getApplyInversion());
+//        assertEquals(true, vs2.getApplyInversion());
+//        assertEquals(true, vs3.getApplyInversion());
+//        
+//        s1.setApplyRetrogradeOnAllVoiceSections(true);
+//        assertEquals(true, vs1.getApplyRetrograde());
+//        assertEquals(true, vs2.getApplyRetrograde());
+//        assertEquals(true, vs3.getApplyRetrograde());
+//        
+//        s1.setApplyRetrogradeOnAllVoiceSections(false);
+//        assertEquals(false, vs1.getApplyRetrograde());
+//        assertEquals(false, vs2.getApplyRetrograde());
+//        assertEquals(false, vs3.getApplyRetrograde());
+//        
+//        s1.setApplyRetrogradeOnAllVoiceSections(true);
+//        assertEquals(true, vs1.getApplyRetrograde());
+//        assertEquals(true, vs2.getApplyRetrograde());
+//        assertEquals(true, vs3.getApplyRetrograde());
+//    }  
+//    
     
     @Test
     public void setSelfSimilaritySettingsOnAllVoices() {

@@ -28,11 +28,11 @@ public class VoiceSection implements Observer {
     @Attribute
     private boolean rest = false;
     
-    @Attribute
-    private boolean applyInversion = false;
-    
-    @Attribute
-    private boolean applyRetrograde = false;    
+    @Attribute(required=false)
+    private Boolean applyInversion;
+        
+    @Attribute(required=false)
+    private Boolean applyRetrograde;
     
     @Element
     private Voice voice;
@@ -81,45 +81,73 @@ public class VoiceSection implements Observer {
 
     /**
      * Gets whether or not to invert the germ for this section before applying
-     * self-similarity.
+     * self-similarity.  Can be null, which indicates that the section default
+     * should be used instead.
      * 
      * @return whether or not to invert the germ
      */
-    public boolean getApplyInversion() {
+    public Boolean getApplyInversion() {
         return applyInversion;
     }
+    
+    /**
+     * Gets whether or not to invert the germ for this section before applying
+     * self-similarity.  If the setting is null on this voice section, gets the
+     * section default.
+     *  
+     * @return whether or not to invert the germ
+     */
+    protected boolean getGuarenteedApplyInversion() {
+        if (this.getApplyInversion() == null) return this.getSection().getApplyInversion();
+        return this.getApplyInversion();
+    }        
 
     /**
      * Sets whether or not to invert the germ for this section before applying
-     * self-similarity.
+     * self-similarity.  Can be null, which indicates that the section default
+     * should be used instead.
      * 
      * @param val whether or not to invert the germ
      */
-    public void setApplyInversion(boolean val) {
+    public void setApplyInversion(Boolean val) {
         if (val != this.applyInversion) clearVoiceSectionResult();
         this.applyInversion = val;
     }
     
     /**
      * Gets whether or not to use the retrograde of the germ before applying
-     * self-similarity.
+     * self-similarity.  Can be null, which indicates that the section default
+     * should be used instead.
      * 
      * @return whether or not to use the retrograde of the germ
      */
-    public boolean getApplyRetrograde() {        
+    public Boolean getApplyRetrograde() {        
         return applyRetrograde;
     }
     
     /**
+     * Gets whether or not to apply retrograde to the germ for this section 
+     * before applying self-similarity.  If the setting is null on this voice 
+     * section, gets the section default.
+     *  
+     * @return whether or not to apply retrograde to the germ
+     */
+    protected boolean getGuarenteedApplyRetrograde() {
+        if (this.getApplyRetrograde() == null) return this.getSection().getApplyRetrograde();
+        return this.getApplyRetrograde();
+    }
+    
+    /**
      * Sets whether or not to use the retrograde of the germ before applying
-     * self-similarity.
+     * self-similarity.  Can be null, which indicates that the section default
+     * should be used instead.
      * 
      * @param val whether or not to use the retrograde of the germ
      */
-    public void setApplyRetrograde(boolean val) {
+    public void setApplyRetrograde(Boolean val) {
         if (val != this.applyRetrograde) clearVoiceSectionResult();
         this.applyRetrograde = val;
-    }
+    } 
 
     /**
      * Gets whether or not to make this VoiceSection one long rest.  This
@@ -218,7 +246,7 @@ public class VoiceSection implements Observer {
      * Sets the voiceSectionResult field to null.  Should be called anytime a field
      * that affects the voiceSectionResult changes. 
      */
-    private void clearVoiceSectionResult() {
+    protected void clearVoiceSectionResult() {
         this.voiceSectionResult = null;
     }
     
@@ -230,7 +258,7 @@ public class VoiceSection implements Observer {
      *         germ
      */
     private NoteList generateVoiceSectionResult() {
-        NoteList temp = this.getVoice().getModifiedGerm();
+        NoteList temp = this.getVoice().getModifiedGerm();        
         
         if (this.getRest()) {
             // create a note list of a single rest, the duration of the germ            
@@ -239,12 +267,12 @@ public class VoiceSection implements Observer {
             return restResult;
         } 
         
-        if (this.getApplyInversion()) {
+        if (this.getGuarenteedApplyInversion()) {
             InversionTransformer iT = new InversionTransformer();
             temp = iT.transform(temp);
         }
         
-        if (this.getApplyRetrograde()) {
+        if (this.getGuarenteedApplyRetrograde()) {
             RetrogradeTransformer rT = new RetrogradeTransformer();
             temp = rT.transform(temp);
         }

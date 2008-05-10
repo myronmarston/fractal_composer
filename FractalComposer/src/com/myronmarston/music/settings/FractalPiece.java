@@ -374,8 +374,8 @@ public class FractalPiece {
         Section section = this.createSection();
         
         // apply inversion and retrograde based on the passed settings...
-        section.setApplyInversionOnAllVoiceSections(applyInversion);
-        section.setApplyRetrogradeOnAllVoiceSections(applyRetrograde);
+        section.setApplyInversion(applyInversion);
+        section.setApplyRetrograde(applyRetrograde);
         
         // we can't set the options on the voice sections if there are no voices...
         if (this.getVoices().size() == 0) return;
@@ -439,8 +439,8 @@ public class FractalPiece {
             this.tempIntroOutroSections.add(s);    
             
             // set defaults...
-            s.setApplyInversionOnAllVoiceSections(false);
-            s.setApplyRetrogradeOnAllVoiceSections(false);
+            s.setApplyInversion(false);
+            s.setApplyRetrograde(false);
             s.setSelfSimilaritySettingsOnAllVoiceSections(false, false, false);
             s.setRestOnAllVoiceSections(false);
             

@@ -94,28 +94,6 @@ public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O
     protected abstract VoiceSection instantiateVoiceSection(O vOrS);
 
     /**
-     * Update applyInversion on all voice sections.
-     * 
-     * @param val new value for applyInversion
-     */
-    public void setApplyInversionOnAllVoiceSections(boolean val) {
-        for (VoiceSection vs : this.getVoiceSections()) {
-            vs.setApplyInversion(val);
-        }
-    }
-
-    /**
-     * Update applyRetrograde on all voice sections.
-     * 
-     * @param val new value for applyRetrograde
-     */
-    public void setApplyRetrogradeOnAllVoiceSections(boolean val) {
-        for (VoiceSection vs : this.getVoiceSections()) {
-            vs.setApplyRetrograde(val);
-        }
-    }
-    
-    /**
      * Sets all voice sections for this voice or section to rest.
      * 
      * @param val true to rest; false to not rest

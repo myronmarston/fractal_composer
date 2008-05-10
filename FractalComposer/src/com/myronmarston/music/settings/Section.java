@@ -17,6 +17,12 @@ import javax.sound.midi.InvalidMidiDataException;
 @Root
 public class Section extends AbstractVoiceOrSection<Section, Voice> {    
     
+    @Attribute
+    private boolean applyInversion = false;
+    
+    @Attribute
+    private boolean applyRetrograde = false;        
+    
     /**
      * Constructor.
      * 
@@ -31,6 +37,62 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
      */
     private Section() {
         this(null);
+    }
+
+    /**
+     * Gets whether or not to apply inversion to this section.  This is the default 
+     * for the voice sections in this section; they can individually override
+     * this setting.
+     * 
+     * @return whether or not to apply inversion to this section
+     */
+    public boolean getApplyInversion() {
+        return applyInversion;
+    }
+
+    /**
+     * Sets whether or not to apply inversion to this section.  This is the default 
+     * for the voice sections in this section; they can individually override
+     * this setting.
+     * 
+     * @param applyInversion whether or not to apply inversion to this section     
+     */
+    public void setApplyInversion(boolean applyInversion) {
+        this.applyInversion = applyInversion;
+        clearVoiceSectionResults();
+    }
+
+    /**
+     * Gets whether or not to apply retrograde to this section.  This is the default 
+     * for the voice sections in this section; they can individually override
+     * this setting.
+     * 
+     * @return whether or not to apply retrograde to this section     
+     */
+    public boolean getApplyRetrograde() {
+        return applyRetrograde;
+    }
+
+    /**
+     * Sets whether or not to apply retrograde to this section.  This is the default 
+     * for the voice sections in this section; they can individually override
+     * this setting.
+     * 
+     * @param applyRetrograde whether or not to apply retrograde to this section     
+     */
+    public void setApplyRetrograde(boolean applyRetrograde) {
+        this.applyRetrograde = applyRetrograde;
+        clearVoiceSectionResults();
+    }        
+    
+    /**
+     * Clears the cached voice section results.  Should be called whenever a 
+     * section field that is used by the voice sections changes.
+     */
+    private void clearVoiceSectionResults() {
+        for (VoiceSection vs : this.getVoiceSections()) {
+            vs.clearVoiceSectionResult();
+        }
     }
     
     /**
