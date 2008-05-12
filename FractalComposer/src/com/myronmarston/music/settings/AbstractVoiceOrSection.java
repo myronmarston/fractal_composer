@@ -17,6 +17,9 @@ import java.util.List;
 public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O extends AbstractVoiceOrSection> {
     @Element
     private FractalPiece fractalPiece;
+    
+    @Attribute
+    private int uniqueIndex;
     private VoiceSectionList voiceSections;
 
     /**
@@ -24,8 +27,10 @@ public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O
      * 
      * @param fractalPiece The FractalPiece that this Voice or 
      *        Section is a part of
+     * @param uniqueIndex unique index for this voice or section
      */
-    protected AbstractVoiceOrSection(FractalPiece fractalPiece) {
+    protected AbstractVoiceOrSection(FractalPiece fractalPiece, int uniqueIndex) {
+        this.uniqueIndex = uniqueIndex;
         this.fractalPiece = fractalPiece;
     } 
     
@@ -34,9 +39,31 @@ public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O
      * 
      * @return The FractalPiece that this Voice or Section is a part of
      */
-    public FractalPiece getFractalPiece() {
+    public FractalPiece getFractalPiece() {        
         return this.fractalPiece;
-    }    
+    }
+
+    /**
+     * Gets an index that is unique for each voice or section in the list.  This
+     * is also 1-based so as to be human readable.  This is intended to support
+     * fractalcomposer.com so as to provide a unique div id.  The regular index
+     * cannot be used because adding/removing items via AJAX can result in 
+     * duplicate div ids.
+     * 
+     * @return the unique index
+     */
+    public int getUniqueIndex() {
+        return uniqueIndex;
+    }        
+    
+    /**
+     * Sets the unique index.
+     * 
+     * @param uniqueIndex the unique index
+     */
+    protected void setUniqueIndex(int uniqueIndex) {
+        this.uniqueIndex = uniqueIndex;
+    }
     
     /**
      * Gets a list of VoiceSections.  This is guarenteed to never return null.

@@ -1,6 +1,8 @@
 package com.myronmarston.music.settings;
 
 import java.util.*;
+import org.simpleframework.xml.*;
+import org.simpleframework.xml.load.*;
 
 /**
  * List of Voices or Sections that manages the creation and deletion of the 
@@ -10,10 +12,19 @@ import java.util.*;
  * @param <O> the other type (Voice or Section)
  * @author Myron
  */
+@Root
 public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends AbstractVoiceOrSection> extends AbstractList<M> {
+    @ElementList(type=AbstractVoiceOrSection.class)
     private ArrayList<M> internalList = new ArrayList<M>();
+    
+    @ElementMap(entry="voiceSection")
     private HashMap<VoiceSectionHashMapKey, VoiceSection> voiceSections;
+    
+    @Attribute
+    private int lastUniqueIndex = 0;
+    
     private boolean isDeserializing = false;
+    
 
     /**
      * Constructor.
@@ -34,6 +45,26 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
     @Override
     public M get(int index) {
         return internalList.get(index);
+    }
+    
+    /**
+     * Gets an item using the unique index.  This is primarily provided to 
+     * support fractalcomposer.com, which stores the unique index in the 
+     * webpage and then uses it for later retrieval.
+     * 
+     * @param uniqueIndex the unique index of the item to get
+     * @return the item matching the given unique index
+     * @throws IndexOutOfBoundsException if there is no item that matches the
+     *         given unique index
+     */
+    public M getByUniqueIndex(int uniqueIndex) throws IndexOutOfBoundsException {        
+        for (M vOrS : this.internalList) {
+            if (vOrS.getUniqueIndex() == uniqueIndex) {
+                return vOrS;
+            }
+        }
+        
+        throw new IndexOutOfBoundsException("No item with unique index " + uniqueIndex + " could be found.");
     }
 
     @Override
@@ -114,15 +145,53 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
         assert itemToRemove.getVoiceSections().size() == 0 : itemToRemove.getVoiceSections().size();
         
         return itemToRemove;
-    }        
-     
+    }       
+    
     /**
-     * Should be called when deserialization is complete.
+     * Removes the item that matches the given unique index.  This is primarily 
+     * provided to support fractalcomposer.com, which stores the unique index 
+     * in the webpage and then uses it for later retrieval.
      * 
-     * @param fractalPiece the parent fractal piece
+     * @param uniqueIndex the unique index
+     * @return the item that was removed.
+     * @throws IndexOutOfBoundsException if there is no item that matches the
+     *         given unique index
      */
-    protected void deserializationComplete(FractalPiece fractalPiece) {
+    public M removeByUniqueIndex(int uniqueIndex) throws IndexOutOfBoundsException {        
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i).getUniqueIndex() == uniqueIndex) {
+                return this.remove(i);
+            }
+        }
+        
+        throw new IndexOutOfBoundsException("No item with unique index " + uniqueIndex + " could be found.");
+    }
+    
+    /**
+     * Gets the next available unique index, and increments the unique index
+     * counter.
+     *   
+     * @return the next available unique index
+     */
+    protected int getNextUniqueIndex() {
+        lastUniqueIndex++;
+        return this.lastUniqueIndex;
+    }
+    
+    /**
+     * Normalizes the unique indices so as to number them in natural order.
+     */
+    protected void normalizeUniqueIndices() {
+        int index = 1;
+        for (M vOrS : this) {
+            vOrS.setUniqueIndex(index++);
+        }
+        
+        this.lastUniqueIndex = index - 1;
+    }
+
+    @Commit
+    private void deserializationComplete() {
         this.isDeserializing = false;
-        this.voiceSections = fractalPiece.getVoiceSections();
     }
 }

@@ -102,4 +102,94 @@ public class VoiceOrSectionListTest {
             sectionCreated = true;            
         }
     }
+    
+    @Test
+    public void testUniqueIndex() {
+        FractalPiece fp = new FractalPiece();
+        Voice v1 = fp.createVoice();
+        Voice v2 = fp.createVoice();
+        Section s1 = fp.createSection();
+        Section s2 = fp.createSection();
+        
+        // each voice or section gets a unique index, incrementing by one each time...
+        assertEquals(1, v1.getUniqueIndex());
+        assertEquals(2, v2.getUniqueIndex());
+        assertEquals(1, s1.getUniqueIndex());
+        assertEquals(2, s2.getUniqueIndex());
+        
+        // even if we delete one and insert one at the start, the unique index should keep incrementing...
+        fp.getVoices().remove(0);
+        fp.createVoice(0);
+        assertEquals(3, fp.getVoices().get(0).getUniqueIndex());
+        
+        fp.getSections().remove(0);
+        fp.createSection(0);
+        assertEquals(3, fp.getSections().get(0).getUniqueIndex());
+        
+        // check the getNextUniqueIndex method itself...
+        assertEquals(4, fp.getSections().getNextUniqueIndex());
+        assertEquals(5, fp.getSections().getNextUniqueIndex());
+        assertEquals(4, fp.getVoices().getNextUniqueIndex());
+        assertEquals(5, fp.getVoices().getNextUniqueIndex());                
+    }
+    
+    @Test
+    public void getByUniqueIndex() {
+        FractalPiece fp = new FractalPiece();
+        fp.createDefaultSettings();
+        assertEquals(fp.getVoices().get(0), fp.getVoices().getByUniqueIndex(1));
+        assertEquals(fp.getVoices().get(1), fp.getVoices().getByUniqueIndex(2));
+        assertEquals(fp.getVoices().get(2), fp.getVoices().getByUniqueIndex(3));
+        
+        fp.getVoices().remove(0);        
+        fp.createVoice(0);
+        assertEquals(fp.getVoices().get(0), fp.getVoices().getByUniqueIndex(4));        
+    }
+    
+    @Test(expected=IndexOutOfBoundsException.class)
+    public void getByUniqueIndex_OutOfBounds() {
+        FractalPiece fp = new FractalPiece();
+        fp.createDefaultSettings();
+        fp.getVoices().getByUniqueIndex(0);
+    }
+    
+    @Test
+    public void removeByUniqueIndex() {
+        FractalPiece fp = new FractalPiece();
+        fp.createDefaultSettings();
+        Voice v1 = fp.getVoices().getByUniqueIndex(1);
+        assertTrue(fp.getVoices().contains(v1));
+        
+        fp.getVoices().removeByUniqueIndex(1);
+        assertFalse(fp.getVoices().contains(v1));
+    }
+    
+    @Test(expected=IndexOutOfBoundsException.class)
+    public void removeByUniqueIndex_OutOfBounds() {
+        FractalPiece fp = new FractalPiece();
+        fp.createDefaultSettings();
+        fp.getVoices().removeByUniqueIndex(0);
+    }
+    
+    @Test
+    public void normalizeUniqueIndices() {
+        FractalPiece fp = new FractalPiece();
+        fp.createDefaultSettings();
+        fp.createVoice();
+        fp.getVoices().remove(2);
+        fp.createVoice(0);
+        fp.getSections().remove(1);
+        
+        fp.normalizeUniqueIndices();
+        for (int i = 1; i <= fp.getVoices().size(); i++) {
+            assertEquals(i, fp.getVoices().get(i - 1).getUniqueIndex());
+        }
+        
+        for (int i = 1; i <= fp.getSections().size(); i++) {
+            assertEquals(i, fp.getSections().get(i - 1).getUniqueIndex());
+        }
+        
+        assertEquals(fp.getVoices().size() + 1, fp.getVoices().getNextUniqueIndex());
+        assertEquals(fp.getSections().size() + 1, fp.getSections().getNextUniqueIndex());
+    }
 }

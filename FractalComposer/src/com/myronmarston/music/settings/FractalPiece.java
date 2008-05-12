@@ -1,6 +1,5 @@
 package com.myronmarston.music.settings;
 
-import com.myronmarston.music.Instrument;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.NoteStringParseException;
@@ -47,10 +46,10 @@ public class FractalPiece {
     @Element
     private TimeSignature timeSignature = TimeSignature.DEFAULT;
     
-    @ElementList(type=Voice.class)
+    @Element
     private VoiceOrSectionList<Voice, Section> voices = new VoiceOrSectionList<Voice, Section>(this.getVoiceSections());
     
-    @ElementList(type=Section.class)
+    @Element
     private VoiceOrSectionList<Section, Voice> sections = new VoiceOrSectionList<Section, Voice>(this.getVoiceSections());
     
     @ElementMap(entry="voiceSection")
@@ -236,7 +235,7 @@ public class FractalPiece {
      * 
      * @return the list of Voices
      */
-    public List<Voice> getVoices() {        
+    public VoiceOrSectionList<Voice, Section> getVoices() {        
         assert voices != null : voices; // voices should never be null!
         return voices;
     }
@@ -268,9 +267,17 @@ public class FractalPiece {
      * 
      * @return the list of Sections
      */
-    public List<Section> getSections() {  
+    public VoiceOrSectionList<Section, Voice> getSections() {  
         assert sections != null : sections; // sections should never be null!
         return sections;
+    }
+    
+    /**
+     * Normalizes the unique indices so as to label the items in natural order.
+     */
+    public void normalizeUniqueIndices() {
+        this.voices.normalizeUniqueIndices();
+        this.sections.normalizeUniqueIndices();
     }
     
     /**
@@ -290,7 +297,7 @@ public class FractalPiece {
      * @return the created voice
      */
     public Voice createVoice(int index) {
-        Voice v = new Voice(this);
+        Voice v = new Voice(this, this.voices.getNextUniqueIndex());
         this.voices.add(index, v);
         return v;
     }
@@ -312,7 +319,7 @@ public class FractalPiece {
      * @return the created Section
      */
     public Section createSection(int index) {
-        Section s = new Section(this);
+        Section s = new Section(this, this.sections.getNextUniqueIndex());
         this.sections.add(index, s);        
         return s;
     }
@@ -573,16 +580,7 @@ public class FractalPiece {
             Thread.currentThread().setContextClassLoader(oldLoader);
         }
     }
-    
-    /**
-     * Called when the simple framework completes deserialization.
-     */
-    @Commit
-    private void deserializationComplete() {
-        this.sections.deserializationComplete(this);
-        this.voices.deserializationComplete(this);            
-    }
-    
+       
     /**
      * Serializes the fractal piece to xml.
      * 

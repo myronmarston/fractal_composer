@@ -27,16 +27,17 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
      * Constructor.
      * 
      * @param fractalPiece the FractalPiece this section is a part of
+     * @param uniqueIndex the unique index for this section
      */
-    protected Section(FractalPiece fractalPiece) {
-        super(fractalPiece);
+    protected Section(FractalPiece fractalPiece, int uniqueIndex) {
+        super(fractalPiece, uniqueIndex);
     }     
     
     /**
      * Provided for xml deserialization.
      */
     private Section() {
-        this(null);
+        this(null, 0);
     }
 
     /**

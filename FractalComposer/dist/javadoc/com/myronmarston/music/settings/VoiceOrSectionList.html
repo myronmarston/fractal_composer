@@ -177,14 +177,6 @@ List of Voices or Sections that manages the creation and deletion of the
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html#deserializationComplete(com.myronmarston.music.settings.FractalPiece)">deserializationComplete</A></B>(<A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Should be called when deserialization is complete.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="type parameter in VoiceOrSectionList">M</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html#get(int)">get</A></B>(int&nbsp;index)</CODE>
 
@@ -194,10 +186,43 @@ List of Voices or Sections that manages the creation and deletion of the
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="type parameter in VoiceOrSectionList">M</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html#getByUniqueIndex(int)">getByUniqueIndex</A></B>(int&nbsp;uniqueIndex)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets an item using the unique index.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html#getNextUniqueIndex()">getNextUniqueIndex</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the next available unique index, and increments the unique index
+ counter.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html#normalizeUniqueIndices()">normalizeUniqueIndices</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Normalizes the unique indices so as to number them in natural order.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="type parameter in VoiceOrSectionList">M</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html#remove(int)">remove</A></B>(int&nbsp;index)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="type parameter in VoiceOrSectionList">M</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html#removeByUniqueIndex(int)">removeByUniqueIndex</A></B>(int&nbsp;uniqueIndex)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Removes the item that matches the given unique index.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -292,6 +317,26 @@ public <A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.h
 </DL>
 <HR>
 
+<A NAME="getByUniqueIndex(int)"><!-- --></A><H3>
+getByUniqueIndex</H3>
+<PRE>
+public <A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="type parameter in VoiceOrSectionList">M</A> <B>getByUniqueIndex</B>(int&nbsp;uniqueIndex)
+                                                  throws java.lang.IndexOutOfBoundsException</PRE>
+<DL>
+<DD>Gets an item using the unique index.  This is primarily provided to 
+ support fractalcomposer.com, which stores the unique index in the 
+ webpage and then uses it for later retrieval.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>uniqueIndex</CODE> - the unique index of the item to get
+<DT><B>Returns:</B><DD>the item matching the given unique index
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.IndexOutOfBoundsException</CODE> - if there is no item that matches the
+         given unique index</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="size()"><!-- --></A><H3>
 size</H3>
 <PRE>
@@ -351,15 +396,50 @@ public <A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.h
 </DL>
 <HR>
 
-<A NAME="deserializationComplete(com.myronmarston.music.settings.FractalPiece)"><!-- --></A><H3>
-deserializationComplete</H3>
+<A NAME="removeByUniqueIndex(int)"><!-- --></A><H3>
+removeByUniqueIndex</H3>
 <PRE>
-protected void <B>deserializationComplete</B>(<A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece)</PRE>
+public <A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="type parameter in VoiceOrSectionList">M</A> <B>removeByUniqueIndex</B>(int&nbsp;uniqueIndex)
+                                                     throws java.lang.IndexOutOfBoundsException</PRE>
 <DL>
-<DD>Should be called when deserialization is complete.
+<DD>Removes the item that matches the given unique index.  This is primarily 
+ provided to support fractalcomposer.com, which stores the unique index 
+ in the webpage and then uses it for later retrieval.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>fractalPiece</CODE> - the parent fractal piece</DL>
+<DT><B>Parameters:</B><DD><CODE>uniqueIndex</CODE> - the unique index
+<DT><B>Returns:</B><DD>the item that was removed.
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.IndexOutOfBoundsException</CODE> - if there is no item that matches the
+         given unique index</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNextUniqueIndex()"><!-- --></A><H3>
+getNextUniqueIndex</H3>
+<PRE>
+protected int <B>getNextUniqueIndex</B>()</PRE>
+<DL>
+<DD>Gets the next available unique index, and increments the unique index
+ counter.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the next available unique index</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="normalizeUniqueIndices()"><!-- --></A><H3>
+normalizeUniqueIndices</H3>
+<PRE>
+protected void <B>normalizeUniqueIndices</B>()</PRE>
+<DL>
+<DD>Normalizes the unique indices so as to number them in natural order.
+<P>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

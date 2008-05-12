@@ -124,7 +124,8 @@ A FractalPiece is composed of several voices.  A Voice is analogous to
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>protected </CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Voice.html#Voice(com.myronmarston.music.settings.FractalPiece)">Voice</A></B>(<A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Voice.html#Voice(com.myronmarston.music.settings.FractalPiece, int)">Voice</A></B>(<A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
+      int&nbsp;uniqueIndex)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
@@ -263,7 +264,7 @@ A FractalPiece is composed of several voices.  A Voice is analogous to
 <TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.settings.<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSection</A></B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getFractalPiece()">getFractalPiece</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getVoiceSections()">getVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setApplySelfSimilarityToPitchOnAllVoiceSections(boolean)">setApplySelfSimilarityToPitchOnAllVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setApplySelfSimilarityToRhythmOnAllVoiceSections(boolean)">setApplySelfSimilarityToRhythmOnAllVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setApplySelfSimilarityToVolumeOnAllVoiceSections(boolean)">setApplySelfSimilarityToVolumeOnAllVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setRestOnAllVoiceSections(boolean)">setRestOnAllVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setSelfSimilaritySettingsOnAllVoiceSections(java.lang.Boolean, java.lang.Boolean, java.lang.Boolean)">setSelfSimilaritySettingsOnAllVoiceSections</A></CODE></TD>
+<TD><CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getFractalPiece()">getFractalPiece</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getUniqueIndex()">getUniqueIndex</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getVoiceSections()">getVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setApplySelfSimilarityToPitchOnAllVoiceSections(boolean)">setApplySelfSimilarityToPitchOnAllVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setApplySelfSimilarityToRhythmOnAllVoiceSections(boolean)">setApplySelfSimilarityToRhythmOnAllVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setApplySelfSimilarityToVolumeOnAllVoiceSections(boolean)">setApplySelfSimilarityToVolumeOnAllVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setRestOnAllVoiceSections(boolean)">setRestOnAllVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setSelfSimilaritySettingsOnAllVoiceSections(java.lang.Boolean, java.lang.Boolean, java.lang.Boolean)">setSelfSimilaritySettingsOnAllVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setUniqueIndex(int)">setUniqueIndex</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -288,15 +289,16 @@ A FractalPiece is composed of several voices.  A Voice is analogous to
 </TR>
 </TABLE>
 
-<A NAME="Voice(com.myronmarston.music.settings.FractalPiece)"><!-- --></A><H3>
+<A NAME="Voice(com.myronmarston.music.settings.FractalPiece, int)"><!-- --></A><H3>
 Voice</H3>
 <PRE>
-protected <B>Voice</B>(<A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece)</PRE>
+protected <B>Voice</B>(<A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
+                int&nbsp;uniqueIndex)</PRE>
 <DL>
 <DD>Constructor.
 <P>
 <DL>
-<DT><B>Parameters:</B><DD><CODE>fractalPiece</CODE> - the FractalPiece this voice is a part of</DL>
+<DT><B>Parameters:</B><DD><CODE>fractalPiece</CODE> - the FractalPiece this voice is a part of<DD><CODE>uniqueIndex</CODE> - the unique index for this voice</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->

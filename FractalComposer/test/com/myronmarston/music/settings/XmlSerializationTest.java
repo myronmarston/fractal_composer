@@ -68,36 +68,16 @@ public class XmlSerializationTest {
     public void serializeSelfSimilaritySettings() throws Exception {
         SelfSimilaritySettings sss = new SelfSimilaritySettings(true, false, false);
         testSerialization(sss, "<selfSimilaritySettings id=\"0\" applyToPitch=\"true\" applyToRhythm=\"false\" applyToVolume=\"false\"/>");        
-    }
-    
-    @Test
-    public void serializeVoiceSection() throws Exception {
-        VoiceSection vs = fpWithDefaultSettings.getVoices().get(0).getVoiceSections().get(0);        
-        // set retrograde, but leave inversion as null...
-        vs.setApplyRetrograde(true);
-        
-        String expected = 
-        "<voiceSection id=\"0\" rest=\"false\" applyRetrograde=\"true\">\n" +
-        "   <selfSimilaritySettings id=\"1\" applyToPitch=\"true\" applyToRhythm=\"true\" applyToVolume=\"true\"/>\n" +
-        "   <voice id=\"2\" octaveAdjustment=\"1\" instrumentName=\"Piano\">\n" +
-        // fractal piece section that gets stripped goes here...
-        "      <speedScaleFactor id=\"53\" numerator_=\"2\" denominator_=\"1\"/>\n" +
-        "   </voice>\n" +
-        "   <section reference=\"14\"/>\n" +        
-        "</voiceSection>";
-        
-        //printSerializationResults(vs);
-        testSerialization(vs, expected, true);        
-    }
+    }    
     
     @Test
     public void serializeVoice() throws Exception {
         Voice v = fpWithDefaultSettings.getVoices().get(0);
         
         String expected = 
-        "<voice id=\"0\" octaveAdjustment=\"1\" instrumentName=\"Piano\">\n" +
+        "<voice id=\"0\" uniqueIndex=\"1\" octaveAdjustment=\"1\" instrumentName=\"Piano\">\n" +
         // fractal piece section that gets stripped goes here...
-        "   <speedScaleFactor id=\"53\" numerator_=\"2\" denominator_=\"1\"/>\n" +
+        "   <speedScaleFactor id=\"55\" numerator_=\"2\" denominator_=\"1\"/>\n" +
         "</voice>";
         
         //printSerializationResults(v);
@@ -111,7 +91,7 @@ public class XmlSerializationTest {
         s.setApplyRetrograde(false);
         
         String expected = 
-        "<section id=\"0\" applyInversion=\"true\" applyRetrograde=\"false\">\n" +
+        "<section id=\"0\" uniqueIndex=\"1\" applyInversion=\"true\" applyRetrograde=\"false\">\n" +
         // fractal piece section that gets stripped goes here...
         "</section>";
 
@@ -147,7 +127,8 @@ public class XmlSerializationTest {
         fp.setGenerateLayeredOutro(false);
         fp.getVoices().get(0).setInstrumentName("Violin");
         
-        String xml = fp.getXmlRepresentation();        
+        String xml = fp.getXmlRepresentation();  
+        System.out.println(xml);
         FractalPiece newFp = FractalPiece.loadFromXml(xml);
         
         // check that our fractal pieces have all the same values...
@@ -157,13 +138,15 @@ public class XmlSerializationTest {
         assertEquals(fp.getGenerateLayeredIntro(), newFp.getGenerateLayeredIntro());
         assertEquals(fp.getGenerateLayeredOutro(), newFp.getGenerateLayeredOutro());
         assertEquals(fp.getGermString(), newFp.getGermString());
-        assertEquals(fp.getTempo(), newFp.getTempo());
+        assertEquals(fp.getTempo(), newFp.getTempo());        
         
         // check voices...
+        assertEquals(((VoiceOrSectionList) fp.getVoices()).getNextUniqueIndex(), ((VoiceOrSectionList) newFp.getVoices()).getNextUniqueIndex());
         assertEquals(fp.getVoices().size(), newFp.getVoices().size());
         for (int i = 0; i < fp.getVoices().size(); i++) {
             Voice v = fp.getVoices().get(i);
             Voice newV = newFp.getVoices().get(i);
+            assertEquals(v.getUniqueIndex(), newV.getUniqueIndex());
             assertEquals(v.getOctaveAdjustment(), newV.getOctaveAdjustment());
             assertEquals(v.getSpeedScaleFactor(), newV.getSpeedScaleFactor());
             assertEquals(v.getInstrumentName(), newV.getInstrumentName());
@@ -174,9 +157,11 @@ public class XmlSerializationTest {
         
         // check sections...
         assertEquals(fp.getSections().size(), newFp.getSections().size());
+        assertEquals(((VoiceOrSectionList) fp.getSections()).getNextUniqueIndex(), ((VoiceOrSectionList) newFp.getSections()).getNextUniqueIndex());
         for (int i = 0; i < fp.getSections().size(); i++) {
             Section s = fp.getSections().get(i);
             Section newS = newFp.getSections().get(i);
+            assertEquals(s.getUniqueIndex(), newS.getUniqueIndex());
             assertEquals(s.getApplyInversion(), newS.getApplyInversion());
             assertEquals(s.getApplyRetrograde(), newS.getApplyRetrograde());
             assertEquals(s.getDuration(), newS.getDuration());

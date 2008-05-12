@@ -126,7 +126,8 @@ An abstract class containing a common interface and common logic shared
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>protected </CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#AbstractVoiceOrSection(com.myronmarston.music.settings.FractalPiece)">AbstractVoiceOrSection</A></B>(<A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#AbstractVoiceOrSection(com.myronmarston.music.settings.FractalPiece, int)">AbstractVoiceOrSection</A></B>(<A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
+                       int&nbsp;uniqueIndex)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
@@ -174,6 +175,14 @@ An abstract class containing a common interface and common logic shared
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When implemented by the Voice class, this should return a list of all the 
  Sections in the fractal piece.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getUniqueIndex()">getUniqueIndex</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets an index that is unique for each voice or section in the list.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -237,6 +246,14 @@ An abstract class containing a common interface and common logic shared
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updates the self-similarity settings of all voice sections.</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setUniqueIndex(int)">setUniqueIndex</A></B>(int&nbsp;uniqueIndex)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the unique index.</TD>
+</TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
@@ -260,16 +277,17 @@ An abstract class containing a common interface and common logic shared
 </TR>
 </TABLE>
 
-<A NAME="AbstractVoiceOrSection(com.myronmarston.music.settings.FractalPiece)"><!-- --></A><H3>
+<A NAME="AbstractVoiceOrSection(com.myronmarston.music.settings.FractalPiece, int)"><!-- --></A><H3>
 AbstractVoiceOrSection</H3>
 <PRE>
-protected <B>AbstractVoiceOrSection</B>(<A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece)</PRE>
+protected <B>AbstractVoiceOrSection</B>(<A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
+                                 int&nbsp;uniqueIndex)</PRE>
 <DL>
 <DD>Constructor.
 <P>
 <DL>
 <DT><B>Parameters:</B><DD><CODE>fractalPiece</CODE> - The FractalPiece that this Voice or 
-        Section is a part of</DL>
+        Section is a part of<DD><CODE>uniqueIndex</CODE> - unique index for this voice or section</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -292,6 +310,37 @@ public <A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" t
 <DD><DL>
 
 <DT><B>Returns:</B><DD>The FractalPiece that this Voice or Section is a part of</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getUniqueIndex()"><!-- --></A><H3>
+getUniqueIndex</H3>
+<PRE>
+public int <B>getUniqueIndex</B>()</PRE>
+<DL>
+<DD>Gets an index that is unique for each voice or section in the list.  This
+ is also 1-based so as to be human readable.  This is intended to support
+ fractalcomposer.com so as to provide a unique div id.  The regular index
+ cannot be used because adding/removing items via AJAX can result in 
+ duplicate div ids.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the unique index</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setUniqueIndex(int)"><!-- --></A><H3>
+setUniqueIndex</H3>
+<PRE>
+protected void <B>setUniqueIndex</B>(int&nbsp;uniqueIndex)</PRE>
+<DL>
+<DD>Sets the unique index.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>uniqueIndex</CODE> - the unique index</DL>
 </DD>
 </DL>
 <HR>

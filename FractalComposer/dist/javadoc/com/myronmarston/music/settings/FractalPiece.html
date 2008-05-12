@@ -279,7 +279,7 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>&gt;</CODE></FONT></TD>
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="class in com.myronmarston.music.settings">VoiceOrSectionList</A>&lt;<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>,<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>&gt;</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#getSections()">getSections</A></B>()</CODE>
 
 <BR>
@@ -303,7 +303,7 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>&gt;</CODE></FONT></TD>
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="class in com.myronmarston.music.settings">VoiceOrSectionList</A>&lt;<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>,<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>&gt;</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#getVoices()">getVoices</A></B>()</CODE>
 
 <BR>
@@ -333,6 +333,14 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates and loads a fractal piece from a serialized xml string.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#normalizeUniqueIndices()">normalizeUniqueIndices</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Normalizes the unique indices so as to label the items in natural order.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -654,7 +662,7 @@ protected java.util.HashMap&lt;<A HREF="../../../../com/myronmarston/music/setti
 <A NAME="getVoices()"><!-- --></A><H3>
 getVoices</H3>
 <PRE>
-public java.util.List&lt;<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>&gt; <B>getVoices</B>()</PRE>
+public <A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="class in com.myronmarston.music.settings">VoiceOrSectionList</A>&lt;<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>,<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>&gt; <B>getVoices</B>()</PRE>
 <DL>
 <DD>Gets a list of Voices for the FractalPiece.  To add a Voice, use the 
  provided createVoice() method, rather than attempting to add it to the
@@ -670,7 +678,7 @@ public java.util.List&lt;<A HREF="../../../../com/myronmarston/music/settings/Vo
 <A NAME="getSections()"><!-- --></A><H3>
 getSections</H3>
 <PRE>
-public java.util.List&lt;<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>&gt; <B>getSections</B>()</PRE>
+public <A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="class in com.myronmarston.music.settings">VoiceOrSectionList</A>&lt;<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>,<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>&gt; <B>getSections</B>()</PRE>
 <DL>
 <DD>Gets a list of Sections for the FractalPiece.  To add a Section, use the
  provided createSection() method, rather than attempting to add it to the
@@ -679,6 +687,19 @@ public java.util.List&lt;<A HREF="../../../../com/myronmarston/music/settings/Se
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the list of Sections</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="normalizeUniqueIndices()"><!-- --></A><H3>
+normalizeUniqueIndices</H3>
+<PRE>
+public void <B>normalizeUniqueIndices</B>()</PRE>
+<DL>
+<DD>Normalizes the unique indices so as to label the items in natural order.
+<P>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>
