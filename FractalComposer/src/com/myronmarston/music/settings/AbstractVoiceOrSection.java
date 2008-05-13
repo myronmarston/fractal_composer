@@ -21,6 +21,7 @@ public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O
     @Attribute
     private int uniqueIndex;
     private VoiceSectionList voiceSections;
+    private String className = null;
 
     /**
      * Constructor.
@@ -62,7 +63,7 @@ public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O
      * @param uniqueIndex the unique index
      */
     protected void setUniqueIndex(int uniqueIndex) {
-        this.uniqueIndex = uniqueIndex;
+        this.uniqueIndex = uniqueIndex;        
     }
     
     /**
@@ -120,6 +121,16 @@ public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O
      */
     protected abstract VoiceSection instantiateVoiceSection(O vOrS);
 
+    /**
+     * Gets the name of this class--e.g., "Voice" or "Section". 
+     * 
+     * @return the name of this type
+     */
+    public String getClassName() {                
+        if (className == null) className = this.getClass().getSimpleName();
+        return className;
+    }
+    
     /**
      * Sets all voice sections for this voice or section to rest.
      * 

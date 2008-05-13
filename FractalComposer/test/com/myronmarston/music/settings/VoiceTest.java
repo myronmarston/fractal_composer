@@ -173,4 +173,11 @@ public class VoiceTest {
         v.saveEntireVoiceToMidiFile(FractalPieceTest.getTempFileName());
         v.saveModifiedGermToMidiFile(FractalPieceTest.getTempFileName());
     }
+    
+    @Test
+    public void getClassName() {
+        FractalPiece fp = new FractalPiece();
+        fp.createDefaultSettings();
+        assertEquals("Voice", fp.getVoices().get(0).getClassName());
+    }
 }
