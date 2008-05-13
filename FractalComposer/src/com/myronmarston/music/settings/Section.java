@@ -131,12 +131,12 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
     }
     
     @Override
-    protected List<Section> getListOfMainType() {
+    protected VoiceOrSectionList<Section, Voice> getListOfMainType() {
         return this.getFractalPiece().getSections();
     }
     
     @Override
-    protected List<Voice> getListOfOtherType() {
+    protected VoiceOrSectionList<Voice, Section> getListOfOtherType() {
         return this.getFractalPiece().getVoices();
     }    
 
@@ -145,6 +145,12 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
         Voice indexedVoice = this.getFractalPiece().getVoices().get(index);
         return new VoiceSectionHashMapKey(indexedVoice, this);
     }
+
+    @Override
+    protected VoiceSectionHashMapKey getHashMapKeyForOtherTypeUniqueIndex(int uniqueIndex) {
+        Voice indexedVoice = this.getFractalPiece().getVoices().getByUniqueIndex(uniqueIndex);
+        return new VoiceSectionHashMapKey(indexedVoice, this);
+    }        
 
     @Override
     protected VoiceSection instantiateVoiceSection(Voice vOrS) {

@@ -38,6 +38,18 @@ public class VoiceSectionList extends AbstractList<VoiceSection> {
         VoiceSectionHashMapKey key = this.constantVoiceOrSection.getHashMapKeyForOtherTypeIndex(index);
         return this.voiceSectionHash.get(key);
     }
+    
+    /**
+     * Gets the voice section that is for the voice or section of the other type
+     * with the given unique index.
+     * 
+     * @param uniqueIndex the unique index of the other voice or section
+     * @return the appropriate voiceSection
+     */
+    public VoiceSection getByOtherTypeUniqueIndex(int uniqueIndex) {        
+        VoiceSectionHashMapKey key = this.constantVoiceOrSection.getHashMapKeyForOtherTypeUniqueIndex(uniqueIndex);
+        return this.voiceSectionHash.get(key);
+    }
 
     @Override
     public int size() {

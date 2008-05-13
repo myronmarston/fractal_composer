@@ -90,7 +90,7 @@ public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O
      * @return a List of Voices (if the implementing type is Voice) or a list
      *         of Sections (if the implementing type is Section)
      */
-    protected abstract List<M> getListOfMainType();
+    protected abstract VoiceOrSectionList<M, O> getListOfMainType();
     
     /**
      * When implemented by the Voice class, this should return a list of all the 
@@ -100,7 +100,7 @@ public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O
      * @return a List of Voices (if the implementing type is Section) or a List 
      *         of Sections (if the implementing type is Voice)
      */
-    protected abstract List<O> getListOfOtherType();    
+    protected abstract VoiceOrSectionList<O, M> getListOfOtherType();    
     
     /**
      * Creates a VoiceSectionHashMapKey, combining this object with an object 
@@ -112,6 +112,16 @@ public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O
      *         specific VoiceSection
      */
     protected abstract VoiceSectionHashMapKey getHashMapKeyForOtherTypeIndex(int index);
+    
+    /**
+     * Creates a VoiceSectionHashMapKey, combining this object with an object 
+     * of the other type, based on the unique index.
+     * @param uniqueIndex The unique index in the list of the other type to 
+     *        combine with to create the hash map key
+     * @return A VoiceSectionHashMapKey that can be used to get a 
+     *         specific VoiceSection
+     */
+    protected abstract VoiceSectionHashMapKey getHashMapKeyForOtherTypeUniqueIndex(int uniqueIndex);
     
     /**
      * Instantiates and returns a VoiceSection, using this and the passed voice 

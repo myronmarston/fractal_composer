@@ -77,7 +77,24 @@ public class VoiceSection implements Observer {
      */
     public Voice getVoice() {
         return voice;
-    }        
+    }      
+    
+    /**
+     * Gets the other voice or section--the one that is not passed as a
+     * parameter to this method.
+     * 
+     * @param vOrS a voice or section
+     * @return the other voice or section
+     */
+    public AbstractVoiceOrSection getOtherVoiceOrSection(AbstractVoiceOrSection vOrS) {        
+        if (vOrS.getClass() == Voice.class) {
+            return this.getSection();
+        }
+        else {
+            assert vOrS.getClass() == Section.class : vOrS;
+            return this.getVoice();
+        }        
+    }
 
     /**
      * Gets whether or not to invert the germ for this section before applying

@@ -240,4 +240,14 @@ public class VoiceSectionTest {
         // this will throw an exception if it fails...
         vs.saveVoiceSectionResultToMidiFile(FractalPieceTest.getTempFileName());
     }
+    
+    @Test
+    public void getOtherVoiceOrSection() {
+        FractalPiece fp = new FractalPiece();
+        fp.createDefaultSettings();
+        
+        VoiceSection vs00 = fp.getVoices().get(0).getVoiceSections().get(0);
+        assertEquals(fp.getVoices().get(0), vs00.getOtherVoiceOrSection(fp.getSections().get(0)));
+        assertEquals(fp.getSections().get(0), vs00.getOtherVoiceOrSection(fp.getVoices().get(0)));
+    }
 }

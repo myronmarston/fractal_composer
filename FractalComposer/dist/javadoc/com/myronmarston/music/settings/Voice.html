@@ -159,6 +159,15 @@ A FractalPiece is composed of several voices.  A Voice is analogous to
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;<A HREF="../../../../com/myronmarston/music/settings/VoiceSectionHashMapKey.html" title="class in com.myronmarston.music.settings">VoiceSectionHashMapKey</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Voice.html#getHashMapKeyForOtherTypeUniqueIndex(int)">getHashMapKeyForOtherTypeUniqueIndex</A></B>(int&nbsp;uniqueIndex)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a VoiceSectionHashMapKey, combining this object with an object 
+ of the other type, based on the unique index.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Voice.html#getInstrumentName()">getInstrumentName</A></B>()</CODE>
 
@@ -167,7 +176,7 @@ A FractalPiece is composed of several voices.  A Voice is analogous to
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;java.util.List&lt;<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>&gt;</CODE></FONT></TD>
+<CODE>protected &nbsp;<A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="class in com.myronmarston.music.settings">VoiceOrSectionList</A>&lt;<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>,<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>&gt;</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Voice.html#getListOfMainType()">getListOfMainType</A></B>()</CODE>
 
 <BR>
@@ -175,7 +184,7 @@ A FractalPiece is composed of several voices.  A Voice is analogous to
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;java.util.List&lt;<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>&gt;</CODE></FONT></TD>
+<CODE>protected &nbsp;<A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="class in com.myronmarston.music.settings">VoiceOrSectionList</A>&lt;<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>,<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>&gt;</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Voice.html#getListOfOtherType()">getListOfOtherType</A></B>()</CODE>
 
 <BR>
@@ -467,7 +476,7 @@ public void <B>saveEntireVoiceToMidiFile</B>(java.lang.String&nbsp;fileName)
 <A NAME="getListOfMainType()"><!-- --></A><H3>
 getListOfMainType</H3>
 <PRE>
-protected java.util.List&lt;<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>&gt; <B>getListOfMainType</B>()</PRE>
+protected <A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="class in com.myronmarston.music.settings">VoiceOrSectionList</A>&lt;<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>,<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>&gt; <B>getListOfMainType</B>()</PRE>
 <DL>
 <DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getListOfMainType()">AbstractVoiceOrSection</A></CODE></B></DD>
 <DD>Returns the FractalPiece's list of this type.  When implemented by the 
@@ -489,7 +498,7 @@ protected java.util.List&lt;<A HREF="../../../../com/myronmarston/music/settings
 <A NAME="getListOfOtherType()"><!-- --></A><H3>
 getListOfOtherType</H3>
 <PRE>
-protected java.util.List&lt;<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>&gt; <B>getListOfOtherType</B>()</PRE>
+protected <A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="class in com.myronmarston.music.settings">VoiceOrSectionList</A>&lt;<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>,<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>&gt; <B>getListOfOtherType</B>()</PRE>
 <DL>
 <DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getListOfOtherType()">AbstractVoiceOrSection</A></CODE></B></DD>
 <DD>When implemented by the Voice class, this should return a list of all the 
@@ -522,6 +531,27 @@ protected <A HREF="../../../../com/myronmarston/music/settings/VoiceSectionHashM
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>index</CODE> - The index in the list of the other type to combine 
         with to create the hash map key
+<DT><B>Returns:</B><DD>A VoiceSectionHashMapKey that can be used to get a 
+         specific VoiceSection</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getHashMapKeyForOtherTypeUniqueIndex(int)"><!-- --></A><H3>
+getHashMapKeyForOtherTypeUniqueIndex</H3>
+<PRE>
+protected <A HREF="../../../../com/myronmarston/music/settings/VoiceSectionHashMapKey.html" title="class in com.myronmarston.music.settings">VoiceSectionHashMapKey</A> <B>getHashMapKeyForOtherTypeUniqueIndex</B>(int&nbsp;uniqueIndex)</PRE>
+<DL>
+<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getHashMapKeyForOtherTypeUniqueIndex(int)">AbstractVoiceOrSection</A></CODE></B></DD>
+<DD>Creates a VoiceSectionHashMapKey, combining this object with an object 
+ of the other type, based on the unique index.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getHashMapKeyForOtherTypeUniqueIndex(int)">getHashMapKeyForOtherTypeUniqueIndex</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSection</A>&lt;<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>,<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>uniqueIndex</CODE> - The unique index in the list of the other type to 
+        combine with to create the hash map key
 <DT><B>Returns:</B><DD>A VoiceSectionHashMapKey that can be used to get a 
          specific VoiceSection</DL>
 </DD>

@@ -169,7 +169,16 @@ An abstract class containing a common interface and common logic shared
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected abstract &nbsp;java.util.List&lt;<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="type parameter in AbstractVoiceOrSection">M</A>&gt;</CODE></FONT></TD>
+<CODE>protected abstract &nbsp;<A HREF="../../../../com/myronmarston/music/settings/VoiceSectionHashMapKey.html" title="class in com.myronmarston.music.settings">VoiceSectionHashMapKey</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getHashMapKeyForOtherTypeUniqueIndex(int)">getHashMapKeyForOtherTypeUniqueIndex</A></B>(int&nbsp;uniqueIndex)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a VoiceSectionHashMapKey, combining this object with an object 
+ of the other type, based on the unique index.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected abstract &nbsp;<A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="class in com.myronmarston.music.settings">VoiceOrSectionList</A>&lt;<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="type parameter in AbstractVoiceOrSection">M</A>,<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="type parameter in AbstractVoiceOrSection">O</A>&gt;</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getListOfMainType()">getListOfMainType</A></B>()</CODE>
 
 <BR>
@@ -177,7 +186,7 @@ An abstract class containing a common interface and common logic shared
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected abstract &nbsp;java.util.List&lt;<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="type parameter in AbstractVoiceOrSection">O</A>&gt;</CODE></FONT></TD>
+<CODE>protected abstract &nbsp;<A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="class in com.myronmarston.music.settings">VoiceOrSectionList</A>&lt;<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="type parameter in AbstractVoiceOrSection">O</A>,<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="type parameter in AbstractVoiceOrSection">M</A>&gt;</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getListOfOtherType()">getListOfOtherType</A></B>()</CODE>
 
 <BR>
@@ -375,7 +384,7 @@ public <A HREF="../../../../com/myronmarston/music/settings/VoiceSectionList.htm
 <A NAME="getListOfMainType()"><!-- --></A><H3>
 getListOfMainType</H3>
 <PRE>
-protected abstract java.util.List&lt;<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="type parameter in AbstractVoiceOrSection">M</A>&gt; <B>getListOfMainType</B>()</PRE>
+protected abstract <A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="class in com.myronmarston.music.settings">VoiceOrSectionList</A>&lt;<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="type parameter in AbstractVoiceOrSection">M</A>,<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="type parameter in AbstractVoiceOrSection">O</A>&gt; <B>getListOfMainType</B>()</PRE>
 <DL>
 <DD>Returns the FractalPiece's list of this type.  When implemented by the 
  Voice class, this should return a list of all Voices in the fractal 
@@ -393,7 +402,7 @@ protected abstract java.util.List&lt;<A HREF="../../../../com/myronmarston/music
 <A NAME="getListOfOtherType()"><!-- --></A><H3>
 getListOfOtherType</H3>
 <PRE>
-protected abstract java.util.List&lt;<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="type parameter in AbstractVoiceOrSection">O</A>&gt; <B>getListOfOtherType</B>()</PRE>
+protected abstract <A HREF="../../../../com/myronmarston/music/settings/VoiceOrSectionList.html" title="class in com.myronmarston.music.settings">VoiceOrSectionList</A>&lt;<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="type parameter in AbstractVoiceOrSection">O</A>,<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="type parameter in AbstractVoiceOrSection">M</A>&gt; <B>getListOfOtherType</B>()</PRE>
 <DL>
 <DD>When implemented by the Voice class, this should return a list of all the 
  Sections in the fractal piece.  When implemented by the Section class, 
@@ -418,6 +427,23 @@ protected abstract <A HREF="../../../../com/myronmarston/music/settings/VoiceSec
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>index</CODE> - The index in the list of the other type to combine 
         with to create the hash map key
+<DT><B>Returns:</B><DD>A VoiceSectionHashMapKey that can be used to get a 
+         specific VoiceSection</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getHashMapKeyForOtherTypeUniqueIndex(int)"><!-- --></A><H3>
+getHashMapKeyForOtherTypeUniqueIndex</H3>
+<PRE>
+protected abstract <A HREF="../../../../com/myronmarston/music/settings/VoiceSectionHashMapKey.html" title="class in com.myronmarston.music.settings">VoiceSectionHashMapKey</A> <B>getHashMapKeyForOtherTypeUniqueIndex</B>(int&nbsp;uniqueIndex)</PRE>
+<DL>
+<DD>Creates a VoiceSectionHashMapKey, combining this object with an object 
+ of the other type, based on the unique index.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>uniqueIndex</CODE> - The unique index in the list of the other type to 
+        combine with to create the hash map key
 <DT><B>Returns:</B><DD>A VoiceSectionHashMapKey that can be used to get a 
          specific VoiceSection</DL>
 </DD>
