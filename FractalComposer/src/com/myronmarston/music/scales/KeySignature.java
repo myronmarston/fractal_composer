@@ -22,7 +22,12 @@ public class KeySignature {
     
     @Attribute
     private Tonality tonality;
-    private MidiEvent keySignatureMidiEvent;           
+    private MidiEvent keySignatureMidiEvent;      
+    
+    /**
+     * Taken from http://www.sonicspot.com/guide/midifiles.html.
+     */    
+    private final static int KEY_SIGNATURE_META_MESSAGE_TYPE = 89;  
     
     /**
      * Constructor.
@@ -86,27 +91,16 @@ public class KeySignature {
      * @return the midi event     
      */
     public MidiEvent getKeySignatureMidiEvent() {
-        if (this.keySignatureMidiEvent == null) { 
-            try {
-                this.keySignatureMidiEvent = generateMidiKeySignatureEvent();
-            } catch (InvalidMidiDataException ex) {
-                // our logic should prevent this exception from ever occurring, 
-                // so we transform this to an unchecked exception instead of 
-                // having to declare it on our method.
-                throw new UndeclaredThrowableException(ex, "The key signature midi event could not be created.  This indicates a programming error of some sort.");                
-            }
-        }
+        if (this.keySignatureMidiEvent == null) this.keySignatureMidiEvent = generateMidiKeySignatureEvent();            
         return this.keySignatureMidiEvent;
     }
     
     /**
      * Generates the midi key signature event.
      * 
-     * @return the midi event
-     * @throws javax.sound.midi.InvalidMidiDataException thrown if there is 
-     *         invalid midi data
+     * @return the midi event     
      */
-    private MidiEvent generateMidiKeySignatureEvent() throws InvalidMidiDataException {
+    private MidiEvent generateMidiKeySignatureEvent() {
         // See http://www.sonicspot.com/guide/midifiles.html for a description of the contents of this message.
         MetaMessage ksMessage = new MetaMessage();
         
@@ -114,9 +108,16 @@ public class KeySignature {
         ksMessageData[0] = (byte) this.getNumberOfFlatsOrSharps();
         ksMessageData[1] = this.getTonality().getMidiValue();       
        
-        ksMessage.setMessage(89,            // 89 is the type for a key signature message
-                             ksMessageData, // the key signature data
-                             ksMessageData.length); // the size of the data array
+        try {
+            ksMessage.setMessage(KEY_SIGNATURE_META_MESSAGE_TYPE,
+                         ksMessageData,         // the key signature data
+                         ksMessageData.length); // the size of the data array                
+        } catch (InvalidMidiDataException ex) {
+            // our logic should prevent this exception from ever occurring, 
+            // so we transform this to an unchecked exception instead of 
+            // having to declare it on our method.
+            throw new UndeclaredThrowableException(ex, "The key signature midi event could not be created.  This indicates a programming error of some sort.");                
+        }        
         
         return new MidiEvent(ksMessage, 0);
     }        

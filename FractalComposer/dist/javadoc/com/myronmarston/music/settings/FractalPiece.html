@@ -852,7 +852,7 @@ protected void <B>clearTempIntroOutroSections</B>()</PRE>
 generatePiece</H3>
 <PRE>
 public javax.sound.midi.Sequence <B>generatePiece</B>()
-                                        throws javax.sound.midi.InvalidMidiDataException</PRE>
+                                        throws <A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></PRE>
 <DL>
 <DD>Generates a midi sequence for the entire fractal piece, based on the 
  settings on the voices and sections.
@@ -861,7 +861,7 @@ public javax.sound.midi.Sequence <B>generatePiece</B>()
 
 <DT><B>Returns:</B><DD>the generated fractal piece
 <DT><B>Throws:</B>
-<DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE></DL>
+<DD><CODE><A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></CODE> - if the germ is empty</DL>
 </DD>
 </DL>
 <HR>
@@ -871,8 +871,8 @@ saveNoteListsAsMidiFile</H3>
 <PRE>
 protected void <B>saveNoteListsAsMidiFile</B>(java.util.Collection&lt;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists,
                                        java.lang.String&nbsp;fileName)
-                                throws java.io.IOException,
-                                       javax.sound.midi.InvalidMidiDataException</PRE>
+                                throws <A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A>,
+                                       java.io.IOException</PRE>
 <DL>
 <DD>Constructs a midi sequence using the given note lists and saves it to a 
  file.
@@ -880,9 +880,8 @@ protected void <B>saveNoteListsAsMidiFile</B>(java.util.Collection&lt;<A HREF=".
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>noteLists</CODE> - the note lists to use for the midi sequence<DD><CODE>fileName</CODE> - the name of the file to save
 <DT><B>Throws:</B>
-<DD><CODE>java.io.IOException</CODE> - if there is a problem writing the file
-<DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - if there is invalid 
-         midi data</DL>
+<DD><CODE><A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></CODE> - if the germ is empty
+<DD><CODE>java.io.IOException</CODE> - if there is a problem writing the file</DL>
 </DD>
 </DL>
 <HR>
@@ -891,7 +890,7 @@ protected void <B>saveNoteListsAsMidiFile</B>(java.util.Collection&lt;<A HREF=".
 createAndSaveMidiFile</H3>
 <PRE>
 public void <B>createAndSaveMidiFile</B>(java.lang.String&nbsp;fileName)
-                           throws javax.sound.midi.InvalidMidiDataException,
+                           throws <A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A>,
                                   java.io.IOException</PRE>
 <DL>
 <DD>Creates and saves a midi file based on the existing fractal piece 
@@ -900,8 +899,7 @@ public void <B>createAndSaveMidiFile</B>(java.lang.String&nbsp;fileName)
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name for the midi file
 <DT><B>Throws:</B>
-<DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - if there is some 
-         invalid midi data
+<DD><CODE><A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></CODE> - if the germ is empty
 <DD><CODE>java.io.IOException</CODE> - if the file cannot be written</DL>
 </DD>
 </DL>
@@ -911,7 +909,7 @@ public void <B>createAndSaveMidiFile</B>(java.lang.String&nbsp;fileName)
 saveGermToMidiFile</H3>
 <PRE>
 public void <B>saveGermToMidiFile</B>(java.lang.String&nbsp;fileName)
-                        throws javax.sound.midi.InvalidMidiDataException,
+                        throws <A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A>,
                                java.io.IOException</PRE>
 <DL>
 <DD>Saves the germ to a midi file so that the user can listen to it.
@@ -919,8 +917,7 @@ public void <B>saveGermToMidiFile</B>(java.lang.String&nbsp;fileName)
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the filename for the midi file
 <DT><B>Throws:</B>
-<DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - if there is some 
-         invalid midi data
+<DD><CODE><A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></CODE> - if the germ is empty
 <DD><CODE>java.io.IOException</CODE> - if there is an IO problem with the file</DL>
 </DD>
 </DL>

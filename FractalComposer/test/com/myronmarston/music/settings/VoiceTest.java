@@ -174,6 +174,22 @@ public class VoiceTest {
         v.saveModifiedGermToMidiFile(FractalPieceTest.getTempFileName());
     }
     
+    @Test(expected=GermIsEmptyException.class)    
+    public void saveEntireVoiceToMidiFileWithEmptyGerm() throws Exception {
+        FractalPiece fp = new FractalPiece();     
+        fp.createDefaultSettings();
+        Voice v = fp.getVoices().get(0);      
+        v.saveEntireVoiceToMidiFile(FractalPieceTest.getTempFileName());
+    }
+    
+    @Test(expected=GermIsEmptyException.class)    
+    public void saveModifiedGermToMidiFileWithEmptyGerm() throws Exception {
+        FractalPiece fp = new FractalPiece();     
+        fp.createDefaultSettings();
+        Voice v = fp.getVoices().get(0);      
+        v.saveModifiedGermToMidiFile(FractalPieceTest.getTempFileName());
+    }
+    
     @Test
     public void getClassName() {
         FractalPiece fp = new FractalPiece();

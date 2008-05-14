@@ -1,5 +1,6 @@
 package com.myronmarston.music.settings;
 
+import com.myronmarston.music.GermIsEmptyException;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.NoteStringParseException;
@@ -8,8 +9,6 @@ import com.myronmarston.music.Tempo;
 
 import com.myronmarston.util.Fraction;
 
-import java.io.IOException;
-import javax.sound.midi.InvalidMidiDataException;
 import org.simpleframework.xml.*;
 import org.simpleframework.xml.graph.*;
 import org.simpleframework.xml.load.*;;
@@ -477,9 +476,9 @@ public class FractalPiece {
      * settings on the voices and sections.
      * 
      * @return the generated fractal piece
-     * @throws javax.sound.midi.InvalidMidiDataException
+     * @throws GermIsEmptyException if the germ is empty
      */
-    public Sequence generatePiece() throws InvalidMidiDataException {
+    public Sequence generatePiece() throws GermIsEmptyException {
         try {
             // create our intro and outro...
             this.createIntroSections();
@@ -496,9 +495,20 @@ public class FractalPiece {
         }        
     }
     
-    private Sequence createMidiSequence(Collection<NoteList> noteLists) throws InvalidMidiDataException {
+    private Sequence createMidiSequence(Collection<NoteList> noteLists) throws GermIsEmptyException {
+        // We can't create any midi sequence if we don't have a germ from which to "grow" our piece...
+        if (this.getGerm() == null || this.getGerm().size() == 0) throw new GermIsEmptyException();
+        
         // first, create our sequence...
-        Sequence sequence = new Sequence(Sequence.PPQ, NoteList.getMidiTickResolution(noteLists));
+        Sequence sequence = null;
+        try {
+            sequence = new Sequence(Sequence.PPQ, NoteList.getMidiTickResolution(noteLists));
+        } catch (InvalidMidiDataException ex) {
+            // our logic should prevent this exception from ever occurring, 
+            // so we transform this to an unchecked exception instead of 
+            // having to declare it on our method.
+            throw new UndeclaredThrowableException(ex, "Error while creating sequence.  This indicates a programming error of some sort.");                
+        }  
 
         // next, use the first track to set key signature, time signature and tempo...
         Track track1 = sequence.createTrack();
@@ -520,11 +530,10 @@ public class FractalPiece {
      * 
      * @param noteLists the note lists to use for the midi sequence
      * @param fileName the name of the file to save
-     * @throws java.io.IOException if there is a problem writing the file
-     * @throws javax.sound.midi.InvalidMidiDataException if there is invalid 
-     *         midi data
+     * @throws GermIsEmptyException if the germ is empty
+     * @throws java.io.IOException if there is a problem writing the file     
      */
-    protected void saveNoteListsAsMidiFile(Collection<NoteList> noteLists, String fileName) throws IOException, InvalidMidiDataException {
+    protected void saveNoteListsAsMidiFile(Collection<NoteList> noteLists, String fileName) throws GermIsEmptyException, IOException {
         saveMidiSequenceToFile(this.createMidiSequence(noteLists), fileName);        
     }
     
@@ -537,24 +546,22 @@ public class FractalPiece {
      * Creates and saves a midi file based on the existing fractal piece 
      * settings.
      * 
-     * @param fileName the file name for the midi file
-     * @throws javax.sound.midi.InvalidMidiDataException if there is some 
-     *         invalid midi data
+     * @param fileName the file name for the midi file     
+     * @throws GermIsEmptyException if the germ is empty
      * @throws java.io.IOException if the file cannot be written
      */
-    public void createAndSaveMidiFile(String fileName) throws InvalidMidiDataException, IOException {
+    public void createAndSaveMidiFile(String fileName) throws GermIsEmptyException, IOException {
         saveMidiSequenceToFile(this.generatePiece(), fileName);        
     }
     
     /**
      * Saves the germ to a midi file so that the user can listen to it.
      * 
-     * @param fileName the filename for the midi file
-     * @throws javax.sound.midi.InvalidMidiDataException if there is some 
-     *         invalid midi data
+     * @param fileName the filename for the midi file 
+     * @throws GermIsEmptyException if the germ is empty    
      * @throws java.io.IOException if there is an IO problem with the file
      */
-    public void saveGermToMidiFile(String fileName) throws InvalidMidiDataException, IOException {                        
+    public void saveGermToMidiFile(String fileName) throws GermIsEmptyException, IOException {                        
         saveMidiSequenceToFile(createMidiSequence(Arrays.asList(this.getGerm())), fileName);        
     }
     

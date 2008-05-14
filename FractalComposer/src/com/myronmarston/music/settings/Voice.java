@@ -1,12 +1,12 @@
 package com.myronmarston.music.settings;
 
+import com.myronmarston.music.GermIsEmptyException;
 import com.myronmarston.music.Instrument;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.transformers.OctaveTransformer;
 import com.myronmarston.music.transformers.RhythmicDurationTransformer;
 
 import java.io.IOException;
-import javax.sound.midi.InvalidMidiDataException;
 import org.simpleframework.xml.*;
 
 import com.myronmarston.util.Fraction;
@@ -148,10 +148,9 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
      * 
      * @param fileName the filename to use
      * @throws java.io.IOException if there is a problem writing to the file
-     * @throws javax.sound.midi.InvalidMidiDataException if there is invalid
-     *         midi data
-     */
-    public void saveModifiedGermToMidiFile(String fileName) throws IOException, InvalidMidiDataException {
+     * @throws GermIsEmptyException if the germ is empty
+    */
+    public void saveModifiedGermToMidiFile(String fileName) throws IOException, GermIsEmptyException {
         this.getFractalPiece().saveNoteListsAsMidiFile(Arrays.asList(this.getModifiedGerm()), fileName);
     }
     
@@ -161,10 +160,9 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
      * 
      * @param fileName the filename to use
      * @throws java.io.IOException if there is a problem writing to the file
-     * @throws javax.sound.midi.InvalidMidiDataException if there is invalid
-     *         midi data
+     * @throws GermIsEmptyException if the germ is empty     
      */
-    public void saveEntireVoiceToMidiFile(String fileName) throws IOException, InvalidMidiDataException {
+    public void saveEntireVoiceToMidiFile(String fileName) throws IOException, GermIsEmptyException {
         this.getFractalPiece().saveNoteListsAsMidiFile(Arrays.asList(this.getEntireVoice()), fileName);
     }
     

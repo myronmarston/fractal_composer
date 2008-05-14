@@ -1,6 +1,5 @@
 package com.myronmarston.music.settings;
 
-import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiEvent;
 
 import org.junit.AfterClass;
@@ -53,7 +52,7 @@ public class TimeSignatureTest {
     }
     
     @Test
-    public void getMidiTimeSignatureEvent() throws InvalidTimeSignatureException, InvalidMidiDataException {
+    public void getMidiTimeSignatureEvent() throws InvalidTimeSignatureException {
         TimeSignature ts = new TimeSignature(4, 4);
         assertTimeSignatureEventEqual(ts.getMidiTimeSignatureEvent(), (byte) 4, (byte) 2);
         

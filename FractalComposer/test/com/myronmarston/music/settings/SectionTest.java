@@ -120,6 +120,14 @@ public class SectionTest {
         s.saveSectionResultToMidiFile(FractalPieceTest.getTempFileName());
     }
     
+    @Test(expected=GermIsEmptyException.class)
+    public void saveSectionResultToMidiFileWithEmptyGerm() throws Exception {
+        FractalPiece fp = new FractalPiece();     
+        fp.createDefaultSettings();
+        Section s = fp.getSections().get(0);        
+        s.saveSectionResultToMidiFile(FractalPieceTest.getTempFileName());
+    }
+        
     @Test
     public void getClassName() {
         FractalPiece fp = new FractalPiece();

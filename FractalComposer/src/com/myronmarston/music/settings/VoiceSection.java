@@ -1,5 +1,6 @@
 package com.myronmarston.music.settings;
 
+import com.myronmarston.music.GermIsEmptyException;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.transformers.InversionTransformer;
@@ -11,7 +12,6 @@ import org.simpleframework.xml.*;
 
 import com.myronmarston.util.Fraction;
 import java.io.IOException;
-import javax.sound.midi.InvalidMidiDataException;
         
 /**
  * Represents the smallest unit of the fractal piece for which the user can
@@ -222,10 +222,9 @@ public class VoiceSection implements Observer {
      * 
      * @param fileName the filename to use
      * @throws java.io.IOException if there is a problem writing to the file
-     * @throws javax.sound.midi.InvalidMidiDataException if there is invalid
-     *         midi data
+     * @throws GermIsEmptyException if the germ is empty     
      */
-    public void saveVoiceSectionResultToMidiFile(String fileName) throws IOException, InvalidMidiDataException {
+    public void saveVoiceSectionResultToMidiFile(String fileName) throws IOException, GermIsEmptyException {
         this.getVoice().getFractalPiece().saveNoteListsAsMidiFile(Arrays.asList(this.getVoiceSectionResult()), fileName);
     }
     
@@ -243,12 +242,14 @@ public class VoiceSection implements Observer {
         if (originalVoiceSectionLength.compareTo(length) > 0) {
             throw new IllegalArgumentException(String.format("The voice section length (%f) is longer than the passed argument (%f).  The passed argument must be greater than or equal to the voice section length.", originalVoiceSectionLength.asDouble(), length.asDouble()));
         }
-                
-        // pad the length with additional copies of the entire voice section 
-        // while there is space left...
-        while (temp.getDuration().plus(originalVoiceSectionLength).compareTo(length) <= 0) {
-            temp.addAll(this.getVoiceSectionResult());
-        }
+                        
+        if (temp.getDuration().compareTo(0) > 0) { // only do this if we have something...
+            // pad the length with additional copies of the entire voice section 
+            // while there is space left...
+            while (temp.getDuration().plus(originalVoiceSectionLength).compareTo(length) <= 0) {
+                temp.addAll(this.getVoiceSectionResult());
+            }
+        }        
         
         // fill in the rest of the length with a rest...
         if (temp.getDuration().compareTo(length) < 0) {
@@ -280,7 +281,8 @@ public class VoiceSection implements Observer {
         if (this.getRest()) {
             // create a note list of a single rest, the duration of the germ            
             NoteList restResult = new NoteList();
-            restResult.add(Note.createRest(temp.getDuration()));            
+            Fraction duration = temp.getDuration();
+            if (duration.compareTo(0L) > 0) restResult.add(Note.createRest(duration));            
             return restResult;
         } 
         

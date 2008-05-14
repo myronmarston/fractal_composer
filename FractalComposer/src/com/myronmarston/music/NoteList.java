@@ -4,6 +4,7 @@ import com.myronmarston.music.scales.Scale;
 import com.myronmarston.util.MathHelper;
 import com.myronmarston.util.Fraction;
 
+import java.lang.reflect.UndeclaredThrowableException;
 import java.util.*;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.Sequence;
@@ -144,11 +145,9 @@ public class NoteList extends ArrayList<Note> {
      * @param scale the scale to use
      * @param startTime the time the first note should be played, in whole 
      *        notes     
-     * @return the midi track that was created and filled
-     * @throws javax.sound.midi.InvalidMidiDataException if there is any invalid
-     *         midi data
+     * @return the midi track that was created and filled     
      */
-    public Track createAndFillMidiTrack(Sequence sequence, Scale scale, Fraction startTime) throws InvalidMidiDataException {
+    public Track createAndFillMidiTrack(Sequence sequence, Scale scale, Fraction startTime) {
         MidiNote thisMidiNote, lastMidiNote = null;
         Note lastNote = null;
         
@@ -185,9 +184,8 @@ public class NoteList extends ArrayList<Note> {
                     }
                     
                     assert thisMidiNote.getPitch() != lastMidiNote.getPitch() : "The midi notes have the same pitch and should not: " + thisMidiNote.getPitch();
-                }                
-                track.add(lastMidiNote.getNoteOnEvent());
-                track.add(lastMidiNote.getNoteOffEvent());
+                }              
+                addMidiNoteEventsToTrack(track, lastMidiNote);                
             }                                      
             
             //The next note start time will be the end of this note...
@@ -196,12 +194,28 @@ public class NoteList extends ArrayList<Note> {
             lastMidiNote = thisMidiNote;
             lastNote = thisNote;
         }           
-        
-        track.add(lastMidiNote.getNoteOnEvent());
-        track.add(lastMidiNote.getNoteOffEvent());
-        
+        addMidiNoteEventsToTrack(track, lastMidiNote);
+                
         return track;
     }        
+    
+    /**
+     * Adds the midi note on and note off events to a track.
+     * 
+     * @param track the track
+     * @param midiNote the midi note
+     */
+    private static void addMidiNoteEventsToTrack(Track track, MidiNote midiNote) {
+        try {
+            track.add(midiNote.getNoteOnEvent());
+            track.add(midiNote.getNoteOffEvent());
+        } catch (InvalidMidiDataException ex) {
+            // our logic should prevent this exception from ever occurring, 
+            // so we transform this to an unchecked exception instead of 
+            // having to declare it on our method.
+            throw new UndeclaredThrowableException(ex, "MidiNote's note on and note off events could not be created.  This indicates a programming error of some sort.");                
+        }        
+    }
 
     /**
      * Calculates the optimal midi tick resolution for the given collection of 

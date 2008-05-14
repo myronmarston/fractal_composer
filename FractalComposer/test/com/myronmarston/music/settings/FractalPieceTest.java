@@ -103,7 +103,7 @@ public class FractalPieceTest {
     }
             
     @Test
-    public void introAndOutroTest() throws InvalidMidiDataException, InvalidKeySignatureException {
+    public void introAndOutroTest() throws InvalidKeySignatureException {
         FractalPiece fp = new FractalPiece();
 
         Voice v1 = fp.createVoice();
@@ -195,7 +195,7 @@ public class FractalPieceTest {
     }
     
     @Test
-    public void createAndSaveMidiFile() throws IOException, InvalidKeySignatureException, NoteStringParseException, InvalidMidiDataException {     
+    public void createAndSaveMidiFile() throws Exception {     
         String tempFileName = getTempFileName();        
                 
         FractalPiece fp = new FractalPiece();
@@ -209,7 +209,7 @@ public class FractalPieceTest {
     }
     
     @Test
-    public void saveGermToMidiFile() throws IOException, InvalidKeySignatureException, NoteStringParseException, InvalidMidiDataException {
+    public void saveGermToMidiFile() throws Exception {
         String tempFileName = getTempFileName();
         
         FractalPiece fp = new FractalPiece();        
@@ -273,6 +273,13 @@ public class FractalPieceTest {
         fp.createDefaultSettings();
     }
     
+    @Test(expected=GermIsEmptyException.class)
+    public void generatePieceWithEmptyGerm() throws GermIsEmptyException {
+        FractalPiece fp = new FractalPiece();     
+        fp.createDefaultSettings();
+        fp.generatePiece();
+    }
+    
     @Test
     public void germMidiSameForAllScales() throws Exception {
         FractalPiece fp = new FractalPiece();        
@@ -292,7 +299,7 @@ public class FractalPieceTest {
             Track t = MidiSystem.getSequence(new File(tempFileName)).getTracks()[1];            
             assertTracksEqual(baselineTrack, t);
         }
-    }
+    }        
     
     static protected List<Scale> getAllScalePossibilities() throws IllegalAccessException, IllegalArgumentException, InstantiationException, NoSuchMethodException {
         Scale s;

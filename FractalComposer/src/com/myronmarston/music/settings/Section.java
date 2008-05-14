@@ -1,11 +1,11 @@
 package com.myronmarston.music.settings;
 
-import com.myronmarston.util.Fraction;
+import com.myronmarston.music.GermIsEmptyException;
 import com.myronmarston.music.NoteList;
+import com.myronmarston.util.Fraction;
 import java.io.IOException;
 import org.simpleframework.xml.*;
 import java.util.*;
-import javax.sound.midi.InvalidMidiDataException;
 
 
 /**
@@ -117,11 +117,10 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
      * Constructs a midi sequence for this section and saves it to a midi file.
      * 
      * @param fileName the filename to use
-     * @throws java.io.IOException if there is a problem writing to the file
-     * @throws javax.sound.midi.InvalidMidiDataException if there is invalid
-     *         midi data
+     * @throws java.io.IOException if there is a problem writing to the file 
+     * @throws GermIsEmptyException if the germ is empty    
      */
-    public void saveSectionResultToMidiFile(String fileName) throws IOException, InvalidMidiDataException {
+    public void saveSectionResultToMidiFile(String fileName) throws IOException, GermIsEmptyException {
         List<NoteList> voiceSectionResults = new ArrayList<NoteList>(this.getVoiceSections().size());
         for (VoiceSection vs : this.getVoiceSections()) {
             voiceSectionResults.add(vs.getVoiceSectionResult());

@@ -163,11 +163,9 @@ public class TimeSignature {
     /**
      * Creates the Midi time signature event.
      * 
-     * @return the midi time signature event
-     * @throws javax.sound.midi.InvalidMidiDataException thrown when the midi 
-     *         data is invalid
+     * @return the midi time signature event     
      */
-    public MidiEvent getMidiTimeSignatureEvent() throws InvalidMidiDataException {
+    public MidiEvent getMidiTimeSignatureEvent() {
         if (this.midiTimeSignatureEvent == null) this.midiTimeSignatureEvent = this.createMidiTimeSignatureEvent();
         return this.midiTimeSignatureEvent;
     }
@@ -175,10 +173,8 @@ public class TimeSignature {
     private void clearMidiTimeSignatureEvent() {
         this.midiTimeSignatureEvent = null;
     }
-    
-    // TODO: our code should ensure that an InvalidMidiDataException is never thrown,
-    // so catch it and wrap it in an unchecked exception istead.
-    private MidiEvent createMidiTimeSignatureEvent() throws InvalidMidiDataException {
+        
+    private MidiEvent createMidiTimeSignatureEvent(){
         // See http://www.sonicspot.com/guide/midifiles.html for a description of the contents of this message.
         MetaMessage tsMessage = new MetaMessage();
         
@@ -188,10 +184,17 @@ public class TimeSignature {
         tsMessageData[2] = 24; // metronome pulse
         tsMessageData[3] = 8;  // number of 32nds per quarter note
                
-        tsMessage.setMessage(TIME_SIGNATURE_META_MESSAGE_TYPE,  
+        try {
+            tsMessage.setMessage(TIME_SIGNATURE_META_MESSAGE_TYPE,  
                              tsMessageData,         // the time signature data
-                             tsMessageData.length); // the size of the data array
-        
+                             tsMessageData.length); // the size of the data array             
+        } catch (InvalidMidiDataException ex) {
+            // our logic should prevent this exception from ever occurring, 
+            // so we transform this to an unchecked exception instead of 
+            // having to declare it on our method.
+            throw new UndeclaredThrowableException(ex, "The time signature midi event could not be created.  This indicates a programming error of some sort.");                
+        } 
+                        
         return new MidiEvent(tsMessage, 0);
     }
 

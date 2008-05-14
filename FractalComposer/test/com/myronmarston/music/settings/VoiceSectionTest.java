@@ -241,6 +241,14 @@ public class VoiceSectionTest {
         vs.saveVoiceSectionResultToMidiFile(FractalPieceTest.getTempFileName());
     }
     
+    @Test(expected=GermIsEmptyException.class)
+    public void saveVoiceSectionResultToMidiFileWithEmptyGerm() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        fp.createDefaultSettings();
+        VoiceSection vs = fp.getVoices().get(0).getVoiceSections().get(0);        
+        vs.saveVoiceSectionResultToMidiFile(FractalPieceTest.getTempFileName());
+    }
+    
     @Test
     public void getOtherVoiceOrSection() {
         FractalPiece fp = new FractalPiece();

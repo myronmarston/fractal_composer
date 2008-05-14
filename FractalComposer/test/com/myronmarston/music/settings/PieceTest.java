@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 public class PieceTest {   
     
     @Test
-    public void simplePieceTest() throws InvalidKeySignatureException, NoteStringParseException, InvalidMidiDataException {
+    public void simplePieceTest() throws InvalidKeySignatureException, NoteStringParseException, GermIsEmptyException {
         FractalPiece fp = new FractalPiece();
         fp.setScale(new MajorScale(NoteName.G));
         fp.setGermString("G4,1/4 A4,1/8 B4,1/8 G4,1/4");
@@ -147,7 +147,7 @@ public class PieceTest {
     }
     
     @Test
-    public void complicatedChromaticSelfSimilarityTest() throws InvalidKeySignatureException, InvalidMidiDataException {
+    public void complicatedChromaticSelfSimilarityTest() throws InvalidKeySignatureException, GermIsEmptyException {
         
         FractalPiece fp = new FractalPiece();
         fp.setScale(new MajorScale(NoteName.C));
