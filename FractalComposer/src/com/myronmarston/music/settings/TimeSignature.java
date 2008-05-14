@@ -85,6 +85,8 @@ public class TimeSignature {
      *         the string cannot be parsed
      */
     public TimeSignature(String timeSigStr) throws InvalidTimeSignatureException {
+        if (timeSigStr == null) throw new InvalidTimeSignatureException("The given time signature string " + timeSigStr + " is not a valid time signature string.  The time signature should be given in a form like '4/4'.");
+        
         Matcher m = REGEX_PATTERN.matcher(timeSigStr);
         if (m.matches()) {
             this.setNumerator(Integer.parseInt(m.group(1)));

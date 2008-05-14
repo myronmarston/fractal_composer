@@ -2,8 +2,6 @@ package com.myronmarston.music.settings;
 
 import javax.sound.midi.MidiEvent;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -12,17 +10,6 @@ import static org.junit.Assert.*;
  * @author Myron
  */
 public class TimeSignatureTest {
-
-    public TimeSignatureTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
 
     @Test(expected=NonPositiveTimeSignatureException.class)
     public void negativeNumerator() throws InvalidTimeSignatureException {
@@ -137,7 +124,25 @@ public class TimeSignatureTest {
         try {
             TimeSignature ts = new TimeSignature("3/15");
             fail();
-        } catch (InvalidTimeSignatureException ex) {}        
+        } catch (InvalidTimeSignatureException ex) {} 
+        
+        // only a space
+        try {
+            TimeSignature ts = new TimeSignature(" ");
+            fail();
+        } catch (InvalidTimeSignatureException ex) {} 
+        
+        // empty string
+        try {
+            TimeSignature ts = new TimeSignature("");
+            fail();
+        } catch (InvalidTimeSignatureException ex) {} 
+        
+        // empty string
+        try {
+            TimeSignature ts = new TimeSignature(null);
+            fail();
+        } catch (InvalidTimeSignatureException ex) {}
     }
     
     static public void assertTimeSignatureEventEqual(MidiEvent timeSignatureEvent, byte byte1, byte byte2) {
