@@ -73,6 +73,74 @@ public class TimeSignatureTest {
         assertEquals(4, ts.getNumerator());
     }
     
+    @Test
+    public void testToString() throws InvalidTimeSignatureException {
+        assertEquals("6/8", (new TimeSignature(6, 8).toString()));
+    }
+    
+    @Test
+    public void stringConstructor() throws InvalidTimeSignatureException {
+        TimeSignature ts = new TimeSignature("7/64");
+        assertEquals(7, ts.getNumerator());
+        assertEquals(64, ts.getDenominator());
+        assertEquals(6, ts.getDenominatorPowerOf2());
+        
+        // test spacing
+        ts = new TimeSignature("3 /4");
+        assertEquals(3, ts.getNumerator());
+        assertEquals(4, ts.getDenominator());
+        assertEquals(2, ts.getDenominatorPowerOf2());
+        
+        ts = new TimeSignature("5/  16");
+        assertEquals(5, ts.getNumerator());
+        assertEquals(16, ts.getDenominator());
+        assertEquals(4, ts.getDenominatorPowerOf2());
+        
+        ts = new TimeSignature("2   /    4");
+        assertEquals(2, ts.getNumerator());
+        assertEquals(4, ts.getDenominator());
+        assertEquals(2, ts.getDenominatorPowerOf2());
+    }
+    
+    @Test
+    public void invaldTimeSignatureStrings() {
+        // nonsense
+        try {
+            TimeSignature ts = new TimeSignature("foo");
+            fail();
+        } catch (InvalidTimeSignatureException ex) {}
+        
+        // using a space instead of a /
+        try {
+            TimeSignature ts = new TimeSignature("3 4");
+            fail();
+        } catch (InvalidTimeSignatureException ex) {}
+        
+        // only one digit
+        try {
+            TimeSignature ts = new TimeSignature("3");
+            fail();
+        } catch (InvalidTimeSignatureException ex) {}
+        
+        // no denominator
+        try {
+            TimeSignature ts = new TimeSignature("3/");
+            fail();
+        } catch (InvalidTimeSignatureException ex) {}
+        
+        // no numerator
+        try {
+            TimeSignature ts = new TimeSignature("/4");
+            fail();
+        } catch (InvalidTimeSignatureException ex) {}
+        
+        // bad denominator
+        try {
+            TimeSignature ts = new TimeSignature("3/15");
+            fail();
+        } catch (InvalidTimeSignatureException ex) {}        
+    }
+    
     static public void assertTimeSignatureEventEqual(MidiEvent timeSignatureEvent, byte byte1, byte byte2) {
         assertEquals(0L, timeSignatureEvent.getTick());
         javax.sound.midi.MidiMessage msg = timeSignatureEvent.getMessage();

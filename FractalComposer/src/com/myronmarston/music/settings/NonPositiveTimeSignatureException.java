@@ -11,11 +11,9 @@ public class NonPositiveTimeSignatureException extends InvalidTimeSignatureExcep
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructor.
-     * 
-     * @param nonPositiveNumeratorOrDenominator the non-positive numerator or denominator
+     * Constructor.     
      */
-    public NonPositiveTimeSignatureException(int nonPositiveNumeratorOrDenominator) {
-        super(nonPositiveNumeratorOrDenominator, "The time signature numerator and denominator must both be positive.");
+    public NonPositiveTimeSignatureException() {
+        super("The time signature numerator and denominator must both be positive.");
     }        
 }

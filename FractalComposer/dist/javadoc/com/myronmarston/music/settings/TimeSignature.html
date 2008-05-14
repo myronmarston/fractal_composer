@@ -126,6 +126,14 @@ Class that holds the time signature for the fractal piece.  A time signature
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The time signature that should be used if the user does not specify
  one--common time, i.e.</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html#REGEX_PATTERN_STRING">REGEX_PATTERN_STRING</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A Regex pattern that</TD>
+</TR>
 </TABLE>
 &nbsp;
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -139,6 +147,12 @@ Class that holds the time signature for the fractal piece.  A time signature
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html#TimeSignature(int, int)">TimeSignature</A></B>(int&nbsp;numerator,
               int&nbsp;denominator)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html#TimeSignature(java.lang.String)">TimeSignature</A></B>(java.lang.String&nbsp;timeSigStr)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
@@ -217,6 +231,14 @@ Class that holds the time signature for the fractal piece.  A time signature
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the number of counts per bar.</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html#toString()">toString</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
@@ -224,7 +246,7 @@ Class that holds the time signature for the fractal piece.  A time signature
 <TH ALIGN="left"><B>Methods inherited from class java.lang.Object</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>clone, finalize, getClass, notify, notifyAll, toString, wait, wait, wait</CODE></TD>
+<TD><CODE>clone, finalize, getClass, notify, notifyAll, wait, wait, wait</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -251,6 +273,18 @@ public static final <A HREF="../../../../com/myronmarston/music/settings/TimeSig
 <DL>
 </DL>
 </DL>
+<HR>
+
+<A NAME="REGEX_PATTERN_STRING"><!-- --></A><H3>
+REGEX_PATTERN_STRING</H3>
+<PRE>
+public static final java.lang.String <B>REGEX_PATTERN_STRING</B></PRE>
+<DL>
+<DD>A Regex pattern that
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../constant-values.html#com.myronmarston.music.settings.TimeSignature.REGEX_PATTERN_STRING">Constant Field Values</A></DL>
+</DL>
 
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 
@@ -275,6 +309,22 @@ public <B>TimeSignature</B>(int&nbsp;numerator,
 <DT><B>Parameters:</B><DD><CODE>numerator</CODE> - the number of counts per measure<DD><CODE>denominator</CODE> - the kind of note that gets one count
 <DT><B>Throws:</B>
 <DD><CODE><A HREF="../../../../com/myronmarston/music/settings/InvalidTimeSignatureException.html" title="class in com.myronmarston.music.settings">InvalidTimeSignatureException</A></CODE> - thrown when invalid values are passed</DL>
+</DL>
+<HR>
+
+<A NAME="TimeSignature(java.lang.String)"><!-- --></A><H3>
+TimeSignature</H3>
+<PRE>
+public <B>TimeSignature</B>(java.lang.String&nbsp;timeSigStr)
+              throws <A HREF="../../../../com/myronmarston/music/settings/InvalidTimeSignatureException.html" title="class in com.myronmarston.music.settings">InvalidTimeSignatureException</A></PRE>
+<DL>
+<DD>Constructor.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>timeSigStr</CODE> - a time signature in a form like '4/4'
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="../../../../com/myronmarston/music/settings/InvalidTimeSignatureException.html" title="class in com.myronmarston.music.settings">InvalidTimeSignatureException</A></CODE> - if
+         the string cannot be parsed</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -375,6 +425,20 @@ public javax.sound.midi.MidiEvent <B>getMidiTimeSignatureEvent</B>()
 <DT><B>Throws:</B>
 <DD><CODE>javax.sound.midi.InvalidMidiDataException</CODE> - thrown when the midi 
          data is invalid</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="toString()"><!-- --></A><H3>
+toString</H3>
+<PRE>
+public java.lang.String <B>toString</B>()</PRE>
+<DL>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>toString</CODE> in class <CODE>java.lang.Object</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>

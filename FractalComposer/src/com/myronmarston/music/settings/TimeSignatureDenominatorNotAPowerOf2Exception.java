@@ -16,6 +16,6 @@ public class TimeSignatureDenominatorNotAPowerOf2Exception extends InvalidTimeSi
      * @param denominator the denominator
      */
     public TimeSignatureDenominatorNotAPowerOf2Exception(int denominator) {
-        super(denominator, String.format("The given time signature denominator (%d) is invalid.  It must be a power of 2.", denominator));
+        super(String.format("The given time signature denominator (%d) is invalid.  It must be a power of 2.", denominator));
     }        
 }
