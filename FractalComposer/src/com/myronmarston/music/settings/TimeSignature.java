@@ -51,6 +51,8 @@ public class TimeSignature {
      * Initializes the default time signature.
      */
     static {
+        REGEX_PATTERN = Pattern.compile(REGEX_PATTERN_STRING);
+        
         try {
             // create a default time signature
             DEFAULT = new TimeSignature(4, 4);
@@ -58,9 +60,7 @@ public class TimeSignature {
             // 4/4 should always be a valid time signature, so just catch this exception 
             // and throw an unchecked exception so we don't have to declare it...
             throw new UndeclaredThrowableException(ex, "An exception occurred while creating the default 4/4 time signature.  This indicates a programming error.");            
-        }
-        
-        REGEX_PATTERN = Pattern.compile(REGEX_PATTERN_STRING);
+        }                
     }
 
     /**
@@ -85,7 +85,7 @@ public class TimeSignature {
      *         the string cannot be parsed
      */
     public TimeSignature(String timeSigStr) throws InvalidTimeSignatureException {
-        if (timeSigStr == null) throw new InvalidTimeSignatureException("The given time signature string " + timeSigStr + " is not a valid time signature string.  The time signature should be given in a form like '4/4'.");
+        if (timeSigStr == null) throw new InvalidTimeSignatureException("The given time signature string '' is not a valid time signature string.  The time signature should be given in a form like '4/4'.");
         
         Matcher m = REGEX_PATTERN.matcher(timeSigStr);
         if (m.matches()) {

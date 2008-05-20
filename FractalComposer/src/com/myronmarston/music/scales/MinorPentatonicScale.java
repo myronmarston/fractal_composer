@@ -1,7 +1,7 @@
 package com.myronmarston.music.scales;
 
 import com.myronmarston.music.NoteName;
-
+import java.util.Arrays;
 import org.simpleframework.xml.*;
 
 /**
@@ -12,7 +12,7 @@ import org.simpleframework.xml.*;
 @Root
 public class MinorPentatonicScale extends MinorScale {
     private final static int[] SCALE_STEPS = new int[] {0, 3, 5, 7, 10};
-    protected final static int[] LETTER_NUMBERS = new int[] {0, 2, 3, 4, 6};
+    private final static int[] LETTER_NUMBERS = new int[] {0, 2, 3, 4, 6};
     
    /**
      * Constructor.
@@ -37,11 +37,11 @@ public class MinorPentatonicScale extends MinorScale {
 
     @Override
     public int[] getScaleStepArray() {
-        return SCALE_STEPS;
+        return Arrays.copyOf(SCALE_STEPS, SCALE_STEPS.length);
     }  
     
     @Override
     public int[] getLetterNumberArray() {
-        return MinorPentatonicScale.LETTER_NUMBERS;
+        return Arrays.copyOf(LETTER_NUMBERS, LETTER_NUMBERS.length);        
     } 
 }

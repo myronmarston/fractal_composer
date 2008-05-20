@@ -126,8 +126,8 @@ public class VoiceSection implements Observer {
      * 
      * @param val whether or not to invert the germ
      */
-    public void setApplyInversion(Boolean val) {
-        if (val != this.applyInversion) clearVoiceSectionResult();
+    public void setApplyInversion(Boolean val) {        
+        if (!booleanEquals(val, this.applyInversion)) clearVoiceSectionResult();        
         this.applyInversion = val;
     }
     
@@ -161,8 +161,8 @@ public class VoiceSection implements Observer {
      * 
      * @param val whether or not to use the retrograde of the germ
      */
-    public void setApplyRetrograde(Boolean val) {
-        if (val != this.applyRetrograde) clearVoiceSectionResult();
+    public void setApplyRetrograde(Boolean val) {          
+        if (!booleanEquals(val, this.applyRetrograde)) clearVoiceSectionResult();        
         this.applyRetrograde = val;
     } 
 
@@ -306,5 +306,13 @@ public class VoiceSection implements Observer {
         
         // if the self similarity settings change, it affects our result, so clear it...
         this.clearVoiceSectionResult();
-    }    
+    }   
+    
+    private boolean booleanEquals(Boolean b1, Boolean b2) {
+        // if both are null, or both are the same reference, they are equal
+        if (b1 == b2) return true;
+        
+        // otherwise, use the equals method, calling it on whichever object is non-null
+        return (b1 == null ? b2.equals(b1) : b1.equals(b2));        
+    }
 }

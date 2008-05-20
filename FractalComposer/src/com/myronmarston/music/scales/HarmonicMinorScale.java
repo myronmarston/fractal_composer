@@ -1,7 +1,7 @@
 package com.myronmarston.music.scales;
 
 import com.myronmarston.music.NoteName;
-
+import java.util.Arrays;
 import org.simpleframework.xml.*;
 
 /**
@@ -36,6 +36,6 @@ public class HarmonicMinorScale extends MinorScale {
     
     @Override
     public int[] getScaleStepArray() {
-        return HarmonicMinorScale.SCALE_STEPS;
+        return Arrays.copyOf(SCALE_STEPS, SCALE_STEPS.length);
     }
 }

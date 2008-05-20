@@ -19,7 +19,7 @@ public class NoteList extends ArrayList<Note> {
     // Used to serialize the class.  Change this if the class has a change significant enough to change the way the class is serialized.
     private static final long serialVersionUID = 1L;
     
-    private Instrument instrument;
+    private transient Instrument instrument;
     
     /**
      * Default constructor.
@@ -166,7 +166,7 @@ public class NoteList extends ArrayList<Note> {
             thisMidiNote = thisNote.convertToMidiNote(scale, startTime, midiTicksPerWholeNote, midiChannel, true);                        
             
             if (lastMidiNote != null) {
-                assert lastNote != null : lastNote;
+                assert lastNote != null;
                                 
                 if (thisMidiNote.getPitch() == lastMidiNote.getPitch() && lastNote.getScaleStep() != thisNote.getScaleStep()) {               
                     // the notes are different scale steps and should have different pitches.

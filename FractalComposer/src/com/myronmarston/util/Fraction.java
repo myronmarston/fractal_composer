@@ -109,7 +109,14 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
       return numerator() + "/" + denominator(); 
   }
 
-  public Object clone() { return new Fraction(this); }
+  public Object clone() { 
+      // We get a warning from this method when I run FindBugs.
+      // FindBugs expects that all clone() overrides will call super.clone().
+      // Here we can't do that because the numerator_ and denonimator_ fields
+      // are declared final.  And it would only matter if we subclassed
+      // Fraction.
+      return new Fraction(this); 
+  }
 
   /** Return the value of the Fraction as a double **/
   public double asDouble() { 
@@ -257,6 +264,7 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
   }
 
   public boolean equals(Object other) {
+    if (!(other instanceof Fraction)) return false;
     return compareTo((Fraction)other) == 0;
   }
 

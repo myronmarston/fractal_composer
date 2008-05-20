@@ -44,7 +44,7 @@ public class ChromaticScale extends Scale {
         
     @Override
     public int[] getScaleStepArray() {
-        return ChromaticScale.SCALE_STEPS;
+        return Arrays.copyOf(SCALE_STEPS, SCALE_STEPS.length);
     }
 
     /**

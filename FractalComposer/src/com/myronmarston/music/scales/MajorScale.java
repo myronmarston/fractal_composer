@@ -1,7 +1,7 @@
 package com.myronmarston.music.scales;
 
 import com.myronmarston.music.NoteName;
-
+import java.util.Arrays;
 import org.simpleframework.xml.*;
 
 /**
@@ -38,11 +38,11 @@ public class MajorScale extends Scale {
 
     @Override
     public int[] getScaleStepArray() {
-        return MajorScale.SCALE_STEPS;
+        return Arrays.copyOf(SCALE_STEPS, SCALE_STEPS.length);
     }
     
     @Override
     public int[] getLetterNumberArray() {
-        return MajorScale.LETTER_NUMBERS;
+        return Arrays.copyOf(LETTER_NUMBERS, LETTER_NUMBERS.length);        
     } 
 }
