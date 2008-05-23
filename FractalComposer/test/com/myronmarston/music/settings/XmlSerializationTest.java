@@ -85,8 +85,8 @@ public class XmlSerializationTest {
     
     @Test
     public void serializeSelfSimilaritySettings() throws Exception {
-        SelfSimilaritySettings sss = new SelfSimilaritySettings(true, false, false);
-        testSerialization(sss, "<selfSimilaritySettings id=\"0\" applyToPitch=\"true\" applyToRhythm=\"false\" applyToVolume=\"false\"/>");        
+        SelfSimilaritySettings sss = new SelfSimilaritySettings(true, false, false, 1);
+        testSerialization(sss, "<selfSimilaritySettings id=\"0\" applyToPitch=\"true\" applyToRhythm=\"false\" applyToVolume=\"false\" selfSimilarityIterations=\"1\"/>");        
     }    
     
     @Test
@@ -145,6 +145,7 @@ public class XmlSerializationTest {
         fp.getVoices().remove(2);
         fp.setGenerateLayeredOutro(false);
         fp.getVoices().get(0).setInstrumentName("Violin");
+        fp.getVoices().get(0).getVoiceSections().get(0).getSelfSimilaritySettings().setSelfSimilarityIterations(3);
         
         String xml = fp.getXmlRepresentation();  
         System.out.println(xml);
@@ -207,7 +208,7 @@ public class XmlSerializationTest {
         testSerializeAndDeserialize(new Note(1, 6, 2, new Fraction(3, 8), Dynamic.P.getMidiVolume()));
         testSerializeAndDeserialize(new TimeSignature(7, 4));        
         testSerializeAndDeserialize(new KeySignature(Tonality.Minor, NoteName.G));                
-        testSerializeAndDeserialize(new SelfSimilaritySettings(true, false, true));
+        testSerializeAndDeserialize(new SelfSimilaritySettings(true, false, true, 1));
         
         for (Scale s : getScales()) { testSerializeAndDeserialize(s);}        
         

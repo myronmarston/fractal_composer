@@ -129,9 +129,10 @@ Transformer that applies the self-similarity algorithm to the given NoteList.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default Constructor.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/transformers/SelfSimilarityTransformer.html#SelfSimilarityTransformer(boolean, boolean, boolean)">SelfSimilarityTransformer</A></B>(boolean&nbsp;applyToPitch,
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/transformers/SelfSimilarityTransformer.html#SelfSimilarityTransformer(boolean, boolean, boolean, int)">SelfSimilarityTransformer</A></B>(boolean&nbsp;applyToPitch,
                           boolean&nbsp;applyToRhythm,
-                          boolean&nbsp;applyToVolume)</CODE>
+                          boolean&nbsp;applyToVolume,
+                          int&nbsp;selfSimilarityIterations)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
@@ -203,18 +204,20 @@ public <B>SelfSimilarityTransformer</B>(<A HREF="../../../../com/myronmarston/mu
 </DL>
 <HR>
 
-<A NAME="SelfSimilarityTransformer(boolean, boolean, boolean)"><!-- --></A><H3>
+<A NAME="SelfSimilarityTransformer(boolean, boolean, boolean, int)"><!-- --></A><H3>
 SelfSimilarityTransformer</H3>
 <PRE>
 public <B>SelfSimilarityTransformer</B>(boolean&nbsp;applyToPitch,
                                  boolean&nbsp;applyToRhythm,
-                                 boolean&nbsp;applyToVolume)</PRE>
+                                 boolean&nbsp;applyToVolume,
+                                 int&nbsp;selfSimilarityIterations)</PRE>
 <DL>
 <DD>Constructor.  Use this constructor to provide values for the 
  self-similarity settings.
 <P>
 <DL>
-<DT><B>Parameters:</B><DD><CODE>applyToPitch</CODE> - true to apply self-similarity to the pitch<DD><CODE>applyToRhythm</CODE> - true to apply self-similarity to the rhythm<DD><CODE>applyToVolume</CODE> - true to apply self-similarity to the volume</DL>
+<DT><B>Parameters:</B><DD><CODE>applyToPitch</CODE> - true to apply self-similarity to the pitch<DD><CODE>applyToRhythm</CODE> - true to apply self-similarity to the rhythm<DD><CODE>applyToVolume</CODE> - true to apply self-similarity to the volume<DD><CODE>selfSimilarityIterations</CODE> - number of times to apply self-similarity
+        to the germ</DL>
 </DL>
 <HR>
 

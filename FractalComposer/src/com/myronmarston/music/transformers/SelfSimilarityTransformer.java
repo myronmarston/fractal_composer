@@ -44,7 +44,7 @@ public class SelfSimilarityTransformer implements Transformer {
      * @return the self-similarity settings
      */
     public SelfSimilaritySettings getSettings() {
-        if (settings == null) settings = new SelfSimilaritySettings(true, true, true);
+        if (settings == null) settings = new SelfSimilaritySettings(true, true, true, 1);
         return this.settings;
     }
     
@@ -64,9 +64,11 @@ public class SelfSimilarityTransformer implements Transformer {
      * @param applyToPitch true to apply self-similarity to the pitch
      * @param applyToRhythm true to apply self-similarity to the rhythm
      * @param applyToVolume true to apply self-similarity to the volume
+     * @param selfSimilarityIterations number of times to apply self-similarity
+     *        to the germ
      */
-    public SelfSimilarityTransformer(boolean applyToPitch, boolean applyToRhythm, boolean applyToVolume) {
-        this(new SelfSimilaritySettings(applyToPitch, applyToRhythm, applyToVolume));
+    public SelfSimilarityTransformer(boolean applyToPitch, boolean applyToRhythm, boolean applyToVolume, int selfSimilarityIterations) {
+        this(new SelfSimilaritySettings(applyToPitch, applyToRhythm, applyToVolume, selfSimilarityIterations));
     }
     
     /**
@@ -74,29 +76,37 @@ public class SelfSimilarityTransformer implements Transformer {
      */
     public SelfSimilarityTransformer() {};
     
-    public NoteList transform(NoteList input) {        
-        if (!this.getSettings().getApplyToPitch() &&
-            !this.getSettings().getApplyToRhythm() &&
-            !this.getSettings().getApplyToVolume()) {
+    public NoteList transform(NoteList input) {                
+        if (!this.getSettings().selfSimilarityShouldBeAppliedToSomething()) {
             // there is no self-similarity, so just return a copy of the input
             
             CopyTransformer ct = new CopyTransformer();
             return ct.transform(input);
         }            
+             
+        NoteList tempList = input;
         
-        Note firstNote = input.getFirstAudibleNote(); // the note we will compare against for the self-similarity
+        for (int i = 0; i < this.getSettings().getSelfSimilarityIterations(); i++) {
+            tempList = transformOneLevel(input, tempList);
+        }
+        
+        return tempList;
+    }
+    
+    private NoteList transformOneLevel(NoteList germ, NoteList input) {           
+        Note firstGermNote = germ.getFirstAudibleNote(); // the note we will compare against for the self-similarity
         NoteList transformedList; // used to store the temporary results of the transformations                
-        NoteList output = new NoteList(input.size() * input.size()); // the final output
+        NoteList output = new NoteList(germ.size() * input.size()); // the final output
                 
-        for (Note inputNote : input) {                  
-            if (inputNote.isRest()) {
+        for (Note germNote : germ) {                  
+            if (germNote.isRest()) {                
                 transformedList = new NoteList();
                 transformedList.add(Note.createRest(input.getDuration()));                
-                transformedList = transform_rhythm(transformedList, firstNote, inputNote);
-            } else {
-                transformedList = transform_pitch(input, firstNote, inputNote);
-                transformedList = transform_rhythm(transformedList, firstNote, inputNote);
-                transformedList = transform_volume(transformedList, firstNote, inputNote);
+                transformedList = transform_rhythm(transformedList, firstGermNote, germNote);
+            } else {                
+                transformedList = transform_pitch(input, firstGermNote, germNote);
+                transformedList = transform_rhythm(transformedList, firstGermNote, germNote);
+                transformedList = transform_volume(transformedList, firstGermNote, germNote);
             }
             output.addAll(transformedList);            
         }

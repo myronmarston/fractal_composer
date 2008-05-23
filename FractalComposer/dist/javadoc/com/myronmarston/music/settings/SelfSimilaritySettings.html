@@ -124,9 +124,10 @@ Specifies settings for what to apply self-similarity to.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default Constructor.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SelfSimilaritySettings.html#SelfSimilaritySettings(boolean, boolean, boolean)">SelfSimilaritySettings</A></B>(boolean&nbsp;applyToPitch,
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SelfSimilaritySettings.html#SelfSimilaritySettings(boolean, boolean, boolean, int)">SelfSimilaritySettings</A></B>(boolean&nbsp;applyToPitch,
                        boolean&nbsp;applyToRhythm,
-                       boolean&nbsp;applyToVolume)</CODE>
+                       boolean&nbsp;applyToVolume,
+                       int&nbsp;selfSimilarityIterations)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
@@ -178,10 +179,27 @@ Specifies settings for what to apply self-similarity to.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SelfSimilaritySettings.html#getSelfSimilarityIterations()">getSelfSimilarityIterations</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the number of self-similarity iterations.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SelfSimilaritySettings.html#hashCode()">hashCode</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SelfSimilaritySettings.html#selfSimilarityShouldBeAppliedToSomething()">selfSimilarityShouldBeAppliedToSomething</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets whether or not self-similarity should be applied to something 
+ (pitch, rhythm or volume).</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -208,6 +226,14 @@ Specifies settings for what to apply self-similarity to.
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets whether or not to apply self-similarity to the volume of the germ
  notes.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SelfSimilaritySettings.html#setSelfSimilarityIterations(int)">setSelfSimilarityIterations</A></B>(int&nbsp;selfSimilarityIterations)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the number of self-similarity iterations.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.util.Observable"><!-- --></A>
@@ -251,12 +277,13 @@ public <B>SelfSimilaritySettings</B>()</PRE>
 </DL>
 <HR>
 
-<A NAME="SelfSimilaritySettings(boolean, boolean, boolean)"><!-- --></A><H3>
+<A NAME="SelfSimilaritySettings(boolean, boolean, boolean, int)"><!-- --></A><H3>
 SelfSimilaritySettings</H3>
 <PRE>
 public <B>SelfSimilaritySettings</B>(boolean&nbsp;applyToPitch,
                               boolean&nbsp;applyToRhythm,
-                              boolean&nbsp;applyToVolume)</PRE>
+                              boolean&nbsp;applyToVolume,
+                              int&nbsp;selfSimilarityIterations)</PRE>
 <DL>
 <DD>Constructor.
 <P>
@@ -264,7 +291,8 @@ public <B>SelfSimilaritySettings</B>(boolean&nbsp;applyToPitch,
 <DT><B>Parameters:</B><DD><CODE>applyToPitch</CODE> - whether or not to apply self-similarity to the 
         pitches<DD><CODE>applyToRhythm</CODE> - whether or not to apply self-similarity to the 
         rhythm<DD><CODE>applyToVolume</CODE> - whether or not to apply self-similarity to the 
-        volume</DL>
+        volume<DD><CODE>selfSimilarityIterations</CODE> - number of times to iteratively apply
+        self-similarity</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -370,6 +398,55 @@ public void <B>setApplyToVolume</B>(boolean&nbsp;val)</PRE>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>val</CODE> - whether or not to apply self-similarity to the volume of the 
         germ notes</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getSelfSimilarityIterations()"><!-- --></A><H3>
+getSelfSimilarityIterations</H3>
+<PRE>
+public int <B>getSelfSimilarityIterations</B>()</PRE>
+<DL>
+<DD>Gets the number of self-similarity iterations.  The germ will be applied 
+ to itself for the first iteration, and then applied to the previous 
+ result for each successive iteration.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>number of iterations</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setSelfSimilarityIterations(int)"><!-- --></A><H3>
+setSelfSimilarityIterations</H3>
+<PRE>
+public void <B>setSelfSimilarityIterations</B>(int&nbsp;selfSimilarityIterations)
+                                 throws java.lang.IllegalArgumentException</PRE>
+<DL>
+<DD>Sets the number of self-similarity iterations.  The germ will be applied 
+ to itself for the first iteration, and then applied to the previous 
+ result for each successive iteration.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>selfSimilarityIterations</CODE> - number of iterations
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.IllegalArgumentException</CODE> - if the value is less than 1</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="selfSimilarityShouldBeAppliedToSomething()"><!-- --></A><H3>
+selfSimilarityShouldBeAppliedToSomething</H3>
+<PRE>
+public boolean <B>selfSimilarityShouldBeAppliedToSomething</B>()</PRE>
+<DL>
+<DD>Gets whether or not self-similarity should be applied to something 
+ (pitch, rhythm or volume).
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>true if self-similarity should be applied to something</DL>
 </DD>
 </DL>
 <HR>

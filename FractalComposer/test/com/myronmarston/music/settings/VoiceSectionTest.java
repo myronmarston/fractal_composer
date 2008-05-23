@@ -20,6 +20,7 @@
 package com.myronmarston.music.settings;
 
 import com.myronmarston.music.*;
+import com.myronmarston.music.scales.*;
 import com.myronmarston.util.Fraction;      
 
 import org.junit.Test;
@@ -276,5 +277,25 @@ public class VoiceSectionTest {
         VoiceSection vs00 = fp.getVoices().get(0).getVoiceSections().get(0);
         assertEquals(fp.getVoices().get(0), vs00.getOtherVoiceOrSection(fp.getSections().get(0)));
         assertEquals(fp.getSections().get(0), vs00.getOtherVoiceOrSection(fp.getVoices().get(0)));
+    }
+    
+    @Test
+    public void voiceSectionResultUpdatedOnSelfSimilarityLevelsChange() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        fp.setScale(new MajorScale(NoteName.C));
+        fp.setGermString("C4 D4 C4");
+        Voice v = fp.createVoice();
+        Section s = fp.createSection();
+        VoiceSection vs = v.getVoiceSections().get(0);
+        
+        vs.getSelfSimilaritySettings().setApplyToPitch(true);
+        vs.getSelfSimilaritySettings().setSelfSimilarityIterations(1);
+        
+        NoteList expectedResult = NoteList.parseNoteListString("C4 D4 C4  D4 E4 D4  C4 D4 C4", fp.getScale());
+        NoteListTest.assertNoteListsEqual(expectedResult, vs.getVoiceSectionResult());
+        
+        vs.getSelfSimilaritySettings().setSelfSimilarityIterations(3);
+        expectedResult = NoteList.parseNoteListString("C4 D4 C4  D4 E4 D4  C4 D4 C4   D4 E4 D4  E4 F4 E4  D4 E4 D4   C4 D4 C4  D4 E4 D4  C4 D4 C4   D4 E4 D4  E4 F4 E4  D4 E4 D4   E4 F4 E4  F4 G4 F4  E4 F4 E4   D4 E4 D4  E4 F4 E4  D4 E4 D4   C4 D4 C4  D4 E4 D4  C4 D4 C4   D4 E4 D4  E4 F4 E4  D4 E4 D4   C4 D4 C4  D4 E4 D4  C4 D4 C4", fp.getScale());
+        NoteListTest.assertNoteListsEqual(expectedResult, vs.getVoiceSectionResult());
     }
 }

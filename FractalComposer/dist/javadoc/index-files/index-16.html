@@ -120,13 +120,17 @@ Constructor for class com.myronmarston.music.settings.<A HREF="../com/myronmarst
 <DT><A HREF="../com/myronmarston/music/settings/SelfSimilaritySettings.html" title="class in com.myronmarston.music.settings"><B>SelfSimilaritySettings</B></A> - Class in <A HREF="../com/myronmarston/music/settings/package-summary.html">com.myronmarston.music.settings</A><DD>Specifies settings for what to apply self-similarity to.<DT><A HREF="../com/myronmarston/music/settings/SelfSimilaritySettings.html#SelfSimilaritySettings()"><B>SelfSimilaritySettings()</B></A> - 
 Constructor for class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/SelfSimilaritySettings.html" title="class in com.myronmarston.music.settings">SelfSimilaritySettings</A>
 <DD>Default Constructor.
-<DT><A HREF="../com/myronmarston/music/settings/SelfSimilaritySettings.html#SelfSimilaritySettings(boolean, boolean, boolean)"><B>SelfSimilaritySettings(boolean, boolean, boolean)</B></A> - 
+<DT><A HREF="../com/myronmarston/music/settings/SelfSimilaritySettings.html#SelfSimilaritySettings(boolean, boolean, boolean, int)"><B>SelfSimilaritySettings(boolean, boolean, boolean, int)</B></A> - 
 Constructor for class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/SelfSimilaritySettings.html" title="class in com.myronmarston.music.settings">SelfSimilaritySettings</A>
 <DD>Constructor.
+<DT><A HREF="../com/myronmarston/music/settings/SelfSimilaritySettings.html#selfSimilarityShouldBeAppliedToSomething()"><B>selfSimilarityShouldBeAppliedToSomething()</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/SelfSimilaritySettings.html" title="class in com.myronmarston.music.settings">SelfSimilaritySettings</A>
+<DD>Gets whether or not self-similarity should be applied to something 
+ (pitch, rhythm or volume).
 <DT><A HREF="../com/myronmarston/music/transformers/SelfSimilarityTransformer.html" title="class in com.myronmarston.music.transformers"><B>SelfSimilarityTransformer</B></A> - Class in <A HREF="../com/myronmarston/music/transformers/package-summary.html">com.myronmarston.music.transformers</A><DD>Transformer that applies the self-similarity algorithm to the given NoteList.<DT><A HREF="../com/myronmarston/music/transformers/SelfSimilarityTransformer.html#SelfSimilarityTransformer(com.myronmarston.music.settings.SelfSimilaritySettings)"><B>SelfSimilarityTransformer(SelfSimilaritySettings)</B></A> - 
 Constructor for class com.myronmarston.music.transformers.<A HREF="../com/myronmarston/music/transformers/SelfSimilarityTransformer.html" title="class in com.myronmarston.music.transformers">SelfSimilarityTransformer</A>
 <DD>Constructor.
-<DT><A HREF="../com/myronmarston/music/transformers/SelfSimilarityTransformer.html#SelfSimilarityTransformer(boolean, boolean, boolean)"><B>SelfSimilarityTransformer(boolean, boolean, boolean)</B></A> - 
+<DT><A HREF="../com/myronmarston/music/transformers/SelfSimilarityTransformer.html#SelfSimilarityTransformer(boolean, boolean, boolean, int)"><B>SelfSimilarityTransformer(boolean, boolean, boolean, int)</B></A> - 
 Constructor for class com.myronmarston.music.transformers.<A HREF="../com/myronmarston/music/transformers/SelfSimilarityTransformer.html" title="class in com.myronmarston.music.transformers">SelfSimilarityTransformer</A>
 <DD>Constructor.
 <DT><A HREF="../com/myronmarston/music/transformers/SelfSimilarityTransformer.html#SelfSimilarityTransformer()"><B>SelfSimilarityTransformer()</B></A> - 
@@ -243,6 +247,9 @@ Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.h
 <DT><A HREF="../com/myronmarston/music/Note.html#setSegmentSettings(com.myronmarston.music.settings.SegmentSettings)"><B>setSegmentSettings(SegmentSettings)</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
 <DD>Sets the settings for the segment this note is a part of.
+<DT><A HREF="../com/myronmarston/music/settings/SelfSimilaritySettings.html#setSelfSimilarityIterations(int)"><B>setSelfSimilarityIterations(int)</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/SelfSimilaritySettings.html" title="class in com.myronmarston.music.settings">SelfSimilaritySettings</A>
+<DD>Sets the number of self-similarity iterations.
 <DT><A HREF="../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setSelfSimilaritySettingsOnAllVoiceSections(java.lang.Boolean, java.lang.Boolean, java.lang.Boolean)"><B>setSelfSimilaritySettingsOnAllVoiceSections(Boolean, Boolean, Boolean)</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSection</A>
 <DD>Updates the self-similarity settings of all voice sections.
