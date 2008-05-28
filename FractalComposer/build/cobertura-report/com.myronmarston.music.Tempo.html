@@ -73,7 +73,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment"> * @author Myron</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;28</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment"> */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;29</td>  <td class="nbHitsCovered">&nbsp;17</td>  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> Tempo {        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;29</td>  <td class="nbHitsCovered">&nbsp;7</td>  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> Tempo {        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;30</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="comment">/**</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;31</td>  <td class="nbHits">&nbsp;</td>
@@ -96,7 +96,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     * The minimum tempo allowed, in beats per minute.</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;40</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span>    </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;41</td>  <td class="nbHitsCovered">&nbsp;17</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> MIN_TEMPO_BPM = (<span class="keyword">int</span>) Math.ceil((<span class="keyword">double</span>) MICROSECONDS_PER_MINUTE / (<span class="keyword">double</span>) MAX_MICROSECONDS_PER_QTR_NOTE);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;41</td>  <td class="nbHitsCovered">&nbsp;7</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> MIN_TEMPO_BPM = (<span class="keyword">int</span>) Math.ceil((<span class="keyword">double</span>) MICROSECONDS_PER_MINUTE / (<span class="keyword">double</span>) MAX_MICROSECONDS_PER_QTR_NOTE);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;42</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;43</td>  <td class="nbHits">&nbsp;</td>
@@ -137,11 +137,11 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span>    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;61</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> checkTempoValidity(<span class="keyword">int</span> tempo) <span class="keyword">throws</span> IllegalArgumentException {             </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;62</td>  <td class="nbHitsCovered"><a title="Line 62: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;196</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 62: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">        <span class="keyword">if</span> (tempo &lt; MIN_TEMPO_BPM || tempo &gt; MAX_TEMPO_BPM) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;63</td>  <td class="nbHitsCovered">&nbsp;6</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"The tempo must be between "</span> + MIN_TEMPO_BPM + <span class="string">" and "</span> + MAX_TEMPO_BPM + <span class="string">"."</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;62</td>  <td class="nbHitsCovered"><a title="Line 62: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;96</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 62: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">        <span class="keyword">if</span> (tempo &lt; MIN_TEMPO_BPM || tempo &gt; MAX_TEMPO_BPM) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;63</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"The tempo must be between "</span> + MIN_TEMPO_BPM + <span class="string">" and "</span> + MAX_TEMPO_BPM + <span class="string">"."</span>);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;64</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;65</td>  <td class="nbHitsCovered">&nbsp;190</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;65</td>  <td class="nbHitsCovered">&nbsp;93</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;66</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;67</td>  <td class="nbHits">&nbsp;</td>
@@ -160,21 +160,21 @@
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] convertTempoToMidiByteArray(<span class="keyword">int</span> tempoInBPM) {        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;74</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// convert our tempo to the unit midi expects</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;75</td>  <td class="nbHitsCovered">&nbsp;179</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> microsecondsPerQuarterNote = MICROSECONDS_PER_MINUTE / tempoInBPM;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;76</td>  <td class="nbHitsUncovered"><a title="Line 76: Conditional coverage 50% (3/6) [each condition: 50%, 50%, 50%].">&nbsp;179</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 76: Conditional coverage 50% (3/6) [each condition: 50%, 50%, 50%].">        <span class="keyword">assert</span> microsecondsPerQuarterNote &gt; MIN_MICROSECONDS_PER_QTR_NOTE &amp;&amp; microsecondsPerQuarterNote &lt;= MAX_MICROSECONDS_PER_QTR_NOTE : microsecondsPerQuarterNote;        </a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;75</td>  <td class="nbHitsCovered">&nbsp;88</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> microsecondsPerQuarterNote = MICROSECONDS_PER_MINUTE / tempoInBPM;        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;76</td>  <td class="nbHitsUncovered"><a title="Line 76: Conditional coverage 50% (3/6) [each condition: 50%, 50%, 50%].">&nbsp;88</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 76: Conditional coverage 50% (3/6) [each condition: 50%, 50%, 50%].">        <span class="keyword">assert</span> microsecondsPerQuarterNote &gt; MIN_MICROSECONDS_PER_QTR_NOTE &amp;&amp; microsecondsPerQuarterNote &lt;= MAX_MICROSECONDS_PER_QTR_NOTE : microsecondsPerQuarterNote;        </a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;77</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;78</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// convert our value to a 6-digit hex string, with leading zeroes if necessary</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;79</td>  <td class="nbHitsCovered">&nbsp;179</td>  <td class="src"><pre class="src">&nbsp;        String hexValue = Integer.toHexString(microsecondsPerQuarterNote);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;80</td>  <td class="nbHitsUncovered"><a title="Line 80: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;179</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 80: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> hexValue.length() &lt;= 6;</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;81</td>  <td class="nbHitsCovered"><a title="Line 81: Conditional coverage 100% (2/2).">&nbsp;356</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 81: Conditional coverage 100% (2/2).">        <span class="keyword">while</span> (hexValue.length() &lt; 6) hexValue = <span class="string">"0"</span> + hexValue;</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;79</td>  <td class="nbHitsCovered">&nbsp;88</td>  <td class="src"><pre class="src">&nbsp;        String hexValue = Integer.toHexString(microsecondsPerQuarterNote);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;80</td>  <td class="nbHitsUncovered"><a title="Line 80: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;88</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 80: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> hexValue.length() &lt;= 6;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;81</td>  <td class="nbHitsCovered"><a title="Line 81: Conditional coverage 100% (2/2).">&nbsp;175</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 81: Conditional coverage 100% (2/2).">        <span class="keyword">while</span> (hexValue.length() &lt; 6) hexValue = <span class="string">"0"</span> + hexValue;</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;82</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;83</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// convert it to 3 bytes...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;84</td>  <td class="nbHitsCovered">&nbsp;179</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">byte</span>[] byteArray = <span class="keyword">new</span> <span class="keyword">byte</span>[3];        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;85</td>  <td class="nbHitsCovered"><a title="Line 85: Conditional coverage 100% (2/2).">&nbsp;716</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 85: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; byteArray.length; i++) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;84</td>  <td class="nbHitsCovered">&nbsp;88</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">byte</span>[] byteArray = <span class="keyword">new</span> <span class="keyword">byte</span>[3];        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;85</td>  <td class="nbHitsCovered"><a title="Line 85: Conditional coverage 100% (2/2).">&nbsp;352</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 85: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; byteArray.length; i++) {</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;86</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// I would like to use Byte.parseByte(), but it fails for values outside</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;87</td>  <td class="nbHits">&nbsp;</td>
@@ -185,12 +185,12 @@
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// 128-255, and then we cast it to a byte.  The cast takes care of</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;90</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// wrapping the values around to the negatives if necessary.            </span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;91</td>  <td class="nbHitsCovered">&nbsp;537</td>  <td class="src"><pre class="src">&nbsp;            byteArray[i] = (<span class="keyword">byte</span>) Integer.parseInt(hexValue.substring(i * 2, (i * 2) + 2), 16);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;91</td>  <td class="nbHitsCovered">&nbsp;264</td>  <td class="src"><pre class="src">&nbsp;            byteArray[i] = (<span class="keyword">byte</span>) Integer.parseInt(hexValue.substring(i * 2, (i * 2) + 2), 16);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;92</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;93</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;94</td>  <td class="nbHitsCovered">&nbsp;179</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> byteArray;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;94</td>  <td class="nbHitsCovered">&nbsp;88</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> byteArray;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;95</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;96</td>  <td class="nbHits">&nbsp;</td>
@@ -209,34 +209,34 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;103</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">static</span> MidiEvent getMidiTempoEvent(<span class="keyword">int</span> tempoInBPM) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;104</td>  <td class="nbHitsCovered">&nbsp;181</td>  <td class="src"><pre class="src">&nbsp;        checkTempoValidity(tempoInBPM); <span class="comment">// make sure out tempo is valid</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;105</td>  <td class="nbHitsCovered">&nbsp;179</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">byte</span>[] tMessageData = convertTempoToMidiByteArray(tempoInBPM);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;104</td>  <td class="nbHitsCovered">&nbsp;89</td>  <td class="src"><pre class="src">&nbsp;        checkTempoValidity(tempoInBPM); <span class="comment">// make sure out tempo is valid</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;105</td>  <td class="nbHitsCovered">&nbsp;88</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">byte</span>[] tMessageData = convertTempoToMidiByteArray(tempoInBPM);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;106</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;107</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// See http://www.sonicspot.com/guide/midifiles.html for a description of the contents of this message.</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;108</td>  <td class="nbHitsCovered">&nbsp;179</td>  <td class="src"><pre class="src">&nbsp;        MetaMessage tMessage = <span class="keyword">new</span> MetaMessage();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;108</td>  <td class="nbHitsCovered">&nbsp;88</td>  <td class="src"><pre class="src">&nbsp;        MetaMessage tMessage = <span class="keyword">new</span> MetaMessage();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;109</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                   </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;110</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">try</span> {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;111</td>  <td class="nbHitsCovered">&nbsp;179</td>  <td class="src"><pre class="src">&nbsp;            tMessage.setMessage(TEMPO_META_MESSAGE_TYPE, tMessageData, tMessageData.length); <span class="comment">// the size of the data array</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;111</td>  <td class="nbHitsCovered">&nbsp;88</td>  <td class="src"><pre class="src">&nbsp;            tMessage.setMessage(TEMPO_META_MESSAGE_TYPE, tMessageData, tMessageData.length); <span class="comment">// the size of the data array</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;112</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        } <span class="keyword">catch</span> (InvalidMidiDataException ex) {</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;113</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// wrap it in an undeclared exception rather than declaring it on our method since</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;114</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// our code should prevent an InvalidMidiDataException from ever occuring...</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;115</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            <span class="keyword">throw</span> <span class="keyword">new</span> UndeclaredThrowableException(ex, <span class="string">"An unexpected exception occurred while greating the midi tempo event.  This indicates a programming error."</span>);</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;116</td>  <td class="nbHitsCovered">&nbsp;179</td>  <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;116</td>  <td class="nbHitsCovered">&nbsp;88</td>  <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;117</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;118</td>  <td class="nbHitsCovered">&nbsp;179</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">new</span> MidiEvent(tMessage, 0);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;118</td>  <td class="nbHitsCovered">&nbsp;88</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">new</span> MidiEvent(tMessage, 0);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;119</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;120</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 5/28/08 10:48 AM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 5/28/08 11:21 AM.</div>
 </body>
 </html>

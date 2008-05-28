@@ -193,7 +193,7 @@ public class VoiceSection implements Subscriber {
     }
 
     /**
-     * Gets the voice settings for this voice voice.  If the 
+     * Gets the voice settings for this voice section.  If the 
      * useDefaultVoiceSettings flag is set, a read-only copy of the voice's
      * settings will be returned.  Otherwise, a local, editable copy will be
      * returned.

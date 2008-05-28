@@ -109,7 +109,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;46</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">double</span> getScaleFactor() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;47</td>  <td class="nbHitsCovered">&nbsp;4272</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> scaleFactor;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;47</td>  <td class="nbHitsCovered">&nbsp;1672</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> scaleFactor;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;48</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;49</td>  <td class="nbHits">&nbsp;</td>
@@ -126,27 +126,27 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     *        reduce the volume; positive values will increase the volume.</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;55</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;56</td>  <td class="nbHitsCovered">&nbsp;349</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> VolumeTransformer(<span class="keyword">double</span> scaleFactor) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;57</td>  <td class="nbHitsCovered"><a title="Line 57: Conditional coverage 100% (2/2).">&nbsp;349</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 57: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (Math.abs(scaleFactor) &gt; 1) <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"The scale factor must be between -1 and 1."</span>);</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;58</td>  <td class="nbHitsCovered">&nbsp;346</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.scaleFactor = scaleFactor;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;59</td>  <td class="nbHitsCovered">&nbsp;346</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;56</td>  <td class="nbHitsCovered">&nbsp;137</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> VolumeTransformer(<span class="keyword">double</span> scaleFactor) {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;57</td>  <td class="nbHitsCovered"><a title="Line 57: Conditional coverage 100% (2/2).">&nbsp;137</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 57: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (Math.abs(scaleFactor) &gt; 1) <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"The scale factor must be between -1 and 1."</span>);</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;58</td>  <td class="nbHitsCovered">&nbsp;136</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.scaleFactor = scaleFactor;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;59</td>  <td class="nbHitsCovered">&nbsp;136</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;60</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;61</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> NoteList transform(NoteList input) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;62</td>  <td class="nbHitsCovered">&nbsp;346</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> remainingVolumeRange = 0;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;63</td>  <td class="nbHitsCovered">&nbsp;346</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> volumeAdjustment = 0;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;62</td>  <td class="nbHitsCovered">&nbsp;136</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> remainingVolumeRange = 0;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;63</td>  <td class="nbHitsCovered">&nbsp;136</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> volumeAdjustment = 0;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;64</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        Note newNote;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;65</td>  <td class="nbHitsCovered">&nbsp;346</td>  <td class="src"><pre class="src">&nbsp;        NoteList output = <span class="keyword">new</span> NoteList(input.size());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;65</td>  <td class="nbHitsCovered">&nbsp;136</td>  <td class="src"><pre class="src">&nbsp;        NoteList output = <span class="keyword">new</span> NoteList(input.size());</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;66</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;67</td>  <td class="nbHitsCovered"><a title="Line 67: Conditional coverage 100% (2/2).">&nbsp;346</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 67: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (Note inputNote : input) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;68</td>  <td class="nbHitsCovered">&nbsp;2226</td>  <td class="src"><pre class="src">&nbsp;            newNote = <span class="keyword">new</span> Note(inputNote);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;67</td>  <td class="nbHitsCovered"><a title="Line 67: Conditional coverage 100% (2/2).">&nbsp;136</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 67: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (Note inputNote : input) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;68</td>  <td class="nbHitsCovered">&nbsp;866</td>  <td class="src"><pre class="src">&nbsp;            newNote = <span class="keyword">new</span> Note(inputNote);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;69</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;70</td>  <td class="nbHitsCovered"><a title="Line 70: Conditional coverage 100% (2/2).">&nbsp;2226</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 70: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (!newNote.isRest()) { <span class="comment">// don't change the volume of rests...                    </span></a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;71</td>  <td class="nbHitsCovered"><a title="Line 71: Conditional coverage 100% (2/2).">&nbsp;2136</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 71: Conditional coverage 100% (2/2).">                remainingVolumeRange = </a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;70</td>  <td class="nbHitsCovered"><a title="Line 70: Conditional coverage 100% (2/2).">&nbsp;866</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 70: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (!newNote.isRest()) { <span class="comment">// don't change the volume of rests...                    </span></a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;71</td>  <td class="nbHitsCovered"><a title="Line 71: Conditional coverage 100% (2/2).">&nbsp;836</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 71: Conditional coverage 100% (2/2).">                remainingVolumeRange = </a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;72</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    (<span class="keyword">this</span>.getScaleFactor() &lt; 0) ?</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;73</td>  <td class="nbHits">&nbsp;</td>
@@ -155,26 +155,26 @@
   <td class="src"><pre class="src">&nbsp;                    MidiNote.MAX_VELOCITY - newNote.getVolume();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;75</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;76</td>  <td class="nbHitsCovered">&nbsp;2136</td>  <td class="src"><pre class="src">&nbsp;                volumeAdjustment = (<span class="keyword">int</span>) Math.round(remainingVolumeRange * <span class="keyword">this</span>.getScaleFactor());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;76</td>  <td class="nbHitsCovered">&nbsp;836</td>  <td class="src"><pre class="src">&nbsp;                volumeAdjustment = (<span class="keyword">int</span>) Math.round(remainingVolumeRange * <span class="keyword">this</span>.getScaleFactor());</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;77</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;78</td>  <td class="nbHitsCovered">&nbsp;2136</td>  <td class="src"><pre class="src">&nbsp;                newNote.setVolume(newNote.getVolume() + volumeAdjustment);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;78</td>  <td class="nbHitsCovered">&nbsp;836</td>  <td class="src"><pre class="src">&nbsp;                newNote.setVolume(newNote.getVolume() + volumeAdjustment);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;79</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;80</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;81</td>  <td class="nbHitsCovered">&nbsp;2226</td>  <td class="src"><pre class="src">&nbsp;            output.add(newNote);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;81</td>  <td class="nbHitsCovered">&nbsp;866</td>  <td class="src"><pre class="src">&nbsp;            output.add(newNote);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;82</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;83</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;84</td>  <td class="nbHitsCovered">&nbsp;346</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> output;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;84</td>  <td class="nbHitsCovered">&nbsp;136</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> output;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;85</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;86</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 5/28/08 10:48 AM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 5/28/08 11:21 AM.</div>
 </body>
 </html>
