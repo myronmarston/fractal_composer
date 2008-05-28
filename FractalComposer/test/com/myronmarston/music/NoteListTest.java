@@ -114,9 +114,20 @@ public class NoteListTest {
     }
     
     public static void assertNoteListsEqual(NoteList expected, NoteList actual) {        
+        assertNoteListsEqual(expected, actual, null);
+    }
+    
+    public static void assertNoteListsEqual(NoteList expected, NoteList actual, Scale scaleForNormalization) {        
         assertEquals(expected.size(), actual.size());
         for (int i = 0; i < actual.size(); i++) {
-            assertEquals(expected.get(i), actual.get(i));
+            Note expectedNote = expected.get(i);
+            Note actualNote = actual.get(i);
+            
+            if (scaleForNormalization != null) {
+                expectedNote = expectedNote.getNormalizedNote(scaleForNormalization);
+                actualNote = actualNote.getNormalizedNote(scaleForNormalization);
+            }
+            assertEquals(expectedNote, actualNote);
         }                                
     }
 }

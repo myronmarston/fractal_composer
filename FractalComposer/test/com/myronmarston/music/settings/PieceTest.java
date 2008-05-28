@@ -42,7 +42,7 @@ public class PieceTest {
         fp.setGermString("G4,1/4 A4,1/8 B4,1/8 G4,1/4");
         fp.createDefaultVoices();
         Section s = fp.createSection();
-        s.setSelfSimilaritySettingsOnAllVoiceSections(true, true, true);
+        s.setSelfSimilaritySettingsOnAllVoiceSections(true, true, true, 1);
         
         fp.getVoices().get(0).setInstrumentName("Violin");
         fp.getVoices().get(1).setInstrumentName("Viola");
@@ -182,7 +182,8 @@ public class PieceTest {
         fp.setGenerateLayeredIntro(false);
         fp.setGenerateLayeredOutro(false);
         
-        fp.createVoice();
+        Voice v = fp.createVoice();
+        v.getSettings().setSelfSimilaritySettings(new SelfSimilaritySettings(true, false, true, 1));
         fp.createDefaultSections();
         
         Sequence seq = fp.generatePiece();
@@ -244,8 +245,7 @@ public class PieceTest {
         MidiEvent noteOffEvent = t.get((2 * noteIndex) + 2);
         
         byte noteOnEventByte1 = (byte) (-112 + channelNum);
-        byte noteOffEventByte1 = (byte) (-128 + channelNum);
-        //pitchNum -= 60;
+        byte noteOffEventByte1 = (byte) (-128 + channelNum);        
         
         System.out.println(String.format("assertTrackMidiNoteEqual index: %d", noteIndex));
         

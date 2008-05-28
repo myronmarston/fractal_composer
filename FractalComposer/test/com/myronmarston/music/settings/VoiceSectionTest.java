@@ -33,10 +33,98 @@ import static org.junit.Assert.*;
 public class VoiceSectionTest {
     
     @Test
+    public void getSectionSettings() {
+        FractalPiece fp = new FractalPiece();
+        fp.createVoice();
+        Section s = fp.createSection();
+        VoiceSection vs = s.getVoiceSections().get(0);
+        
+        
+        assertEquals(true, vs.getUseDefaultSectionSettings());
+        assertEquals(s.getSettings(), vs.getSectionSettings()); 
+        assertEquals(true, vs.getSectionSettings().isReadOnly());
+        
+        // we shouldn't be able to change the voice section's section settings directly...
+        try {
+            vs.getSectionSettings().setApplyInversion(true);
+            fail();
+        } catch (UnsupportedOperationException ex) {}
+        
+        // changes to the section's settings should be reflected in the voice section's section settings...
+        assertEquals(false, s.getSettings().getApplyInversion());
+        s.getSettings().setApplyInversion(true);
+        assertEquals(true, s.getSettings().getApplyInversion());
+        assertEquals(true, vs.getSectionSettings().getApplyInversion());
+        assertEquals(s.getSettings(), vs.getSectionSettings()); 
+        
+        vs.setUseDefaultSectionSettings(false);
+        assertEquals(false, vs.getSectionSettings().isReadOnly());
+        
+        // the section settings should have all the values of the section's settings
+        assertTrue(s.getSettings().equals(vs.getSectionSettings()));
+        
+        s.getSettings().setApplyRetrograde(true);
+        assertFalse(s.getSettings().equals(vs.getSectionSettings()));
+        
+        vs.setUseDefaultSectionSettings(true);
+        assertEquals(true, vs.getSectionSettings().isReadOnly());
+        
+        vs.setUseDefaultSectionSettings(false);
+        assertEquals(false, vs.getSectionSettings().isReadOnly());
+        
+        // the section settings should have all the values of the section's settings
+        assertTrue(s.getSettings().equals(vs.getSectionSettings()));                
+    }
+    
+    @Test
+    public void getVoiceSettings() {
+        FractalPiece fp = new FractalPiece();
+        Voice v = fp.createVoice();
+        fp.createSection();
+        VoiceSection vs = v.getVoiceSections().get(0);
+        
+        assertEquals(true, vs.getUseDefaultVoiceSettings());
+        assertEquals(v.getSettings(), vs.getVoiceSettings()); 
+        assertEquals(true, vs.getVoiceSettings().isReadOnly());        
+        
+        // we shouldn't be able to change the voice section's Voice settings directly...
+        try {
+            vs.getVoiceSettings().setOctaveAdjustment(2);
+            fail();
+        } catch (UnsupportedOperationException ex) {}
+        
+        // changes to the Voice's settings should be reflected in the voice section's Voice settings...
+        assertEquals(0, v.getSettings().getOctaveAdjustment());
+        v.getSettings().setOctaveAdjustment(2);
+        assertEquals(2, v.getSettings().getOctaveAdjustment());
+        assertEquals(2, vs.getVoiceSettings().getOctaveAdjustment());
+        assertEquals(v.getSettings(), vs.getVoiceSettings()); 
+        
+        
+        vs.setUseDefaultVoiceSettings(false);
+        assertEquals(false, vs.getVoiceSettings().isReadOnly());
+        
+        // the Voice settings should have all the values of the Voice's settings
+        assertTrue(v.getSettings().equals(vs.getVoiceSettings()));
+        
+        v.getSettings().setSpeedScaleFactor(new Fraction(7, 4));
+        assertFalse(v.getSettings().equals(vs.getVoiceSettings()));
+        
+        vs.setUseDefaultVoiceSettings(true);
+        assertEquals(true, vs.getVoiceSettings().isReadOnly());
+        
+        vs.setUseDefaultVoiceSettings(false);
+        assertEquals(false, vs.getVoiceSettings().isReadOnly());
+        
+        // the Voice settings should have all the values of the Voice's settings
+        assertTrue(v.getSettings().equals(vs.getVoiceSettings()));                
+    }
+    
+    @Test
     public void voiceSectionGetVoiceSectionResult() {
         // this method is meant to test two things:
         // 1. that the voice section results are correct
-        // 2. that are caching of the results are cleared when settings change
+        // 2. that our caching of the results are cleared when settings change
         FractalPiece fp = new FractalPiece();
         fp.getGerm().add(new Note(0, 4, 0, new Fraction(1, 1), 96));
         fp.getGerm().add(new Note(1, 4, 0, new Fraction(1, 2), 64));
@@ -44,8 +132,8 @@ public class VoiceSectionTest {
         fp.getGerm().add(new Note(0, 4, 0, new Fraction(1, 1), 96));
         
         Voice v1 = fp.createVoice();
-        v1.setOctaveAdjustment(2);
-        v1.setSpeedScaleFactor(new Fraction(4, 1));
+        v1.getSettings().setOctaveAdjustment(2);
+        v1.getSettings().setSpeedScaleFactor(new Fraction(4, 1));
         
         Section s1 = fp.createSection();
         VoiceSection vs1 = v1.getVoiceSections().get(0);
@@ -58,9 +146,9 @@ public class VoiceSectionTest {
         NoteListTest.assertNoteListsEqual(expected, vs1.getVoiceSectionResult());
                 
         // apply self-similarity...        
-        vs1.getSelfSimilaritySettings().setApplyToPitch(true);
-        vs1.getSelfSimilaritySettings().setApplyToRhythm(true);
-        vs1.getSelfSimilaritySettings().setApplyToVolume(true);
+        v1.getSettings().getSelfSimilaritySettings().setApplyToPitch(true);
+        v1.getSettings().getSelfSimilaritySettings().setApplyToRhythm(true);
+        v1.getSettings().getSelfSimilaritySettings().setApplyToVolume(true);
         expected.clear();
         expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
         expected.add(new Note(1, 6, 0, new Fraction(1, 8), 64));
@@ -85,11 +173,9 @@ public class VoiceSectionTest {
         
         // set retrograde on the section, the voice section should use this default
         expected.clear();        
-        s1.setApplyRetrograde(true);        
-        assertEquals(false, s1.getApplyInversion());
-        assertEquals(true, s1.getApplyRetrograde());
-        assertEquals(null, vs1.getApplyInversion());
-        assertEquals(null, vs1.getApplyRetrograde());
+        s1.getSettings().setApplyRetrograde(true);        
+        assertEquals(false, s1.getSettings().getApplyInversion());
+        assertEquals(true, s1.getSettings().getApplyRetrograde());       
         expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
         expected.add(new Note(2, 6, 0, new Fraction(1, 8), 64));
         expected.add(new Note(1, 6, 0, new Fraction(1, 8), 64));
@@ -113,11 +199,12 @@ public class VoiceSectionTest {
         
         // overide the inversion
         expected.clear();
-        vs1.setApplyInversion(true);
-        assertEquals(false, s1.getApplyInversion());
-        assertEquals(true, s1.getApplyRetrograde());
-        assertEquals(true, vs1.getApplyInversion());
-        assertEquals(null, vs1.getApplyRetrograde());
+        vs1.setUseDefaultSectionSettings(false);
+        vs1.getSectionSettings().setApplyInversion(true);
+        assertEquals(false, s1.getSettings().getApplyInversion());
+        assertEquals(true, s1.getSettings().getApplyRetrograde());
+        assertEquals(true, vs1.getSectionSettings().getApplyInversion());
+        assertEquals(true, vs1.getSectionSettings().getApplyRetrograde());
         expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
         expected.add(new Note(-2, 6, 0, new Fraction(1, 8), 64));
         expected.add(new Note(-1, 6, 0, new Fraction(1, 8), 64));
@@ -138,59 +225,7 @@ public class VoiceSectionTest {
         expected.add(new Note(-1, 6, 0, new Fraction(1, 8), 64));
         expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
         NoteListTest.assertNoteListsEqual(expected, vs1.getVoiceSectionResult());
-        
-        // test overriding the retrograde and setting the inversion back to null
-        expected.clear();
-        vs1.setApplyRetrograde(false);
-        vs1.setApplyInversion(null);
-        assertEquals(false, s1.getApplyInversion());
-        assertEquals(true, s1.getApplyRetrograde());
-        assertEquals(null, vs1.getApplyInversion());
-        assertEquals(false, vs1.getApplyRetrograde());
-        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
-        expected.add(new Note(1, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(2, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
-        
-        expected.add(new Note(1, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(2, 6, 0, new Fraction(1, 16), 43));
-        expected.add(new Note(3, 6, 0, new Fraction(1, 16), 43));
-        expected.add(new Note(1, 6, 0, new Fraction(1, 8), 64));
-        
-        expected.add(new Note(2, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(3, 6, 0, new Fraction(1, 16), 43));
-        expected.add(new Note(4, 6, 0, new Fraction(1, 16), 43));
-        expected.add(new Note(2, 6, 0, new Fraction(1, 8), 64));
-        
-        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
-        expected.add(new Note(1, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(2, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
-        NoteListTest.assertNoteListsEqual(expected, vs1.getVoiceSectionResult());        
-        
-        expected.clear();
-        vs1.getSelfSimilaritySettings().setApplyToVolume(false);        
-        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
-        expected.add(new Note(1, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(2, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
-        
-        expected.add(new Note(1, 6, 0, new Fraction(1, 8), 96));
-        expected.add(new Note(2, 6, 0, new Fraction(1, 16), 64));
-        expected.add(new Note(3, 6, 0, new Fraction(1, 16), 64));
-        expected.add(new Note(1, 6, 0, new Fraction(1, 8), 96));
-        
-        expected.add(new Note(2, 6, 0, new Fraction(1, 8), 96));
-        expected.add(new Note(3, 6, 0, new Fraction(1, 16), 64));
-        expected.add(new Note(4, 6, 0, new Fraction(1, 16), 64));
-        expected.add(new Note(2, 6, 0, new Fraction(1, 8), 96));
-        
-        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
-        expected.add(new Note(1, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(2, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
-        NoteListTest.assertNoteListsEqual(expected, vs1.getVoiceSectionResult());
-        
+                       
         vs1.setRest(true);
         expected.clear();
         expected.add(new Note(0, 0, 0, new Fraction(3, 4), 0));
@@ -288,14 +323,19 @@ public class VoiceSectionTest {
         Section s = fp.createSection();
         VoiceSection vs = v.getVoiceSections().get(0);
         
-        vs.getSelfSimilaritySettings().setApplyToPitch(true);
-        vs.getSelfSimilaritySettings().setSelfSimilarityIterations(1);
+        v.getSettings().getSelfSimilaritySettings().setApplyToPitch(true);
+        v.getSettings().getSelfSimilaritySettings().setSelfSimilarityIterations(1);
         
-        NoteList expectedResult = NoteList.parseNoteListString("C4 D4 C4  D4 E4 D4  C4 D4 C4", fp.getScale());
+        NoteList expectedResult = NoteList.parseNoteListString("C4 D4 C4  D4 E4 D4  C4 D4 C4", fp.getScale());        
         NoteListTest.assertNoteListsEqual(expectedResult, vs.getVoiceSectionResult());
         
-        vs.getSelfSimilaritySettings().setSelfSimilarityIterations(3);
+        v.getSettings().getSelfSimilaritySettings().setSelfSimilarityIterations(3);
         expectedResult = NoteList.parseNoteListString("C4 D4 C4  D4 E4 D4  C4 D4 C4   D4 E4 D4  E4 F4 E4  D4 E4 D4   C4 D4 C4  D4 E4 D4  C4 D4 C4   D4 E4 D4  E4 F4 E4  D4 E4 D4   E4 F4 E4  F4 G4 F4  E4 F4 E4   D4 E4 D4  E4 F4 E4  D4 E4 D4   C4 D4 C4  D4 E4 D4  C4 D4 C4   D4 E4 D4  E4 F4 E4  D4 E4 D4   C4 D4 C4  D4 E4 D4  C4 D4 C4", fp.getScale());
+        NoteListTest.assertNoteListsEqual(expectedResult, vs.getVoiceSectionResult());
+        
+        vs.setUseDefaultVoiceSettings(false);
+        vs.getVoiceSettings().getSelfSimilaritySettings().setSelfSimilarityIterations(1);
+        expectedResult = NoteList.parseNoteListString("C4 D4 C4  D4 E4 D4  C4 D4 C4", fp.getScale());
         NoteListTest.assertNoteListsEqual(expectedResult, vs.getVoiceSectionResult());
     }
 }

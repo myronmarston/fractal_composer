@@ -92,12 +92,15 @@ com.myronmarston.music.settings</FONT>
 Class SelfSimilaritySettings</H2>
 <PRE>
 java.lang.Object
-  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by ">java.util.Observable
+  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/myronmarston/util/AbstractPublisher.html" title="class in com.myronmarston.util">com.myronmarston.util.AbstractPublisher</A>
       <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.settings.SelfSimilaritySettings</B>
 </PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../../com/myronmarston/util/Publisher.html" title="interface in com.myronmarston.util">Publisher</A>, java.lang.Cloneable</DD>
+</DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>SelfSimilaritySettings</B><DT>extends java.util.Observable</DL>
+<DT><PRE>public class <B>SelfSimilaritySettings</B><DT>extends <A HREF="../../../../com/myronmarston/util/AbstractPublisher.html" title="class in com.myronmarston.util">AbstractPublisher</A></DL>
 </PRE>
 
 <P>
@@ -178,6 +181,14 @@ Specifies settings for what to apply self-similarity to.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/settings/SelfSimilaritySettings.html" title="class in com.myronmarston.music.settings">SelfSimilaritySettings</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SelfSimilaritySettings.html#getReadOnlyCopy()">getReadOnlyCopy</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a read-only copy of this object.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SelfSimilaritySettings.html#getSelfSimilarityIterations()">getSelfSimilarityIterations</A></B>()</CODE>
 
@@ -236,13 +247,13 @@ Specifies settings for what to apply self-similarity to.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the number of self-similarity iterations.</TD>
 </TR>
 </TABLE>
-&nbsp;<A NAME="methods_inherited_from_class_java.util.Observable"><!-- --></A>
+&nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.util.AbstractPublisher"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
 <TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TH ALIGN="left"><B>Methods inherited from class java.util.Observable</B></TH>
+<TH ALIGN="left"><B>Methods inherited from class com.myronmarston.util.<A HREF="../../../../com/myronmarston/util/AbstractPublisher.html" title="class in com.myronmarston.util">AbstractPublisher</A></B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>addObserver, clearChanged, countObservers, deleteObserver, deleteObservers, hasChanged, notifyObservers, notifyObservers, setChanged</CODE></TD>
+<TD><CODE><A HREF="../../../../com/myronmarston/util/AbstractPublisher.html#addSubscriber(com.myronmarston.util.Subscriber)">addSubscriber</A>, <A HREF="../../../../com/myronmarston/util/AbstractPublisher.html#clone()">clone</A>, <A HREF="../../../../com/myronmarston/util/AbstractPublisher.html#getSubscribers()">getSubscribers</A>, <A HREF="../../../../com/myronmarston/util/AbstractPublisher.html#notifySubscribers(java.lang.Object)">notifySubscribers</A>, <A HREF="../../../../com/myronmarston/util/AbstractPublisher.html#removeAllSubscribers()">removeAllSubscribers</A>, <A HREF="../../../../com/myronmarston/util/AbstractPublisher.html#removeSubscriber(com.myronmarston.util.Subscriber)">removeSubscriber</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -251,7 +262,7 @@ Specifies settings for what to apply self-similarity to.
 <TH ALIGN="left"><B>Methods inherited from class java.lang.Object</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>clone, finalize, getClass, notify, notifyAll, toString, wait, wait, wait</CODE></TD>
+<TD><CODE>finalize, getClass, notify, notifyAll, toString, wait, wait, wait</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -447,6 +458,20 @@ public boolean <B>selfSimilarityShouldBeAppliedToSomething</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>true if self-similarity should be applied to something</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getReadOnlyCopy()"><!-- --></A><H3>
+getReadOnlyCopy</H3>
+<PRE>
+public <A HREF="../../../../com/myronmarston/music/settings/SelfSimilaritySettings.html" title="class in com.myronmarston.music.settings">SelfSimilaritySettings</A> <B>getReadOnlyCopy</B>()</PRE>
+<DL>
+<DD>Gets a read-only copy of this object.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>a read-only copy of the object</DL>
 </DD>
 </DL>
 <HR>

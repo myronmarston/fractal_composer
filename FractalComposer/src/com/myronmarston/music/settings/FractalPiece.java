@@ -270,7 +270,7 @@ public class FractalPiece {
         // sort the list using a fast-to-slow comparator...
         Collections.sort(sortableVoiceList, new Comparator<Voice>() {
                 public int compare(Voice v1, Voice v2) {        
-                    return v2.getSpeedScaleFactor().compareTo(v1.getSpeedScaleFactor());
+                    return v2.getSettings().getSpeedScaleFactor().compareTo(v1.getSettings().getSpeedScaleFactor());
                 }
              }
         );
@@ -353,25 +353,28 @@ public class FractalPiece {
     }
     
     /**
-     * Creates the default voice settings.  If there are already voices, this
-     * method will not do anything.
+     * Creates the default voice settings.  This generates three voices.  The
+     * highest and fastest voice will have self-similarity applied to the
+     * pitch and volume.
      */
-    public void createDefaultVoices() {
-        // if there are already voices, then leave them alone...
-        if (this.getVoices().size() > 0) return;
+    public void createDefaultVoices() {        
+        this.voices.clear();
         
-        int defaultVoiceCount = 3;
-        Fraction voiceSpeedFactor = new Fraction(2, 1);
-        int voiceOctaveAdjustment = 1;
+        createDefaultVoice(1, new Fraction(2, 1), true, false, true, 1);
+        createDefaultVoice(0, new Fraction(1, 1), false, false, false, 1);
+        createDefaultVoice(-1, new Fraction(1, 2), false, false, false, 1);          
+    }
         
-        while(this.getVoices().size() < defaultVoiceCount) {
-            Voice v = this.createVoice();
-            v.setSpeedScaleFactor(voiceSpeedFactor);
-            v.setOctaveAdjustment(voiceOctaveAdjustment);
-         
-            voiceSpeedFactor = voiceSpeedFactor.dividedBy(2L);
-            voiceOctaveAdjustment -= 1;
-        }
+    private void createDefaultVoice(int octaveAdjustment, Fraction speedScaleFactor, boolean applySelfSimilarityToPitch, boolean applySelfSimilarityToRhythm, boolean applySelfSimilarityToVolume, int selfSimilarityIterations) {
+        Voice v = this.createVoice();
+        v.getSettings().setOctaveAdjustment(octaveAdjustment);            
+        v.getSettings().setSpeedScaleFactor(speedScaleFactor);        
+                
+        SelfSimilaritySettings sss = v.getSettings().getSelfSimilaritySettings();
+        sss.setApplyToPitch(applySelfSimilarityToPitch);                
+        sss.setApplyToRhythm(applySelfSimilarityToRhythm);
+        sss.setApplyToVolume(applySelfSimilarityToVolume);  
+        sss.setSelfSimilarityIterations(selfSimilarityIterations);
     }
     
     /**
@@ -399,24 +402,8 @@ public class FractalPiece {
         Section section = this.createSection();
         
         // apply inversion and retrograde based on the passed settings...
-        section.setApplyInversion(applyInversion);
-        section.setApplyRetrograde(applyRetrograde);
-        
-        // we can't set the options on the voice sections if there are no voices...
-        if (this.getVoices().size() == 0) return;
-        
-        // get the fastest voice...
-        Voice fastestVoice = this.getVoices_FastToSlow().get(0);
-        
-        // apply self-similarity to the fastest voice...        
-        for (Voice v : this.getVoices()) {
-            boolean isFastestVoice = (v == fastestVoice);
-            VoiceSection vs = this.getVoiceSections().get(new VoiceSectionHashMapKey(v, section));
-            
-            vs.getSelfSimilaritySettings().setApplyToPitch(isFastestVoice);
-            vs.getSelfSimilaritySettings().setApplyToRhythm(isFastestVoice);
-            vs.getSelfSimilaritySettings().setApplyToVolume(isFastestVoice);
-        }
+        section.getSettings().setApplyInversion(applyInversion);
+        section.getSettings().setApplyRetrograde(applyRetrograde);    
     }
     
     /**
@@ -464,9 +451,9 @@ public class FractalPiece {
             this.tempIntroOutroSections.add(s);    
             
             // set defaults...
-            s.setApplyInversion(false);
-            s.setApplyRetrograde(false);
-            s.setSelfSimilaritySettingsOnAllVoiceSections(false, false, false);
+            s.getSettings().setApplyInversion(false);
+            s.getSettings().setApplyRetrograde(false);
+            s.setSelfSimilaritySettingsOnAllVoiceSections(false, false, false, 1);
             s.setRestOnAllVoiceSections(false);
             
             // set some of the voice sections to rests, to create our layered effect...

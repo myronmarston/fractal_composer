@@ -42,28 +42,29 @@ public class FractalPieceTest {
         FractalPiece fp = new FractalPiece();
         fp.createDefaultVoices();
         
-        assertEquals(fp.getVoices().get(0).getOctaveAdjustment(), 1);
-        assertEquals(fp.getVoices().get(1).getOctaveAdjustment(), 0);
-        assertEquals(fp.getVoices().get(2).getOctaveAdjustment(), -1);
+        assertEquals(fp.getVoices().get(0).getSettings().getOctaveAdjustment(), 1);
+        assertEquals(fp.getVoices().get(1).getSettings().getOctaveAdjustment(), 0);
+        assertEquals(fp.getVoices().get(2).getSettings().getOctaveAdjustment(), -1);
         
-        assertEquals(fp.getVoices().get(0).getSpeedScaleFactor(), new Fraction(2, 1));
-        assertEquals(fp.getVoices().get(1).getSpeedScaleFactor(), new Fraction(1, 1));
-        assertEquals(fp.getVoices().get(2).getSpeedScaleFactor(), new Fraction(1, 2));
+        assertEquals(fp.getVoices().get(0).getSettings().getSpeedScaleFactor(), new Fraction(2, 1));
+        assertEquals(fp.getVoices().get(1).getSettings().getSpeedScaleFactor(), new Fraction(1, 1));
+        assertEquals(fp.getVoices().get(2).getSettings().getSpeedScaleFactor(), new Fraction(1, 2));
         
-        Voice v = fp.createVoice(1);
+        assertEquals(fp.getVoices().get(0).getSettings().getSelfSimilaritySettings().getApplyToPitch(), true);
+        assertEquals(fp.getVoices().get(1).getSettings().getSelfSimilaritySettings().getApplyToPitch(), false);
+        assertEquals(fp.getVoices().get(2).getSettings().getSelfSimilaritySettings().getApplyToPitch(), false);
         
-        // calling the method again should leave the existing voices alone.
-        fp.createDefaultVoices();
+        assertEquals(fp.getVoices().get(0).getSettings().getSelfSimilaritySettings().getApplyToRhythm(), false);
+        assertEquals(fp.getVoices().get(1).getSettings().getSelfSimilaritySettings().getApplyToRhythm(), false);
+        assertEquals(fp.getVoices().get(2).getSettings().getSelfSimilaritySettings().getApplyToRhythm(), false);
         
-        assertEquals(fp.getVoices().get(0).getOctaveAdjustment(), 1);
-        assertEquals(fp.getVoices().get(1).getOctaveAdjustment(), 0);
-        assertEquals(fp.getVoices().get(2).getOctaveAdjustment(), 0);
-        assertEquals(fp.getVoices().get(3).getOctaveAdjustment(), -1);
+        assertEquals(fp.getVoices().get(0).getSettings().getSelfSimilaritySettings().getApplyToVolume(), true);
+        assertEquals(fp.getVoices().get(1).getSettings().getSelfSimilaritySettings().getApplyToVolume(), false);
+        assertEquals(fp.getVoices().get(2).getSettings().getSelfSimilaritySettings().getApplyToVolume(), false);
         
-        assertEquals(fp.getVoices().get(0).getSpeedScaleFactor(), new Fraction(2, 1));
-        assertEquals(fp.getVoices().get(1).getSpeedScaleFactor(), new Fraction(1, 1));
-        assertEquals(fp.getVoices().get(2).getSpeedScaleFactor(), new Fraction(1, 1));
-        assertEquals(fp.getVoices().get(3).getSpeedScaleFactor(), new Fraction(1, 2));        
+        assertEquals(fp.getVoices().get(0).getSettings().getSelfSimilaritySettings().getSelfSimilarityIterations(), 1);
+        assertEquals(fp.getVoices().get(1).getSettings().getSelfSimilaritySettings().getSelfSimilarityIterations(), 1);
+        assertEquals(fp.getVoices().get(2).getSettings().getSelfSimilaritySettings().getSelfSimilarityIterations(), 1);
     }
     
     @Test
@@ -74,51 +75,21 @@ public class FractalPieceTest {
         Voice v2 = fp.createVoice();
         Voice v3 = fp.createVoice();
         
-        v1.setSpeedScaleFactor(new Fraction(2, 1));
-        v3.setSpeedScaleFactor(new Fraction(1, 2));
+        v1.getSettings().setSpeedScaleFactor(new Fraction(2, 1));
+        v3.getSettings().setSpeedScaleFactor(new Fraction(1, 2));
         
         fp.createDefaultSections();
         assertEquals(4, fp.getSections().size());
-                
-        assertVoiceSectionEqual(v1.getVoiceSections().get(0), null, false, null, false, false, true, true, true);
-        assertVoiceSectionEqual(v2.getVoiceSections().get(0), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v3.getVoiceSections().get(0), null, false, null, false, false, false, false, false);
         
-        assertVoiceSectionEqual(v1.getVoiceSections().get(1), null, true, null, false, false, true, true, true);
-        assertVoiceSectionEqual(v2.getVoiceSections().get(1), null, true, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v3.getVoiceSections().get(1), null, true, null, false, false, false, false, false);
+        assertEquals(fp.getSections().get(0).getSettings().getApplyInversion(), false);
+        assertEquals(fp.getSections().get(1).getSettings().getApplyInversion(), true);
+        assertEquals(fp.getSections().get(2).getSettings().getApplyInversion(), true);
+        assertEquals(fp.getSections().get(3).getSettings().getApplyInversion(), false);
         
-        assertVoiceSectionEqual(v1.getVoiceSections().get(2), null, true, null, true, false, true, true, true);
-        assertVoiceSectionEqual(v2.getVoiceSections().get(2), null, true, null, true, false, false, false, false);
-        assertVoiceSectionEqual(v3.getVoiceSections().get(2), null, true, null, true, false, false, false, false);
-        
-        assertVoiceSectionEqual(v1.getVoiceSections().get(3), null, false, null, true, false, true, true, true);
-        assertVoiceSectionEqual(v2.getVoiceSections().get(3), null, false, null, true, false, false, false, false);
-        assertVoiceSectionEqual(v3.getVoiceSections().get(3), null, false, null, true, false, false, false, false);               
-        
-        // add another section, so that we can test that it gets stomped when we call createDefaultSections()
-        fp.createSection();
-        
-        // modify the speed scale factor so that a different voice gets the self-similarity...
-        v2.setSpeedScaleFactor(new Fraction(4, 1));
-        fp.createDefaultSections();
-        assertEquals(4, fp.getSections().size());
-                
-        assertVoiceSectionEqual(v1.getVoiceSections().get(0), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v2.getVoiceSections().get(0), null, false, null, false, false, true, true, true);
-        assertVoiceSectionEqual(v3.getVoiceSections().get(0), null, false, null, false, false, false, false, false);
-        
-        assertVoiceSectionEqual(v1.getVoiceSections().get(1), null, true, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v2.getVoiceSections().get(1), null, true, null, false, false, true, true, true);
-        assertVoiceSectionEqual(v3.getVoiceSections().get(1), null, true, null, false, false, false, false, false);
-        
-        assertVoiceSectionEqual(v1.getVoiceSections().get(2), null, true, null, true, false, false, false, false);
-        assertVoiceSectionEqual(v2.getVoiceSections().get(2), null, true, null, true, false, true, true, true);
-        assertVoiceSectionEqual(v3.getVoiceSections().get(2), null, true, null, true, false, false, false, false);
-        
-        assertVoiceSectionEqual(v1.getVoiceSections().get(3), null, false, null, true, false, false, false, false);
-        assertVoiceSectionEqual(v2.getVoiceSections().get(3), null, false, null, true, false, true, true, true);
-        assertVoiceSectionEqual(v3.getVoiceSections().get(3), null, false, null, true, false, false, false, false);        
+        assertEquals(fp.getSections().get(0).getSettings().getApplyRetrograde(), false);
+        assertEquals(fp.getSections().get(1).getSettings().getApplyRetrograde(), false);
+        assertEquals(fp.getSections().get(2).getSettings().getApplyRetrograde(), true);
+        assertEquals(fp.getSections().get(3).getSettings().getApplyRetrograde(), true);       
     }
             
     @Test
@@ -129,74 +100,72 @@ public class FractalPieceTest {
         Voice v2 = fp.createVoice();
         Voice v3 = fp.createVoice();
         
-        v1.setSpeedScaleFactor(new Fraction(2, 1));
-        v3.setSpeedScaleFactor(new Fraction(1, 2));
+        v1.getSettings().setSpeedScaleFactor(new Fraction(2, 1));
+        v3.getSettings().setSpeedScaleFactor(new Fraction(1, 2));
         
         fp.createIntroSections();
-        assertVoiceSectionEqual(v1.getVoiceSections().get(0), null, false, null, false, true, false, false, false);
-        assertVoiceSectionEqual(v1.getVoiceSections().get(1), null, false, null, false, true, false, false, false);
-        assertVoiceSectionEqual(v1.getVoiceSections().get(2), null, false, null, false, false, false, false, false);
+        assertVoiceSectionEqual(v1.getVoiceSections().get(0), false, false, true, false, false, false);
+        assertVoiceSectionEqual(v1.getVoiceSections().get(1), false, false, true, false, false, false);
+        assertVoiceSectionEqual(v1.getVoiceSections().get(2), false, false, false, false, false, false);
         
-        assertVoiceSectionEqual(v2.getVoiceSections().get(0), null, false, null, false, true, false, false, false);
-        assertVoiceSectionEqual(v2.getVoiceSections().get(1), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v2.getVoiceSections().get(2), null, false, null, false, false, false, false, false);
+        assertVoiceSectionEqual(v2.getVoiceSections().get(0), false, false, true, false, false, false);
+        assertVoiceSectionEqual(v2.getVoiceSections().get(1), false, false, false, false, false, false);
+        assertVoiceSectionEqual(v2.getVoiceSections().get(2), false, false, false, false, false, false);
         
-        assertVoiceSectionEqual(v3.getVoiceSections().get(0), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v3.getVoiceSections().get(1), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v3.getVoiceSections().get(2), null, false, null, false, false, false, false, false);
+        assertVoiceSectionEqual(v3.getVoiceSections().get(0), false, false, false, false, false, false);
+        assertVoiceSectionEqual(v3.getVoiceSections().get(1), false, false, false, false, false, false);
+        assertVoiceSectionEqual(v3.getVoiceSections().get(2), false, false, false, false, false, false);
         fp.clearTempIntroOutroSections();
         assertEquals(0, fp.getSections().size());
         
         // change the speed factors; this should change which voices gets rests when...
-        v2.setSpeedScaleFactor(new Fraction(1, 4));
+        v2.getSettings().setSpeedScaleFactor(new Fraction(1, 4));
         
         fp.createIntroSections();
-        assertVoiceSectionEqual(v1.getVoiceSections().get(0), null, false, null, false, true, false, false, false);
-        assertVoiceSectionEqual(v1.getVoiceSections().get(1), null, false, null, false, true, false, false, false);
-        assertVoiceSectionEqual(v1.getVoiceSections().get(2), null, false, null, false, false, false, false, false);
+        assertVoiceSectionEqual(v1.getVoiceSections().get(0), false, false, true, false, false, false);
+        assertVoiceSectionEqual(v1.getVoiceSections().get(1), false, false, true, false, false, false);
+        assertVoiceSectionEqual(v1.getVoiceSections().get(2), false, false, false, false, false, false);
         
-        assertVoiceSectionEqual(v2.getVoiceSections().get(0), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v2.getVoiceSections().get(1), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v2.getVoiceSections().get(2), null, false, null, false, false, false, false, false);
+        assertVoiceSectionEqual(v2.getVoiceSections().get(0), false, false, false, false, false, false);
+        assertVoiceSectionEqual(v2.getVoiceSections().get(1), false, false, false, false, false, false);
+        assertVoiceSectionEqual(v2.getVoiceSections().get(2), false, false, false, false, false, false);
         
-        assertVoiceSectionEqual(v3.getVoiceSections().get(0), null, false, null, false, true, false, false, false);
-        assertVoiceSectionEqual(v3.getVoiceSections().get(1), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v3.getVoiceSections().get(2), null, false, null, false, false, false, false, false);
+        assertVoiceSectionEqual(v3.getVoiceSections().get(0), false, false, true, false, false, false);
+        assertVoiceSectionEqual(v3.getVoiceSections().get(1), false, false, false, false, false, false);
+        assertVoiceSectionEqual(v3.getVoiceSections().get(2), false, false, false, false, false, false);
         fp.clearTempIntroOutroSections();
         
         fp.createOutroSections();
-        assertVoiceSectionEqual(v1.getVoiceSections().get(0), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v1.getVoiceSections().get(1), null, false, null, false, true, false, false, false);
-        assertVoiceSectionEqual(v1.getVoiceSections().get(2), null, false, null, false, true, false, false, false);
+        assertVoiceSectionEqual(v1.getVoiceSections().get(0), false, false, false, false, false, false);
+        assertVoiceSectionEqual(v1.getVoiceSections().get(1), false, false, true, false, false, false);
+        assertVoiceSectionEqual(v1.getVoiceSections().get(2), false, false, true, false, false, false);
         
-        assertVoiceSectionEqual(v2.getVoiceSections().get(0), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v2.getVoiceSections().get(1), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v2.getVoiceSections().get(2), null, false, null, false, false, false, false, false);
+        assertVoiceSectionEqual(v2.getVoiceSections().get(0), false, false, false, false, false, false);
+        assertVoiceSectionEqual(v2.getVoiceSections().get(1), false, false, false, false, false, false);
+        assertVoiceSectionEqual(v2.getVoiceSections().get(2), false, false, false, false, false, false);
         
-        assertVoiceSectionEqual(v3.getVoiceSections().get(0), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v3.getVoiceSections().get(1), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v3.getVoiceSections().get(2), null, false, null, false, true, false, false, false);
+        assertVoiceSectionEqual(v3.getVoiceSections().get(0), false, false, false, false, false, false);
+        assertVoiceSectionEqual(v3.getVoiceSections().get(1), false, false, false, false, false, false);
+        assertVoiceSectionEqual(v3.getVoiceSections().get(2), false, false, true, false, false, false);
         fp.clearTempIntroOutroSections();    
         
         // change the speed scale factor of a voice; this should change where the rests go...
-        v1.setSpeedScaleFactor(new Fraction(1, 8));
+        v1.getSettings().setSpeedScaleFactor(new Fraction(1, 8));
         
         fp.createOutroSections();
-        assertVoiceSectionEqual(v1.getVoiceSections().get(0), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v1.getVoiceSections().get(1), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v1.getVoiceSections().get(2), null, false, null, false, false, false, false, false);
+        assertVoiceSectionEqual(v1.getVoiceSections().get(0), false, false, false, false, false, false);
+        assertVoiceSectionEqual(v1.getVoiceSections().get(1), false, false, false, false, false, false);
+        assertVoiceSectionEqual(v1.getVoiceSections().get(2), false, false, false, false, false, false);
         
-        assertVoiceSectionEqual(v2.getVoiceSections().get(0), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v2.getVoiceSections().get(1), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v2.getVoiceSections().get(2), null, false, null, false, true, false, false, false);
+        assertVoiceSectionEqual(v2.getVoiceSections().get(0), false, false, false, false, false, false);
+        assertVoiceSectionEqual(v2.getVoiceSections().get(1), false, false, false, false, false, false);
+        assertVoiceSectionEqual(v2.getVoiceSections().get(2), false, false, true, false, false, false);
         
-        assertVoiceSectionEqual(v3.getVoiceSections().get(0), null, false, null, false, false, false, false, false);
-        assertVoiceSectionEqual(v3.getVoiceSections().get(1), null, false, null, false, true, false, false, false);
-        assertVoiceSectionEqual(v3.getVoiceSections().get(2), null, false, null, false, true, false, false, false);
+        assertVoiceSectionEqual(v3.getVoiceSections().get(0), false, false, false, false, false, false);
+        assertVoiceSectionEqual(v3.getVoiceSections().get(1), false, false, true, false, false, false);
+        assertVoiceSectionEqual(v3.getVoiceSections().get(2), false, false, true, false, false, false);
         fp.clearTempIntroOutroSections();  
-    }
-    
-    
+    }        
     
     @Test
     public void setGerm() throws NoteStringParseException, InvalidKeySignatureException {
@@ -371,14 +340,12 @@ public class FractalPieceTest {
         return temp.getCanonicalPath();         
     }
         
-    static protected void assertVoiceSectionEqual(VoiceSection vs, Boolean applyInversion, boolean guarenteedApplyInversion, Boolean applyRetrograde, boolean guarenteedApplyRetrograde, boolean isRest, boolean applySelfSimilarityToPitch, boolean applySelfSimilarityToRhythm, boolean applySelfSimilarityToVolume) {
-        assertEquals(applyInversion, vs.getApplyInversion());
-        assertEquals(applyRetrograde, vs.getApplyRetrograde());
-        assertEquals(guarenteedApplyInversion, vs.getGuarenteedApplyInversion());
-        assertEquals(guarenteedApplyRetrograde, vs.getGuarenteedApplyRetrograde());
+    static protected void assertVoiceSectionEqual(VoiceSection vs, boolean applyInversion, boolean applyRetrograde, boolean isRest, boolean applySelfSimilarityToPitch, boolean applySelfSimilarityToRhythm, boolean applySelfSimilarityToVolume) {
+        assertEquals(applyInversion, vs.getSectionSettings().getApplyInversion());
+        assertEquals(applyRetrograde, vs.getSectionSettings().getApplyRetrograde());
         assertEquals(isRest, vs.getRest());
-        assertEquals(applySelfSimilarityToPitch, vs.getSelfSimilaritySettings().getApplyToPitch());
-        assertEquals(applySelfSimilarityToRhythm, vs.getSelfSimilaritySettings().getApplyToRhythm());
-        assertEquals(applySelfSimilarityToVolume, vs.getSelfSimilaritySettings().getApplyToVolume());
+        assertEquals(applySelfSimilarityToPitch, vs.getVoiceSettings().getSelfSimilaritySettings().getApplyToPitch());
+        assertEquals(applySelfSimilarityToRhythm, vs.getVoiceSettings().getSelfSimilaritySettings().getApplyToRhythm());
+        assertEquals(applySelfSimilarityToVolume, vs.getVoiceSettings().getSelfSimilaritySettings().getApplyToVolume());
     }
 }

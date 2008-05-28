@@ -55,7 +55,7 @@ function windowTitle()
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;<A HREF="../../../../com/myronmarston/music/settings/NonPositiveTimeSignatureException.html" title="class in com.myronmarston.music.settings"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html" title="class in com.myronmarston.music.settings"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/myronmarston/music/settings/Section.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="Section.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
@@ -95,6 +95,9 @@ java.lang.Object
   <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="class in com.myronmarston.music.settings">com.myronmarston.music.settings.AbstractVoiceOrSection</A>&lt;<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>,<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>&gt;
       <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.settings.Section</B>
 </PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../../com/myronmarston/util/Subscriber.html" title="interface in com.myronmarston.util">Subscriber</A></DD>
+</DL>
 <HR>
 <DL>
 <DT><PRE>public class <B>Section</B><DT>extends <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSection</A>&lt;<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>,<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>&gt;</DL>
@@ -136,22 +139,6 @@ The entire fractal piece is composed of a series of sections.  Each section
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Method Summary</B></FONT></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Section.html#getApplyInversion()">getApplyInversion</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets whether or not to apply inversion to this section.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Section.html#getApplyRetrograde()">getApplyRetrograde</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets whether or not to apply retrograde to this section.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -198,12 +185,29 @@ The entire fractal piece is composed of a series of sections.  Each section
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html" title="class in com.myronmarston.music.settings">SectionSettings</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Section.html#getSettings()">getSettings</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the settings for this section.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>protected &nbsp;<A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Section.html#instantiateVoiceSection(com.myronmarston.music.settings.Voice)">instantiateVoiceSection</A></B>(<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>&nbsp;vOrS)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instantiates and returns a VoiceSection, using this and the passed voice 
  or section.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Section.html#publisherNotification(com.myronmarston.util.Publisher, java.lang.Object)">publisherNotification</A></B>(<A HREF="../../../../com/myronmarston/util/Publisher.html" title="interface in com.myronmarston.util">Publisher</A>&nbsp;p,
+                      java.lang.Object&nbsp;args)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -216,18 +220,13 @@ The entire fractal piece is composed of a series of sections.  Each section
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Section.html#setApplyInversion(boolean)">setApplyInversion</A></B>(boolean&nbsp;applyInversion)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Section.html#setSelfSimilaritySettingsOnAllVoiceSections(boolean, boolean, boolean, int)">setSelfSimilaritySettingsOnAllVoiceSections</A></B>(boolean&nbsp;applyToPitch,
+                                            boolean&nbsp;applyToRhythm,
+                                            boolean&nbsp;applyToVolume,
+                                            int&nbsp;selfSimilarityIterations)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets whether or not to apply inversion to this section.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Section.html#setApplyRetrograde(boolean)">setApplyRetrograde</A></B>(boolean&nbsp;applyRetrograde)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets whether or not to apply retrograde to this section.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updates the self-similarity settings of all voice sections.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.settings.AbstractVoiceOrSection"><!-- --></A>
@@ -236,7 +235,7 @@ The entire fractal piece is composed of a series of sections.  Each section
 <TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.settings.<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSection</A></B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getClassName()">getClassName</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getFractalPiece()">getFractalPiece</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getUniqueIndex()">getUniqueIndex</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getVoiceSections()">getVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setApplySelfSimilarityToPitchOnAllVoiceSections(boolean)">setApplySelfSimilarityToPitchOnAllVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setApplySelfSimilarityToRhythmOnAllVoiceSections(boolean)">setApplySelfSimilarityToRhythmOnAllVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setApplySelfSimilarityToVolumeOnAllVoiceSections(boolean)">setApplySelfSimilarityToVolumeOnAllVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setRestOnAllVoiceSections(boolean)">setRestOnAllVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setSelfSimilaritySettingsOnAllVoiceSections(java.lang.Boolean, java.lang.Boolean, java.lang.Boolean)">setSelfSimilaritySettingsOnAllVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setUniqueIndex(int)">setUniqueIndex</A></CODE></TD>
+<TD><CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#clearVoiceSectionResults()">clearVoiceSectionResults</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getClassName()">getClassName</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getFractalPiece()">getFractalPiece</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getUniqueIndex()">getUniqueIndex</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getVoiceSections()">getVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setRestOnAllVoiceSections(boolean)">setRestOnAllVoiceSections</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setUniqueIndex(int)">setUniqueIndex</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -283,64 +282,33 @@ protected <B>Section</B>(<A HREF="../../../../com/myronmarston/music/settings/Fr
 </TR>
 </TABLE>
 
-<A NAME="getApplyInversion()"><!-- --></A><H3>
-getApplyInversion</H3>
+<A NAME="getSettings()"><!-- --></A><H3>
+getSettings</H3>
 <PRE>
-public boolean <B>getApplyInversion</B>()</PRE>
+public <A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html" title="class in com.myronmarston.music.settings">SectionSettings</A> <B>getSettings</B>()</PRE>
 <DL>
-<DD>Gets whether or not to apply inversion to this section.  This is the default 
- for the voice sections in this section; they can individually override
- this setting.
+<DD>Gets the settings for this section.
 <P>
 <DD><DL>
 
-<DT><B>Returns:</B><DD>whether or not to apply inversion to this section</DL>
+<DT><B>Returns:</B><DD>the settings for this section</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="setApplyInversion(boolean)"><!-- --></A><H3>
-setApplyInversion</H3>
+<A NAME="setSelfSimilaritySettingsOnAllVoiceSections(boolean, boolean, boolean, int)"><!-- --></A><H3>
+setSelfSimilaritySettingsOnAllVoiceSections</H3>
 <PRE>
-public void <B>setApplyInversion</B>(boolean&nbsp;applyInversion)</PRE>
+public void <B>setSelfSimilaritySettingsOnAllVoiceSections</B>(boolean&nbsp;applyToPitch,
+                                                        boolean&nbsp;applyToRhythm,
+                                                        boolean&nbsp;applyToVolume,
+                                                        int&nbsp;selfSimilarityIterations)</PRE>
 <DL>
-<DD>Sets whether or not to apply inversion to this section.  This is the default 
- for the voice sections in this section; they can individually override
- this setting.
+<DD>Updates the self-similarity settings of all voice sections.  This also
+ updates the useDefaultVoiceSettings property to false.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>applyInversion</CODE> - whether or not to apply inversion to this section</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getApplyRetrograde()"><!-- --></A><H3>
-getApplyRetrograde</H3>
-<PRE>
-public boolean <B>getApplyRetrograde</B>()</PRE>
-<DL>
-<DD>Gets whether or not to apply retrograde to this section.  This is the default 
- for the voice sections in this section; they can individually override
- this setting.
-<P>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>whether or not to apply retrograde to this section</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="setApplyRetrograde(boolean)"><!-- --></A><H3>
-setApplyRetrograde</H3>
-<PRE>
-public void <B>setApplyRetrograde</B>(boolean&nbsp;applyRetrograde)</PRE>
-<DL>
-<DD>Sets whether or not to apply retrograde to this section.  This is the default 
- for the voice sections in this section; they can individually override
- this setting.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>applyRetrograde</CODE> - whether or not to apply retrograde to this section</DL>
+<DT><B>Parameters:</B><DD><CODE>applyToPitch</CODE> - new value<DD><CODE>applyToRhythm</CODE> - new value<DD><CODE>applyToVolume</CODE> - new value</DL>
 </DD>
 </DL>
 <HR>
@@ -374,6 +342,18 @@ public void <B>saveSectionResultToMidiFile</B>(java.lang.String&nbsp;fileName)
 <DT><B>Throws:</B>
 <DD><CODE>java.io.IOException</CODE> - if there is a problem writing to the file
 <DD><CODE><A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></CODE> - if the germ is empty</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="publisherNotification(com.myronmarston.util.Publisher, java.lang.Object)"><!-- --></A><H3>
+publisherNotification</H3>
+<PRE>
+public void <B>publisherNotification</B>(<A HREF="../../../../com/myronmarston/util/Publisher.html" title="interface in com.myronmarston.util">Publisher</A>&nbsp;p,
+                                  java.lang.Object&nbsp;args)</PRE>
+<DL>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>
@@ -512,7 +492,7 @@ protected <A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;<A HREF="../../../../com/myronmarston/music/settings/NonPositiveTimeSignatureException.html" title="class in com.myronmarston.music.settings"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html" title="class in com.myronmarston.music.settings"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/myronmarston/music/settings/Section.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="Section.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;

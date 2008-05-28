@@ -209,6 +209,15 @@ Represents a note, relative to a particular scale.  This note will need to be
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#getNormalizedNote(com.myronmarston.music.scales.Scale)">getNormalizedNote</A></B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sometimes after transformations are applied to a note, the scale step is
+ less than 0 or greater than the number of scale steps in an octave.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#getOctave()">getOctave</A></B>()</CODE>
 
@@ -662,6 +671,24 @@ public static <A HREF="../../../com/myronmarston/music/Note.html" title="class i
 <DT><B>Throws:</B>
 <DD><CODE><A HREF="../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music">NoteStringParseException</A></CODE> - thrown when the
          noteString cannot be parsed</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNormalizedNote(com.myronmarston.music.scales.Scale)"><!-- --></A><H3>
+getNormalizedNote</H3>
+<PRE>
+public <A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A> <B>getNormalizedNote</B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</PRE>
+<DL>
+<DD>Sometimes after transformations are applied to a note, the scale step is
+ less than 0 or greater than the number of scale steps in an octave.  
+ This method "normalizes" the note--adjusts its scaleStep and octave so 
+ that it is the same note, but the scaleStep is between 0 and the number 
+ of scale steps.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>scale</CODE> - the scale to use as a reference for normalization
+<DT><B>Returns:</B><DD>the normalized note</DL>
 </DD>
 </DL>
 <HR>

@@ -95,11 +95,11 @@ java.lang.Object
   <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.settings.VoiceSection</B>
 </PRE>
 <DL>
-<DT><B>All Implemented Interfaces:</B> <DD>java.util.Observer</DD>
+<DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../../com/myronmarston/util/Subscriber.html" title="interface in com.myronmarston.util">Subscriber</A></DD>
 </DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>VoiceSection</B><DT>extends java.lang.Object<DT>implements java.util.Observer</DL>
+<DT><PRE>public class <B>VoiceSection</B><DT>extends java.lang.Object<DT>implements <A HREF="../../../../com/myronmarston/util/Subscriber.html" title="interface in com.myronmarston.util">Subscriber</A></DL>
 </PRE>
 
 <P>
@@ -158,42 +158,6 @@ Represents the smallest unit of the fractal piece for which the user can
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.lang.Boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#getApplyInversion()">getApplyInversion</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets whether or not to invert the germ for this section before applying
- self-similarity.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.lang.Boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#getApplyRetrograde()">getApplyRetrograde</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets whether or not to use the retrograde of the germ before applying
- self-similarity.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#getGuarenteedApplyInversion()">getGuarenteedApplyInversion</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets whether or not to invert the germ for this section before applying
- self-similarity.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#getGuarenteedApplyRetrograde()">getGuarenteedApplyRetrograde</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets whether or not to apply retrograde to the germ for this section 
- before applying self-similarity.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#getLengthenedVoiceSectionResult(com.myronmarston.util.Fraction)">getLengthenedVoiceSectionResult</A></B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;length)</CODE>
 
@@ -228,11 +192,29 @@ Represents the smallest unit of the fractal piece for which the user can
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/settings/SelfSimilaritySettings.html" title="class in com.myronmarston.music.settings">SelfSimilaritySettings</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#getSelfSimilaritySettings()">getSelfSimilaritySettings</A></B>()</CODE>
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html" title="class in com.myronmarston.music.settings">SectionSettings</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#getSectionSettings()">getSectionSettings</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the self-similarity settings to be used by this voice section.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the section settings for this voice section.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#getUseDefaultSectionSettings()">getUseDefaultSectionSettings</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a value indicating whether or not this voice section will use the
+ default section settings.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#getUseDefaultVoiceSettings()">getUseDefaultVoiceSettings</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a value indicating whether or not this voice section will use the
+ default voice settings.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -252,30 +234,29 @@ Represents the smallest unit of the fractal piece for which the user can
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/settings/VoiceSettings.html" title="class in com.myronmarston.music.settings">VoiceSettings</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#getVoiceSettings()">getVoiceSettings</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the voice settings for this voice voice.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#publisherNotification(com.myronmarston.util.Publisher, java.lang.Object)">publisherNotification</A></B>(<A HREF="../../../../com/myronmarston/util/Publisher.html" title="interface in com.myronmarston.util">Publisher</A>&nbsp;p,
+                      java.lang.Object&nbsp;args)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#saveVoiceSectionResultToMidiFile(java.lang.String)">saveVoiceSectionResultToMidiFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructs a midi sequence using this voice section and saves it to a
  file.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#setApplyInversion(java.lang.Boolean)">setApplyInversion</A></B>(java.lang.Boolean&nbsp;val)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets whether or not to invert the germ for this section before applying
- self-similarity.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#setApplyRetrograde(java.lang.Boolean)">setApplyRetrograde</A></B>(java.lang.Boolean&nbsp;val)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets whether or not to use the retrograde of the germ before applying
- self-similarity.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -288,11 +269,20 @@ Represents the smallest unit of the fractal piece for which the user can
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#update(java.util.Observable, java.lang.Object)">update</A></B>(java.util.Observable&nbsp;o,
-       java.lang.Object&nbsp;arg)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#setUseDefaultSectionSettings(boolean)">setUseDefaultSectionSettings</A></B>(boolean&nbsp;useDefaultSectionSettings)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set a value indicating whether or not this voice section will use the
+ default section settings.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#setUseDefaultVoiceSettings(boolean)">setUseDefaultVoiceSettings</A></B>(boolean&nbsp;useDefaultVoiceSettings)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set a value indicating whether or not this voice section will use the
+ default voice settings.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -391,114 +381,116 @@ public <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSecti
 </DL>
 <HR>
 
-<A NAME="getApplyInversion()"><!-- --></A><H3>
-getApplyInversion</H3>
+<A NAME="getUseDefaultSectionSettings()"><!-- --></A><H3>
+getUseDefaultSectionSettings</H3>
 <PRE>
-public java.lang.Boolean <B>getApplyInversion</B>()</PRE>
+public boolean <B>getUseDefaultSectionSettings</B>()</PRE>
 <DL>
-<DD>Gets whether or not to invert the germ for this section before applying
- self-similarity.  Can be null, which indicates that the section default
- should be used instead.
+<DD>Gets a value indicating whether or not this voice section will use the
+ default section settings.
 <P>
 <DD><DL>
 </DL>
 </DD>
 <DD><DL>
 
-<DT><B>Returns:</B><DD>whether or not to invert the germ</DL>
+<DT><B>Returns:</B><DD>true if the default settings will be used, false if the
+         settings will be overriden</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="getGuarenteedApplyInversion()"><!-- --></A><H3>
-getGuarenteedApplyInversion</H3>
+<A NAME="setUseDefaultSectionSettings(boolean)"><!-- --></A><H3>
+setUseDefaultSectionSettings</H3>
 <PRE>
-protected boolean <B>getGuarenteedApplyInversion</B>()</PRE>
+public void <B>setUseDefaultSectionSettings</B>(boolean&nbsp;useDefaultSectionSettings)</PRE>
 <DL>
-<DD>Gets whether or not to invert the germ for this section before applying
- self-similarity.  If the setting is null on this voice section, gets the
- section default.
+<DD>Set a value indicating whether or not this voice section will use the
+ default section settings.
 <P>
 <DD><DL>
 </DL>
 </DD>
 <DD><DL>
-
-<DT><B>Returns:</B><DD>whether or not to invert the germ</DL>
+<DT><B>Parameters:</B><DD><CODE>useDefaultSectionSettings</CODE> - true if the default settings will be 
+        used, false if the settings will be overriden</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="setApplyInversion(java.lang.Boolean)"><!-- --></A><H3>
-setApplyInversion</H3>
+<A NAME="getUseDefaultVoiceSettings()"><!-- --></A><H3>
+getUseDefaultVoiceSettings</H3>
 <PRE>
-public void <B>setApplyInversion</B>(java.lang.Boolean&nbsp;val)</PRE>
+public boolean <B>getUseDefaultVoiceSettings</B>()</PRE>
 <DL>
-<DD>Sets whether or not to invert the germ for this section before applying
- self-similarity.  Can be null, which indicates that the section default
- should be used instead.
+<DD>Gets a value indicating whether or not this voice section will use the
+ default voice settings.
 <P>
 <DD><DL>
 </DL>
 </DD>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>val</CODE> - whether or not to invert the germ</DL>
+
+<DT><B>Returns:</B><DD>true if the default settings will be used, false if the
+         settings will be overriden</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="getApplyRetrograde()"><!-- --></A><H3>
-getApplyRetrograde</H3>
+<A NAME="setUseDefaultVoiceSettings(boolean)"><!-- --></A><H3>
+setUseDefaultVoiceSettings</H3>
 <PRE>
-public java.lang.Boolean <B>getApplyRetrograde</B>()</PRE>
+public void <B>setUseDefaultVoiceSettings</B>(boolean&nbsp;useDefaultVoiceSettings)</PRE>
 <DL>
-<DD>Gets whether or not to use the retrograde of the germ before applying
- self-similarity.  Can be null, which indicates that the section default
- should be used instead.
+<DD>Set a value indicating whether or not this voice section will use the
+ default voice settings.
 <P>
 <DD><DL>
 </DL>
 </DD>
 <DD><DL>
-
-<DT><B>Returns:</B><DD>whether or not to use the retrograde of the germ</DL>
+<DT><B>Parameters:</B><DD><CODE>useDefaultVoiceSettings</CODE> - true if the default settings will be 
+        used, false if the settings will be overriden</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="getGuarenteedApplyRetrograde()"><!-- --></A><H3>
-getGuarenteedApplyRetrograde</H3>
+<A NAME="getSectionSettings()"><!-- --></A><H3>
+getSectionSettings</H3>
 <PRE>
-protected boolean <B>getGuarenteedApplyRetrograde</B>()</PRE>
+public <A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html" title="class in com.myronmarston.music.settings">SectionSettings</A> <B>getSectionSettings</B>()</PRE>
 <DL>
-<DD>Gets whether or not to apply retrograde to the germ for this section 
- before applying self-similarity.  If the setting is null on this voice 
- section, gets the section default.
+<DD>Gets the section settings for this voice section.  If the 
+ useDefaultSectionSettings flag is set, a read-only copy of the section's
+ settings will be returned.  Otherwise, a local, editable copy will be
+ returned.
 <P>
 <DD><DL>
 </DL>
 </DD>
 <DD><DL>
 
-<DT><B>Returns:</B><DD>whether or not to apply retrograde to the germ</DL>
+<DT><B>Returns:</B><DD>the section settings for this voice section</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="setApplyRetrograde(java.lang.Boolean)"><!-- --></A><H3>
-setApplyRetrograde</H3>
+<A NAME="getVoiceSettings()"><!-- --></A><H3>
+getVoiceSettings</H3>
 <PRE>
-public void <B>setApplyRetrograde</B>(java.lang.Boolean&nbsp;val)</PRE>
+public <A HREF="../../../../com/myronmarston/music/settings/VoiceSettings.html" title="class in com.myronmarston.music.settings">VoiceSettings</A> <B>getVoiceSettings</B>()</PRE>
 <DL>
-<DD>Sets whether or not to use the retrograde of the germ before applying
- self-similarity.  Can be null, which indicates that the section default
- should be used instead.
+<DD>Gets the voice settings for this voice voice.  If the 
+ useDefaultVoiceSettings flag is set, a read-only copy of the voice's
+ settings will be returned.  Otherwise, a local, editable copy will be
+ returned.
 <P>
 <DD><DL>
 </DL>
 </DD>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>val</CODE> - whether or not to use the retrograde of the germ</DL>
+
+<DT><B>Returns:</B><DD>the voice settings for this voice section</DL>
 </DD>
 </DL>
 <HR>
@@ -534,24 +526,6 @@ public void <B>setRest</B>(boolean&nbsp;val)</PRE>
 </DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>val</CODE> - whether or not to make this VoiceSection one long rest</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getSelfSimilaritySettings()"><!-- --></A><H3>
-getSelfSimilaritySettings</H3>
-<PRE>
-public <A HREF="../../../../com/myronmarston/music/settings/SelfSimilaritySettings.html" title="class in com.myronmarston.music.settings">SelfSimilaritySettings</A> <B>getSelfSimilaritySettings</B>()</PRE>
-<DL>
-<DD>Gets the self-similarity settings to be used by this voice section.
- Guaranteed to never be null.
-<P>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>the self-similarity settings to be used by this voice section</DL>
 </DD>
 </DL>
 <HR>
@@ -648,14 +622,14 @@ protected void <B>clearVoiceSectionResult</B>()</PRE>
 </DL>
 <HR>
 
-<A NAME="update(java.util.Observable, java.lang.Object)"><!-- --></A><H3>
-update</H3>
+<A NAME="publisherNotification(com.myronmarston.util.Publisher, java.lang.Object)"><!-- --></A><H3>
+publisherNotification</H3>
 <PRE>
-public void <B>update</B>(java.util.Observable&nbsp;o,
-                   java.lang.Object&nbsp;arg)</PRE>
+public void <B>publisherNotification</B>(<A HREF="../../../../com/myronmarston/util/Publisher.html" title="interface in com.myronmarston.util">Publisher</A>&nbsp;p,
+                                  java.lang.Object&nbsp;args)</PRE>
 <DL>
 <DD><DL>
-<DT><B>Specified by:</B><DD><CODE>update</CODE> in interface <CODE>java.util.Observer</CODE></DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/util/Subscriber.html#publisherNotification(com.myronmarston.util.Publisher, java.lang.Object)">publisherNotification</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/util/Subscriber.html" title="interface in com.myronmarston.util">Subscriber</A></CODE></DL>
 </DD>
 <DD><DL>
 </DL>

@@ -22,9 +22,8 @@ package com.myronmarston.music.settings;
 import com.myronmarston.music.GermIsEmptyException;
 import com.myronmarston.music.Instrument;
 import com.myronmarston.music.NoteList;
-import com.myronmarston.music.transformers.OctaveTransformer;
-import com.myronmarston.music.transformers.RhythmicDurationTransformer;
 
+import com.myronmarston.util.Publisher;
 import java.io.IOException;
 import org.simpleframework.xml.*;
 
@@ -41,16 +40,14 @@ import java.util.*;
  * @author Myron
  */
 @Root
-public class Voice extends AbstractVoiceOrSection<Voice, Section> {   
-    @Attribute
-    private int octaveAdjustment = 0;
+public class Voice extends AbstractVoiceOrSection<Voice, Section> {       
+    private NoteList modifiedGerm;      
     
     @Attribute
     private String instrumentName = Instrument.getDefault().getName();
     
     @Element
-    private Fraction speedScaleFactor = new Fraction(1, 1);
-    private NoteList modifiedGerm;    
+    private final VoiceSettings settings;    
     
     /**
      * Constructor.
@@ -60,6 +57,8 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
      */
     protected Voice(FractalPiece fractalPiece, int uniqueIndex) {
         super(fractalPiece, uniqueIndex);
+        settings = new VoiceSettings();
+        settings.addSubscriber(this);
     }    
     
     /**
@@ -69,6 +68,15 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
         this(null, 0);
     }
 
+    /**
+     * Gets the settings for this voice.
+     * 
+     * @return the settings for this voice
+     */
+    public VoiceSettings getSettings() {
+        return settings;
+    }        
+    
     /**
      * Gets the name of the instrument used by this voice.
      * 
@@ -90,54 +98,19 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
             throw new IllegalArgumentException(instrumentName + " is not one of the available instruments.");
         }
         
-        this.instrumentName = instrumentName;        
+        this.instrumentName = instrumentName;                
     }        
-        
-    /**
-     * Gets how many octaves to adjust the germ for use by this voice.
-     * 
-     * @return number of octaves to adjust
-     */
-    public int getOctaveAdjustment() {
-        return octaveAdjustment;
-    }
-    
-    /**
-     * Sets how many octaves to adjust the germ for use by this voice.
-     * 
-     * @param val number of octaves to adjust
-     */
-    public void setOctaveAdjustment(int val) {
-        if (this.getOctaveAdjustment() != val) clearModifiedGerm();
-        this.octaveAdjustment = val;
-    }
-
-    /**
-     * Gets the speed scale factor to apply to the germ for use by this voice.
-     * 
-     * @return the speed scale factor
-     */
-    public Fraction getSpeedScaleFactor() {
-        return speedScaleFactor;
-    }
-    
-    /**
-     * Sets the speed scale factor to apply to the germ for use by this voice.
-     * 
-     * @param val the speed scale factor
-     */
-    public void setSpeedScaleFactor(Fraction val) {
-        if (this.speedScaleFactor != val) clearModifiedGerm();
-        this.speedScaleFactor = val;
-    }
-    
+            
     /**
      * Gets the modified germ, based on the current settings.
      * 
      * @return the modified germ
      */
     public NoteList getModifiedGerm() {
-        if (modifiedGerm == null) this.modifiedGerm = this.generateModifiedGerm();
+        if (modifiedGerm == null) this.modifiedGerm = this.getSettings().applySettingsToNoteList(this.getFractalPiece().getGerm());
+        
+        // the germ instrument is a setting on the entire note list, so we just set it here
+        // rather than having to regenerate our modified germ every time it changes
         this.modifiedGerm.setInstrument(Instrument.getInstrument(this.getInstrumentName()));
         return modifiedGerm;
     }
@@ -147,16 +120,16 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
      * 
      * @return a NoteList for the entire voice
      */
-    public NoteList getEntireVoice() {
+    public NoteList getEntireVoice() {        
         NoteList entireVoice = new NoteList();        
         Fraction sectionDuration;
-        
+
         for (VoiceSection vs : this.getVoiceSections()) {
             sectionDuration = vs.getSection().getDuration();
-            
+
             entireVoice.addAll(vs.getLengthenedVoiceSectionResult(sectionDuration));
         }
-        
+
         entireVoice.setInstrument(Instrument.getInstrument(this.getInstrumentName()));
         return entireVoice;
     }   
@@ -184,27 +157,20 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
     public void saveEntireVoiceToMidiFile(String fileName) throws IOException, GermIsEmptyException {
         this.getFractalPiece().saveNoteListsAsMidiFile(Arrays.asList(this.getEntireVoice()), fileName);
     }
-    
+
+    public void publisherNotification(Publisher p, Object args) {
+        assert p == this.getSettings() : p;
+        this.clearVoiceSectionResults();
+        this.clearModifiedGerm();
+    }            
+
     /**
      * Sets the modifiedGerm field to null.  Should be called anytime a field
      * that affects the modified germ changes.
      */
     private void clearModifiedGerm() {
         this.modifiedGerm = null;
-    }
-    
-    /**
-     * Generates the modified germ based on the current settings.
-     * 
-     * @return the modified germ.
-     */
-    private NoteList generateModifiedGerm() {
-        OctaveTransformer octaveT = new OctaveTransformer(this.getOctaveAdjustment());
-        RhythmicDurationTransformer speedT = new RhythmicDurationTransformer(this.getSpeedScaleFactor());
-        
-        NoteList temp = octaveT.transform(this.getFractalPiece().getGerm());
-        return speedT.transform(temp);        
-    }
+    }       
     
     @Override
     protected VoiceOrSectionList<Voice, Section> getListOfMainType() {
@@ -233,4 +199,3 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
         return new VoiceSection(this, vOrS);
     }        
 }
-

@@ -495,10 +495,10 @@ public class Note {
      * that it is the same note, but the scaleStep is between 0 and the number 
      * of scale steps.
      * 
-     * @param note the note to normalize
+     * @param scale the scale to use as a reference for normalization     
      * @return the normalized note
      */
-    private Note getNormalizedNote(Scale scale) {
+    public Note getNormalizedNote(Scale scale) {
         Note tempNote = new Note(this);
         int numScaleStepsInOctave = scale.getScaleStepArray().length; // cache it
         

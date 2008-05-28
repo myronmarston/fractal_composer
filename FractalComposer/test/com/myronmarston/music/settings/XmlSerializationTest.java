@@ -86,7 +86,7 @@ public class XmlSerializationTest {
     @Test
     public void serializeSelfSimilaritySettings() throws Exception {
         SelfSimilaritySettings sss = new SelfSimilaritySettings(true, false, false, 1);
-        testSerialization(sss, "<selfSimilaritySettings id=\"0\" applyToPitch=\"true\" applyToRhythm=\"false\" applyToVolume=\"false\" selfSimilarityIterations=\"1\"/>");        
+        testSerialization(sss, "<selfSimilaritySettings id=\"0\" applyToPitch=\"true\" applyToRhythm=\"false\" applyToVolume=\"false\" selfSimilarityIterations=\"1\" readOnly=\"false\"/>");        
     }    
     
     @Test
@@ -94,9 +94,12 @@ public class XmlSerializationTest {
         Voice v = fpWithDefaultSettings.getVoices().get(0);
         
         String expected = 
-        "<voice id=\"0\" uniqueIndex=\"1\" octaveAdjustment=\"1\" instrumentName=\"Piano\">\n" +
+        "<voice id=\"0\" uniqueIndex=\"1\" instrumentName=\"Piano\">\n" +
         // fractal piece section that gets stripped goes here...
-        "   <speedScaleFactor id=\"55\" numerator_=\"2\" denominator_=\"1\"/>\n" +
+        "   <settings id=\"51\" octaveAdjustment=\"1\" readOnly=\"false\">\n" +
+        "      <speedScaleFactor id=\"52\" numerator_=\"2\" denominator_=\"1\"/>\n" +
+        "      <selfSimilaritySettings id=\"53\" applyToPitch=\"true\" applyToRhythm=\"false\" applyToVolume=\"true\" selfSimilarityIterations=\"1\" readOnly=\"false\"/>\n" +
+        "   </settings>\n" +
         "</voice>";
         
         //printSerializationResults(v);
@@ -106,11 +109,12 @@ public class XmlSerializationTest {
     @Test
     public void serializeSection() throws Exception {
         Section s = fpWithDefaultSettings.getSections().get(0);
-        s.setApplyInversion(true);
-        s.setApplyRetrograde(false);
+        s.getSettings().setApplyInversion(true);
+        s.getSettings().setApplyRetrograde(false);
         
-        String expected = 
-        "<section id=\"0\" uniqueIndex=\"1\" applyInversion=\"true\" applyRetrograde=\"false\">\n" +
+        String expected =   
+        "<section id=\"0\" uniqueIndex=\"1\">\n" +
+        "   <settings id=\"53\" applyInversion=\"true\" applyRetrograde=\"false\" readOnly=\"false\"/>\n" +
         // fractal piece section that gets stripped goes here...
         "</section>";
 
@@ -145,7 +149,10 @@ public class XmlSerializationTest {
         fp.getVoices().remove(2);
         fp.setGenerateLayeredOutro(false);
         fp.getVoices().get(0).setInstrumentName("Violin");
-        fp.getVoices().get(0).getVoiceSections().get(0).getSelfSimilaritySettings().setSelfSimilarityIterations(3);
+        fp.getVoices().get(0).getVoiceSections().get(0).setUseDefaultVoiceSettings(false);        
+        fp.getVoices().get(0).getVoiceSections().get(0).getVoiceSettings().getSelfSimilaritySettings().setSelfSimilarityIterations(3);
+        fp.getSections().get(0).getVoiceSections().get(0).setUseDefaultSectionSettings(false);
+        fp.getSections().get(0).getVoiceSections().get(0).getSectionSettings().setApplyRetrograde(true);
         
         String xml = fp.getXmlRepresentation();  
         System.out.println(xml);
@@ -167,8 +174,7 @@ public class XmlSerializationTest {
             Voice v = fp.getVoices().get(i);
             Voice newV = newFp.getVoices().get(i);
             assertEquals(v.getUniqueIndex(), newV.getUniqueIndex());
-            assertEquals(v.getOctaveAdjustment(), newV.getOctaveAdjustment());
-            assertEquals(v.getSpeedScaleFactor(), newV.getSpeedScaleFactor());
+            assertEquals(v.getSettings(), newV.getSettings());
             assertEquals(v.getInstrumentName(), newV.getInstrumentName());
             NoteListTest.assertNoteListsEqual(v.getModifiedGerm(), newV.getModifiedGerm());
             NoteListTest.assertNoteListsEqual(v.getEntireVoice(), newV.getEntireVoice());
@@ -182,8 +188,7 @@ public class XmlSerializationTest {
             Section s = fp.getSections().get(i);
             Section newS = newFp.getSections().get(i);
             assertEquals(s.getUniqueIndex(), newS.getUniqueIndex());
-            assertEquals(s.getApplyInversion(), newS.getApplyInversion());
-            assertEquals(s.getApplyRetrograde(), newS.getApplyRetrograde());
+            assertEquals(s.getSettings(), newS.getSettings());
             assertEquals(s.getDuration(), newS.getDuration());
             assertEquals(newFp, newFp.getSections().get(i).getFractalPiece());
         }        
@@ -194,9 +199,10 @@ public class XmlSerializationTest {
             for (int s = 0; s < fp.getSections().size(); s++) {
                 VoiceSection vs = fp.getVoiceSections().get(fp.getVoices().get(v).getHashMapKeyForOtherTypeIndex(s));
                 VoiceSection newVs = newFp.getVoiceSections().get(newFp.getVoices().get(v).getHashMapKeyForOtherTypeIndex(s));
-                assertEquals(vs.getSelfSimilaritySettings(), newVs.getSelfSimilaritySettings());
-                assertEquals(vs.getApplyInversion(), newVs.getApplyInversion());
-                assertEquals(vs.getApplyRetrograde(), newVs.getApplyRetrograde());
+                assertEquals(vs.getUseDefaultSectionSettings(), newVs.getUseDefaultSectionSettings());
+                assertEquals(vs.getUseDefaultVoiceSettings(), newVs.getUseDefaultVoiceSettings());
+                assertEquals(vs.getSectionSettings(), newVs.getSectionSettings());
+                assertEquals(vs.getVoiceSettings(), newVs.getVoiceSettings());                
                 assertEquals(vs.getRest(), newVs.getRest());
                 assertEquals(vs.getVoiceSectionResult(), newVs.getVoiceSectionResult());                  
             }

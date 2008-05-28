@@ -39,8 +39,8 @@ public class VoiceTest {
         fp.getGerm().add(new Note(0, 4, 0, new Fraction(1, 1), 96));
         
         Voice v1 = fp.createVoice();
-        v1.setOctaveAdjustment(2);
-        v1.setSpeedScaleFactor(new Fraction(4, 1));
+        v1.getSettings().setOctaveAdjustment(2);
+        v1.getSettings().setSpeedScaleFactor(new Fraction(4, 1));
         
         NoteList expected = new NoteList();
         expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
@@ -49,7 +49,7 @@ public class VoiceTest {
         expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
         NoteListTest.assertNoteListsEqual(expected, v1.getModifiedGerm());
         
-        v1.setSpeedScaleFactor(new Fraction(1, 2));
+        v1.getSettings().setSpeedScaleFactor(new Fraction(1, 2));
         expected.clear();
         expected.add(new Note(0, 6, 0, new Fraction(2, 1), 96));
         expected.add(new Note(1, 6, 0, new Fraction(1, 1), 64));
@@ -57,7 +57,7 @@ public class VoiceTest {
         expected.add(new Note(0, 6, 0, new Fraction(2, 1), 96));
         NoteListTest.assertNoteListsEqual(expected, v1.getModifiedGerm());
         
-        v1.setOctaveAdjustment(-1);
+        v1.getSettings().setOctaveAdjustment(-1);
         expected.clear();
         expected.add(new Note(0, 3, 0, new Fraction(2, 1), 96));
         expected.add(new Note(1, 3, 0, new Fraction(1, 1), 64));
@@ -79,20 +79,32 @@ public class VoiceTest {
         Section s1 = fp.createSection();
         Section s2 = fp.createSection();
         
-        v1.setOctaveAdjustment(1);
-        v1.setSpeedScaleFactor(new Fraction(2, 1));
+        v1.getSettings().setOctaveAdjustment(1);
+        v1.getSettings().setSpeedScaleFactor(new Fraction(2, 1));
         
-        v1.getVoiceSections().get(0).getSelfSimilaritySettings().setApplyToPitch(true);
-        v1.getVoiceSections().get(0).getSelfSimilaritySettings().setApplyToRhythm(true);
-        v1.getVoiceSections().get(1).setApplyInversion(true);
-        v1.getVoiceSections().get(1).getSelfSimilaritySettings().setApplyToPitch(true);
-        v1.getVoiceSections().get(1).getSelfSimilaritySettings().setApplyToRhythm(true);
+        v1.getVoiceSections().get(0).setUseDefaultVoiceSettings(false);
+        v1.getVoiceSections().get(1).setUseDefaultVoiceSettings(false);
+        v1.getVoiceSections().get(0).setUseDefaultSectionSettings(false);
+        v1.getVoiceSections().get(1).setUseDefaultSectionSettings(false);
         
-        v2.getVoiceSections().get(0).getSelfSimilaritySettings().setApplyToPitch(true);
-        v2.getVoiceSections().get(0).getSelfSimilaritySettings().setApplyToRhythm(true);
-        v2.getVoiceSections().get(1).setApplyInversion(true);
-        v2.getVoiceSections().get(1).getSelfSimilaritySettings().setApplyToPitch(true);
-        v2.getVoiceSections().get(1).getSelfSimilaritySettings().setApplyToRhythm(true);
+        v2.getVoiceSections().get(0).setUseDefaultVoiceSettings(false);
+        v2.getVoiceSections().get(1).setUseDefaultVoiceSettings(false);
+        v2.getVoiceSections().get(0).setUseDefaultSectionSettings(false);
+        v2.getVoiceSections().get(1).setUseDefaultSectionSettings(false);
+        
+        v1.getVoiceSections().get(0).getVoiceSettings().getSelfSimilaritySettings().setApplyToPitch(true);
+        v1.getVoiceSections().get(0).getVoiceSettings().getSelfSimilaritySettings().setApplyToRhythm(true);
+        
+        v1.getVoiceSections().get(1).getSectionSettings().setApplyInversion(true);
+        v1.getVoiceSections().get(1).getVoiceSettings().getSelfSimilaritySettings().setApplyToPitch(true);
+        v1.getVoiceSections().get(1).getVoiceSettings().getSelfSimilaritySettings().setApplyToRhythm(true);
+        
+        v2.getVoiceSections().get(0).getVoiceSettings().getSelfSimilaritySettings().setApplyToPitch(true);
+        v2.getVoiceSections().get(0).getVoiceSettings().getSelfSimilaritySettings().setApplyToRhythm(true);
+        
+        v2.getVoiceSections().get(1).getSectionSettings().setApplyInversion(true);
+        v2.getVoiceSections().get(1).getVoiceSettings().getSelfSimilaritySettings().setApplyToPitch(true);
+        v2.getVoiceSections().get(1).getVoiceSettings().getSelfSimilaritySettings().setApplyToRhythm(true);
         
         NoteList expected = new NoteList();
         expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));

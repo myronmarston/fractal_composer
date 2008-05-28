@@ -52,8 +52,21 @@ public class RhythmicDurationTransformer implements Transformer {
      *        down.
      */
     public RhythmicDurationTransformer(Fraction scaleFactor) {        
-        if (scaleFactor.compareTo(0) <= 0) throw new IllegalArgumentException("The scaleFactor must be greater than 0.");
+        checkScaleFactorValidity(scaleFactor);
         this.scaleFactor = scaleFactor;
+    }
+    
+    /**
+     * Checks if the given scale factor is valid, throwing an exception if it
+     * is not valid.
+     * 
+     * @param scaleFactor the scale factor to check
+     * @throws java.lang.IllegalArgumentException if the scale factor is invalid
+     */
+    public static void checkScaleFactorValidity(Fraction scaleFactor) throws IllegalArgumentException {
+        if (scaleFactor.compareTo(0) <= 0) {
+            throw new IllegalArgumentException("The scale factor must be greater than 0.");
+        }            
     }
     
      public NoteList transform(NoteList input) {

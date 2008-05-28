@@ -98,11 +98,14 @@ java.lang.Object
 <DT><DT><B>Type Parameters:</B><DD><CODE>M</CODE> - the main type--Voice or Section<DD><CODE>O</CODE> - the other type--Voice, if this is a Section, or Section,
         if this is a voice</DL>
 <DL>
+<DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../../com/myronmarston/util/Subscriber.html" title="interface in com.myronmarston.util">Subscriber</A></DD>
+</DL>
+<DL>
 <DT><B>Direct Known Subclasses:</B> <DD><A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>, <A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A></DD>
 </DL>
 <HR>
 <DL>
-<DT><PRE>public abstract class <B>AbstractVoiceOrSection&lt;M extends AbstractVoiceOrSection,O extends AbstractVoiceOrSection&gt;</B><DT>extends java.lang.Object</DL>
+<DT><PRE>public abstract class <B>AbstractVoiceOrSection&lt;M extends AbstractVoiceOrSection,O extends AbstractVoiceOrSection&gt;</B><DT>extends java.lang.Object<DT>implements <A HREF="../../../../com/myronmarston/util/Subscriber.html" title="interface in com.myronmarston.util">Subscriber</A></DL>
 </PRE>
 
 <P>
@@ -141,6 +144,14 @@ An abstract class containing a common interface and common logic shared
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#clearVoiceSectionResults()">clearVoiceSectionResults</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clears the cached voice section results.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -221,47 +232,10 @@ An abstract class containing a common interface and common logic shared
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setApplySelfSimilarityToPitchOnAllVoiceSections(boolean)">setApplySelfSimilarityToPitchOnAllVoiceSections</A></B>(boolean&nbsp;val)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update applyToPitch on the self-similarity settings of all voice 
- sections.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setApplySelfSimilarityToRhythmOnAllVoiceSections(boolean)">setApplySelfSimilarityToRhythmOnAllVoiceSections</A></B>(boolean&nbsp;val)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update applyToRhythm on the self-similarity settings of all voice 
- sections.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setApplySelfSimilarityToVolumeOnAllVoiceSections(boolean)">setApplySelfSimilarityToVolumeOnAllVoiceSections</A></B>(boolean&nbsp;val)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update applyToVolume on the self-similarity settings of all voice 
- sections.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setRestOnAllVoiceSections(boolean)">setRestOnAllVoiceSections</A></B>(boolean&nbsp;val)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets all voice sections for this voice or section to rest.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setSelfSimilaritySettingsOnAllVoiceSections(java.lang.Boolean, java.lang.Boolean, java.lang.Boolean)">setSelfSimilaritySettingsOnAllVoiceSections</A></B>(java.lang.Boolean&nbsp;applyToPitch,
-                                            java.lang.Boolean&nbsp;applyToRhythm,
-                                            java.lang.Boolean&nbsp;applyToVolume)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updates the self-similarity settings of all voice sections.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -279,6 +253,15 @@ An abstract class containing a common interface and common logic shared
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.util.Subscriber"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from interface com.myronmarston.util.<A HREF="../../../../com/myronmarston/util/Subscriber.html" title="interface in com.myronmarston.util">Subscriber</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../../com/myronmarston/util/Subscriber.html#publisherNotification(com.myronmarston.util.Publisher, java.lang.Object)">publisherNotification</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -325,6 +308,9 @@ public <A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" t
 <DD>Gets the FractalPiece that this Voice or Section is a part of.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>The FractalPiece that this Voice or Section is a part of</DL>
 </DD>
@@ -343,6 +329,9 @@ public int <B>getUniqueIndex</B>()</PRE>
  duplicate div ids.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>the unique index</DL>
 </DD>
@@ -356,6 +345,9 @@ protected void <B>setUniqueIndex</B>(int&nbsp;uniqueIndex)</PRE>
 <DL>
 <DD>Sets the unique index.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>uniqueIndex</CODE> - the unique index</DL>
 </DD>
@@ -375,6 +367,9 @@ public <A HREF="../../../../com/myronmarston/music/settings/VoiceSectionList.htm
  and for each Voice.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>the list of VoiceSections</DL>
 </DD>
@@ -391,6 +386,9 @@ protected abstract <A HREF="../../../../com/myronmarston/music/settings/VoiceOrS
  piece.  When implemented by the Section class, this should return a list
  of al the Sections in the fractal piece.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>a List of Voices (if the implementing type is Voice) or a list
@@ -409,6 +407,9 @@ protected abstract <A HREF="../../../../com/myronmarston/music/settings/VoiceOrS
  this should return a list of all the Voices in the fractal piece.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>a List of Voices (if the implementing type is Section) or a List 
          of Sections (if the implementing type is Voice)</DL>
@@ -424,6 +425,9 @@ protected abstract <A HREF="../../../../com/myronmarston/music/settings/VoiceSec
 <DD>Creates a VoiceSectionHashMapKey, combining this object with an object 
  of the other type, based on the index.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>index</CODE> - The index in the list of the other type to combine 
         with to create the hash map key
@@ -442,6 +446,9 @@ protected abstract <A HREF="../../../../com/myronmarston/music/settings/VoiceSec
  of the other type, based on the unique index.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>uniqueIndex</CODE> - The unique index in the list of the other type to 
         combine with to create the hash map key
 <DT><B>Returns:</B><DD>A VoiceSectionHashMapKey that can be used to get a 
@@ -459,6 +466,9 @@ protected abstract <A HREF="../../../../com/myronmarston/music/settings/VoiceSec
  or section.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>vOrS</CODE> - a Voice or Section to use in the instantiating
 <DT><B>Returns:</B><DD>a new VoiceSection</DL>
 </DD>
@@ -472,6 +482,9 @@ public java.lang.String <B>getClassName</B>()</PRE>
 <DL>
 <DD>Gets the name of this class--e.g., "Voice" or "Section".
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the name of this type</DL>
@@ -487,64 +500,27 @@ public void <B>setRestOnAllVoiceSections</B>(boolean&nbsp;val)</PRE>
 <DD>Sets all voice sections for this voice or section to rest.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>val</CODE> - true to rest; false to not rest</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="setApplySelfSimilarityToPitchOnAllVoiceSections(boolean)"><!-- --></A><H3>
-setApplySelfSimilarityToPitchOnAllVoiceSections</H3>
+<A NAME="clearVoiceSectionResults()"><!-- --></A><H3>
+clearVoiceSectionResults</H3>
 <PRE>
-public void <B>setApplySelfSimilarityToPitchOnAllVoiceSections</B>(boolean&nbsp;val)</PRE>
+protected void <B>clearVoiceSectionResults</B>()</PRE>
 <DL>
-<DD>Update applyToPitch on the self-similarity settings of all voice 
- sections.
+<DD>Clears the cached voice section results.  Should be called whenever a
+ setting is changed that is used by the voice sections.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>val</CODE> - new value for applyToPitch</DL>
-</DD>
 </DL>
-<HR>
-
-<A NAME="setApplySelfSimilarityToRhythmOnAllVoiceSections(boolean)"><!-- --></A><H3>
-setApplySelfSimilarityToRhythmOnAllVoiceSections</H3>
-<PRE>
-public void <B>setApplySelfSimilarityToRhythmOnAllVoiceSections</B>(boolean&nbsp;val)</PRE>
-<DL>
-<DD>Update applyToRhythm on the self-similarity settings of all voice 
- sections.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>val</CODE> - new value for applyToRhythm</DL>
 </DD>
-</DL>
-<HR>
-
-<A NAME="setApplySelfSimilarityToVolumeOnAllVoiceSections(boolean)"><!-- --></A><H3>
-setApplySelfSimilarityToVolumeOnAllVoiceSections</H3>
-<PRE>
-public void <B>setApplySelfSimilarityToVolumeOnAllVoiceSections</B>(boolean&nbsp;val)</PRE>
-<DL>
-<DD>Update applyToVolume on the self-similarity settings of all voice 
- sections.
-<P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>val</CODE> - new value for applyToVolume</DL>
-</DD>
 </DL>
-<HR>
-
-<A NAME="setSelfSimilaritySettingsOnAllVoiceSections(java.lang.Boolean, java.lang.Boolean, java.lang.Boolean)"><!-- --></A><H3>
-setSelfSimilaritySettingsOnAllVoiceSections</H3>
-<PRE>
-public void <B>setSelfSimilaritySettingsOnAllVoiceSections</B>(java.lang.Boolean&nbsp;applyToPitch,
-                                                        java.lang.Boolean&nbsp;applyToRhythm,
-                                                        java.lang.Boolean&nbsp;applyToVolume)</PRE>
-<DL>
-<DD>Updates the self-similarity settings of all voice sections.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>applyToPitch</CODE> - new value; pass null to leave existing values<DD><CODE>applyToRhythm</CODE> - new value; pass null to leave existing values<DD><CODE>applyToVolume</CODE> - new value; pass null to leave existing values</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

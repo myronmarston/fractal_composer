@@ -139,6 +139,15 @@ Transformer that scales the the rhythmic duration of the notes by some scale
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/transformers/RhythmicDurationTransformer.html#checkScaleFactorValidity(com.myronmarston.util.Fraction)">checkScaleFactorValidity</A></B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;scaleFactor)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checks if the given scale factor is valid, throwing an exception if it
+ is not valid.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/transformers/RhythmicDurationTransformer.html#getScaleFactor()">getScaleFactor</A></B>()</CODE>
 
@@ -213,6 +222,26 @@ public <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the scale factor</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="checkScaleFactorValidity(com.myronmarston.util.Fraction)"><!-- --></A><H3>
+checkScaleFactorValidity</H3>
+<PRE>
+public static void <B>checkScaleFactorValidity</B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;scaleFactor)
+                                     throws java.lang.IllegalArgumentException</PRE>
+<DL>
+<DD>Checks if the given scale factor is valid, throwing an exception if it
+ is not valid.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>scaleFactor</CODE> - the scale factor to check
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.IllegalArgumentException</CODE> - if the scale factor is invalid</DL>
 </DD>
 </DL>
 <HR>

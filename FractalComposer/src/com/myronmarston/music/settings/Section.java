@@ -22,6 +22,7 @@ package com.myronmarston.music.settings;
 import com.myronmarston.music.GermIsEmptyException;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.util.Fraction;
+import com.myronmarston.util.Publisher;
 import java.io.IOException;
 import org.simpleframework.xml.*;
 import java.util.*;
@@ -36,11 +37,8 @@ import java.util.*;
 @Root
 public class Section extends AbstractVoiceOrSection<Section, Voice> {    
     
-    @Attribute
-    private boolean applyInversion = false;
-    
-    @Attribute
-    private boolean applyRetrograde = false;        
+    @Element
+    private final SectionSettings settings;
     
     /**
      * Constructor.
@@ -50,6 +48,8 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
      */
     protected Section(FractalPiece fractalPiece, int uniqueIndex) {
         super(fractalPiece, uniqueIndex);
+        settings = new SectionSettings();
+        settings.addSubscriber(this);
     }     
     
     /**
@@ -60,60 +60,33 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
     }
 
     /**
-     * Gets whether or not to apply inversion to this section.  This is the default 
-     * for the voice sections in this section; they can individually override
-     * this setting.
+     * Gets the settings for this section.
      * 
-     * @return whether or not to apply inversion to this section
+     * @return the settings for this section
      */
-    public boolean getApplyInversion() {
-        return applyInversion;
-    }
-
-    /**
-     * Sets whether or not to apply inversion to this section.  This is the default 
-     * for the voice sections in this section; they can individually override
-     * this setting.
-     * 
-     * @param applyInversion whether or not to apply inversion to this section     
-     */
-    public void setApplyInversion(boolean applyInversion) {
-        this.applyInversion = applyInversion;
-        clearVoiceSectionResults();
-    }
-
-    /**
-     * Gets whether or not to apply retrograde to this section.  This is the default 
-     * for the voice sections in this section; they can individually override
-     * this setting.
-     * 
-     * @return whether or not to apply retrograde to this section     
-     */
-    public boolean getApplyRetrograde() {
-        return applyRetrograde;
-    }
-
-    /**
-     * Sets whether or not to apply retrograde to this section.  This is the default 
-     * for the voice sections in this section; they can individually override
-     * this setting.
-     * 
-     * @param applyRetrograde whether or not to apply retrograde to this section     
-     */
-    public void setApplyRetrograde(boolean applyRetrograde) {
-        this.applyRetrograde = applyRetrograde;
-        clearVoiceSectionResults();
-    }        
+    public SectionSettings getSettings() {
+        return settings;
+    } 
     
     /**
-     * Clears the cached voice section results.  Should be called whenever a 
-     * section field that is used by the voice sections changes.
+     * Updates the self-similarity settings of all voice sections.  This also
+     * updates the useDefaultVoiceSettings property to false.
+     * 
+     * @param applyToPitch new value
+     * @param applyToRhythm new value
+     * @param applyToVolume new value
      */
-    private void clearVoiceSectionResults() {
+    public void setSelfSimilaritySettingsOnAllVoiceSections(boolean applyToPitch, boolean applyToRhythm, boolean applyToVolume, int selfSimilarityIterations) {
         for (VoiceSection vs : this.getVoiceSections()) {
-            vs.clearVoiceSectionResult();
-        }
-    }
+            vs.setUseDefaultVoiceSettings(false);
+            SelfSimilaritySettings sss = vs.getVoiceSettings().getSelfSimilaritySettings();
+            
+            sss.setApplyToPitch(applyToPitch);
+            sss.setApplyToRhythm(applyToRhythm);
+            sss.setApplyToVolume(applyToVolume);
+            sss.setSelfSimilarityIterations(selfSimilarityIterations);
+        }        
+    } 
     
     /**
      * Gets the duration for this entire section.  This will be the duration of
@@ -147,6 +120,11 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
         
         this.getFractalPiece().saveNoteListsAsMidiFile(voiceSectionResults, fileName);
     }
+
+    public void publisherNotification(Publisher p, Object args) {
+        assert p == this.getSettings() : p;
+        this.clearVoiceSectionResults();
+    }          
     
     @Override
     protected VoiceOrSectionList<Section, Voice> getListOfMainType() {

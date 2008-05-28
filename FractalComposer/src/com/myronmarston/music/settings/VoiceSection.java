@@ -22,15 +22,14 @@ package com.myronmarston.music.settings;
 import com.myronmarston.music.GermIsEmptyException;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
-import com.myronmarston.music.transformers.InversionTransformer;
-import com.myronmarston.music.transformers.RetrogradeTransformer;
-import com.myronmarston.music.transformers.SelfSimilarityTransformer;
-import java.util.*;
+import com.myronmarston.util.Fraction;
+import com.myronmarston.util.Publisher;
+import com.myronmarston.util.Subscriber;
 
 import org.simpleframework.xml.*;
 
-import com.myronmarston.util.Fraction;
 import java.io.IOException;
+import java.util.*;
         
 /**
  * Represents the smallest unit of the fractal piece for which the user can
@@ -40,24 +39,29 @@ import java.io.IOException;
  * @author Myron
  */
 @Root
-public class VoiceSection implements Observer {
-    @Element
-    private SelfSimilaritySettings selfSimilaritySettings;
-    
+public class VoiceSection implements Subscriber {
+
     @Attribute
     private boolean rest = false;
     
-    @Attribute(required=false)
-    private Boolean applyInversion;
-        
-    @Attribute(required=false)
-    private Boolean applyRetrograde;
+    @Attribute
+    private boolean useDefaultVoiceSettings = true;
     
+    @Element(required=false)
+    private VoiceSettings voiceSettings;
+    
+    @Attribute
+    private boolean useDefaultSectionSettings = true;        
+    
+    @Element(required=false)
+    private SectionSettings sectionSettings;
+            
     @Element
     private Voice voice;
     
     @Element
     private Section section;
+    
     private NoteList voiceSectionResult;
 
     /**
@@ -69,16 +73,12 @@ public class VoiceSection implements Observer {
     protected VoiceSection(Voice voice, Section section) {
         this.voice = voice;
         this.section = section;    
-        
-        // observe our self similarity settings...
-        selfSimilaritySettings = new SelfSimilaritySettings();
-        selfSimilaritySettings.addObserver(this);
     }      
     
     /**
      * Provided for xml deserialization.
      */
-    private VoiceSection() {}
+    private VoiceSection() { }
         
     /**
      * The Section this VoiceSection plays with simultaneously.
@@ -116,74 +116,100 @@ public class VoiceSection implements Observer {
     }
 
     /**
-     * Gets whether or not to invert the germ for this section before applying
-     * self-similarity.  Can be null, which indicates that the section default
-     * should be used instead.
+     * Gets a value indicating whether or not this voice section will use the
+     * default section settings.
      * 
-     * @return whether or not to invert the germ
+     * @return true if the default settings will be used, false if the
+     *         settings will be overriden
      */
-    public Boolean getApplyInversion() {
-        return applyInversion;
+    public boolean getUseDefaultSectionSettings() {
+        return useDefaultSectionSettings;
     }
-    
-    /**
-     * Gets whether or not to invert the germ for this section before applying
-     * self-similarity.  If the setting is null on this voice section, gets the
-     * section default.
-     *  
-     * @return whether or not to invert the germ
-     */
-    protected boolean getGuarenteedApplyInversion() {
-        if (this.getApplyInversion() == null) return this.getSection().getApplyInversion();
-        return this.getApplyInversion();
-    }        
 
     /**
-     * Sets whether or not to invert the germ for this section before applying
-     * self-similarity.  Can be null, which indicates that the section default
-     * should be used instead.
+     * Set a value indicating whether or not this voice section will use the
+     * default section settings.
      * 
-     * @param val whether or not to invert the germ
+     * @param useDefaultSectionSettings true if the default settings will be 
+     *        used, false if the settings will be overriden
      */
-    public void setApplyInversion(Boolean val) {        
-        if (!booleanEquals(val, this.applyInversion)) clearVoiceSectionResult();        
-        this.applyInversion = val;
+    public void setUseDefaultSectionSettings(boolean useDefaultSectionSettings) {
+        if (this.useDefaultSectionSettings && !useDefaultSectionSettings) {
+            // the value is changing from using the default settings to overriding them,
+            // so create a local settings object that is initially identical to
+            // the default            
+            this.setSectionSettings((SectionSettings) this.getSection().getSettings().clone());            
+        }
+        
+        this.useDefaultSectionSettings = useDefaultSectionSettings;
+    }
+
+    /**
+     * Gets a value indicating whether or not this voice section will use the
+     * default voice settings.
+     * 
+     * @return true if the default settings will be used, false if the
+     *         settings will be overriden
+     */
+    public boolean getUseDefaultVoiceSettings() {
+        return useDefaultVoiceSettings;
+    }
+
+    /**
+     * Set a value indicating whether or not this voice section will use the
+     * default voice settings.
+     * 
+     * @param useDefaultVoiceSettings true if the default settings will be 
+     *        used, false if the settings will be overriden
+     */
+    public void setUseDefaultVoiceSettings(boolean useDefaultVoiceSettings) {
+        if (this.useDefaultVoiceSettings && !useDefaultVoiceSettings) {
+            // the value is changing from using the default settings to overriding them,
+            // so create a local settings object that is initially identical to
+            // the default            
+            this.setVoiceSettings((VoiceSettings) this.getVoice().getSettings().clone());            
+        }
+        
+        this.useDefaultVoiceSettings = useDefaultVoiceSettings;
+    }
+
+    /**
+     * Gets the section settings for this voice section.  If the 
+     * useDefaultSectionSettings flag is set, a read-only copy of the section's
+     * settings will be returned.  Otherwise, a local, editable copy will be
+     * returned.
+     * 
+     * @return the section settings for this voice section
+     */
+    public SectionSettings getSectionSettings() {
+        if (this.getUseDefaultSectionSettings()) return this.getSection().getSettings().getReadOnlyCopy();
+        return sectionSettings;
     }
     
-    /**
-     * Gets whether or not to use the retrograde of the germ before applying
-     * self-similarity.  Can be null, which indicates that the section default
-     * should be used instead.
-     * 
-     * @return whether or not to use the retrograde of the germ
-     */
-    public Boolean getApplyRetrograde() {        
-        return applyRetrograde;
+    private void setSectionSettings(SectionSettings sectionSettings) {
+        if (this.sectionSettings != null) this.sectionSettings.removeSubscriber(this);
+        this.sectionSettings = sectionSettings;
+        if (this.sectionSettings != null) this.sectionSettings.addSubscriber(this);
     }
-    
+
     /**
-     * Gets whether or not to apply retrograde to the germ for this section 
-     * before applying self-similarity.  If the setting is null on this voice 
-     * section, gets the section default.
-     *  
-     * @return whether or not to apply retrograde to the germ
-     */
-    protected boolean getGuarenteedApplyRetrograde() {
-        if (this.getApplyRetrograde() == null) return this.getSection().getApplyRetrograde();
-        return this.getApplyRetrograde();
-    }
-    
-    /**
-     * Sets whether or not to use the retrograde of the germ before applying
-     * self-similarity.  Can be null, which indicates that the section default
-     * should be used instead.
+     * Gets the voice settings for this voice voice.  If the 
+     * useDefaultVoiceSettings flag is set, a read-only copy of the voice's
+     * settings will be returned.  Otherwise, a local, editable copy will be
+     * returned.
      * 
-     * @param val whether or not to use the retrograde of the germ
+     * @return the voice settings for this voice section
      */
-    public void setApplyRetrograde(Boolean val) {          
-        if (!booleanEquals(val, this.applyRetrograde)) clearVoiceSectionResult();        
-        this.applyRetrograde = val;
-    } 
+    public VoiceSettings getVoiceSettings() {
+        if (this.getUseDefaultVoiceSettings()) return this.getVoice().getSettings().getReadOnlyCopy();
+        return voiceSettings;
+    }       
+    
+    private void setVoiceSettings(VoiceSettings voiceSettings) {
+        if (this.voiceSettings != null) this.voiceSettings.removeSubscriber(this);
+        this.voiceSettings = voiceSettings;
+        if (this.voiceSettings != null) this.voiceSettings.addSubscriber(this);
+    }
 
     /**
      * Gets whether or not to make this VoiceSection one long rest.  This
@@ -206,16 +232,6 @@ public class VoiceSection implements Observer {
         this.rest = val;
     }
 
-    /**
-     * Gets the self-similarity settings to be used by this voice section.
-     * Guaranteed to never be null.  
-     * 
-     * @return the self-similarity settings to be used by this voice section
-     */
-    public SelfSimilaritySettings getSelfSimilaritySettings() {        
-        return selfSimilaritySettings;
-    }
-    
     /**
      * Creates a hash map key using the Voice and Section for this VoiceSection.
      * @return the hash map key
@@ -295,43 +311,25 @@ public class VoiceSection implements Observer {
      *         germ
      */
     private NoteList generateVoiceSectionResult() {
-        NoteList temp = this.getVoice().getModifiedGerm();        
+        NoteList germ = this.getVoice().getFractalPiece().getGerm();
         
-        if (this.getRest()) {
+        if (this.getRest()) {            
+            // scale the duration according to the speed of this voice...
+            Fraction duration = germ.getDuration();            
+            duration = duration.dividedBy(this.getVoiceSettings().getSpeedScaleFactor());
+            
             // create a note list of a single rest, the duration of the germ            
             NoteList restResult = new NoteList();
-            Fraction duration = temp.getDuration();
             if (duration.compareTo(0L) > 0) restResult.add(Note.createRest(duration));            
             return restResult;
-        } 
-        
-        if (this.getGuarenteedApplyInversion()) {
-            InversionTransformer iT = new InversionTransformer();
-            temp = iT.transform(temp);
         }
         
-        if (this.getGuarenteedApplyRetrograde()) {
-            RetrogradeTransformer rT = new RetrogradeTransformer();
-            temp = rT.transform(temp);
-        }
-               
-        SelfSimilarityTransformer ssT = new SelfSimilarityTransformer(this.getSelfSimilaritySettings());
-        return ssT.transform(temp);                        
+        NoteList temp = this.getSectionSettings().applySettingsToNoteList(germ);
+        return this.getVoiceSettings().applySettingsToNoteList(temp);                               
     }
 
-    public void update(Observable o, Object arg) {
-        // we expect the observable object to be our selfSimilaritySettings...
-        assert o == this.getSelfSimilaritySettings() : o;
-        
-        // if the self similarity settings change, it affects our result, so clear it...
+    public void publisherNotification(Publisher p, Object args) {   
+        assert p == this.sectionSettings || p == this.voiceSettings : p;        
         this.clearVoiceSectionResult();
-    }   
-    
-    private boolean booleanEquals(Boolean b1, Boolean b2) {
-        // if both are null, or both are the same reference, they are equal
-        if (b1 == b2) return true;
-        
-        // otherwise, use the equals method, calling it on whichever object is non-null
-        return (b1 == null ? b2.equals(b1) : b1.equals(b2));        
     }
 }

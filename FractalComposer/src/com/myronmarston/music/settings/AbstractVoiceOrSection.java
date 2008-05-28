@@ -19,9 +19,10 @@
 
 package com.myronmarston.music.settings;
 
+import com.myronmarston.util.Subscriber;
 import org.simpleframework.xml.*;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * An abstract class containing a common interface and common logic shared
@@ -33,7 +34,7 @@ import java.util.List;
  * @author Myron
  */
 @Root
-public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O extends AbstractVoiceOrSection> {
+public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O extends AbstractVoiceOrSection> implements Subscriber {
     @Element
     private FractalPiece fractalPiece;
     
@@ -172,57 +173,12 @@ public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O
     }
 
     /**
-     * Update applyToPitch on the self-similarity settings of all voice 
-     * sections.
-     * 
-     * @param val new value for applyToPitch
+     * Clears the cached voice section results.  Should be called whenever a
+     * setting is changed that is used by the voice sections.
      */
-    public void setApplySelfSimilarityToPitchOnAllVoiceSections(boolean val) {
+    protected void clearVoiceSectionResults() {
         for (VoiceSection vs : this.getVoiceSections()) {
-            vs.getSelfSimilaritySettings().setApplyToPitch(val);
+            vs.clearVoiceSectionResult();
         }
     }
-
-    /**
-     * Update applyToRhythm on the self-similarity settings of all voice 
-     * sections.
-     * 
-     * @param val new value for applyToRhythm
-     */
-    public void setApplySelfSimilarityToRhythmOnAllVoiceSections(boolean val) {
-        for (VoiceSection vs : this.getVoiceSections()) {
-            vs.getSelfSimilaritySettings().setApplyToRhythm(val);
-        }
-    }
-
-    /**
-     * Update applyToVolume on the self-similarity settings of all voice 
-     * sections.
-     * 
-     * @param val new value for applyToVolume
-     */
-    public void setApplySelfSimilarityToVolumeOnAllVoiceSections(boolean val) {
-        for (VoiceSection vs : this.getVoiceSections()) {
-            vs.getSelfSimilaritySettings().setApplyToVolume(val);
-        }
-    }
-    
-    /**
-     * Updates the self-similarity settings of all voice sections.
-     * 
-     * @param applyToPitch new value; pass null to leave existing values
-     * @param applyToRhythm new value; pass null to leave existing values
-     * @param applyToVolume new value; pass null to leave existing values
-     */
-    public void setSelfSimilaritySettingsOnAllVoiceSections(Boolean applyToPitch, Boolean applyToRhythm, Boolean applyToVolume) {
-        if (applyToPitch != null) {
-            this.setApplySelfSimilarityToPitchOnAllVoiceSections(applyToPitch);
-        }
-        if (applyToRhythm != null) {
-            this.setApplySelfSimilarityToRhythmOnAllVoiceSections(applyToRhythm);
-        }
-        if (applyToVolume != null) {
-            this.setApplySelfSimilarityToVolumeOnAllVoiceSections(applyToVolume);
-        }
-    }   
 }
