@@ -179,7 +179,7 @@ public class NoteList extends ArrayList<Note> {
         track.add(instrument.getProgramChangeMidiEvent(midiChannel));
         
         // in Midi, the tick resolution is based on quarter notes, but we use whole notes...
-        int midiTicksPerWholeNote = sequence.getResolution() * 4; 
+        int midiTicksPerWholeNote = convertMidiTickUnitFromQuarterNotesToWholeNotesInt(sequence.getResolution());
         
         for (Note thisNote : this.getListWithNormalizedRests()) {
             thisMidiNote = thisNote.convertToMidiNote(scale, startTime, midiTicksPerWholeNote, midiChannel, true);                        
@@ -187,7 +187,7 @@ public class NoteList extends ArrayList<Note> {
             if (lastMidiNote != null) {
                 assert lastNote != null;
                                 
-                if (thisMidiNote.getPitch() == lastMidiNote.getPitch() && lastNote.getScaleStep() != thisNote.getScaleStep()) {               
+                if (thisMidiNote.getPitch() == lastMidiNote.getPitch() && lastNote.getNormalizedNote(scale).getScaleStep() != thisNote.getNormalizedNote(scale).getScaleStep()) {               
                     // the notes are different scale steps and should have different pitches.
                     // This can happen with notes like B# and C in the key of C.
 
@@ -258,4 +258,40 @@ public class NoteList extends ArrayList<Note> {
         assert resolution < Integer.MAX_VALUE;
         return (int) resolution;
     }
+    
+    /**
+     * Converts the midi tick unit from quarter notes to whole notes, using 
+     * longs.
+     * 
+     * @param ticksInWholeNotes ticks in whole notes
+     * @return ticks in quarter notes
+     */
+    public static long convertMidiTickUnitFromQuarterNotesToWholeNotes(long ticksInWholeNotes) {
+        return ticksInWholeNotes * 4;
+    }
+    
+    /**
+     * Converts the midi tick unit from quarter notes to whole notes, using 
+     * ints.
+     * 
+     * @param ticksInWholeNotes ticks in whole notes
+     * @return ticks in quarter notes
+     */
+    public static int convertMidiTickUnitFromQuarterNotesToWholeNotesInt(int ticksInWholeNotes) {
+        return ticksInWholeNotes * 4;
+    }
+
+    @Override
+    /**
+     * Clones the note list.  Each individual note is also cloned.
+     */
+    public Object clone() {
+        NoteList clone = (NoteList) super.clone();
+        
+        for (int i = 0; i < clone.size(); i++) {
+            clone.set(i, (Note) clone.get(i).clone());
+        }
+        
+        return clone;
+    }        
 }

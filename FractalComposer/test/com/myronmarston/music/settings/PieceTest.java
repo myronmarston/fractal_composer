@@ -140,7 +140,7 @@ public class PieceTest {
         int MFVolume = Dynamic.MF.getMidiVolume();
         int[] instrumentProgramNumbers = {40, 41, 42}; // the program numbers for violin, viola, cello
         for (int trackIndex = 0; trackIndex < noteValues.length; trackIndex++) {
-            System.out.println(String.format("  simplePieceTest track: %d", trackIndex));
+            //System.out.println(String.format("  simplePieceTest track: %d", trackIndex));
             
             Track track = seq.getTracks()[trackIndex + 1]; //skip track 0, which has time signature and key signature
             int trackNoteValues[][] = noteValues[trackIndex];
@@ -162,6 +162,74 @@ public class PieceTest {
                 }
                 ticksSoFar += trackNoteValues[noteIndex][1];
             }  
+        }
+    }
+    
+    @Test
+    public void pieceWithSectionScale() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        fp.setGenerateLayeredIntro(false);
+        fp.setGenerateLayeredOutro(false);            
+        fp.setScale(new MajorScale(NoteName.G));
+        fp.setGermString("G4 A4 B4 G4");
+        
+        // two voices, with no differences...
+        Voice v1 = fp.createVoice();
+        Voice v2 = fp.createVoice();
+        v1.getSettings().getSelfSimilaritySettings().setApplyToPitch(true);
+        v2.getSettings().getSelfSimilaritySettings().setApplyToPitch(true);
+        
+        // set a scale on one section and on one voice section
+        Section s1 = fp.createSection();
+        Section s2 = fp.createSection();          
+        s1.setScale(new MinorScale(NoteName.C));        
+        
+        Sequence seq = fp.generatePiece();
+                                
+        int[] track1PitchNumbers = {
+            // midi numbers taken from http://pages.cs.wisc.edu/~suan/misc/midi.html
+            // self-similar based on germ in C minor...
+            60, 62, 63, 60,
+            62, 63, 65, 62,
+            63, 65, 67, 63,
+            60, 62, 63, 60,
+                       
+            // using G major...
+            67, 69, 71, 67,
+            69, 71, 72, 69,
+            71, 72, 74, 71,
+            67, 69, 71, 67
+        };
+        
+        int[] track2PitchNumbers = {
+            // midi numbers taken from http://pages.cs.wisc.edu/~suan/misc/midi.html
+            // self-similar based on germ in C minor...
+            60, 62, 63, 60,
+            62, 63, 65, 62,
+            63, 65, 67, 63,
+            60, 62, 63, 60,                        
+            
+            // using G major...
+            67, 69, 71, 67,
+            69, 71, 72, 69,
+            71, 72, 74, 71,
+            67, 69, 71, 67            
+        };
+        
+        
+        Track t1 = seq.getTracks()[1];
+        Track t2 = seq.getTracks()[2];
+        // make sure we have the right number of events. 
+        // there are always two extra events - instrument event and the end-of-track event, so we add 1 for that.
+        assertEquals(track1PitchNumbers.length * 2 + 2, t1.size());
+        assertEquals(track2PitchNumbers.length * 2 + 2, t2.size());
+        
+        for (int i = 0; i < track1PitchNumbers.length; i++) {
+            assertTrackMidiNoteEqual(t1, i, i * 4, 4, track1PitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 1);
+        }
+        
+        for (int i = 0; i < track2PitchNumbers.length; i++) {
+            assertTrackMidiNoteEqual(t2, i, i * 4, 4, track2PitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 2);
         }
     }
     
@@ -193,7 +261,7 @@ public class PieceTest {
             // self-similar based on germ...
             60, 67, 66, 71, 70, 63, 62, 59,
             67, 74, 73, 77, 76, 70, 69, 65,
-            66, 73, 72, 77, 76, 69, 68, 65,
+            66, 73, 72, 77, 76, 69, 68, 65,            
             71, 77, 76, 81, 80, 73, 72, 69,
             70, 77, 76, 80, 79, 73, 72, 68,
             63, 70, 69, 73, 72, 65, 64, 61,
@@ -236,6 +304,7 @@ public class PieceTest {
         assertEquals(pitchNumbers.length * 2 + 2, t.size());
         
         for (int i = 0; i < pitchNumbers.length; i++) {
+            System.out.println(String.format("assertTrackMidiNoteEqual index: %d", i));
             assertTrackMidiNoteEqual(t, i, i * 4, 4, pitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 1);
         }                
     }
@@ -247,7 +316,7 @@ public class PieceTest {
         byte noteOnEventByte1 = (byte) (-112 + channelNum);
         byte noteOffEventByte1 = (byte) (-128 + channelNum);        
         
-        System.out.println(String.format("assertTrackMidiNoteEqual index: %d", noteIndex));
+        //System.out.println(String.format("assertTrackMidiNoteEqual index: %d", noteIndex));
         
         MidiNoteTest.assertNoteEventEqual(noteOnEvent, tick, noteOnEventByte1, (byte) pitchNum, (byte) velocity);
         MidiNoteTest.assertNoteEventEqual(noteOffEvent, tick + duration, noteOffEventByte1, (byte) pitchNum, (byte) 0);

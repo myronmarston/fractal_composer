@@ -94,9 +94,12 @@ Class Note</H2>
 java.lang.Object
   <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.Note</B>
 </PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD>java.lang.Cloneable</DD>
+</DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>Note</B><DT>extends java.lang.Object</DL>
+<DT><PRE>public class <B>Note</B><DT>extends java.lang.Object<DT>implements java.lang.Cloneable</DL>
 </PRE>
 
 <P>
@@ -135,21 +138,16 @@ Represents a note, relative to a particular scale.  This note will need to be
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#Note(int, int, int, com.myronmarston.util.Fraction, int, com.myronmarston.music.settings.SegmentSettings)">Note</A></B>(int&nbsp;scaleStep,
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#Note(int, int, int, com.myronmarston.util.Fraction, int, com.myronmarston.music.scales.Scale, int)">Note</A></B>(int&nbsp;scaleStep,
      int&nbsp;octave,
      int&nbsp;chromaticAdjustment,
      <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration,
      int&nbsp;volume,
-     <A HREF="../../../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings">SegmentSettings</A>&nbsp;segmentSettings)</CODE>
+     <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
+     int&nbsp;segmentChromaticAdjustment)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#Note(com.myronmarston.music.Note)">Note</A></B>(<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&nbsp;inputNote)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copy Constructor.</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -160,6 +158,14 @@ Represents a note, relative to a particular scale.  This note will need to be
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.Object</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#clone()">clone</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -226,6 +232,14 @@ Represents a note, relative to a particular scale.  This note will need to be
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#getScale()">getScale</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the scale for this note.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#getScaleStep()">getScaleStep</A></B>()</CODE>
 
@@ -235,11 +249,11 @@ Represents a note, relative to a particular scale.  This note will need to be
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings">SegmentSettings</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#getSegmentSettings()">getSegmentSettings</A></B>()</CODE>
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#getSegmentChromaticAdjustment()">getSegmentChromaticAdjustment</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the settings for the segment this note is a part of.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the chromatic adjustment for a segment of notes.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -304,6 +318,14 @@ Represents a note, relative to a particular scale.  This note will need to be
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#setScale(com.myronmarston.music.scales.Scale)">setScale</A></B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the scale for this note.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#setScaleStep(int)">setScaleStep</A></B>(int&nbsp;scaleStep)</CODE>
 
 <BR>
@@ -313,10 +335,10 @@ Represents a note, relative to a particular scale.  This note will need to be
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#setSegmentSettings(com.myronmarston.music.settings.SegmentSettings)">setSegmentSettings</A></B>(<A HREF="../../../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings">SegmentSettings</A>&nbsp;segmentSettings)</CODE>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#setSegmentChromaticAdjustment(int)">setSegmentChromaticAdjustment</A></B>(int&nbsp;segmentChromaticAdjustment)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the settings for the segment this note is a part of.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the chromatic adjustment for a segment of notes.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -351,7 +373,7 @@ Represents a note, relative to a particular scale.  This note will need to be
 <TH ALIGN="left"><B>Methods inherited from class java.lang.Object</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>clone, finalize, getClass, notify, notifyAll, wait, wait, wait</CODE></TD>
+<TD><CODE>finalize, getClass, notify, notifyAll, wait, wait, wait</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -396,7 +418,7 @@ public <B>Note</B>(int&nbsp;scaleStep,
 </DL>
 <HR>
 
-<A NAME="Note(int, int, int, com.myronmarston.util.Fraction, int, com.myronmarston.music.settings.SegmentSettings)"><!-- --></A><H3>
+<A NAME="Note(int, int, int, com.myronmarston.util.Fraction, int, com.myronmarston.music.scales.Scale, int)"><!-- --></A><H3>
 Note</H3>
 <PRE>
 public <B>Note</B>(int&nbsp;scaleStep,
@@ -404,7 +426,8 @@ public <B>Note</B>(int&nbsp;scaleStep,
             int&nbsp;chromaticAdjustment,
             <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration,
             int&nbsp;volume,
-            <A HREF="../../../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings">SegmentSettings</A>&nbsp;segmentSettings)</PRE>
+            <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
+            int&nbsp;segmentChromaticAdjustment)</PRE>
 <DL>
 <DD>Constructor.
 <P>
@@ -412,20 +435,10 @@ public <B>Note</B>(int&nbsp;scaleStep,
 <DT><B>Parameters:</B><DD><CODE>scaleStep</CODE> - number of scale steps above the tonic; 0 = tonic, 
         7 = octave, 9 = third an octave above, etc.<DD><CODE>octave</CODE> - which octave the note should be in.  0 begins the first 
         octave in Midi that contains the tonic.<DD><CODE>chromaticAdjustment</CODE> - the number of half steps to adjust from the
-        diatonic note; used if this note is an accidental<DD><CODE>duration</CODE> - how long the note should last, in whole notes<DD><CODE>volume</CODE> - how loud the note should be (0-127)<DD><CODE>segmentSettings</CODE> - additional settings for a group of notes this note
-        is a part of</DL>
-</DL>
-<HR>
-
-<A NAME="Note(com.myronmarston.music.Note)"><!-- --></A><H3>
-Note</H3>
-<PRE>
-public <B>Note</B>(<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&nbsp;inputNote)</PRE>
-<DL>
-<DD>Copy Constructor.
-<P>
-<DL>
-<DT><B>Parameters:</B><DD><CODE>inputNote</CODE> - note to copy</DL>
+        diatonic note; used if this note is an accidental<DD><CODE>duration</CODE> - how long the note should last, in whole notes<DD><CODE>volume</CODE> - how loud the note should be (0-127)<DD><CODE>scale</CODE> - the scale to use for this note; if this is non-null, it
+        will be used rather than the scale passed to any of this object's
+        methods<DD><CODE>segmentChromaticAdjustment</CODE> - additional chromatic adjustment for a
+        segment of the piece; used to deal with chromatic self-similarity</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -446,6 +459,9 @@ public static <A HREF="../../../com/myronmarston/music/Note.html" title="class i
 <DD>Creates a note that is a rest.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>duration</CODE> - how long the rest should last, in whole notes
 <DT><B>Returns:</B><DD>the rest</DL>
 </DD>
@@ -461,6 +477,9 @@ public int <B>getScaleStep</B>()</PRE>
  0 = tonic, 7 = octave, 9 = third an octave above, etc.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>the scale step</DL>
 </DD>
@@ -475,6 +494,9 @@ public void <B>setScaleStep</B>(int&nbsp;scaleStep)</PRE>
 <DD>Sets the number of scale steps above the tonic; In an 7-note scale, 
  0 = tonic, 7 = octave, 9 = third an octave above, etc.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>scaleStep</CODE> - the scale step
 <DT><B>Throws:</B>
@@ -492,6 +514,9 @@ public int <B>getOctave</B>()</PRE>
  Midi that contains the tonic.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>the octave</DL>
 </DD>
@@ -507,6 +532,9 @@ public void <B>setOctave</B>(int&nbsp;octave)</PRE>
  Midi that contains the tonic.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>octave</CODE> - the octave</DL>
 </DD>
 </DL>
@@ -520,6 +548,9 @@ public int <B>getChromaticAdjustment</B>()</PRE>
 <DD>Gets the number of half steps to adjust from the diatonic note; used if 
  this note is an accidental.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the chromatic adjustment</DL>
@@ -536,34 +567,80 @@ public void <B>setChromaticAdjustment</B>(int&nbsp;chromaticAdjustment)</PRE>
  this note is an accidental.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>chromaticAdjustment</CODE> - the chromatic adjustment</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="getSegmentSettings()"><!-- --></A><H3>
-getSegmentSettings</H3>
+<A NAME="getSegmentChromaticAdjustment()"><!-- --></A><H3>
+getSegmentChromaticAdjustment</H3>
 <PRE>
-public <A HREF="../../../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings">SegmentSettings</A> <B>getSegmentSettings</B>()</PRE>
+public int <B>getSegmentChromaticAdjustment</B>()</PRE>
 <DL>
-<DD>Gets the settings for the segment this note is a part of.
+<DD>Gets the chromatic adjustment for a segment of notes.  This is used to
+ apply self-similarity to a germ that has chromatic notes.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
-<DT><B>Returns:</B><DD>the segment settings</DL>
+<DT><B>Returns:</B><DD>the segment chromatic adjustment</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="setSegmentSettings(com.myronmarston.music.settings.SegmentSettings)"><!-- --></A><H3>
-setSegmentSettings</H3>
+<A NAME="setSegmentChromaticAdjustment(int)"><!-- --></A><H3>
+setSegmentChromaticAdjustment</H3>
 <PRE>
-public void <B>setSegmentSettings</B>(<A HREF="../../../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings">SegmentSettings</A>&nbsp;segmentSettings)</PRE>
+public void <B>setSegmentChromaticAdjustment</B>(int&nbsp;segmentChromaticAdjustment)</PRE>
 <DL>
-<DD>Sets the settings for the segment this note is a part of.
+<DD>Sets the chromatic adjustment for a segment of notes.  This is used to
+ apply self-similarity to a germ that has chromatic notes.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>segmentSettings</CODE> - the segment settings</DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>segmentChromaticAdjustment</CODE> - the segment chromatic adjustment</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getScale()"><!-- --></A><H3>
+getScale</H3>
+<PRE>
+public <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A> <B>getScale</B>()</PRE>
+<DL>
+<DD>Gets the scale for this note.  This will be used in place of any scale
+ passed to any of this methods.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the scale</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setScale(com.myronmarston.music.scales.Scale)"><!-- --></A><H3>
+setScale</H3>
+<PRE>
+public void <B>setScale</B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</PRE>
+<DL>
+<DD>Sets the scale for this note.  This will be used in place of any scale
+ passed to any of this methods.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>scale</CODE> - the scale</DL>
 </DD>
 </DL>
 <HR>
@@ -575,6 +652,9 @@ public <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in co
 <DL>
 <DD>Gets how long the note should last, in whole notes.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the duration</DL>
@@ -590,6 +670,9 @@ public void <B>setDuration</B>(<A HREF="../../../com/myronmarston/util/Fraction.
 <DD>Sets how long the note should last, in whole notes.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>duration</CODE> - the duration</DL>
 </DD>
 </DL>
@@ -602,6 +685,9 @@ public int <B>getVolume</B>()</PRE>
 <DL>
 <DD>Gets how loud the note should be (0-127).  0 makes it a rest.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the volume</DL>
@@ -617,6 +703,9 @@ public void <B>setVolume</B>(int&nbsp;volume)</PRE>
 <DD>Sets how loud the note should be (0-127).  0 makes it a rest.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>volume</CODE> - the volume</DL>
 </DD>
 </DL>
@@ -629,6 +718,9 @@ public boolean <B>isRest</B>()</PRE>
 <DL>
 <DD>Gets whether or not this note is a rest (i.e., has a volume of 0).
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>true if the volume is 0</DL>
@@ -646,6 +738,9 @@ protected void <B>throwUnsupportedOperationExceptionIfRest</B>(java.lang.String&
  and the note is a rest.  Called from the setters.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>changingField</CODE> - the field being changed<DD><CODE>value</CODE> - the value the field is being changed to</DL>
 </DD>
 </DL>
@@ -662,6 +757,9 @@ public static <A HREF="../../../com/myronmarston/music/Note.html" title="class i
 <DL>
 <DD>Parses a note string such as F#4,1/8,MF.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>noteString</CODE> - string to parse<DD><CODE>scale</CODE> - the scale to use to determine the scaleStep and 
         chromaticAdjustment<DD><CODE>defaultDuration</CODE> - duration to use if the noteString does not contain
@@ -687,6 +785,9 @@ public <A HREF="../../../com/myronmarston/music/Note.html" title="class in com.m
  of scale steps.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>scale</CODE> - the scale to use as a reference for normalization
 <DT><B>Returns:</B><DD>the normalized note</DL>
 </DD>
@@ -706,6 +807,9 @@ public <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in c
  actual Midi note on and note off events.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>scale</CODE> - the scale to use<DD><CODE>startTime</CODE> - the time this note should be played<DD><CODE>midiTickResolution</CODE> - the number of ticks per whole note for the
         midi sequence<DD><CODE>channel</CODE> - the midi channel for this note, 0-15<DD><CODE>keepExactPitch</CODE> - true to keep the exact pitch specified by the note
         parameters; false to allow the chromaticAdjustment to be changed
@@ -722,6 +826,20 @@ public java.lang.String <B>toString</B>()</PRE>
 <DL>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>toString</CODE> in class <CODE>java.lang.Object</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="clone()"><!-- --></A><H3>
+clone</H3>
+<PRE>
+public java.lang.Object <B>clone</B>()</PRE>
+<DL>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>clone</CODE> in class <CODE>java.lang.Object</CODE></DL>
 </DD>
 <DD><DL>
 </DL>

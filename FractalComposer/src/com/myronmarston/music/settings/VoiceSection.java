@@ -22,6 +22,7 @@ package com.myronmarston.music.settings;
 import com.myronmarston.music.GermIsEmptyException;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
+import com.myronmarston.music.scales.Scale;
 import com.myronmarston.util.Fraction;
 import com.myronmarston.util.Publisher;
 import com.myronmarston.util.Subscriber;
@@ -325,7 +326,16 @@ public class VoiceSection implements Subscriber {
         }
         
         NoteList temp = this.getSectionSettings().applySettingsToNoteList(germ);
-        return this.getVoiceSettings().applySettingsToNoteList(temp);                               
+        temp = this.getVoiceSettings().applySettingsToNoteList(temp);  
+                        
+        Scale cachedScale = this.getSection().getScale();        
+        for (Note n : temp) {
+            // we should never have a scale already set...
+            assert n.getScale() == null : n.getScale();
+            n.setScale(cachedScale);
+        }
+        
+        return temp;
     }
 
     public void publisherNotification(Publisher p, Object args) {   

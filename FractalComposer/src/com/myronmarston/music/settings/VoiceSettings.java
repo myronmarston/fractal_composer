@@ -28,7 +28,8 @@ import com.myronmarston.music.transformers.*;
 import org.simpleframework.xml.*;
 
 /**
- *
+ * Specifies settings for a voice.  
+ * 
  * @author Myron
  */
 @Root

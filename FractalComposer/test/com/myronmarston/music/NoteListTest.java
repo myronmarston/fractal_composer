@@ -113,12 +113,30 @@ public class NoteListTest {
         assertEquals(48, NoteList.getMidiTickResolution(Arrays.asList(nl)));
     }
     
+    @Test
+    public void testClone() throws Exception {
+        NoteList nl = NoteList.parseNoteListString("G4 C4 Ab4", Scale.DEFAULT);
+        nl.setInstrument(Instrument.getInstrument("Viola"));
+        NoteList cloned = (NoteList) nl.clone();
+        assertNoteListsEqual(nl, cloned);
+        
+        // make sure that each note was cloned, rather than just pointing to
+        // the same reference
+        for (int i = 0; i < nl.size(); i++) {
+            assertTrue(nl.get(i) != cloned.get(i));
+        }                
+    }
+            
+    
     public static void assertNoteListsEqual(NoteList expected, NoteList actual) {        
         assertNoteListsEqual(expected, actual, null);
     }
     
     public static void assertNoteListsEqual(NoteList expected, NoteList actual, Scale scaleForNormalization) {        
         assertEquals(expected.size(), actual.size());
+        assertEquals(expected.getInstrument(), actual.getInstrument());
+        assertEquals(expected.getDuration(), actual.getDuration());
+        assertEquals(expected.getFirstAudibleNote(), actual.getFirstAudibleNote());
         for (int i = 0; i < actual.size(); i++) {
             Note expectedNote = expected.get(i);
             Note actualNote = actual.get(i);

@@ -128,9 +128,6 @@ Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/MidiNo
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
 <DD>Gets the number of half steps to adjust from the diatonic note; used if 
  this note is an accidental.
-<DT><A HREF="../com/myronmarston/music/settings/SegmentSettings.html#getChromaticAdjustment()"><B>getChromaticAdjustment()</B></A> - 
-Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings">SegmentSettings</A>
-<DD>Gets the chromatic adjustment for this segment.
 <DT><A HREF="../com/myronmarston/util/ClassHelper.html#getClassesInPackage(java.lang.String)"><B>getClassesInPackage(String)</B></A> - 
 Static method in class com.myronmarston.util.<A HREF="../com/myronmarston/util/ClassHelper.html" title="class in com.myronmarston.util">ClassHelper</A>
 <DD>Gets a list of all classes found in a particular package.
@@ -234,9 +231,9 @@ Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music
 <DT><A HREF="../com/myronmarston/music/scales/Scale.html#getKeySignature()"><B>getKeySignature()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>
 <DD>Gets the key signature of the scale.
-<DT><A HREF="../com/myronmarston/music/scales/KeySignature.html#getKeySignatureMidiEvent()"><B>getKeySignatureMidiEvent()</B></A> - 
+<DT><A HREF="../com/myronmarston/music/scales/KeySignature.html#getKeySignatureMidiEvent(long)"><B>getKeySignatureMidiEvent(long)</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>
-<DD>Gets the midi key signature event.
+<DD>Gets a midi key signature event.
 <DT><A HREF="../com/myronmarston/music/settings/VoiceSection.html#getLengthenedVoiceSectionResult(com.myronmarston.util.Fraction)"><B>getLengthenedVoiceSectionResult(Fraction)</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A>
 <DD>Returns the voice section result, set to a particular length by padding 
@@ -398,9 +395,15 @@ Static method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/
 <DT><A HREF="../com/myronmarston/music/settings/VoiceSection.html#getRest()"><B>getRest()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A>
 <DD>Gets whether or not to make this VoiceSection one long rest.
+<DT><A HREF="../com/myronmarston/music/Note.html#getScale()"><B>getScale()</B></A> - 
+Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
+<DD>Gets the scale for this note.
 <DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#getScale()"><B>getScale()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
 <DD>Returns the Scale.
+<DT><A HREF="../com/myronmarston/music/settings/Section.html#getScale()"><B>getScale()</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>
+<DD>Gets the scale to be used by this section.
 <DT><A HREF="../com/myronmarston/music/transformers/RhythmicDurationTransformer.html#getScaleFactor()"><B>getScaleFactor()</B></A> - 
 Method in class com.myronmarston.music.transformers.<A HREF="../com/myronmarston/music/transformers/RhythmicDurationTransformer.html" title="class in com.myronmarston.music.transformers">RhythmicDurationTransformer</A>
 <DD>Gets the scale factor.
@@ -439,15 +442,18 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/settings/VoiceSectionHashMapKey.html#getSection()"><B>getSection()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/VoiceSectionHashMapKey.html" title="class in com.myronmarston.music.settings">VoiceSectionHashMapKey</A>
 <DD>Gets the Section for this key.
+<DT><A HREF="../com/myronmarston/music/settings/Section.html#getSectionKeySignature()"><B>getSectionKeySignature()</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>
+<DD>Gets the key signature for this section.
 <DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#getSections()"><B>getSections()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
 <DD>Gets a list of Sections for the FractalPiece.
 <DT><A HREF="../com/myronmarston/music/settings/VoiceSection.html#getSectionSettings()"><B>getSectionSettings()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A>
 <DD>Gets the section settings for this voice section.
-<DT><A HREF="../com/myronmarston/music/Note.html#getSegmentSettings()"><B>getSegmentSettings()</B></A> - 
+<DT><A HREF="../com/myronmarston/music/Note.html#getSegmentChromaticAdjustment()"><B>getSegmentChromaticAdjustment()</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
-<DD>Gets the settings for the segment this note is a part of.
+<DD>Gets the chromatic adjustment for a segment of notes.
 <DT><A HREF="../com/myronmarston/music/settings/SelfSimilaritySettings.html#getSelfSimilarityIterations()"><B>getSelfSimilarityIterations()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/SelfSimilaritySettings.html" title="class in com.myronmarston.music.settings">SelfSimilaritySettings</A>
 <DD>Gets the number of self-similarity iterations.

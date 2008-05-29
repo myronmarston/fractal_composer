@@ -19,16 +19,13 @@
 
 package com.myronmarston.music;
 
-import com.myronmarston.music.settings.SegmentSettings;
 import com.myronmarston.music.scales.Scale;
 import com.myronmarston.music.NoteStringInvalidPartException.NoteStringPart;
-
 import com.myronmarston.util.Fraction;
-
 import org.simpleframework.xml.*;
 
-import java.util.Arrays;
-import java.util.Locale;
+import java.lang.reflect.UndeclaredThrowableException;
+import java.util.*;
 import java.util.regex.*;
 
 /**
@@ -39,7 +36,7 @@ import java.util.regex.*;
  * @author Myron
  */
 @Root
-public class Note {
+public class Note implements Cloneable {
     @Attribute
     private int scaleStep; // number of scale steps above the tonic; 0 = tonic, 7 = octave, 9 = third an octave above, etc.
     
@@ -50,13 +47,17 @@ public class Note {
     private int chromaticAdjustment; // the number of half steps to adjust from the diatonic note; used if this note is an accidental
     
     @Element(required=false)    
-    private Fraction duration; // how long the note should last, in whole notes.
+    private Fraction duration; // how long the note should last, in whole notes.        
     
     @Attribute
     private int volume = MidiNote.DEFAULT_VELOCITY; // how loud the note should be on a scale from 0 to 127.    
-    
+        
     @Element(required=false)
-    private SegmentSettings segmentSettings; // an object containing settings to apply to a segment of notes
+    private Scale scale;
+    
+    @Attribute
+    private int segmentChromaticAdjustment;
+    
     private static Pattern noteParser;
     
     /**
@@ -95,23 +96,18 @@ public class Note {
      *        diatonic note; used if this note is an accidental
      * @param duration how long the note should last, in whole notes
      * @param volume how loud the note should be (0-127)
-     * @param segmentSettings additional settings for a group of notes this note
-     *        is a part of
-     */
-    public Note(int scaleStep, int octave, int chromaticAdjustment, Fraction duration, int volume, SegmentSettings segmentSettings) {
+     * @param scale the scale to use for this note; if this is non-null, it
+     *        will be used rather than the scale passed to any of this object's
+     *        methods
+     * @param segmentChromaticAdjustment additional chromatic adjustment for a
+     *        segment of the piece; used to deal with chromatic self-similarity     
+     */    
+    public Note(int scaleStep, int octave, int chromaticAdjustment, Fraction duration, int volume, Scale scale, int segmentChromaticAdjustment) {
         this(scaleStep, octave, chromaticAdjustment, duration, volume);
-        this.setSegmentSettings(segmentSettings);               
+        this.setScale(scale);
+        this.setSegmentChromaticAdjustment(segmentChromaticAdjustment);
     }        
-    
-    /**
-     * Copy Constructor.
-     * 
-     * @param inputNote note to copy     
-     */
-    public Note(Note inputNote) {
-        this(inputNote.getScaleStep(), inputNote.getOctave(), inputNote.getChromaticAdjustment(), inputNote.getDuration(), inputNote.getVolume(), inputNote.getSegmentSettings());
-    }
-        
+     
     /**
      * Creates a note that is a rest.
      * 
@@ -191,35 +187,46 @@ public class Note {
         throwUnsupportedOperationExceptionIfRest("chromaticAdjustment", chromaticAdjustment);
         this.chromaticAdjustment = chromaticAdjustment;
     }
-
-    /**
-     * Gets the settings for the segment this note is a part of.
-     * 
-     * @return the segment settings
-     */
-    public SegmentSettings getSegmentSettings() {
-        return segmentSettings;
-    }
-
-    /**
-     * Sets the settings for the segment this note is a part of.
-     * 
-     * @param segmentSettings the segment settings
-     */
-    public void setSegmentSettings(SegmentSettings segmentSettings) {
-        this.segmentSettings = segmentSettings;
-    }    
     
     /**
-     * Gets the chromatic adjustment on the segment settings, or the default 
-     * chromatic adjustment if there are no settings.
+     * Gets the chromatic adjustment for a segment of notes.  This is used to
+     * apply self-similarity to a germ that has chromatic notes.
      * 
-     * @return the chromatic adjustment on the segment settings
+     * @return the segment chromatic adjustment
      */
-    private int getSegmentSettingsChromaticAdjustment() {
-        if (this.getSegmentSettings() == null) return 0;
-        return this.getSegmentSettings().getChromaticAdjustment();
+    public int getSegmentChromaticAdjustment() {
+        return this.segmentChromaticAdjustment;
     }
+
+    /**
+     * Sets the chromatic adjustment for a segment of notes.  This is used to
+     * apply self-similarity to a germ that has chromatic notes.
+     * 
+     * @param segmentChromaticAdjustment the segment chromatic adjustment     
+     */
+    public void setSegmentChromaticAdjustment(int segmentChromaticAdjustment) {        
+        this.segmentChromaticAdjustment = segmentChromaticAdjustment;
+    }
+
+    /**
+     * Gets the scale for this note.  This will be used in place of any scale
+     * passed to any of this methods.
+     * 
+     * @return the scale
+     */
+    public Scale getScale() {
+        return scale;
+    }
+
+    /**
+     * Sets the scale for this note.  This will be used in place of any scale
+     * passed to any of this methods.
+     * 
+     * @param scale the scale
+     */
+    public void setScale(Scale scale) {
+        this.scale = scale;
+    }        
     
     /**
      * Gets how long the note should last, in whole notes.
@@ -327,7 +334,7 @@ public class Note {
      * @throws com.myronmarston.music.NoteStringParseException thrown when the
      *         noteString cannot be parsed
      */
-    public static Note parseNoteString(String noteString, Scale scale, Fraction defaultDuration, Integer defaultVolume) throws NoteStringParseException {
+    public static Note parseNoteString(String noteString, Scale scale, Fraction defaultDuration, Integer defaultVolume) throws NoteStringParseException {        
         if (defaultDuration == null) defaultDuration = new Fraction(1, 4);
         if (defaultVolume == null) defaultVolume = Dynamic.MF.getMidiVolume();
         
@@ -499,8 +506,9 @@ public class Note {
      * @return the normalized note
      */
     public Note getNormalizedNote(Scale scale) {
-        Note tempNote = new Note(this);
-        int numScaleStepsInOctave = scale.getScaleStepArray().length; // cache it
+        Scale scaleToUse = this.getScaleToUse(scale);
+        Note tempNote = (Note) this.clone();
+        int numScaleStepsInOctave = scaleToUse.getScaleStepArray().length; // cache it
         
         // put the note's scaleStep into the normal range (0..numScaleSteps - 1), adjusting the octaves.
         while(tempNote.getScaleStep() < 0) {
@@ -550,8 +558,9 @@ public class Note {
     private int getMidiPitchNumber(Scale scale, boolean keepExactPitch) {
         if (this.isRest()) return 0;
         
-        int[] scaleSteps = scale.getScaleStepArray(); // cache it
-        Note normalizedNote = this.getNormalizedNote(scale);        
+        Scale scaleToUse = this.getScaleToUse(scale);
+        int[] scaleSteps = scaleToUse.getScaleStepArray(); // cache it
+        Note normalizedNote = this.getNormalizedNote(scaleToUse);        
         int chromaticAdj = normalizedNote.getChromaticAdjustment();
         int chromaticAdjDecrementer = chromaticAdj > 0 ? 1 : -1;
         int testPitchNum;
@@ -581,8 +590,8 @@ public class Note {
         
         return scaleSteps[normalizedNote.getScaleStep()]       // half steps above tonic
                 + chromaticAdj                                 // the note's chromatic adjustment
-                + this.getSegmentSettingsChromaticAdjustment() // chromatic adjustment for the segment
-                + scale.getKeyName().getMidiPitchNumberAtOctave(normalizedNote.getOctave()); // take into account the octave
+                + this.getSegmentChromaticAdjustment() // chromatic adjustment for the segment
+                + scaleToUse.getKeyName().getMidiPitchNumberAtOctave(normalizedNote.getOctave()); // take into account the octave
     }
     
     /**
@@ -609,15 +618,36 @@ public class Note {
         midiNote.setChannel(channel);
         
         return midiNote;
-    }               
+    }   
+    
+    /**
+     * Gets the scale that should be used for this note.
+     * 
+     * @param defaultScale the scale that should be used if there is not already
+     *        one set on the segment settings
+     * @return the scale that should be used
+     */
+    private Scale getScaleToUse(Scale defaultScale) {
+        return (this.getScale() == null ? defaultScale : this.getScale());        
+    }
     
     @Override
     public String toString() {
-        return String.format("Note = scaleStep %d, octave %d, chromaticAdjustment %d, duration %s, volume %d", this.scaleStep, this.octave, this.chromaticAdjustment, this.duration.toString(), this.volume);
+        return String.format("Note = SS(%d), O(%d), CA(%d), D(%s), V(%d), S(%s), SCA(%d)", this.scaleStep, this.octave, this.chromaticAdjustment, this.duration.toString(), this.volume, (this.scale == null ? "null": this.scale.toString()), this.segmentChromaticAdjustment);
     }
 
-    // equals and hashCode were auto-generated by the Netbeans IDE, and modified
-    // by hand to deal with the segment settings chromatic adjustment
+    @Override
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException ex) {
+            // We have implemented the Cloneable interface, so we should never
+            // get this exception.  If we do, there's something very, very wrong...
+            throw new UndeclaredThrowableException(ex, "Unexpected error while cloning.  This indicates a programming or JVM error.");
+        }         
+    }
+
+    // equals() and hashCode() were auto-generated by the Netbeans IDE
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -642,30 +672,25 @@ public class Note {
         if (this.volume != other.volume) {
             return false;
         }
-        
-        // this part was coded by hand; the rest was auto-generated
-        if (!this.isRest()) {
-            // we only care about comparing segment settings if the note is not a rest
-            if (this.getSegmentSettingsChromaticAdjustment() != other.getSegmentSettingsChromaticAdjustment()) {
-                return false;
-            }
+        if (this.scale != other.scale && (this.scale == null || !this.scale.equals(other.scale))) {
+            return false;
         }
-        
+        if (this.segmentChromaticAdjustment != other.segmentChromaticAdjustment) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + this.scaleStep;
-        hash = 89 * hash + this.octave;
-        hash = 89 * hash + this.chromaticAdjustment;
-        hash = 89 * hash + (this.duration != null ? this.duration.hashCode() : 0);
-        hash = 89 * hash + this.volume;
-        
-        // this part was coded by hand; the rest was auto-generated
-        hash = 89 * hash + (this.getSegmentSettingsChromaticAdjustment());
-        
+        hash = 83 * hash + this.scaleStep;
+        hash = 83 * hash + this.octave;
+        hash = 83 * hash + this.chromaticAdjustment;
+        hash = 83 * hash + (this.duration != null ? this.duration.hashCode() : 0);
+        hash = 83 * hash + this.volume;
+        hash = 83 * hash + (this.scale != null ? this.scale.hashCode() : 0);
+        hash = 83 * hash + this.segmentChromaticAdjustment;
         return hash;
-    }                   
+    }                         
 }

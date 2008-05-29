@@ -55,18 +55,20 @@ public class XmlSerializationTest {
     
     @Test
     public void serializeNote() throws Exception {
-        Note n = new Note(3, 4, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume());        
+        Note n = new Note(3, 4, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), null, 1);        
         String expected = 
-        "<note id=\"0\" scaleStep=\"3\" octave=\"4\" chromaticAdjustment=\"0\" volume=\"85\">\n"+                
+        "<note id=\"0\" scaleStep=\"3\" octave=\"4\" chromaticAdjustment=\"0\" volume=\"85\" segmentChromaticAdjustment=\"1\">\n"+                
         "   <duration id=\"1\" numerator_=\"1\" denominator_=\"4\"/>\n" +
-        "</note>";
+        "</note>";        
         testSerialization(n, expected);        
-        
-        n.setSegmentSettings(new SegmentSettings(1));                
+                
+        n.setScale(new MajorScale(NoteName.E));        
         expected = 
-        "<note id=\"0\" scaleStep=\"3\" octave=\"4\" chromaticAdjustment=\"0\" volume=\"85\">\n"+                
+        "<note id=\"0\" scaleStep=\"3\" octave=\"4\" chromaticAdjustment=\"0\" volume=\"85\" segmentChromaticAdjustment=\"1\">\n"+                
         "   <duration id=\"1\" numerator_=\"1\" denominator_=\"4\"/>\n" +
-        "   <segmentSettings id=\"2\" chromaticAdjustment=\"1\"/>\n" +
+        "   <scale class=\"com.myronmarston.music.scales.MajorScale\" id=\"2\">\n" +
+        "      <keySignature id=\"3\" keyName=\"E\" tonality=\"Major\"/>\n" +
+        "   </scale>\n" +
         "</note>";    
         testSerialization(n, expected);        
     }
@@ -111,10 +113,14 @@ public class XmlSerializationTest {
         Section s = fpWithDefaultSettings.getSections().get(0);
         s.getSettings().setApplyInversion(true);
         s.getSettings().setApplyRetrograde(false);
+        s.setScale(new HarmonicMinorScale(NoteName.G));
         
         String expected =   
         "<section id=\"0\" uniqueIndex=\"1\">\n" +
         "   <settings id=\"53\" applyInversion=\"true\" applyRetrograde=\"false\" readOnly=\"false\"/>\n" +
+        "   <scale class=\"com.myronmarston.music.scales.HarmonicMinorScale\" id=\"54\">\n" +
+        "      <keySignature id=\"55\" keyName=\"G\" tonality=\"Minor\"/>\n" +
+        "   </scale>\n" +
         // fractal piece section that gets stripped goes here...
         "</section>";
 
@@ -149,6 +155,7 @@ public class XmlSerializationTest {
         fp.getVoices().remove(2);
         fp.setGenerateLayeredOutro(false);
         fp.getVoices().get(0).setInstrumentName("Violin");
+        fp.getSections().get(2).setScale(new MajorPentatonicScale(NoteName.B));
         fp.getVoices().get(0).getVoiceSections().get(0).setUseDefaultVoiceSettings(false);        
         fp.getVoices().get(0).getVoiceSections().get(0).getVoiceSettings().getSelfSimilaritySettings().setSelfSimilarityIterations(3);
         fp.getSections().get(0).getVoiceSections().get(0).setUseDefaultSectionSettings(false);
@@ -188,6 +195,7 @@ public class XmlSerializationTest {
             Section s = fp.getSections().get(i);
             Section newS = newFp.getSections().get(i);
             assertEquals(s.getUniqueIndex(), newS.getUniqueIndex());
+            assertEquals(s.getScale(), newS.getScale());
             assertEquals(s.getSettings(), newS.getSettings());
             assertEquals(s.getDuration(), newS.getDuration());
             assertEquals(newFp, newFp.getSections().get(i).getFractalPiece());

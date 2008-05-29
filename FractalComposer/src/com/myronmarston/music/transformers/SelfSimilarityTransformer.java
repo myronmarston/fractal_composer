@@ -22,7 +22,6 @@ package com.myronmarston.music.transformers;
 import com.myronmarston.music.MidiNote;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
-import com.myronmarston.music.settings.SegmentSettings;
 import com.myronmarston.music.settings.SelfSimilaritySettings;
 
 /**
@@ -79,9 +78,7 @@ public class SelfSimilarityTransformer implements Transformer {
     public NoteList transform(NoteList input) {                
         if (!this.getSettings().selfSimilarityShouldBeAppliedToSomething()) {
             // there is no self-similarity, so just return a copy of the input
-            
-            CopyTransformer ct = new CopyTransformer();
-            return ct.transform(input);
+            return (NoteList) input.clone();            
         }            
              
         NoteList tempList = input;
@@ -125,9 +122,9 @@ public class SelfSimilarityTransformer implements Transformer {
         TransposeTransformer transposer = new TransposeTransformer(inputNote.getScaleStep() - firstNote.getScaleStep());
         NoteList transposedList = transposer.transform(octaveTransformedList);
 
-        // set the chromatic adjustment on this note segment as necessary...
-        SegmentSettings segmentSettings = new SegmentSettings(inputNote.getChromaticAdjustment() - firstNote.getChromaticAdjustment());
-        for (Note n : transposedList) n.setSegmentSettings(segmentSettings);
+        // set the segment chromatic adjustment on this note as necessary...
+        int segmentChromaticAdjustment = inputNote.getChromaticAdjustment() - firstNote.getChromaticAdjustment();
+        for (Note n : transposedList) n.setSegmentChromaticAdjustment(segmentChromaticAdjustment);
         
         return transposedList;
     }

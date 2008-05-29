@@ -81,6 +81,7 @@ public class SectionSettingsTest implements Subscriber {
     @Test
     public void applySettingsToNoteList() throws Exception {
         Scale scale = new MajorScale(NoteName.G);
+        Scale scale2 = new HarmonicMinorScale(NoteName.C);
         SectionSettings ss = new SectionSettings();
         NoteList input = NoteList.parseNoteListString("G4,1/1 A4,1/2 B4,1/2 G4,1/1", scale);
         
@@ -101,7 +102,7 @@ public class SectionSettingsTest implements Subscriber {
         ss.setApplyInversion(false);
         expected = NoteList.parseNoteListString("G4,1/1 B4,1/2 A4,1/2 G4,1/1", scale);
         NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input), scale);
-    }
+    }        
     
     @Test
     public void equalsAndHashCode() {

@@ -40,9 +40,9 @@ public class NoteTest {
     }
     
     @Test
-    public void copyConstructorForRest() {
+    public void cloneForRest() {
         Note n = Note.createRest(new Fraction(3, 1));
-        assertEquals(n, new Note(n));
+        assertEquals(n, n.clone());
     }
     
     @Test(expected=IllegalArgumentException.class)
@@ -171,4 +171,76 @@ public class NoteTest {
         MidiNoteTest.assertNoteEventEqual(mn.getNoteOnEvent(), 16, (byte) -112, (byte) 0, (byte) 0);
         MidiNoteTest.assertNoteEventEqual(mn.getNoteOffEvent(), 17, (byte) -128, (byte) 0, (byte) 0);
     }
+    
+    @Test
+    public void testClone() throws Exception {
+        Note n = new Note(4, 4, 1, new Fraction(1, 4), 70, new MajorScale(NoteName.G), -1);
+        Note cloned = (Note) n.clone();
+        assertEquals(n, cloned);        
+    }
+        
+    @Test
+    public void testEqualsAndHashCode() throws Exception {
+        Note n1 = new Note(0, 3, 2, new Fraction(1, 3), 70, new MajorScale(NoteName.D), -1);
+        
+        Note n2 = (Note) n1.clone();
+        assertTrue(n1.equals(n2));
+        assertTrue(n2.equals(n1));
+        assertTrue(n1.hashCode() == n2.hashCode());
+        
+        n2.setChromaticAdjustment(-1);
+        assertFalse(n1.equals(n2));
+        assertFalse(n2.equals(n1));
+        assertFalse(n1.hashCode() == n2.hashCode());
+        
+        n2 = (Note) n1.clone();
+        n2.setDuration(new Fraction(1, 5));
+        assertFalse(n1.equals(n2));
+        assertFalse(n2.equals(n1));
+        assertFalse(n1.hashCode() == n2.hashCode());
+        
+        n2 = (Note) n1.clone();
+        n2.setOctave(7);
+        assertFalse(n1.equals(n2));
+        assertFalse(n2.equals(n1));
+        assertFalse(n1.hashCode() == n2.hashCode());
+        
+        n2 = (Note) n1.clone();
+        n2.setScale(Scale.DEFAULT);
+        assertFalse(n1.equals(n2));
+        assertFalse(n2.equals(n1));
+        assertFalse(n1.hashCode() == n2.hashCode());
+        
+        n2 = (Note) n1.clone();
+        n2.setScaleStep(-1);
+        assertFalse(n1.equals(n2));
+        assertFalse(n2.equals(n1));
+        assertFalse(n1.hashCode() == n2.hashCode());
+        
+        n2 = (Note) n1.clone();
+        n2.setSegmentChromaticAdjustment(2);
+        assertFalse(n1.equals(n2));
+        assertFalse(n2.equals(n1));
+        assertFalse(n1.hashCode() == n2.hashCode());
+        
+        n2 = (Note) n1.clone();
+        n2.setVolume(37);
+        assertFalse(n1.equals(n2));
+        assertFalse(n2.equals(n1));
+        assertFalse(n1.hashCode() == n2.hashCode());
+    }
+    
+    @Test
+    public void convertToMidiNote_withScale() throws Exception {
+        Note n = new Note(0, 4, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume());
+        
+        // try converting without a segment scale
+        MidiNote mn = n.convertToMidiNote(new MajorScale(NoteName.Bb), new Fraction(0, 1), 4, 1, true);
+        MidiNoteTest.assertMidiNoteEqual(mn, 70, Dynamic.F.getMidiVolume(), 0, 1, 1);
+        
+        // convert when we have a scale set on our note
+        n.setScale(new MajorScale(NoteName.D));
+        mn = n.convertToMidiNote(new MajorScale(NoteName.Bb), new Fraction(0, 1), 4, 1, true);
+        MidiNoteTest.assertMidiNoteEqual(mn, 62, Dynamic.F.getMidiVolume(), 0, 1, 1);                        
+    }    
 }

@@ -25,7 +25,8 @@ import com.myronmarston.util.AbstractPublisher;
 import org.simpleframework.xml.*;
 
 /**
- *
+ * Specifies settings for a section.
+ * 
  * @author Myron
  */
 @Root
@@ -38,7 +39,7 @@ public class SectionSettings extends AbstractPublisher {
     private boolean applyRetrograde = false; 
     
     @Attribute
-    private boolean readOnly = false;
+    private boolean readOnly = false;        
     
     /**
      * Constructor.
@@ -65,8 +66,8 @@ public class SectionSettings extends AbstractPublisher {
      */
     public boolean isReadOnly() {
         return readOnly;
-    }        
-    
+    }
+ 
     /**
      * Gets whether or not to apply inversion to this section.  This is the default 
      * for the voice sections in this section; they can individually override
@@ -124,7 +125,7 @@ public class SectionSettings extends AbstractPublisher {
      * @return the result of applying the settings to the note list
      */
     public NoteList applySettingsToNoteList(NoteList noteList) {     
-        NoteList temp = noteList;
+        NoteList temp = (NoteList) noteList.clone();
         
         if (this.getApplyInversion()) {
             InversionTransformer iT = new InversionTransformer();
@@ -134,7 +135,7 @@ public class SectionSettings extends AbstractPublisher {
         if (this.getApplyRetrograde()) {
             RetrogradeTransformer rT = new RetrogradeTransformer();
             temp = rT.transform(temp);
-        }
+        } 
         
         return temp;
     }

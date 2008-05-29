@@ -57,7 +57,7 @@ public class TransposeTransformer implements Transformer {
         NoteList output = new NoteList(input.size());
         
         for (Note inputNote : input) {
-            newNote = new Note(inputNote);
+            newNote = (Note) inputNote.clone();
             
             if (!newNote.isRest()) { // don't change a rest...
                 newNote.setScaleStep(newNote.getScaleStep() + this.getTransposeSteps());

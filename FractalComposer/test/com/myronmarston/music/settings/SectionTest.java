@@ -20,6 +20,7 @@
 package com.myronmarston.music.settings;
 
 import com.myronmarston.music.*;
+import com.myronmarston.music.scales.*;
 import com.myronmarston.util.Fraction;  
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -111,5 +112,23 @@ public class SectionTest {
         FractalPiece fp = new FractalPiece();
         fp.createDefaultSettings();
         assertEquals("Section", fp.getSections().get(0).getClassName());
+    }
+    
+    @Test
+    public void getSectionKeySignature() throws Exception {
+        Scale FMajor = new MajorScale(NoteName.F);
+        Scale GMinor = new MinorScale(NoteName.G);
+        FractalPiece fp = new FractalPiece();
+        fp.setScale(FMajor);
+        fp.createDefaultSettings();
+        
+        Section s2 = fp.getSections().get(2);
+        s2.setScale(GMinor);
+        for (Section s : fp.getSections()) {
+            if (s == s2) 
+                assertEquals(GMinor.getKeySignature(), s.getSectionKeySignature());
+            else
+                assertEquals(FMajor.getKeySignature(), s.getSectionKeySignature());
+        }
     }
 }

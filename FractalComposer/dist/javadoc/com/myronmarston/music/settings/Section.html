@@ -185,6 +185,22 @@ The entire fractal piece is composed of a series of sections.  Each section
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Section.html#getScale()">getScale</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the scale to be used by this section.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;<A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Section.html#getSectionKeySignature()">getSectionKeySignature</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the key signature for this section.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html" title="class in com.myronmarston.music.settings">SectionSettings</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Section.html#getSettings()">getSettings</A></B>()</CODE>
 
@@ -216,6 +232,14 @@ The entire fractal piece is composed of a series of sections.  Each section
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructs a midi sequence for this section and saves it to a midi file.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Section.html#setScale(com.myronmarston.music.scales.Scale)">setScale</A></B>(<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the scale to be used by this section.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -292,6 +316,47 @@ public <A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the settings for this section</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getScale()"><!-- --></A><H3>
+getScale</H3>
+<PRE>
+public <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A> <B>getScale</B>()</PRE>
+<DL>
+<DD>Gets the scale to be used by this section.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the scale to be used by this section</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setScale(com.myronmarston.music.scales.Scale)"><!-- --></A><H3>
+setScale</H3>
+<PRE>
+public void <B>setScale</B>(<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</PRE>
+<DL>
+<DD>Sets the scale to be used by this section.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>scale</CODE> - the scale to be used by this section</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getSectionKeySignature()"><!-- --></A><H3>
+getSectionKeySignature</H3>
+<PRE>
+protected <A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A> <B>getSectionKeySignature</B>()</PRE>
+<DL>
+<DD>Gets the key signature for this section.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the key signature for this section</DL>
 </DD>
 </DL>
 <HR>

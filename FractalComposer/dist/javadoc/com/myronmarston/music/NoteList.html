@@ -166,6 +166,32 @@ NoteList contains a sequence of notes.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.Object</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#clone()">clone</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#convertMidiTickUnitFromQuarterNotesToWholeNotes(long)">convertMidiTickUnitFromQuarterNotesToWholeNotes</A></B>(long&nbsp;ticksInWholeNotes)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the midi tick unit from quarter notes to whole notes, using 
+ longs.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#convertMidiTickUnitFromQuarterNotesToWholeNotesInt(int)">convertMidiTickUnitFromQuarterNotesToWholeNotesInt</A></B>(int&nbsp;ticksInWholeNotes)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the midi tick unit from quarter notes to whole notes, using 
+ ints.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;javax.sound.midi.Track</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#createAndFillMidiTrack(javax.sound.midi.Sequence, com.myronmarston.music.scales.Scale, com.myronmarston.util.Fraction)">createAndFillMidiTrack</A></B>(javax.sound.midi.Sequence&nbsp;sequence,
                        <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
@@ -231,7 +257,7 @@ NoteList contains a sequence of notes.
 <TH ALIGN="left"><B>Methods inherited from class java.util.ArrayList</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>add, add, addAll, addAll, clear, clone, contains, ensureCapacity, get, indexOf, isEmpty, lastIndexOf, remove, remove, removeRange, set, size, toArray, toArray, trimToSize</CODE></TD>
+<TD><CODE>add, add, addAll, addAll, clear, contains, ensureCapacity, get, indexOf, isEmpty, lastIndexOf, remove, remove, removeRange, set, size, toArray, toArray, trimToSize</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.util.AbstractList"><!-- --></A>
@@ -417,6 +443,50 @@ public static int <B>getMidiTickResolution</B>(java.util.Collection&lt;<A HREF="
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>noteLists</CODE> - collection of noteLists
 <DT><B>Returns:</B><DD>the midi tick resolution</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="convertMidiTickUnitFromQuarterNotesToWholeNotes(long)"><!-- --></A><H3>
+convertMidiTickUnitFromQuarterNotesToWholeNotes</H3>
+<PRE>
+public static long <B>convertMidiTickUnitFromQuarterNotesToWholeNotes</B>(long&nbsp;ticksInWholeNotes)</PRE>
+<DL>
+<DD>Converts the midi tick unit from quarter notes to whole notes, using 
+ longs.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>ticksInWholeNotes</CODE> - ticks in whole notes
+<DT><B>Returns:</B><DD>ticks in quarter notes</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="convertMidiTickUnitFromQuarterNotesToWholeNotesInt(int)"><!-- --></A><H3>
+convertMidiTickUnitFromQuarterNotesToWholeNotesInt</H3>
+<PRE>
+public static int <B>convertMidiTickUnitFromQuarterNotesToWholeNotesInt</B>(int&nbsp;ticksInWholeNotes)</PRE>
+<DL>
+<DD>Converts the midi tick unit from quarter notes to whole notes, using 
+ ints.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>ticksInWholeNotes</CODE> - ticks in whole notes
+<DT><B>Returns:</B><DD>ticks in quarter notes</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="clone()"><!-- --></A><H3>
+clone</H3>
+<PRE>
+public java.lang.Object <B>clone</B>()</PRE>
+<DL>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>clone</CODE> in class <CODE>java.util.ArrayList&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

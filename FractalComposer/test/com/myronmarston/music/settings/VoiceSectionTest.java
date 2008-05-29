@@ -338,4 +338,28 @@ public class VoiceSectionTest {
         expectedResult = NoteList.parseNoteListString("C4 D4 C4  D4 E4 D4  C4 D4 C4", fp.getScale());
         NoteListTest.assertNoteListsEqual(expectedResult, vs.getVoiceSectionResult());
     }
+    
+    @Test
+    public void getVoiceSectionResult_withScale() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        fp.setScale(new MajorScale(NoteName.C));
+        fp.setGermString("C4");
+        Voice v = fp.createVoice();
+        Section s = fp.createSection();
+        VoiceSection vs = v.getVoiceSections().get(0);
+                
+        NoteList expected = new NoteList();
+        expected.add(new Note(0, 4, 0, new Fraction(1, 4), MidiNote.DEFAULT_VELOCITY, null, 0));
+        NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());
+        
+        s.setScale(new HarmonicMinorScale(NoteName.Bb));
+        expected.clear();
+        expected.add(new Note(0, 4, 0, new Fraction(1, 4), MidiNote.DEFAULT_VELOCITY, new HarmonicMinorScale(NoteName.Bb), 0));
+        NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());
+        
+        s.setScale(null);
+        expected.clear();
+        expected.add(new Note(0, 4, 0, new Fraction(1, 4), MidiNote.DEFAULT_VELOCITY, null, 0));
+        NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());
+    }
 }

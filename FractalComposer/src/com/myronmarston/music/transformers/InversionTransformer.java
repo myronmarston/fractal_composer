@@ -36,7 +36,7 @@ public class InversionTransformer implements Transformer {
         NoteList output = new NoteList(input.size());
         
         for (Note inputNote : input) {
-            newNote = new Note(inputNote);
+            newNote = (Note) inputNote.clone();
             
             if (!newNote.isRest()) {
                 // invert the scale step...

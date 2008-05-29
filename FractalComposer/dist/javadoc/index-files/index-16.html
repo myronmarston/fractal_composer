@@ -114,14 +114,11 @@ Static variable in class com.myronmarston.music.scales.<A HREF="../com/myronmars
 <DT><A HREF="../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings"><B>Section</B></A> - Class in <A HREF="../com/myronmarston/music/settings/package-summary.html">com.myronmarston.music.settings</A><DD>The entire fractal piece is composed of a series of sections.<DT><A HREF="../com/myronmarston/music/settings/Section.html#Section(com.myronmarston.music.settings.FractalPiece, int)"><B>Section(FractalPiece, int)</B></A> - 
 Constructor for class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>
 <DD>Constructor.
-<DT><A HREF="../com/myronmarston/music/settings/SectionSettings.html" title="class in com.myronmarston.music.settings"><B>SectionSettings</B></A> - Class in <A HREF="../com/myronmarston/music/settings/package-summary.html">com.myronmarston.music.settings</A><DD>&nbsp;<DT><A HREF="../com/myronmarston/music/settings/SectionSettings.html#SectionSettings()"><B>SectionSettings()</B></A> - 
+<DT><A HREF="../com/myronmarston/music/settings/SectionSettings.html" title="class in com.myronmarston.music.settings"><B>SectionSettings</B></A> - Class in <A HREF="../com/myronmarston/music/settings/package-summary.html">com.myronmarston.music.settings</A><DD>Specifies settings for a section.<DT><A HREF="../com/myronmarston/music/settings/SectionSettings.html#SectionSettings()"><B>SectionSettings()</B></A> - 
 Constructor for class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/SectionSettings.html" title="class in com.myronmarston.music.settings">SectionSettings</A>
 <DD>Constructor.
 <DT><A HREF="../com/myronmarston/music/settings/SectionSettings.html#SectionSettings(boolean, boolean)"><B>SectionSettings(boolean, boolean)</B></A> - 
 Constructor for class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/SectionSettings.html" title="class in com.myronmarston.music.settings">SectionSettings</A>
-<DD>Constructor.
-<DT><A HREF="../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings"><B>SegmentSettings</B></A> - Class in <A HREF="../com/myronmarston/music/settings/package-summary.html">com.myronmarston.music.settings</A><DD>Contains some settings that apply to an arbitrary group of notes.<DT><A HREF="../com/myronmarston/music/settings/SegmentSettings.html#SegmentSettings(int)"><B>SegmentSettings(int)</B></A> - 
-Constructor for class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings">SegmentSettings</A>
 <DD>Constructor.
 <DT><A HREF="../com/myronmarston/music/settings/SelfSimilaritySettings.html" title="class in com.myronmarston.music.settings"><B>SelfSimilaritySettings</B></A> - Class in <A HREF="../com/myronmarston/music/settings/package-summary.html">com.myronmarston.music.settings</A><DD>Specifies settings for what to apply self-similarity to.<DT><A HREF="../com/myronmarston/music/settings/SelfSimilaritySettings.html#SelfSimilaritySettings()"><B>SelfSimilaritySettings()</B></A> - 
 Constructor for class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/SelfSimilaritySettings.html" title="class in com.myronmarston.music.settings">SelfSimilaritySettings</A>
@@ -166,9 +163,6 @@ Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/MidiNo
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
 <DD>Sets the number of half steps to adjust from the diatonic note; used if 
  this note is an accidental.
-<DT><A HREF="../com/myronmarston/music/settings/SegmentSettings.html#setChromaticAdjustment(int)"><B>setChromaticAdjustment(int)</B></A> - 
-Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/SegmentSettings.html" title="class in com.myronmarston.music.settings">SegmentSettings</A>
-<DD>Sets the chromatic adjustment for this segment.
 <DT><A HREF="../com/myronmarston/music/settings/TimeSignature.html#setDenominator(int)"><B>setDenominator(int)</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A>
 <DD>Sets the kind of note that gets one count.
@@ -223,16 +217,22 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/settings/AbstractVoiceOrSection.html#setRestOnAllVoiceSections(boolean)"><B>setRestOnAllVoiceSections(boolean)</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSection</A>
 <DD>Sets all voice sections for this voice or section to rest.
+<DT><A HREF="../com/myronmarston/music/Note.html#setScale(com.myronmarston.music.scales.Scale)"><B>setScale(Scale)</B></A> - 
+Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
+<DD>Sets the scale for this note.
 <DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#setScale(com.myronmarston.music.scales.Scale)"><B>setScale(Scale)</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
 <DD>Sets the Scale used by this FractalPiece.
+<DT><A HREF="../com/myronmarston/music/settings/Section.html#setScale(com.myronmarston.music.scales.Scale)"><B>setScale(Scale)</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>
+<DD>Sets the scale to be used by this section.
 <DT><A HREF="../com/myronmarston/music/Note.html#setScaleStep(int)"><B>setScaleStep(int)</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
 <DD>Sets the number of scale steps above the tonic; In an 7-note scale, 
  0 = tonic, 7 = octave, 9 = third an octave above, etc.
-<DT><A HREF="../com/myronmarston/music/Note.html#setSegmentSettings(com.myronmarston.music.settings.SegmentSettings)"><B>setSegmentSettings(SegmentSettings)</B></A> - 
+<DT><A HREF="../com/myronmarston/music/Note.html#setSegmentChromaticAdjustment(int)"><B>setSegmentChromaticAdjustment(int)</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
-<DD>Sets the settings for the segment this note is a part of.
+<DD>Sets the chromatic adjustment for a segment of notes.
 <DT><A HREF="../com/myronmarston/music/settings/SelfSimilaritySettings.html#setSelfSimilarityIterations(int)"><B>setSelfSimilarityIterations(int)</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/SelfSimilaritySettings.html" title="class in com.myronmarston.music.settings">SelfSimilaritySettings</A>
 <DD>Sets the number of self-similarity iterations.

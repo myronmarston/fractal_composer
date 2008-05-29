@@ -20,7 +20,6 @@
 package com.myronmarston.music.transformers;
 
 import com.myronmarston.music.*;
-import com.myronmarston.util.Fraction;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -28,20 +27,15 @@ import static org.junit.Assert.*;
  *
  * @author Myron
  */
-public class CopyTransformerTest {
-    
-    @Test 
-    public void copyTransformer() {
-        NoteList input = new NoteList();
-        input.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
-        input.add(new Note(5, 4, 0, new Fraction(1, 2), 64));
-        input.add(new Note(2, 4, 0, new Fraction(1, 2), 112));
-        input.add(new Note(1, 4, 0, new Fraction(1, 2), 112));
-        input.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
-        input.add(Note.createRest(new Fraction(1, 4)));
-        
-        Transformer t = new CopyTransformer();             
-        assertTransformerProducesExpectedOutput(t, input, input);
+public class TransformerTest {
+  
+    @Test
+    public void emptyTest() {
+        // This test is just present so that we don't get a failure error for
+        // not having any tests.
+        // We want to have this class to store the 
+        // assertTransformerProducesExpectedOutput method
+        assertTrue(true);
     }
     
     // this is used by all the transformer tests; we just put it here because it's an easy place to put it

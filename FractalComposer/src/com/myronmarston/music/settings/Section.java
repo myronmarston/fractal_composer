@@ -21,6 +21,8 @@ package com.myronmarston.music.settings;
 
 import com.myronmarston.music.GermIsEmptyException;
 import com.myronmarston.music.NoteList;
+import com.myronmarston.music.scales.KeySignature;
+import com.myronmarston.music.scales.Scale;
 import com.myronmarston.util.Fraction;
 import com.myronmarston.util.Publisher;
 import java.io.IOException;
@@ -39,6 +41,9 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
     
     @Element
     private final SectionSettings settings;
+    
+    @Element(required=false)
+    private Scale scale;
     
     /**
      * Constructor.
@@ -67,6 +72,36 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
     public SectionSettings getSettings() {
         return settings;
     } 
+    
+    /**
+     * Gets the scale to be used by this section.
+     * 
+     * @return the scale to be used by this section
+     */
+    public Scale getScale() {
+        return scale;
+    }
+
+    /**
+     * Sets the scale to be used by this section.
+     * 
+     * @param scale the scale to be used by this section
+     */
+    public void setScale(Scale scale) {
+        this.scale = scale;
+        this.clearVoiceSectionResults();
+    }        
+    
+    /**
+     * Gets the key signature for this section.
+     * 
+     * @return the key signature for this section
+     */
+    protected KeySignature getSectionKeySignature() {
+        return (this.getScale() == null ? 
+            this.getFractalPiece().getScale().getKeySignature() : 
+            this.getScale().getKeySignature());
+    }
     
     /**
      * Updates the self-similarity settings of all voice sections.  This also

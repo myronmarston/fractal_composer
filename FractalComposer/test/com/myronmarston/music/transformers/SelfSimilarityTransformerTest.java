@@ -23,7 +23,7 @@ import com.myronmarston.music.*;
 import com.myronmarston.util.Fraction;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static com.myronmarston.music.transformers.CopyTransformerTest.*;
+import static com.myronmarston.music.transformers.TransformerTest.*;
 
 /**
  *

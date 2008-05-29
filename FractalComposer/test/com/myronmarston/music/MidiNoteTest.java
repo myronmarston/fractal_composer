@@ -239,4 +239,12 @@ public class MidiNoteTest {
         assertEquals(byte2, msg.getMessage()[1]);
         assertEquals(byte3, msg.getMessage()[2]);
     }
+    
+    static public void assertMidiNoteEqual(MidiNote mn, int pitch, int velocity, long startTime, long duration, int channel) {
+        assertEquals(pitch, mn.getPitch());
+        assertEquals(velocity, mn.getVelocity());               
+        assertEquals(startTime, mn.getStartTime());
+        assertEquals(duration, mn.getDuration());
+        assertEquals(channel, mn.getChannel());
+    }
 }

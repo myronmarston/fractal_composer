@@ -261,6 +261,30 @@ public class FractalPieceTest {
         fp.createDefaultSettings();
     }
     
+    @Test
+    public void multipleKeySignature() throws Exception {
+        FractalPiece fp = new FractalPiece();     
+        fp.setScale(new MajorScale(NoteName.C));
+        fp.setGermString("C4");        
+        fp.createVoice();
+        Section s1 = fp.createSection();
+        Section s2 = fp.createSection();
+        Section s3 = fp.createSection();
+        Section s4 = fp.createSection();
+        
+        s1.setScale(new MinorScale(NoteName.G));
+        s2.setScale(new MajorScale(NoteName.G));
+        s3.setScale(new MajorPentatonicScale(NoteName.G));
+        Sequence seq = fp.generatePiece();
+        Track track0 = seq.getTracks()[0];
+        // Note: a section w/o a scale that comes after a section w/ a scale 
+        // should also have a key sig event to restore the key sig to the piece default...
+        KeySignatureTest.assertKeySignatureEventEqual(KeySignatureTest.getIndexedKeySigEvent(track0, 0), (byte) 0, (byte) 0, 0L);
+        KeySignatureTest.assertKeySignatureEventEqual(KeySignatureTest.getIndexedKeySigEvent(track0, 1), (byte) -2, (byte) 1, 4L);        
+        KeySignatureTest.assertKeySignatureEventEqual(KeySignatureTest.getIndexedKeySigEvent(track0, 2), (byte) 1, (byte) 0, 8L);
+        KeySignatureTest.assertKeySignatureEventEqual(KeySignatureTest.getIndexedKeySigEvent(track0, 3), (byte) 0, (byte) 0, 16L);                
+    }
+    
     @Test(expected=GermIsEmptyException.class)
     public void generatePieceWithEmptyGerm() throws GermIsEmptyException {
         FractalPiece fp = new FractalPiece();     
@@ -278,7 +302,7 @@ public class FractalPieceTest {
         Track baselineTrack = MidiSystem.getSequence(new File(tempFileName)).getTracks()[1];
         
         for (Scale s : getAllScalePossibilities()) {
-            System.out.println("Testing " + s.toString());
+            //System.out.println("Testing " + s.toString());
             fp.setScale(s);
             
             tempFileName = getTempFileName();
@@ -287,7 +311,7 @@ public class FractalPieceTest {
             Track t = MidiSystem.getSequence(new File(tempFileName)).getTracks()[1];            
             assertTracksEqual(baselineTrack, t);
         }
-    }        
+    }             
     
     static protected List<Scale> getAllScalePossibilities() throws IllegalAccessException, IllegalArgumentException, InstantiationException, NoSuchMethodException {
         Scale s;
@@ -319,7 +343,7 @@ public class FractalPieceTest {
         assertEquals(t1.size(), t2.size());
         assertEquals(t2.ticks(), t2.ticks());
         for (int i = 0; i < t1.size(); i++) {
-            System.out.println("    Testing midi event " + i);
+            //System.out.println("    Testing midi event " + i);
             MidiEvent me1 = t1.get(i);
             MidiEvent me2 = t2.get(i);
             
@@ -328,7 +352,7 @@ public class FractalPieceTest {
             assertEquals(me1.getMessage().getStatus(), me2.getMessage().getStatus());
             assertEquals(me1.getMessage().getLength(), me2.getMessage().getLength());
             for (int j = 0; j < me1.getMessage().getLength(); j++) {
-                System.out.println("        Testing message byte " + j);
+                //System.out.println("        Testing message byte " + j);
                 assertEquals(me1.getMessage().getMessage()[j], me2.getMessage().getMessage()[j]);            
             }            
         }

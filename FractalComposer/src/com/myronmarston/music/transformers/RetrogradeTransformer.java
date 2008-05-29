@@ -33,11 +33,10 @@ public class RetrogradeTransformer implements Transformer {
         
     public NoteList transform(NoteList input) {
         // make a copy to reverse...
-        CopyTransformer copyTrans = new CopyTransformer();
-        NoteList output = copyTrans.transform(input);
+        NoteList copy = (NoteList) input.clone();
         
         // reverse the copy, rather than the original input...
-        Collections.reverse(output);        
-        return output;
+        Collections.reverse(copy);        
+        return copy;
     }
 }

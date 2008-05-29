@@ -20,10 +20,7 @@
 package com.myronmarston.music.scales;
 
 import com.myronmarston.music.NoteName;
-import javax.sound.midi.InvalidMidiDataException;
-import javax.sound.midi.MidiEvent;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import javax.sound.midi.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -32,29 +29,18 @@ import static org.junit.Assert.*;
  *
  * @author Myron
  */
-public class KeySignatureTest {
-
-    public KeySignatureTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
+public class KeySignatureTest {  
     
     @Test
     public void getKeySignatureMidiEvent() throws InvalidKeySignatureException {
         KeySignature ks = new KeySignature(Tonality.Major, NoteName.E);        
-        assertKeySignatureEventEqual(ks.getKeySignatureMidiEvent(), (byte) 4, (byte) 0);
+        assertKeySignatureEventEqual(ks.getKeySignatureMidiEvent(0), (byte) 4, (byte) 0, 0);
         
         ks = new KeySignature(Tonality.Major, NoteName.Bb);        
-        assertKeySignatureEventEqual(ks.getKeySignatureMidiEvent(), (byte) -2, (byte) 0);
+        assertKeySignatureEventEqual(ks.getKeySignatureMidiEvent(0), (byte) -2, (byte) 0, 0);
         
         ks = new KeySignature(Tonality.Minor, NoteName.Bb);        
-        assertKeySignatureEventEqual(ks.getKeySignatureMidiEvent(), (byte) -5, (byte) 1);
+        assertKeySignatureEventEqual(ks.getKeySignatureMidiEvent(0), (byte) -5, (byte) 1, 0);
     }
     
     @Test(expected=InvalidKeySignatureException.class)
@@ -70,29 +56,48 @@ public class KeySignatureTest {
     @Test
     public void majorScaleGetKeySignature() throws InvalidMidiDataException, InvalidKeySignatureException {
         MajorScale s = new MajorScale(NoteName.D);
-        assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(), (byte) 2, (byte) 0);
+        assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(0), (byte) 2, (byte) 0, 0);
         
         s = new MajorScale(NoteName.Ab);
-        assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(), (byte) -4, (byte) 0);
+        assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(0), (byte) -4, (byte) 0, 0);
     }
     
     @Test
     public void minorScaleGetKeySignature() throws InvalidMidiDataException, InvalidKeySignatureException {
         MinorScale s = new MinorScale(NoteName.D);
-        assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(), (byte) -1, (byte) 1);
+        assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(0), (byte) -1, (byte) 1, 0);
         
         s = new MinorScale(NoteName.Gs);
-        assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(), (byte) 5, (byte) 1);
+        assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(0), (byte) 5, (byte) 1, 0);
+    }
+    
+    @Test
+    public void laterKeySignatureEvent() throws Exception {
+        MinorScale s = new MinorScale(NoteName.D);
+        assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(37), (byte) -1, (byte) 1, 37);
+    }
+    
+    static public MidiEvent getIndexedKeySigEvent(Track t, int index) {
+        int count = 0;
+        for (int i = 0; i < t.size(); i++) {
+            MidiEvent me = t.get(i);
+            if (me.getMessage().getStatus() == 0xFF && me.getMessage().getMessage()[1] == KeySignature.KEY_SIGNATURE_META_MESSAGE_TYPE) {
+                if (count == index) return me;
+                count++;
+            }
+        }
+        
+        return null;
     }
 
-    static public void assertKeySignatureEventEqual(MidiEvent keySignatureEvent, byte byte1, byte byte2) {
-        assertEquals(0L, keySignatureEvent.getTick());
+    static public void assertKeySignatureEventEqual(MidiEvent keySignatureEvent, byte accidentals, byte tonalityValue, long tick) {        
         javax.sound.midi.MidiMessage msg = keySignatureEvent.getMessage();
         assertEquals(5, msg.getLength());
         assertEquals((byte) 0xFF, msg.getMessage()[0]); // 0xFF for a meta message
         assertEquals((byte) 89, msg.getMessage()[1]);   // 89 is key signature type
         assertEquals((byte) 2, msg.getMessage()[2]);    // the size of the rest of the message     
-        assertEquals(byte1, msg.getMessage()[3]);        
-        assertEquals(byte2, msg.getMessage()[4]);        
+        assertEquals(accidentals, msg.getMessage()[3]);        
+        assertEquals(tonalityValue, msg.getMessage()[4]);        
+        assertEquals(tick, keySignatureEvent.getTick());
     }
 }

@@ -23,6 +23,7 @@ import com.myronmarston.music.GermIsEmptyException;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.NoteStringParseException;
+import com.myronmarston.music.scales.KeySignature;
 import com.myronmarston.music.scales.Scale;
 import com.myronmarston.music.Tempo;
 
@@ -517,8 +518,9 @@ public class FractalPiece {
         }  
 
         // next, use the first track to set key signature, time signature and tempo...
-        Track track1 = sequence.createTrack();
-        track1.add(this.getScale().getKeySignature().getKeySignatureMidiEvent());        
+        Track track1 = sequence.createTrack();        
+        track1.add(this.getScale().getKeySignature().getKeySignatureMidiEvent(0));                  
+        addSectionKeySigEventsToTrack(track1, sequence.getResolution());
         track1.add(this.getTimeSignature().getMidiTimeSignatureEvent());
         track1.add(Tempo.getMidiTempoEvent(this.getTempo()));
 
@@ -529,6 +531,31 @@ public class FractalPiece {
 
         return sequence;
     }
+    
+    /**
+     * Adds key signature events to the given track for each section, as needed.
+     * 
+     * @param track the track to add the events to 
+     * @param sequenceResolution the midi sequence resolution
+     */
+    private void addSectionKeySigEventsToTrack(Track track, int sequenceResolution) {
+        // add key signatures for each section that uses a different one...
+        Fraction durationSoFar = new Fraction(0, 1);
+        KeySignature lastKeySignature = this.getScale().getKeySignature();
+        KeySignature sectionKeySignature;
+        for (Section s : this.getSections()) { 
+            sectionKeySignature = s.getSectionKeySignature();
+            if (!lastKeySignature.equals(sectionKeySignature)) {
+                Fraction tickCount = durationSoFar.times(sequenceResolution);
+        
+                // our tick count should be an integral value...
+                assert tickCount.denominator() == 1L : tickCount.denominator();
+                track.add(sectionKeySignature.getKeySignatureMidiEvent(NoteList.convertMidiTickUnitFromQuarterNotesToWholeNotes((long) tickCount.asDouble())));
+            }
+            lastKeySignature = sectionKeySignature;            
+            durationSoFar = durationSoFar.plus(s.getDuration());
+        }
+    }    
     
     /**
      * Constructs a midi sequence using the given note lists and saves it to a 
