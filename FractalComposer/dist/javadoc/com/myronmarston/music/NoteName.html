@@ -369,6 +369,14 @@ Enumerates all the valid note names.  These are used to parse a note string
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;char</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteName.html#getLetter(boolean)">getLetter</A></B>(boolean&nbsp;lowerCase)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the letter (A-G) of this note name.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteName.html#getLetterNumber()">getLetterNumber</A></B>()</CODE>
 
@@ -399,6 +407,14 @@ Enumerates all the valid note names.  These are used to parse a note string
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the number of sharps or flats for this minor key.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteName.html#getNaturalNoteNameForLetterNumber(int)">getNaturalNoteNameForLetterNumber</A></B>(int&nbsp;letterNumber)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the note name without any accidentals for the given letter number.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -963,6 +979,20 @@ public int <B>getLetterNumber</B>()</PRE>
 </DL>
 <HR>
 
+<A NAME="getLetter(boolean)"><!-- --></A><H3>
+getLetter</H3>
+<PRE>
+public char <B>getLetter</B>(boolean&nbsp;lowerCase)</PRE>
+<DL>
+<DD>Gets the letter (A-G) of this note name.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>lowerCase</CODE> - true to return a-g, false to return A-G
+<DT><B>Returns:</B><DD>the letter of this note name</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="getMajorKeySharpsOrFlats()"><!-- --></A><H3>
 getMajorKeySharpsOrFlats</H3>
 <PRE>
@@ -1053,6 +1083,24 @@ public static <A HREF="../../../com/myronmarston/music/NoteName.html" title="enu
 <DT><B>Returns:</B><DD>the NoteName
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.IllegalArgumentException</CODE> - if the number is < 0 or > 11</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNaturalNoteNameForLetterNumber(int)"><!-- --></A><H3>
+getNaturalNoteNameForLetterNumber</H3>
+<PRE>
+public static <A HREF="../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A> <B>getNaturalNoteNameForLetterNumber</B>(int&nbsp;letterNumber)
+                                                  throws java.lang.IllegalArgumentException</PRE>
+<DL>
+<DD>Gets the note name without any accidentals for the given letter number.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>letterNumber</CODE> - the letter number (0-6)
+<DT><B>Returns:</B><DD>the natural note name
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.IllegalArgumentException</CODE> - if the letterNumber is not in 
+         the range 0-6</DL>
 </DD>
 </DL>
 <HR>

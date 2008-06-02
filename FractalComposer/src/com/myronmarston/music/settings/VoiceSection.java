@@ -19,6 +19,7 @@
 
 package com.myronmarston.music.settings;
 
+import com.myronmarston.music.OutputManager;
 import com.myronmarston.music.GermIsEmptyException;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
@@ -251,19 +252,18 @@ public class VoiceSection implements Subscriber {
         if (voiceSectionResult == null) voiceSectionResult = this.generateVoiceSectionResult();
         return voiceSectionResult;
     }
-            
-    /**
-     * Constructs a midi sequence using this voice section and saves it to a
-     * file.
-     * 
-     * @param fileName the filename to use
-     * @throws java.io.IOException if there is a problem writing to the file
-     * @throws GermIsEmptyException if the germ is empty     
-     */
-    public void saveVoiceSectionResultToMidiFile(String fileName) throws IOException, GermIsEmptyException {
-        this.getVoice().getFractalPiece().saveNoteListsAsMidiFile(Arrays.asList(this.getVoiceSectionResult()), fileName);
-    }
     
+    /**
+     * Creates the output manager for this voice section.
+     * 
+     * @return the output manager
+     * @throws com.myronmarston.music.GermIsEmptyException if the germ is empty
+     */
+    public OutputManager createOutputManager() throws GermIsEmptyException {
+        //TODO: cache this?
+        return new OutputManager(this.getVoice().getFractalPiece(), Arrays.asList(this.getVoiceSectionResult()));
+    }
+  
     /**
      * Returns the voice section result, set to a particular length by padding 
      * it with repeats and/or rests as appropriate.

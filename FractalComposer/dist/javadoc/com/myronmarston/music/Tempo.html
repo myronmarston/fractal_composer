@@ -54,7 +54,7 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/music/SheetMusicCreator.html" title="class in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
 &nbsp;NEXT CLASS</FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../index.html?com/myronmarston/music/Tempo.html" target="_top"><B>FRAMES</B></A>  &nbsp;
@@ -177,6 +177,14 @@ java.lang.Object
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a midi event for a given tempo.</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Tempo.html#toGuidoString(int)">toGuidoString</A></B>(int&nbsp;tempo)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a string representation of this tempo in GUIDO notation.</TD>
+</TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
@@ -263,6 +271,20 @@ public <B>Tempo</B>()</PRE>
 </TR>
 </TABLE>
 
+<A NAME="toGuidoString(int)"><!-- --></A><H3>
+toGuidoString</H3>
+<PRE>
+public static java.lang.String <B>toGuidoString</B>(int&nbsp;tempo)</PRE>
+<DL>
+<DD>Gets a string representation of this tempo in GUIDO notation.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>tempo</CODE> - the tempo in BPM
+<DT><B>Returns:</B><DD>the guido string</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="checkTempoValidity(int)"><!-- --></A><H3>
 checkTempoValidity</H3>
 <PRE>
@@ -323,7 +345,7 @@ public static javax.sound.midi.MidiEvent <B>getMidiTempoEvent</B>(int&nbsp;tempo
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/music/SheetMusicCreator.html" title="class in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
 &nbsp;NEXT CLASS</FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../index.html?com/myronmarston/music/Tempo.html" target="_top"><B>FRAMES</B></A>  &nbsp;

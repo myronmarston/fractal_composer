@@ -77,6 +77,18 @@ public class KeySignatureTest {
         assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(37), (byte) -1, (byte) 1, 37);
     }
     
+    @Test
+    public void toGuidoString() throws Exception {
+        KeySignature ks = new KeySignature(Tonality.Major, NoteName.Bb);
+        assertEquals("\\key<\"B&\">", ks.toGuidoString());
+        
+        ks = new KeySignature(Tonality.Minor, NoteName.As);
+        assertEquals("\\key<\"a#\">", ks.toGuidoString());
+        
+        ks = new KeySignature(Tonality.Minor, NoteName.E);
+        assertEquals("\\key<\"e\">", ks.toGuidoString());
+    }
+    
     static public MidiEvent getIndexedKeySigEvent(Track t, int index) {
         int count = 0;
         for (int i = 0; i < t.size(); i++) {

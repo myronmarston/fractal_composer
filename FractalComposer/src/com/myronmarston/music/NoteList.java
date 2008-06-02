@@ -130,7 +130,13 @@ public class NoteList extends ArrayList<Note> {
         return list;
     }
     
-    private List<Note> getListWithNormalizedRests() {
+    /**
+     * Gets a list of notes with all rests normalized.  Adjacent rests are 
+     * combined into one longer rest.
+     * 
+     * @return list of notes with normalized rests
+     */
+    public List<Note> getListWithNormalizedRests() {
         ArrayList<Note> newList = new ArrayList<Note>();
         
         Fraction currentRestDuration = new Fraction(0, 1);
@@ -157,130 +163,6 @@ public class NoteList extends ArrayList<Note> {
         return newList;
     }
     
-    /**
-     * Fills the given midi track with the notes from this NoteList.
-     * 
-     * @param sequence the midi sequence to add the track to
-     * @param scale the scale to use
-     * @param startTime the time the first note should be played, in whole 
-     *        notes     
-     * @return the midi track that was created and filled     
-     */
-    public Track createAndFillMidiTrack(Sequence sequence, Scale scale, Fraction startTime) {
-        MidiNote thisMidiNote, lastMidiNote = null;
-        Note lastNote = null;
-        
-        // get a default instrument if we were not passed one...
-        if (instrument == null) instrument = Instrument.getDefault();
-        
-        // make each track be on a different channel, but make sure we don't go over our total number of channels...
-        int midiChannel = sequence.getTracks().length % MidiNote.MAX_CHANNEL;
-        Track track = sequence.createTrack();
-        track.add(instrument.getProgramChangeMidiEvent(midiChannel));
-        
-        // in Midi, the tick resolution is based on quarter notes, but we use whole notes...
-        int midiTicksPerWholeNote = convertMidiTickUnitFromQuarterNotesToWholeNotesInt(sequence.getResolution());
-        
-        for (Note thisNote : this.getListWithNormalizedRests()) {
-            thisMidiNote = thisNote.convertToMidiNote(scale, startTime, midiTicksPerWholeNote, midiChannel, true);                        
-            
-            if (lastMidiNote != null) {
-                assert lastNote != null;
-                                
-                if (thisMidiNote.getPitch() == lastMidiNote.getPitch() && lastNote.getNormalizedNote(scale).getScaleStep() != thisNote.getNormalizedNote(scale).getScaleStep()) {               
-                    // the notes are different scale steps and should have different pitches.
-                    // This can happen with notes like B# and C in the key of C.
-
-                    if (lastNote.getChromaticAdjustment() != 0) {
-                        lastMidiNote = lastNote.convertToMidiNote(scale, startTime.minus(thisNote.getDuration()), midiTicksPerWholeNote, midiChannel, false);
-                    } else if (thisNote.getChromaticAdjustment() != 0) {
-                        thisMidiNote = thisNote.convertToMidiNote(scale, startTime, midiTicksPerWholeNote, midiChannel, false);
-                    } else {
-                        // one of these notes should always have a chromatic 
-                        // adjustment--otherwise, how do they have the same pitches
-                        // but different scale steps?
-                        assert false : "Neither last note '" + lastNote.toString() + "' nor this note '" + thisNote.toString() + "' have a chromatic adjustment.";
-                    }
-                    
-                    assert thisMidiNote.getPitch() != lastMidiNote.getPitch() : "The midi notes have the same pitch and should not: " + thisMidiNote.getPitch();
-                }              
-                addMidiNoteEventsToTrack(track, lastMidiNote);                
-            }                                      
-            
-            //The next note start time will be the end of this note...
-            startTime = startTime.plus(thisNote.getDuration());
-            
-            lastMidiNote = thisMidiNote;
-            lastNote = thisNote;
-        }           
-        addMidiNoteEventsToTrack(track, lastMidiNote);
-                
-        return track;
-    }        
-    
-    /**
-     * Adds the midi note on and note off events to a track.
-     * 
-     * @param track the track
-     * @param midiNote the midi note
-     */
-    private static void addMidiNoteEventsToTrack(Track track, MidiNote midiNote) {
-        try {
-            track.add(midiNote.getNoteOnEvent());
-            track.add(midiNote.getNoteOffEvent());
-        } catch (InvalidMidiDataException ex) {
-            // our logic should prevent this exception from ever occurring, 
-            // so we transform this to an unchecked exception instead of 
-            // having to declare it on our method.
-            throw new UndeclaredThrowableException(ex, "MidiNote's note on and note off events could not be created.  This indicates a programming error of some sort.");                
-        }        
-    }
-
-    /**
-     * Calculates the optimal midi tick resolution for the given collection of 
-     * noteLists, based on the duration of the notes.
-     * 
-     * @param noteLists collection of noteLists
-     * @return the midi tick resolution
-     */
-    public static int getMidiTickResolution(Collection<NoteList> noteLists) {        
-        // next, figure out the resolution of our Midi sequence...
-        ArrayList<Long> uniqueDurationDenominators = new ArrayList<Long>();
-        for (NoteList nl : noteLists) {
-            for (Note n : nl) {
-                if (!uniqueDurationDenominators.contains(n.getDuration().denominator())) {
-                    uniqueDurationDenominators.add(n.getDuration().denominator());
-                }                
-            }
-        }        
-        
-        long resolution = MathHelper.leastCommonMultiple(uniqueDurationDenominators);
-        assert resolution < Integer.MAX_VALUE;
-        return (int) resolution;
-    }
-    
-    /**
-     * Converts the midi tick unit from quarter notes to whole notes, using 
-     * longs.
-     * 
-     * @param ticksInWholeNotes ticks in whole notes
-     * @return ticks in quarter notes
-     */
-    public static long convertMidiTickUnitFromQuarterNotesToWholeNotes(long ticksInWholeNotes) {
-        return ticksInWholeNotes * 4;
-    }
-    
-    /**
-     * Converts the midi tick unit from quarter notes to whole notes, using 
-     * ints.
-     * 
-     * @param ticksInWholeNotes ticks in whole notes
-     * @return ticks in quarter notes
-     */
-    public static int convertMidiTickUnitFromQuarterNotesToWholeNotesInt(int ticksInWholeNotes) {
-        return ticksInWholeNotes * 4;
-    }
-
     @Override
     /**
      * Clones the note list.  Each individual note is also cloned.

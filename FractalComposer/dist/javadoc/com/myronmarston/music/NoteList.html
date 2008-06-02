@@ -174,34 +174,6 @@ NoteList contains a sequence of notes.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;long</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#convertMidiTickUnitFromQuarterNotesToWholeNotes(long)">convertMidiTickUnitFromQuarterNotesToWholeNotes</A></B>(long&nbsp;ticksInWholeNotes)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the midi tick unit from quarter notes to whole notes, using 
- longs.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#convertMidiTickUnitFromQuarterNotesToWholeNotesInt(int)">convertMidiTickUnitFromQuarterNotesToWholeNotesInt</A></B>(int&nbsp;ticksInWholeNotes)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the midi tick unit from quarter notes to whole notes, using 
- ints.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;javax.sound.midi.Track</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#createAndFillMidiTrack(javax.sound.midi.Sequence, com.myronmarston.music.scales.Scale, com.myronmarston.util.Fraction)">createAndFillMidiTrack</A></B>(javax.sound.midi.Sequence&nbsp;sequence,
-                       <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
-                       <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;startTime)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fills the given midi track with the notes from this NoteList.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#getDuration()">getDuration</A></B>()</CODE>
 
@@ -226,12 +198,11 @@ NoteList contains a sequence of notes.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#getMidiTickResolution(java.util.Collection)">getMidiTickResolution</A></B>(java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists)</CODE>
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#getListWithNormalizedRests()">getListWithNormalizedRests</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calculates the optimal midi tick resolution for the given collection of 
- noteLists, based on the duration of the notes.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a list of notes with all rests normalized.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -415,64 +386,17 @@ public static <A HREF="../../../com/myronmarston/music/NoteList.html" title="cla
 </DL>
 <HR>
 
-<A NAME="createAndFillMidiTrack(javax.sound.midi.Sequence, com.myronmarston.music.scales.Scale, com.myronmarston.util.Fraction)"><!-- --></A><H3>
-createAndFillMidiTrack</H3>
+<A NAME="getListWithNormalizedRests()"><!-- --></A><H3>
+getListWithNormalizedRests</H3>
 <PRE>
-public javax.sound.midi.Track <B>createAndFillMidiTrack</B>(javax.sound.midi.Sequence&nbsp;sequence,
-                                                     <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
-                                                     <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;startTime)</PRE>
+public java.util.List&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt; <B>getListWithNormalizedRests</B>()</PRE>
 <DL>
-<DD>Fills the given midi track with the notes from this NoteList.
+<DD>Gets a list of notes with all rests normalized.  Adjacent rests are 
+ combined into one longer rest.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>sequence</CODE> - the midi sequence to add the track to<DD><CODE>scale</CODE> - the scale to use<DD><CODE>startTime</CODE> - the time the first note should be played, in whole 
-        notes
-<DT><B>Returns:</B><DD>the midi track that was created and filled</DL>
-</DD>
-</DL>
-<HR>
 
-<A NAME="getMidiTickResolution(java.util.Collection)"><!-- --></A><H3>
-getMidiTickResolution</H3>
-<PRE>
-public static int <B>getMidiTickResolution</B>(java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists)</PRE>
-<DL>
-<DD>Calculates the optimal midi tick resolution for the given collection of 
- noteLists, based on the duration of the notes.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>noteLists</CODE> - collection of noteLists
-<DT><B>Returns:</B><DD>the midi tick resolution</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="convertMidiTickUnitFromQuarterNotesToWholeNotes(long)"><!-- --></A><H3>
-convertMidiTickUnitFromQuarterNotesToWholeNotes</H3>
-<PRE>
-public static long <B>convertMidiTickUnitFromQuarterNotesToWholeNotes</B>(long&nbsp;ticksInWholeNotes)</PRE>
-<DL>
-<DD>Converts the midi tick unit from quarter notes to whole notes, using 
- longs.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>ticksInWholeNotes</CODE> - ticks in whole notes
-<DT><B>Returns:</B><DD>ticks in quarter notes</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="convertMidiTickUnitFromQuarterNotesToWholeNotesInt(int)"><!-- --></A><H3>
-convertMidiTickUnitFromQuarterNotesToWholeNotesInt</H3>
-<PRE>
-public static int <B>convertMidiTickUnitFromQuarterNotesToWholeNotesInt</B>(int&nbsp;ticksInWholeNotes)</PRE>
-<DL>
-<DD>Converts the midi tick unit from quarter notes to whole notes, using 
- ints.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>ticksInWholeNotes</CODE> - ticks in whole notes
-<DT><B>Returns:</B><DD>ticks in quarter notes</DL>
+<DT><B>Returns:</B><DD>list of notes with normalized rests</DL>
 </DD>
 </DL>
 <HR>

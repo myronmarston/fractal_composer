@@ -54,6 +54,13 @@ public class FractionTest {
        testStringConstructor("23422", 23422L, 1L);
     }
     
+    @Test
+    public void toGuidoDurationString() {
+        assertEquals("*3/4", (new Fraction(3, 4)).toGuidoDurationString());
+        assertEquals("*4", (new Fraction(12, 3)).toGuidoDurationString());
+        assertEquals("/7", (new Fraction(1, 7)).toGuidoDurationString());        
+    }
+    
     private static void testStringConstructor(String str, long num, long den) {
          Fraction f = new Fraction(str);
          assertEquals(num, f.numerator_);

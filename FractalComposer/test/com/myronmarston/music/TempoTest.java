@@ -59,12 +59,17 @@ public class TempoTest {
         
         // we don't care to check the results, just that no exception is thrown
     }
-    
-    
+        
     @Test
     public void testGetMidiTempoEvent() {
         MidiEvent event = Tempo.getMidiTempoEvent(120);   
         assertMidiTempoEventIsValidFor120BPM(event);
+    }
+    
+    @Test
+    public void toGuidoString() {
+        assertEquals("\\tempo<\"Allegro\",\"1/4=140\">", Tempo.toGuidoString(140));
+        assertEquals("\\tempo<\"Andante\",\"1/4=93\">", Tempo.toGuidoString(93));
     }
 
     public static void assertMidiTempoEventIsValidFor120BPM(MidiEvent event) {

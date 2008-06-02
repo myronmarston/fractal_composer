@@ -196,33 +196,15 @@ public class VoiceTest {
     }        
     
     @Test
-    public void saveVoiceToMidiFile() throws Exception {
+    public void createOutputManager() throws Exception {
         FractalPiece fp = new FractalPiece();
         fp.createDefaultSettings();
         fp.setGermString("G4 A4");
         
         Voice v = fp.getVoices().get(0);
-        // these will throw an exception if they fail...
-        v.saveEntireVoiceToMidiFile(FractalPieceTest.getTempFileName());
-        v.saveModifiedGermToMidiFile(FractalPieceTest.getTempFileName());
+        assertNotNull(v.createOutputManager());
     }
-    
-    @Test(expected=GermIsEmptyException.class)    
-    public void saveEntireVoiceToMidiFileWithEmptyGerm() throws Exception {
-        FractalPiece fp = new FractalPiece();     
-        fp.createDefaultSettings();
-        Voice v = fp.getVoices().get(0);      
-        v.saveEntireVoiceToMidiFile(FractalPieceTest.getTempFileName());
-    }
-    
-    @Test(expected=GermIsEmptyException.class)    
-    public void saveModifiedGermToMidiFileWithEmptyGerm() throws Exception {
-        FractalPiece fp = new FractalPiece();     
-        fp.createDefaultSettings();
-        Voice v = fp.getVoices().get(0);      
-        v.saveModifiedGermToMidiFile(FractalPieceTest.getTempFileName());
-    }
-    
+
     @Test
     public void getClassName() {
         FractalPiece fp = new FractalPiece();

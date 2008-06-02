@@ -96,6 +96,17 @@ public class KeySignature {
         return keyName;
     }     
     
+    /**
+     * Gets a string representing this key signature in GUIDO notation.
+     * 
+     * @return the Guido string
+     */
+    public String toGuidoString() {        
+        char keyLetterName = this.getKeyName().getLetter(this.getTonality() == Tonality.Minor);        
+        String accidentals = this.getKeyName().toString().substring(1).replaceAll("b", "&").replaceAll("s", "#").replaceAll("x", "##");        
+        return "\\key<\"" + keyLetterName + accidentals + "\">";
+    }
+    
     private static void checkValidityOfKeySignature(NoteName keyName, Tonality tonality) throws InvalidKeySignatureException {
         if (keyName == null || tonality == null) return;
         

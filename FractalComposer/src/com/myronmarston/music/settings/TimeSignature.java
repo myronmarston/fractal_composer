@@ -182,6 +182,24 @@ public class TimeSignature {
     }      
     
     /**
+     * Gets a string representation of this time signature in GUIDO notation.
+     * 
+     * @return the time signature in guido notation
+     */
+    public String toGuidoString() {
+        String timeSigPart;
+        if (this.getNumerator() == 4 && this.getDenominator() == 4) {
+            timeSigPart = "C";
+        } else if (this.getNumerator() == 2 && this.getDenominator() == 2) {
+            timeSigPart = "c/";
+        } else {
+            timeSigPart = this.getNumerator() + "/" + this.getDenominator();
+        }
+        
+        return "\\meter<\"" + timeSigPart + "\">";
+    }
+    
+    /**
      * Creates the Midi time signature event.
      * 
      * @return the midi time signature event     

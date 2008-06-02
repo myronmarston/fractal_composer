@@ -26,10 +26,6 @@ import com.myronmarston.music.NoteName;
 import com.myronmarston.util.Fraction;
 
 import java.util.*;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -617,6 +613,91 @@ public class ScaleTest {
         assertEquals(NoteName.A, (new MinorScale()).getKeyName());
         assertEquals(NoteName.A, (new MinorPentatonicScale()).getKeyName());
         assertEquals(NoteName.A, (new HarmonicMinorScale()).getKeyName());        
+    }
+    
+    @Test
+    public void getLetterNameForNote() throws Exception {
+        Scale s = new MajorScale(NoteName.B);
+                
+        try {
+            s.getLetterNameForScaleStep(-1);
+            fail();
+        } catch (IllegalArgumentException ex) {}
+        
+        assertEquals(NoteName.B, s.getLetterNameForScaleStep(0));
+        assertEquals(NoteName.C, s.getLetterNameForScaleStep(1));
+        assertEquals(NoteName.D, s.getLetterNameForScaleStep(2));
+        assertEquals(NoteName.E, s.getLetterNameForScaleStep(3));
+        assertEquals(NoteName.F, s.getLetterNameForScaleStep(4));
+        assertEquals(NoteName.G, s.getLetterNameForScaleStep(5));
+        assertEquals(NoteName.A, s.getLetterNameForScaleStep(6));  
+        
+        try {
+            s.getLetterNameForScaleStep(7);
+            fail();
+        } catch (IllegalArgumentException ex) {}
+        
+        s = new ChromaticScale();
+                
+        try {
+            s.getLetterNameForScaleStep(-1);
+            fail();
+        } catch (IllegalArgumentException ex) {}
+        
+        assertEquals(NoteName.C, s.getLetterNameForScaleStep(0));
+        assertEquals(NoteName.C, s.getLetterNameForScaleStep(1)); // C#
+        assertEquals(NoteName.D, s.getLetterNameForScaleStep(2));
+        assertEquals(NoteName.E, s.getLetterNameForScaleStep(3)); // Eb
+        assertEquals(NoteName.E, s.getLetterNameForScaleStep(4));
+        assertEquals(NoteName.F, s.getLetterNameForScaleStep(5));
+        assertEquals(NoteName.F, s.getLetterNameForScaleStep(6)); // F#
+        assertEquals(NoteName.G, s.getLetterNameForScaleStep(7));  
+        assertEquals(NoteName.G, s.getLetterNameForScaleStep(8)); // G#
+        assertEquals(NoteName.A, s.getLetterNameForScaleStep(9));  
+        assertEquals(NoteName.B, s.getLetterNameForScaleStep(10)); // Bb  
+        assertEquals(NoteName.B, s.getLetterNameForScaleStep(11));  
+        
+        try {
+            s.getLetterNameForScaleStep(12);
+            fail();
+        } catch (IllegalArgumentException ex) {}
+        
+        s = new MajorPentatonicScale(NoteName.Eb);
+                
+        try {
+            s.getLetterNameForScaleStep(-1);
+            fail();
+        } catch (IllegalArgumentException ex) {}
+        
+        assertEquals(NoteName.E, s.getLetterNameForScaleStep(0));
+        assertEquals(NoteName.F, s.getLetterNameForScaleStep(1));
+        assertEquals(NoteName.G, s.getLetterNameForScaleStep(2));
+        assertEquals(NoteName.B, s.getLetterNameForScaleStep(3));
+        assertEquals(NoteName.C, s.getLetterNameForScaleStep(4));        
+        
+        try {
+            s.getLetterNameForScaleStep(5);
+            fail();
+        } catch (IllegalArgumentException ex) {}
+    }
+    
+    @Test
+    public void testEquals() throws Exception {
+        // two of the same scale
+        assertTrue((new MajorScale(NoteName.D)).equals(new MajorScale(NoteName.D)));
+        assertTrue((new MajorScale(NoteName.D)).hashCode() == (new MajorScale(NoteName.D)).hashCode());
+        
+        // same scale type, different note name
+        assertFalse((new MajorScale(NoteName.Bb)).equals(new MajorScale(NoteName.G)));
+        assertFalse((new MajorScale(NoteName.Bb)).hashCode() == (new MajorScale(NoteName.G)).hashCode());
+        
+        // same note name, different scale type
+        assertFalse((new MajorScale(NoteName.D)).equals(new MajorPentatonicScale(NoteName.D)));        
+        assertFalse((new MajorScale(NoteName.D)).hashCode() == (new MajorPentatonicScale(NoteName.D)).hashCode());
+        
+        // different scale type and note name
+        assertFalse((new HarmonicMinorScale(NoteName.F)).equals(new ChromaticScale()));
+        assertFalse((new HarmonicMinorScale(NoteName.F)).hashCode() == (new ChromaticScale()).hashCode());
     }
     
     protected static void testSetNotePitchValues(Scale s, Note n, NoteName nn, int scaleStep, int chromaticAdjustment) {

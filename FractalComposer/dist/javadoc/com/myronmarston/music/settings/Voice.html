@@ -145,6 +145,14 @@ A FractalPiece is composed of several voices.  A Voice is analogous to
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music">OutputManager</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Voice.html#createOutputManager()">createOutputManager</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates the output manager for this voice.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Voice.html#getEntireVoice()">getEntireVoice</A></B>()</CODE>
 
@@ -227,24 +235,6 @@ A FractalPiece is composed of several voices.  A Voice is analogous to
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Voice.html#saveEntireVoiceToMidiFile(java.lang.String)">saveEntireVoiceToMidiFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructs a midi sequence using the entire voice and saves it to a midi 
- file.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Voice.html#saveModifiedGermToMidiFile(java.lang.String)">saveModifiedGermToMidiFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructs a midi sequence using the modified germ and saves it to a midi 
- file.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -381,39 +371,21 @@ public <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class i
 </DL>
 <HR>
 
-<A NAME="saveModifiedGermToMidiFile(java.lang.String)"><!-- --></A><H3>
-saveModifiedGermToMidiFile</H3>
+<A NAME="createOutputManager()"><!-- --></A><H3>
+createOutputManager</H3>
 <PRE>
-public void <B>saveModifiedGermToMidiFile</B>(java.lang.String&nbsp;fileName)
-                                throws java.io.IOException,
-                                       <A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></PRE>
+public <A HREF="../../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music">OutputManager</A> <B>createOutputManager</B>()
+                                  throws <A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></PRE>
 <DL>
-<DD>Constructs a midi sequence using the modified germ and saves it to a midi 
- file.
+<DD>Creates the output manager for this voice.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the filename to use
-<DT><B>Throws:</B>
-<DD><CODE>java.io.IOException</CODE> - if there is a problem writing to the file
-<DD><CODE><A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></CODE> - if the germ is empty</DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html#createOutputManager()">createOutputManager</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSection</A>&lt;<A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>,<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>&gt;</CODE></DL>
 </DD>
-</DL>
-<HR>
-
-<A NAME="saveEntireVoiceToMidiFile(java.lang.String)"><!-- --></A><H3>
-saveEntireVoiceToMidiFile</H3>
-<PRE>
-public void <B>saveEntireVoiceToMidiFile</B>(java.lang.String&nbsp;fileName)
-                               throws java.io.IOException,
-                                      <A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></PRE>
-<DL>
-<DD>Constructs a midi sequence using the entire voice and saves it to a midi 
- file.
-<P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the filename to use
+
+<DT><B>Returns:</B><DD>the output manager
 <DT><B>Throws:</B>
-<DD><CODE>java.io.IOException</CODE> - if there is a problem writing to the file
 <DD><CODE><A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></CODE> - if the germ is empty</DL>
 </DD>
 </DL>

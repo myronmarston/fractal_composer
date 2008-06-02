@@ -54,7 +54,7 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../com/myronmarston/util/ClassHelper.html" title="class in com.myronmarston.util"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/util/FileHelper.TempFileUser.html" title="interface in com.myronmarston.util"><B>PREV CLASS</B></A>&nbsp;
 &nbsp;<A HREF="../../../com/myronmarston/util/MathHelper.html" title="class in com.myronmarston.util"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../index.html?com/myronmarston/util/Fraction.html" target="_top"><B>FRAMES</B></A>  &nbsp;
@@ -198,7 +198,7 @@ An immutable class representing fractions as pairs of longs.
 <TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#clone()">clone</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clones this fraction.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -206,7 +206,7 @@ An immutable class representing fractions as pairs of longs.
 <TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#compareTo(long)">compareTo</A></B>(long&nbsp;n)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return a number less, equal, or greater than zero
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns a number less, equal, or greater than zero
  reflecting whether this Fraction is less, equal or greater than n.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
@@ -249,7 +249,7 @@ An immutable class representing fractions as pairs of longs.
 <TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#equals(long)">equals</A></B>(long&nbsp;n)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tests if this fraction equals the passed value.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -257,7 +257,7 @@ An immutable class representing fractions as pairs of longs.
 <TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#equals(java.lang.Object)">equals</A></B>(java.lang.Object&nbsp;other)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tests if this fraction equals the passed value.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -274,7 +274,7 @@ An immutable class representing fractions as pairs of longs.
 <TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#hashCode()">hashCode</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a hash code for this fraction.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -351,10 +351,18 @@ An immutable class representing fractions as pairs of longs.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#toGuidoDurationString()">toGuidoDurationString</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a string representation of this fraction in GUIDO notation.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#toString()">toString</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a string representation of this fraction.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -508,11 +516,31 @@ toString</H3>
 <PRE>
 public java.lang.String <B>toString</B>()</PRE>
 <DL>
+<DD>Gets a string representation of this fraction.
+<P>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>toString</CODE> in class <CODE>java.lang.Object</CODE></DL>
 </DD>
 <DD><DL>
+
+<DT><B>Returns:</B><DD>a string</DL>
+</DD>
 </DL>
+<HR>
+
+<A NAME="toGuidoDurationString()"><!-- --></A><H3>
+toGuidoDurationString</H3>
+<PRE>
+public java.lang.String <B>toGuidoDurationString</B>()</PRE>
+<DL>
+<DD>Gets a string representation of this fraction in GUIDO notation.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the guido string</DL>
 </DD>
 </DL>
 <HR>
@@ -522,11 +550,14 @@ clone</H3>
 <PRE>
 public java.lang.Object <B>clone</B>()</PRE>
 <DL>
+<DD>Clones this fraction.
+<P>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>clone</CODE> in class <CODE>java.lang.Object</CODE></DL>
 </DD>
 <DD><DL>
-</DL>
+
+<DT><B>Returns:</B><DD>the clone</DL>
 </DD>
 </DL>
 <HR>
@@ -749,14 +780,16 @@ compareTo</H3>
 <PRE>
 public int <B>compareTo</B>(long&nbsp;n)</PRE>
 <DL>
-<DD>return a number less, equal, or greater than zero
+<DD>Returns a number less, equal, or greater than zero
  reflecting whether this Fraction is less, equal or greater than n.
 <P>
 <DD><DL>
 </DL>
 </DD>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>n</CODE> - the number to compare to
+<DT><B>Returns:</B><DD>value indicating whether this fraction is less, equal to or greater
+         than n</DL>
 </DD>
 </DL>
 <HR>
@@ -766,11 +799,14 @@ equals</H3>
 <PRE>
 public boolean <B>equals</B>(java.lang.Object&nbsp;other)</PRE>
 <DL>
+<DD>Tests if this fraction equals the passed value.
+<P>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>equals</CODE> in class <CODE>java.lang.Object</CODE></DL>
 </DD>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>other</CODE> - the value to check for equality
+<DT><B>Returns:</B><DD>true if the objects are equal</DL>
 </DD>
 </DL>
 <HR>
@@ -780,11 +816,14 @@ equals</H3>
 <PRE>
 public boolean <B>equals</B>(long&nbsp;n)</PRE>
 <DL>
+<DD>Tests if this fraction equals the passed value.
+<P>
 <DD><DL>
 </DL>
 </DD>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>n</CODE> - the value to check for equality
+<DT><B>Returns:</B><DD>true if the objects are equal</DL>
 </DD>
 </DL>
 <HR>
@@ -794,11 +833,14 @@ hashCode</H3>
 <PRE>
 public int <B>hashCode</B>()</PRE>
 <DL>
+<DD>Gets a hash code for this fraction.
+<P>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>hashCode</CODE> in class <CODE>java.lang.Object</CODE></DL>
 </DD>
 <DD><DL>
-</DL>
+
+<DT><B>Returns:</B><DD>the hash code</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
@@ -832,7 +874,7 @@ public int <B>hashCode</B>()</PRE>
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../com/myronmarston/util/ClassHelper.html" title="class in com.myronmarston.util"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/util/FileHelper.TempFileUser.html" title="interface in com.myronmarston.util"><B>PREV CLASS</B></A>&nbsp;
 &nbsp;<A HREF="../../../com/myronmarston/util/MathHelper.html" title="class in com.myronmarston.util"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../index.html?com/myronmarston/util/Fraction.html" target="_top"><B>FRAMES</B></A>  &nbsp;

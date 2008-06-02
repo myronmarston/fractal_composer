@@ -52,6 +52,68 @@ public class Tempo {
     public final static int DEFAULT = 90;
     
     /**
+     * Gets a string representation of this tempo in GUIDO notation.
+     * 
+     * @param tempo the tempo in BPM
+     * @return the guido string
+     */
+    public static String toGuidoString(int tempo) {        
+        return "\\tempo<\"" + getTempoName(tempo) + "\",\"1/4=" + tempo + "\">";
+    }
+    
+    /**
+     * Gets the name of the given tempo.
+     * 
+     * @param tempo the tempo in BPM
+     * @return the  name of the tempo
+     */
+    private static String getTempoName(int tempo) {
+        // Here's a list from the Wikipedia Tempo article 
+        // (http://en.wikipedia.org/wiki/Tempo).  I modify these slightly and
+        // only use some of them.
+        
+        // From fastest to slowest, the common tempo markings are:
+        // 
+        // * Prestissimo — extremely fast (200 - 208 bpm)
+        // * Vivacissimamente — adverb of vivacissimo, "very quickly and lively"
+        // * Vivacissimo — very fast and lively
+        // * Presto — very fast (168 - 200 bpm)
+        // * Allegrissimo — very fast
+        // * Vivo — lively and fast
+        // * Vivace — lively and fast (~140 bpm)
+        // * Allegro — fast and bright or "march tempo" (120 - 168 bpm)
+        // * Allegro moderato — moderately quick (112 - 124 bpm)
+        // * Allegretto — moderately fast (but less so than allegro)
+        // * Allegretto grazioso — moderately fast and with grace
+        // * Moderato — moderately (108 - 120 bpm)
+        // * Moderato con espressivo — moderately with expression
+        // * Andantino — alternatively faster or slower than andante
+        // * Andante — at a walking pace (76 - 108 bpm)
+        // * Tranquillamente — adverb of tranquillo, "tranquilly"
+        // * Tranquillo — tranquil
+        // * Adagietto — rather slow (70 - 80 bpm)
+        // * Adagio — slow and stately (literally, "at ease") (66 - 76 bpm)
+        // * Grave — slow and solemn
+        // * Larghetto — rather broadly (60 - 66 bpm)
+        // * Largo — Very slow (40 - 60 bpm), like lento
+        // * Lento — very slow (40 - 60 bpm)
+        // * Largamente/Largo — "broadly", very slow (40 bpm and below)
+        // * Larghissimo — very slow (20 bpm and below)
+        
+        if (tempo <= 20) return "Larghissimo";
+        else if (tempo <= 40) return "Largamente";
+        else if (tempo <= 60) return "Largo";
+        else if (tempo <= 70)  return "Adagio";
+        else if (tempo <= 80) return "Adagietto";
+        else if (tempo < 108) return "Andante";
+        else if (tempo < 120) return "Moderato";
+        else if (tempo < 140) return "Vivace";
+        else if (tempo < 168) return "Allegro";
+        else if (tempo < 200) return "Presto";
+        else return "Prestissimo";        
+    }
+    
+    /**
      * Checks the validity of the tempo.
      * 
      * @param tempo the tempo to check

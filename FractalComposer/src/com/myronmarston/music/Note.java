@@ -631,6 +631,33 @@ public class Note implements Cloneable {
         return (this.getScale() == null ? defaultScale : this.getScale());        
     }
     
+    /**
+     * Gets a string representing this note in GUIDO notation.
+     * 
+     * @param scale the scale used to convert this note to a midi note
+     * @param midiNote used to figure out the accidental and octave
+     * @return the guido string
+     */
+    public String toGuidoString(Scale scale, MidiNote midiNote) {                
+        if (this.isRest()) return "_" + this.getDuration().toGuidoDurationString();        
+        
+        Scale scaleToUse = this.getScaleToUse(scale);        
+        Note normalizedNote = this.getNormalizedNote(scaleToUse);        
+        NoteName letterNoteName = scaleToUse.getLetterNameForScaleStep(normalizedNote.getScaleStep());        
+        char letter = letterNoteName.getLetter(true);
+                
+        int chromAdjustment = (midiNote.getPitch() % Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE)  - letterNoteName.getNoteNumber();                
+        chromAdjustment = Scale.getNormalizedChromaticAdjustment(chromAdjustment);
+        String accidentals = "";        
+        if (chromAdjustment != 0) {
+            char[] accidentalChars = new char[Math.abs(chromAdjustment)];
+            Arrays.fill(accidentalChars, (chromAdjustment < 0 ? '&' : '#'));
+            accidentals = String.copyValueOf(accidentalChars);
+        }
+        
+        return letter + accidentals + midiNote.getGuidoOctave() + this.getDuration().toGuidoDurationString();
+    }
+
     @Override
     public String toString() {
         return String.format("Note = SS(%d), O(%d), CA(%d), D(%s), V(%d), S(%s), SCA(%d)", this.scaleStep, this.octave, this.chromaticAdjustment, this.duration.toString(), this.volume, (this.scale == null ? "null": this.scale.toString()), this.segmentChromaticAdjustment);

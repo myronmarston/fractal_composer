@@ -1,0 +1,456 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>
+OutputManager
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="OutputManager";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/OutputManager.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/music/SheetMusicCreator.html" title="class in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../index.html?com/myronmarston/music/OutputManager.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="OutputManager.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+com.myronmarston.music</FONT>
+<BR>
+Class OutputManager</H2>
+<PRE>
+java.lang.Object
+  <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.OutputManager</B>
+</PRE>
+<HR>
+<DL>
+<DT><PRE>public class <B>OutputManager</B><DT>extends java.lang.Object</DL>
+</PRE>
+
+<P>
+Class that manages the outputs from FractalComposer, such as Midi files, 
+ PDF files of scores, etc.
+<P>
+
+<P>
+<HR>
+
+<P>
+
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+<A NAME="constructor_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Constructor Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#OutputManager(com.myronmarston.music.settings.FractalPiece, java.util.Collection)">OutputManager</A></B>(<A HREF="../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
+              java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#OutputManager(com.myronmarston.music.settings.FractalPiece, java.util.Collection, boolean, boolean)">OutputManager</A></B>(<A HREF="../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
+              java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists,
+              boolean&nbsp;includeTempoOnSheetMusic,
+              boolean&nbsp;includeInstrumentOnSheetMusic)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#constructMidiTrack(com.myronmarston.music.NoteList)">constructMidiTrack</A></B>(<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&nbsp;noteList)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructs a midi track based on the given note list.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getFractalPiece()">getFractalPiece</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the fractal piece to generate the output.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getGuidoNotation()">getGuidoNotation</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the guido notation representing this piece of music.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getMidiTickResolution()">getMidiTickResolution</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calculates the optimal midi tick resolution for the given collection of 
+ noteLists, based on the duration of the notes.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getNoteLists()">getNoteLists</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the collection of note lists that was used to generate the output.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;javax.sound.midi.Sequence</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getSequence()">getSequence</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the Midi sequence.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/SheetMusicCreator.html" title="class in com.myronmarston.music">SheetMusicCreator</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getSheetMusicCreator()">getSheetMusicCreator</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the sheet music creator.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#saveMidiFile(java.lang.String)">saveMidiFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the midi sequence to a file.</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class java.lang.Object</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+<A NAME="constructor_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Constructor Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="OutputManager(com.myronmarston.music.settings.FractalPiece, java.util.Collection)"><!-- --></A><H3>
+OutputManager</H3>
+<PRE>
+public <B>OutputManager</B>(<A HREF="../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
+                     java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists)
+              throws <A HREF="../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></PRE>
+<DL>
+<DD>Constructor.  This automatically constructs the midi sequence and the
+ guido notation.  All aspects of the guido notation are included.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>fractalPiece</CODE> - the fractal piece<DD><CODE>noteLists</CODE> - collection of noteLists containing music
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></CODE> - if the germ is empty</DL>
+</DL>
+<HR>
+
+<A NAME="OutputManager(com.myronmarston.music.settings.FractalPiece, java.util.Collection, boolean, boolean)"><!-- --></A><H3>
+OutputManager</H3>
+<PRE>
+public <B>OutputManager</B>(<A HREF="../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
+                     java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists,
+                     boolean&nbsp;includeTempoOnSheetMusic,
+                     boolean&nbsp;includeInstrumentOnSheetMusic)
+              throws <A HREF="../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></PRE>
+<DL>
+<DD>Constructor.  This automatically constructs the midi sequence and the
+ guido notation.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>fractalPiece</CODE> - the fractal piece<DD><CODE>noteLists</CODE> - collection of noteLists containing music<DD><CODE>includeTempoOnSheetMusic</CODE> - whether or not to include a tempo marking
+        on the produced sheet music<DD><CODE>includeInstrumentOnSheetMusic</CODE> - whether or not to include 
+        instrument markings on the produced sheet music
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></CODE> - if the germ is empty</DL>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="getGuidoNotation()"><!-- --></A><H3>
+getGuidoNotation</H3>
+<PRE>
+public java.lang.String <B>getGuidoNotation</B>()</PRE>
+<DL>
+<DD>Gets the guido notation representing this piece of music.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the guido notation string</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getSequence()"><!-- --></A><H3>
+getSequence</H3>
+<PRE>
+public javax.sound.midi.Sequence <B>getSequence</B>()</PRE>
+<DL>
+<DD>Gets the Midi sequence.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the midi sequence</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getSheetMusicCreator()"><!-- --></A><H3>
+getSheetMusicCreator</H3>
+<PRE>
+public <A HREF="../../../com/myronmarston/music/SheetMusicCreator.html" title="class in com.myronmarston.music">SheetMusicCreator</A> <B>getSheetMusicCreator</B>()</PRE>
+<DL>
+<DD>Gets the sheet music creator.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the sheet music creator</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNoteLists()"><!-- --></A><H3>
+getNoteLists</H3>
+<PRE>
+public java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt; <B>getNoteLists</B>()</PRE>
+<DL>
+<DD>Gets the collection of note lists that was used to generate the output.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the collection of note lists</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getFractalPiece()"><!-- --></A><H3>
+getFractalPiece</H3>
+<PRE>
+public <A HREF="../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A> <B>getFractalPiece</B>()</PRE>
+<DL>
+<DD>Gets the fractal piece to generate the output.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the fractal piece</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="constructMidiTrack(com.myronmarston.music.NoteList)"><!-- --></A><H3>
+constructMidiTrack</H3>
+<PRE>
+protected void <B>constructMidiTrack</B>(<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&nbsp;noteList)</PRE>
+<DL>
+<DD>Constructs a midi track based on the given note list.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>noteList</CODE> - the note list</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMidiTickResolution()"><!-- --></A><H3>
+getMidiTickResolution</H3>
+<PRE>
+protected int <B>getMidiTickResolution</B>()</PRE>
+<DL>
+<DD>Calculates the optimal midi tick resolution for the given collection of 
+ noteLists, based on the duration of the notes.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the midi tick resolution</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="saveMidiFile(java.lang.String)"><!-- --></A><H3>
+saveMidiFile</H3>
+<PRE>
+public void <B>saveMidiFile</B>(java.lang.String&nbsp;fileName)
+                  throws java.io.IOException</PRE>
+<DL>
+<DD>Saves the midi sequence to a file.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the file
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE> - if an I/O error occurs</DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/OutputManager.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/music/SheetMusicCreator.html" title="class in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../index.html?com/myronmarston/music/OutputManager.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="OutputManager.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+
+</BODY>
+</HTML>

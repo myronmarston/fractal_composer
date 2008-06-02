@@ -89,24 +89,16 @@ public class SectionTest {
     }
     
     @Test
-    public void saveSectionResultToMidiFile() throws Exception {
+    public void createOutputManager() throws Exception {
         FractalPiece fp = new FractalPiece();
         fp.createDefaultSettings();
         fp.setGermString("G4 A4");
         
         Section s = fp.getSections().get(0);
         // this will throw an exception if it fails...
-        s.saveSectionResultToMidiFile(FractalPieceTest.getTempFileName());
+        assertNotNull(s.createOutputManager());
     }
     
-    @Test(expected=GermIsEmptyException.class)
-    public void saveSectionResultToMidiFileWithEmptyGerm() throws Exception {
-        FractalPiece fp = new FractalPiece();     
-        fp.createDefaultSettings();
-        Section s = fp.getSections().get(0);        
-        s.saveSectionResultToMidiFile(FractalPieceTest.getTempFileName());
-    }
-        
     @Test
     public void getClassName() {
         FractalPiece fp = new FractalPiece();

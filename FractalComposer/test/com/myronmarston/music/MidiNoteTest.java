@@ -232,6 +232,21 @@ public class MidiNoteTest {
         mn.setChannel(16);
     }
     
+    @Test
+    public void getGuidoOctave() {
+        testGuidoOctaveRange(0, 11, -4);
+        testGuidoOctaveRange(12, 23, -3);
+        testGuidoOctaveRange(24, 35, -2);
+        testGuidoOctaveRange(36, 47, -1);
+        testGuidoOctaveRange(48, 59, 0);
+        testGuidoOctaveRange(60, 71, 1);
+        testGuidoOctaveRange(72, 83, 2);
+        testGuidoOctaveRange(84, 95, 3);
+        testGuidoOctaveRange(96, 107, 4);
+        testGuidoOctaveRange(108, 119, 5);
+        testGuidoOctaveRange(120, 127, 6);
+    }
+    
     static public void assertNoteEventEqual(MidiEvent noteEvent, long tick, byte byte1, byte byte2, byte byte3) {
         assertEquals(tick, noteEvent.getTick());
         javax.sound.midi.MidiMessage msg = noteEvent.getMessage();
@@ -246,5 +261,13 @@ public class MidiNoteTest {
         assertEquals(startTime, mn.getStartTime());
         assertEquals(duration, mn.getDuration());
         assertEquals(channel, mn.getChannel());
+    }
+    
+    static public void testGuidoOctaveRange(int pitchStart, int pitchStop, int octave) {
+        MidiNote md = new MidiNote();
+        for (int pitch = pitchStart; pitch <= pitchStop; pitch++) {            
+            md.setPitch(pitch);
+            assertEquals(octave, md.getGuidoOctave());
+        }
     }
 }

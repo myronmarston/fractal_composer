@@ -141,7 +141,21 @@ public enum NoteName {
      */
     public int getLetterNumber() {
         return letterNumber;
-    }        
+    }      
+    
+    /**
+     * Gets the letter (A-G) of this note name.
+     * 
+     * @param lowerCase true to return a-g, false to return A-G
+     * @return the letter of this note name
+     */
+    public char getLetter(boolean lowerCase) {
+        String letterStr = 
+                (lowerCase ? 
+                 this.toString().toLowerCase(Locale.ENGLISH) : 
+                 this.toString().toUpperCase(Locale.ENGLISH));
+        return letterStr.charAt(0);
+    }
 
     /**
      * Gets the number of sharps or flats for this major key.  Positive 
@@ -217,6 +231,27 @@ public enum NoteName {
         }
         
         throw new IllegalArgumentException(String.format("%d is not a valid keyNumber.  The keyNumber should be between 0 and 11.", noteNumber));
+    }
+    
+    /**
+     * Gets the note name without any accidentals for the given letter number.
+     * 
+     * @param letterNumber the letter number (0-6)
+     * @return the natural note name
+     * @throws java.lang.IllegalArgumentException if the letterNumber is not in 
+     *         the range 0-6
+     */
+    public static NoteName getNaturalNoteNameForLetterNumber(int letterNumber) throws IllegalArgumentException {
+        switch (letterNumber) {
+            case 0: return NoteName.C;
+            case 1: return NoteName.D;
+            case 2: return NoteName.E;
+            case 3: return NoteName.F;
+            case 4: return NoteName.G;
+            case 5: return NoteName.A;
+            case 6: return NoteName.B;
+            default: throw new IllegalArgumentException("The letter number must be in the range 0-6.");
+        }
     }
         
     /**

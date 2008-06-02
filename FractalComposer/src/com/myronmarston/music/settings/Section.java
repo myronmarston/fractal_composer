@@ -19,6 +19,7 @@
 
 package com.myronmarston.music.settings;
 
+import com.myronmarston.music.OutputManager;
 import com.myronmarston.music.GermIsEmptyException;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.scales.KeySignature;
@@ -97,7 +98,7 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
      * 
      * @return the key signature for this section
      */
-    protected KeySignature getSectionKeySignature() {
+    public KeySignature getSectionKeySignature() {
         return (this.getScale() == null ? 
             this.getFractalPiece().getScale().getKeySignature() : 
             this.getScale().getKeySignature());
@@ -138,22 +139,16 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
         }
         
         return Collections.max(voiceSectionDurations);
-    }
+    }    
     
-    /**
-     * Constructs a midi sequence for this section and saves it to a midi file.
-     * 
-     * @param fileName the filename to use
-     * @throws java.io.IOException if there is a problem writing to the file 
-     * @throws GermIsEmptyException if the germ is empty    
-     */
-    public void saveSectionResultToMidiFile(String fileName) throws IOException, GermIsEmptyException {
+    public OutputManager createOutputManager() throws GermIsEmptyException {
         List<NoteList> voiceSectionResults = new ArrayList<NoteList>(this.getVoiceSections().size());
         for (VoiceSection vs : this.getVoiceSections()) {
             voiceSectionResults.add(vs.getVoiceSectionResult());
         }
         
-        this.getFractalPiece().saveNoteListsAsMidiFile(voiceSectionResults, fileName);
+        //TODO: cache this?
+        return new OutputManager(this.getFractalPiece(), voiceSectionResults);
     }
 
     public void publisherNotification(Publisher p, Object args) {

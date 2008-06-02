@@ -117,4 +117,112 @@ public class NoteNameTest {
         assertEquals(72, NoteName.Bs.getMidiPitchNumberAtOctave(4));
         assertEquals(73, NoteName.Bx.getMidiPitchNumberAtOctave(4));                     
     }
+    
+    @Test
+    public void getNaturalNoteNameForLetterNumber() {
+        try {
+            NoteName nn = NoteName.getNaturalNoteNameForLetterNumber(-1);
+            fail();
+        } catch (IllegalArgumentException ex) {}
+        
+        assertEquals(NoteName.C, NoteName.getNaturalNoteNameForLetterNumber(0));
+        assertEquals(NoteName.D, NoteName.getNaturalNoteNameForLetterNumber(1));
+        assertEquals(NoteName.E, NoteName.getNaturalNoteNameForLetterNumber(2));
+        assertEquals(NoteName.F, NoteName.getNaturalNoteNameForLetterNumber(3));
+        assertEquals(NoteName.G, NoteName.getNaturalNoteNameForLetterNumber(4));
+        assertEquals(NoteName.A, NoteName.getNaturalNoteNameForLetterNumber(5));
+        assertEquals(NoteName.B, NoteName.getNaturalNoteNameForLetterNumber(6));
+        
+        try {
+            NoteName nn = NoteName.getNaturalNoteNameForLetterNumber(7);
+            fail();
+        } catch (IllegalArgumentException ex) {}
+    }
+    
+    @Test
+    public void getLetter() {
+        assertEquals('C', NoteName.Cbb.getLetter(false));
+        assertEquals('C', NoteName.Cb.getLetter(false));
+        assertEquals('C', NoteName.C.getLetter(false));
+        assertEquals('C', NoteName.Cs.getLetter(false));
+        assertEquals('C', NoteName.Cx.getLetter(false));
+        
+        assertEquals('D', NoteName.Dbb.getLetter(false));
+        assertEquals('D', NoteName.Db.getLetter(false));
+        assertEquals('D', NoteName.D.getLetter(false));
+        assertEquals('D', NoteName.Ds.getLetter(false));
+        assertEquals('D', NoteName.Dx.getLetter(false));
+        
+        assertEquals('E', NoteName.Ebb.getLetter(false));
+        assertEquals('E', NoteName.Eb.getLetter(false));
+        assertEquals('E', NoteName.E.getLetter(false));
+        assertEquals('E', NoteName.Es.getLetter(false));
+        assertEquals('E', NoteName.Ex.getLetter(false));
+        
+        assertEquals('F', NoteName.Fbb.getLetter(false));
+        assertEquals('F', NoteName.Fb.getLetter(false));
+        assertEquals('F', NoteName.F.getLetter(false));
+        assertEquals('F', NoteName.Fs.getLetter(false));
+        assertEquals('F', NoteName.Fx.getLetter(false));
+        
+        assertEquals('G', NoteName.Gbb.getLetter(false));
+        assertEquals('G', NoteName.Gb.getLetter(false));
+        assertEquals('G', NoteName.G.getLetter(false));
+        assertEquals('G', NoteName.Gs.getLetter(false));
+        assertEquals('G', NoteName.Gx.getLetter(false));
+        
+        assertEquals('A', NoteName.Abb.getLetter(false));
+        assertEquals('A', NoteName.Ab.getLetter(false));
+        assertEquals('A', NoteName.A.getLetter(false));
+        assertEquals('A', NoteName.As.getLetter(false));
+        assertEquals('A', NoteName.Ax.getLetter(false));
+        
+        assertEquals('B', NoteName.Bbb.getLetter(false));
+        assertEquals('B', NoteName.Bb.getLetter(false));
+        assertEquals('B', NoteName.B.getLetter(false));
+        assertEquals('B', NoteName.Bs.getLetter(false));
+        assertEquals('B', NoteName.Bx.getLetter(false));
+        
+        assertEquals('c', NoteName.Cbb.getLetter(true));
+        assertEquals('c', NoteName.Cb.getLetter(true));
+        assertEquals('c', NoteName.C.getLetter(true));
+        assertEquals('c', NoteName.Cs.getLetter(true));
+        assertEquals('c', NoteName.Cx.getLetter(true));  
+        
+        assertEquals('d', NoteName.Dbb.getLetter(true));
+        assertEquals('d', NoteName.Db.getLetter(true));
+        assertEquals('d', NoteName.D.getLetter(true));
+        assertEquals('d', NoteName.Ds.getLetter(true));
+        assertEquals('d', NoteName.Dx.getLetter(true));
+        
+        assertEquals('e', NoteName.Ebb.getLetter(true));
+        assertEquals('e', NoteName.Eb.getLetter(true));
+        assertEquals('e', NoteName.E.getLetter(true));
+        assertEquals('e', NoteName.Es.getLetter(true));
+        assertEquals('e', NoteName.Ex.getLetter(true));
+        
+        assertEquals('f', NoteName.Fbb.getLetter(true));
+        assertEquals('f', NoteName.Fb.getLetter(true));
+        assertEquals('f', NoteName.F.getLetter(true));
+        assertEquals('f', NoteName.Fs.getLetter(true));
+        assertEquals('f', NoteName.Fx.getLetter(true));
+        
+        assertEquals('g', NoteName.Gbb.getLetter(true));
+        assertEquals('g', NoteName.Gb.getLetter(true));
+        assertEquals('g', NoteName.G.getLetter(true));
+        assertEquals('g', NoteName.Gs.getLetter(true));
+        assertEquals('g', NoteName.Gx.getLetter(true));
+        
+        assertEquals('a', NoteName.Abb.getLetter(true));
+        assertEquals('a', NoteName.Ab.getLetter(true));
+        assertEquals('a', NoteName.A.getLetter(true));
+        assertEquals('a', NoteName.As.getLetter(true));
+        assertEquals('a', NoteName.Ax.getLetter(true));
+        
+        assertEquals('b', NoteName.Bbb.getLetter(true));
+        assertEquals('b', NoteName.Bb.getLetter(true));
+        assertEquals('b', NoteName.B.getLetter(true));
+        assertEquals('b', NoteName.Bs.getLetter(true));
+        assertEquals('b', NoteName.Bx.getLetter(true));
+    }
 }

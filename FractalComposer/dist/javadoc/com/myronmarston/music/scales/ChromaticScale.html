@@ -163,6 +163,14 @@ Chromatic Scale--a scale containing all 12 pitches.  This scale does not have
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/ChromaticScale.html#getLetterNameForScaleStep(int)">getLetterNameForScaleStep</A></B>(int&nbsp;scaleStep)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the letter name for the given scale step.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;int[]</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/ChromaticScale.html#getLetterNumberArray()">getLetterNumberArray</A></B>()</CODE>
 
@@ -203,7 +211,7 @@ Chromatic Scale--a scale containing all 12 pitches.  This scale does not have
 <TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.scales.<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#equals(java.lang.Object)">equals</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeyName()">getKeyName</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeySignature()">getKeySignature</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#hashCode()">hashCode</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#setNotePitchValues_Helper(com.myronmarston.music.Note, com.myronmarston.music.NoteName, int)">setNotePitchValues_Helper</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#toString()">toString</A></CODE></TD>
+<TD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#equals(java.lang.Object)">equals</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeyName()">getKeyName</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeySignature()">getKeySignature</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getNormalizedChromaticAdjustment(int)">getNormalizedChromaticAdjustment</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#hashCode()">hashCode</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#setNotePitchValues_Helper(com.myronmarston.music.Note, com.myronmarston.music.NoteName, int)">setNotePitchValues_Helper</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#toString()">toString</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -302,6 +310,28 @@ public int[] <B>getLetterNumberArray</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>throws an UnsupportedOperationException</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLetterNameForScaleStep(int)"><!-- --></A><H3>
+getLetterNameForScaleStep</H3>
+<PRE>
+public <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A> <B>getLetterNameForScaleStep</B>(int&nbsp;scaleStep)
+                                   throws java.lang.IllegalArgumentException</PRE>
+<DL>
+<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getLetterNameForScaleStep(int)">Scale</A></CODE></B></DD>
+<DD>Gets the letter name for the given scale step.
+<P>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getLetterNameForScaleStep(int)">getLetterNameForScaleStep</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>scaleStep</CODE> - the scale step
+<DT><B>Returns:</B><DD>the letter name
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.IllegalArgumentException</CODE> - if the scale step is outside
+         of the allowable range</DL>
 </DD>
 </DL>
 <HR>

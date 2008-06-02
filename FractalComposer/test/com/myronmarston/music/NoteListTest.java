@@ -57,41 +57,7 @@ public class NoteListTest {
         germ.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
         
         assertEquals(new Fraction(3, 1), germ.getDuration());
-    }
-    
-    @Test
-    public void createAndFillMidiTrack() throws Exception {
-        System.out.println("fillMidiTrack");
-        NoteList germ = new NoteList();        
-        germ.add(new Note(0, 4, 0, new Fraction(1, 8), 100));
-        germ.add(new Note(1, 4, 0, new Fraction(1, 8), 64));
-        germ.add(new Note(4, 4, 0, new Fraction(1, 8), 64));
-        germ.add(new Note(0, 4, 0, new Fraction(1, 8), 64));
-        germ.add(new Note(1, 4, 0, new Fraction(1, 8), 100));
-        germ.add(new Note(3, 4, 0, new Fraction(1, 8), 64));
-        
-        Scale scale = new MajorScale(NoteName.F);                                
-        Sequence sequence = new Sequence(Sequence.PPQ, 8);
-                 
-        Track track = germ.createAndFillMidiTrack(sequence, scale, new Fraction(0, 1));
-        MidiNoteTest.assertNoteEventEqual(track.get(1), 0, (byte) -112, (byte) 65, (byte) 100);
-        MidiNoteTest.assertNoteEventEqual(track.get(2), 4, (byte) -128, (byte) 65, (byte) 0);
-        
-        MidiNoteTest.assertNoteEventEqual(track.get(3), 4, (byte) -112, (byte) 67, (byte) 64);
-        MidiNoteTest.assertNoteEventEqual(track.get(4), 8, (byte) -128, (byte) 67, (byte) 0);
-        
-        MidiNoteTest.assertNoteEventEqual(track.get(5), 8, (byte) -112, (byte) 72, (byte) 64);
-        MidiNoteTest.assertNoteEventEqual(track.get(6), 12, (byte) -128, (byte) 72, (byte) 0);
-        
-        MidiNoteTest.assertNoteEventEqual(track.get(7), 12, (byte) -112, (byte) 65, (byte) 64);
-        MidiNoteTest.assertNoteEventEqual(track.get(8), 16, (byte) -128, (byte) 65, (byte) 0);
-        
-        MidiNoteTest.assertNoteEventEqual(track.get(9), 16, (byte) -112, (byte) 67, (byte) 100);
-        MidiNoteTest.assertNoteEventEqual(track.get(10), 20, (byte) -128, (byte) 67, (byte) 0);
-        
-        MidiNoteTest.assertNoteEventEqual(track.get(11), 20, (byte) -112, (byte) 70, (byte) 64);
-        MidiNoteTest.assertNoteEventEqual(track.get(12), 24, (byte) -128, (byte) 70, (byte) 0);                
-    }
+    }    
    
     @Test
     public void parseNoteListString() throws InvalidKeySignatureException, NoteStringParseException { 
@@ -108,12 +74,6 @@ public class NoteListTest {
     }
     
     @Test
-    public void getMidiTickResolution() throws InvalidKeySignatureException, NoteStringParseException {
-        NoteList nl = NoteList.parseNoteListString("C4,1/8 C4,1/4 C4,1/16 C4,3/8 C4,1/3", new MajorScale(NoteName.C));
-        assertEquals(48, NoteList.getMidiTickResolution(Arrays.asList(nl)));
-    }
-    
-    @Test
     public void testClone() throws Exception {
         NoteList nl = NoteList.parseNoteListString("G4 C4 Ab4", Scale.DEFAULT);
         nl.setInstrument(Instrument.getInstrument("Viola"));
@@ -126,15 +86,18 @@ public class NoteListTest {
             assertTrue(nl.get(i) != cloned.get(i));
         }                
     }
-            
-    
+                
     public static void assertNoteListsEqual(NoteList expected, NoteList actual) {        
         assertNoteListsEqual(expected, actual, null);
     }
     
     public static void assertNoteListsEqual(NoteList expected, NoteList actual, Scale scaleForNormalization) {        
         assertEquals(expected.size(), actual.size());
-        assertEquals(expected.getInstrument(), actual.getInstrument());
+        
+        Instrument expectedInstr = (expected.getInstrument() == null ? Instrument.getDefault() : expected.getInstrument());
+        Instrument actualInstr = (actual.getInstrument() == null ? Instrument.getDefault() : actual.getInstrument());                
+        assertEquals(expectedInstr, actualInstr);
+        
         assertEquals(expected.getDuration(), actual.getDuration());
         assertEquals(expected.getFirstAudibleNote(), actual.getFirstAudibleNote());
         for (int i = 0; i < actual.size(); i++) {

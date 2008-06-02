@@ -47,17 +47,18 @@ import java.util.regex.*;
 @Root
 public class Fraction implements Cloneable, Comparable, java.io.Serializable {
   @Attribute
+  /** The numerator of this fraction. */
   protected final long numerator_;
   
   @Attribute
+  /** The denominator of this fraction. */
   protected final long denominator_;
   
   /** Regular expression string to parse a fraction string. */
   public final static String REGEX_STRING = "^(0|(?:[1-9](?:\\d)*))(?:\\/([1-9](?:\\d)*))?$";
   
   /** Regular expression pattern to parse a fraction string. */
-  private final static Pattern REGEX_PATTERN = Pattern.compile(REGEX_STRING);
-  
+  private final static Pattern REGEX_PATTERN = Pattern.compile(REGEX_STRING);  
 
   /** Return the numerator **/  
   public final long numerator() { return numerator_; }
@@ -121,13 +122,33 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
     denominator_ = f.denominator();
   }  
 
+  /** 
+   * Gets a string representation of this fraction. 
+   * 
+   * @return a string
+   */
   public String toString() { 
     if (denominator() == 1) 
       return "" + numerator();
     else
       return numerator() + "/" + denominator(); 
   }
+  
+  /**
+   * Gets a string representation of this fraction in GUIDO notation.
+   * 
+   * @return the guido string
+   */
+  public String toGuidoDurationString() {      
+      if (this.numerator() == 1L) return "/" + this.denominator();
+      return "*" + this.toString();
+  }
 
+  /**
+   * Clones this fraction.
+   * 
+   * @return the clone
+   */
   public Object clone() { 
       // We get a warning from this method when I run FindBugs.
       // FindBugs expects that all clone() overrides will call super.clone().
@@ -179,7 +200,6 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
     return new Fraction(ad, an);
   }
 
-
   /** return a Fraction representing this Fraction plus b **/
   public Fraction plus(Fraction b) {
     long an = numerator();
@@ -215,7 +235,6 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
     long bd = 1;
     return new Fraction(an*bd-bn*ad, ad*bd);
   }
-
 
   /** return a Fraction representing this Fraction times b **/
   public Fraction times(Fraction b) {
@@ -268,10 +287,14 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
     return (l < r)? -1 : ((l == r)? 0: 1);
   }
 
-  /** return a number less, equal, or greater than zero
+  /**
+   * Returns a number less, equal, or greater than zero
    * reflecting whether this Fraction is less, equal or greater than n.
-   **/
-
+   * 
+   * @param n the number to compare to
+   * @return value indicating whether this fraction is less, equal to or greater
+   *         than n
+   */
   public int compareTo(long n) {
     long an = numerator();
     long ad = denominator();
@@ -282,15 +305,32 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
     return (l < r)? -1 : ((l == r)? 0: 1);
   }
 
+  /**
+   * Tests if this fraction equals the passed value.
+   * 
+   * @param other the value to check for equality 
+   * @return true if the objects are equal
+   */
   public boolean equals(Object other) {
     if (!(other instanceof Fraction)) return false;
     return compareTo((Fraction)other) == 0;
   }
 
+  /**
+   * Tests if this fraction equals the passed value.
+   * 
+   * @param n the value to check for equality 
+   * @return true if the objects are equal
+   */
   public boolean equals(long n) {
     return compareTo(n) == 0;
   }
 
+  /**
+   * Gets a hash code for this fraction.
+   * 
+   * @return the hash code
+   */
   public int hashCode() {
     return (int) (numerator_ ^ denominator_);
   }

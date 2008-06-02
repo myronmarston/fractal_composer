@@ -48,7 +48,7 @@ public class PieceTest {
         fp.getVoices().get(1).setInstrumentName("Viola");
         fp.getVoices().get(2).setInstrumentName("Cello");
         
-        Sequence seq = fp.generatePiece();
+        Sequence seq = fp.createPieceResultOutputManager().getSequence();
                 
         // array of voices, notes, pitches/durations
         int[][][] noteValues = {
@@ -184,7 +184,7 @@ public class PieceTest {
         Section s2 = fp.createSection();          
         s1.setScale(new MinorScale(NoteName.C));        
         
-        Sequence seq = fp.generatePiece();
+        Sequence seq = fp.createPieceResultOutputManager().getSequence();
                                 
         int[] track1PitchNumbers = {
             // midi numbers taken from http://pages.cs.wisc.edu/~suan/misc/midi.html
@@ -254,7 +254,7 @@ public class PieceTest {
         v.getSettings().setSelfSimilaritySettings(new SelfSimilaritySettings(true, false, true, 1));
         fp.createDefaultSections();
         
-        Sequence seq = fp.generatePiece();
+        Sequence seq = fp.createPieceResultOutputManager().getSequence();
         Track t = seq.getTracks()[1];
         int[] pitchNumbers = {
             // midi numbers taken from http://pages.cs.wisc.edu/~suan/misc/midi.html
@@ -303,8 +303,7 @@ public class PieceTest {
         // there are always two extra events - instrument event and the end-of-track event, so we add 1 for that.
         assertEquals(pitchNumbers.length * 2 + 2, t.size());
         
-        for (int i = 0; i < pitchNumbers.length; i++) {
-            System.out.println(String.format("assertTrackMidiNoteEqual index: %d", i));
+        for (int i = 0; i < pitchNumbers.length; i++) {            
             assertTrackMidiNoteEqual(t, i, i * 4, 4, pitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 1);
         }                
     }

@@ -19,10 +19,9 @@
 
 package com.myronmarston.music.settings;
 
-import com.myronmarston.util.Fraction;
-
 import com.myronmarston.music.*;
 import com.myronmarston.music.scales.*;
+import com.myronmarston.util.*;
 import javax.sound.midi.*;
 import java.io.*;
 import java.util.*;
@@ -183,35 +182,26 @@ public class FractalPieceTest {
     }
     
     @Test
-    public void createAndSaveMidiFile() throws Exception {     
-        String tempFileName = getTempFileName();        
-                
+    public void createPieceResultOutputManager() throws Exception {
         FractalPiece fp = new FractalPiece();
         fp.setScale(new MajorScale(NoteName.G));
         fp.setGermString("G4,1/4,MF A4,1/8,F B4,1/8,F G4,1/4,MF");  
         fp.createDefaultSettings();
-        fp.createAndSaveMidiFile(tempFileName);
         
-        // this will throw an exception if the midi file was not saved...
-        Sequence seq = MidiSystem.getSequence(new File(tempFileName));        
+        // we have other tests that test that the output manager properly works
+        assertNotNull(fp.createPieceResultOutputManager());
     }
     
     @Test
-    public void saveGermToMidiFile() throws Exception {
-        String tempFileName = getTempFileName();
+    public void createGermOutputManager() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        fp.setScale(new MajorScale(NoteName.G));
+        fp.setGermString("G4,1/4,MF A4,1/8,F B4,1/8,F G4,1/4,MF");  
+        fp.createDefaultSettings();
         
-        FractalPiece fp = new FractalPiece();        
-        fp.setGermString("C4,MF D4,Mf");          
-        fp.saveGermToMidiFile(tempFileName);
-        
-        // this will throw an exception if the midi file was not saved...
-        Sequence seq = MidiSystem.getSequence(new File(tempFileName));    
-        Track t2 = seq.getTracks()[1];
-        assertEquals(6, t2.size()); // instrument event, 2 note on events, 2 not off events, end-of-track event
-        // we could test each event, but that's overkill.
-        // all our other tests test the various parts of this, so there's no 
-        // need to duplicate that here
-    }
+        // we have other tests that test that the output manager properly works
+        assertNotNull(fp.createGermOutputManager());
+    }   
     
     @Test(expected=IllegalArgumentException.class) 
     public void setScaleToNull() {
@@ -259,59 +249,33 @@ public class FractalPieceTest {
         // after deserialization, because we didn't setup the section list and voice list
         // correctly.  This tests that it is now correct...
         fp.createDefaultSettings();
-    }
-    
-    @Test
-    public void multipleKeySignature() throws Exception {
-        FractalPiece fp = new FractalPiece();     
-        fp.setScale(new MajorScale(NoteName.C));
-        fp.setGermString("C4");        
-        fp.createVoice();
-        Section s1 = fp.createSection();
-        Section s2 = fp.createSection();
-        Section s3 = fp.createSection();
-        Section s4 = fp.createSection();
-        
-        s1.setScale(new MinorScale(NoteName.G));
-        s2.setScale(new MajorScale(NoteName.G));
-        s3.setScale(new MajorPentatonicScale(NoteName.G));
-        Sequence seq = fp.generatePiece();
-        Track track0 = seq.getTracks()[0];
-        // Note: a section w/o a scale that comes after a section w/ a scale 
-        // should also have a key sig event to restore the key sig to the piece default...
-        KeySignatureTest.assertKeySignatureEventEqual(KeySignatureTest.getIndexedKeySigEvent(track0, 0), (byte) 0, (byte) 0, 0L);
-        KeySignatureTest.assertKeySignatureEventEqual(KeySignatureTest.getIndexedKeySigEvent(track0, 1), (byte) -2, (byte) 1, 4L);        
-        KeySignatureTest.assertKeySignatureEventEqual(KeySignatureTest.getIndexedKeySigEvent(track0, 2), (byte) 1, (byte) 0, 8L);
-        KeySignatureTest.assertKeySignatureEventEqual(KeySignatureTest.getIndexedKeySigEvent(track0, 3), (byte) 0, (byte) 0, 16L);                
-    }
-    
-    @Test(expected=GermIsEmptyException.class)
-    public void generatePieceWithEmptyGerm() throws GermIsEmptyException {
-        FractalPiece fp = new FractalPiece();     
-        fp.createDefaultSettings();
-        fp.generatePiece();
-    }
+    }        
     
     @Test
     public void germMidiSameForAllScales() throws Exception {
-        FractalPiece fp = new FractalPiece();        
+        final FractalPiece fp = new FractalPiece();        
         fp.setGermString("C4 E4 F4 G4");
-        String tempFileName = getTempFileName();
-        fp.saveGermToMidiFile(tempFileName);
-                
-        Track baselineTrack = MidiSystem.getSequence(new File(tempFileName)).getTracks()[1];
-        
-        for (Scale s : getAllScalePossibilities()) {
-            //System.out.println("Testing " + s.toString());
-            fp.setScale(s);
-            
-            tempFileName = getTempFileName();
-            fp.saveGermToMidiFile(tempFileName);
-            
-            Track t = MidiSystem.getSequence(new File(tempFileName)).getTracks()[1];            
-            assertTracksEqual(baselineTrack, t);
-        }
-    }             
+        FileHelper.createAndUseTempFile("TestMidiFile", ".mid", new FileHelper.TempFileUser() {
+            public void useTempFile(String tempFileName) throws Exception {                
+                fp.createGermOutputManager().saveMidiFile(tempFileName);
+                final Track baselineTrack = MidiSystem.getSequence(new File(tempFileName)).getTracks()[1];
+
+                for (Scale s : getAllScalePossibilities()) {
+                    //System.out.println("Testing " + s.toString());
+                    fp.setScale(s);
+
+                    FileHelper.createAndUseTempFile("TestMidiFile", ".mid", new FileHelper.TempFileUser() {
+                        public void useTempFile(String tempFileName) throws Exception {                            
+                            fp.createGermOutputManager().saveMidiFile(tempFileName);
+
+                            Track t = MidiSystem.getSequence(new File(tempFileName)).getTracks()[1];            
+                            assertTracksEqual(baselineTrack, t);
+                        }
+                    });                    
+                }
+            }
+        });        
+    }                 
     
     static protected List<Scale> getAllScalePossibilities() throws IllegalAccessException, IllegalArgumentException, InstantiationException, NoSuchMethodException {
         Scale s;
@@ -355,15 +319,9 @@ public class FractalPieceTest {
                 //System.out.println("        Testing message byte " + j);
                 assertEquals(me1.getMessage().getMessage()[j], me2.getMessage().getMessage()[j]);            
             }            
-        }
+        }        
     }        
-    
-    static protected String getTempFileName() throws IOException {
-        File temp = File.createTempFile("TempMidiFile", ".mid");
-        temp.deleteOnExit();
-        return temp.getCanonicalPath();         
-    }
-        
+     
     static protected void assertVoiceSectionEqual(VoiceSection vs, boolean applyInversion, boolean applyRetrograde, boolean isRest, boolean applySelfSimilarityToPitch, boolean applySelfSimilarityToRhythm, boolean applySelfSimilarityToVolume) {
         assertEquals(applyInversion, vs.getSectionSettings().getApplyInversion());
         assertEquals(applyRetrograde, vs.getSectionSettings().getApplyRetrograde());

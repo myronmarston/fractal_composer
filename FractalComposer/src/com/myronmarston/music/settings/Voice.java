@@ -19,12 +19,12 @@
 
 package com.myronmarston.music.settings;
 
+import com.myronmarston.music.OutputManager;
 import com.myronmarston.music.GermIsEmptyException;
 import com.myronmarston.music.Instrument;
 import com.myronmarston.music.NoteList;
 
 import com.myronmarston.util.Publisher;
-import java.io.IOException;
 import org.simpleframework.xml.*;
 
 import com.myronmarston.util.Fraction;
@@ -135,27 +135,14 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
     }   
     
     /**
-     * Constructs a midi sequence using the modified germ and saves it to a midi 
-     * file.
+     * Creates the output manager for this voice.
      * 
-     * @param fileName the filename to use
-     * @throws java.io.IOException if there is a problem writing to the file
-     * @throws GermIsEmptyException if the germ is empty
-    */
-    public void saveModifiedGermToMidiFile(String fileName) throws IOException, GermIsEmptyException {
-        this.getFractalPiece().saveNoteListsAsMidiFile(Arrays.asList(this.getModifiedGerm()), fileName);
-    }
-    
-    /**
-     * Constructs a midi sequence using the entire voice and saves it to a midi 
-     * file.
-     * 
-     * @param fileName the filename to use
-     * @throws java.io.IOException if there is a problem writing to the file
-     * @throws GermIsEmptyException if the germ is empty     
+     * @return the output manager
+     * @throws com.myronmarston.music.GermIsEmptyException if the germ is empty
      */
-    public void saveEntireVoiceToMidiFile(String fileName) throws IOException, GermIsEmptyException {
-        this.getFractalPiece().saveNoteListsAsMidiFile(Arrays.asList(this.getEntireVoice()), fileName);
+    public OutputManager createOutputManager() throws GermIsEmptyException {
+        //TODO: cache this?
+        return new OutputManager(this.getFractalPiece(), Arrays.asList(this.getEntireVoice()));
     }
 
     public void publisherNotification(Publisher p, Object args) {

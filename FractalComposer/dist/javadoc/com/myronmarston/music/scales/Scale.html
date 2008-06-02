@@ -205,11 +205,27 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getLetterNameForScaleStep(int)">getLetterNameForScaleStep</A></B>(int&nbsp;scaleStep)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the letter name for the given scale step.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>abstract &nbsp;int[]</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getLetterNumberArray()">getLetterNumberArray</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets an array of integers of letter numbers above the tonic letter number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getNormalizedChromaticAdjustment(int)">getNormalizedChromaticAdjustment</A></B>(int&nbsp;chromaticAdjustment)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Normalizes a chromatic adjustment, putting it in the range -6 to 6.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -407,6 +423,38 @@ public abstract int[] <B>getLetterNumberArray</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>letter number array.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLetterNameForScaleStep(int)"><!-- --></A><H3>
+getLetterNameForScaleStep</H3>
+<PRE>
+public <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A> <B>getLetterNameForScaleStep</B>(int&nbsp;scaleStep)
+                                   throws java.lang.IllegalArgumentException</PRE>
+<DL>
+<DD>Gets the letter name for the given scale step.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>scaleStep</CODE> - the scale step
+<DT><B>Returns:</B><DD>the letter name
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.IllegalArgumentException</CODE> - if the scale step is outside
+         of the allowable range</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNormalizedChromaticAdjustment(int)"><!-- --></A><H3>
+getNormalizedChromaticAdjustment</H3>
+<PRE>
+public static int <B>getNormalizedChromaticAdjustment</B>(int&nbsp;chromaticAdjustment)</PRE>
+<DL>
+<DD>Normalizes a chromatic adjustment, putting it in the range -6 to 6.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>chromaticAdjustment</CODE> - the chromatic adjustment to normalize
+<DT><B>Returns:</B><DD>the normalized value</DL>
 </DD>
 </DL>
 <HR>

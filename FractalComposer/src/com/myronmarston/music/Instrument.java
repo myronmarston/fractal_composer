@@ -44,7 +44,7 @@ public class Instrument {
     }
     
     /**
-     * Initializes are list and hash map of instruments.
+     * Initializes our list and hash map of instruments.
      */
     static {
         HashMap<String, Instrument> map = new HashMap<String, Instrument>();            
@@ -111,6 +111,15 @@ public class Instrument {
      */
     public String getName() {
         return this.midiInstrument.getName();
+    }
+    
+    /**
+     * Gets a string representing this instrument in GUIDO notation.
+     * 
+     * @return the guido string
+     */
+    public String toGuidoString() {
+        return "\\instr<\"" + this.getName() + "\", \"MIDI " + this.getMidiInstrument().getPatch().getProgram() + "\">";
     }
     
     /**

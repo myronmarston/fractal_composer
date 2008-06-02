@@ -148,7 +148,26 @@ public abstract class Scale {
      * 
      * @return letter number array.
      */
-    abstract public int[] getLetterNumberArray();
+    abstract public int[] getLetterNumberArray();   
+   
+    /**
+     * Gets the letter name for the given scale step.
+     * 
+     * @param scaleStep the scale step
+     * @return the letter name
+     * @throws java.lang.IllegalArgumentException if the scale step is outside
+     *         of the allowable range
+     */
+    public NoteName getLetterNameForScaleStep(int scaleStep) throws IllegalArgumentException {         
+        int[] letterNumArray = this.getLetterNumberArray(); // cache it       
+        if (scaleStep < 0 || scaleStep >= letterNumArray.length) {
+            throw new IllegalArgumentException("The scale step must be between 0 and " + letterNumArray.length + ".");
+        }
+        
+        int letterNum = this.getKeyName().getLetterNumber() + letterNumArray[scaleStep];
+        letterNum %= NoteName.NUM_LETTER_NAMES;
+        return NoteName.getNaturalNoteNameForLetterNumber(letterNum);       
+    }
     
     /**
      * Normalizes a chromatic adjustment, putting it in the range -6 to 6.
@@ -156,7 +175,7 @@ public abstract class Scale {
      * @param chromaticAdjustment the chromatic adjustment to normalize
      * @return the normalized value
      */
-    static private int getNormalizedChromaticAdjustment(int chromaticAdjustment) {
+    static public int getNormalizedChromaticAdjustment(int chromaticAdjustment) {
         // put it in the range -6..6 if it is outside of that...
         if (chromaticAdjustment > (Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE / 2)) {            
             return chromaticAdjustment - Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE;
@@ -247,7 +266,7 @@ public abstract class Scale {
     public String toString() {
         return this.getKeyName().toString() + this.getClass().getSimpleName().replaceAll("([A-Z])", " $1");
     }        
-
+        
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -265,8 +284,9 @@ public abstract class Scale {
 
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 3;        
         hash = 79 * hash + (this.keySignature != null ? this.keySignature.hashCode() : 0);
+        hash = 79 * hash + this.getClass().hashCode();
         return hash;
     }        
 }

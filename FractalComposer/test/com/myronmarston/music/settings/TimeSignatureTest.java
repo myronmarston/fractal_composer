@@ -164,6 +164,21 @@ public class TimeSignatureTest {
         } catch (InvalidTimeSignatureException ex) {}
     }
     
+    @Test
+    public void toGuidoString() throws Exception {        
+        // basic test...
+        TimeSignature ts = new TimeSignature(7, 8);
+        assertEquals("\\meter<\"7/8\">", ts.toGuidoString());
+        
+        // common time test...
+        ts = new TimeSignature(4, 4);
+        assertEquals("\\meter<\"C\">", ts.toGuidoString());
+        
+        // cut time test...
+        ts = new TimeSignature(2, 2);
+        assertEquals("\\meter<\"c/\">", ts.toGuidoString());
+    }
+    
     static public void assertTimeSignatureEventEqual(MidiEvent timeSignatureEvent, byte byte1, byte byte2) {
         assertEquals(0L, timeSignatureEvent.getTick());
         javax.sound.midi.MidiMessage msg = timeSignatureEvent.getMessage();

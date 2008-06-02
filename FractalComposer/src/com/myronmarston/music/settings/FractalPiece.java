@@ -19,11 +19,11 @@
 
 package com.myronmarston.music.settings;
 
+import com.myronmarston.music.OutputManager;
 import com.myronmarston.music.GermIsEmptyException;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.NoteStringParseException;
-import com.myronmarston.music.scales.KeySignature;
 import com.myronmarston.music.scales.Scale;
 import com.myronmarston.music.Tempo;
 
@@ -36,7 +36,6 @@ import org.simpleframework.xml.load.*;;
 import java.io.*;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.util.*;
-import javax.sound.midi.*;
 
 /**
  * The GrandDaddy of them all.  This class controls the entire piece of music.
@@ -78,10 +77,10 @@ public class FractalPiece {
     private boolean generateLayeredIntro = true;
     
     @Attribute
-    private boolean generateLayeredOutro = true;
+    private boolean generateLayeredOutro = true;        
         
     private List<Section> tempIntroOutroSections = new ArrayList<Section>();
-    private static final int MIDI_FILE_TYPE_FOR_MULTI_TRACK_SEQUENCE = 1;
+    
                                     
     /**
      * Returns the germ NoteList.  Guarenteed to never be null.  
@@ -234,7 +233,7 @@ public class FractalPiece {
     public void setTimeSignature(TimeSignature timeSignature) {
         if (timeSignature == null) throw new IllegalArgumentException("TimeSignature cannot be set to null.");
         this.timeSignature = timeSignature;
-    }   
+    }
     
     /**
      * Gets the hash table containing all the VoiceSections for the entire
@@ -476,128 +475,40 @@ public class FractalPiece {
             this.getSections().remove(s);
         }
         this.tempIntroOutroSections.clear();
-    }        
-                
+    }                      
+    
     /**
-     * Generates a midi sequence for the entire fractal piece, based on the 
-     * settings on the voices and sections.
+     * Creates the output manager for the whole piece.
      * 
-     * @return the generated fractal piece
-     * @throws GermIsEmptyException if the germ is empty
+     * @return the output manager
+     * @throws com.myronmarston.music.GermIsEmptyException if the germ is empty
      */
-    public Sequence generatePiece() throws GermIsEmptyException {
+    public OutputManager createPieceResultOutputManager() throws GermIsEmptyException {
         try {
             // create our intro and outro...
             this.createIntroSections();
             this.createOutroSections();
-            
-            // get all our voice results, and cache them in a list...
+                        
             ArrayList<NoteList> voiceResults = new ArrayList<NoteList>();
             for (Voice v : this.getVoices()) voiceResults.add(v.getEntireVoice());
             
-            // create the sequence for this...
-            return createMidiSequence(voiceResults);
+            return new OutputManager(this, voiceResults);
         } finally {
             this.clearTempIntroOutroSections();
-        }        
-    }
-    
-    private Sequence createMidiSequence(Collection<NoteList> noteLists) throws GermIsEmptyException {
-        // We can't create any midi sequence if we don't have a germ from which to "grow" our piece...
-        if (this.getGerm() == null || this.getGerm().size() == 0) throw new GermIsEmptyException();
-        
-        // first, create our sequence...
-        Sequence sequence = null;
-        try {
-            sequence = new Sequence(Sequence.PPQ, NoteList.getMidiTickResolution(noteLists));
-        } catch (InvalidMidiDataException ex) {
-            // our logic should prevent this exception from ever occurring, 
-            // so we transform this to an unchecked exception instead of 
-            // having to declare it on our method.
-            throw new UndeclaredThrowableException(ex, "Error while creating sequence.  This indicates a programming error of some sort.");                
-        }  
-
-        // next, use the first track to set key signature, time signature and tempo...
-        Track track1 = sequence.createTrack();        
-        track1.add(this.getScale().getKeySignature().getKeySignatureMidiEvent(0));                  
-        addSectionKeySigEventsToTrack(track1, sequence.getResolution());
-        track1.add(this.getTimeSignature().getMidiTimeSignatureEvent());
-        track1.add(Tempo.getMidiTempoEvent(this.getTempo()));
-
-        // finally, create and fill our midi tracks...
-        for (NoteList nl : noteLists) {
-            nl.createAndFillMidiTrack(sequence, scale, new Fraction(0, 1));                
-        }
-
-        return sequence;
+        }         
     }
     
     /**
-     * Adds key signature events to the given track for each section, as needed.
+     * Creates the output manager for the germ.
      * 
-     * @param track the track to add the events to 
-     * @param sequenceResolution the midi sequence resolution
+     * @return the output manager
+     * @throws com.myronmarston.music.GermIsEmptyException if the germ is empty
      */
-    private void addSectionKeySigEventsToTrack(Track track, int sequenceResolution) {
-        // add key signatures for each section that uses a different one...
-        Fraction durationSoFar = new Fraction(0, 1);
-        KeySignature lastKeySignature = this.getScale().getKeySignature();
-        KeySignature sectionKeySignature;
-        for (Section s : this.getSections()) { 
-            sectionKeySignature = s.getSectionKeySignature();
-            if (!lastKeySignature.equals(sectionKeySignature)) {
-                Fraction tickCount = durationSoFar.times(sequenceResolution);
-        
-                // our tick count should be an integral value...
-                assert tickCount.denominator() == 1L : tickCount.denominator();
-                track.add(sectionKeySignature.getKeySignatureMidiEvent(NoteList.convertMidiTickUnitFromQuarterNotesToWholeNotes((long) tickCount.asDouble())));
-            }
-            lastKeySignature = sectionKeySignature;            
-            durationSoFar = durationSoFar.plus(s.getDuration());
-        }
-    }    
-    
-    /**
-     * Constructs a midi sequence using the given note lists and saves it to a 
-     * file.
-     * 
-     * @param noteLists the note lists to use for the midi sequence
-     * @param fileName the name of the file to save
-     * @throws GermIsEmptyException if the germ is empty
-     * @throws java.io.IOException if there is a problem writing the file     
-     */
-    protected void saveNoteListsAsMidiFile(Collection<NoteList> noteLists, String fileName) throws GermIsEmptyException, IOException {
-        saveMidiSequenceToFile(this.createMidiSequence(noteLists), fileName);        
+    public OutputManager createGermOutputManager() throws GermIsEmptyException {
+        // TODO: can this be cached?
+        return new OutputManager(this, Arrays.asList(this.getGerm()), false, false);
     }
-    
-    private static void saveMidiSequenceToFile(Sequence seq, String fileName) throws IOException {
-        File outputFile = new File(fileName);                        
-        MidiSystem.write(seq, MIDI_FILE_TYPE_FOR_MULTI_TRACK_SEQUENCE, outputFile);
-    }
-    
-    /**
-     * Creates and saves a midi file based on the existing fractal piece 
-     * settings.
-     * 
-     * @param fileName the file name for the midi file     
-     * @throws GermIsEmptyException if the germ is empty
-     * @throws java.io.IOException if the file cannot be written
-     */
-    public void createAndSaveMidiFile(String fileName) throws GermIsEmptyException, IOException {
-        saveMidiSequenceToFile(this.generatePiece(), fileName);        
-    }
-    
-    /**
-     * Saves the germ to a midi file so that the user can listen to it.
-     * 
-     * @param fileName the filename for the midi file 
-     * @throws GermIsEmptyException if the germ is empty    
-     * @throws java.io.IOException if there is an IO problem with the file
-     */
-    public void saveGermToMidiFile(String fileName) throws GermIsEmptyException, IOException {                        
-        saveMidiSequenceToFile(createMidiSequence(Arrays.asList(this.getGerm())), fileName);        
-    }
-    
+   
     /**
      * Creates and loads a fractal piece from a serialized xml string.
      * 

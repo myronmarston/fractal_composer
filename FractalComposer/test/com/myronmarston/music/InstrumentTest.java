@@ -61,6 +61,14 @@ public class InstrumentTest {
         assertMidiProgramChangeEventEquals(i.getProgramChangeMidiEvent(12), 0, 12, 40);
     }
     
+    @Test
+    public void toGuidoString() {
+        Instrument i = Instrument.getInstrument("Cello");
+        
+        // Cello is Midi patch number 42
+        assertEquals("\\instr<\"Cello\", \"MIDI 42\">", i.toGuidoString());
+    }
+    
     public static void assertMidiProgramChangeEventEquals(MidiEvent event, long tick, int channel, int patch) {
         assertEquals(tick, event.getTick());
         javax.sound.midi.MidiMessage msg = event.getMessage();

@@ -146,15 +146,6 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#createAndSaveMidiFile(java.lang.String)">createAndSaveMidiFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates and saves a midi file based on the existing fractal piece 
- settings.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#createDefaultSections()">createDefaultSections</A></B>()</CODE>
 
 <BR>
@@ -178,6 +169,14 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music">OutputManager</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#createGermOutputManager()">createGermOutputManager</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates the output manager for the germ.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>protected &nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#createIntroSections()">createIntroSections</A></B>()</CODE>
 
@@ -191,6 +190,14 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates the layered outro sections.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music">OutputManager</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#createPieceResultOutputManager()">createPieceResultOutputManager</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates the output manager for the whole piece.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -225,15 +232,6 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a Voice for the FractalPiece, and adds it to a particular point 
  in the voice list.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;javax.sound.midi.Sequence</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#generatePiece()">generatePiece</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Generates a midi sequence for the entire fractal piece, based on the 
- settings on the voices and sections.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -341,24 +339,6 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Normalizes the unique indices so as to label the items in natural order.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#saveGermToMidiFile(java.lang.String)">saveGermToMidiFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the germ to a midi file so that the user can listen to it.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#saveNoteListsAsMidiFile(java.util.Collection, java.lang.String)">saveNoteListsAsMidiFile</A></B>(java.util.Collection&lt;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists,
-                        java.lang.String&nbsp;fileName)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructs a midi sequence using the given note lists and saves it to a 
- file.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -849,77 +829,36 @@ protected void <B>clearTempIntroOutroSections</B>()</PRE>
 </DL>
 <HR>
 
-<A NAME="generatePiece()"><!-- --></A><H3>
-generatePiece</H3>
+<A NAME="createPieceResultOutputManager()"><!-- --></A><H3>
+createPieceResultOutputManager</H3>
 <PRE>
-public javax.sound.midi.Sequence <B>generatePiece</B>()
-                                        throws <A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></PRE>
+public <A HREF="../../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music">OutputManager</A> <B>createPieceResultOutputManager</B>()
+                                             throws <A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></PRE>
 <DL>
-<DD>Generates a midi sequence for the entire fractal piece, based on the 
- settings on the voices and sections.
+<DD>Creates the output manager for the whole piece.
 <P>
 <DD><DL>
 
-<DT><B>Returns:</B><DD>the generated fractal piece
+<DT><B>Returns:</B><DD>the output manager
 <DT><B>Throws:</B>
 <DD><CODE><A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></CODE> - if the germ is empty</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="saveNoteListsAsMidiFile(java.util.Collection, java.lang.String)"><!-- --></A><H3>
-saveNoteListsAsMidiFile</H3>
+<A NAME="createGermOutputManager()"><!-- --></A><H3>
+createGermOutputManager</H3>
 <PRE>
-protected void <B>saveNoteListsAsMidiFile</B>(java.util.Collection&lt;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists,
-                                       java.lang.String&nbsp;fileName)
-                                throws <A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A>,
-                                       java.io.IOException</PRE>
+public <A HREF="../../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music">OutputManager</A> <B>createGermOutputManager</B>()
+                                      throws <A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></PRE>
 <DL>
-<DD>Constructs a midi sequence using the given note lists and saves it to a 
- file.
+<DD>Creates the output manager for the germ.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>noteLists</CODE> - the note lists to use for the midi sequence<DD><CODE>fileName</CODE> - the name of the file to save
-<DT><B>Throws:</B>
-<DD><CODE><A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></CODE> - if the germ is empty
-<DD><CODE>java.io.IOException</CODE> - if there is a problem writing the file</DL>
-</DD>
-</DL>
-<HR>
 
-<A NAME="createAndSaveMidiFile(java.lang.String)"><!-- --></A><H3>
-createAndSaveMidiFile</H3>
-<PRE>
-public void <B>createAndSaveMidiFile</B>(java.lang.String&nbsp;fileName)
-                           throws <A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A>,
-                                  java.io.IOException</PRE>
-<DL>
-<DD>Creates and saves a midi file based on the existing fractal piece 
- settings.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name for the midi file
+<DT><B>Returns:</B><DD>the output manager
 <DT><B>Throws:</B>
-<DD><CODE><A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></CODE> - if the germ is empty
-<DD><CODE>java.io.IOException</CODE> - if the file cannot be written</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="saveGermToMidiFile(java.lang.String)"><!-- --></A><H3>
-saveGermToMidiFile</H3>
-<PRE>
-public void <B>saveGermToMidiFile</B>(java.lang.String&nbsp;fileName)
-                        throws <A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A>,
-                               java.io.IOException</PRE>
-<DL>
-<DD>Saves the germ to a midi file so that the user can listen to it.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the filename for the midi file
-<DT><B>Throws:</B>
-<DD><CODE><A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></CODE> - if the germ is empty
-<DD><CODE>java.io.IOException</CODE> - if there is an IO problem with the file</DL>
+<DD><CODE><A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></CODE> - if the germ is empty</DL>
 </DD>
 </DL>
 <HR>

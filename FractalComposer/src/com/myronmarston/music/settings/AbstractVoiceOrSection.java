@@ -19,10 +19,10 @@
 
 package com.myronmarston.music.settings;
 
+import com.myronmarston.music.GermIsEmptyException;
+import com.myronmarston.music.OutputManager;
 import com.myronmarston.util.Subscriber;
 import org.simpleframework.xml.*;
-
-import java.util.*;
 
 /**
  * An abstract class containing a common interface and common logic shared
@@ -150,6 +150,14 @@ public abstract class AbstractVoiceOrSection<M extends AbstractVoiceOrSection, O
      * @return a new VoiceSection
      */
     protected abstract VoiceSection instantiateVoiceSection(O vOrS);
+    
+    /**
+     * Creates the output manager for this voice or section.
+     * 
+     * @return the output manager
+     * @throws com.myronmarston.music.GermIsEmptyException if the germ is empty
+     */
+    public abstract OutputManager createOutputManager() throws GermIsEmptyException;
 
     /**
      * Gets the name of this class--e.g., "Voice" or "Section". 

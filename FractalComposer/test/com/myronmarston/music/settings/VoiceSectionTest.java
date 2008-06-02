@@ -283,27 +283,18 @@ public class VoiceSectionTest {
         expected.addAll(vs1.getVoiceSectionResult());
         expected.add(Note.createRest(new Fraction(1, 2)));
         NoteListTest.assertNoteListsEqual(expected, vs1.getLengthenedVoiceSectionResult(new Fraction(25, 2)));        
-    }  
+    }          
     
     @Test
-    public void saveVoiceSectionResultToMidiFile() throws Exception {
+    public void createOutputManager() throws Exception {
         FractalPiece fp = new FractalPiece();
         fp.createDefaultSettings();
         fp.setGermString("G4 A4");
         
         VoiceSection vs = fp.getVoices().get(0).getVoiceSections().get(0);
-        // this will throw an exception if it fails...
-        vs.saveVoiceSectionResultToMidiFile(FractalPieceTest.getTempFileName());
+        assertNotNull(vs.createOutputManager());
     }
-    
-    @Test(expected=GermIsEmptyException.class)
-    public void saveVoiceSectionResultToMidiFileWithEmptyGerm() throws Exception {
-        FractalPiece fp = new FractalPiece();
-        fp.createDefaultSettings();
-        VoiceSection vs = fp.getVoices().get(0).getVoiceSections().get(0);        
-        vs.saveVoiceSectionResultToMidiFile(FractalPieceTest.getTempFileName());
-    }
-    
+
     @Test
     public void getOtherVoiceOrSection() {
         FractalPiece fp = new FractalPiece();

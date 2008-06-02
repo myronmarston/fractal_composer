@@ -19,6 +19,7 @@
 
 package com.myronmarston.music;
 
+import com.myronmarston.music.scales.Scale;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiEvent;
 import javax.sound.midi.ShortMessage;
@@ -42,8 +43,7 @@ public class MidiNote {
     /**
      * The default velocity (volume) of the note
      */
-    public static final int DEFAULT_VELOCITY = Dynamic.MF.getMidiVolume();
-    
+    public static final int DEFAULT_VELOCITY = Dynamic.MF.getMidiVolume();    
     
     /**
      * The default channel of the note--0.
@@ -63,8 +63,7 @@ public class MidiNote {
     /**
      * The maximum allowed velocity, 127.
      */
-    public static final int MAX_VELOCITY = 127;
-    
+    public static final int MAX_VELOCITY = 127;    
     
     /**
      * The minimum allowed velocity, 0.
@@ -110,8 +109,7 @@ public class MidiNote {
     public MidiNote(int pitch, long startTime, long duration) {
         this(pitch, startTime, duration, DEFAULT_CHANNEL);
     }
-    
-    
+        
     /**
      * Default Constructor.  You should use the field setters to provide values 
      * for each parameter.
@@ -215,7 +213,17 @@ public class MidiNote {
         if (channel < MIN_CHANNEL || channel > MAX_CHANNEL) throw new IllegalArgumentException(String.format("The channel must be between %d and %d.", MIN_CHANNEL, MAX_CHANNEL));
         if (this.channel != channel) clearNoteEvents();
         this.channel = channel;        
-    }   
+    }       
+    
+    /**
+     * Gets the octave of this midi note for GUIDO notation.
+     * 
+     * @return the guido octave
+     */
+    public int getGuidoOctave() {
+        // Pitches 60-71 (Middle C - B) are octave 1
+        return (this.getPitch() / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE) - 4;
+    }
     
     /**
      * Gets the note on event for this note.  This must be added to the Midi 
