@@ -46,6 +46,9 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
     @Element(required=false)
     private Scale scale;
     
+    @Attribute
+    private boolean overridePieceScale = false;   
+    
     /**
      * Constructor.
      * 
@@ -75,6 +78,39 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
     } 
     
     /**
+     * Gets a value indicating whether or not this section will override the 
+     * fractal piece's scale.
+     * 
+     * @return false if the default scale will be used, true if the scale will 
+     *         be overriden
+     */
+    public boolean getOverridePieceScale() {
+        return overridePieceScale;
+    }
+
+    /**
+     * Sets a value indicating whether or not this section will override the 
+     * fractal piece's scale.
+     * 
+     * @param overridePieceScale false if the default scale will be used, true 
+     *        if the scale will be overriden
+     */
+    public void setOverridePieceScale(boolean overridePieceScale) {
+        boolean valueChanged = (this.overridePieceScale != overridePieceScale);
+        
+        this.overridePieceScale = overridePieceScale;
+        
+        // if the value changed, update our scale appropriately...
+        if (valueChanged) {
+            if (overridePieceScale) {
+                this.setScale((Scale) this.getFractalPiece().getScale().clone());   
+            } else {
+                this.setScale(null);
+            }
+        }        
+    }
+    
+    /**
      * Gets the scale to be used by this section.
      * 
      * @return the scale to be used by this section
@@ -87,8 +123,16 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
      * Sets the scale to be used by this section.
      * 
      * @param scale the scale to be used by this section
+     * @throws UnsupportedOperationException if the scale is changing in a way 
+     *         that would violate the overridePieceScale setting      
      */
-    public void setScale(Scale scale) {
+    public void setScale(Scale scale) throws UnsupportedOperationException {
+        if (this.getOverridePieceScale()) {
+            if (scale == null) throw new UnsupportedOperationException("The scale cannot be set to null since overridePieceScale is true.");
+        } else {
+            if (scale != null) throw new UnsupportedOperationException("The scale cannot be changed since overridePieceScale is false.");
+        }        
+        
         this.scale = scale;
         this.clearVoiceSectionResults();
     }        
@@ -106,7 +150,7 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
     
     /**
      * Updates the self-similarity settings of all voice sections.  This also
-     * updates the useDefaultVoiceSettings property to false.
+     * updates the overrideVoiceSettings property to true.
      * 
      * @param applyToPitch new value
      * @param applyToRhythm new value
@@ -114,7 +158,7 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
      */
     public void setSelfSimilaritySettingsOnAllVoiceSections(boolean applyToPitch, boolean applyToRhythm, boolean applyToVolume, int selfSimilarityIterations) {
         for (VoiceSection vs : this.getVoiceSections()) {
-            vs.setUseDefaultVoiceSettings(false);
+            vs.setOverrideVoiceSettings(true);
             SelfSimilaritySettings sss = vs.getVoiceSettings().getSelfSimilaritySettings();
             
             sss.setApplyToPitch(applyToPitch);

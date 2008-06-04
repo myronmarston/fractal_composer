@@ -29,7 +29,7 @@ import javax.sound.midi.MetaMessage;
 import javax.sound.midi.MidiEvent;
 
 /**
- * Represents a Midi key signature.
+ * Represents a Midi key signature.  This is immutable.
  * 
  * @author Myron
  */

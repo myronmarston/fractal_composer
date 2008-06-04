@@ -83,15 +83,15 @@ public class VoiceTest {
         v1.getSettings().setOctaveAdjustment(1);
         v1.getSettings().setSpeedScaleFactor(new Fraction(2, 1));
         
-        v1.getVoiceSections().get(0).setUseDefaultVoiceSettings(false);
-        v1.getVoiceSections().get(1).setUseDefaultVoiceSettings(false);
-        v1.getVoiceSections().get(0).setUseDefaultSectionSettings(false);
-        v1.getVoiceSections().get(1).setUseDefaultSectionSettings(false);
+        v1.getVoiceSections().get(0).setOverrideVoiceSettings(true);
+        v1.getVoiceSections().get(1).setOverrideVoiceSettings(true);
+        v1.getVoiceSections().get(0).setOverrideSectionSettings(true);
+        v1.getVoiceSections().get(1).setOverrideSectionSettings(true);
         
-        v2.getVoiceSections().get(0).setUseDefaultVoiceSettings(false);
-        v2.getVoiceSections().get(1).setUseDefaultVoiceSettings(false);
-        v2.getVoiceSections().get(0).setUseDefaultSectionSettings(false);
-        v2.getVoiceSections().get(1).setUseDefaultSectionSettings(false);
+        v2.getVoiceSections().get(0).setOverrideVoiceSettings(true);
+        v2.getVoiceSections().get(1).setOverrideVoiceSettings(true);
+        v2.getVoiceSections().get(0).setOverrideSectionSettings(true);
+        v2.getVoiceSections().get(1).setOverrideSectionSettings(true);
         
         v1.getVoiceSections().get(0).getVoiceSettings().getSelfSimilaritySettings().setApplyToPitch(true);
         v1.getVoiceSections().get(0).getVoiceSettings().getSelfSimilaritySettings().setApplyToRhythm(true);

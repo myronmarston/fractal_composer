@@ -185,6 +185,24 @@ Represents the smallest unit of the fractal piece for which the user can
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#getOverrideSectionSettings()">getOverrideSectionSettings</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a value indicating whether or not this voice section will override
+ the section settings.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#getOverrideVoiceSettings()">getOverrideVoiceSettings</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a value indicating whether or not this voice section will override
+ the voice settings.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#getRest()">getRest</A></B>()</CODE>
 
 <BR>
@@ -205,24 +223,6 @@ Represents the smallest unit of the fractal piece for which the user can
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the section settings for this voice section.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#getUseDefaultSectionSettings()">getUseDefaultSectionSettings</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a value indicating whether or not this voice section will use the
- default section settings.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#getUseDefaultVoiceSettings()">getUseDefaultVoiceSettings</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a value indicating whether or not this voice section will use the
- default voice settings.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -260,28 +260,28 @@ Represents the smallest unit of the fractal piece for which the user can
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#setOverrideSectionSettings(boolean)">setOverrideSectionSettings</A></B>(boolean&nbsp;overrideSectionSettings)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets a value indicating whether or not this voice section will override 
+ the section settings.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#setOverrideVoiceSettings(boolean)">setOverrideVoiceSettings</A></B>(boolean&nbsp;overrideVoiceSettings)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets a value indicating whether or not this voice section will override 
+ the voice settings.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#setRest(boolean)">setRest</A></B>(boolean&nbsp;val)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets whether or not to make this VoiceSection one long rest.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#setUseDefaultSectionSettings(boolean)">setUseDefaultSectionSettings</A></B>(boolean&nbsp;useDefaultSectionSettings)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set a value indicating whether or not this voice section will use the
- default section settings.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#setUseDefaultVoiceSettings(boolean)">setUseDefaultVoiceSettings</A></B>(boolean&nbsp;useDefaultVoiceSettings)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set a value indicating whether or not this voice section will use the
- default voice settings.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -380,76 +380,76 @@ public <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSecti
 </DL>
 <HR>
 
-<A NAME="getUseDefaultSectionSettings()"><!-- --></A><H3>
-getUseDefaultSectionSettings</H3>
+<A NAME="getOverrideSectionSettings()"><!-- --></A><H3>
+getOverrideSectionSettings</H3>
 <PRE>
-public boolean <B>getUseDefaultSectionSettings</B>()</PRE>
+public boolean <B>getOverrideSectionSettings</B>()</PRE>
 <DL>
-<DD>Gets a value indicating whether or not this voice section will use the
- default section settings.
+<DD>Gets a value indicating whether or not this voice section will override
+ the section settings.
 <P>
 <DD><DL>
 </DL>
 </DD>
 <DD><DL>
 
-<DT><B>Returns:</B><DD>true if the default settings will be used, false if the
+<DT><B>Returns:</B><DD>false if the default settings will be used, true if the
          settings will be overriden</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="setUseDefaultSectionSettings(boolean)"><!-- --></A><H3>
-setUseDefaultSectionSettings</H3>
+<A NAME="setOverrideSectionSettings(boolean)"><!-- --></A><H3>
+setOverrideSectionSettings</H3>
 <PRE>
-public void <B>setUseDefaultSectionSettings</B>(boolean&nbsp;useDefaultSectionSettings)</PRE>
+public void <B>setOverrideSectionSettings</B>(boolean&nbsp;overrideSectionSettings)</PRE>
 <DL>
-<DD>Set a value indicating whether or not this voice section will use the
- default section settings.
+<DD>Sets a value indicating whether or not this voice section will override 
+ the section settings.
 <P>
 <DD><DL>
 </DL>
 </DD>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>useDefaultSectionSettings</CODE> - true if the default settings will be 
-        used, false if the settings will be overriden</DL>
+<DT><B>Parameters:</B><DD><CODE>overrideSectionSettings</CODE> - false if the default settings will be 
+        used, true if the settings will be overriden</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="getUseDefaultVoiceSettings()"><!-- --></A><H3>
-getUseDefaultVoiceSettings</H3>
+<A NAME="getOverrideVoiceSettings()"><!-- --></A><H3>
+getOverrideVoiceSettings</H3>
 <PRE>
-public boolean <B>getUseDefaultVoiceSettings</B>()</PRE>
+public boolean <B>getOverrideVoiceSettings</B>()</PRE>
 <DL>
-<DD>Gets a value indicating whether or not this voice section will use the
- default voice settings.
+<DD>Gets a value indicating whether or not this voice section will override
+ the voice settings.
 <P>
 <DD><DL>
 </DL>
 </DD>
 <DD><DL>
 
-<DT><B>Returns:</B><DD>true if the default settings will be used, false if the
+<DT><B>Returns:</B><DD>false if the default settings will be used, true if the
          settings will be overriden</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="setUseDefaultVoiceSettings(boolean)"><!-- --></A><H3>
-setUseDefaultVoiceSettings</H3>
+<A NAME="setOverrideVoiceSettings(boolean)"><!-- --></A><H3>
+setOverrideVoiceSettings</H3>
 <PRE>
-public void <B>setUseDefaultVoiceSettings</B>(boolean&nbsp;useDefaultVoiceSettings)</PRE>
+public void <B>setOverrideVoiceSettings</B>(boolean&nbsp;overrideVoiceSettings)</PRE>
 <DL>
-<DD>Set a value indicating whether or not this voice section will use the
- default voice settings.
+<DD>Sets a value indicating whether or not this voice section will override 
+ the voice settings.
 <P>
 <DD><DL>
 </DL>
 </DD>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>useDefaultVoiceSettings</CODE> - true if the default settings will be 
-        used, false if the settings will be overriden</DL>
+<DT><B>Parameters:</B><DD><CODE>overrideVoiceSettings</CODE> - false if the default settings will be 
+        used, true if the settings will be overriden</DL>
 </DD>
 </DL>
 <HR>
@@ -460,7 +460,7 @@ getSectionSettings</H3>
 public <A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html" title="class in com.myronmarston.music.settings">SectionSettings</A> <B>getSectionSettings</B>()</PRE>
 <DL>
 <DD>Gets the section settings for this voice section.  If the 
- useDefaultSectionSettings flag is set, a read-only copy of the section's
+ overrideSectionSettings flag is false, a read-only copy of the section's
  settings will be returned.  Otherwise, a local, editable copy will be
  returned.
 <P>
@@ -480,7 +480,7 @@ getVoiceSettings</H3>
 public <A HREF="../../../../com/myronmarston/music/settings/VoiceSettings.html" title="class in com.myronmarston.music.settings">VoiceSettings</A> <B>getVoiceSettings</B>()</PRE>
 <DL>
 <DD>Gets the voice settings for this voice section.  If the 
- useDefaultVoiceSettings flag is set, a read-only copy of the voice's
+ overrideVoiceSettings flag is false, a read-only copy of the voice's
  settings will be returned.  Otherwise, a local, editable copy will be
  returned.
 <P>

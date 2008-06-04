@@ -95,11 +95,14 @@ java.lang.Object
   <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.scales.Scale</B>
 </PRE>
 <DL>
+<DT><B>All Implemented Interfaces:</B> <DD>java.lang.Cloneable</DD>
+</DL>
+<DL>
 <DT><B>Direct Known Subclasses:</B> <DD><A HREF="../../../../com/myronmarston/music/scales/ChromaticScale.html" title="class in com.myronmarston.music.scales">ChromaticScale</A>, <A HREF="../../../../com/myronmarston/music/scales/MajorScale.html" title="class in com.myronmarston.music.scales">MajorScale</A>, <A HREF="../../../../com/myronmarston/music/scales/MinorScale.html" title="class in com.myronmarston.music.scales">MinorScale</A></DD>
 </DL>
 <HR>
 <DL>
-<DT><PRE>public abstract class <B>Scale</B><DT>extends java.lang.Object</DL>
+<DT><PRE>public abstract class <B>Scale</B><DT>extends java.lang.Object<DT>implements java.lang.Cloneable</DL>
 </PRE>
 
 <P>
@@ -178,6 +181,14 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.Object</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#clone()">clone</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -287,7 +298,7 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 <TH ALIGN="left"><B>Methods inherited from class java.lang.Object</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>clone, finalize, getClass, notify, notifyAll, wait, wait, wait</CODE></TD>
+<TD><CODE>finalize, getClass, notify, notifyAll, wait, wait, wait</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -378,6 +389,9 @@ public <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in
 <DD>Gets the tonal center of the scale.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>the key name</DL>
 </DD>
@@ -391,6 +405,9 @@ public <A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" tit
 <DL>
 <DD>Gets the key signature of the scale.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the key signature</DL>
@@ -407,6 +424,9 @@ public abstract int[] <B>getScaleStepArray</B>()</PRE>
  the tonic for each scale step.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>array of integers</DL>
 </DD>
@@ -420,6 +440,9 @@ public abstract int[] <B>getLetterNumberArray</B>()</PRE>
 <DL>
 <DD>Gets an array of integers of letter numbers above the tonic letter number.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>letter number array.</DL>
@@ -435,6 +458,9 @@ public <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in
 <DL>
 <DD>Gets the letter name for the given scale step.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>scaleStep</CODE> - the scale step
 <DT><B>Returns:</B><DD>the letter name
@@ -453,6 +479,9 @@ public static int <B>getNormalizedChromaticAdjustment</B>(int&nbsp;chromaticAdju
 <DD>Normalizes a chromatic adjustment, putting it in the range -6 to 6.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>chromaticAdjustment</CODE> - the chromatic adjustment to normalize
 <DT><B>Returns:</B><DD>the normalized value</DL>
 </DD>
@@ -468,6 +497,9 @@ public void <B>setNotePitchValues</B>(<A HREF="../../../../com/myronmarston/musi
 <DD>Sets the scaleStep and chromaticAdjustment on the given note, based on
  the passed noteName.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>note</CODE> - the scaleStep and chromatic adjustment will be set on this 
         note<DD><CODE>noteName</CODE> - the noteName of the pitch that should be used to
@@ -487,6 +519,9 @@ protected void <B>setNotePitchValues_Helper</B>(<A HREF="../../../../com/myronma
  chromatic adjustment on the note, given a noteName and a scaleStepIndex.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>note</CODE> - the scaleStep and chromatic adjustment will be set on this 
         note<DD><CODE>noteNameForPitch</CODE> - the noteName of the pitch that should be used to
         determine the pitch values<DD><CODE>scaleStepIndex</CODE> - the index of the scaleStep withing this scales's
@@ -503,8 +538,25 @@ public java.util.List&lt;<A HREF="../../../../com/myronmarston/music/NoteName.ht
 <DD>Gets a list of valid keys for this scale type.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>a list of valid keys</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="clone()"><!-- --></A><H3>
+clone</H3>
+<PRE>
+public java.lang.Object <B>clone</B>()</PRE>
+<DL>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>clone</CODE> in class <CODE>java.lang.Object</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>

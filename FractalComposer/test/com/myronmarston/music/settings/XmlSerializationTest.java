@@ -113,10 +113,11 @@ public class XmlSerializationTest {
         Section s = fpWithDefaultSettings.getSections().get(0);
         s.getSettings().setApplyInversion(true);
         s.getSettings().setApplyRetrograde(false);
+        s.setOverridePieceScale(true);
         s.setScale(new HarmonicMinorScale(NoteName.G));
         
         String expected =   
-        "<section id=\"0\" uniqueIndex=\"1\">\n" +
+        "<section id=\"0\" uniqueIndex=\"1\" overridePieceScale=\"true\">\n" +
         "   <settings id=\"53\" applyInversion=\"true\" applyRetrograde=\"false\" readOnly=\"false\"/>\n" +
         "   <scale class=\"com.myronmarston.music.scales.HarmonicMinorScale\" id=\"54\">\n" +
         "      <keySignature id=\"55\" keyName=\"G\" tonality=\"Minor\"/>\n" +
@@ -155,10 +156,11 @@ public class XmlSerializationTest {
         fp.getVoices().remove(2);
         fp.setGenerateLayeredOutro(false);
         fp.getVoices().get(0).setInstrumentName("Violin");
+        fp.getSections().get(2).setOverridePieceScale(true);
         fp.getSections().get(2).setScale(new MajorPentatonicScale(NoteName.B));
-        fp.getVoices().get(0).getVoiceSections().get(0).setUseDefaultVoiceSettings(false);        
+        fp.getVoices().get(0).getVoiceSections().get(0).setOverrideVoiceSettings(true);        
         fp.getVoices().get(0).getVoiceSections().get(0).getVoiceSettings().getSelfSimilaritySettings().setSelfSimilarityIterations(3);
-        fp.getSections().get(0).getVoiceSections().get(0).setUseDefaultSectionSettings(false);
+        fp.getSections().get(0).getVoiceSections().get(0).setOverrideSectionSettings(true);
         fp.getSections().get(0).getVoiceSections().get(0).getSectionSettings().setApplyRetrograde(true);
         
         String xml = fp.getXmlRepresentation();  
@@ -198,6 +200,7 @@ public class XmlSerializationTest {
             assertEquals(s.getScale(), newS.getScale());
             assertEquals(s.getSettings(), newS.getSettings());
             assertEquals(s.getDuration(), newS.getDuration());
+            assertEquals(s.getOverridePieceScale(), newS.getOverridePieceScale());
             assertEquals(newFp, newFp.getSections().get(i).getFractalPiece());
         }        
         
@@ -207,8 +210,8 @@ public class XmlSerializationTest {
             for (int s = 0; s < fp.getSections().size(); s++) {
                 VoiceSection vs = fp.getVoiceSections().get(fp.getVoices().get(v).getHashMapKeyForOtherTypeIndex(s));
                 VoiceSection newVs = newFp.getVoiceSections().get(newFp.getVoices().get(v).getHashMapKeyForOtherTypeIndex(s));
-                assertEquals(vs.getUseDefaultSectionSettings(), newVs.getUseDefaultSectionSettings());
-                assertEquals(vs.getUseDefaultVoiceSettings(), newVs.getUseDefaultVoiceSettings());
+                assertEquals(vs.getOverrideSectionSettings(), newVs.getOverrideSectionSettings());
+                assertEquals(vs.getOverrideVoiceSettings(), newVs.getOverrideVoiceSettings());
                 assertEquals(vs.getSectionSettings(), newVs.getSectionSettings());
                 assertEquals(vs.getVoiceSettings(), newVs.getVoiceSettings());                
                 assertEquals(vs.getRest(), newVs.getRest());

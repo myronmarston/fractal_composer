@@ -69,7 +69,7 @@ public class OutputManager {
      * 
      * @return the sheet music creator
      */
-    public SheetMusicCreator getSheetMusicCreator() {
+    protected SheetMusicCreator getSheetMusicCreator() {
         if (sheetMusicCreator == null) sheetMusicCreator = new SheetMusicCreator(this);
         return sheetMusicCreator;
     }               
@@ -333,4 +333,14 @@ public class OutputManager {
         File outputFile = new File(fileName);                        
         MidiSystem.write(this.getSequence(), MIDI_FILE_TYPE_FOR_MULTI_TRACK_SEQUENCE, outputFile);        
     }    
+    
+    /**
+     * Saves the music as a sheet music image in gif format.
+     * 
+     * @param fileName the file name to save to
+     * @throws java.lang.Exception if an error occurs
+     */
+    public void saveGifImage(String fileName) throws Exception {
+        this.getSheetMusicCreator().saveAsGifImage(fileName);
+    }
 }

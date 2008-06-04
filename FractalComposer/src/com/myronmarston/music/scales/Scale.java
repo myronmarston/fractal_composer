@@ -43,7 +43,7 @@ import java.lang.reflect.UndeclaredThrowableException;
  * @author Myron 
  */
 @Root
-public abstract class Scale {    
+public abstract class Scale implements Cloneable {    
     @Element
     private KeySignature keySignature;
     
@@ -262,6 +262,17 @@ public abstract class Scale {
         return this.getKeySignature().getTonality().getValidKeyNames();
     }
 
+    @Override
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException ex) {
+            // We have implemented the Cloneable interface, so we should never
+            // get this exception.  If we do, there's something very, very wrong...
+            throw new UndeclaredThrowableException(ex, "Unexpected error while cloning.  This indicates a programming or JVM error.");
+        }         
+    }   
+    
     @Override
     public String toString() {
         return this.getKeyName().toString() + this.getClass().getSimpleName().replaceAll("([A-Z])", " $1");

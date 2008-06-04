@@ -40,7 +40,7 @@ public class VoiceSectionTest {
         VoiceSection vs = s.getVoiceSections().get(0);
         
         
-        assertEquals(true, vs.getUseDefaultSectionSettings());
+        assertEquals(false, vs.getOverrideSectionSettings());
         assertEquals(s.getSettings(), vs.getSectionSettings()); 
         assertEquals(true, vs.getSectionSettings().isReadOnly());
         
@@ -57,7 +57,7 @@ public class VoiceSectionTest {
         assertEquals(true, vs.getSectionSettings().getApplyInversion());
         assertEquals(s.getSettings(), vs.getSectionSettings()); 
         
-        vs.setUseDefaultSectionSettings(false);
+        vs.setOverrideSectionSettings(true);
         assertEquals(false, vs.getSectionSettings().isReadOnly());
         
         // the section settings should have all the values of the section's settings
@@ -66,10 +66,10 @@ public class VoiceSectionTest {
         s.getSettings().setApplyRetrograde(true);
         assertFalse(s.getSettings().equals(vs.getSectionSettings()));
         
-        vs.setUseDefaultSectionSettings(true);
+        vs.setOverrideSectionSettings(false);
         assertEquals(true, vs.getSectionSettings().isReadOnly());
         
-        vs.setUseDefaultSectionSettings(false);
+        vs.setOverrideSectionSettings(true);
         assertEquals(false, vs.getSectionSettings().isReadOnly());
         
         // the section settings should have all the values of the section's settings
@@ -83,7 +83,7 @@ public class VoiceSectionTest {
         fp.createSection();
         VoiceSection vs = v.getVoiceSections().get(0);
         
-        assertEquals(true, vs.getUseDefaultVoiceSettings());
+        assertEquals(false, vs.getOverrideVoiceSettings());
         assertEquals(v.getSettings(), vs.getVoiceSettings()); 
         assertEquals(true, vs.getVoiceSettings().isReadOnly());        
         
@@ -101,7 +101,7 @@ public class VoiceSectionTest {
         assertEquals(v.getSettings(), vs.getVoiceSettings()); 
         
         
-        vs.setUseDefaultVoiceSettings(false);
+        vs.setOverrideVoiceSettings(true);
         assertEquals(false, vs.getVoiceSettings().isReadOnly());
         
         // the Voice settings should have all the values of the Voice's settings
@@ -110,10 +110,10 @@ public class VoiceSectionTest {
         v.getSettings().setSpeedScaleFactor(new Fraction(7, 4));
         assertFalse(v.getSettings().equals(vs.getVoiceSettings()));
         
-        vs.setUseDefaultVoiceSettings(true);
+        vs.setOverrideVoiceSettings(false);
         assertEquals(true, vs.getVoiceSettings().isReadOnly());
         
-        vs.setUseDefaultVoiceSettings(false);
+        vs.setOverrideVoiceSettings(true);
         assertEquals(false, vs.getVoiceSettings().isReadOnly());
         
         // the Voice settings should have all the values of the Voice's settings
@@ -199,7 +199,7 @@ public class VoiceSectionTest {
         
         // overide the inversion
         expected.clear();
-        vs1.setUseDefaultSectionSettings(false);
+        vs1.setOverrideSectionSettings(true);
         vs1.getSectionSettings().setApplyInversion(true);
         assertEquals(false, s1.getSettings().getApplyInversion());
         assertEquals(true, s1.getSettings().getApplyRetrograde());
@@ -324,7 +324,7 @@ public class VoiceSectionTest {
         expectedResult = NoteList.parseNoteListString("C4 D4 C4  D4 E4 D4  C4 D4 C4   D4 E4 D4  E4 F4 E4  D4 E4 D4   C4 D4 C4  D4 E4 D4  C4 D4 C4   D4 E4 D4  E4 F4 E4  D4 E4 D4   E4 F4 E4  F4 G4 F4  E4 F4 E4   D4 E4 D4  E4 F4 E4  D4 E4 D4   C4 D4 C4  D4 E4 D4  C4 D4 C4   D4 E4 D4  E4 F4 E4  D4 E4 D4   C4 D4 C4  D4 E4 D4  C4 D4 C4", fp.getScale());
         NoteListTest.assertNoteListsEqual(expectedResult, vs.getVoiceSectionResult());
         
-        vs.setUseDefaultVoiceSettings(false);
+        vs.setOverrideVoiceSettings(true);
         vs.getVoiceSettings().getSelfSimilaritySettings().setSelfSimilarityIterations(1);
         expectedResult = NoteList.parseNoteListString("C4 D4 C4  D4 E4 D4  C4 D4 C4", fp.getScale());
         NoteListTest.assertNoteListsEqual(expectedResult, vs.getVoiceSectionResult());
@@ -343,12 +343,13 @@ public class VoiceSectionTest {
         expected.add(new Note(0, 4, 0, new Fraction(1, 4), MidiNote.DEFAULT_VELOCITY, null, 0));
         NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());
         
+        s.setOverridePieceScale(true);
         s.setScale(new HarmonicMinorScale(NoteName.Bb));
         expected.clear();
         expected.add(new Note(0, 4, 0, new Fraction(1, 4), MidiNote.DEFAULT_VELOCITY, new HarmonicMinorScale(NoteName.Bb), 0));
         NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());
-        
-        s.setScale(null);
+                
+        s.setOverridePieceScale(false);        
         expected.clear();
         expected.add(new Note(0, 4, 0, new Fraction(1, 4), MidiNote.DEFAULT_VELOCITY, null, 0));
         NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());

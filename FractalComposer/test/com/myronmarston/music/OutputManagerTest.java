@@ -24,6 +24,8 @@ import com.myronmarston.music.settings.*;
 import com.myronmarston.util.*;
 import java.io.*;
 import java.util.*;
+import java.awt.image.BufferedImage;
+import javax.imageio.*;
 import javax.sound.midi.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -87,6 +89,18 @@ public class OutputManagerTest {
         });
     }
     
+    @Test
+    public void saveGifImage() throws Exception {
+        FileHelper.createAndUseTempFile("TestGifFile", ".gif", new FileHelper.TempFileUser() {
+            public void useTempFile(String tempFileName) throws Exception {
+                OutputManagerTest.this.outputManager.saveGifImage(tempFileName);
+                File file = new File(tempFileName);
+                BufferedImage image = ImageIO.read(file);
+                assertNotNull(image.getData()); 
+            }
+        });
+    }
+    
     @Test(expected=GermIsEmptyException.class)
     public void errorIfGermIsEmpty() throws Exception {
         FractalPiece fp = new FractalPiece();        
@@ -104,8 +118,11 @@ public class OutputManagerTest {
         Section s3 = fp.createSection();
         Section s4 = fp.createSection();
         
+        s1.setOverridePieceScale(true);
         s1.setScale(new MinorScale(NoteName.G));
+        s2.setOverridePieceScale(true);
         s2.setScale(new MajorScale(NoteName.G));
+        s3.setOverridePieceScale(true);
         s3.setScale(new MajorPentatonicScale(NoteName.G));
         Sequence seq = fp.createPieceResultOutputManager().getSequence();
         Track track0 = seq.getTracks()[0];

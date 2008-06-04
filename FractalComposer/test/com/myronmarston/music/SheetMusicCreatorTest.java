@@ -21,7 +21,6 @@ package com.myronmarston.music;
 
 import com.myronmarston.music.settings.*;
 import com.myronmarston.util.*;
-//import java.awt.*;
 import java.io.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.*;

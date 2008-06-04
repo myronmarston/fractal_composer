@@ -67,9 +67,9 @@ public class SectionTest {
         VoiceSection vs3 = v3.getVoiceSections().get(0);       
         
         s1.setSelfSimilaritySettingsOnAllVoiceSections(true, false, true, 2);
-        assertEquals(false, vs1.getUseDefaultVoiceSettings());
-        assertEquals(false, vs2.getUseDefaultVoiceSettings());
-        assertEquals(false, vs3.getUseDefaultVoiceSettings());
+        assertEquals(true, vs1.getOverrideVoiceSettings());
+        assertEquals(true, vs2.getOverrideVoiceSettings());
+        assertEquals(true, vs3.getOverrideVoiceSettings());
         
         assertEquals(true, vs1.getVoiceSettings().getSelfSimilaritySettings().getApplyToPitch());
         assertEquals(true, vs2.getVoiceSettings().getSelfSimilaritySettings().getApplyToPitch());
@@ -115,6 +115,7 @@ public class SectionTest {
         fp.createDefaultSettings();
         
         Section s2 = fp.getSections().get(2);
+        s2.setOverridePieceScale(true);
         s2.setScale(GMinor);
         for (Section s : fp.getSections()) {
             if (s == s2) 
@@ -122,5 +123,46 @@ public class SectionTest {
             else
                 assertEquals(FMajor.getKeySignature(), s.getSectionKeySignature());
         }
+    }
+    
+    @Test
+    public void overridePieceScale() throws Exception {
+        Scale FMajor = new MajorScale(NoteName.F);
+        Scale GMinor = new MinorScale(NoteName.G);        
+        FractalPiece fp = new FractalPiece();
+        fp.setScale(FMajor);
+        fp.createDefaultSettings();
+        
+        Section s2 = fp.getSections().get(2);
+        assertEquals(false, s2.getOverridePieceScale());
+        assertEquals(null, s2.getScale());
+        
+        // setting the scale should throw an exception...
+        try {
+            s2.setScale(GMinor);
+            fail();
+        } catch (UnsupportedOperationException ex) {}
+        assertEquals(null, s2.getScale());
+        
+        // overriding the settings should set the section's scale equal to the 
+        // piece's scale
+        s2.setOverridePieceScale(true);
+        assertEquals(FMajor, s2.getScale());
+        
+        // we should be able to change the section scale now...
+        s2.setScale(GMinor);
+        assertEquals(GMinor, s2.getScale());
+        
+        // setting the scale to null should throw an exception
+        try {
+            s2.setScale(null);
+            fail();
+        } catch (UnsupportedOperationException ex) {}
+        assertEquals(GMinor, s2.getScale());
+        
+        
+        // settting override to false should nullify the scale...
+        s2.setOverridePieceScale(false);
+        assertEquals(null, s2.getScale());
     }
 }

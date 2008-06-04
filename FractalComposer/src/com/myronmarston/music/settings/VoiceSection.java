@@ -30,7 +30,6 @@ import com.myronmarston.util.Subscriber;
 
 import org.simpleframework.xml.*;
 
-import java.io.IOException;
 import java.util.*;
         
 /**
@@ -47,13 +46,13 @@ public class VoiceSection implements Subscriber {
     private boolean rest = false;
     
     @Attribute
-    private boolean useDefaultVoiceSettings = true;
+    private boolean overrideVoiceSettings = false;
     
     @Element(required=false)
     private VoiceSettings voiceSettings;
     
     @Attribute
-    private boolean useDefaultSectionSettings = true;        
+    private boolean overrideSectionSettings = false;        
     
     @Element(required=false)
     private SectionSettings sectionSettings;
@@ -118,73 +117,73 @@ public class VoiceSection implements Subscriber {
     }
 
     /**
-     * Gets a value indicating whether or not this voice section will use the
-     * default section settings.
+     * Gets a value indicating whether or not this voice section will override
+     * the section settings.
      * 
-     * @return true if the default settings will be used, false if the
+     * @return false if the default settings will be used, true if the
      *         settings will be overriden
      */
-    public boolean getUseDefaultSectionSettings() {
-        return useDefaultSectionSettings;
+    public boolean getOverrideSectionSettings() {
+        return overrideSectionSettings;
     }
 
     /**
-     * Set a value indicating whether or not this voice section will use the
-     * default section settings.
+     * Sets a value indicating whether or not this voice section will override 
+     * the section settings.
      * 
-     * @param useDefaultSectionSettings true if the default settings will be 
-     *        used, false if the settings will be overriden
+     * @param overrideSectionSettings false if the default settings will be 
+     *        used, true if the settings will be overriden
      */
-    public void setUseDefaultSectionSettings(boolean useDefaultSectionSettings) {
-        if (this.useDefaultSectionSettings && !useDefaultSectionSettings) {
+    public void setOverrideSectionSettings(boolean overrideSectionSettings) {
+        if (!this.overrideSectionSettings && overrideSectionSettings) {
             // the value is changing from using the default settings to overriding them,
             // so create a local settings object that is initially identical to
             // the default            
             this.setSectionSettings((SectionSettings) this.getSection().getSettings().clone());            
         }
         
-        this.useDefaultSectionSettings = useDefaultSectionSettings;
+        this.overrideSectionSettings = overrideSectionSettings;
     }
 
     /**
-     * Gets a value indicating whether or not this voice section will use the
-     * default voice settings.
+     * Gets a value indicating whether or not this voice section will override
+     * the voice settings.
      * 
-     * @return true if the default settings will be used, false if the
+     * @return false if the default settings will be used, true if the
      *         settings will be overriden
      */
-    public boolean getUseDefaultVoiceSettings() {
-        return useDefaultVoiceSettings;
+    public boolean getOverrideVoiceSettings() {
+        return overrideVoiceSettings;
     }
 
     /**
-     * Set a value indicating whether or not this voice section will use the
-     * default voice settings.
+     * Sets a value indicating whether or not this voice section will override 
+     * the voice settings.
      * 
-     * @param useDefaultVoiceSettings true if the default settings will be 
-     *        used, false if the settings will be overriden
+     * @param overrideVoiceSettings false if the default settings will be 
+     *        used, true if the settings will be overriden
      */
-    public void setUseDefaultVoiceSettings(boolean useDefaultVoiceSettings) {
-        if (this.useDefaultVoiceSettings && !useDefaultVoiceSettings) {
+    public void setOverrideVoiceSettings(boolean overrideVoiceSettings) {
+        if (!this.overrideVoiceSettings && overrideVoiceSettings) {
             // the value is changing from using the default settings to overriding them,
             // so create a local settings object that is initially identical to
             // the default            
             this.setVoiceSettings((VoiceSettings) this.getVoice().getSettings().clone());            
         }
         
-        this.useDefaultVoiceSettings = useDefaultVoiceSettings;
+        this.overrideVoiceSettings = overrideVoiceSettings;
     }
 
     /**
      * Gets the section settings for this voice section.  If the 
-     * useDefaultSectionSettings flag is set, a read-only copy of the section's
+     * overrideSectionSettings flag is false, a read-only copy of the section's
      * settings will be returned.  Otherwise, a local, editable copy will be
      * returned.
      * 
      * @return the section settings for this voice section
      */
     public SectionSettings getSectionSettings() {
-        if (this.getUseDefaultSectionSettings()) return this.getSection().getSettings().getReadOnlyCopy();
+        if (!this.getOverrideSectionSettings()) return this.getSection().getSettings().getReadOnlyCopy();
         return sectionSettings;
     }
     
@@ -196,14 +195,14 @@ public class VoiceSection implements Subscriber {
 
     /**
      * Gets the voice settings for this voice section.  If the 
-     * useDefaultVoiceSettings flag is set, a read-only copy of the voice's
+     * overrideVoiceSettings flag is false, a read-only copy of the voice's
      * settings will be returned.  Otherwise, a local, editable copy will be
      * returned.
      * 
      * @return the voice settings for this voice section
      */
     public VoiceSettings getVoiceSettings() {
-        if (this.getUseDefaultVoiceSettings()) return this.getVoice().getSettings().getReadOnlyCopy();
+        if (!this.getOverrideVoiceSettings()) return this.getVoice().getSettings().getReadOnlyCopy();
         return voiceSettings;
     }       
     

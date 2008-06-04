@@ -181,7 +181,8 @@ public class PieceTest {
         
         // set a scale on one section and on one voice section
         Section s1 = fp.createSection();
-        Section s2 = fp.createSection();          
+        Section s2 = fp.createSection();   
+        s1.setOverridePieceScale(true);
         s1.setScale(new MinorScale(NoteName.C));        
         
         Sequence seq = fp.createPieceResultOutputManager().getSequence();

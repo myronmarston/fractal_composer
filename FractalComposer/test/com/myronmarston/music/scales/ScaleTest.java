@@ -700,6 +700,13 @@ public class ScaleTest {
         assertFalse((new HarmonicMinorScale(NoteName.F)).hashCode() == (new ChromaticScale()).hashCode());
     }
     
+    @Test
+    public void testClone() throws Exception {
+        Scale s = new MinorPentatonicScale(NoteName.Bb);
+        Scale s2 = (Scale) s.clone();
+        assertEquals(s, s2);
+    }
+    
     protected static void testSetNotePitchValues(Scale s, Note n, NoteName nn, int scaleStep, int chromaticAdjustment) {
         s.setNotePitchValues(n, nn);
         assertEquals(scaleStep, n.getScaleStep());
