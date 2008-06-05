@@ -29,7 +29,7 @@ import com.myronmarston.music.NoteList;
  * @author Myron
  */
 public class OctaveTransformer implements Transformer {
-    private int octaveChange;
+    private final int octaveChange;
     
     /**
      * Constructor.
@@ -49,7 +49,7 @@ public class OctaveTransformer implements Transformer {
     public int getOctaveChange() {
         return octaveChange;
     }
-    
+        
     public NoteList transform(NoteList input) {
         Note newNote;
         NoteList output = new NoteList(input.size());
@@ -58,7 +58,7 @@ public class OctaveTransformer implements Transformer {
             newNote = (Note) inputNote.clone();
                         
             if (!newNote.isRest()) { // don't change the octave on a rest...
-                newNote.setOctave(newNote.getOctave() + this.getOctaveChange());
+                newNote.setOctave(newNote.getOctave() + this.octaveChange);
             }                        
             
             output.add(newNote);

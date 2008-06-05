@@ -124,7 +124,8 @@ Transformer that transposes the notes of the NoteList to a different pitch
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/transformers/TransposeTransformer.html#TransposeTransformer(int)">TransposeTransformer</A></B>(int&nbsp;transposeSteps)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/transformers/TransposeTransformer.html#TransposeTransformer(int, int)">TransposeTransformer</A></B>(int&nbsp;transposeSteps,
+                     int&nbsp;transposeLetterNames)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
@@ -138,6 +139,14 @@ Transformer that transposes the notes of the NoteList to a different pitch
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/transformers/TransposeTransformer.html#getTransposeLetterNumbers()">getTransposeLetterNumbers</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the number of letter numbers to transpose the given NoteList.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -178,15 +187,16 @@ Transformer that transposes the notes of the NoteList to a different pitch
 </TR>
 </TABLE>
 
-<A NAME="TransposeTransformer(int)"><!-- --></A><H3>
+<A NAME="TransposeTransformer(int, int)"><!-- --></A><H3>
 TransposeTransformer</H3>
 <PRE>
-public <B>TransposeTransformer</B>(int&nbsp;transposeSteps)</PRE>
+public <B>TransposeTransformer</B>(int&nbsp;transposeSteps,
+                            int&nbsp;transposeLetterNames)</PRE>
 <DL>
 <DD>Constructor.
 <P>
 <DL>
-<DT><B>Parameters:</B><DD><CODE>transposeSteps</CODE> - the number of scale steps to transpose the given NoteList</DL>
+<DT><B>Parameters:</B><DD><CODE>transposeSteps</CODE> - the number of scale steps to transpose the given NoteList<DD><CODE>transposeLetterNames</CODE> - the number of letter</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -212,6 +222,23 @@ public int <B>getTransposeSteps</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the transpose steps</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getTransposeLetterNumbers()"><!-- --></A><H3>
+getTransposeLetterNumbers</H3>
+<PRE>
+public int <B>getTransposeLetterNumbers</B>()</PRE>
+<DL>
+<DD>Gets the number of letter numbers to transpose the given NoteList.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the transpose letter number</DL>
 </DD>
 </DL>
 <HR>

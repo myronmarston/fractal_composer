@@ -33,9 +33,8 @@ import com.myronmarston.music.NoteList;
  * 
  * @author Myron
  */
-public class VolumeTransformer implements Transformer {    
-    
-    private double scaleFactor;
+public class VolumeTransformer implements Transformer {        
+    private final double scaleFactor;
 
     /**
      * Gets the scale factor.  Should be between -1 and 1.  Negative values will
@@ -69,11 +68,11 @@ public class VolumeTransformer implements Transformer {
             
             if (!newNote.isRest()) { // don't change the volume of rests...                    
                 remainingVolumeRange = 
-                    (this.getScaleFactor() < 0) ?
+                    (this.scaleFactor < 0) ?
                     newNote.getVolume() - MidiNote.MIN_VELOCITY :
                     MidiNote.MAX_VELOCITY - newNote.getVolume();
 
-                volumeAdjustment = (int) Math.round(remainingVolumeRange * this.getScaleFactor());
+                volumeAdjustment = (int) Math.round(remainingVolumeRange * this.scaleFactor);
 
                 newNote.setVolume(newNote.getVolume() + volumeAdjustment);
             }

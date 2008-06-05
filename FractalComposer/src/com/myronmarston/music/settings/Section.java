@@ -26,7 +26,6 @@ import com.myronmarston.music.scales.KeySignature;
 import com.myronmarston.music.scales.Scale;
 import com.myronmarston.util.Fraction;
 import com.myronmarston.util.Publisher;
-import java.io.IOException;
 import org.simpleframework.xml.*;
 import java.util.*;
 

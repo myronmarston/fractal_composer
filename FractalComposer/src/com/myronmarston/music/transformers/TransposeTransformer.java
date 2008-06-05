@@ -32,8 +32,9 @@ import com.myronmarston.music.NoteList;
  * @author Myron
  */
 public class TransposeTransformer implements Transformer {   
-    private int transposeSteps;
-    
+    private final int transposeSteps;
+    private final int transposeLetterNumbers;           
+               
     /**
      * Gets the number of scale steps to transpose the given NoteList.
      * 
@@ -42,15 +43,26 @@ public class TransposeTransformer implements Transformer {
     public int getTransposeSteps() {
         return transposeSteps;
     }
+
+    /**
+     * Gets the number of letter numbers to transpose the given NoteList.
+     * 
+     * @return the transpose letter number
+     */
+    public int getTransposeLetterNumbers() {
+        return transposeLetterNumbers;
+    }   
     
     /**
      * Constructor.
      * 
      * @param transposeSteps the number of scale steps to transpose the given NoteList
+     * @param transposeLetterNames the number of letter 
      */
-    public TransposeTransformer(int transposeSteps) {
+    public TransposeTransformer(int transposeSteps, int transposeLetterNames) {
         this.transposeSteps = transposeSteps;
-    }
+        this.transposeLetterNumbers = transposeLetterNames;
+    }  
     
     public NoteList transform(NoteList input) {
         Note newNote;
@@ -60,7 +72,8 @@ public class TransposeTransformer implements Transformer {
             newNote = (Note) inputNote.clone();
             
             if (!newNote.isRest()) { // don't change a rest...
-                newNote.setScaleStep(newNote.getScaleStep() + this.getTransposeSteps());
+                newNote.setScaleStep(newNote.getScaleStep() + this.transposeSteps);
+                newNote.setLetterNumber(newNote.getLetterNumber() + this.transposeLetterNumbers);
             }            
             
             output.add(newNote);

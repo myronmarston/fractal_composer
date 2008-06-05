@@ -74,22 +74,7 @@ public class ChromaticScale extends Scale {
     @Override
     public int[] getLetterNumberArray() {
         throw new UnsupportedOperationException("The chromatic scale does not support the letter number array.");
-    }
-    
-    @Override    
-    public NoteName getLetterNameForScaleStep(int scaleStep) throws IllegalArgumentException {
-        // idea: figure this out based on the entered germ, so as to conform it to that...
-        switch (scaleStep) {
-            case 0: case 1:   return NoteName.C; // C, C#
-            case 2:           return NoteName.D; // D
-            case 3: case 4:   return NoteName.E; // Eb, E
-            case 5: case 6:   return NoteName.F; // F, F#
-            case 7: case 8:   return NoteName.G; // G, G#
-            case 9:           return NoteName.A; // A
-            case 10: case 11: return NoteName.B; // Bb, B
-            default: throw new IllegalArgumentException("The scale step must be between 0 and 11.");
-        }        
-    }        
+    }          
 
     @Override
     public void setNotePitchValues(Note note, NoteName noteName) {        

@@ -55,16 +55,16 @@ public class XmlSerializationTest {
     
     @Test
     public void serializeNote() throws Exception {
-        Note n = new Note(3, 4, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), null, 1);        
+        Note n = new Note(2, 3, 4, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), null, 1);        
         String expected = 
-        "<note id=\"0\" scaleStep=\"3\" octave=\"4\" chromaticAdjustment=\"0\" volume=\"85\" segmentChromaticAdjustment=\"1\">\n"+                
+        "<note id=\"0\" scaleStep=\"3\" octave=\"4\" chromaticAdjustment=\"0\" volume=\"85\" segmentChromaticAdjustment=\"1\" letterNumber=\"2\">\n"+                
         "   <duration id=\"1\" numerator_=\"1\" denominator_=\"4\"/>\n" +
         "</note>";        
         testSerialization(n, expected);        
                 
         n.setScale(new MajorScale(NoteName.E));        
         expected = 
-        "<note id=\"0\" scaleStep=\"3\" octave=\"4\" chromaticAdjustment=\"0\" volume=\"85\" segmentChromaticAdjustment=\"1\">\n"+                
+        "<note id=\"0\" scaleStep=\"3\" octave=\"4\" chromaticAdjustment=\"0\" volume=\"85\" segmentChromaticAdjustment=\"1\" letterNumber=\"2\">\n"+                
         "   <duration id=\"1\" numerator_=\"1\" denominator_=\"4\"/>\n" +
         "   <scale class=\"com.myronmarston.music.scales.MajorScale\" id=\"2\">\n" +
         "      <keySignature id=\"3\" keyName=\"E\" tonality=\"Major\"/>\n" +

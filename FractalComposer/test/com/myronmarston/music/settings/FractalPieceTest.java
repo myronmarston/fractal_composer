@@ -172,10 +172,10 @@ public class FractalPieceTest {
         fp.setScale(new MajorScale(NoteName.G));
         
         NoteList expected = new NoteList();
-        expected.add(new Note(0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
-        expected.add(new Note(1, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume()));
-        expected.add(new Note(2, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume()));
-        expected.add(new Note(0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
+        expected.add(new Note(1, 1, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume(), null, 0));
+        expected.add(new Note(2, 2, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume(), null, 0));
+        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
         
         fp.setGermString("G4,1/4,MF A4,1/8,F B4,1/8,F G4,1/4,MF");
         NoteListTest.assertNoteListsEqual(expected, fp.getGerm());
@@ -222,19 +222,28 @@ public class FractalPieceTest {
         fp.setGermString("C4 E4 F4 G4");
         
         NoteList expected = new NoteList();
-        expected.add(new Note(0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
-        expected.add(new Note(2, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
-        expected.add(new Note(3, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
-        expected.add(new Note(4, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
+        expected.add(new Note(2, 2, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
+        expected.add(new Note(3, 3, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
+        expected.add(new Note(4, 4, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
         
         NoteListTest.assertNoteListsEqual(expected, fp.getGerm());
         
         fp.setScale(new MajorScale(NoteName.G));
         expected.clear();        
-        expected.add(new Note(3, 3, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
-        expected.add(new Note(5, 3, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
-        expected.add(new Note(6, 3, -1, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
-        expected.add(new Note(0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume()));
+        expected.add(new Note(3, 3, 3, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
+        expected.add(new Note(5, 5, 3, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
+        expected.add(new Note(6, 6, 3, -1, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
+        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
+        
+        NoteListTest.assertNoteListsEqual(expected, fp.getGerm());
+        
+        fp.setScale(new ChromaticScale());
+        expected.clear();        
+        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
+        expected.add(new Note(2, 4, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
+        expected.add(new Note(3, 5, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
+        expected.add(new Note(4, 7, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
         
         NoteListTest.assertNoteListsEqual(expected, fp.getGerm());
     }
@@ -252,21 +261,23 @@ public class FractalPieceTest {
     }        
     
     @Test
-    public void germMidiSameForAllScales() throws Exception {
+    public void germMidiAndGuidoSameForAllScales() throws Exception {
         final FractalPiece fp = new FractalPiece();        
-        fp.setGermString("C4 E4 F4 G4");
+        fp.setGermString("C4 E4 F4 G4 Gbb3,1/6 Bx4,1/4 D#5 Fb4");
         FileHelper.createAndUseTempFile("TestMidiFile", ".mid", new FileHelper.TempFileUser() {
             public void useTempFile(String tempFileName) throws Exception {                
                 fp.createGermOutputManager().saveMidiFile(tempFileName);
                 final Track baselineTrack = MidiSystem.getSequence(new File(tempFileName)).getTracks()[1];
+                String baselineGuido = fp.createGermOutputManager().getGuidoNotation().replaceFirst("\\\\key<.*?>", "");
 
                 for (Scale s : getAllScalePossibilities()) {
                     //System.out.println("Testing " + s.toString());
                     fp.setScale(s);
-
+                    final OutputManager outputManager = fp.createGermOutputManager();
+                    assertEquals(baselineGuido, outputManager.getGuidoNotation().replaceFirst("\\\\key<.*?>", ""));
                     FileHelper.createAndUseTempFile("TestMidiFile", ".mid", new FileHelper.TempFileUser() {
                         public void useTempFile(String tempFileName) throws Exception {                            
-                            fp.createGermOutputManager().saveMidiFile(tempFileName);
+                            outputManager.saveMidiFile(tempFileName);
 
                             Track t = MidiSystem.getSequence(new File(tempFileName)).getTracks()[1];            
                             assertTracksEqual(baselineTrack, t);

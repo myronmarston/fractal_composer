@@ -148,26 +148,7 @@ public abstract class Scale implements Cloneable {
      * 
      * @return letter number array.
      */
-    abstract public int[] getLetterNumberArray();   
-   
-    /**
-     * Gets the letter name for the given scale step.
-     * 
-     * @param scaleStep the scale step
-     * @return the letter name
-     * @throws java.lang.IllegalArgumentException if the scale step is outside
-     *         of the allowable range
-     */
-    public NoteName getLetterNameForScaleStep(int scaleStep) throws IllegalArgumentException {         
-        int[] letterNumArray = this.getLetterNumberArray(); // cache it       
-        if (scaleStep < 0 || scaleStep >= letterNumArray.length) {
-            throw new IllegalArgumentException("The scale step must be between 0 and " + letterNumArray.length + ".");
-        }
-        
-        int letterNum = this.getKeyName().getLetterNumber() + letterNumArray[scaleStep];
-        letterNum %= NoteName.NUM_LETTER_NAMES;
-        return NoteName.getNaturalNoteNameForLetterNumber(letterNum);       
-    }
+    abstract public int[] getLetterNumberArray();     
     
     /**
      * Normalizes a chromatic adjustment, putting it in the range -6 to 6.

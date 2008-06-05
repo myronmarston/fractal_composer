@@ -201,11 +201,18 @@ public enum NoteName {
         return getNormalizedValue(other.getNoteNumber() - this.getNoteNumber(), Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE);                
     }        
        
-    private static int getNormalizedValue(int value, int max) {
-        // the value could be negative, but it should not be more negative then our mod
-        assert value > 0 - max : value;        
-        int returnVal = (value + max) % max;
-        assert returnVal >= 0 && returnVal < max : returnVal;
+    /**
+     * Normalizes a value into a certain range. This is like a modulus function,
+     * only this properly handles negative values.
+     * 
+     * @param value the value to normalize
+     * @param mod the modulus number
+     * @return the normalized value
+     */
+    protected static int getNormalizedValue(int value, int mod) {        
+        while (value < 0) value += mod;        
+        int returnVal = value % mod;
+        assert returnVal >= 0 && returnVal < mod : returnVal;
         
         return returnVal;
     }
@@ -232,17 +239,16 @@ public enum NoteName {
         
         throw new IllegalArgumentException(String.format("%d is not a valid keyNumber.  The keyNumber should be between 0 and 11.", noteNumber));
     }
-    
+
     /**
-     * Gets the note name without any accidentals for the given letter number.
+     * Gets the note name without any accidentals for the given letter number,
+     * relative to this note name.
      * 
      * @param letterNumber the letter number (0-6)
-     * @return the natural note name
-     * @throws java.lang.IllegalArgumentException if the letterNumber is not in 
-     *         the range 0-6
+     * @return the natural note name     
      */
-    public static NoteName getNaturalNoteNameForLetterNumber(int letterNumber) throws IllegalArgumentException {
-        switch (letterNumber) {
+    public NoteName getNaturalNoteNameForLetterNumber(int letterNumber) {
+        switch (NoteName.getNormalizedValue(this.letterNumber + letterNumber, NUM_LETTER_NAMES)) {
             case 0: return NoteName.C;
             case 1: return NoteName.D;
             case 2: return NoteName.E;
@@ -250,9 +256,9 @@ public enum NoteName {
             case 4: return NoteName.G;
             case 5: return NoteName.A;
             case 6: return NoteName.B;
-            default: throw new IllegalArgumentException("The letter number must be in the range 0-6.");
+            default: throw new AssertionError("Unexpected normalized letter number value.  There is a programming error somewhere.");
         }
-    }
+    }    
         
     /**
      * Gets the NoteName that corresponds to the given string.

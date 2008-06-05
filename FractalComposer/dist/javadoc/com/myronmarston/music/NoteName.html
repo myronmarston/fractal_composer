@@ -410,11 +410,21 @@ Enumerates all the valid note names.  These are used to parse a note string
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;<A HREF="../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteName.html#getNaturalNoteNameForLetterNumber(int)">getNaturalNoteNameForLetterNumber</A></B>(int&nbsp;letterNumber)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the note name without any accidentals for the given letter number.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the note name without any accidentals for the given letter number,
+ relative to this note name.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteName.html#getNormalizedValue(int, int)">getNormalizedValue</A></B>(int&nbsp;value,
+                   int&nbsp;mod)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Normalizes a value into a certain range.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -1055,6 +1065,22 @@ public int <B>getPositiveChromaticSteps</B>(<A HREF="../../../com/myronmarston/m
 </DL>
 <HR>
 
+<A NAME="getNormalizedValue(int, int)"><!-- --></A><H3>
+getNormalizedValue</H3>
+<PRE>
+protected static int <B>getNormalizedValue</B>(int&nbsp;value,
+                                        int&nbsp;mod)</PRE>
+<DL>
+<DD>Normalizes a value into a certain range. This is like a modulus function,
+ only this properly handles negative values.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>value</CODE> - the value to normalize<DD><CODE>mod</CODE> - the modulus number
+<DT><B>Returns:</B><DD>the normalized value</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="toString()"><!-- --></A><H3>
 toString</H3>
 <PRE>
@@ -1090,17 +1116,14 @@ public static <A HREF="../../../com/myronmarston/music/NoteName.html" title="enu
 <A NAME="getNaturalNoteNameForLetterNumber(int)"><!-- --></A><H3>
 getNaturalNoteNameForLetterNumber</H3>
 <PRE>
-public static <A HREF="../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A> <B>getNaturalNoteNameForLetterNumber</B>(int&nbsp;letterNumber)
-                                                  throws java.lang.IllegalArgumentException</PRE>
+public <A HREF="../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A> <B>getNaturalNoteNameForLetterNumber</B>(int&nbsp;letterNumber)</PRE>
 <DL>
-<DD>Gets the note name without any accidentals for the given letter number.
+<DD>Gets the note name without any accidentals for the given letter number,
+ relative to this note name.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>letterNumber</CODE> - the letter number (0-6)
-<DT><B>Returns:</B><DD>the natural note name
-<DT><B>Throws:</B>
-<DD><CODE>java.lang.IllegalArgumentException</CODE> - if the letterNumber is not in 
-         the range 0-6</DL>
+<DT><B>Returns:</B><DD>the natural note name</DL>
 </DD>
 </DL>
 <HR>

@@ -32,8 +32,8 @@ import com.myronmarston.util.Fraction;
  * @author Myron
  */
 public class RhythmicDurationTransformer implements Transformer {  
-    private Fraction scaleFactor;
-
+    private final Fraction scaleFactor;
+    
     /**
      * Gets the scale factor.  Factors less than 1 will increase the speed of
      * the NoteList; factors greater than 1 will slow it down.
@@ -42,8 +42,7 @@ public class RhythmicDurationTransformer implements Transformer {
      */
     public Fraction getScaleFactor() {        
         return scaleFactor;
-    }
-    
+    }    
     /**
      * Constructor.
      * 
@@ -78,8 +77,8 @@ public class RhythmicDurationTransformer implements Transformer {
             
             // if the scale factor is zero, we'll get a div-by-zero exception.  
             // our code should prevent it from ever reaching here if it's zero...
-            assert this.getScaleFactor().asDouble() != 0d : this.getScaleFactor();
-            newNote.setDuration(newNote.getDuration().dividedBy(this.getScaleFactor()));            
+            assert this.scaleFactor.asDouble() != 0d : this.scaleFactor;
+            newNote.setDuration(newNote.getDuration().dividedBy(this.scaleFactor));            
             
             output.add(newNote);
         }

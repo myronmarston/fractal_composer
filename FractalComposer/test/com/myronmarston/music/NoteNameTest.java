@@ -19,8 +19,6 @@
 
 package com.myronmarston.music;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -71,8 +69,7 @@ public class NoteNameTest {
     public void toStringTest() {
         assertEquals("F#", NoteName.Fs.toString());
     }
-    
-    
+        
     @Test
     public void getMidiPitchNumberForTonicAtOctave() {        
         assertEquals(58, NoteName.Cbb.getMidiPitchNumberAtOctave(4));
@@ -119,24 +116,53 @@ public class NoteNameTest {
     }
     
     @Test
-    public void getNaturalNoteNameForLetterNumber() {
-        try {
-            NoteName nn = NoteName.getNaturalNoteNameForLetterNumber(-1);
-            fail();
-        } catch (IllegalArgumentException ex) {}
+    public void getNaturalNoteNameForLetterNumber() {       
+        assertEquals(NoteName.C, NoteName.C.getNaturalNoteNameForLetterNumber(-7));
+        assertEquals(NoteName.D, NoteName.C.getNaturalNoteNameForLetterNumber(-6));
+        assertEquals(NoteName.E, NoteName.C.getNaturalNoteNameForLetterNumber(-5));
+        assertEquals(NoteName.F, NoteName.C.getNaturalNoteNameForLetterNumber(-4));
+        assertEquals(NoteName.G, NoteName.C.getNaturalNoteNameForLetterNumber(-3));
+        assertEquals(NoteName.A, NoteName.C.getNaturalNoteNameForLetterNumber(-2));
+        assertEquals(NoteName.B, NoteName.C.getNaturalNoteNameForLetterNumber(-1));
+        assertEquals(NoteName.C, NoteName.C.getNaturalNoteNameForLetterNumber(0));
+        assertEquals(NoteName.D, NoteName.C.getNaturalNoteNameForLetterNumber(1));
+        assertEquals(NoteName.E, NoteName.C.getNaturalNoteNameForLetterNumber(2));
+        assertEquals(NoteName.F, NoteName.C.getNaturalNoteNameForLetterNumber(3));
+        assertEquals(NoteName.G, NoteName.C.getNaturalNoteNameForLetterNumber(4));
+        assertEquals(NoteName.A, NoteName.C.getNaturalNoteNameForLetterNumber(5));
+        assertEquals(NoteName.B, NoteName.C.getNaturalNoteNameForLetterNumber(6));
         
-        assertEquals(NoteName.C, NoteName.getNaturalNoteNameForLetterNumber(0));
-        assertEquals(NoteName.D, NoteName.getNaturalNoteNameForLetterNumber(1));
-        assertEquals(NoteName.E, NoteName.getNaturalNoteNameForLetterNumber(2));
-        assertEquals(NoteName.F, NoteName.getNaturalNoteNameForLetterNumber(3));
-        assertEquals(NoteName.G, NoteName.getNaturalNoteNameForLetterNumber(4));
-        assertEquals(NoteName.A, NoteName.getNaturalNoteNameForLetterNumber(5));
-        assertEquals(NoteName.B, NoteName.getNaturalNoteNameForLetterNumber(6));
+        assertEquals(NoteName.F, NoteName.Fs.getNaturalNoteNameForLetterNumber(-7));
+        assertEquals(NoteName.G, NoteName.Fs.getNaturalNoteNameForLetterNumber(-6));
+        assertEquals(NoteName.A, NoteName.Fs.getNaturalNoteNameForLetterNumber(-5));
+        assertEquals(NoteName.B, NoteName.Fs.getNaturalNoteNameForLetterNumber(-4));
+        assertEquals(NoteName.C, NoteName.Fs.getNaturalNoteNameForLetterNumber(-3));
+        assertEquals(NoteName.D, NoteName.Fs.getNaturalNoteNameForLetterNumber(-2));
+        assertEquals(NoteName.E, NoteName.Fs.getNaturalNoteNameForLetterNumber(-1));
+        assertEquals(NoteName.F, NoteName.Fs.getNaturalNoteNameForLetterNumber(0));
+        assertEquals(NoteName.G, NoteName.Fs.getNaturalNoteNameForLetterNumber(1));
+        assertEquals(NoteName.A, NoteName.Fs.getNaturalNoteNameForLetterNumber(2));
+        assertEquals(NoteName.B, NoteName.Fs.getNaturalNoteNameForLetterNumber(3));
+        assertEquals(NoteName.C, NoteName.Fs.getNaturalNoteNameForLetterNumber(4));
+        assertEquals(NoteName.D, NoteName.Fs.getNaturalNoteNameForLetterNumber(5));
+        assertEquals(NoteName.E, NoteName.Fs.getNaturalNoteNameForLetterNumber(6));
+        assertEquals(NoteName.F, NoteName.Fs.getNaturalNoteNameForLetterNumber(7)); 
         
-        try {
-            NoteName nn = NoteName.getNaturalNoteNameForLetterNumber(7);
-            fail();
-        } catch (IllegalArgumentException ex) {}
+        assertEquals(NoteName.A, NoteName.Abb.getNaturalNoteNameForLetterNumber(-7));
+        assertEquals(NoteName.B, NoteName.Abb.getNaturalNoteNameForLetterNumber(-6));
+        assertEquals(NoteName.C, NoteName.Abb.getNaturalNoteNameForLetterNumber(-5));
+        assertEquals(NoteName.D, NoteName.Abb.getNaturalNoteNameForLetterNumber(-4));
+        assertEquals(NoteName.E, NoteName.Abb.getNaturalNoteNameForLetterNumber(-3));
+        assertEquals(NoteName.F, NoteName.Abb.getNaturalNoteNameForLetterNumber(-2));
+        assertEquals(NoteName.G, NoteName.Abb.getNaturalNoteNameForLetterNumber(-1));
+        assertEquals(NoteName.A, NoteName.Abb.getNaturalNoteNameForLetterNumber(0));
+        assertEquals(NoteName.B, NoteName.Abb.getNaturalNoteNameForLetterNumber(1));
+        assertEquals(NoteName.C, NoteName.Abb.getNaturalNoteNameForLetterNumber(2));
+        assertEquals(NoteName.D, NoteName.Abb.getNaturalNoteNameForLetterNumber(3));
+        assertEquals(NoteName.E, NoteName.Abb.getNaturalNoteNameForLetterNumber(4));
+        assertEquals(NoteName.F, NoteName.Abb.getNaturalNoteNameForLetterNumber(5));
+        assertEquals(NoteName.G, NoteName.Abb.getNaturalNoteNameForLetterNumber(6));
+        assertEquals(NoteName.A, NoteName.Abb.getNaturalNoteNameForLetterNumber(7)); 
     }
     
     @Test
@@ -224,5 +250,5 @@ public class NoteNameTest {
         assertEquals('b', NoteName.B.getLetter(true));
         assertEquals('b', NoteName.Bs.getLetter(true));
         assertEquals('b', NoteName.Bx.getLetter(true));
-    }
+    }        
 }

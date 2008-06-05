@@ -34,20 +34,20 @@ public class InversionTransformerTest {
     @Test
     public void inversionTransformer() {
         NoteList input = new NoteList();
-        input.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
-        input.add(new Note(5, 4, 0, new Fraction(1, 2), 64));
-        input.add(new Note(2, 4, 0, new Fraction(1, 2), 112));
-        input.add(new Note(1, 4, 0, new Fraction(1, 2), 112));
-        input.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, -1));
+        input.add(new Note(3, 5, 4, 0, new Fraction(1, 2), 64, null, 0));
+        input.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 2));
+        input.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 112, null, 0));
+        input.add(new Note(-1, 0, 4, 0, new Fraction(1, 1), 96, null, -2));
         input.add(Note.createRest(new Fraction(1, 2)));
         
         Transformer t = new InversionTransformer();
         NoteList expectedOutput = new NoteList();
-        expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
-        expectedOutput.add(new Note(-5, 4, 0, new Fraction(1, 2), 64));
-        expectedOutput.add(new Note(-2, 4, 0, new Fraction(1, 2), 112));
-        expectedOutput.add(new Note(-1, 4, 0, new Fraction(1, 2), 112));
-        expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 1));
+        expectedOutput.add(new Note(-3, -5, 4, 0, new Fraction(1, 2), 64, null, 0));
+        expectedOutput.add(new Note(-2, -2, 4, 0, new Fraction(1, 2), 112, null, -2));
+        expectedOutput.add(new Note(-1, -1, 4, 0, new Fraction(1, 2), 112, null, 0));
+        expectedOutput.add(new Note(1, 0, 4, 0, new Fraction(1, 1), 96, null, 2));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
@@ -56,22 +56,22 @@ public class InversionTransformerTest {
     }
     
     @Test
-    public void inversionTransformerCrossOctaves() {
+    public void inversionTransformerCrossOctaves() {        
         // test that it works properly when the germ crosses octaves...
         NoteList input = new NoteList();
-        input.add(new Note(0, 4, 0, new Fraction(1, 1), 64));
-        input.add(new Note(4, 4, 0, new Fraction(1, 1), 64));
-        input.add(new Note(1, 4, 0, new Fraction(1, 2), 64));
-        input.add(new Note(6, 3, 0, new Fraction(1, 2), 64));
-        input.add(new Note(0, 4, 0, new Fraction(1, 1), 64));
+        input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 64, null, 0));
+        input.add(new Note(4, 4, 4, 0, new Fraction(1, 1), 64, null, 0));
+        input.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
+        input.add(new Note(6, 6, 3, 0, new Fraction(1, 2), 64, null, 0));
+        input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 64, null, 0));
         
         Transformer t = new InversionTransformer();
         NoteList expectedOutput = new NoteList();
-        expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 64));
-        expectedOutput.add(new Note(-4, 4, 0, new Fraction(1, 1), 64));
-        expectedOutput.add(new Note(-1, 4, 0, new Fraction(1, 2), 64));
-        expectedOutput.add(new Note(-6, 5, 0, new Fraction(1, 2), 64));
-        expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 64));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 64, null, 0));
+        expectedOutput.add(new Note(-4, -4, 4, 0, new Fraction(1, 1), 64, null, 0));
+        expectedOutput.add(new Note(-1, -1, 4, 0, new Fraction(1, 2), 64, null, 0));
+        expectedOutput.add(new Note(-6, -6, 5, 0, new Fraction(1, 2), 64, null, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 64, null, 0));
         
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
@@ -80,18 +80,18 @@ public class InversionTransformerTest {
         
         //test the germ when it crosses octaves up...
         input = new NoteList();
-        input.add(new Note(0, 4, 0, new Fraction(1, 1), 64));
-        input.add(new Note(4, 4, 0, new Fraction(1, 1), 64));
-        input.add(new Note(1, 5, 0, new Fraction(1, 2), 64));
-        input.add(new Note(6, 4, 0, new Fraction(1, 2), 64));
-        input.add(new Note(0, 5, 0, new Fraction(1, 1), 64));
+        input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 64, null, 0));
+        input.add(new Note(4, 4, 4, 0, new Fraction(1, 1), 64, null, 0));
+        input.add(new Note(1, 1, 5, 0, new Fraction(1, 2), 64, null, 0));
+        input.add(new Note(6, 6, 4, 0, new Fraction(1, 2), 64, null, 0));
+        input.add(new Note(0, 0, 5, 0, new Fraction(1, 1), 64, null, 0));
         
         expectedOutput.clear();
-        expectedOutput.add(new Note(0, 4, 0, new Fraction(1, 1), 64));
-        expectedOutput.add(new Note(-4, 4, 0, new Fraction(1, 1), 64));
-        expectedOutput.add(new Note(-1, 3, 0, new Fraction(1, 2), 64));
-        expectedOutput.add(new Note(-6, 4, 0, new Fraction(1, 2), 64));
-        expectedOutput.add(new Note(0, 3, 0, new Fraction(1, 1), 64));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 64, null, 0));
+        expectedOutput.add(new Note(-4, -4, 4, 0, new Fraction(1, 1), 64, null, 0));
+        expectedOutput.add(new Note(-1, -1, 3, 0, new Fraction(1, 2), 64, null, 0));
+        expectedOutput.add(new Note(-6, -6, 4, 0, new Fraction(1, 2), 64, null, 0));
+        expectedOutput.add(new Note(0, 0, 3, 0, new Fraction(1, 1), 64, null, 0));
         
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         

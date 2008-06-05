@@ -35,9 +35,6 @@ import static org.junit.Assert.*;
  */
 public class ScaleTest {
 
-    public ScaleTest() {
-    }  
-    
     @Test
     public void setNotePitchValues() throws InvalidKeySignatureException {
         Note n = new Note();
@@ -613,72 +610,6 @@ public class ScaleTest {
         assertEquals(NoteName.A, (new MinorScale()).getKeyName());
         assertEquals(NoteName.A, (new MinorPentatonicScale()).getKeyName());
         assertEquals(NoteName.A, (new HarmonicMinorScale()).getKeyName());        
-    }
-    
-    @Test
-    public void getLetterNameForNote() throws Exception {
-        Scale s = new MajorScale(NoteName.B);
-                
-        try {
-            s.getLetterNameForScaleStep(-1);
-            fail();
-        } catch (IllegalArgumentException ex) {}
-        
-        assertEquals(NoteName.B, s.getLetterNameForScaleStep(0));
-        assertEquals(NoteName.C, s.getLetterNameForScaleStep(1));
-        assertEquals(NoteName.D, s.getLetterNameForScaleStep(2));
-        assertEquals(NoteName.E, s.getLetterNameForScaleStep(3));
-        assertEquals(NoteName.F, s.getLetterNameForScaleStep(4));
-        assertEquals(NoteName.G, s.getLetterNameForScaleStep(5));
-        assertEquals(NoteName.A, s.getLetterNameForScaleStep(6));  
-        
-        try {
-            s.getLetterNameForScaleStep(7);
-            fail();
-        } catch (IllegalArgumentException ex) {}
-        
-        s = new ChromaticScale();
-                
-        try {
-            s.getLetterNameForScaleStep(-1);
-            fail();
-        } catch (IllegalArgumentException ex) {}
-        
-        assertEquals(NoteName.C, s.getLetterNameForScaleStep(0));
-        assertEquals(NoteName.C, s.getLetterNameForScaleStep(1)); // C#
-        assertEquals(NoteName.D, s.getLetterNameForScaleStep(2));
-        assertEquals(NoteName.E, s.getLetterNameForScaleStep(3)); // Eb
-        assertEquals(NoteName.E, s.getLetterNameForScaleStep(4));
-        assertEquals(NoteName.F, s.getLetterNameForScaleStep(5));
-        assertEquals(NoteName.F, s.getLetterNameForScaleStep(6)); // F#
-        assertEquals(NoteName.G, s.getLetterNameForScaleStep(7));  
-        assertEquals(NoteName.G, s.getLetterNameForScaleStep(8)); // G#
-        assertEquals(NoteName.A, s.getLetterNameForScaleStep(9));  
-        assertEquals(NoteName.B, s.getLetterNameForScaleStep(10)); // Bb  
-        assertEquals(NoteName.B, s.getLetterNameForScaleStep(11));  
-        
-        try {
-            s.getLetterNameForScaleStep(12);
-            fail();
-        } catch (IllegalArgumentException ex) {}
-        
-        s = new MajorPentatonicScale(NoteName.Eb);
-                
-        try {
-            s.getLetterNameForScaleStep(-1);
-            fail();
-        } catch (IllegalArgumentException ex) {}
-        
-        assertEquals(NoteName.E, s.getLetterNameForScaleStep(0));
-        assertEquals(NoteName.F, s.getLetterNameForScaleStep(1));
-        assertEquals(NoteName.G, s.getLetterNameForScaleStep(2));
-        assertEquals(NoteName.B, s.getLetterNameForScaleStep(3));
-        assertEquals(NoteName.C, s.getLetterNameForScaleStep(4));        
-        
-        try {
-            s.getLetterNameForScaleStep(5);
-            fail();
-        } catch (IllegalArgumentException ex) {}
     }
     
     @Test

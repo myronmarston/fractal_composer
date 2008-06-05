@@ -119,7 +119,7 @@ public class SelfSimilarityTransformer implements Transformer {
         NoteList octaveTransformedList = octaveTransformer.transform(input);
 
         // transpose the input to the correct pitch level...        
-        TransposeTransformer transposer = new TransposeTransformer(inputNote.getScaleStep() - firstNote.getScaleStep());
+        TransposeTransformer transposer = new TransposeTransformer(inputNote.getScaleStep() - firstNote.getScaleStep(), inputNote.getLetterNumber() - firstNote.getLetterNumber());
         NoteList transposedList = transposer.transform(octaveTransformedList);
 
         // set the segment chromatic adjustment on this note as necessary...

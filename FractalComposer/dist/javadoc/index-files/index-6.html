@@ -246,12 +246,9 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/NoteName.html#getLetter(boolean)"><B>getLetter(boolean)</B></A> - 
 Method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>
 <DD>Gets the letter (A-G) of this note name.
-<DT><A HREF="../com/myronmarston/music/scales/ChromaticScale.html#getLetterNameForScaleStep(int)"><B>getLetterNameForScaleStep(int)</B></A> - 
-Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/ChromaticScale.html" title="class in com.myronmarston.music.scales">ChromaticScale</A>
-<DD>&nbsp;
-<DT><A HREF="../com/myronmarston/music/scales/Scale.html#getLetterNameForScaleStep(int)"><B>getLetterNameForScaleStep(int)</B></A> - 
-Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>
-<DD>Gets the letter name for the given scale step.
+<DT><A HREF="../com/myronmarston/music/Note.html#getLetterNumber()"><B>getLetterNumber()</B></A> - 
+Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
+<DD>Gets the letter number for this note.
 <DT><A HREF="../com/myronmarston/music/NoteName.html#getLetterNumber()"><B>getLetterNumber()</B></A> - 
 Method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>
 <DD>Gets the size of the interval of this note name's musical letter compared 
@@ -331,8 +328,9 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>
 <DD>Gets the name of the instrument.
 <DT><A HREF="../com/myronmarston/music/NoteName.html#getNaturalNoteNameForLetterNumber(int)"><B>getNaturalNoteNameForLetterNumber(int)</B></A> - 
-Static method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>
-<DD>Gets the note name without any accidentals for the given letter number.
+Method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>
+<DD>Gets the note name without any accidentals for the given letter number,
+ relative to this note name.
 <DT><A HREF="../com/myronmarston/music/settings/VoiceOrSectionList.html#getNextUniqueIndex()"><B>getNextUniqueIndex()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/VoiceOrSectionList.html" title="class in com.myronmarston.music.settings">VoiceOrSectionList</A>
 <DD>Gets the next available unique index, and increments the unique index
@@ -344,6 +342,9 @@ Static method in class com.myronmarston.music.scales.<A HREF="../com/myronmarsto
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
 <DD>Sometimes after transformations are applied to a note, the scale step is
  less than 0 or greater than the number of scale steps in an octave.
+<DT><A HREF="../com/myronmarston/music/NoteName.html#getNormalizedValue(int, int)"><B>getNormalizedValue(int, int)</B></A> - 
+Static method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>
+<DD>Normalizes a value into a certain range.
 <DT><A HREF="../com/myronmarston/music/MidiNote.html#getNoteEnd()"><B>getNoteEnd()</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A>
 <DD>Gets the time, in midi ticks, when this note will end.
@@ -538,6 +539,9 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/scales/KeySignature.html#getTonality()"><B>getTonality()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>
 <DD>Gets the tonality of this key.
+<DT><A HREF="../com/myronmarston/music/transformers/TransposeTransformer.html#getTransposeLetterNumbers()"><B>getTransposeLetterNumbers()</B></A> - 
+Method in class com.myronmarston.music.transformers.<A HREF="../com/myronmarston/music/transformers/TransposeTransformer.html" title="class in com.myronmarston.music.transformers">TransposeTransformer</A>
+<DD>Gets the number of letter numbers to transpose the given NoteList.
 <DT><A HREF="../com/myronmarston/music/transformers/TransposeTransformer.html#getTransposeSteps()"><B>getTransposeSteps()</B></A> - 
 Method in class com.myronmarston.music.transformers.<A HREF="../com/myronmarston/music/transformers/TransposeTransformer.html" title="class in com.myronmarston.music.transformers">TransposeTransformer</A>
 <DD>Gets the number of scale steps to transpose the given NoteList.

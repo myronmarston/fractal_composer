@@ -37,26 +37,60 @@ import java.util.regex.*;
  */
 @Root
 public class Note implements Cloneable {
+    /**
+     * Number of scale steps above the tonic; 0 = tonic, 7 = octave, 9 = third 
+     * an octave above, etc.
+     */
     @Attribute
-    private int scaleStep; // number of scale steps above the tonic; 0 = tonic, 7 = octave, 9 = third an octave above, etc.
+    private int scaleStep;
     
+    /**
+     * Which octave the note should be in.  0 begins the first octave in Midi 
+     * that contains the tonic.
+     */
     @Attribute
-    private int octave; // which octave the note should be in.  0 begins the first octave in Midi that contains the tonic.
+    private int octave; 
     
+    /**
+     * The number of half steps to adjust from the diatonic note; used if this 
+     * note is an accidental
+     */
     @Attribute
-    private int chromaticAdjustment; // the number of half steps to adjust from the diatonic note; used if this note is an accidental
+    private int chromaticAdjustment; 
     
+    /**
+     * How long the note should last, in fractions of whole notes.        
+     */
     @Element(required=false)    
-    private Fraction duration; // how long the note should last, in whole notes.        
+    private Fraction duration; 
     
+    /**
+     * How loud the note should be on a scale from 0 to 127.    
+     */
     @Attribute
-    private int volume = MidiNote.DEFAULT_VELOCITY; // how loud the note should be on a scale from 0 to 127.    
+    private int volume = MidiNote.DEFAULT_VELOCITY; 
         
+    /**
+     * The scale that should be used with this scale.  This is optional, as
+     * methods that use a scale take one as a parameter.  Specifying it here
+     * overrides the scale passed to a method.
+     */
     @Element(required=false)
     private Scale scale;
     
+    /**
+     * Chromatic adjustment applied to a segment of notes.  This is used to
+     * create self-similarity when the germ contains a chromatic note.
+     */
     @Attribute
     private int segmentChromaticAdjustment;
+    
+    /**
+     * The letter number (0-6), in reference to the tonic.  For example, 0 in 
+     * the key of D means 'D', 3 means 'G', etc.
+     */
+    @Attribute
+    private int letterNumber;
     
     private static Pattern noteParser;
     
@@ -76,14 +110,12 @@ public class Note implements Cloneable {
      *        diatonic note; used if this note is an accidental
      * @param duration how long the note should last, in whole notes
      * @param volume how loud the note should be (0-127)
+     * @deprecated Use the override that takes a letter number
      */
+    @Deprecated
     public Note(int scaleStep, int octave, int chromaticAdjustment, Fraction duration, int volume) {
-        this.setScaleStep(scaleStep);
-        this.setOctave(octave);
-        this.setChromaticAdjustment(chromaticAdjustment);
-        this.setDuration(duration);
-        this.setVolume(volume);        
-    }
+        this(0, scaleStep, octave, chromaticAdjustment, duration, volume, null, 0);
+    }   
     
     /**
      * Constructor.
@@ -101,9 +133,38 @@ public class Note implements Cloneable {
      *        methods
      * @param segmentChromaticAdjustment additional chromatic adjustment for a
      *        segment of the piece; used to deal with chromatic self-similarity     
-     */    
+     * @deprecated Use the constructor that takes a letter number parameter
+     */
+    @Deprecated
     public Note(int scaleStep, int octave, int chromaticAdjustment, Fraction duration, int volume, Scale scale, int segmentChromaticAdjustment) {
-        this(scaleStep, octave, chromaticAdjustment, duration, volume);
+        this(0, scaleStep, octave, chromaticAdjustment, duration, volume, scale, segmentChromaticAdjustment);
+    }
+    
+    /**
+     * Constructor.
+     * 
+     * @param letterNumber the letter number, relative to the scale
+     * @param scaleStep number of scale steps above the tonic; 0 = tonic,
+     *        7 = octave, 9 = third an octave above, etc.
+     * @param octave which octave the note should be in.  0 begins the first 
+     *        octave in Midi that contains the tonic.
+     * @param chromaticAdjustment the number of half steps to adjust from the
+     *        diatonic note; used if this note is an accidental
+     * @param duration how long the note should last, in whole notes
+     * @param volume how loud the note should be (0-127)
+     * @param scale the scale to use for this note; if this is non-null, it
+     *        will be used rather than the scale passed to any of this object's
+     *        methods
+     * @param segmentChromaticAdjustment additional chromatic adjustment for a
+     *        segment of the piece; used to deal with chromatic self-similarity     
+     */ 
+    public Note(int letterNumber, int scaleStep, int octave, int chromaticAdjustment, Fraction duration, int volume, Scale scale, int segmentChromaticAdjustment) {
+        this.setLetterNumber(letterNumber);
+        this.setScaleStep(scaleStep);
+        this.setOctave(octave);
+        this.setChromaticAdjustment(chromaticAdjustment);
+        this.setDuration(duration);
+        this.setVolume(volume);        
         this.setScale(scale);
         this.setSegmentChromaticAdjustment(segmentChromaticAdjustment);
     }        
@@ -125,6 +186,26 @@ public class Note implements Cloneable {
     }
 
     /**
+     * Gets the letter number for this note.
+     * 
+     * @return the letter number for this note
+     */
+    public int getLetterNumber() {
+        return letterNumber;
+    }
+
+    /**
+     * Sets the letter number for this note.
+     * 
+     * @param letterNumber the letter number
+     * @throws java.lang.UnsupportedOperationException if the note is a rest
+     */
+    public void setLetterNumber(int letterNumber) throws UnsupportedOperationException {                
+        throwUnsupportedOperationExceptionIfRest("letterNumber", letterNumber);
+        this.letterNumber = letterNumber;
+    }   
+    
+    /**
      * Gets the number of scale steps above the tonic; In an 7-note scale, 
      * 0 = tonic, 7 = octave, 9 = third an octave above, etc.
      * 
@@ -141,7 +222,7 @@ public class Note implements Cloneable {
      * @param scaleStep the scale step
      * @throws UnsupportedOperationException if the note is a rest
      */
-    public void setScaleStep(int scaleStep) {
+    public void setScaleStep(int scaleStep) throws UnsupportedOperationException {
         throwUnsupportedOperationExceptionIfRest("scaleStep", scaleStep);
         this.scaleStep = scaleStep;        
     }
@@ -161,8 +242,9 @@ public class Note implements Cloneable {
      * Midi that contains the tonic.
      * 
      * @param octave the octave
+     * @throws UnsupportedOperationException if the note is a rest
      */
-    public void setOctave(int octave) {
+    public void setOctave(int octave) throws UnsupportedOperationException {
         throwUnsupportedOperationExceptionIfRest("octave", octave);
         this.octave = octave;        
     }
@@ -182,8 +264,9 @@ public class Note implements Cloneable {
      * this note is an accidental.
      * 
      * @param chromaticAdjustment the chromatic adjustment
+     * @throws UnsupportedOperationException if the note is a rest
      */
-    public void setChromaticAdjustment(int chromaticAdjustment) {
+    public void setChromaticAdjustment(int chromaticAdjustment) throws UnsupportedOperationException {
         throwUnsupportedOperationExceptionIfRest("chromaticAdjustment", chromaticAdjustment);
         this.chromaticAdjustment = chromaticAdjustment;
     }
@@ -202,9 +285,10 @@ public class Note implements Cloneable {
      * Sets the chromatic adjustment for a segment of notes.  This is used to
      * apply self-similarity to a germ that has chromatic notes.
      * 
-     * @param segmentChromaticAdjustment the segment chromatic adjustment     
+     * @param segmentChromaticAdjustment the segment chromatic adjustment
+     * @throws UnsupportedOperationException if the note is a rest
      */
-    public void setSegmentChromaticAdjustment(int segmentChromaticAdjustment) {        
+    public void setSegmentChromaticAdjustment(int segmentChromaticAdjustment) throws UnsupportedOperationException {        
         this.segmentChromaticAdjustment = segmentChromaticAdjustment;
     }
 
@@ -241,8 +325,9 @@ public class Note implements Cloneable {
      * Sets how long the note should last, in whole notes.
      * 
      * @param duration the duration
+     * @throws IllegalArgumentException if the duration is less than zero
      */
-    public void setDuration(Fraction duration) {
+    public void setDuration(Fraction duration) throws IllegalArgumentException {
         if (duration != null && duration.asDouble() <= 0) throw new IllegalArgumentException("The duration must be greater than zero.");
         this.duration = duration;
     }
@@ -260,8 +345,9 @@ public class Note implements Cloneable {
      * Sets how loud the note should be (0-127).  0 makes it a rest.
      * 
      * @param volume the volume
+     * @throws IllegalArgumentException if the note is outside of the range 0-127
      */
-    public void setVolume(int volume) {
+    public void setVolume(int volume) throws IllegalArgumentException {
         if (volume < MidiNote.MIN_VELOCITY || volume > MidiNote.MAX_VELOCITY) {
             throw new IllegalArgumentException(String.format("The volume must be between %d and %d.  The passed volume was %d.", MidiNote.MIN_VELOCITY, MidiNote.MAX_VELOCITY, volume));
         }
@@ -293,8 +379,9 @@ public class Note implements Cloneable {
      * 
      * @param changingField the field being changed
      * @param value the value the field is being changed to
+     * @throws UnsupportedOperationException if the note is a rest
      */
-    protected void throwUnsupportedOperationExceptionIfRest(String changingField, int value) {
+    private void throwUnsupportedOperationExceptionIfRest(String changingField, int value) throws UnsupportedOperationException {
         if (this.isRest() && value != 0) { // each of the fields can be zero...
             throw new UnsupportedOperationException(String.format("The Note is a rest.  The %s field cannot be changed on a rest.", changingField));
         }
@@ -354,6 +441,7 @@ public class Note implements Cloneable {
                 newNote.setDuration(duration);
                 newNote.setVolume(volume);
                 scale.setNotePitchValues(newNote, noteName);
+                newNote.setLetterNumber(scale.getKeyName().getPositiveIntervalSize(noteName));
                                 
                 // The octave number is dependent on the scale.  For example, 
                 // the note C4 (middle C) should parse as scale step 2, octave 3 
@@ -522,6 +610,7 @@ public class Note implements Cloneable {
         }
         
         assert tempNote.getScaleStep() >= 0 && tempNote.getScaleStep() < numScaleStepsInOctave : tempNote.getScaleStep();
+        tempNote.setLetterNumber(NoteName.getNormalizedValue(tempNote.getLetterNumber(), NoteName.NUM_LETTER_NAMES));
         
         return tempNote;
     }
@@ -643,7 +732,7 @@ public class Note implements Cloneable {
         
         Scale scaleToUse = this.getScaleToUse(scale);        
         Note normalizedNote = this.getNormalizedNote(scaleToUse);        
-        NoteName letterNoteName = scaleToUse.getLetterNameForScaleStep(normalizedNote.getScaleStep());        
+        NoteName letterNoteName = scaleToUse.getKeyName().getNaturalNoteNameForLetterNumber(normalizedNote.getLetterNumber());
         char letter = letterNoteName.getLetter(true);
                 
         int chromAdjustment = (midiNote.getPitch() % Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE)  - letterNoteName.getNoteNumber();                
@@ -660,7 +749,12 @@ public class Note implements Cloneable {
 
     @Override
     public String toString() {
-        return String.format("Note = SS(%d), O(%d), CA(%d), D(%s), V(%d), S(%s), SCA(%d)", this.scaleStep, this.octave, this.chromaticAdjustment, this.duration.toString(), this.volume, (this.scale == null ? "null": this.scale.toString()), this.segmentChromaticAdjustment);
+        return String.format(
+            "Note = LN(%d), SS(%d), O(%d), CA(%d), D(%s), V(%d), S(%s), SCA(%d)", 
+            this.letterNumber, this.scaleStep, this.octave, this.chromaticAdjustment, 
+            (this.duration == null ? "null" : this.duration.toString()), 
+            this.volume, (this.scale == null ? "null": this.scale.toString()), 
+            this.segmentChromaticAdjustment);
     }
 
     @Override
@@ -705,19 +799,24 @@ public class Note implements Cloneable {
         if (this.segmentChromaticAdjustment != other.segmentChromaticAdjustment) {
             return false;
         }
+        if (this.letterNumber != other.letterNumber) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 83 * hash + this.scaleStep;
-        hash = 83 * hash + this.octave;
-        hash = 83 * hash + this.chromaticAdjustment;
-        hash = 83 * hash + (this.duration != null ? this.duration.hashCode() : 0);
-        hash = 83 * hash + this.volume;
-        hash = 83 * hash + (this.scale != null ? this.scale.hashCode() : 0);
-        hash = 83 * hash + this.segmentChromaticAdjustment;
+        hash = 43 * hash + this.scaleStep;
+        hash = 43 * hash + this.octave;
+        hash = 43 * hash + this.chromaticAdjustment;
+        hash = 43 * hash + (this.duration != null ? this.duration.hashCode() : 0);
+        hash = 43 * hash + this.volume;
+        hash = 43 * hash + (this.scale != null ? this.scale.hashCode() : 0);
+        hash = 43 * hash + this.segmentChromaticAdjustment;
+        hash = 43 * hash + this.letterNumber;
         return hash;
-    }                         
+    }  
+                          
 }
