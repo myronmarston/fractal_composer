@@ -419,6 +419,14 @@ Enumerates all the valid note names.  These are used to parse a note string
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteName.html#getNormalizedNoteNumber()">getNormalizedNoteNumber</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the number of half steps this note name is above C.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>protected static&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteName.html#getNormalizedValue(int, int)">getNormalizedValue</A></B>(int&nbsp;value,
                    int&nbsp;mod)</CODE>
@@ -945,12 +953,28 @@ with the specified name
 </DL>
 <HR>
 
+<A NAME="getNormalizedNoteNumber()"><!-- --></A><H3>
+getNormalizedNoteNumber</H3>
+<PRE>
+public int <B>getNormalizedNoteNumber</B>()</PRE>
+<DL>
+<DD>Gets the number of half steps this note name is above C. This value is
+ normalized, so Cb return 11, B# returns 0, etc.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the number of half steps this note name is above C</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="getNoteNumber()"><!-- --></A><H3>
 getNoteNumber</H3>
 <PRE>
 public int <B>getNoteNumber</B>()</PRE>
 <DL>
-<DD>Gets the number of half steps this note name is above C.
+<DD>Gets the number of half steps this note name is above C. This value is
+ not normalized, so Cb return -1, B# returns 12, etc.
 <P>
 <DD><DL>
 

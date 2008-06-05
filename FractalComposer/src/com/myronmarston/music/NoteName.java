@@ -76,6 +76,7 @@ public enum NoteName {
     Bx(6, 13);
     
     private final int pitchNumberAtOctaveZero;
+    private final int normalizedNoteNumber;
     private final int noteNumber;
     private final int letterNumber;
     private final boolean defaultNoteNameForNumber;
@@ -107,14 +108,26 @@ public enum NoteName {
     private NoteName(int letterNumber, int noteNumber, int majorKeySharpsOrFlats, int minorKeySharpsOrFlats, boolean defaultNoteNameForNumber) {
         this.letterNumber = letterNumber;
         this.pitchNumberAtOctaveZero = noteNumber + MIDI_KEY_OFFSET;
-        this.noteNumber = getNormalizedValue(pitchNumberAtOctaveZero, Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE);
+        this.noteNumber = noteNumber;
+        this.normalizedNoteNumber = getNormalizedValue(noteNumber, Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE);//getNormalizedValue(pitchNumberAtOctaveZero, Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE);
         this.defaultNoteNameForNumber = defaultNoteNameForNumber;
         this.majorKeySharpsOrFlats = majorKeySharpsOrFlats;
         this.minorKeySharpsOrFlats = minorKeySharpsOrFlats;
     }
 
     /**
-     * Gets the number of half steps this note name is above C.
+     * Gets the number of half steps this note name is above C. This value is
+     * normalized, so Cb return 11, B# returns 0, etc.
+     * 
+     * @return the number of half steps this note name is above C
+     */
+    public int getNormalizedNoteNumber() {
+        return this.normalizedNoteNumber;
+    }
+    
+    /**
+     * Gets the number of half steps this note name is above C. This value is
+     * not normalized, so Cb return -1, B# returns 12, etc.
      * 
      * @return the number of half steps this note name is above C
      */
@@ -198,7 +211,7 @@ public enum NoteName {
      * @return the number of positive chromatic steps
      */
     public int getPositiveChromaticSteps(NoteName other) {
-        return getNormalizedValue(other.getNoteNumber() - this.getNoteNumber(), Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE);                
+        return getNormalizedValue(other.getNormalizedNoteNumber() - this.getNormalizedNoteNumber(), Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE);                
     }        
        
     /**
@@ -232,7 +245,7 @@ public enum NoteName {
      */
     public static NoteName getDefaultNoteNameForNumber(int noteNumber) throws IllegalArgumentException {
         for (NoteName noteName : NoteName.values()) {
-            if ((noteNumber == noteName.getNoteNumber()) && (noteName.defaultNoteNameForNumber)) {
+            if ((noteNumber == noteName.getNormalizedNoteNumber()) && (noteName.defaultNoteNameForNumber)) {
                 return noteName;
             }
         }

@@ -33,32 +33,9 @@ import static org.junit.Assert.*;
  * @author Myron
  */
 public class MathHelperTest {
-
-    public MathHelperTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
-    /**
-     * Test of greatestCommonDivisor method, of class MathHelper.
-     */
+    
     @Test
     public void greatestCommonDivisor() {
-        System.out.println("greatestCommonDivisor");
         long m = 12L;
         long n = 18L;
         long expResult = 6L;
@@ -66,12 +43,8 @@ public class MathHelperTest {
         assertEquals(expResult, result);       
     }
 
-    /**
-     * Test of leastCommonMultiple method, of class MathHelper.
-     */
     @Test
     public void leastCommonMultiple() {
-        System.out.println("leastCommonMultiple");
         long m = 6L;
         long n = 8L;
         long expResult = 24L;
@@ -79,12 +52,8 @@ public class MathHelperTest {
         assertEquals(expResult, result);        
     }
     
-    /**
-     * Test of leastCommonMultiple method, of class MathHelper.
-     */
     @Test
     public void leastCommonMultipleForList() {
-        System.out.println("leastCommonMultiple");
         ArrayList<Long> list = new ArrayList<Long>();
         list.add(3L);
         list.add(8L);
@@ -112,4 +81,16 @@ public class MathHelperTest {
         assertEquals(0.5000000000000001d, MathHelper.log2(Math.sqrt(2)));
     }
 
+    @Test
+    public void numIsPowerOf2() {
+        assertEquals(false, MathHelper.numIsPowerOf2(0L));
+        assertEquals(true, MathHelper.numIsPowerOf2(1L));
+        assertEquals(true, MathHelper.numIsPowerOf2(2L));
+        assertEquals(false, MathHelper.numIsPowerOf2(3L));
+        assertEquals(true, MathHelper.numIsPowerOf2(4L));
+        assertEquals(true, MathHelper.numIsPowerOf2(8L));
+        assertEquals(true, MathHelper.numIsPowerOf2(16L));
+        assertEquals(false, MathHelper.numIsPowerOf2(15L));
+        assertEquals(true, MathHelper.numIsPowerOf2(256L));
+    }
 }

@@ -81,7 +81,7 @@ public class ChromaticScale extends Scale {
         // the super class setNotePitchValues() uses getLetterNumberArray(), 
         // which won't work in this case, and it's actually much easier for a
         // chromatic scale...
-        this.setNotePitchValues_Helper(note, noteName, noteName.getNoteNumber());
+        this.setNotePitchValues_Helper(note, noteName, noteName.getNormalizedNoteNumber());
     }
 
     @Override

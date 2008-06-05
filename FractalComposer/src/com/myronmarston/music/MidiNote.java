@@ -213,17 +213,7 @@ public class MidiNote {
         if (channel < MIN_CHANNEL || channel > MAX_CHANNEL) throw new IllegalArgumentException(String.format("The channel must be between %d and %d.", MIN_CHANNEL, MAX_CHANNEL));
         if (this.channel != channel) clearNoteEvents();
         this.channel = channel;        
-    }       
-    
-    /**
-     * Gets the octave of this midi note for GUIDO notation.
-     * 
-     * @return the guido octave
-     */
-    public int getGuidoOctave() {
-        // Pitches 60-71 (Middle C - B) are octave 1
-        return (this.getPitch() / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE) - 4;
-    }
+    }               
     
     /**
      * Gets the note on event for this note.  This must be added to the Midi 

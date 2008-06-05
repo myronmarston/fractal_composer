@@ -278,7 +278,7 @@ public class NoteTest {
         assertEquals("c####1/16", n.toGuidoString(s, md));
         
         md.setPitch(58);
-        assertEquals("c&&0/16", n.toGuidoString(s, md));                
+        assertEquals("c&&1/16", n.toGuidoString(s, md));                
         
         n.setLetterNumber(6);
         assertEquals("b&0/16", n.toGuidoString(s, md));                
@@ -317,7 +317,7 @@ public class NoteTest {
         n.setScaleStep(3);
         n.setLetterNumber(4);
         md.setPitch(23);
-        assertEquals("c&-3*2/3", n.toGuidoString(s, md));   
+        assertEquals("c&-2*2/3", n.toGuidoString(s, md));   
         
         n.setLetterNumber(3);        
         assertEquals("b-3*2/3", n.toGuidoString(s, md));   

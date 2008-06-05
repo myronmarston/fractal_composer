@@ -436,7 +436,10 @@ public class Note implements Cloneable {
             } else {                
                 int octave = parseNoteString_getOctave(noteString, match, 2);                
                 int volume = parseNoteString_getVolume(noteString, match, 5, defaultVolume);                
-            
+                
+                // adjust the octave for a note like Cb, Cbb, B# and Bx
+                octave += (noteName.getNoteNumber() - noteName.getNormalizedNoteNumber()) / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE;
+                
                 newNote = new Note();
                 newNote.setDuration(duration);
                 newNote.setVolume(volume);
@@ -732,10 +735,13 @@ public class Note implements Cloneable {
         
         Scale scaleToUse = this.getScaleToUse(scale);        
         Note normalizedNote = this.getNormalizedNote(scaleToUse);        
+        
+        // get the letter
         NoteName letterNoteName = scaleToUse.getKeyName().getNaturalNoteNameForLetterNumber(normalizedNote.getLetterNumber());
         char letter = letterNoteName.getLetter(true);
                 
-        int chromAdjustment = (midiNote.getPitch() % Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE)  - letterNoteName.getNoteNumber();                
+        // get the chromatic adjustment
+        int chromAdjustment = (midiNote.getPitch() % Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE)  - letterNoteName.getNormalizedNoteNumber();                
         chromAdjustment = Scale.getNormalizedChromaticAdjustment(chromAdjustment);
         String accidentals = "";        
         if (chromAdjustment != 0) {
@@ -744,7 +750,10 @@ public class Note implements Cloneable {
             accidentals = String.copyValueOf(accidentalChars);
         }
         
-        return letter + accidentals + midiNote.getGuidoOctave() + this.getDuration().toGuidoDurationString();
+        // get the octave, taking into account the chromatic adjustment for notes like B# and Cb
+        int guidoOctave = ((midiNote.getPitch() - chromAdjustment) / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE) - 4;
+        
+        return letter + accidentals + guidoOctave + this.getDuration().toGuidoDurationString();
     }
 
     @Override

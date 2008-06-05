@@ -88,5 +88,17 @@ public class MathHelper {
      */
     public static double log2(double a) {
         return Math.log(a) / Math.log(2);        
-    }    
+    }   
+    
+    /**
+     * Checks if the given number is a power of 2.
+     * 
+     * @param num the number to check
+     * @return true if it is a power of 2
+     */
+    public static boolean numIsPowerOf2(long num) {
+        // taken from the wikipedia article http://en.wikipedia.org/wiki/Power_of_two
+        if (num == 0) return false;
+        return (num & (num - 1)) == 0;
+    }
 }

@@ -64,6 +64,35 @@ public class OutputManagerTest {
     }
 
     @Test
+    public void getGuidoNotation_forConfusingOctaves() throws Exception {        
+        FractalPiece fp = new FractalPiece();
+        fp.setGermString("Cb4 C4 Cbb4 Bx4 B4 B#4");
+        System.out.println(fp.createGermOutputManager().getGuidoNotation());
+        assertTrue(fp.createGermOutputManager().getGuidoNotation().matches(".*c&1\\/4  c1\\/4  c&&1\\/4  b##1\\/4  b1\\/4  b#1\\/4.*"));        
+    }
+    
+    @Test
+    public void getSequence_forConfusingOctaves() throws Exception {
+        // It's unclear which octave a note like Cb4 or B#4 should be on.
+        // Lilypond interprets Cb4 to be half step below C4 and B#4 to be a
+        // half step above B4, so that's what we'll do, too.
+        
+        FractalPiece fp = new FractalPiece();
+        fp.setGermString("Cb4 C4 Cbb4 Bx4 B4 B#4");
+        
+        Sequence seq = fp.createGermOutputManager().getSequence();
+        Track t = seq.getTracks()[1];
+        int[] pitchNumbers = {59, 60, 58, 73, 71, 72};
+        // make sure we have the right number of events. 
+        // there are always two extra events - instrument event and the end-of-track event, so we add 1 for that.
+        assertEquals(pitchNumbers.length * 2 + 2, t.size());
+        
+        for (int i = 0; i < pitchNumbers.length; i++) {            
+            PieceTest.assertTrackMidiNoteEqual(t, i, i * 4, 4, pitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 1);
+        }
+    }
+    
+    @Test
     public void getSequence() throws Exception {                
         // We'll just check that we have a sequence object, since
         // other tests check the actual contents of the midi sequence to make 
