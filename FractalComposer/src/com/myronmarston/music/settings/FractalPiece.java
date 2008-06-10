@@ -313,8 +313,10 @@ public class FractalPiece {
      * 
      * @param index the point to insert the voice
      * @return the created voice
+     * @throws UnsupportedOperationException if there are more than 15 voices
      */
-    public Voice createVoice(int index) {
+    public Voice createVoice(int index) throws UnsupportedOperationException {   
+        if (this.voices.size() > 15) throw new UnsupportedOperationException("You cannot create more than 16 voices, since Midi only supports 16 channels.");
         Voice v = new Voice(this, this.voices.getNextUniqueIndex());
         this.voices.add(index, v);
         return v;
@@ -482,8 +484,10 @@ public class FractalPiece {
      * 
      * @return the output manager
      * @throws com.myronmarston.music.GermIsEmptyException if the germ is empty
+     * @throws UnsupportedOperationException if there are no voices or sections
      */
-    public OutputManager createPieceResultOutputManager() throws GermIsEmptyException {
+    public OutputManager createPieceResultOutputManager() throws GermIsEmptyException, UnsupportedOperationException {
+        if (this.voices.isEmpty() || this.sections.isEmpty()) throw new UnsupportedOperationException("You must have at least one voice and one section to generate a fractal piece.");
         try {
             // create our intro and outro...
             this.createIntroSections();

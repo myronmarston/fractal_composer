@@ -701,14 +701,17 @@ public <A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="c
 <A NAME="createVoice(int)"><!-- --></A><H3>
 createVoice</H3>
 <PRE>
-public <A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A> <B>createVoice</B>(int&nbsp;index)</PRE>
+public <A HREF="../../../../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A> <B>createVoice</B>(int&nbsp;index)
+                  throws java.lang.UnsupportedOperationException</PRE>
 <DL>
 <DD>Creates a Voice for the FractalPiece, and adds it to a particular point 
  in the voice list.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>index</CODE> - the point to insert the voice
-<DT><B>Returns:</B><DD>the created voice</DL>
+<DT><B>Returns:</B><DD>the created voice
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.UnsupportedOperationException</CODE> - if there are more than 15 voices</DL>
 </DD>
 </DL>
 <HR>
@@ -833,7 +836,8 @@ protected void <B>clearTempIntroOutroSections</B>()</PRE>
 createPieceResultOutputManager</H3>
 <PRE>
 public <A HREF="../../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music">OutputManager</A> <B>createPieceResultOutputManager</B>()
-                                             throws <A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></PRE>
+                                             throws <A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A>,
+                                                    java.lang.UnsupportedOperationException</PRE>
 <DL>
 <DD>Creates the output manager for the whole piece.
 <P>
@@ -841,7 +845,8 @@ public <A HREF="../../../../com/myronmarston/music/OutputManager.html" title="cl
 
 <DT><B>Returns:</B><DD>the output manager
 <DT><B>Throws:</B>
-<DD><CODE><A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></CODE> - if the germ is empty</DL>
+<DD><CODE><A HREF="../../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></CODE> - if the germ is empty
+<DD><CODE>java.lang.UnsupportedOperationException</CODE> - if there are no voices or sections</DL>
 </DD>
 </DL>
 <HR>

@@ -145,7 +145,7 @@ public class PieceTest {
             Track track = seq.getTracks()[trackIndex + 1]; //skip track 0, which has time signature and key signature
             int trackNoteValues[][] = noteValues[trackIndex];
             long ticksSoFar = 0;
-            int channelNum = trackIndex + 1;
+            int channelNum = trackIndex;
             
             // make sure we have the right number of events. 
             // there are always two extra events - instrument event, and the end-of-track event, so we add 1 for that.
@@ -226,11 +226,11 @@ public class PieceTest {
         assertEquals(track2PitchNumbers.length * 2 + 2, t2.size());
         
         for (int i = 0; i < track1PitchNumbers.length; i++) {
-            assertTrackMidiNoteEqual(t1, i, i * 4, 4, track1PitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 1);
+            assertTrackMidiNoteEqual(t1, i, i * 4, 4, track1PitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 0);
         }
         
         for (int i = 0; i < track2PitchNumbers.length; i++) {
-            assertTrackMidiNoteEqual(t2, i, i * 4, 4, track2PitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 2);
+            assertTrackMidiNoteEqual(t2, i, i * 4, 4, track2PitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 1);
         }
     }
     
@@ -305,7 +305,7 @@ public class PieceTest {
         assertEquals(pitchNumbers.length * 2 + 2, t.size());
         
         for (int i = 0; i < pitchNumbers.length; i++) {            
-            assertTrackMidiNoteEqual(t, i, i * 4, 4, pitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 1);
+            assertTrackMidiNoteEqual(t, i, i * 4, 4, pitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 0);
         }                
     }
     

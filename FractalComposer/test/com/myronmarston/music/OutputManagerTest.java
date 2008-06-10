@@ -88,7 +88,7 @@ public class OutputManagerTest {
         assertEquals(pitchNumbers.length * 2 + 2, t.size());
         
         for (int i = 0; i < pitchNumbers.length; i++) {            
-            PieceTest.assertTrackMidiNoteEqual(t, i, i * 4, 4, pitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 1);
+            PieceTest.assertTrackMidiNoteEqual(t, i, i * 4, 4, pitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 0);
         }
     }
     

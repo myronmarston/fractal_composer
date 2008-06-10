@@ -211,7 +211,12 @@ public class OutputManager {
         if (this.includeTempoOnSheetMusic) this.guidoNotation.append(Tempo.toGuidoString(fractalPiece.getTempo()) + " ");
         
         // make each track be on a different channel, but make sure we don't go over our total number of channels...
-        int midiChannel = sequence.getTracks().length % MidiNote.MAX_CHANNEL;
+        int numTracks = sequence.getTracks().length;
+        // The 1st track should be the tempo/key sig/time sig track        
+        assert numTracks > 0 : numTracks; 
+        int midiChannel = numTracks - 1;
+        assert midiChannel < MidiNote.MAX_CHANNEL;
+        
         Track track = sequence.createTrack();
         track.add(instrument.getProgramChangeMidiEvent(midiChannel));
         

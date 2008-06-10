@@ -288,6 +288,49 @@ public class FractalPieceTest {
         });        
     }                 
     
+    @Test
+    public void errorWhenCreate17thVoice() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        for (int i = 0; i < 16; i++) fp.createVoice();
+        
+        try {
+            // Midi only supports 16 channels, so fail on the 17th voice...
+            fp.createVoice(); 
+            fail();
+        } catch (UnsupportedOperationException ex) {}
+    }
+    
+    @Test
+    public void createPieceResultOutputManager_noVoicesOrSections() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        fp.setGermString("G4 A4 B4");
+        
+        // error when no voices or sections
+        try {
+            fp.createPieceResultOutputManager();
+            fail();
+        } catch (UnsupportedOperationException ex) {}        
+                
+        // error when no sections
+        Voice v = fp.createVoice();
+        try {
+            fp.createPieceResultOutputManager();
+            fail();
+        } catch (UnsupportedOperationException ex) {}
+        
+        // error when no voices
+        fp.getVoices().remove(v);
+        fp.createSection();
+        try {
+            fp.createPieceResultOutputManager();
+            fail();
+        } catch (UnsupportedOperationException ex) {}
+        
+        // no error when at least 1 voice and 1 section
+        fp.createVoice();
+        fp.createPieceResultOutputManager();
+    }
+    
     static protected List<Scale> getAllScalePossibilities() throws IllegalAccessException, IllegalArgumentException, InstantiationException, NoSuchMethodException {
         Scale s;
         List<Scale> list = new ArrayList<Scale>();
