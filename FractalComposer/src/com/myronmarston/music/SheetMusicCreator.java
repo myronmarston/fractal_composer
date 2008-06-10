@@ -29,7 +29,7 @@ import java.io.*;
  * @author Myron
  */
 public class SheetMusicCreator {    
-    private final OutputManager midiSequence;
+    private final OutputManager outputManager;
     private static final String GUIDO_2_GIF_EXE_FILE = "guido2gif.exe";
     private static final String GUIDO_DIRECTORY = "guido";
     private static final String CURRENT_DIR = System.getProperty("user.dir");
@@ -42,7 +42,7 @@ public class SheetMusicCreator {
      */
     public SheetMusicCreator(OutputManager outputManager) {
         if (outputManager == null) throw new NullPointerException();
-        this.midiSequence = outputManager;
+        this.outputManager = outputManager;
     }       
     
     /**
@@ -60,7 +60,7 @@ public class SheetMusicCreator {
                 FileHelper.createAndUseFileBufferedWriter(tempFileName, new FileHelper.BufferedWriterUser() {
                     public void useBufferedWriter(BufferedWriter bufferedWriter) throws IOException  {
                         // write the guido notation to the temp file                        
-                        bufferedWriter.write(SheetMusicCreator.this.midiSequence.getGuidoNotation());                    
+                        bufferedWriter.write(SheetMusicCreator.this.outputManager.getGuidoNotation());                    
                     }
                 });
                 
