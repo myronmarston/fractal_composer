@@ -63,7 +63,7 @@ public class TimeSignature {
     /**
      * A Regex pattern that 
      */
-    public final static String REGEX_PATTERN_STRING = "^(\\d+)\\s*\\/\\s*(1|2|4|8|16|32|64|128|256|512)$";
+    public final static String REGEX_PATTERN_STRING = "^([1-9]+\\d*)\\s*\\/\\s*(1|2|4|8|16|32|64|128|256|512)$";
     private final static Pattern REGEX_PATTERN;
     
     /**

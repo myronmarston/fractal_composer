@@ -730,7 +730,8 @@ public class Note implements Cloneable {
      * @param midiNote used to figure out the accidental and octave
      * @return the guido string
      */
-    public String toGuidoString(Scale scale, MidiNote midiNote) {                
+    public String toGuidoString(Scale scale, MidiNote midiNote) { 
+        // TODO: this doesn't work properly for pentatonic scales
         if (this.isRest()) return "_" + this.getDuration().toGuidoDurationString();        
         
         Scale scaleToUse = this.getScaleToUse(scale);        

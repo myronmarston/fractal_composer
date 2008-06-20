@@ -133,6 +133,13 @@ public class TimeSignatureTest {
             fail();
         } catch (InvalidTimeSignatureException ex) {}
         
+        
+        // zero numerator
+        try {
+            TimeSignature ts = new TimeSignature("0/4");
+            fail();
+        } catch (InvalidTimeSignatureException ex) {}
+        
         // no numerator
         try {
             TimeSignature ts = new TimeSignature("/4");

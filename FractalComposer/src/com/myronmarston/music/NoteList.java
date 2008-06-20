@@ -111,6 +111,7 @@ public class NoteList extends ArrayList<Note> {
      *         note list string is invalid
      */
     public static NoteList parseNoteListString(String noteListString, Scale scale) throws NoteStringParseException {                
+        // TODO: throw exception if the note list is just a single rest
         Note note = null;
         Fraction defaultDuration = null;
         Integer defaultVolume = null;                        
