@@ -131,6 +131,14 @@ An immutable class representing fractions as pairs of longs.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#NON_NEGATIVE_FRACTION_REGEX_STRING">NON_NEGATIVE_FRACTION_REGEX_STRING</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Regular expression string to parse a fraction string.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>protected &nbsp;long</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#numerator_">numerator_</A></B></CODE>
 
@@ -140,10 +148,10 @@ An immutable class representing fractions as pairs of longs.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;java.lang.String</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#REGEX_STRING">REGEX_STRING</A></B></CODE>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#POSITIVE_FRACTION_REGEX_STRING">POSITIVE_FRACTION_REGEX_STRING</A></B></CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Regular expression string to parse a fraction string.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Regular expression string to parse a fraction string that disallows zeros.</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -407,15 +415,27 @@ protected final long <B>denominator_</B></PRE>
 </DL>
 <HR>
 
-<A NAME="REGEX_STRING"><!-- --></A><H3>
-REGEX_STRING</H3>
+<A NAME="NON_NEGATIVE_FRACTION_REGEX_STRING"><!-- --></A><H3>
+NON_NEGATIVE_FRACTION_REGEX_STRING</H3>
 <PRE>
-public static final java.lang.String <B>REGEX_STRING</B></PRE>
+public static final java.lang.String <B>NON_NEGATIVE_FRACTION_REGEX_STRING</B></PRE>
 <DL>
 <DD>Regular expression string to parse a fraction string.
 <P>
 <DL>
-<DT><B>See Also:</B><DD><A HREF="../../../constant-values.html#com.myronmarston.util.Fraction.REGEX_STRING">Constant Field Values</A></DL>
+</DL>
+</DL>
+<HR>
+
+<A NAME="POSITIVE_FRACTION_REGEX_STRING"><!-- --></A><H3>
+POSITIVE_FRACTION_REGEX_STRING</H3>
+<PRE>
+public static final java.lang.String <B>POSITIVE_FRACTION_REGEX_STRING</B></PRE>
+<DL>
+<DD>Regular expression string to parse a fraction string that disallows zeros.
+<P>
+<DL>
+</DL>
 </DL>
 
 <!-- ========= CONSTRUCTOR DETAIL ======== -->

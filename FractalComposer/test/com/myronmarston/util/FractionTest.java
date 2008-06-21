@@ -19,6 +19,7 @@
 
 package com.myronmarston.util;
 
+import java.util.regex.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -59,6 +60,17 @@ public class FractionTest {
         assertEquals("*3/4", (new Fraction(3, 4)).toGuidoDurationString());
         assertEquals("*4", (new Fraction(12, 3)).toGuidoDurationString());
         assertEquals("/7", (new Fraction(1, 7)).toGuidoDurationString());        
+    }
+    
+    @Test
+    public void positiveRegex() {
+        Pattern p = Pattern.compile(Fraction.POSITIVE_FRACTION_REGEX_STRING);          
+        assertTrue(p.matcher("4/5").matches());
+        assertTrue(p.matcher("23").matches());
+        assertFalse(p.matcher("0/4").matches());
+        assertFalse(p.matcher("0").matches());
+        assertFalse(p.matcher("-3/7").matches());
+        assertFalse(p.matcher("-1").matches());
     }
     
     private static void testStringConstructor(String str, long num, long den) {
