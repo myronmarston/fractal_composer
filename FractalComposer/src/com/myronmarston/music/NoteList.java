@@ -164,6 +164,25 @@ public class NoteList extends ArrayList<Note> {
         return newList;
     }
     
+    /**
+     * Updates the scale on all the notes.  This should only be called when you
+     * know that all the notes of this note list have the same note list.
+     * 
+     * @param scale the new scale for the notes
+     */
+    public void updateScale(Scale scale) {
+        Scale originalScale = null;
+        for (Note n : this) {
+            if (n.isRest()) continue;
+            if (originalScale == null) originalScale = n.getScale();
+            
+            // we should never update the scale on all the notes if they have 
+            // mixed scales--in this case, this method is being used improperly
+            assert n.getScale() == originalScale : n.getScale();
+            n.setScale(scale);            
+        }
+    }
+    
     @Override
     /**
      * Clones the note list.  Each individual note is also cloned.

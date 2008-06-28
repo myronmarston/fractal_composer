@@ -36,6 +36,89 @@ import static org.junit.Assert.*;
 public class PieceTest {   
     
     @Test
+    public void singleNoteGermChromaticTest() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        fp.setScale(new ChromaticScale());
+        fp.setGermString("G4");
+        fp.createDefaultSettings();
+        Sequence seq = fp.createPieceResultOutputManager().getSequence();
+     
+        // array of voices, notes, pitches/durations
+        int[][][] noteValues = {
+            // first voice...
+            {   
+                 // intro...
+                {-1, 32},                
+                {79, 4}, {79, 4}, {79, 4}, {79, 4},
+                
+                // self-similar section...        
+                {79, 4}, {79, 4}, {79, 4}, {79, 4},
+                {79, 4}, {79, 4}, {79, 4}, {79, 4},
+                {79, 4}, {79, 4}, {79, 4}, {79, 4},
+                {79, 4}, {79, 4}, {79, 4}, {79, 4},
+                        
+                // outro...                
+                {79, 4}, {79, 4}, {79, 4}, {79, 4},
+                {-1, 32},              
+            },
+                       
+            // second voice...
+            {
+                // intro...
+                {-1, 16},
+                {67, 8}, {67, 8},
+                {67, 8}, {67, 8},
+                
+                // self-similar section...        
+                {67, 8}, {67, 8},
+                {67, 8}, {67, 8},
+                {67, 8}, {67, 8},
+                {67, 8}, {67, 8},
+                        
+                // outro...                
+                {67, 8}, {67, 8},
+                {67, 8}, {67, 8},
+                {-1, 16}
+            },
+            
+            {
+                // intro...
+                {55, 16}, {55, 16}, {55, 16},
+                
+                // self-similar section...        
+                {55, 16}, {55, 16}, {55, 16}, {55, 16},
+                        
+                // outro...                
+                {55, 16}, {55, 16}, {55, 16}
+            }
+        };
+        
+        
+        int MFVolume = Dynamic.MF.getMidiVolume();        
+        for (int trackIndex = 0; trackIndex < noteValues.length; trackIndex++) {
+            //System.out.println(String.format("  simplePieceTest track: %d", trackIndex));
+            
+            Track track = seq.getTracks()[trackIndex + 1]; //skip track 0, which has time signature and key signature
+            int trackNoteValues[][] = noteValues[trackIndex];
+            long ticksSoFar = 0;
+            int channelNum = trackIndex;
+            
+            // make sure we have the right number of events. 
+            // there are always two extra events - instrument event, and the end-of-track event, so we add 1 for that.
+            assertEquals(trackNoteValues.length * 2 + 2, track.size());
+                        
+            for (int noteIndex = 0; noteIndex < trackNoteValues.length; noteIndex++) {
+                if (trackNoteValues[noteIndex][0] == -1)  { // rest
+                    assertTrackMidiNoteEqual(track, noteIndex, ticksSoFar, trackNoteValues[noteIndex][1], 0, 0, channelNum);
+                } else {                                        
+                    assertTrackMidiNoteEqual(track, noteIndex, ticksSoFar, trackNoteValues[noteIndex][1], trackNoteValues[noteIndex][0], MFVolume, channelNum);
+                }
+                ticksSoFar += trackNoteValues[noteIndex][1];
+            }  
+        }
+    }
+    
+    @Test
     public void simplePieceTest() throws InvalidKeySignatureException, NoteStringParseException, GermIsEmptyException {
         FractalPiece fp = new FractalPiece();
         fp.setScale(new MajorScale(NoteName.G));
@@ -235,18 +318,11 @@ public class PieceTest {
     }
     
     @Test
-    public void complicatedChromaticSelfSimilarityTest() throws InvalidKeySignatureException, GermIsEmptyException {
+    public void complicatedChromaticSelfSimilarityTest() throws Exception {
         
         FractalPiece fp = new FractalPiece();
         fp.setScale(new MajorScale(NoteName.C));
-        fp.getGerm().add(new Note(0, 4, 0, new Fraction(1, 8), MidiNote.DEFAULT_VELOCITY));
-        fp.getGerm().add(new Note(4, 4, 0, new Fraction(1, 8), MidiNote.DEFAULT_VELOCITY));
-        fp.getGerm().add(new Note(3, 4, 1, new Fraction(1, 8), MidiNote.DEFAULT_VELOCITY));
-        fp.getGerm().add(new Note(6, 4, 0, new Fraction(1, 8), MidiNote.DEFAULT_VELOCITY));
-        fp.getGerm().add(new Note(5, 4, 1, new Fraction(1, 8), MidiNote.DEFAULT_VELOCITY));
-        fp.getGerm().add(new Note(2, 4, -1, new Fraction(1, 8), MidiNote.DEFAULT_VELOCITY));
-        fp.getGerm().add(new Note(1, 4, 0, new Fraction(1, 8), MidiNote.DEFAULT_VELOCITY));
-        fp.getGerm().add(new Note(6, 3, 0, new Fraction(1, 8), MidiNote.DEFAULT_VELOCITY));
+        fp.setGermString("C4,1/8 G4 F#4 B4 A#4 Eb4 D4 B3");
         
         fp.setGenerateLayeredIntro(false);
         fp.setGenerateLayeredOutro(false);

@@ -64,6 +64,27 @@ public class OutputManagerTest {
     }
 
     @Test
+    public void getGuidoNotation_forPentatonicScale() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        fp.setTimeSignature(new TimeSignature(5, 4));
+        fp.setScale(new MajorPentatonicScale(NoteName.G));
+        fp.setGermString("G4,1/2 A4,1/4 B4 G4,1/2 E5 D5");
+        fp.createDefaultSettings();
+        
+        String expected = "g2/4  a2/8  b2/8  g2/4  e3/4  d3/4  a2/4  b2/8  d3/8  a2/4  g3/4  e3/4  b2/4  d3/8  e3/8  b2/4  a3/4  g3/4  g2/4  a2/8  b2/8  g2/4  e3/4  d3/4  e3/4  g3/8  a3/8  e3/4  d4/4  b3/4  d3/4  e3/8  g3/8  d3/4  b3/4  a3/4";        
+        String notation = fp.getVoices().get(0).getVoiceSections().get(0).createOutputManager().getGuidoNotation();
+        assertTrue(notation.contains(expected));
+        
+        fp.setScale(new MinorPentatonicScale(NoteName.G));
+        fp.setGermString("G4,1/2 Bb4,1/4 C5 G4,1/2 F5 D5");
+        fp.createDefaultSettings();
+        
+        expected = "g2/4  b&2/8  c3/8  g2/4  f3/4  d3/4  b&2/4  c3/8  d3/8  b&2/4  g3/4  f3/4  c3/4  d3/8  f3/8  c3/4  b&3/4  g3/4  g2/4  b&2/8  c3/8  g2/4  f3/4  d3/4  f3/4  g3/8  b&3/8  f3/4  d4/4  c4/4  d3/4  f3/8  g3/8  d3/4  c4/4  b&3/4";        
+        notation = fp.getVoices().get(0).getVoiceSections().get(0).createOutputManager().getGuidoNotation();
+        assertTrue(notation.contains(expected));
+    }
+    
+    @Test
     public void getGuidoNotation_forConfusingOctaves() throws Exception {        
         FractalPiece fp = new FractalPiece();
         fp.setGermString("Cb4 C4 Cbb4 Bx4 B4 B#4");

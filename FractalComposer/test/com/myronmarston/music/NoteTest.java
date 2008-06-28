@@ -47,7 +47,7 @@ public class NoteTest {
     
     @Test(expected=IllegalArgumentException.class)
     public void constructNoDurationNote() {
-        Note n = new Note(2, 2, 0, new Fraction(0, 1), 64);
+        Note n = new Note(2, 2, 2, 0, new Fraction(0, 1), 64, Scale.DEFAULT, 0);
     }
     
     @Test(expected=IllegalArgumentException.class)
@@ -57,41 +57,41 @@ public class NoteTest {
     
     @Test(expected=IllegalArgumentException.class)
     public void setNoteDurationToZero() {
-        Note n = new Note(2, 2, 0, new Fraction(1, 1), 64);
+        Note n = new Note(2, 2, 2, 0, new Fraction(1, 1), 64, Scale.DEFAULT, 0);
         n.setDuration(new Fraction(0, 1));
     }
     
     @Test(expected=IllegalArgumentException.class)
     public void setBadVolume() {
-        Note n = new Note(2, 2, 0, new Fraction(1, 1), 128);
+        Note n = new Note(2, 2, 2, 0, new Fraction(1, 1), 128, Scale.DEFAULT, 0);
     }
     
     @Test
     public void parseNoteString() throws InvalidKeySignatureException, NoteStringParseException {
         // basic test...
-        parseNoteStringTestHelper(new Note(2, 2, 3, 0, new Fraction(3, 16), Dynamic.PP.getMidiVolume(), null, 0), "D#4,3/16,PP", new MajorScale(NoteName.B), null, null);                
+        parseNoteStringTestHelper(new Note(2, 2, 3, 0, new Fraction(3, 16), Dynamic.PP.getMidiVolume(), new MajorScale(NoteName.B), 0), "D#4,3/16,PP", new MajorScale(NoteName.B), null, null);                
         
         // an accidental...
-        parseNoteStringTestHelper(new Note(6, 0, 3, -1, new Fraction(1, 2), Dynamic.FFF.getMidiVolume(), null, 0), "B2,1/2,FFF", new MajorPentatonicScale(NoteName.C), null, null);
+        parseNoteStringTestHelper(new Note(6, 0, 3, -1, new Fraction(1, 2), Dynamic.FFF.getMidiVolume(), new MajorPentatonicScale(NoteName.C), 0), "B2,1/2,FFF", new MajorPentatonicScale(NoteName.C), null, null);
         
         // a non-standard rhythm and using a default volume
-        parseNoteStringTestHelper(new Note(3, 3, 2, -2, new Fraction(1, 7), 37, null, 0), "Gbb2,1/7", new MajorScale(NoteName.D), null, 37);
+        parseNoteStringTestHelper(new Note(3, 3, 2, -2, new Fraction(1, 7), 37, new MajorScale(NoteName.D), 0), "Gbb2,1/7", new MajorScale(NoteName.D), null, 37);
         
         // a default volume and default rhythm
-        parseNoteStringTestHelper(new Note(1, 1, 2, 1, new Fraction(2, 1), 67, null, 0), "Cx3", new MajorScale(NoteName.B), new Fraction(2, 1), 67);
+        parseNoteStringTestHelper(new Note(1, 1, 2, 1, new Fraction(2, 1), 67, new MajorScale(NoteName.B), 0), "Cx3", new MajorScale(NoteName.B), new Fraction(2, 1), 67);
         
         // a default rhythm, and an entered volume
-        parseNoteStringTestHelper(new Note(4, 4, 2, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0), "F#3,MF", new MinorScale(NoteName.B), new Fraction(1, 4), null);
+        parseNoteStringTestHelper(new Note(4, 4, 2, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), new MinorScale(NoteName.B), 0), "F#3,MF", new MinorScale(NoteName.B), new Fraction(1, 4), null);
         
         // a rest
         parseNoteStringTestHelper(Note.createRest(new Fraction(1, 3)), "R,1/3", new MajorScale(NoteName.B), null, null);
         
         // mixed case test...
-        parseNoteStringTestHelper(new Note(5, 5, 2, -2, new Fraction(1, 4), Dynamic.MP.getMidiVolume(), null, 0), "BBB2,1/4,mP", new MajorScale(NoteName.D), null, null);
+        parseNoteStringTestHelper(new Note(5, 5, 2, -2, new Fraction(1, 4), Dynamic.MP.getMidiVolume(), new MajorScale(NoteName.D), 0), "BBB2,1/4,mP", new MajorScale(NoteName.D), null, null);
         parseNoteStringTestHelper(Note.createRest(new Fraction(1, 1)), "r,1/1", new MajorScale(NoteName.B), null, null);
         
         // try it with a chromatic scale...
-        parseNoteStringTestHelper(new Note(4, 8, 4, 0, new Fraction(3, 16), Dynamic.PP.getMidiVolume(), null, 0), "G#4,3/16,PP", new ChromaticScale(), null, null);                
+        parseNoteStringTestHelper(new Note(4, 8, 4, 0, new Fraction(3, 16), Dynamic.PP.getMidiVolume(), new ChromaticScale(), 0), "G#4,3/16,PP", new ChromaticScale(), null, null);                
     }  
       
     private void parseNoteStringTestHelper(Note expectedNote, String noteString, Scale s, Fraction defaultDuration, Integer defaultVolume) throws InvalidKeySignatureException, NoteStringParseException {
@@ -170,14 +170,14 @@ public class NoteTest {
     @Test
     public void convertRestToMidiNote() throws InvalidKeySignatureException, InvalidMidiDataException {
         Note n = Note.createRest(new Fraction(1, 4));
-        MidiNote mn = n.convertToMidiNote(new MajorScale(NoteName.C), new Fraction(4, 1), 4, MidiNote.DEFAULT_CHANNEL, true);
+        MidiNote mn = n.convertToMidiNote(new Fraction(4, 1), 4, MidiNote.DEFAULT_CHANNEL, true);
         MidiNoteTest.assertNoteEventEqual(mn.getNoteOnEvent(), 16, (byte) -112, (byte) 0, (byte) 0);
         MidiNoteTest.assertNoteEventEqual(mn.getNoteOffEvent(), 17, (byte) -128, (byte) 0, (byte) 0);
     }
     
     @Test
     public void testClone() throws Exception {
-        Note n = new Note(4, 4, 1, new Fraction(1, 4), 70, new MajorScale(NoteName.G), -1);
+        Note n = new Note(4, 4, 4, 1, new Fraction(1, 4), 70, new MajorScale(NoteName.G), -1);
         Note cloned = (Note) n.clone();
         assertEquals(n, cloned);        
     }
@@ -237,30 +237,14 @@ public class NoteTest {
         assertFalse(n1.equals(n2));
         assertFalse(n2.equals(n1));
         assertFalse(n1.hashCode() == n2.hashCode());
-    }
-    
-    @Test
-    public void convertToMidiNote_withScale() throws Exception {
-        Note n = new Note(0, 4, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume());
-        
-        // try converting without a segment scale
-        MidiNote mn = n.convertToMidiNote(new MajorScale(NoteName.Bb), new Fraction(0, 1), 4, 1, true);
-        MidiNoteTest.assertMidiNoteEqual(mn, 70, Dynamic.F.getMidiVolume(), 0, 1, 1);
-        
-        // convert when we have a scale set on our note
-        n.setScale(new MajorScale(NoteName.D));
-        mn = n.convertToMidiNote(new MajorScale(NoteName.Bb), new Fraction(0, 1), 4, 1, true);
-        MidiNoteTest.assertMidiNoteEqual(mn, 62, Dynamic.F.getMidiVolume(), 0, 1, 1);                        
-    }    
+    }       
     
     @Test
     public void testToString() throws Exception {
         String expectedWithScale = "Note = LN(1), SS(1), O(4), CA(1), D(1/4), V(70), S(Bb Major Scale), SCA(0)";
         String expectedWithNullScale = "Note = LN(1), SS(1), O(4), CA(1), D(1/4), V(70), S(null), SCA(0)";
         Note n = new Note(1, 1, 4, 1, new Fraction(1, 4), 70, new MajorScale(NoteName.Bb), 0);
-        assertEquals(expectedWithScale, n.toString());
-        n.setScale(null);
-        assertEquals(expectedWithNullScale, n.toString());        
+        assertEquals(expectedWithScale, n.toString());            
     }
     
     @Test
@@ -271,76 +255,122 @@ public class NoteTest {
         // test that the note name comes from the note's scale step,
         // and the accidentals/octave from the midi note's pitch...
         md.setPitch(61);        
-        Note n = new Note(0, 0, 4, 1, new Fraction(1, 16), Dynamic.F.getMidiVolume(), null, 0);        
-        assertEquals("c#1/16", n.toGuidoString(s, md));
+        Note n = new Note(0, 0, 4, 1, new Fraction(1, 16), Dynamic.F.getMidiVolume(), s, 0);        
+        assertEquals("c#1/16", n.toGuidoString(md));
         
         md.setPitch(64);
-        assertEquals("c####1/16", n.toGuidoString(s, md));
+        assertEquals("c####1/16", n.toGuidoString(md));
         
         md.setPitch(58);
-        assertEquals("c&&1/16", n.toGuidoString(s, md));                
+        assertEquals("c&&1/16", n.toGuidoString(md));                
         
         n.setLetterNumber(6);
-        assertEquals("b&0/16", n.toGuidoString(s, md));                
+        assertEquals("b&0/16", n.toGuidoString(md));                
         
         // test that the note is properly normalized...
         n.setScaleStep(-1);
         n.setLetterNumber(-1);
-        assertEquals("b&0/16", n.toGuidoString(s, md));
+        assertEquals("b&0/16", n.toGuidoString(md));
         
         n.setScaleStep(10);
         n.setLetterNumber(3);
         md.setPitch(77);
-        assertEquals("f2/16", n.toGuidoString(s, md));
+        assertEquals("f2/16", n.toGuidoString(md));
 
         // test a scale with accidentals...
         s = new HarmonicMinorScale(NoteName.Bb);
-        n = new Note(2, 2, 3, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0);
+        n = new Note(2, 2, 3, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), s, 0);
         md.setPitch(61);
-        assertEquals("d&1/4", n.toGuidoString(s, md));
+        assertEquals("d&1/4", n.toGuidoString(md));
         
         n.setScaleStep(6);
         n.setLetterNumber(6);
         md.setPitch(70);
-        assertEquals("a#1/4", n.toGuidoString(s, md));
+        assertEquals("a#1/4", n.toGuidoString(md));
         
         // test a chromatic scale...
         s = new ChromaticScale();
         md.setPitch(71);
+        n.setScale(s);
         n.setDuration(new Fraction(2, 3));
         n.setScaleStep(11);        
         n.setLetterNumber(6);
-        assertEquals("b1*2/3", n.toGuidoString(s, md));   
+        assertEquals("b1*2/3", n.toGuidoString(md));   
         
         // test a pentatonic scale...
         s = new MinorPentatonicScale(NoteName.Fs);
+        n.setScale(s);
         n.setScaleStep(3);
         n.setLetterNumber(4);
         md.setPitch(23);
-        assertEquals("c&-2*2/3", n.toGuidoString(s, md));   
+        assertEquals("c&-2*2/3", n.toGuidoString(md));   
         
         n.setLetterNumber(3);        
-        assertEquals("b-3*2/3", n.toGuidoString(s, md));   
+        assertEquals("b-3*2/3", n.toGuidoString(md));   
         
         md.setPitch(24);
         n.setLetterNumber(4);
-        assertEquals("c-2*2/3", n.toGuidoString(s, md));   
+        assertEquals("c-2*2/3", n.toGuidoString(md));   
         
         md.setPitch(25);
-        assertEquals("c#-2*2/3", n.toGuidoString(s, md));   
+        assertEquals("c#-2*2/3", n.toGuidoString(md));   
     }
     
     @Test
     public void toGuidoNoteString_rest() throws Exception {
-        Note n = Note.createRest(new Fraction(1, 8));
-        Scale s = new MajorScale(NoteName.G);
+        Note n = Note.createRest(new Fraction(1, 8));        
         MidiNote md = new MidiNote();
-        assertEquals("_/8", n.toGuidoString(s, md));
+        assertEquals("_/8", n.toGuidoString(md));
     }        
     
     @Test(expected=UnsupportedOperationException.class)
     public void setLetterNumberOnRest() throws Exception {
         Note n = Note.createRest(new Fraction(1, 4));
         n.setLetterNumber(3);
-    }    
+    }  
+    
+    @Test
+    public void performTransformerAdjustment() throws Exception {
+        Scale scale = new MajorPentatonicScale(NoteName.G);        
+        Note n = new Note(2, 2, 4, 0, new Fraction(1, 4), MidiNote.DEFAULT_VELOCITY, scale, 0);
+        Note clone = (Note) n.clone();
+        
+        // try a pentatonic scale
+        Note expected = (Note) n.clone();
+        n.performTransformerAdjustment(1, 1, 0);                
+        expected.setScaleStep(3);
+        expected.setLetterNumber(4);        
+        assertEquals(expected, n);
+        
+        // try it with a pentatonic scale and accidentals
+        n = (Note) clone.clone();
+        n.setChromaticAdjustment(1);
+        expected = (Note) n.clone();        
+        n.performTransformerAdjustment(1, 1, -1);                
+        
+        expected.setScaleStep(3);
+        expected.setLetterNumber(3);        
+        expected.setOctave(3);
+        assertEquals(expected, n); 
+        
+        n = (Note) clone.clone();
+        n.setSegmentChromaticAdjustment(1);
+        expected = (Note) n.clone();        
+        n.performTransformerAdjustment(1, 1, -1);                
+        
+        expected.setScaleStep(3);
+        expected.setLetterNumber(3);        
+        expected.setOctave(3);
+        assertEquals(expected, n);
+        
+        // try a diatonic scale
+        n = (Note) clone.clone();
+        n.setScale(new MajorScale(NoteName.G));
+        expected = (Note) n.clone();        
+        n.performTransformerAdjustment(1, 1, 0);                
+        
+        expected.setScaleStep(3);
+        expected.setLetterNumber(3);        
+        assertEquals(expected, n);                 
+    }
 }

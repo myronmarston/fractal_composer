@@ -306,53 +306,53 @@ public class ScaleTest {
         int midiTickResolution = 8;
         
         // F# - this chromatic note should convert OK.
-        note = new Note(3, 4, 1, new Fraction(1, 1), 70);                      
-        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
+        note = new Note(3, 3, 4, 1, new Fraction(1, 1), 70, scale, 0);                      
+        result = note.convertToMidiNote(new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
         assertMidiNoteValues(result, 66, 70, 0, midiTickResolution); 
         
         // Fx - this is the same as G, another note in the scale, so we will use F# instead
-        note = new Note(3, 4, 2, new Fraction(1, 1), 70);                      
-        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
+        note = new Note(3, 3, 4, 2, new Fraction(1, 1), 70, scale, 0);                      
+        result = note.convertToMidiNote(new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
         assertMidiNoteValues(result, 66, 70, 0, midiTickResolution); 
         
         // B# - this is the same as C, another note in the scale, so we will use B instead
-        note = new Note(6, 4, 1, new Fraction(1, 1), 70);                      
-        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
+        note = new Note(6, 6, 4, 1, new Fraction(1, 1), 70, scale, 0);                      
+        result = note.convertToMidiNote(new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
         assertMidiNoteValues(result, 71, 70, 0, midiTickResolution); 
         
         // Bx - this chromatic note should convert OK.
-        note = new Note(6, 4, 2, new Fraction(1, 1), 70);                      
-        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
+        note = new Note(6, 6, 4, 2, new Fraction(1, 1), 70, scale, 0);                      
+        result = note.convertToMidiNote(new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
         assertMidiNoteValues(result, 73, 70, 0, midiTickResolution); 
         
         // Eb - this chromatic note should convert OK.
-        note = new Note(2, 4, -1, new Fraction(1, 1), 70);                      
-        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
+        note = new Note(2, 2, 4, -1, new Fraction(1, 1), 70, scale, 0);                      
+        result = note.convertToMidiNote(new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
         assertMidiNoteValues(result, 63, 70, 0, midiTickResolution); 
         
         // Ebb - this is the same as D, another note in the scale, so we will use Eb instead
-        note = new Note(2, 4, -2, new Fraction(1, 1), 70);                      
-        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
+        note = new Note(2, 2, 4, -2, new Fraction(1, 1), 70, scale, 0);                      
+        result = note.convertToMidiNote(new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
         assertMidiNoteValues(result, 63, 70, 0, midiTickResolution); 
         
         // Fb - this is the same as E, another note in the scale, so we will use F instead
-        note = new Note(3, 4, -1, new Fraction(1, 1), 70);                      
-        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
+        note = new Note(3, 3, 4, -1, new Fraction(1, 1), 70, scale, 0);                      
+        result = note.convertToMidiNote(new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
         assertMidiNoteValues(result, 65, 70, 0, midiTickResolution);
         
         // Fbb - this note should convert ok.
-        note = new Note(3, 4, -2, new Fraction(1, 1), 70);                      
-        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
+        note = new Note(3, 3, 4, -2, new Fraction(1, 1), 70, scale, 0);                      
+        result = note.convertToMidiNote(new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
         assertMidiNoteValues(result, 63, 70, 0, midiTickResolution);
         
         // Cb - this is the same as B, another note in the scale, so we will use C instead
-        note = new Note(0, 4, -1, new Fraction(1, 1), 70);                      
-        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
+        note = new Note(0, 0, 4, -1, new Fraction(1, 1), 70, scale, 0);                      
+        result = note.convertToMidiNote(new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
         assertMidiNoteValues(result, 60, 70, 0, midiTickResolution); 
         
         // Cbb - this note should convert ok.
-        note = new Note(0, 4, -2, new Fraction(1, 1), 70);                      
-        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
+        note = new Note(0, 0, 4, -2, new Fraction(1, 1), 70, scale, 0);                      
+        result = note.convertToMidiNote(new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
         assertMidiNoteValues(result, 58, 70, 0, midiTickResolution); 
     }
     
@@ -362,32 +362,32 @@ public class ScaleTest {
         MidiNote result;
         Note note;
         
-        note = new Note(0, 4, 0, new Fraction(6, 1), 70);      
+        note = new Note(0, 0, 4, 0, new Fraction(6, 1), 70, scale, 0);      
         int midiTickResolution = 8;
         
-        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 60, 70, 0, 48);                
         
         note.setScaleStep(5);
         note.setOctave(5);
-        result = note.convertToMidiNote(scale, new Fraction(5, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(5, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 81, 70, 40, 48);                
         
         note.setScaleStep(2);
         note.setOctave(2);
         note.setVolume(40);
         note.setDuration(new Fraction(3, 1));
-        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 40, 40, 16, 24); 
         
         // try a few unnormalized notes...
         note.setScaleStep(-3);
-        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 31, 40, 16, 24); 
         
         note.setScaleStep(19);
         note.setOctave(2);
-        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 69, 40, 16, 24);
         
         // TODO: check something at the octave change...        
@@ -399,32 +399,32 @@ public class ScaleTest {
         MidiNote result;
         Note note;
         
-        note = new Note(6, 4, 0, new Fraction(6, 1), 70);      
+        note = new Note(6, 6, 4, 0, new Fraction(6, 1), 70, scale, 0);      
         int midiTickResolution = 8;
         
-        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 70, 70, 0, 48);                
         
         note.setScaleStep(5);
         note.setOctave(5);
-        result = note.convertToMidiNote(scale, new Fraction(5, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(5, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 80, 70, 40, 48);                
         
         note.setScaleStep(3);
         note.setOctave(2);
         note.setVolume(40);
         note.setDuration(new Fraction(3, 1));
-        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 41, 40, 16, 24); 
         
         // try a few unnormalized notes...
         note.setScaleStep(-3);
-        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 31, 40, 16, 24); 
         
         note.setScaleStep(19);
         note.setOctave(2);
-        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 68, 40, 16, 24); 
     }
     
@@ -434,32 +434,32 @@ public class ScaleTest {
         MidiNote result;
         Note note;
         
-        note = new Note(6, 4, 0, new Fraction(6, 1), 70);      
+        note = new Note(6, 6, 4, 0, new Fraction(6, 1), 70, scale, 0);      
         int midiTickResolution = 8;
         
-        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 71, 70, 0, 48);                
         
         note.setScaleStep(5);
         note.setOctave(5);
-        result = note.convertToMidiNote(scale, new Fraction(5, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(5, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 80, 70, 40, 48);                
         
         note.setScaleStep(3);
         note.setOctave(2);
         note.setVolume(40);
         note.setDuration(new Fraction(3, 1));
-        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 41, 40, 16, 24); 
         
         // try a few unnormalized notes...
         note.setScaleStep(-3);
-        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 31, 40, 16, 24); 
         
         note.setScaleStep(19);
         note.setOctave(2);
-        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 68, 40, 16, 24); 
     }
     
@@ -469,26 +469,26 @@ public class ScaleTest {
         MidiNote result;
         Note note;
         
-        note = new Note(4, 4, 0, new Fraction(6, 1), 70);      
+        note = new Note(4, 4, 4, 0, new Fraction(6, 1), 70, scale, 0);      
         int midiTickResolution = 8;
         
-        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 69, 70, 0, 48);                
         
         note.setScaleStep(3);        
-        result = note.convertToMidiNote(scale, new Fraction(5, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(5, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 67, 70, 40, 48);                        
         
         // try a few unnormalized notes...
         note.setScaleStep(-3);
         note.setVolume(40);
         note.setDuration(new Fraction(3, 1));
-        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 52, 40, 16, 24); 
         
         note.setScaleStep(19);
         note.setOctave(2);
-        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 81, 40, 16, 24); 
     }
     
@@ -498,26 +498,26 @@ public class ScaleTest {
         MidiNote result;
         Note note;
         
-        note = new Note(4, 4, 0, new Fraction(6, 1), 70);      
+        note = new Note(4, 4, 4, 0, new Fraction(6, 1), 70, scale, 0);      
         int midiTickResolution = 8;
         
-        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 70, 70, 0, 48);                
         
         note.setScaleStep(3);        
-        result = note.convertToMidiNote(scale, new Fraction(5, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(5, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 67, 70, 40, 48);                        
         
         // try a few unnormalized notes...
         note.setScaleStep(-3);
         note.setVolume(40);
         note.setDuration(new Fraction(3, 1));
-        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 53, 40, 16, 24); 
         
         note.setScaleStep(19);
         note.setOctave(2);
-        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 82, 40, 16, 24); 
     }
     
@@ -527,26 +527,26 @@ public class ScaleTest {
         MidiNote result;
         Note note;
         
-        note = new Note(4, 4, 0, new Fraction(6, 1), 70);      
+        note = new Note(4, 4, 4, 0, new Fraction(6, 1), 70, scale, 0);      
         int midiTickResolution = 8;
         
-        result = note.convertToMidiNote(scale, new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(0, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 64, 70, 0, 48);                
         
         note.setScaleStep(3);        
-        result = note.convertToMidiNote(scale, new Fraction(5, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(5, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 63, 70, 40, 48);                        
         
         // try a few unnormalized notes...
         note.setScaleStep(-3);
         note.setVolume(40);
         note.setDuration(new Fraction(3, 1));
-        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 57, 40, 16, 24); 
         
         note.setScaleStep(19);
         note.setOctave(2);
-        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
+        result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
         assertMidiNoteValues(result, 55, 40, 16, 24); 
         
         // try some notes with chromatic adjustments...
@@ -554,11 +554,11 @@ public class ScaleTest {
         // the scale        
         note.setScaleStep(3);
         note.setChromaticAdjustment(-2);
-        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
+        result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
         assertMidiNoteValues(result, 39, 40, 16, 24);
         
         note.setChromaticAdjustment(5);
-        result = note.convertToMidiNote(scale, new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
+        result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, false);
         assertMidiNoteValues(result, 39, 40, 16, 24);
     }
     

@@ -227,19 +227,19 @@ public class OutputManager {
             // TODO: add some stuff to the guidoNotation if the note is the 
             // first or last note of a voice section            
             
-            thisMidiNote = thisNote.convertToMidiNote(scale, startTime, midiTicksPerWholeNote, midiChannel, true);                        
+            thisMidiNote = thisNote.convertToMidiNote(startTime, midiTicksPerWholeNote, midiChannel, true);                        
             
             if (lastMidiNote != null) {
                 assert lastNote != null;
                                 
-                if (thisMidiNote.getPitch() == lastMidiNote.getPitch() && lastNote.getNormalizedNote(scale).getScaleStep() != thisNote.getNormalizedNote(scale).getScaleStep()) {               
+                if (thisMidiNote.getPitch() == lastMidiNote.getPitch() && lastNote.getNormalizedNote().getScaleStep() != thisNote.getNormalizedNote().getScaleStep()) {               
                     // the notes are different scale steps and should have different pitches.
                     // This can happen with notes like B# and C in the key of C.
 
                     if (lastNote.getChromaticAdjustment() != 0) {
-                        lastMidiNote = lastNote.convertToMidiNote(scale, startTime.minus(thisNote.getDuration()), midiTicksPerWholeNote, midiChannel, false);
+                        lastMidiNote = lastNote.convertToMidiNote(startTime.minus(thisNote.getDuration()), midiTicksPerWholeNote, midiChannel, false);
                     } else if (thisNote.getChromaticAdjustment() != 0) {
-                        thisMidiNote = thisNote.convertToMidiNote(scale, startTime, midiTicksPerWholeNote, midiChannel, false);
+                        thisMidiNote = thisNote.convertToMidiNote(startTime, midiTicksPerWholeNote, midiChannel, false);
                     } else {
                         // one of these notes should always have a chromatic 
                         // adjustment--otherwise, how do they have the same pitches
@@ -281,7 +281,7 @@ public class OutputManager {
         }        
         
         // add the guido notation...
-        guidoNotation.append(" " + note.toGuidoString(fractalPiece.getScale(), midiNote) + " ");
+        guidoNotation.append(" " + note.toGuidoString(midiNote) + " ");
     }
 
     /**

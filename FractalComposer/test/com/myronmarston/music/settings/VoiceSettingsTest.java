@@ -116,20 +116,20 @@ public class VoiceSettingsTest implements Subscriber {
         vs.setSpeedScaleFactor(new Fraction(4, 1));        
         
         NoteList expected = NoteList.parseNoteListString("G6,1/4 A6,1/8 B6,1/8 G6,1/4", scale);
-        NoteListTest.assertNoteListsEqual(expected, vs.applySettingsToNoteList(input), scale);
+        NoteListTest.assertNoteListsEqual(expected, vs.applySettingsToNoteList(input));
         
         vs.setSpeedScaleFactor(new Fraction(1, 2));
         expected = NoteList.parseNoteListString("G6,2/1 A6,1/1 B6,1/1 G6,2/1", scale);        
-        NoteListTest.assertNoteListsEqual(expected, vs.applySettingsToNoteList(input), scale);
+        NoteListTest.assertNoteListsEqual(expected, vs.applySettingsToNoteList(input));
         
         vs.setOctaveAdjustment(-1);
         expected = NoteList.parseNoteListString("G3,2/1 A3,1/1 B3,1/1 G3,2/1", scale);        
-        NoteListTest.assertNoteListsEqual(expected, vs.applySettingsToNoteList(input), scale); 
+        NoteListTest.assertNoteListsEqual(expected, vs.applySettingsToNoteList(input)); 
         
         vs.getSelfSimilaritySettings().setApplyToPitch(true);
         vs.getSelfSimilaritySettings().setApplyToRhythm(true);
         expected = NoteList.parseNoteListString("G3,2/1 A3,1/1 B3,1/1 G3,2/1  A3,1/1 B3,1/2 C4,1/2 A3,1/1  B3,1/1 C4,1/2 D4,1/2 B3,1/1  G3,2/1 A3,1/1 B3,1/1 G3,2/1", scale);        
-        NoteListTest.assertNoteListsEqual(expected, vs.applySettingsToNoteList(input), scale); 
+        NoteListTest.assertNoteListsEqual(expected, vs.applySettingsToNoteList(input)); 
     }
     
     @Test

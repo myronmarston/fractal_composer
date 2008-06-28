@@ -89,19 +89,19 @@ public class SectionSettingsTest implements Subscriber {
         ss.setApplyRetrograde(false);
         
         NoteList expected = NoteList.parseNoteListString("G4,1/1 A4,1/2 B4,1/2 G4,1/1", scale);
-        NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input), scale);
+        NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input));
         
         ss.setApplyInversion(true);
         expected = NoteList.parseNoteListString("G4,1/1 F#4,1/2 E4,1/2 G4,1/1", scale);
-        NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input), scale);
+        NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input));
         
         ss.setApplyRetrograde(true);
         expected = NoteList.parseNoteListString("G4,1/1 E4,1/2 F#4,1/2 G4,1/1", scale);        
-        NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input), scale);
+        NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input));
         
         ss.setApplyInversion(false);
         expected = NoteList.parseNoteListString("G4,1/1 B4,1/2 A4,1/2 G4,1/1", scale);
-        NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input), scale);
+        NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input));
     }        
     
     @Test

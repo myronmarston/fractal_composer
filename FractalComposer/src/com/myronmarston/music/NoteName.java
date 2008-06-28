@@ -222,7 +222,7 @@ public enum NoteName {
      * @param mod the modulus number
      * @return the normalized value
      */
-    protected static int getNormalizedValue(int value, int mod) {        
+    public static int getNormalizedValue(int value, int mod) {        
         while (value < 0) value += mod;        
         int returnVal = value % mod;
         assert returnVal >= 0 && returnVal < mod : returnVal;

@@ -128,28 +128,6 @@ Represents a note, relative to a particular scale.  This note will need to be
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default constructor.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#Note(int, int, int, com.myronmarston.util.Fraction, int)">Note</A></B>(int&nbsp;scaleStep,
-     int&nbsp;octave,
-     int&nbsp;chromaticAdjustment,
-     <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration,
-     int&nbsp;volume)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>Deprecated.</B>&nbsp;<I>Use the override that takes a letter number</I></TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#Note(int, int, int, com.myronmarston.util.Fraction, int, com.myronmarston.music.scales.Scale, int)">Note</A></B>(int&nbsp;scaleStep,
-     int&nbsp;octave,
-     int&nbsp;chromaticAdjustment,
-     <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration,
-     int&nbsp;volume,
-     <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
-     int&nbsp;segmentChromaticAdjustment)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>Deprecated.</B>&nbsp;<I>Use the constructor that takes a letter number parameter</I></TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#Note(int, int, int, int, com.myronmarston.util.Fraction, int, com.myronmarston.music.scales.Scale, int)">Note</A></B>(int&nbsp;letterNumber,
      int&nbsp;scaleStep,
      int&nbsp;octave,
@@ -183,8 +161,7 @@ Represents a note, relative to a particular scale.  This note will need to be
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#convertToMidiNote(com.myronmarston.music.scales.Scale, com.myronmarston.util.Fraction, int, int, boolean)">convertToMidiNote</A></B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
-                  <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;startTime,
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#convertToMidiNote(com.myronmarston.util.Fraction, int, int, boolean)">convertToMidiNote</A></B>(<A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;startTime,
                   int&nbsp;midiTickResolution,
                   int&nbsp;channel,
                   boolean&nbsp;keepExactPitch)</CODE>
@@ -237,7 +214,7 @@ Represents a note, relative to a particular scale.  This note will need to be
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#getNormalizedNote(com.myronmarston.music.scales.Scale)">getNormalizedNote</A></B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</CODE>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#getNormalizedNote()">getNormalizedNote</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sometimes after transformations are applied to a note, the scale step is
@@ -314,6 +291,16 @@ Represents a note, relative to a particular scale.  This note will need to be
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#performTransformerAdjustment(int, int, int)">performTransformerAdjustment</A></B>(int&nbsp;scaleStepAdjustment,
+                             int&nbsp;letterNumberAdjustment,
+                             int&nbsp;octaveAdjustment)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adjusts the scale step, letter number and octave for a transformer.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#setChromaticAdjustment(int)">setChromaticAdjustment</A></B>(int&nbsp;chromaticAdjustment)</CODE>
 
 <BR>
@@ -380,8 +367,7 @@ Represents a note, relative to a particular scale.  This note will need to be
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;java.lang.String</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#toGuidoString(com.myronmarston.music.scales.Scale, com.myronmarston.music.MidiNote)">toGuidoString</A></B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
-              <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A>&nbsp;midiNote)</CODE>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#toGuidoString(com.myronmarston.music.MidiNote)">toGuidoString</A></B>(<A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A>&nbsp;midiNote)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a string representing this note in GUIDO notation.</TD>
@@ -424,55 +410,6 @@ public <B>Note</B>()</PRE>
 <DL>
 <DD>Default constructor.
 <P>
-</DL>
-<HR>
-
-<A NAME="Note(int, int, int, com.myronmarston.util.Fraction, int)"><!-- --></A><H3>
-Note</H3>
-<PRE>
-<FONT SIZE="-1">@Deprecated
-</FONT>public <B>Note</B>(int&nbsp;scaleStep,
-                       int&nbsp;octave,
-                       int&nbsp;chromaticAdjustment,
-                       <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration,
-                       int&nbsp;volume)</PRE>
-<DL>
-<DD><B>Deprecated.</B>&nbsp;<I>Use the override that takes a letter number</I>
-<P>
-<DD>Constructor.
-<P>
-<DL>
-<DT><B>Parameters:</B><DD><CODE>scaleStep</CODE> - number of scale steps above the tonic; 0 = tonic, 
-        7 = octave, 9 = third an octave above, etc.<DD><CODE>octave</CODE> - which octave the note should be in.  0 begins the first 
-        octave in Midi that contains the tonic.<DD><CODE>chromaticAdjustment</CODE> - the number of half steps to adjust from the
-        diatonic note; used if this note is an accidental<DD><CODE>duration</CODE> - how long the note should last, in whole notes<DD><CODE>volume</CODE> - how loud the note should be (0-127)</DL>
-</DL>
-<HR>
-
-<A NAME="Note(int, int, int, com.myronmarston.util.Fraction, int, com.myronmarston.music.scales.Scale, int)"><!-- --></A><H3>
-Note</H3>
-<PRE>
-<FONT SIZE="-1">@Deprecated
-</FONT>public <B>Note</B>(int&nbsp;scaleStep,
-                       int&nbsp;octave,
-                       int&nbsp;chromaticAdjustment,
-                       <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration,
-                       int&nbsp;volume,
-                       <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
-                       int&nbsp;segmentChromaticAdjustment)</PRE>
-<DL>
-<DD><B>Deprecated.</B>&nbsp;<I>Use the constructor that takes a letter number parameter</I>
-<P>
-<DD>Constructor.
-<P>
-<DL>
-<DT><B>Parameters:</B><DD><CODE>scaleStep</CODE> - number of scale steps above the tonic; 0 = tonic, 
-        7 = octave, 9 = third an octave above, etc.<DD><CODE>octave</CODE> - which octave the note should be in.  0 begins the first 
-        octave in Midi that contains the tonic.<DD><CODE>chromaticAdjustment</CODE> - the number of half steps to adjust from the
-        diatonic note; used if this note is an accidental<DD><CODE>duration</CODE> - how long the note should last, in whole notes<DD><CODE>volume</CODE> - how loud the note should be (0-127)<DD><CODE>scale</CODE> - the scale to use for this note; if this is non-null, it
-        will be used rather than the scale passed to any of this object's
-        methods<DD><CODE>segmentChromaticAdjustment</CODE> - additional chromatic adjustment for a
-        segment of the piece; used to deal with chromatic self-similarity</DL>
 </DL>
 <HR>
 
@@ -720,8 +657,7 @@ getScale</H3>
 <PRE>
 public <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A> <B>getScale</B>()</PRE>
 <DL>
-<DD>Gets the scale for this note.  This will be used in place of any scale
- passed to any of this methods.
+<DD>Gets the scale for this note.
 <P>
 <DD><DL>
 </DL>
@@ -738,8 +674,7 @@ setScale</H3>
 <PRE>
 public void <B>setScale</B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</PRE>
 <DL>
-<DD>Sets the scale for this note.  This will be used in place of any scale
- passed to any of this methods.
+<DD>Sets the scale for this note.
 <P>
 <DD><DL>
 </DL>
@@ -839,6 +774,27 @@ public boolean <B>isRest</B>()</PRE>
 </DL>
 <HR>
 
+<A NAME="performTransformerAdjustment(int, int, int)"><!-- --></A><H3>
+performTransformerAdjustment</H3>
+<PRE>
+public void <B>performTransformerAdjustment</B>(int&nbsp;scaleStepAdjustment,
+                                         int&nbsp;letterNumberAdjustment,
+                                         int&nbsp;octaveAdjustment)</PRE>
+<DL>
+<DD>Adjusts the scale step, letter number and octave for a transformer.  The
+ passed values should be given as deltas, rather than as new values.  The
+ letter number will be appropriately adjusted if a scale with less than 7
+ notes is used so that diatonic notes use the correct letter number.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>scaleStepAdjustment</CODE> - a value to add to the scale step<DD><CODE>letterNumberAdjustment</CODE> - a value to add to the letter number<DD><CODE>octaveAdjustment</CODE> - a value to add to the octave</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="parseNoteString(java.lang.String, com.myronmarston.music.scales.Scale, com.myronmarston.util.Fraction, java.lang.Integer)"><!-- --></A><H3>
 parseNoteString</H3>
 <PRE>
@@ -866,10 +822,10 @@ public static <A HREF="../../../com/myronmarston/music/Note.html" title="class i
 </DL>
 <HR>
 
-<A NAME="getNormalizedNote(com.myronmarston.music.scales.Scale)"><!-- --></A><H3>
+<A NAME="getNormalizedNote()"><!-- --></A><H3>
 getNormalizedNote</H3>
 <PRE>
-public <A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A> <B>getNormalizedNote</B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</PRE>
+public <A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A> <B>getNormalizedNote</B>()</PRE>
 <DL>
 <DD>Sometimes after transformations are applied to a note, the scale step is
  less than 0 or greater than the number of scale steps in an octave.  
@@ -881,17 +837,16 @@ public <A HREF="../../../com/myronmarston/music/Note.html" title="class in com.m
 </DL>
 </DD>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>scale</CODE> - the scale to use as a reference for normalization
+
 <DT><B>Returns:</B><DD>the normalized note</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="convertToMidiNote(com.myronmarston.music.scales.Scale, com.myronmarston.util.Fraction, int, int, boolean)"><!-- --></A><H3>
+<A NAME="convertToMidiNote(com.myronmarston.util.Fraction, int, int, boolean)"><!-- --></A><H3>
 convertToMidiNote</H3>
 <PRE>
-public <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A> <B>convertToMidiNote</B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
-                                  <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;startTime,
+public <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A> <B>convertToMidiNote</B>(<A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;startTime,
                                   int&nbsp;midiTickResolution,
                                   int&nbsp;channel,
                                   boolean&nbsp;keepExactPitch)</PRE>
@@ -903,7 +858,7 @@ public <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in c
 </DL>
 </DD>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>scale</CODE> - the scale to use<DD><CODE>startTime</CODE> - the time this note should be played<DD><CODE>midiTickResolution</CODE> - the number of ticks per whole note for the
+<DT><B>Parameters:</B><DD><CODE>startTime</CODE> - the time this note should be played<DD><CODE>midiTickResolution</CODE> - the number of ticks per whole note for the
         midi sequence<DD><CODE>channel</CODE> - the midi channel for this note, 0-15<DD><CODE>keepExactPitch</CODE> - true to keep the exact pitch specified by the note
         parameters; false to allow the chromaticAdjustment to be changed
         if it would create a note that is already found in the scale
@@ -912,11 +867,10 @@ public <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in c
 </DL>
 <HR>
 
-<A NAME="toGuidoString(com.myronmarston.music.scales.Scale, com.myronmarston.music.MidiNote)"><!-- --></A><H3>
+<A NAME="toGuidoString(com.myronmarston.music.MidiNote)"><!-- --></A><H3>
 toGuidoString</H3>
 <PRE>
-public java.lang.String <B>toGuidoString</B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
-                                      <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A>&nbsp;midiNote)</PRE>
+public java.lang.String <B>toGuidoString</B>(<A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A>&nbsp;midiNote)</PRE>
 <DL>
 <DD>Gets a string representing this note in GUIDO notation.
 <P>
@@ -924,7 +878,7 @@ public java.lang.String <B>toGuidoString</B>(<A HREF="../../../com/myronmarston/
 </DL>
 </DD>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>scale</CODE> - the scale used to convert this note to a midi note<DD><CODE>midiNote</CODE> - used to figure out the accidental and octave
+<DT><B>Parameters:</B><DD><CODE>midiNote</CODE> - used to figure out the accidental and octave
 <DT><B>Returns:</B><DD>the guido string</DL>
 </DD>
 </DL>

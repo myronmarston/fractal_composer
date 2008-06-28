@@ -311,11 +311,15 @@ public class VoiceSection implements Subscriber {
      *         germ
      */
     private NoteList generateVoiceSectionResult() {
-        NoteList germ = this.getVoice().getFractalPiece().getGerm();
+        NoteList clonedGerm = (NoteList) this.getVoice().getFractalPiece().getGerm().clone();
+        
+        Scale sectionScale = this.getSection().getScale();
+        Scale scaleToUse = (sectionScale == null ? this.getSection().getFractalPiece().getScale() : sectionScale);
+        clonedGerm.updateScale(scaleToUse);
         
         if (this.getRest()) {            
             // scale the duration according to the speed of this voice...
-            Fraction duration = germ.getDuration();            
+            Fraction duration = clonedGerm.getDuration();            
             duration = duration.dividedBy(this.getVoiceSettings().getSpeedScaleFactor());
             
             // create a note list of a single rest, the duration of the germ            
@@ -324,15 +328,8 @@ public class VoiceSection implements Subscriber {
             return restResult;
         }
         
-        NoteList temp = this.getSectionSettings().applySettingsToNoteList(germ);
-        temp = this.getVoiceSettings().applySettingsToNoteList(temp);  
-                        
-        Scale cachedScale = this.getSection().getScale();        
-        for (Note n : temp) {
-            // we should never have a scale already set...
-            assert n.getScale() == null : n.getScale();
-            n.setScale(cachedScale);
-        }
+        NoteList temp = this.getSectionSettings().applySettingsToNoteList(clonedGerm);
+        temp = this.getVoiceSettings().applySettingsToNoteList(temp);            
         
         return temp;
     }

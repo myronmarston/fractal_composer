@@ -98,48 +98,7 @@ public class Note implements Cloneable {
      * Default constructor.
      */
     public Note() {}
-                
-    /**
-     * Constructor.
-     * 
-     * @param scaleStep number of scale steps above the tonic; 0 = tonic, 
-     *        7 = octave, 9 = third an octave above, etc.
-     * @param octave which octave the note should be in.  0 begins the first 
-     *        octave in Midi that contains the tonic.
-     * @param chromaticAdjustment the number of half steps to adjust from the
-     *        diatonic note; used if this note is an accidental
-     * @param duration how long the note should last, in whole notes
-     * @param volume how loud the note should be (0-127)
-     * @deprecated Use the override that takes a letter number
-     */
-    @Deprecated
-    public Note(int scaleStep, int octave, int chromaticAdjustment, Fraction duration, int volume) {
-        this(0, scaleStep, octave, chromaticAdjustment, duration, volume, null, 0);
-    }   
-    
-    /**
-     * Constructor.
-     * 
-     * @param scaleStep number of scale steps above the tonic; 0 = tonic, 
-     *        7 = octave, 9 = third an octave above, etc.
-     * @param octave which octave the note should be in.  0 begins the first 
-     *        octave in Midi that contains the tonic.
-     * @param chromaticAdjustment the number of half steps to adjust from the
-     *        diatonic note; used if this note is an accidental
-     * @param duration how long the note should last, in whole notes
-     * @param volume how loud the note should be (0-127)
-     * @param scale the scale to use for this note; if this is non-null, it
-     *        will be used rather than the scale passed to any of this object's
-     *        methods
-     * @param segmentChromaticAdjustment additional chromatic adjustment for a
-     *        segment of the piece; used to deal with chromatic self-similarity     
-     * @deprecated Use the constructor that takes a letter number parameter
-     */
-    @Deprecated
-    public Note(int scaleStep, int octave, int chromaticAdjustment, Fraction duration, int volume, Scale scale, int segmentChromaticAdjustment) {
-        this(0, scaleStep, octave, chromaticAdjustment, duration, volume, scale, segmentChromaticAdjustment);
-    }
-    
+     
     /**
      * Constructor.
      * 
@@ -158,14 +117,14 @@ public class Note implements Cloneable {
      * @param segmentChromaticAdjustment additional chromatic adjustment for a
      *        segment of the piece; used to deal with chromatic self-similarity     
      */ 
-    public Note(int letterNumber, int scaleStep, int octave, int chromaticAdjustment, Fraction duration, int volume, Scale scale, int segmentChromaticAdjustment) {
+    public Note(int letterNumber, int scaleStep, int octave, int chromaticAdjustment, Fraction duration, int volume, Scale scale, int segmentChromaticAdjustment) {        
         this.setLetterNumber(letterNumber);
         this.setScaleStep(scaleStep);
         this.setOctave(octave);
         this.setChromaticAdjustment(chromaticAdjustment);
         this.setDuration(duration);
-        this.setVolume(volume);        
-        this.setScale(scale);
+        this.setVolume(volume);            
+        this.setScale(scale); 
         this.setSegmentChromaticAdjustment(segmentChromaticAdjustment);
     }        
      
@@ -293,22 +252,22 @@ public class Note implements Cloneable {
     }
 
     /**
-     * Gets the scale for this note.  This will be used in place of any scale
-     * passed to any of this methods.
+     * Gets the scale for this note.  
      * 
      * @return the scale
      */
     public Scale getScale() {
+        assert (this.isRest() || scale != null) : "The note did not have a scale as expected.";
         return scale;
     }
 
     /**
-     * Sets the scale for this note.  This will be used in place of any scale
-     * passed to any of this methods.
+     * Sets the scale for this note. 
      * 
      * @param scale the scale
      */
     public void setScale(Scale scale) {
+        assert (this.isRest() || scale != null) : "The note did not have a scale as expected.";
         this.scale = scale;
     }        
     
@@ -388,6 +347,30 @@ public class Note implements Cloneable {
     }
     
     /**
+     * Adjusts the scale step, letter number and octave for a transformer.  The
+     * passed values should be given as deltas, rather than as new values.  The
+     * letter number will be appropriately adjusted if a scale with less than 7
+     * notes is used so that diatonic notes use the correct letter number.
+     * 
+     * @param scaleStepAdjustment a value to add to the scale step
+     * @param letterNumberAdjustment a value to add to the letter number
+     * @param octaveAdjustment a value to add to the octave
+     */
+    public void performTransformerAdjustment(int scaleStepAdjustment, int letterNumberAdjustment, int octaveAdjustment) {
+        assert !this.isRest() : "The performTransformationAdjustment should not be called on a rest.";
+        this.setScaleStep(this.getScaleStep() + scaleStepAdjustment);
+        this.setLetterNumber(this.getLetterNumber() + letterNumberAdjustment);
+        this.setOctave(this.getOctave() + octaveAdjustment);
+        
+        if (this.getScale().getScaleStepArray().length < NoteName.NUM_LETTER_NAMES && 
+            this.getChromaticAdjustment() == 0 && this.getSegmentChromaticAdjustment() == 0) {
+
+            int normalizedScaleStep = this.getNormalizedNote().getScaleStep();
+            this.setLetterNumber(this.getScale().getLetterNumberArray()[normalizedScaleStep]);
+        }         
+    }
+    
+    /**
      * Gets a regular expression pattern that can be used to parse a note string.
      * 
      * @return the regEx pattern
@@ -441,6 +424,7 @@ public class Note implements Cloneable {
                 octave += (noteName.getNoteNumber() - noteName.getNormalizedNoteNumber()) / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE;
                 
                 newNote = new Note();
+                newNote.setScale(scale);
                 newNote.setDuration(duration);
                 newNote.setVolume(volume);
                 scale.setNotePitchValues(newNote, noteName);
@@ -462,15 +446,15 @@ public class Note implements Cloneable {
                     newNote.setOctave(octave);                                
                 } else {                    
                     Note testNote = parseNoteString(noteString, Scale.DEFAULT, defaultDuration, defaultVolume);
-                    int midiPitchNum = testNote.getMidiPitchNumber(Scale.DEFAULT, true); 
-                    int midiPitchNumWithoutOctave = newNote.getMidiPitchNumber(scale, true);
+                    int midiPitchNum = testNote.getMidiPitchNumber(true); 
+                    int midiPitchNumWithoutOctave = newNote.getMidiPitchNumber(true);
                     int difference = midiPitchNum - midiPitchNumWithoutOctave;
                     
                     assert difference % Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE == 0 : difference;
                     octave = difference / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE;
                     newNote.setOctave(octave);
                     
-                    assert newNote.getMidiPitchNumber(scale, true) == midiPitchNum;
+                    assert newNote.getMidiPitchNumber(true) == midiPitchNum;
                 }                
             }            
             
@@ -592,14 +576,13 @@ public class Note implements Cloneable {
      * This method "normalizes" the note--adjusts its scaleStep and octave so 
      * that it is the same note, but the scaleStep is between 0 and the number 
      * of scale steps.
-     * 
-     * @param scale the scale to use as a reference for normalization     
+     *      
      * @return the normalized note
      */
-    public Note getNormalizedNote(Scale scale) {
-        Scale scaleToUse = this.getScaleToUse(scale);
+    public Note getNormalizedNote() {        
         Note tempNote = (Note) this.clone();
-        int numScaleStepsInOctave = scaleToUse.getScaleStepArray().length; // cache it
+        if (tempNote.isRest()) return tempNote; // rests are always normalized!
+        int numScaleStepsInOctave = this.getScale().getScaleStepArray().length; // cache it
         
         // put the note's scaleStep into the normal range (0..numScaleSteps - 1), adjusting the octaves.
         while(tempNote.getScaleStep() < 0) {
@@ -640,19 +623,17 @@ public class Note implements Cloneable {
     /**
      * Gets the midi pitch number for this note, taking into account the scale
      * step, octave and chromatic adjustment.
-     * 
-     * @param scale the scale to use to determine the pitch
+     *      
      * @param keepExactPitch true to keep the exact pitch specified by the note
      *        parameters; false to allow the chromaticAdjustment to be changed
      *        if it would create a note that is already found in the scale
      * @return the midi pitch number
      */
-    private int getMidiPitchNumber(Scale scale, boolean keepExactPitch) {
+    private int getMidiPitchNumber(boolean keepExactPitch) {
         if (this.isRest()) return 0;
-        
-        Scale scaleToUse = this.getScaleToUse(scale);
-        int[] scaleSteps = scaleToUse.getScaleStepArray(); // cache it
-        Note normalizedNote = this.getNormalizedNote(scaleToUse);        
+                
+        int[] scaleSteps = this.getScale().getScaleStepArray(); // cache it
+        Note normalizedNote = this.getNormalizedNote();        
         int chromaticAdj = normalizedNote.getChromaticAdjustment();
         int chromaticAdjDecrementer = chromaticAdj > 0 ? 1 : -1;
         int testPitchNum;
@@ -683,14 +664,13 @@ public class Note implements Cloneable {
         return scaleSteps[normalizedNote.getScaleStep()]       // half steps above tonic
                 + chromaticAdj                                 // the note's chromatic adjustment
                 + this.getSegmentChromaticAdjustment() // chromatic adjustment for the segment
-                + scaleToUse.getKeyName().getMidiPitchNumberAtOctave(normalizedNote.getOctave()); // take into account the octave
+                + this.getScale().getKeyName().getMidiPitchNumberAtOctave(normalizedNote.getOctave()); // take into account the octave
     }
     
     /**
      * Converts the note to a Midi Note, that can then be used to get the
      * actual Midi note on and note off events.
-     * 
-     * @param scale the scale to use
+     *      
      * @param startTime the time this note should be played
      * @param midiTickResolution the number of ticks per whole note for the
      *        midi sequence
@@ -700,45 +680,31 @@ public class Note implements Cloneable {
      *        if it would create a note that is already found in the scale
      * @return the MidiNote
      */
-    public MidiNote convertToMidiNote(Scale scale, Fraction startTime, int midiTickResolution, int channel, boolean keepExactPitch) {        
+    public MidiNote convertToMidiNote(Fraction startTime, int midiTickResolution, int channel, boolean keepExactPitch) {        
         MidiNote midiNote = new MidiNote();       
             
         midiNote.setDuration(convertWholeNotesToTicks(this.getDuration(), midiTickResolution));
         midiNote.setStartTime(convertWholeNotesToTicks(startTime, midiTickResolution));
         midiNote.setVelocity(this.getVolume());        
-        midiNote.setPitch(this.getMidiPitchNumber(scale, keepExactPitch));
+        midiNote.setPitch(this.getMidiPitchNumber(keepExactPitch));
         midiNote.setChannel(channel);
         
         return midiNote;
-    }   
-    
-    /**
-     * Gets the scale that should be used for this note.
-     * 
-     * @param defaultScale the scale that should be used if there is not already
-     *        one set on the segment settings
-     * @return the scale that should be used
-     */
-    private Scale getScaleToUse(Scale defaultScale) {
-        return (this.getScale() == null ? defaultScale : this.getScale());        
-    }
+    }      
     
     /**
      * Gets a string representing this note in GUIDO notation.
-     * 
-     * @param scale the scale used to convert this note to a midi note
+     *      
      * @param midiNote used to figure out the accidental and octave
      * @return the guido string
      */
-    public String toGuidoString(Scale scale, MidiNote midiNote) { 
-        // TODO: this doesn't work properly for pentatonic scales
+    public String toGuidoString(MidiNote midiNote) {         
         if (this.isRest()) return "_" + this.getDuration().toGuidoDurationString();        
-        
-        Scale scaleToUse = this.getScaleToUse(scale);        
-        Note normalizedNote = this.getNormalizedNote(scaleToUse);        
+                       
+        Note normalizedNote = this.getNormalizedNote();        
         
         // get the letter
-        NoteName letterNoteName = scaleToUse.getKeyName().getNaturalNoteNameForLetterNumber(normalizedNote.getLetterNumber());
+        NoteName letterNoteName = this.getScale().getKeyName().getNaturalNoteNameForLetterNumber(normalizedNote.getLetterNumber());        
         char letter = letterNoteName.getLetter(true);
                 
         // get the chromatic adjustment

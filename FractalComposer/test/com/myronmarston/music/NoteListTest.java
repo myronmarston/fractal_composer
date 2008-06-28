@@ -19,16 +19,8 @@
 
 package com.myronmarston.music;
 
-import com.myronmarston.music.scales.InvalidKeySignatureException;
-import com.myronmarston.music.scales.MajorScale;
-import com.myronmarston.music.scales.Scale;
-
-import com.myronmarston.util.Fraction;
-        
-import java.util.*;
-
-import javax.sound.midi.Track;
-import javax.sound.midi.Sequence;
+import com.myronmarston.music.scales.*;
+import com.myronmarston.util.Fraction;        
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -40,7 +32,7 @@ public class NoteListTest {
     
     @Test
     public void getFirstAudibleNote() {
-        Note soundedNote = new Note(2, 2, 2, 0, new Fraction(1, 1), 64, null, 0);
+        Note soundedNote = new Note(2, 2, 2, 0, new Fraction(1, 1), 64, Scale.DEFAULT, 0);
         NoteList notes = new NoteList();
         notes.add(Note.createRest(new Fraction(2, 1))); // a rest
         notes.add(soundedNote);
@@ -51,24 +43,25 @@ public class NoteListTest {
     public void getDuration() {
         NoteList germ = new NoteList();
         
-        germ.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
-        germ.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        germ.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 64, null, 0));
-        germ.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
+        germ.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
+        germ.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        germ.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        germ.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
         
         assertEquals(new Fraction(3, 1), germ.getDuration());
     }    
    
     @Test
     public void parseNoteListString() throws InvalidKeySignatureException, NoteStringParseException { 
-        NoteList germ = NoteList.parseNoteListString("D4,1/4,MF R,1/8 E4 F#4,F D4,1/4", new MajorScale(NoteName.D));
+        Scale s = new MajorScale(NoteName.D);
+        NoteList germ = NoteList.parseNoteListString("D4,1/4,MF R,1/8 E4 F#4,F D4,1/4", s);
         
         NoteList expected = new NoteList();
-        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
+        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), s, 0));
         expected.add(Note.createRest(new Fraction(1,8)));
-        expected.add(new Note(1, 1, 4, 0, new Fraction(1, 8), Dynamic.MF.getMidiVolume(), null, 0));
-        expected.add(new Note(2, 2, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume(), null, 0));
-        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), null, 0));
+        expected.add(new Note(1, 1, 4, 0, new Fraction(1, 8), Dynamic.MF.getMidiVolume(), s, 0));
+        expected.add(new Note(2, 2, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume(), s, 0));
+        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), s, 0));
         
         assertNoteListsEqual(expected, germ);             
     }
@@ -86,12 +79,23 @@ public class NoteListTest {
             assertTrue(nl.get(i) != cloned.get(i));
         }                
     }
+    
+    @Test
+    public void updateScale() throws Exception {
+        Scale s1 = new MajorScale(NoteName.G);
+        NoteList nl = NoteList.parseNoteListString("G4 A4 B4", s1);
+        for (Note n : nl) {
+            assertEquals(s1, n.getScale());
+        }
+        
+        Scale s2 = new MajorPentatonicScale(NoteName.Bb);
+        nl.updateScale(s2);
+        for (Note n : nl) {
+            assertEquals(s2, n.getScale());
+        }
+    }
                 
     public static void assertNoteListsEqual(NoteList expected, NoteList actual) {        
-        assertNoteListsEqual(expected, actual, null);
-    }
-    
-    public static void assertNoteListsEqual(NoteList expected, NoteList actual, Scale scaleForNormalization) {        
         assertEquals(expected.size(), actual.size());
         
         Instrument expectedInstr = (expected.getInstrument() == null ? Instrument.getDefault() : expected.getInstrument());
@@ -103,12 +107,11 @@ public class NoteListTest {
         for (int i = 0; i < actual.size(); i++) {
             Note expectedNote = expected.get(i);
             Note actualNote = actual.get(i);
-            
-            if (scaleForNormalization != null) {
-                expectedNote = expectedNote.getNormalizedNote(scaleForNormalization);
-                actualNote = actualNote.getNormalizedNote(scaleForNormalization);
-            }
+                        
+            expectedNote = expectedNote.getNormalizedNote();
+            actualNote = actualNote.getNormalizedNote();
+                
             assertEquals(expectedNote, actualNote);
-        }                                
-    }
+        }   
+    }            
 }

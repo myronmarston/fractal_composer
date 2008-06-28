@@ -39,15 +39,14 @@ public class InversionTransformer implements Transformer {
             newNote = (Note) inputNote.clone();
             
             if (!newNote.isRest()) {
-                // invert the scale step...
-                newNote.setScaleStep(firstNote.getScaleStep() - newNote.getScaleStep());
                 
-                // invert the letter number...
-                newNote.setLetterNumber(firstNote.getLetterNumber() - newNote.getLetterNumber());
-
-                // invert the octave.  This sets the octave to be equally distant from 
-                // the first note's octave, but in the opposite direction.
-                newNote.setOctave(firstNote.getOctave() + (firstNote.getOctave() - newNote.getOctave()));
+                // adjust the scale step, letter number and octave.
+                // we double the values because we need to return to the first note
+                // and then go that distance past it--which is the same as double the distance
+                newNote.performTransformerAdjustment(
+                    2 * (firstNote.getScaleStep() - newNote.getScaleStep()), 
+                    2 * (firstNote.getLetterNumber() - newNote.getLetterNumber()), 
+                    2 * (firstNote.getOctave() - newNote.getOctave()));
 
                 // invert the chromatic adjustment...
                 newNote.setChromaticAdjustment(newNote.getChromaticAdjustment() * -1);

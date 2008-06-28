@@ -20,6 +20,7 @@
 package com.myronmarston.music.transformers;
 
 import com.myronmarston.music.*;
+import com.myronmarston.music.scales.*;
 import com.myronmarston.util.Fraction;
 import org.junit.Test;
 import static com.myronmarston.music.transformers.TransformerTest.*;
@@ -33,36 +34,36 @@ public class SelfSimilarityTransformerTest {
     @Test
     public void selfSimilarityTransformer() {
         NoteList input = new NoteList();
-        input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
-        input.add(new Note(2, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        input.add(new Note(1, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
-        input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
+        input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
+        input.add(new Note(2, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        input.add(new Note(1, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
         input.add(Note.createRest(new Fraction(1, 2)));
         
         Transformer t = new SelfSimilarityTransformer(true, false, false, 1);
         NoteList expectedOutput = new NoteList();
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
-        expectedOutput.add(new Note(2, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(1, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         
-        expectedOutput.add(new Note(2, 1, 4, 0, new Fraction(1, 1), 96, null, 0));
-        expectedOutput.add(new Note(4, 2, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(2, 1, 4, 0, new Fraction(1, 1), 96, null, 0));
+        expectedOutput.add(new Note(2, 1, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(4, 2, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 1, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         
-        expectedOutput.add(new Note(1, 2, 4, 0, new Fraction(1, 1), 96, null, 0));
-        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(2, 4, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(1, 2, 4, 0, new Fraction(1, 1), 96, null, 0));
+        expectedOutput.add(new Note(1, 2, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 4, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 2, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
-        expectedOutput.add(new Note(2, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(1, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         
         expectedOutput.add(Note.createRest(new Fraction(7, 2)));        
@@ -77,28 +78,28 @@ public class SelfSimilarityTransformerTest {
         input.get(3).setLetterNumber(0);
         t = new SelfSimilarityTransformer(true, true, false, 1);
         expectedOutput.clear();
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 96, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 64, null, 0));
-        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 112, null, 0));
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 96, null, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 96, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 96, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 4)));
         
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 96, null, 0));
-        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 64, null, 0));
-        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 4), 112, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 96, null, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 96, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 4), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 96, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 4)));
         
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         
         expectedOutput.add(Note.createRest(new Fraction(7, 4)));
@@ -107,28 +108,28 @@ public class SelfSimilarityTransformerTest {
         
         t = new SelfSimilarityTransformer(false, true, true, 1);
         expectedOutput.clear();
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 4), 43, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 75, null, 0));
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 2), 64, null, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 4), 43, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 75, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 4)));
         
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 4), 97, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 120, null, 0));
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 2), 112, null, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 4), 97, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 120, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 4)));
         
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         
         expectedOutput.add(Note.createRest(new Fraction(7, 4)));
@@ -137,10 +138,10 @@ public class SelfSimilarityTransformerTest {
         
         t = new SelfSimilarityTransformer(false, false, false, 1);
         expectedOutput.clear();
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
     }
@@ -148,112 +149,112 @@ public class SelfSimilarityTransformerTest {
     @Test
     public void multipleIterations() {
         NoteList input = new NoteList();
-        input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
-        input.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        input.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
-        input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
+        input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
+        input.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        input.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
         input.add(Note.createRest(new Fraction(1, 2)));
         
         Transformer t = new SelfSimilarityTransformer(true, true, true, 2);
         NoteList expectedOutput = new NoteList();
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 43, null, 0));
-        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 75, null, 0));
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 43, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 75, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 4)));
         
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 97, null, 0));
-        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 4), 120, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 97, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 4), 120, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 4)));
         
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));   
         
         expectedOutput.add(Note.createRest(new Fraction(7, 4)));
         
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 43, null, 0));
-        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 75, null, 0));
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 43, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 75, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 4)));
                 
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 43, null, 0));
-        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 8), 29, null, 0));
-        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 8), 50, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 43, null, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 43, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 8), 29, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 8), 50, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 43, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 8)));
         
-        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 75, null, 0));
-        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 8), 65, null, 0));
-        expectedOutput.add(new Note(5, 5, 4, 0, new Fraction(1, 8), 80, null, 0));
-        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 75, null, 0));
+        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 75, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 8), 65, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(5, 5, 4, 0, new Fraction(1, 8), 80, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 75, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 8)));
         
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 43, null, 0));
-        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 75, null, 0));
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 43, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 75, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 4)));        
         expectedOutput.add(Note.createRest(new Fraction(7, 8)));                
         
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 97, null, 0));
-        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 4), 120, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 97, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 4), 120, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 4)));
         
-        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 97, null, 0));
-        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 8), 86, null, 0));
-        expectedOutput.add(new Note(5, 5, 4, 0, new Fraction(1, 8), 102, null, 0));
-        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 97, null, 0));
+        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 97, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 8), 86, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(5, 5, 4, 0, new Fraction(1, 8), 102, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 97, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 8)));
         
-        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 4), 120, null, 0));
-        expectedOutput.add(new Note(5, 5, 4, 0, new Fraction(1, 8), 112, null, 0));
-        expectedOutput.add(new Note(6, 6, 4, 0, new Fraction(1, 8), 124, null, 0));
-        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 4), 120, null, 0));
+        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 4), 120, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(5, 5, 4, 0, new Fraction(1, 8), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(6, 6, 4, 0, new Fraction(1, 8), 124, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 4), 120, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 8)));
         
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 97, null, 0));
-        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 4), 120, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 97, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 4), 120, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 4)));        
         expectedOutput.add(Note.createRest(new Fraction(7, 8))); 
         
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));
         
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 43, null, 0));
-        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 75, null, 0));
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 43, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 75, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 4)));
         
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 97, null, 0));
-        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 4), 120, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(3, 3, 4, 0, new Fraction(1, 4), 97, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 4), 120, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 4)));
         
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
-        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, null, 0));
-        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, null, 0));
-        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, null, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
+        expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));        
         expectedOutput.add(Note.createRest(new Fraction(7, 4)));
         expectedOutput.add(Note.createRest(new Fraction(49, 8)));

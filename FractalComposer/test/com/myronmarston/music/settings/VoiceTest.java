@@ -20,6 +20,7 @@
 package com.myronmarston.music.settings;
 
 import com.myronmarston.music.*;
+import com.myronmarston.music.scales.*;
 import com.myronmarston.util.Fraction;        
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -33,10 +34,11 @@ public class VoiceTest {
     @Test
     public void generateVoiceGerm() {
         FractalPiece fp = new FractalPiece();
-        fp.getGerm().add(new Note(0, 4, 0, new Fraction(1, 1), 96));
-        fp.getGerm().add(new Note(1, 4, 0, new Fraction(1, 2), 64));
-        fp.getGerm().add(new Note(2, 4, 0, new Fraction(1, 2), 64));
-        fp.getGerm().add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        Scale scale = fp.getScale();
+        fp.getGerm().add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));
+        fp.getGerm().add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, scale, 0));
+        fp.getGerm().add(new Note(2, 2, 4, 0, new Fraction(1, 2), 64, scale, 0));
+        fp.getGerm().add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));
         
         Voice v1 = fp.createVoice();
         v1.getSettings().setOctaveAdjustment(2);
@@ -44,36 +46,37 @@ public class VoiceTest {
         
         NoteList expected = new NoteList();
         expected.setInstrument(Instrument.getDefault());
-        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
-        expected.add(new Note(1, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(2, 6, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(0, 6, 0, new Fraction(1, 4), 96));
+        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
         NoteListTest.assertNoteListsEqual(expected, v1.getModifiedGerm());
         
         v1.getSettings().setSpeedScaleFactor(new Fraction(1, 2));
         expected.clear();
-        expected.add(new Note(0, 6, 0, new Fraction(2, 1), 96));
-        expected.add(new Note(1, 6, 0, new Fraction(1, 1), 64));
-        expected.add(new Note(2, 6, 0, new Fraction(1, 1), 64));
-        expected.add(new Note(0, 6, 0, new Fraction(2, 1), 96));
+        expected.add(new Note(0, 0, 6, 0, new Fraction(2, 1), 96, scale, 0));
+        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 1), 64, scale, 0));
+        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 1), 64, scale, 0));
+        expected.add(new Note(0, 0, 6, 0, new Fraction(2, 1), 96, scale, 0));
         NoteListTest.assertNoteListsEqual(expected, v1.getModifiedGerm());
         
         v1.getSettings().setOctaveAdjustment(-1);
         expected.clear();
-        expected.add(new Note(0, 3, 0, new Fraction(2, 1), 96));
-        expected.add(new Note(1, 3, 0, new Fraction(1, 1), 64));
-        expected.add(new Note(2, 3, 0, new Fraction(1, 1), 64));
-        expected.add(new Note(0, 3, 0, new Fraction(2, 1), 96));
+        expected.add(new Note(0, 0, 3, 0, new Fraction(2, 1), 96, scale, 0));
+        expected.add(new Note(1, 1, 3, 0, new Fraction(1, 1), 64, scale, 0));
+        expected.add(new Note(2, 2, 3, 0, new Fraction(1, 1), 64, scale, 0));
+        expected.add(new Note(0, 0, 3, 0, new Fraction(2, 1), 96, scale, 0));
         NoteListTest.assertNoteListsEqual(expected, v1.getModifiedGerm());
     }
           
     @Test
     public void getEntireVoiceResult() {
         FractalPiece fp = new FractalPiece();
-        fp.getGerm().add(new Note(0, 4, 0, new Fraction(1, 1), 96));
-        fp.getGerm().add(new Note(1, 4, 0, new Fraction(1, 2), 64));
-        fp.getGerm().add(new Note(2, 4, 0, new Fraction(1, 2), 64));
-        fp.getGerm().add(new Note(0, 4, 0, new Fraction(1, 1), 96));
+        Scale scale = fp.getScale();
+        fp.getGerm().add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));
+        fp.getGerm().add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, scale, 0));
+        fp.getGerm().add(new Note(2, 2, 4, 0, new Fraction(1, 2), 64, scale, 0));
+        fp.getGerm().add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));
         
         Voice v1 = fp.createVoice();                
         Voice v2 = fp.createVoice();
@@ -109,88 +112,88 @@ public class VoiceTest {
         
         NoteList expected = new NoteList();
         expected.setInstrument(Instrument.getDefault());
-        expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
-        expected.add(new Note(1, 5, 0, new Fraction(1, 4), 64));
-        expected.add(new Note(2, 5, 0, new Fraction(1, 4), 64));
-        expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
+        expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
+        expected.add(new Note(1, 1, 5, 0, new Fraction(1, 4), 64, scale, 0));
+        expected.add(new Note(2, 2, 5, 0, new Fraction(1, 4), 64, scale, 0));
+        expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
         
-        expected.add(new Note(1, 5, 0, new Fraction(1, 4), 96));
-        expected.add(new Note(2, 5, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(3, 5, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(1, 5, 0, new Fraction(1, 4), 96));
+        expected.add(new Note(1, 1, 5, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.add(new Note(2, 2, 5, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(3, 3, 5, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(1, 1, 5, 0, new Fraction(1, 4), 96, scale, 0));
         
-        expected.add(new Note(2, 5, 0, new Fraction(1, 4), 96));
-        expected.add(new Note(3, 5, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(4, 5, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(2, 5, 0, new Fraction(1, 4), 96));
+        expected.add(new Note(2, 2, 5, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.add(new Note(3, 3, 5, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(4, 4, 5, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(2, 2, 5, 0, new Fraction(1, 4), 96, scale, 0));
         
-        expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
-        expected.add(new Note(1, 5, 0, new Fraction(1, 4), 64));
-        expected.add(new Note(2, 5, 0, new Fraction(1, 4), 64));
-        expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
+        expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
+        expected.add(new Note(1, 1, 5, 0, new Fraction(1, 4), 64, scale, 0));
+        expected.add(new Note(2, 2, 5, 0, new Fraction(1, 4), 64, scale, 0));
+        expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
         
         // repeat that whole thing again since this voice is twice as fast
-        expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
-        expected.add(new Note(1, 5, 0, new Fraction(1, 4), 64));
-        expected.add(new Note(2, 5, 0, new Fraction(1, 4), 64));
-        expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
+        expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
+        expected.add(new Note(1, 1, 5, 0, new Fraction(1, 4), 64, scale, 0));
+        expected.add(new Note(2, 2, 5, 0, new Fraction(1, 4), 64, scale, 0));
+        expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
         
-        expected.add(new Note(1, 5, 0, new Fraction(1, 4), 96));
-        expected.add(new Note(2, 5, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(3, 5, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(1, 5, 0, new Fraction(1, 4), 96));
+        expected.add(new Note(1, 1, 5, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.add(new Note(2, 2, 5, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(3, 3, 5, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(1, 1, 5, 0, new Fraction(1, 4), 96, scale, 0));
         
-        expected.add(new Note(2, 5, 0, new Fraction(1, 4), 96));
-        expected.add(new Note(3, 5, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(4, 5, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(2, 5, 0, new Fraction(1, 4), 96));
+        expected.add(new Note(2, 2, 5, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.add(new Note(3, 3, 5, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(4, 4, 5, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(2, 2, 5, 0, new Fraction(1, 4), 96, scale, 0));
         
-        expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
-        expected.add(new Note(1, 5, 0, new Fraction(1, 4), 64));
-        expected.add(new Note(2, 5, 0, new Fraction(1, 4), 64));
-        expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
+        expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
+        expected.add(new Note(1, 1, 5, 0, new Fraction(1, 4), 64, scale, 0));
+        expected.add(new Note(2, 2, 5, 0, new Fraction(1, 4), 64, scale, 0));
+        expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
         
         // now do the inversion...
-        expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
-        expected.add(new Note(-1, 5, 0, new Fraction(1, 4), 64));
-        expected.add(new Note(-2, 5, 0, new Fraction(1, 4), 64));
-        expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
+        expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
+        expected.add(new Note(-1, -1, 5, 0, new Fraction(1, 4), 64, scale, 0));
+        expected.add(new Note(-2, -2, 5, 0, new Fraction(1, 4), 64, scale, 0));
+        expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
         
-        expected.add(new Note(-1, 5, 0, new Fraction(1, 4), 96));
-        expected.add(new Note(-2, 5, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(-3, 5, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(-1, 5, 0, new Fraction(1, 4), 96));
+        expected.add(new Note(-1, -1, 5, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.add(new Note(-2, -2, 5, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(-3, -3, 5, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(-1, -1, 5, 0, new Fraction(1, 4), 96, scale, 0));
         
-        expected.add(new Note(-2, 5, 0, new Fraction(1, 4), 96));
-        expected.add(new Note(-3, 5, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(-4, 5, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(-2, 5, 0, new Fraction(1, 4), 96));
+        expected.add(new Note(-2, -2, 5, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.add(new Note(-3, -3, 5, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(-4, -4, 5, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(-2, -2, 5, 0, new Fraction(1, 4), 96, scale, 0));
         
-        expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
-        expected.add(new Note(-1, 5, 0, new Fraction(1, 4), 64));
-        expected.add(new Note(-2, 5, 0, new Fraction(1, 4), 64));
-        expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
+        expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
+        expected.add(new Note(-1, -1, 5, 0, new Fraction(1, 4), 64, scale, 0));
+        expected.add(new Note(-2, -2, 5, 0, new Fraction(1, 4), 64, scale, 0));
+        expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
         
         // and repeat the inversion once more...
-        expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
-        expected.add(new Note(-1, 5, 0, new Fraction(1, 4), 64));
-        expected.add(new Note(-2, 5, 0, new Fraction(1, 4), 64));
-        expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
+        expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
+        expected.add(new Note(-1, -1, 5, 0, new Fraction(1, 4), 64, scale, 0));
+        expected.add(new Note(-2, -2, 5, 0, new Fraction(1, 4), 64, scale, 0));
+        expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
         
-        expected.add(new Note(-1, 5, 0, new Fraction(1, 4), 96));
-        expected.add(new Note(-2, 5, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(-3, 5, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(-1, 5, 0, new Fraction(1, 4), 96));
+        expected.add(new Note(-1, -1, 5, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.add(new Note(-2, -2, 5, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(-3, -3, 5, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(-1, -1, 5, 0, new Fraction(1, 4), 96, scale, 0));
         
-        expected.add(new Note(-2, 5, 0, new Fraction(1, 4), 96));
-        expected.add(new Note(-3, 5, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(-4, 5, 0, new Fraction(1, 8), 64));
-        expected.add(new Note(-2, 5, 0, new Fraction(1, 4), 96));
+        expected.add(new Note(-2, -2, 5, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.add(new Note(-3, -3, 5, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(-4, -4, 5, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(-2, -2, 5, 0, new Fraction(1, 4), 96, scale, 0));
         
-        expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
-        expected.add(new Note(-1, 5, 0, new Fraction(1, 4), 64));
-        expected.add(new Note(-2, 5, 0, new Fraction(1, 4), 64));
-        expected.add(new Note(0, 5, 0, new Fraction(1, 2), 96));
+        expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
+        expected.add(new Note(-1, -1, 5, 0, new Fraction(1, 4), 64, scale, 0));
+        expected.add(new Note(-2, -2, 5, 0, new Fraction(1, 4), 64, scale, 0));
+        expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
         
         NoteListTest.assertNoteListsEqual(expected, v1.getEntireVoice());
     }        

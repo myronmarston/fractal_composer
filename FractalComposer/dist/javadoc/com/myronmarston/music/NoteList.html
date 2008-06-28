@@ -221,6 +221,14 @@ NoteList contains a sequence of notes.
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the instrument to use for this note list.</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#updateScale(com.myronmarston.music.scales.Scale)">updateScale</A></B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updates the scale on all the notes.</TD>
+</TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.util.ArrayList"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
@@ -397,6 +405,20 @@ public java.util.List&lt;<A HREF="../../../com/myronmarston/music/Note.html" tit
 <DD><DL>
 
 <DT><B>Returns:</B><DD>list of notes with normalized rests</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="updateScale(com.myronmarston.music.scales.Scale)"><!-- --></A><H3>
+updateScale</H3>
+<PRE>
+public void <B>updateScale</B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</PRE>
+<DL>
+<DD>Updates the scale on all the notes.  This should only be called when you
+ know that all the notes of this note list have the same note list.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>scale</CODE> - the new scale for the notes</DL>
 </DD>
 </DL>
 <HR>

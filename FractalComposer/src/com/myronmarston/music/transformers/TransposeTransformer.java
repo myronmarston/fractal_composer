@@ -72,8 +72,7 @@ public class TransposeTransformer implements Transformer {
             newNote = (Note) inputNote.clone();
             
             if (!newNote.isRest()) { // don't change a rest...
-                newNote.setScaleStep(newNote.getScaleStep() + this.transposeSteps);
-                newNote.setLetterNumber(newNote.getLetterNumber() + this.transposeLetterNumbers);
+                newNote.performTransformerAdjustment(this.transposeSteps, this.transposeLetterNumbers, 0);
             }            
             
             output.add(newNote);

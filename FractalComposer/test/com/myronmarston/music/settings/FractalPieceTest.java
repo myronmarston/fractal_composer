@@ -169,13 +169,14 @@ public class FractalPieceTest {
     @Test
     public void setGerm() throws NoteStringParseException, InvalidKeySignatureException {
         FractalPiece fp = new FractalPiece();
-        fp.setScale(new MajorScale(NoteName.G));
+        Scale scale = new MajorScale(NoteName.G);
+        fp.setScale(scale);
         
         NoteList expected = new NoteList();
-        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
-        expected.add(new Note(1, 1, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume(), null, 0));
-        expected.add(new Note(2, 2, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume(), null, 0));
-        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
+        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
+        expected.add(new Note(1, 1, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume(), scale, 0));
+        expected.add(new Note(2, 2, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume(), scale, 0));
+        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
         
         fp.setGermString("G4,1/4,MF A4,1/8,F B4,1/8,F G4,1/4,MF");
         NoteListTest.assertNoteListsEqual(expected, fp.getGerm());
@@ -218,32 +219,35 @@ public class FractalPieceTest {
     @Test
     public void setScaleReparsesGerm() throws InvalidKeySignatureException, NoteStringParseException {
         FractalPiece fp = new FractalPiece();
-        fp.setScale(new MajorScale(NoteName.C));
+        Scale scale = new MajorScale(NoteName.C);
+        fp.setScale(scale);
         fp.setGermString("C4 E4 F4 G4");
         
         NoteList expected = new NoteList();
-        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
-        expected.add(new Note(2, 2, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
-        expected.add(new Note(3, 3, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
-        expected.add(new Note(4, 4, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
+        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
+        expected.add(new Note(2, 2, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
+        expected.add(new Note(3, 3, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
+        expected.add(new Note(4, 4, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
         
         NoteListTest.assertNoteListsEqual(expected, fp.getGerm());
         
-        fp.setScale(new MajorScale(NoteName.G));
+        scale = new MajorScale(NoteName.G);
+        fp.setScale(scale);
         expected.clear();        
-        expected.add(new Note(3, 3, 3, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
-        expected.add(new Note(5, 5, 3, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
-        expected.add(new Note(6, 6, 3, -1, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
-        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
+        expected.add(new Note(3, 3, 3, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
+        expected.add(new Note(5, 5, 3, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
+        expected.add(new Note(6, 6, 3, -1, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
+        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
         
         NoteListTest.assertNoteListsEqual(expected, fp.getGerm());
         
-        fp.setScale(new ChromaticScale());
+        scale = new ChromaticScale();
+        fp.setScale(scale);
         expected.clear();        
-        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
-        expected.add(new Note(2, 4, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
-        expected.add(new Note(3, 5, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
-        expected.add(new Note(4, 7, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), null, 0));
+        expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
+        expected.add(new Note(2, 4, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
+        expected.add(new Note(3, 5, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
+        expected.add(new Note(4, 7, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
         
         NoteListTest.assertNoteListsEqual(expected, fp.getGerm());
     }
