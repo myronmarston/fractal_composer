@@ -98,8 +98,8 @@ public class NoteListTest {
     public static void assertNoteListsEqual(NoteList expected, NoteList actual) {        
         assertEquals(expected.size(), actual.size());
         
-        Instrument expectedInstr = (expected.getInstrument() == null ? Instrument.getDefault() : expected.getInstrument());
-        Instrument actualInstr = (actual.getInstrument() == null ? Instrument.getDefault() : actual.getInstrument());                
+        Instrument expectedInstr = (expected.getInstrument() == null ? Instrument.DEFAULT : expected.getInstrument());
+        Instrument actualInstr = (actual.getInstrument() == null ? Instrument.DEFAULT : actual.getInstrument());                
         assertEquals(expectedInstr, actualInstr);
         
         assertEquals(expected.getDuration(), actual.getDuration());

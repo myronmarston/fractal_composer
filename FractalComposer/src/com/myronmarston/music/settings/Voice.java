@@ -44,7 +44,7 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
     private NoteList modifiedGerm;      
     
     @Attribute
-    private String instrumentName = Instrument.getDefault().getName();
+    private String instrumentName = Instrument.DEFAULT.getName();
     
     @Element
     private final VoiceSettings settings;    

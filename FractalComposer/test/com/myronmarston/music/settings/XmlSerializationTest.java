@@ -89,7 +89,7 @@ public class XmlSerializationTest {
         Voice v = fpWithDefaultSettings.getVoices().get(0);
         
         String expected = 
-        "<voice id=\"0\" uniqueIndex=\"1\" instrumentName=\"Piano\">\n" +
+        "<voice id=\"0\" uniqueIndex=\"1\" instrumentName=\"Piano 1\">\n" +
         // fractal piece section that gets stripped goes here...
         "   <settings id=\"51\" octaveAdjustment=\"1\" readOnly=\"false\">\n" +
         "      <speedScaleFactor id=\"52\" numerator_=\"2\" denominator_=\"1\"/>\n" +

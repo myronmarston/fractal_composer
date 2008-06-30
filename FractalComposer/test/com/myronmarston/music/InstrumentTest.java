@@ -32,8 +32,8 @@ public class InstrumentTest {
     @Test
     public void testAVAILABLE_INSTRUMENTS() {
         // test the size and that it has some basic instruments
-        assertEquals(128, Instrument.AVAILABLE_INSTRUMENTS.size());
-        assertTrue(Instrument.AVAILABLE_INSTRUMENTS.contains("Piano"));
+        assertEquals(137, Instrument.AVAILABLE_INSTRUMENTS.size());
+        assertTrue(Instrument.AVAILABLE_INSTRUMENTS.contains("Piano 1"));
         assertTrue(Instrument.AVAILABLE_INSTRUMENTS.contains("Violin"));
         assertTrue(Instrument.AVAILABLE_INSTRUMENTS.contains("Viola"));
         assertTrue(Instrument.AVAILABLE_INSTRUMENTS.contains("Cello"));
@@ -41,14 +41,14 @@ public class InstrumentTest {
     }
     
     @Test
-    public void testGetDefault() {        
-        assertEquals("Piano", Instrument.getDefault().getName());        
+    public void testDEFAULT() {        
+        assertTrue(Instrument.DEFAULT.getName().contains("Piano"));        
     }
 
     @Test
     public void testGetInstrument() {        
-        assertEquals("Violin", Instrument.getInstrument("violin").getMidiInstrument().getName());
-        assertEquals("Trumpet", Instrument.getInstrument("TRUMPET").getMidiInstrument().getName());
+        assertEquals("Violin", Instrument.getInstrument("violin").getName());
+        assertEquals("Trumpet", Instrument.getInstrument("TRUMPET").getName());
         assertNull(Instrument.getInstrument("crazy instrument that doesn't exit"));
     }
 

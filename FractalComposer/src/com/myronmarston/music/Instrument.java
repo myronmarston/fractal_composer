@@ -35,6 +35,11 @@ public class Instrument {
     private static final Map<String, Instrument> INSTRUMENT_MAP;
     
     /**
+     * The default instrument (a piano).
+     */
+    public static final Instrument DEFAULT;
+    
+    /**
      * List of possible instruments.
      */
     public static final List<String> AVAILABLE_INSTRUMENTS;
@@ -49,31 +54,35 @@ public class Instrument {
     static {
         HashMap<String, Instrument> map = new HashMap<String, Instrument>();            
         List<String> list = new ArrayList<String>();
-        Synthesizer synth = null;
-        
-        try {
-            synth = MidiSystem.getSynthesizer();
-            synth.open();
-        } catch (MidiUnavailableException ex) {
-            throw new UndeclaredThrowableException(ex, "An error occurred while opening the midi system synthesizer.");
-        }
-
-        try {            
-            Soundbank bank = synth.getDefaultSoundbank();
-            for (javax.sound.midi.Instrument i : bank.getInstruments()) {
-                // there are several hundred instruments, but we only care about the
-                // "regular" ones like piano, violin, cello, etc.
-                if (i.getPatch().getBank() == REGULAR_INSTRUMENT_BANK) {                                        
-                    map.put(i.getName().toLowerCase(Locale.ENGLISH), new Instrument(i));
-                    list.add(i.getName());
-                }
+        String trimmedName;
+           
+        for (javax.sound.midi.Instrument i : AudioFileCreator.SOUNDBANK.getInstruments()) {
+            // there are several hundred instruments, but we only care about the
+            // "regular" ones like piano, violin, cello, etc.
+            if (i.getPatch().getBank() == REGULAR_INSTRUMENT_BANK) { 
+                trimmedName = i.getName().trim(); // many instruments have extra spaces on their name
+                map.put(trimmedName.toLowerCase(Locale.ENGLISH), new Instrument(i));
+                list.add(trimmedName);
             }
-        } finally {
-            synth.close();
-        }     
+        }
 
         INSTRUMENT_MAP = Collections.unmodifiableMap(map);            
         AVAILABLE_INSTRUMENTS = Collections.unmodifiableList(list);
+        
+        Instrument temp = null;
+        // try to get a piano as the default instrument...
+        for (String instrumentName : AVAILABLE_INSTRUMENTS) {
+            if (instrumentName.contains("Piano")) {
+                temp = getInstrument(instrumentName);
+                break;
+            }
+        }
+        
+        // otherwise, just pick the first instrument...
+        if (temp == null) temp = getInstrument(list.get(0));
+        
+        DEFAULT = temp;        
+        assert DEFAULT != null : "The default instrument could not be found.";
     }
 
     /**
@@ -86,22 +95,13 @@ public class Instrument {
     }        
     
     /**
-     * Gets the default instrument-piano.
-     * 
-     * @return the default instrument-piano
-     */
-    public static Instrument getDefault() {
-        return getInstrument("piano");
-    }
-    
-    /**
      * Gets the instrument with the given name.
      * 
      * @param name the case-insensitive name of the instrument
      * @return the instrument, or null, if none was found with the given name
      */    
     public static Instrument getInstrument(String name) {
-        return INSTRUMENT_MAP.get(name.toLowerCase(Locale.ENGLISH));
+        return INSTRUMENT_MAP.get(name.trim().toLowerCase(Locale.ENGLISH));
     }
     
     /**
@@ -110,7 +110,7 @@ public class Instrument {
      * @return the name of the instrument
      */
     public String getName() {
-        return this.midiInstrument.getName();
+        return this.midiInstrument.getName().trim();
     }
     
     /**

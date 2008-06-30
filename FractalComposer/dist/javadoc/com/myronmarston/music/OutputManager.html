@@ -153,6 +153,14 @@ Class that manages the outputs from FractalComposer, such as Midi files,
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/AudioFileCreator.html" title="class in com.myronmarston.music">AudioFileCreator</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getAudioFileCreator()">getAudioFileCreator</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the audio file creator.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getFractalPiece()">getFractalPiece</A></B>()</CODE>
 
@@ -202,6 +210,14 @@ Class that manages the outputs from FractalComposer, such as Midi files,
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getTempo()">getTempo</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the tempo of the music.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#saveGifImage(java.lang.String)">saveGifImage</A></B>(java.lang.String&nbsp;fileName)</CODE>
 
@@ -215,6 +231,22 @@ Class that manages the outputs from FractalComposer, such as Midi files,
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the midi sequence to a file.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#saveMp3File(java.lang.String)">saveMp3File</A></B>(java.lang.String&nbsp;fileName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the music to an mp3 file.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#saveWavFile(java.lang.String)">saveWavFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the music as a wav file.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -314,6 +346,20 @@ public javax.sound.midi.Sequence <B>getSequence</B>()</PRE>
 </DL>
 <HR>
 
+<A NAME="getTempo()"><!-- --></A><H3>
+getTempo</H3>
+<PRE>
+public int <B>getTempo</B>()</PRE>
+<DL>
+<DD>Gets the tempo of the music.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the tempo, in beats per minute</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="getSheetMusicCreator()"><!-- --></A><H3>
 getSheetMusicCreator</H3>
 <PRE>
@@ -324,6 +370,20 @@ protected <A HREF="../../../com/myronmarston/music/SheetMusicCreator.html" title
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the sheet music creator</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getAudioFileCreator()"><!-- --></A><H3>
+getAudioFileCreator</H3>
+<PRE>
+public <A HREF="../../../com/myronmarston/music/AudioFileCreator.html" title="class in com.myronmarston.music">AudioFileCreator</A> <B>getAudioFileCreator</B>()</PRE>
+<DL>
+<DD>Gets the audio file creator.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the audio file creator</DL>
 </DD>
 </DL>
 <HR>
@@ -412,6 +472,41 @@ public void <B>saveGifImage</B>(java.lang.String&nbsp;fileName)
 <DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name to save to
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.Exception</CODE> - if an error occurs</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="saveWavFile(java.lang.String)"><!-- --></A><H3>
+saveWavFile</H3>
+<PRE>
+public void <B>saveWavFile</B>(java.lang.String&nbsp;fileName)
+                 throws javax.sound.midi.MidiUnavailableException,
+                        java.io.IOException</PRE>
+<DL>
+<DD>Saves the music as a wav file.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name to save to
+<DT><B>Throws:</B>
+<DD><CODE>javax.sound.midi.MidiUnavailableException</CODE> - if there is a midi 
+         problem
+<DD><CODE>java.io.IOException</CODE> - if there is an i/o error</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="saveMp3File(java.lang.String)"><!-- --></A><H3>
+saveMp3File</H3>
+<PRE>
+public void <B>saveMp3File</B>(java.lang.String&nbsp;fileName)
+                 throws java.lang.Exception</PRE>
+<DL>
+<DD>Saves the music to an mp3 file.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name to save to
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.Exception</CODE> - if there is an error</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

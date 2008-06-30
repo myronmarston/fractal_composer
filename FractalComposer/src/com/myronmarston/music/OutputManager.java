@@ -38,9 +38,11 @@ import java.util.*;
 public class OutputManager {
     private StringBuilder guidoNotation = new StringBuilder();
     private Sequence sequence;
-    private FractalPiece fractalPiece;
+    private final FractalPiece fractalPiece;
+    private final int tempo;
     private Collection<NoteList> noteLists;
     private SheetMusicCreator sheetMusicCreator;
+    private AudioFileCreator audioFileCreator;
     private boolean includeTempoOnSheetMusic;
     private boolean includeInstrumentOnSheetMusic;
     
@@ -63,6 +65,15 @@ public class OutputManager {
     public Sequence getSequence() {        
         return sequence;
     }
+    
+    /**
+     * Gets the tempo of the music.
+     * 
+     * @return the tempo, in beats per minute
+     */
+    public int getTempo() {
+        return tempo;
+    }
 
     /**
      * Gets the sheet music creator.
@@ -72,7 +83,17 @@ public class OutputManager {
     protected SheetMusicCreator getSheetMusicCreator() {
         if (sheetMusicCreator == null) sheetMusicCreator = new SheetMusicCreator(this);
         return sheetMusicCreator;
-    }               
+    }
+
+    /**
+     * Gets the audio file creator.
+     * 
+     * @return the audio file creator
+     */
+    public AudioFileCreator getAudioFileCreator() {
+        if (audioFileCreator == null) audioFileCreator = new AudioFileCreator(this);
+        return audioFileCreator;
+    }        
     
     /**
      * Gets the collection of note lists that was used to generate the output.
@@ -121,13 +142,15 @@ public class OutputManager {
         this.noteLists = noteLists;
         this.includeTempoOnSheetMusic = includeTempoOnSheetMusic;
         this.includeInstrumentOnSheetMusic = includeInstrumentOnSheetMusic;
+        this.tempo = this.fractalPiece.getTempo();
         constructMidiSequence();
     }   
     
     /**
      * Creates the midi sequence and the guido notation
+     *      
      * @throws com.myronmarston.music.GermIsEmptyException if the germ is empty
-     */
+     */           
     private void constructMidiSequence() throws GermIsEmptyException {
         // this is only meant to be called once, to construct the sequence...
         assert this.sequence == null : sequence;
@@ -151,7 +174,7 @@ public class OutputManager {
         track1.add(this.fractalPiece.getScale().getKeySignature().getKeySignatureMidiEvent(0));                  
         addSectionKeySigEventsToTrack(track1, sequence.getResolution());
         track1.add(this.fractalPiece.getTimeSignature().getMidiTimeSignatureEvent());
-        track1.add(Tempo.getMidiTempoEvent(this.fractalPiece.getTempo()));
+        track1.add(Tempo.getMidiTempoEvent(this.getTempo()));
 
         // finally, create and fill our midi tracks...
         for (NoteList nl : noteLists) {                       
@@ -160,7 +183,7 @@ public class OutputManager {
         
         // remove the trailing comma...
         this.guidoNotation.deleteCharAt(this.guidoNotation.length() - 1);        
-        this.guidoNotation.append("}"); // end of the guido notation...        
+        this.guidoNotation.append("}"); // end of the guido notation...                
     }
     
     /**
@@ -201,7 +224,7 @@ public class OutputManager {
         Scale scale = fractalPiece.getScale();        
         
         // get a default instrument if we we're not passed one...
-        Instrument instrument = (noteList.getInstrument() == null ? Instrument.getDefault() : noteList.getInstrument());
+        Instrument instrument = (noteList.getInstrument() == null ? Instrument.DEFAULT : noteList.getInstrument());
         
         this.guidoNotation.append("[ ");
         this.guidoNotation.append("\\pageFormat<\"A4\",10pt,10pt,10pt,10pt> ");
@@ -347,5 +370,27 @@ public class OutputManager {
      */
     public void saveGifImage(String fileName) throws Exception {
         this.getSheetMusicCreator().saveAsGifImage(fileName);
+    }
+    
+    /**
+     * Saves the music as a wav file.
+     * 
+     * @param fileName the file name to save to
+     * @throws javax.sound.midi.MidiUnavailableException if there is a midi 
+     *         problem
+     * @throws java.io.IOException if there is an i/o error
+     */
+    public void saveWavFile(String fileName) throws MidiUnavailableException, IOException {
+        this.getAudioFileCreator().saveWavFile(fileName);        
+    }
+    
+    /**
+     * Saves the music to an mp3 file.
+     * 
+     * @param fileName the file name to save to
+     * @throws java.lang.Exception if there is an error
+     */
+    public void saveMp3File(String fileName) throws Exception {
+        this.getAudioFileCreator().saveMp3File(fileName);        
     }
 }

@@ -171,6 +171,15 @@ java.lang.Object
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Tempo.html#convertToMicrosecondsPerQuarterNote(int)">convertToMicrosecondsPerQuarterNote</A></B>(int&nbsp;tempoInBPM)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the given tempo, in beats per minute, to microseconds per 
+ quarter note.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;javax.sound.midi.MidiEvent</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/Tempo.html#getMidiTempoEvent(int)">getMidiTempoEvent</A></B>(int&nbsp;tempoInBPM)</CODE>
 
@@ -298,6 +307,21 @@ public static void <B>checkTempoValidity</B>(int&nbsp;tempo)
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.IllegalArgumentException</CODE> - if the tempo is not in the acceptable
          range</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="convertToMicrosecondsPerQuarterNote(int)"><!-- --></A><H3>
+convertToMicrosecondsPerQuarterNote</H3>
+<PRE>
+public static int <B>convertToMicrosecondsPerQuarterNote</B>(int&nbsp;tempoInBPM)</PRE>
+<DL>
+<DD>Converts the given tempo, in beats per minute, to microseconds per 
+ quarter note.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>tempoInBPM</CODE> - the tempo, in beats per minute
+<DT><B>Returns:</B><DD>the number of microseconds per quarter note for this tempo</DL>
 </DD>
 </DL>
 <HR>

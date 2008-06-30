@@ -45,7 +45,7 @@ public class VoiceTest {
         v1.getSettings().setSpeedScaleFactor(new Fraction(4, 1));
         
         NoteList expected = new NoteList();
-        expected.setInstrument(Instrument.getDefault());
+        expected.setInstrument(Instrument.DEFAULT);
         expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
         expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), 64, scale, 0));
         expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), 64, scale, 0));
@@ -111,7 +111,7 @@ public class VoiceTest {
         v2.getVoiceSections().get(1).getVoiceSettings().getSelfSimilaritySettings().setApplyToRhythm(true);
         
         NoteList expected = new NoteList();
-        expected.setInstrument(Instrument.getDefault());
+        expected.setInstrument(Instrument.DEFAULT);
         expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
         expected.add(new Note(1, 1, 5, 0, new Fraction(1, 4), 64, scale, 0));
         expected.add(new Note(2, 2, 5, 0, new Fraction(1, 4), 64, scale, 0));

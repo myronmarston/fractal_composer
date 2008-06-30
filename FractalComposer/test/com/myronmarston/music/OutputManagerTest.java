@@ -52,7 +52,7 @@ public class OutputManagerTest {
     @Test
     public void getGuidoNotation() throws Exception {
         String guidoNotationFormatString = "{[ \\pageFormat<\"A4\",10pt,10pt,10pt,10pt> %s\\key<\"C\"> \\meter<\"C\"> %s d1/4  e1/4  c1/4  ]}";
-        String instrumentString = "\\instr<\"Piano\", \"MIDI 0\"> ";
+        String instrumentString = "\\instr<\"Piano 1\", \"MIDI 0\"> ";
         String tempoString = "\\tempo<\"Andante\",\"1/4=90\"> ";
         String fullGuidoString = String.format(guidoNotationFormatString, instrumentString, tempoString);
         String noInstrOrTempoGuidoString = String.format(guidoNotationFormatString, "", "");
@@ -189,5 +189,21 @@ public class OutputManagerTest {
         NoteList nl = NoteList.parseNoteListString("C4,1/8 C4,1/4 C4,1/16 C4,3/8 C4,1/3", new MajorScale(NoteName.C));
         OutputManager om = new OutputManager(this.outputManager.getFractalPiece(), Arrays.asList(nl));
         assertEquals(48, om.getMidiTickResolution());
-    }        
+    }       
+    
+    @Test
+    public void tempoIsCached() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        fp.setTempo(87);
+        fp.setGermString("G4 A4");
+        fp.createDefaultSettings();
+        
+        OutputManager outputManager = fp.createPieceResultOutputManager();
+        assertEquals(87, outputManager.getTempo());
+        
+        fp.setTempo(117);
+        
+        // the output manager should have the tempo at the time it was created
+        assertEquals(87, outputManager.getTempo());
+    }
 }

@@ -127,6 +127,17 @@ public class Tempo {
     }
     
     /**
+     * Converts the given tempo, in beats per minute, to microseconds per 
+     * quarter note.
+     * 
+     * @param tempoInBPM the tempo, in beats per minute
+     * @return the number of microseconds per quarter note for this tempo
+     */
+    public static int convertToMicrosecondsPerQuarterNote(int tempoInBPM) {
+        return MICROSECONDS_PER_MINUTE / tempoInBPM;
+    }
+    
+    /**
      * Converts the tempo to a byte array for the midi event.
      * 
      * @param tempoInBPM the tempo, in beats per minute

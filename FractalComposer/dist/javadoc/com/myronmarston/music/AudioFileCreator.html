@@ -4,7 +4,7 @@
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <TITLE>
-Instrument
+AudioFileCreator
 </TITLE>
 
 
@@ -14,7 +14,7 @@ Instrument
 function windowTitle()
 {
     if (location.href.indexOf('is-external=true') == -1) {
-        parent.document.title="Instrument";
+        parent.document.title="AudioFileCreator";
     }
 }
 </SCRIPT>
@@ -39,7 +39,7 @@ function windowTitle()
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/Instrument.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/AudioFileCreator.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -54,11 +54,11 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../com/myronmarston/music/IncorrectNoteStringException.html" title="class in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;PREV CLASS&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/music/Dynamic.html" title="enum in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../index.html?com/myronmarston/music/Instrument.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="Instrument.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?com/myronmarston/music/AudioFileCreator.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="AudioFileCreator.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -75,9 +75,9 @@ function windowTitle()
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_top"></A>
@@ -89,19 +89,19 @@ DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A
 <FONT SIZE="-1">
 com.myronmarston.music</FONT>
 <BR>
-Class Instrument</H2>
+Class AudioFileCreator</H2>
 <PRE>
 java.lang.Object
-  <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.Instrument</B>
+  <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.AudioFileCreator</B>
 </PRE>
 <HR>
 <DL>
-<DT><PRE>public class <B>Instrument</B><DT>extends java.lang.Object</DL>
+<DT><PRE>public class <B>AudioFileCreator</B><DT>extends java.lang.Object</DL>
 </PRE>
 
 <P>
-Represents a midi instrument.  Cannot be instantiated directly.  Instead,
- get an instrument using the static getInstrument() method.
+This class is used to create audio files, such as WAV files and mp3's.  It
+ uses the Gervill, Tritonus and LAME open source projects.
 <P>
 
 <P>
@@ -118,19 +118,27 @@ Represents a midi instrument.  Cannot be instantiated directly.  Instead,
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;java.util.List&lt;java.lang.String&gt;</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Instrument.html#AVAILABLE_INSTRUMENTS">AVAILABLE_INSTRUMENTS</A></B></CODE>
+<CODE>static&nbsp;javax.sound.midi.Soundbank</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/AudioFileCreator.html#SOUNDBANK">SOUNDBANK</A></B></CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List of possible instruments.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Midi sound bank used to generate the audio files.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+<A NAME="constructor_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;<A HREF="../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Instrument.html#DEFAULT">DEFAULT</A></B></CODE>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/AudioFileCreator.html#AudioFileCreator(com.myronmarston.music.OutputManager)">AudioFileCreator</A></B>(<A HREF="../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music">OutputManager</A>&nbsp;outputManager)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default instrument (a piano).</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -144,44 +152,19 @@ Represents a midi instrument.  Cannot be instantiated directly.  Instead,
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;<A HREF="../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Instrument.html#getInstrument(java.lang.String)">getInstrument</A></B>(java.lang.String&nbsp;name)</CODE>
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/AudioFileCreator.html#saveMp3File(java.lang.String)">saveMp3File</A></B>(java.lang.String&nbsp;mp3FileName)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the instrument with the given name.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the music as a mp3 file.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;javax.sound.midi.Instrument</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Instrument.html#getMidiInstrument()">getMidiInstrument</A></B>()</CODE>
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/AudioFileCreator.html#saveWavFile(java.lang.String)">saveWavFile</A></B>(java.lang.String&nbsp;wavFileName)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the midi instrument.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Instrument.html#getName()">getName</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the name of the instrument.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;javax.sound.midi.MidiEvent</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Instrument.html#getProgramChangeMidiEvent(int)">getProgramChangeMidiEvent</A></B>(int&nbsp;midiChannel)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a midi program change event on the given channel using this 
- instrument.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Instrument.html#toGuidoString()">toGuidoString</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a string representing this instrument in GUIDO notation.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the output to a wav file and saves it to disk.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -206,27 +189,37 @@ Represents a midi instrument.  Cannot be instantiated directly.  Instead,
 </TR>
 </TABLE>
 
-<A NAME="DEFAULT"><!-- --></A><H3>
-DEFAULT</H3>
+<A NAME="SOUNDBANK"><!-- --></A><H3>
+SOUNDBANK</H3>
 <PRE>
-public static final <A HREF="../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A> <B>DEFAULT</B></PRE>
+public static final javax.sound.midi.Soundbank <B>SOUNDBANK</B></PRE>
 <DL>
-<DD>The default instrument (a piano).
+<DD>The Midi sound bank used to generate the audio files.
 <P>
 <DL>
 </DL>
 </DL>
-<HR>
 
-<A NAME="AVAILABLE_INSTRUMENTS"><!-- --></A><H3>
-AVAILABLE_INSTRUMENTS</H3>
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+<A NAME="constructor_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Constructor Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="AudioFileCreator(com.myronmarston.music.OutputManager)"><!-- --></A><H3>
+AudioFileCreator</H3>
 <PRE>
-public static final java.util.List&lt;java.lang.String&gt; <B>AVAILABLE_INSTRUMENTS</B></PRE>
+public <B>AudioFileCreator</B>(<A HREF="../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music">OutputManager</A>&nbsp;outputManager)</PRE>
 <DL>
-<DD>List of possible instruments.
+<DD>Constructor.
 <P>
 <DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>outputManager</CODE> - the output manager containing the midi sequence
+ to convert to a wav or mp3 file.</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -239,73 +232,37 @@ public static final java.util.List&lt;java.lang.String&gt; <B>AVAILABLE_INSTRUME
 </TR>
 </TABLE>
 
-<A NAME="getMidiInstrument()"><!-- --></A><H3>
-getMidiInstrument</H3>
+<A NAME="saveWavFile(java.lang.String)"><!-- --></A><H3>
+saveWavFile</H3>
 <PRE>
-protected javax.sound.midi.Instrument <B>getMidiInstrument</B>()</PRE>
+public void <B>saveWavFile</B>(java.lang.String&nbsp;wavFileName)
+                 throws javax.sound.midi.MidiUnavailableException,
+                        java.io.IOException</PRE>
 <DL>
-<DD>Gets the midi instrument.
+<DD>Converts the output to a wav file and saves it to disk.
 <P>
 <DD><DL>
-
-<DT><B>Returns:</B><DD>the midi instrument object</DL>
+<DT><B>Parameters:</B><DD><CODE>wavFileName</CODE> - the file name to save to
+<DT><B>Throws:</B>
+<DD><CODE>javax.sound.midi.MidiUnavailableException</CODE> - if there is a midi 
+         error
+<DD><CODE>java.io.IOException</CODE> - if there is an I/O error</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="getInstrument(java.lang.String)"><!-- --></A><H3>
-getInstrument</H3>
+<A NAME="saveMp3File(java.lang.String)"><!-- --></A><H3>
+saveMp3File</H3>
 <PRE>
-public static <A HREF="../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A> <B>getInstrument</B>(java.lang.String&nbsp;name)</PRE>
+public void <B>saveMp3File</B>(java.lang.String&nbsp;mp3FileName)
+                 throws java.lang.Exception</PRE>
 <DL>
-<DD>Gets the instrument with the given name.
+<DD>Saves the music as a mp3 file.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>name</CODE> - the case-insensitive name of the instrument
-<DT><B>Returns:</B><DD>the instrument, or null, if none was found with the given name</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getName()"><!-- --></A><H3>
-getName</H3>
-<PRE>
-public java.lang.String <B>getName</B>()</PRE>
-<DL>
-<DD>Gets the name of the instrument.
-<P>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>the name of the instrument</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="toGuidoString()"><!-- --></A><H3>
-toGuidoString</H3>
-<PRE>
-public java.lang.String <B>toGuidoString</B>()</PRE>
-<DL>
-<DD>Gets a string representing this instrument in GUIDO notation.
-<P>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>the guido string</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getProgramChangeMidiEvent(int)"><!-- --></A><H3>
-getProgramChangeMidiEvent</H3>
-<PRE>
-public javax.sound.midi.MidiEvent <B>getProgramChangeMidiEvent</B>(int&nbsp;midiChannel)</PRE>
-<DL>
-<DD>Creates a midi program change event on the given channel using this 
- instrument.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>midiChannel</CODE> - the channel to use (0-15)
-<DT><B>Returns:</B><DD>the program change midi event</DL>
+<DT><B>Parameters:</B><DD><CODE>mp3FileName</CODE> - the file name to save to
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.Exception</CODE> - if there is an error</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
@@ -324,7 +281,7 @@ public javax.sound.midi.MidiEvent <B>getProgramChangeMidiEvent</B>(int&nbsp;midi
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/Instrument.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/AudioFileCreator.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -339,11 +296,11 @@ public javax.sound.midi.MidiEvent <B>getProgramChangeMidiEvent</B>(int&nbsp;midi
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../com/myronmarston/music/IncorrectNoteStringException.html" title="class in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;PREV CLASS&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/music/Dynamic.html" title="enum in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../index.html?com/myronmarston/music/Instrument.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="Instrument.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?com/myronmarston/music/AudioFileCreator.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="AudioFileCreator.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -360,9 +317,9 @@ public javax.sound.midi.MidiEvent <B>getProgramChangeMidiEvent</B>(int&nbsp;midi
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_bottom"></A>
