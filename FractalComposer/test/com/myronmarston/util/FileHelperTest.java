@@ -68,5 +68,24 @@ public class FileHelperTest {
                 assertEquals("Here is a string.", br.readLine());
             }            
         });
-    }   
+    }           
+    
+    @Test
+    public void readFileIntoString() throws Exception {
+        String newLine = System.getProperty("line.separator");
+        final String testString = "a string " + newLine + " another line" + newLine + " a third line";        
+        
+        FileHelper.createAndUseTempFile("Test", ".txt", new FileHelper.TempFileUser() {
+            public void useTempFile(String tempFileName) throws Exception {
+                FileHelper.createAndUseFileBufferedWriter(tempFileName, new FileHelper.BufferedWriterUser() {
+                    public void useBufferedWriter(BufferedWriter bufferedWriter) throws IOException {
+                        bufferedWriter.write(testString);
+                    }
+                });
+                
+                String stringFromFile = FileHelper.readFileIntoString(tempFileName);                
+                assertEquals(testString, stringFromFile);
+            }
+        });
+    }
 }

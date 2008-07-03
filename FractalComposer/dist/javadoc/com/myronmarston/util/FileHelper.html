@@ -177,6 +177,14 @@ A class that provides static methods to manage temporary file resources.
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a temporary file, and allows a TempFileUser to use it.</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/FileHelper.html#readFileIntoString(java.lang.String)">readFileIntoString</A></B>(java.lang.String&nbsp;fileName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reads the contents of a file into a string using UTF-8 encoding.</TD>
+</TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
@@ -249,6 +257,23 @@ public static void <B>createAndUseFileBufferedWriter</B>(java.lang.String&nbsp;f
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the file<DD><CODE>bufferedWriterUser</CODE> - the object that will use the buffered writer
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE> - if an I/O error occurs</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="readFileIntoString(java.lang.String)"><!-- --></A><H3>
+readFileIntoString</H3>
+<PRE>
+public static java.lang.String <B>readFileIntoString</B>(java.lang.String&nbsp;fileName)
+                                           throws java.io.IOException</PRE>
+<DL>
+<DD>Reads the contents of a file into a string using UTF-8 encoding.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the file
+<DT><B>Returns:</B><DD>the string contents of the file
 <DT><B>Throws:</B>
 <DD><CODE>java.io.IOException</CODE> - if an I/O error occurs</DL>
 </DD>

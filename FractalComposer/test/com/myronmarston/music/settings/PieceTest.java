@@ -104,8 +104,7 @@ public class PieceTest {
             int channelNum = trackIndex;
             
             // make sure we have the right number of events. 
-            // there are always two extra events - instrument event, and the end-of-track event, so we add 1 for that.
-            assertEquals(trackNoteValues.length * 2 + 2, track.size());
+            assertTrackHasRightNumEvents(track, trackNoteValues.length);            
                         
             for (int noteIndex = 0; noteIndex < trackNoteValues.length; noteIndex++) {
                 if (trackNoteValues[noteIndex][0] == -1)  { // rest
@@ -231,8 +230,7 @@ public class PieceTest {
             int channelNum = trackIndex;
             
             // make sure we have the right number of events. 
-            // there are always two extra events - instrument event, and the end-of-track event, so we add 1 for that.
-            assertEquals(trackNoteValues.length * 2 + 2, track.size());
+            assertTrackHasRightNumEvents(track, trackNoteValues.length);
             
             // test that the instrument event is correct...
             InstrumentTest.assertMidiProgramChangeEventEquals(track.get(0), ticksSoFar, channelNum, instrumentProgramNumbers[trackIndex]);            
@@ -303,10 +301,10 @@ public class PieceTest {
         
         Track t1 = seq.getTracks()[1];
         Track t2 = seq.getTracks()[2];
+        
         // make sure we have the right number of events. 
-        // there are always two extra events - instrument event and the end-of-track event, so we add 1 for that.
-        assertEquals(track1PitchNumbers.length * 2 + 2, t1.size());
-        assertEquals(track2PitchNumbers.length * 2 + 2, t2.size());
+        assertTrackHasRightNumEvents(t1, track1PitchNumbers.length);
+        assertTrackHasRightNumEvents(t2, track2PitchNumbers.length);
         
         for (int i = 0; i < track1PitchNumbers.length; i++) {
             assertTrackMidiNoteEqual(t1, i, i * 4, 4, track1PitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 0);
@@ -377,8 +375,7 @@ public class PieceTest {
         };
         
         // make sure we have the right number of events. 
-        // there are always two extra events - instrument event and the end-of-track event, so we add 1 for that.
-        assertEquals(pitchNumbers.length * 2 + 2, t.size());
+        assertTrackHasRightNumEvents(t, pitchNumbers.length);
         
         for (int i = 0; i < pitchNumbers.length; i++) {            
             assertTrackMidiNoteEqual(t, i, i * 4, 4, pitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 0);
@@ -396,6 +393,12 @@ public class PieceTest {
         
         MidiNoteTest.assertNoteEventEqual(noteOnEvent, tick, noteOnEventByte1, (byte) pitchNum, (byte) velocity);
         MidiNoteTest.assertNoteEventEqual(noteOffEvent, tick + duration, noteOffEventByte1, (byte) pitchNum, (byte) 0);
+    }
+    
+    public static void assertTrackHasRightNumEvents(Track t, int numNotes) {           
+        int numNoteEvents = numNotes * 2; // note on and note off events
+        // there are always two extra events - instrument event, and the end-of-track event
+        assertEquals(numNoteEvents + 2, t.size());
     }
             
 }

@@ -177,6 +177,46 @@ Class that manages the outputs from FractalComposer, such as Midi files,
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getLastGifFileName()">getLastGifFileName</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the file name of the last gif file saved using this output manager.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getLastGuidoFileName()">getLastGuidoFileName</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the file name of the last guido file saved using this output manager.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getLastMidiFileName()">getLastMidiFileName</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the file name of the last midi file saved using this output manager.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getLastMp3FileName()">getLastMp3FileName</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the file name of the last mp3 file saved using this output manager.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getLastWavFileName()">getLastWavFileName</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the file name of the last wav file saved using this output manager.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>protected &nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getMidiTickResolution()">getMidiTickResolution</A></B>()</CODE>
 
@@ -223,6 +263,14 @@ Class that manages the outputs from FractalComposer, such as Midi files,
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the music as a sheet music image in gif format.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#saveGuidoFile(java.lang.String)">saveGuidoFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the guido notation to file.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -460,6 +508,22 @@ public void <B>saveMidiFile</B>(java.lang.String&nbsp;fileName)
 </DL>
 <HR>
 
+<A NAME="saveGuidoFile(java.lang.String)"><!-- --></A><H3>
+saveGuidoFile</H3>
+<PRE>
+public void <B>saveGuidoFile</B>(java.lang.String&nbsp;fileName)
+                   throws java.io.IOException</PRE>
+<DL>
+<DD>Saves the guido notation to file.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the file to save to
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE> - if an I/O error occurs</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="saveGifImage(java.lang.String)"><!-- --></A><H3>
 saveGifImage</H3>
 <PRE>
@@ -507,6 +571,76 @@ public void <B>saveMp3File</B>(java.lang.String&nbsp;fileName)
 <DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name to save to
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.Exception</CODE> - if there is an error</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLastGifFileName()"><!-- --></A><H3>
+getLastGifFileName</H3>
+<PRE>
+public java.lang.String <B>getLastGifFileName</B>()</PRE>
+<DL>
+<DD>Gets the file name of the last gif file saved using this output manager.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the last gif file</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLastGuidoFileName()"><!-- --></A><H3>
+getLastGuidoFileName</H3>
+<PRE>
+public java.lang.String <B>getLastGuidoFileName</B>()</PRE>
+<DL>
+<DD>Gets the file name of the last guido file saved using this output manager.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the last guido file</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLastMidiFileName()"><!-- --></A><H3>
+getLastMidiFileName</H3>
+<PRE>
+public java.lang.String <B>getLastMidiFileName</B>()</PRE>
+<DL>
+<DD>Gets the file name of the last midi file saved using this output manager.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the last midi file</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLastMp3FileName()"><!-- --></A><H3>
+getLastMp3FileName</H3>
+<PRE>
+public java.lang.String <B>getLastMp3FileName</B>()</PRE>
+<DL>
+<DD>Gets the file name of the last mp3 file saved using this output manager.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the last mp3 file</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLastWavFileName()"><!-- --></A><H3>
+getLastWavFileName</H3>
+<PRE>
+public java.lang.String <B>getLastWavFileName</B>()</PRE>
+<DL>
+<DD>Gets the file name of the last wav file saved using this output manager.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the last wav file</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

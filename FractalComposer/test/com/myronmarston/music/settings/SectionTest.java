@@ -19,6 +19,7 @@
 
 package com.myronmarston.music.settings;
 
+import javax.sound.midi.*;
 import com.myronmarston.music.*;
 import com.myronmarston.music.scales.*;
 import com.myronmarston.util.Fraction;  
@@ -91,13 +92,22 @@ public class SectionTest {
     
     @Test
     public void createOutputManager() throws Exception {
-        FractalPiece fp = new FractalPiece();
+        FractalPiece fp = new FractalPiece();        
         fp.createDefaultSettings();
-        fp.setGermString("G4 A4");
+        fp.setGermString("G4 A4 B4 G4");
         
         Section s = fp.getSections().get(0);
         // this will throw an exception if it fails...
-        assertNotNull(s.createOutputManager());
+        OutputManager om = s.createOutputManager();        
+        assertNotNull(om);
+        
+        Sequence seq = om.getSequence();
+        
+        // test that we get results like we expect...
+        assertEquals(4, seq.getTracks().length);
+        PieceTest.assertTrackHasRightNumEvents(seq.getTracks()[1], 16);
+        PieceTest.assertTrackHasRightNumEvents(seq.getTracks()[2], 8);
+        PieceTest.assertTrackHasRightNumEvents(seq.getTracks()[3], 4);
     }
     
     @Test

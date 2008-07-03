@@ -134,11 +134,19 @@ Class that manages the creation of sheet music files.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
+<CODE>protected &nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/SheetMusicCreator.html#saveAsGifImage(java.lang.String)">saveAsGifImage</A></B>(java.lang.String&nbsp;gifFileName)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the sheet music as a gif image.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/SheetMusicCreator.html#saveGuidoFile(java.lang.String)">saveGuidoFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the guido notation to a file.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -188,8 +196,8 @@ public <B>SheetMusicCreator</B>(<A HREF="../../../com/myronmarston/music/OutputM
 <A NAME="saveAsGifImage(java.lang.String)"><!-- --></A><H3>
 saveAsGifImage</H3>
 <PRE>
-public void <B>saveAsGifImage</B>(java.lang.String&nbsp;gifFileName)
-                    throws java.lang.Exception</PRE>
+protected void <B>saveAsGifImage</B>(java.lang.String&nbsp;gifFileName)
+                       throws java.lang.Exception</PRE>
 <DL>
 <DD>Saves the sheet music as a gif image.
 <P>
@@ -197,6 +205,22 @@ public void <B>saveAsGifImage</B>(java.lang.String&nbsp;gifFileName)
 <DT><B>Parameters:</B><DD><CODE>gifFileName</CODE> - the name of the gif file to save the image to
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.Exception</CODE> - if an error occurs</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="saveGuidoFile(java.lang.String)"><!-- --></A><H3>
+saveGuidoFile</H3>
+<PRE>
+protected void <B>saveGuidoFile</B>(java.lang.String&nbsp;fileName)
+                      throws java.io.IOException</PRE>
+<DL>
+<DD>Saves the guido notation to a file.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the file to save the guido notation to
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE> - if an I/O error occurs</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

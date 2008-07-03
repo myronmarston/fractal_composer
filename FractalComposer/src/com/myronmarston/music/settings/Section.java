@@ -184,10 +184,12 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
         return Collections.max(voiceSectionDurations);
     }    
     
-    public OutputManager createOutputManager() throws GermIsEmptyException {
+    public OutputManager createOutputManager() throws GermIsEmptyException {        
+        Fraction sectionDuration = this.getDuration();
+                    
         List<NoteList> voiceSectionResults = new ArrayList<NoteList>(this.getVoiceSections().size());
         for (VoiceSection vs : this.getVoiceSections()) {
-            voiceSectionResults.add(vs.getVoiceSectionResult());
+            voiceSectionResults.add(vs.getLengthenedVoiceSectionResult(sectionDuration));
         }
         
         //TODO: cache this?

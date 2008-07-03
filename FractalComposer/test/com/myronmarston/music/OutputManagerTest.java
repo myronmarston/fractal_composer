@@ -51,16 +51,29 @@ public class OutputManagerTest {
     
     @Test
     public void getGuidoNotation() throws Exception {
-        String guidoNotationFormatString = "{[ \\pageFormat<\"A4\",10pt,10pt,10pt,10pt> %s\\key<\"C\"> \\meter<\"C\"> %s d1/4  e1/4  c1/4  ]}";
+        String guidoNotationFormatString = "{[ %s\\key<\"C\"> \\meter<\"C\"> %s d1/4  e1/4  c1/4  ]}";
         String instrumentString = "\\instr<\"Piano 1\", \"MIDI 0\"> ";
         String tempoString = "\\tempo<\"Andante\",\"1/4=90\"> ";
         String fullGuidoString = String.format(guidoNotationFormatString, instrumentString, tempoString);
         String noInstrOrTempoGuidoString = String.format(guidoNotationFormatString, "", "");
-                   
-        assertEquals(fullGuidoString, outputManager.getGuidoNotation());
+                           
+        testGuidoNotation(outputManager, fullGuidoString);
                        
         OutputManager om = new OutputManager(this.outputManager.getFractalPiece(), this.outputManager.getNoteLists(), false, false);        
-        assertEquals(noInstrOrTempoGuidoString, om.getGuidoNotation());
+        testGuidoNotation(om, noInstrOrTempoGuidoString);        
+    }
+    
+    public static void testGuidoNotation(final OutputManager om, final String expectedNotation) throws Exception {
+        assertEquals(expectedNotation, om.getGuidoNotation());
+        
+        FileHelper.createAndUseTempFile("TestGuido", ".gmn", new FileHelper.TempFileUser() {
+            public void useTempFile(String tempFileName) throws Exception {
+                om.saveGuidoFile(tempFileName);
+                String contents = FileHelper.readFileIntoString(tempFileName);
+                
+                assertEquals(expectedNotation, contents);
+            }
+        });
     }
 
     @Test
@@ -205,5 +218,68 @@ public class OutputManagerTest {
         
         // the output manager should have the tempo at the time it was created
         assertEquals(87, outputManager.getTempo());
+    }
+    
+    @Test
+    public void testLastFileNameMethods() throws Exception {
+        testALastFileNameMethod("GifTest", ".gif", new OutputManagerTest.LastFileName() {
+            public String getLastFileName() throws Exception {
+                return outputManager.getLastGifFileName();
+            }
+            public void saveFile(String fileName) throws Exception {
+                outputManager.saveGifImage(fileName);
+            }
+        });
+        
+        testALastFileNameMethod("GmnTest", ".gmn", new OutputManagerTest.LastFileName() {
+            public String getLastFileName() throws Exception {
+                return outputManager.getLastGuidoFileName();
+            }
+            public void saveFile(String fileName) throws Exception {
+                outputManager.saveGuidoFile(fileName);
+            }
+        });
+        
+        testALastFileNameMethod("MidiTest", ".mid", new OutputManagerTest.LastFileName() {
+            public String getLastFileName() throws Exception {
+                return outputManager.getLastMidiFileName();
+            }
+            public void saveFile(String fileName) throws Exception {
+                outputManager.saveMidiFile(fileName);
+            }
+        });
+        
+        testALastFileNameMethod("WavTest", ".wav", new OutputManagerTest.LastFileName() {
+            public String getLastFileName() throws Exception {
+                return outputManager.getLastWavFileName();
+            }
+            public void saveFile(String fileName) throws Exception {
+                outputManager.saveWavFile(fileName);
+            }
+        });
+            
+        testALastFileNameMethod("Mp3Test", ".mp3", new OutputManagerTest.LastFileName() {
+            public String getLastFileName() throws Exception {
+                return outputManager.getLastMp3FileName();
+            }
+            public void saveFile(String fileName) throws Exception {
+                outputManager.saveMp3File(fileName);
+            }
+        });              
+    }
+    
+    private interface LastFileName {
+        String getLastFileName() throws Exception;
+        void saveFile(String fileName) throws Exception;
+    }
+    
+    private void testALastFileNameMethod(String filePrefix, String fileSuffix, final LastFileName lastFileNameMethod) throws Exception {
+        FileHelper.createAndUseTempFile("GifTest", ".gif", new FileHelper.TempFileUser() {
+            public void useTempFile(String tempFileName) throws Exception {
+                lastFileNameMethod.saveFile(tempFileName);
+                outputManager.saveGifImage(tempFileName);                
+                assertEquals(tempFileName, lastFileNameMethod.getLastFileName());
+            }            
+        }); 
     }
 }

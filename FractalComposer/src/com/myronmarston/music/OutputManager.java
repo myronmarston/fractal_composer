@@ -45,6 +45,11 @@ public class OutputManager {
     private AudioFileCreator audioFileCreator;
     private boolean includeTempoOnSheetMusic;
     private boolean includeInstrumentOnSheetMusic;
+    private String lastMidiFileName;
+    private String lastGuidoFileName;
+    private String lastWavFileName;
+    private String lastMp3FileName;
+    private String lastGifFileName;
     
     private static final int MIDI_FILE_TYPE_FOR_MULTI_TRACK_SEQUENCE = 1;
         
@@ -227,7 +232,7 @@ public class OutputManager {
         Instrument instrument = (noteList.getInstrument() == null ? Instrument.DEFAULT : noteList.getInstrument());
         
         this.guidoNotation.append("[ ");
-        this.guidoNotation.append("\\pageFormat<\"A4\",10pt,10pt,10pt,10pt> ");
+        //If a pageFromat should be specified, put it here, such as \pageFormat<"A4",10pt,10pt,10pt,10pt>
         if (this.includeInstrumentOnSheetMusic) this.guidoNotation.append(instrument.toGuidoString() + " ");
         this.guidoNotation.append(scale.getKeySignature().toGuidoString() + " ");
         this.guidoNotation.append(fractalPiece.getTimeSignature().toGuidoString() + " ");
@@ -360,7 +365,19 @@ public class OutputManager {
     public void saveMidiFile(String fileName) throws IOException {
         File outputFile = new File(fileName);                        
         MidiSystem.write(this.getSequence(), MIDI_FILE_TYPE_FOR_MULTI_TRACK_SEQUENCE, outputFile);        
+        this.lastMidiFileName = fileName;
     }    
+    
+    /**
+     * Saves the guido notation to file.
+     * 
+     * @param fileName the name of the file to save to
+     * @throws java.io.IOException if an I/O error occurs
+     */
+    public void saveGuidoFile(String fileName) throws IOException {
+        this.getSheetMusicCreator().saveGuidoFile(fileName);
+        this.lastGuidoFileName = fileName;
+    }
     
     /**
      * Saves the music as a sheet music image in gif format.
@@ -369,7 +386,8 @@ public class OutputManager {
      * @throws java.lang.Exception if an error occurs
      */
     public void saveGifImage(String fileName) throws Exception {
-        this.getSheetMusicCreator().saveAsGifImage(fileName);
+        this.getSheetMusicCreator().saveAsGifImage(fileName);    
+        this.lastGifFileName = fileName;
     }
     
     /**
@@ -381,7 +399,8 @@ public class OutputManager {
      * @throws java.io.IOException if there is an i/o error
      */
     public void saveWavFile(String fileName) throws MidiUnavailableException, IOException {
-        this.getAudioFileCreator().saveWavFile(fileName);        
+        this.getAudioFileCreator().saveWavFile(fileName);    
+        this.lastWavFileName = fileName;
     }
     
     /**
@@ -391,6 +410,52 @@ public class OutputManager {
      * @throws java.lang.Exception if there is an error
      */
     public void saveMp3File(String fileName) throws Exception {
-        this.getAudioFileCreator().saveMp3File(fileName);        
+        this.getAudioFileCreator().saveMp3File(fileName);  
+        this.lastMp3FileName = fileName;
     }
+
+    /**
+     * Gets the file name of the last gif file saved using this output manager.
+     * 
+     * @return the last gif file
+     */
+    public String getLastGifFileName() {
+        return lastGifFileName;
+    }
+
+    /**
+     * Gets the file name of the last guido file saved using this output manager.
+     * 
+     * @return the last guido file
+     */
+    public String getLastGuidoFileName() {
+        return lastGuidoFileName;
+    }
+
+    /**
+     * Gets the file name of the last midi file saved using this output manager.
+     * 
+     * @return the last midi file
+     */
+    public String getLastMidiFileName() {
+        return lastMidiFileName;
+    }
+    
+    /**
+     * Gets the file name of the last mp3 file saved using this output manager.
+     * 
+     * @return the last mp3 file
+     */
+    public String getLastMp3FileName() {
+        return lastMp3FileName;
+    }
+    
+    /**
+     * Gets the file name of the last wav file saved using this output manager.
+     * 
+     * @return the last wav file
+     */
+    public String getLastWavFileName() {
+        return lastWavFileName;
+    }        
 }

@@ -112,6 +112,8 @@ public class NoteList extends ArrayList<Note> {
      */
     public static NoteList parseNoteListString(String noteListString, Scale scale) throws NoteStringParseException {                
         // TODO: throw exception if the note list is just a single rest
+        // TODO: run some tests to figure out what kind of maximum length I should 
+        // allow based on memory requirements
         Note note = null;
         Fraction defaultDuration = null;
         Integer defaultVolume = null;                        

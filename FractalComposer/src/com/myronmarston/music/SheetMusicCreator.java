@@ -51,21 +51,27 @@ public class SheetMusicCreator {
      * @param gifFileName the name of the gif file to save the image to
      * @throws java.lang.Exception if an error occurs
      */
-    public void saveAsGifImage(final String gifFileName) throws Exception {
+    protected void saveAsGifImage(final String gifFileName) throws Exception {
         // create a temp file...
         FileHelper.createAndUseTempFile("TempGuido", ".gmn", new FileHelper.TempFileUser() {
-            public void useTempFile(String tempFileName) throws Exception {    
-                
-                // create a buffered writer...
-                FileHelper.createAndUseFileBufferedWriter(tempFileName, new FileHelper.BufferedWriterUser() {
-                    public void useBufferedWriter(BufferedWriter bufferedWriter) throws IOException  {
-                        // write the guido notation to the temp file                        
-                        bufferedWriter.write(SheetMusicCreator.this.outputManager.getGuidoNotation());                    
-                    }
-                });
-                
-                // convert the guido notation to a gif image
+            public void useTempFile(String tempFileName) throws Exception {                    
+                saveGuidoFile(tempFileName);                                                
                 convertGmnFileToGifFile(tempFileName, gifFileName);
+            }
+        });
+    }
+    
+    /**
+     * Saves the guido notation to a file.
+     * 
+     * @param fileName the name of the file to save the guido notation to
+     * @throws java.io.IOException if an I/O error occurs
+     */
+    protected void saveGuidoFile(String fileName) throws IOException {
+        // create a buffered writer...
+        FileHelper.createAndUseFileBufferedWriter(fileName, new FileHelper.BufferedWriterUser() {
+            public void useBufferedWriter(BufferedWriter bufferedWriter) throws IOException  {                
+                bufferedWriter.write(SheetMusicCreator.this.outputManager.getGuidoNotation());                    
             }
         });
     }

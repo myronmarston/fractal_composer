@@ -152,7 +152,7 @@ This class is used to create audio files, such as WAV files and mp3's.  It
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
+<CODE>protected &nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/AudioFileCreator.html#saveMp3File(java.lang.String)">saveMp3File</A></B>(java.lang.String&nbsp;mp3FileName)</CODE>
 
 <BR>
@@ -160,7 +160,7 @@ This class is used to create audio files, such as WAV files and mp3's.  It
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
+<CODE>protected &nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/AudioFileCreator.html#saveWavFile(java.lang.String)">saveWavFile</A></B>(java.lang.String&nbsp;wavFileName)</CODE>
 
 <BR>
@@ -235,9 +235,9 @@ public <B>AudioFileCreator</B>(<A HREF="../../../com/myronmarston/music/OutputMa
 <A NAME="saveWavFile(java.lang.String)"><!-- --></A><H3>
 saveWavFile</H3>
 <PRE>
-public void <B>saveWavFile</B>(java.lang.String&nbsp;wavFileName)
-                 throws javax.sound.midi.MidiUnavailableException,
-                        java.io.IOException</PRE>
+protected void <B>saveWavFile</B>(java.lang.String&nbsp;wavFileName)
+                    throws javax.sound.midi.MidiUnavailableException,
+                           java.io.IOException</PRE>
 <DL>
 <DD>Converts the output to a wav file and saves it to disk.
 <P>
@@ -254,8 +254,8 @@ public void <B>saveWavFile</B>(java.lang.String&nbsp;wavFileName)
 <A NAME="saveMp3File(java.lang.String)"><!-- --></A><H3>
 saveMp3File</H3>
 <PRE>
-public void <B>saveMp3File</B>(java.lang.String&nbsp;mp3FileName)
-                 throws java.lang.Exception</PRE>
+protected void <B>saveMp3File</B>(java.lang.String&nbsp;mp3FileName)
+                    throws java.lang.Exception</PRE>
 <DL>
 <DD>Saves the music as a mp3 file.
 <P>

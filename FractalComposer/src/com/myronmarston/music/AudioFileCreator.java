@@ -77,7 +77,7 @@ public class AudioFileCreator {
      *         error
      * @throws java.io.IOException if there is an I/O error
      */
-    public void saveWavFile(final String wavFileName) throws MidiUnavailableException, IOException {
+    protected void saveWavFile(final String wavFileName) throws MidiUnavailableException, IOException {
         AudioSynthesizer synth = null;
         AudioInputStream stream1 = null;
         AudioInputStream stream2 = null;        
@@ -109,7 +109,7 @@ public class AudioFileCreator {
      * @param mp3FileName the file name to save to
      * @throws java.lang.Exception if there is an error
      */
-    public void saveMp3File(final String mp3FileName) throws Exception {
+    protected void saveMp3File(final String mp3FileName) throws Exception {
         FileHelper.createAndUseTempFile("TempWav", ".wav", new FileHelper.TempFileUser() {
             public void useTempFile(String tempFileName) throws Exception {    
                 AudioFileCreator.this.saveWavFile(tempFileName);                
@@ -187,7 +187,7 @@ public class AudioFileCreator {
             if (device instanceof AudioSynthesizer) return (AudioSynthesizer) device;
         }
 
-        throw new MidiUnavailableException("The AudioSynthesizer is not available.");
+        throw new MidiUnavailableException("The AudioSynthesizer is not available.");                      
     }    
     
     /**

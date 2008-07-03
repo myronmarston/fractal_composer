@@ -112,4 +112,41 @@ public class FileHelper {
             if (bw != null) bw.close();
         }   
     }
+    
+    /**
+     * Reads the contents of a file into a string using UTF-8 encoding.
+     * 
+     * @param fileName the name of the file
+     * @return the string contents of the file
+     * @throws java.io.IOException if an I/O error occurs
+     */
+    public static String readFileIntoString(String fileName) throws IOException {
+        StringBuilder strBuilder = new StringBuilder();
+        FileInputStream fis = null;
+        InputStreamReader isr = null;
+        BufferedReader br = null;     
+        String newLine = System.getProperty("line.separator");
+        String line;
+        boolean firstLineRead = false;
+        try {
+            fis = new FileInputStream(fileName);
+            isr = new InputStreamReader(fis, "UTF-8");
+            br = new BufferedReader(isr);
+                        
+            while (true) {                
+                line = br.readLine();
+                if (line == null) break;
+                
+                if (firstLineRead) strBuilder.append(newLine);
+                strBuilder.append(line);                
+                firstLineRead = true;
+            }
+            
+            return strBuilder.toString();
+        } finally {            
+            if (fis != null) fis.close();
+            if (isr != null) isr.close();
+            if (br != null) br.close();
+        }    
+    }
 }
