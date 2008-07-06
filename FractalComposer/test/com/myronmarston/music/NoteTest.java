@@ -241,8 +241,7 @@ public class NoteTest {
     
     @Test
     public void testToString() throws Exception {
-        String expectedWithScale = "Note = LN(1), SS(1), O(4), CA(1), D(1/4), V(70), S(Bb Major Scale), SCA(0)";
-        String expectedWithNullScale = "Note = LN(1), SS(1), O(4), CA(1), D(1/4), V(70), S(null), SCA(0)";
+        String expectedWithScale = "Note = LN(1), SS(1), O(4), CA(1), D(1/4), V(70), S(Bb Major Scale), SCA(0)";        
         Note n = new Note(1, 1, 4, 1, new Fraction(1, 4), 70, new MajorScale(NoteName.Bb), 0);
         assertEquals(expectedWithScale, n.toString());            
     }
@@ -372,5 +371,18 @@ public class NoteTest {
         expected.setScaleStep(3);
         expected.setLetterNumber(3);        
         assertEquals(expected, n);                 
+    }
+    
+    public static void assertNotesEqual(Note expected, Note actual) {                        
+        // These could be null if we passed NoteList.getFirstAudibleNote() as
+        // sometimes there is not an audible note
+        // Return if both are null or the same instance--we treat them as equal
+        if (expected == actual) return;
+        
+        // normalize the notes first...
+        Note expectedNote = expected.getNormalizedNote();
+        Note actualNote = actual.getNormalizedNote();
+                
+        assertEquals(expectedNote, actualNote);
     }
 }

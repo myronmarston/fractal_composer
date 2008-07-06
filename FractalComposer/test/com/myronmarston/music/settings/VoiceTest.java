@@ -29,45 +29,7 @@ import static org.junit.Assert.*;
  *
  * @author Myron
  */
-public class VoiceTest {
-            
-    @Test
-    public void generateVoiceGerm() {
-        FractalPiece fp = new FractalPiece();
-        Scale scale = fp.getScale();
-        fp.getGerm().add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));
-        fp.getGerm().add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, scale, 0));
-        fp.getGerm().add(new Note(2, 2, 4, 0, new Fraction(1, 2), 64, scale, 0));
-        fp.getGerm().add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));
-        
-        Voice v1 = fp.createVoice();
-        v1.getSettings().setOctaveAdjustment(2);
-        v1.getSettings().setSpeedScaleFactor(new Fraction(4, 1));
-        
-        NoteList expected = new NoteList();
-        expected.setInstrument(Instrument.DEFAULT);
-        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
-        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
-        NoteListTest.assertNoteListsEqual(expected, v1.getModifiedGerm());
-        
-        v1.getSettings().setSpeedScaleFactor(new Fraction(1, 2));
-        expected.clear();
-        expected.add(new Note(0, 0, 6, 0, new Fraction(2, 1), 96, scale, 0));
-        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 1), 64, scale, 0));
-        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 1), 64, scale, 0));
-        expected.add(new Note(0, 0, 6, 0, new Fraction(2, 1), 96, scale, 0));
-        NoteListTest.assertNoteListsEqual(expected, v1.getModifiedGerm());
-        
-        v1.getSettings().setOctaveAdjustment(-1);
-        expected.clear();
-        expected.add(new Note(0, 0, 3, 0, new Fraction(2, 1), 96, scale, 0));
-        expected.add(new Note(1, 1, 3, 0, new Fraction(1, 1), 64, scale, 0));
-        expected.add(new Note(2, 2, 3, 0, new Fraction(1, 1), 64, scale, 0));
-        expected.add(new Note(0, 0, 3, 0, new Fraction(2, 1), 96, scale, 0));
-        NoteListTest.assertNoteListsEqual(expected, v1.getModifiedGerm());
-    }
+public class VoiceTest {            
           
     @Test
     public void getEntireVoiceResult() {

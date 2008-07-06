@@ -19,6 +19,7 @@
 
 package com.myronmarston.music.scales;
 
+import com.myronmarston.music.MidiNote;
 import com.myronmarston.music.NoteName;
 import javax.sound.midi.*;
 import org.junit.Test;
@@ -89,6 +90,39 @@ public class KeySignatureTest {
         assertEquals("\\key<\"e\">", ks.toGuidoString());
     }
     
+    @Test
+    public void getRelativeKeyName() throws Exception {                
+        testRelativeKeyName(NoteName.Cb, NoteName.Ab);
+        testRelativeKeyName(NoteName.C, NoteName.A);
+        testRelativeKeyName(NoteName.Cs, NoteName.As);
+        
+        testRelativeKeyName(NoteName.Db, NoteName.Bb);
+        testRelativeKeyName(NoteName.D, NoteName.B);                
+        
+        testRelativeKeyName(NoteName.Eb, NoteName.C);
+        testRelativeKeyName(NoteName.E, NoteName.Cs);                
+        
+        testRelativeKeyName(NoteName.F, NoteName.D);
+        testRelativeKeyName(NoteName.Fs, NoteName.Ds);              
+        
+        testRelativeKeyName(NoteName.Gb, NoteName.Eb);
+        testRelativeKeyName(NoteName.G, NoteName.E);
+        
+        testRelativeKeyName(NoteName.Ab, NoteName.F);
+        testRelativeKeyName(NoteName.A, NoteName.Fs);
+        
+        testRelativeKeyName(NoteName.Bb, NoteName.G);
+        testRelativeKeyName(NoteName.B, NoteName.Gs);        
+    }
+    
+    static private void testRelativeKeyName(NoteName majorKey, NoteName minorKey) throws Exception {
+        KeySignature ks = new KeySignature(Tonality.Major, majorKey);
+        assertEquals(minorKey , ks.getRelativeKeyName());
+        
+        ks = new KeySignature(Tonality.Minor, minorKey);
+        assertEquals(majorKey , ks.getRelativeKeyName());
+    }
+    
     static public MidiEvent getIndexedKeySigEvent(Track t, int index) {
         int count = 0;
         for (int i = 0; i < t.size(); i++) {
@@ -110,6 +144,6 @@ public class KeySignatureTest {
         assertEquals((byte) 2, msg.getMessage()[2]);    // the size of the rest of the message     
         assertEquals(accidentals, msg.getMessage()[3]);        
         assertEquals(tonalityValue, msg.getMessage()[4]);        
-        assertEquals(tick, keySignatureEvent.getTick());
+        assertEquals(tick, keySignatureEvent.getTick() - MidiNote.MIDI_SEQUENCE_START_SILENCE_TICK_OFFSET);
     }
 }

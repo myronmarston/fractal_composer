@@ -19,12 +19,12 @@
 
 package com.myronmarston.music.settings;
 
+import com.myronmarston.music.NoteList;
+import com.myronmarston.music.scales.Scale;
+import com.myronmarston.music.transformers.*;
 import com.myronmarston.util.Fraction;
-import com.myronmarston.util.AbstractPublisher;
 import com.myronmarston.util.Publisher;
 import com.myronmarston.util.Subscriber;
-import com.myronmarston.music.NoteList;
-import com.myronmarston.music.transformers.*;
 import org.simpleframework.xml.*;
 
 /**
@@ -33,7 +33,7 @@ import org.simpleframework.xml.*;
  * @author Myron
  */
 @Root
-public class VoiceSettings extends AbstractPublisher implements Subscriber {
+public class VoiceSettings extends AbstractVoiceOrSectionSettings implements Subscriber {   
     
     @Attribute
     private int octaveAdjustment;
@@ -42,10 +42,7 @@ public class VoiceSettings extends AbstractPublisher implements Subscriber {
     private Fraction speedScaleFactor;
     
     @Element
-    private SelfSimilaritySettings selfSimilaritySettings;
-    
-    @Attribute
-    private boolean readOnly;    
+    private SelfSimilaritySettings selfSimilaritySettings;        
 
     /**
      * Constructor.
@@ -67,16 +64,7 @@ public class VoiceSettings extends AbstractPublisher implements Subscriber {
         
         
         this.setSelfSimilaritySettings(selfSimilaritySettings == null ? new SelfSimilaritySettings() : selfSimilaritySettings);        
-    }
-
-    /**
-     * Gets a value indicating whether or not this settings object is read-only.
-     * 
-     * @return true if this object is read-only
-     */
-    public boolean isReadOnly() {
-        return readOnly;
-    }
+    }   
 
     /**
      * Sets the self-similarity settings on this object.
@@ -86,7 +74,7 @@ public class VoiceSettings extends AbstractPublisher implements Subscriber {
      *         read-only
      */
     public void setSelfSimilaritySettings(SelfSimilaritySettings selfSimilaritySettings) throws UnsupportedOperationException {
-        if (this.readOnly) throw new UnsupportedOperationException("Cannot change values on a read-only object.");
+        this.readOnlyException();
         if (this.selfSimilaritySettings != null) this.selfSimilaritySettings.removeSubscriber(this);        
         this.selfSimilaritySettings = selfSimilaritySettings;                
         if (this.selfSimilaritySettings != null) this.selfSimilaritySettings.addSubscriber(this);        
@@ -112,14 +100,14 @@ public class VoiceSettings extends AbstractPublisher implements Subscriber {
      * @throws UnsupportedOperationException if this object is read-only
      */
     public void setOctaveAdjustment(int val) throws UnsupportedOperationException {     
-        if (this.readOnly) throw new UnsupportedOperationException("Cannot change values on a read-only object.");
+        this.readOnlyException();
         // TODO: is there a way to tell if the octave adjustment value would 
         // give us a note outside of the standard midi range? should we 
         // test and throw an IllegalArgumentException here?        
         this.octaveAdjustment = val;
         this.notifySubscribers(null);  
     }
-
+    
     /**
      * Gets the speed scale factor to apply to the germ for use by this voice.
      * 
@@ -136,7 +124,7 @@ public class VoiceSettings extends AbstractPublisher implements Subscriber {
      * @throws UnsupportedOperationException if this object is read-only
      */
     public void setSpeedScaleFactor(Fraction val) throws UnsupportedOperationException {   
-        if (this.readOnly) throw new UnsupportedOperationException("Cannot change values on a read-only object.");
+        this.readOnlyException();
         RhythmicDurationTransformer.checkScaleFactorValidity(val);
         this.speedScaleFactor = val;
         this.notifySubscribers(null);  
@@ -152,13 +140,8 @@ public class VoiceSettings extends AbstractPublisher implements Subscriber {
         return selfSimilaritySettings;
     }    
 
-    /**
-     * Applies these voice settings to the given note list.
-     * 
-     * @param noteList the note list to apply the settings to
-     * @return the result of applying the settings to the note list
-     */
-    public NoteList applySettingsToNoteList(NoteList noteList) {        
+    @Override    
+    public NoteList applySettingsToNoteList(NoteList noteList, Scale scale) {        
         OctaveTransformer octaveT = new OctaveTransformer(this.getOctaveAdjustment());
         RhythmicDurationTransformer speedT = new RhythmicDurationTransformer(this.getSpeedScaleFactor());
         SelfSimilarityTransformer selfSimilarityT = new SelfSimilarityTransformer(this.getSelfSimilaritySettings());
@@ -166,25 +149,22 @@ public class VoiceSettings extends AbstractPublisher implements Subscriber {
         NoteList temp = octaveT.transform(noteList);
         temp = speedT.transform(temp);  
         temp = selfSimilarityT.transform(temp);
-        return temp;
+        return super.applySettingsToNoteList(temp, scale);        
     }
 
     public void publisherNotification(Publisher p, Object args) {        
         assert p == this.getSelfSimilaritySettings() : p;
         this.notifySubscribers(null);        
-    }            
-    
-    /**
-     * Gets a read-only copy of this object.  
-     * 
-     * @return a read-only copy of this object
-     */
-    public VoiceSettings getReadOnlyCopy() {        
-        VoiceSettings vs = (VoiceSettings) this.clone();                                    
-        vs.setSelfSimilaritySettings(vs.getSelfSimilaritySettings().getReadOnlyCopy());        
-        vs.readOnly = true;
-        return vs;
     }
+
+    @Override
+    public VoiceSettings getReadOnlyCopy() {
+        if (this.getSelfSimilaritySettings().isReadOnly()) return (VoiceSettings) super.getReadOnlyCopy();
+        
+        VoiceSettings vs = (VoiceSettings) this.clone();        
+        vs.setSelfSimilaritySettings(vs.getSelfSimilaritySettings().getReadOnlyCopy());        
+        return vs.getReadOnlyCopy();
+    }                
     
     @Override
     public Object clone() {        
@@ -194,7 +174,8 @@ public class VoiceSettings extends AbstractPublisher implements Subscriber {
         return cloned;
     }
 
-    // equals() and hashCode() were generated by NetBeans IDE
+    // equals() and hashCode() were generated by NetBeans IDE,        
+    // then modified to include the calls to the super class.
     @Override
     public boolean equals(Object obj) {      
         if (obj == null) {
@@ -203,7 +184,10 @@ public class VoiceSettings extends AbstractPublisher implements Subscriber {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final VoiceSettings other = (VoiceSettings) obj;
+        if (!super.equals(obj)) {
+            return false;
+        }            
+        final VoiceSettings other = (VoiceSettings) obj;        
         if (this.octaveAdjustment != other.octaveAdjustment) {
             return false;
         }
@@ -219,6 +203,7 @@ public class VoiceSettings extends AbstractPublisher implements Subscriber {
     @Override
     public int hashCode() {
         int hash = 7;
+        hash = 37 * hash + super.hashCode();
         hash = 37 * hash + this.octaveAdjustment;
         hash = 37 * hash + (this.speedScaleFactor != null ? this.speedScaleFactor.hashCode() : 0);
         hash = 37 * hash + (this.selfSimilaritySettings != null ? this.selfSimilaritySettings.hashCode() : 0);

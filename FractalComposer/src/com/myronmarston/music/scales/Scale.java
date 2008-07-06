@@ -22,6 +22,7 @@ package com.myronmarston.music.scales;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteName;
 import com.myronmarston.util.ClassHelper;
+import com.myronmarston.util.MathHelper;
 
 import java.lang.reflect.Constructor;
 import org.simpleframework.xml.*;
@@ -170,6 +171,18 @@ public abstract class Scale implements Cloneable {
     }
     
     /**
+     * Normalizes the given scale step value to be between 0 and the number of
+     * scale steps for this scale minus 1.  For example, for diatonic scales, 
+     * the value is put in the range 0 to 7.
+     * 
+     * @param scaleStep the scale step to normalize
+     * @return the normalized scale step
+     */
+    public int getNormalizedScaleStep(int scaleStep) {
+        return MathHelper.getNormalizedValue(scaleStep, this.getScaleStepArray().length);
+    }
+    
+    /**
      * Sets the scaleStep and chromaticAdjustment on the given note, based on
      * the passed noteName.  
      * 
@@ -243,6 +256,32 @@ public abstract class Scale implements Cloneable {
         return this.getKeySignature().getTonality().getValidKeyNames();
     }
 
+    /**
+     * Gets a new scale that is of the same type, but uses a different key.
+     * 
+     * @param key the new key
+     * @return the new scale
+     * @throws com.myronmarston.music.scales.InvalidKeySignatureException if
+     *         the given key produces a KeySignature with more than 7 sharps or
+     *         flats
+     */
+    public Scale getCopyWithDifferentKey(NoteName key) throws InvalidKeySignatureException {
+        Scale scale = (Scale) this.clone();
+        scale.keySignature = new KeySignature(this.keySignature.getTonality(), key);
+        return scale;
+    }
+    
+    /**
+     * Gets a recommended number of letter numbers to transpose, based on the 
+     * given number of scale steps.
+     * 
+     * @param transposeScaleSteps the number of scale steps
+     * @return the recommended number of letter numbers to transpose
+     */
+    public int getRecommendedTransposeLetterNumber(int transposeScaleSteps) {        
+        return this.getLetterNumberArray()[this.getNormalizedScaleStep(transposeScaleSteps)];        
+    }
+        
     @Override
     public Object clone() {
         try {

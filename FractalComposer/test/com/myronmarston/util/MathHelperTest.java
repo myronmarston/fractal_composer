@@ -93,4 +93,13 @@ public class MathHelperTest {
         assertEquals(false, MathHelper.numIsPowerOf2(15L));
         assertEquals(true, MathHelper.numIsPowerOf2(256L));
     }
+    
+    @Test
+    public void getNormalizedValue() {
+        assertEquals(4, MathHelper.getNormalizedValue(4, 7));
+        assertEquals(4, MathHelper.getNormalizedValue(11, 7));
+        assertEquals(4, MathHelper.getNormalizedValue(18, 7));
+        assertEquals(4, MathHelper.getNormalizedValue(-3, 7));
+        assertEquals(4, MathHelper.getNormalizedValue(-10, 7));
+    }
 }

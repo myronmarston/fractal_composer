@@ -54,7 +54,7 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="class in com.myronmarston.music.settings"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html" title="class in com.myronmarston.music.settings"><B>PREV CLASS</B></A>&nbsp;
 &nbsp;<A HREF="../../../../com/myronmarston/music/settings/InvalidTimeSignatureException.html" title="class in com.myronmarston.music.settings"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/myronmarston/music/settings/FractalPiece.html" target="_top"><B>FRAMES</B></A>  &nbsp;
@@ -526,14 +526,17 @@ public <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="cla
 <A NAME="setScale(com.myronmarston.music.scales.Scale)"><!-- --></A><H3>
 setScale</H3>
 <PRE>
-public void <B>setScale</B>(<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</PRE>
+public void <B>setScale</B>(<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)
+              throws java.lang.IllegalArgumentException</PRE>
 <DL>
 <DD>Sets the Scale used by this FractalPiece.  The Scale is used to 
  determine the tonality of the piece, and will also be used to set the 
  key signature of the Midi sequence.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>scale</CODE> - the Scale to be used by this FractalPiece</DL>
+<DT><B>Parameters:</B><DD><CODE>scale</CODE> - the Scale to be used by this FractalPiece
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.IllegalArgumentException</CODE> - if the passed scale is null</DL>
 </DD>
 </DL>
 <HR>
@@ -928,7 +931,7 @@ public java.lang.String <B>getXmlRepresentation</B>()</PRE>
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="class in com.myronmarston.music.settings"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html" title="class in com.myronmarston.music.settings"><B>PREV CLASS</B></A>&nbsp;
 &nbsp;<A HREF="../../../../com/myronmarston/music/settings/InvalidTimeSignatureException.html" title="class in com.myronmarston.music.settings"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/myronmarston/music/settings/FractalPiece.html" target="_top"><B>FRAMES</B></A>  &nbsp;

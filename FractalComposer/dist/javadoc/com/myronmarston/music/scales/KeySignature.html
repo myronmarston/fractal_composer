@@ -184,6 +184,14 @@ Represents a Midi key signature.  This is immutable.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/KeySignature.html#getRelativeKeyName()">getRelativeKeyName</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the note name of the relative key.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/scales/Tonality.html" title="enum in com.myronmarston.music.scales">Tonality</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/KeySignature.html#getTonality()">getTonality</A></B>()</CODE>
 
@@ -315,6 +323,22 @@ public <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the name of the key</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRelativeKeyName()"><!-- --></A><H3>
+getRelativeKeyName</H3>
+<PRE>
+public <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A> <B>getRelativeKeyName</B>()</PRE>
+<DL>
+<DD>Gets the note name of the relative key.  For a major key, it will be the
+ note a minor 3rd below.  For a minor key, it will be the note a minor
+ 3rd above the key.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the relative key name</DL>
 </DD>
 </DL>
 <HR>

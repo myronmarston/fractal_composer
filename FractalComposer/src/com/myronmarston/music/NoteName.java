@@ -21,6 +21,7 @@ package com.myronmarston.music;
 
 import com.myronmarston.music.scales.Scale;
 import com.myronmarston.music.scales.Tonality;
+import com.myronmarston.util.MathHelper;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -109,7 +110,7 @@ public enum NoteName {
         this.letterNumber = letterNumber;
         this.pitchNumberAtOctaveZero = noteNumber + MIDI_KEY_OFFSET;
         this.noteNumber = noteNumber;
-        this.normalizedNoteNumber = getNormalizedValue(noteNumber, Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE);//getNormalizedValue(pitchNumberAtOctaveZero, Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE);
+        this.normalizedNoteNumber = MathHelper.getNormalizedValue(noteNumber, Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE);//getNormalizedValue(pitchNumberAtOctaveZero, Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE);
         this.defaultNoteNameForNumber = defaultNoteNameForNumber;
         this.majorKeySharpsOrFlats = majorKeySharpsOrFlats;
         this.minorKeySharpsOrFlats = minorKeySharpsOrFlats;
@@ -201,7 +202,33 @@ public enum NoteName {
      * @return the size of the interval
      */
     public int getPositiveIntervalSize(NoteName other) {
-        return getNormalizedValue(other.getLetterNumber() - this.getLetterNumber(), NoteName.NUM_LETTER_NAMES);                
+        return MathHelper.getNormalizedValue(other.getLetterNumber() - this.getLetterNumber(), NoteName.NUM_LETTER_NAMES);                
+    }
+
+    /**
+     * Gets the NoteName that is the given interval away from this NoteName. The
+     * interva. is given using two parameters, the letter number offset, and the
+     * note number offset.
+     * 
+     * @param letterNumberOffset a value to add to the letter number to get the
+     *        letter number of the new NoteName
+     * @param noteNumberOffset a value to add to the note number to get the note
+     *        number of the new NoteName
+     * @return the NoteName for the given interval
+     * @throws java.lang.IllegalArgumentException if no NoteName can be found
+     *         for the given parameters
+     */
+    public NoteName getNoteNameFromInterval(int letterNumberOffset, int noteNumberOffset) throws IllegalArgumentException {
+        int normLetterNumber = MathHelper.getNormalizedValue(this.getLetterNumber() + letterNumberOffset, NoteName.NUM_LETTER_NAMES);
+        int normNoteNumber = MathHelper.getNormalizedValue(this.getNormalizedNoteNumber() + noteNumberOffset, Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE);
+        
+        for (NoteName nn : NoteName.values()) {
+            if (nn.getNormalizedNoteNumber() == normNoteNumber && nn.getLetterNumber() == normLetterNumber) {
+                return nn;
+            }
+        }
+        
+        throw new IllegalArgumentException("No note for the given interval could be found.  letterNumberOffset: " + letterNumberOffset + "; noteNumberOffset: " + noteNumberOffset);
     }
     
     /**
@@ -211,24 +238,8 @@ public enum NoteName {
      * @return the number of positive chromatic steps
      */
     public int getPositiveChromaticSteps(NoteName other) {
-        return getNormalizedValue(other.getNormalizedNoteNumber() - this.getNormalizedNoteNumber(), Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE);                
+        return MathHelper.getNormalizedValue(other.getNormalizedNoteNumber() - this.getNormalizedNoteNumber(), Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE);                
     }        
-       
-    /**
-     * Normalizes a value into a certain range. This is like a modulus function,
-     * only this properly handles negative values.
-     * 
-     * @param value the value to normalize
-     * @param mod the modulus number
-     * @return the normalized value
-     */
-    public static int getNormalizedValue(int value, int mod) {        
-        while (value < 0) value += mod;        
-        int returnVal = value % mod;
-        assert returnVal >= 0 && returnVal < mod : returnVal;
-        
-        return returnVal;
-    }
 
     @Override
     public String toString() {
@@ -261,7 +272,7 @@ public enum NoteName {
      * @return the natural note name     
      */
     public NoteName getNaturalNoteNameForLetterNumber(int letterNumber) {
-        switch (NoteName.getNormalizedValue(this.letterNumber + letterNumber, NUM_LETTER_NAMES)) {
+        switch (MathHelper.getNormalizedValue(this.letterNumber + letterNumber, NUM_LETTER_NAMES)) {
             case 0: return NoteName.C;
             case 1: return NoteName.D;
             case 2: return NoteName.E;

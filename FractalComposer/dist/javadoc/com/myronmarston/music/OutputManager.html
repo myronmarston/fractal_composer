@@ -100,8 +100,8 @@ java.lang.Object
 </PRE>
 
 <P>
-Class that manages the outputs from FractalComposer, such as Midi files, 
- PDF files of scores, etc.
+Class that manages the outputs from FractalComposer, such as Midi files, WAV
+ files, Mp3 files, PDF files of scores, etc.
 <P>
 
 <P>
@@ -118,15 +118,15 @@ Class that manages the outputs from FractalComposer, such as Midi files,
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#OutputManager(com.myronmarston.music.settings.FractalPiece, java.util.Collection)">OutputManager</A></B>(<A HREF="../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
-              java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists)</CODE>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#OutputManager(com.myronmarston.music.settings.FractalPiece, java.util.List)">OutputManager</A></B>(<A HREF="../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
+              java.util.List&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#OutputManager(com.myronmarston.music.settings.FractalPiece, java.util.Collection, boolean, boolean)">OutputManager</A></B>(<A HREF="../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
-              java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists,
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#OutputManager(com.myronmarston.music.settings.FractalPiece, java.util.List, boolean, boolean)">OutputManager</A></B>(<A HREF="../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
+              java.util.List&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists,
               boolean&nbsp;includeTempoOnSheetMusic,
               boolean&nbsp;includeInstrumentOnSheetMusic)</CODE>
 
@@ -226,7 +226,7 @@ Class that manages the outputs from FractalComposer, such as Midi files,
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;</CODE></FONT></TD>
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getNoteLists()">getNoteLists</A></B>()</CODE>
 
 <BR>
@@ -319,11 +319,11 @@ Class that manages the outputs from FractalComposer, such as Midi files,
 </TR>
 </TABLE>
 
-<A NAME="OutputManager(com.myronmarston.music.settings.FractalPiece, java.util.Collection)"><!-- --></A><H3>
+<A NAME="OutputManager(com.myronmarston.music.settings.FractalPiece, java.util.List)"><!-- --></A><H3>
 OutputManager</H3>
 <PRE>
 public <B>OutputManager</B>(<A HREF="../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
-                     java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists)
+                     java.util.List&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists)
               throws <A HREF="../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></PRE>
 <DL>
 <DD>Constructor.  This automatically constructs the midi sequence and the
@@ -336,11 +336,11 @@ public <B>OutputManager</B>(<A HREF="../../../com/myronmarston/music/settings/Fr
 </DL>
 <HR>
 
-<A NAME="OutputManager(com.myronmarston.music.settings.FractalPiece, java.util.Collection, boolean, boolean)"><!-- --></A><H3>
+<A NAME="OutputManager(com.myronmarston.music.settings.FractalPiece, java.util.List, boolean, boolean)"><!-- --></A><H3>
 OutputManager</H3>
 <PRE>
 public <B>OutputManager</B>(<A HREF="../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
-                     java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists,
+                     java.util.List&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists,
                      boolean&nbsp;includeTempoOnSheetMusic,
                      boolean&nbsp;includeInstrumentOnSheetMusic)
               throws <A HREF="../../../com/myronmarston/music/GermIsEmptyException.html" title="class in com.myronmarston.music">GermIsEmptyException</A></PRE>
@@ -439,7 +439,7 @@ public <A HREF="../../../com/myronmarston/music/AudioFileCreator.html" title="cl
 <A NAME="getNoteLists()"><!-- --></A><H3>
 getNoteLists</H3>
 <PRE>
-public java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt; <B>getNoteLists</B>()</PRE>
+public java.util.List&lt;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt; <B>getNoteLists</B>()</PRE>
 <DL>
 <DD>Gets the collection of note lists that was used to generate the output.
 <P>

@@ -30,8 +30,8 @@ import javax.sound.midi.*;
 import java.util.*;
 
 /**
- * Class that manages the outputs from FractalComposer, such as Midi files, 
- * PDF files of scores, etc.
+ * Class that manages the outputs from FractalComposer, such as Midi files, WAV
+ * files, Mp3 files, PDF files of scores, etc.
  * 
  * @author Myron
  */
@@ -40,7 +40,7 @@ public class OutputManager {
     private Sequence sequence;
     private final FractalPiece fractalPiece;
     private final int tempo;
-    private Collection<NoteList> noteLists;
+    private List<NoteList> noteLists;
     private SheetMusicCreator sheetMusicCreator;
     private AudioFileCreator audioFileCreator;
     private boolean includeTempoOnSheetMusic;
@@ -51,7 +51,7 @@ public class OutputManager {
     private String lastMp3FileName;
     private String lastGifFileName;
     
-    private static final int MIDI_FILE_TYPE_FOR_MULTI_TRACK_SEQUENCE = 1;
+    private static final int MIDI_FILE_TYPE_FOR_MULTI_TRACK_SEQUENCE = 1;    
         
     /**
      * Gets the guido notation representing this piece of music.
@@ -105,7 +105,7 @@ public class OutputManager {
      * 
      * @return the collection of note lists
      */
-    public Collection<NoteList> getNoteLists() {
+    public List<NoteList> getNoteLists() {
         return this.noteLists;
     }
 
@@ -126,7 +126,7 @@ public class OutputManager {
      * @param noteLists collection of noteLists containing music
      * @throws com.myronmarston.music.GermIsEmptyException if the germ is empty
      */
-    public OutputManager(FractalPiece fractalPiece, Collection<NoteList> noteLists) throws GermIsEmptyException {
+    public OutputManager(FractalPiece fractalPiece, List<NoteList> noteLists) throws GermIsEmptyException {
         this(fractalPiece, noteLists, true, true);
     }
 
@@ -142,7 +142,7 @@ public class OutputManager {
      *        instrument markings on the produced sheet music
      * @throws com.myronmarston.music.GermIsEmptyException if the germ is empty
      */
-    public OutputManager(FractalPiece fractalPiece, Collection<NoteList> noteLists, boolean includeTempoOnSheetMusic, boolean includeInstrumentOnSheetMusic) throws GermIsEmptyException {
+    public OutputManager(FractalPiece fractalPiece, List<NoteList> noteLists, boolean includeTempoOnSheetMusic, boolean includeInstrumentOnSheetMusic) throws GermIsEmptyException {
         this.fractalPiece = fractalPiece;
         this.noteLists = noteLists;
         this.includeTempoOnSheetMusic = includeTempoOnSheetMusic;
@@ -246,7 +246,7 @@ public class OutputManager {
         assert midiChannel < MidiNote.MAX_CHANNEL;
         
         Track track = sequence.createTrack();
-        track.add(instrument.getProgramChangeMidiEvent(midiChannel));
+        track.add(instrument.getProgramChangeMidiEvent(midiChannel));        
         
         // in Midi, the tick resolution is based on quarter notes, but we use whole notes...
         int midiTicksPerWholeNote = convertMidiTickUnitFromQuarterNotesToWholeNotesInt(sequence.getResolution());

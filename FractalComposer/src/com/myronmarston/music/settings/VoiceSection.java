@@ -19,10 +19,11 @@
 
 package com.myronmarston.music.settings;
 
-import com.myronmarston.music.OutputManager;
 import com.myronmarston.music.GermIsEmptyException;
+import com.myronmarston.music.Instrument;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
+import com.myronmarston.music.OutputManager;
 import com.myronmarston.music.scales.Scale;
 import com.myronmarston.util.Fraction;
 import com.myronmarston.util.Publisher;
@@ -249,6 +250,7 @@ public class VoiceSection implements Subscriber {
      */
     public NoteList getVoiceSectionResult() {
         if (voiceSectionResult == null) voiceSectionResult = this.generateVoiceSectionResult();
+        voiceSectionResult.setInstrument(Instrument.getInstrument(this.getVoice().getInstrumentName()));
         return voiceSectionResult;
     }
     
@@ -258,9 +260,11 @@ public class VoiceSection implements Subscriber {
      * @return the output manager
      * @throws com.myronmarston.music.GermIsEmptyException if the germ is empty
      */
-    public OutputManager createOutputManager() throws GermIsEmptyException {
-        //TODO: cache this?
-        return new OutputManager(this.getVoice().getFractalPiece(), Arrays.asList(this.getVoiceSectionResult()));
+    public OutputManager createOutputManager() throws GermIsEmptyException {                        
+        Fraction sectionDuration = this.getSection().getDuration();
+        NoteList result = this.getLengthenedVoiceSectionResult(sectionDuration);
+                
+        return new OutputManager(this.getVoice().getFractalPiece(), Arrays.asList(result));
     }
   
     /**
@@ -311,8 +315,7 @@ public class VoiceSection implements Subscriber {
      *         germ
      */
     private NoteList generateVoiceSectionResult() {
-        NoteList clonedGerm = (NoteList) this.getVoice().getFractalPiece().getGerm().clone();
-        
+        NoteList clonedGerm = (NoteList) this.getSection().getGermForSection().clone(); 
         Scale sectionScale = this.getSection().getScale();
         Scale scaleToUse = (sectionScale == null ? this.getSection().getFractalPiece().getScale() : sectionScale);
         clonedGerm.updateScale(scaleToUse);
@@ -328,8 +331,8 @@ public class VoiceSection implements Subscriber {
             return restResult;
         }
         
-        NoteList temp = this.getSectionSettings().applySettingsToNoteList(clonedGerm);
-        temp = this.getVoiceSettings().applySettingsToNoteList(temp);            
+        NoteList temp = this.getSectionSettings().applySettingsToNoteList(clonedGerm, scaleToUse);
+        temp = this.getVoiceSettings().applySettingsToNoteList(temp, scaleToUse);            
         
         return temp;
     }

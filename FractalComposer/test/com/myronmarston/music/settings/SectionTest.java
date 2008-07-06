@@ -96,10 +96,26 @@ public class SectionTest {
         fp.createDefaultSettings();
         fp.setGermString("G4 A4 B4 G4");
         
+        String inst1 = com.myronmarston.music.Instrument.AVAILABLE_INSTRUMENTS.get(3);
+        String inst2 = com.myronmarston.music.Instrument.AVAILABLE_INSTRUMENTS.get(4);
+        String inst3 = com.myronmarston.music.Instrument.AVAILABLE_INSTRUMENTS.get(5);
+        assertFalse(inst1.equals(inst2));
+        assertFalse(inst1.equals(inst3));
+        assertFalse(inst2.equals(inst3));
+        
+        fp.getVoices().get(0).setInstrumentName(inst1);
+        fp.getVoices().get(1).setInstrumentName(inst2);
+        fp.getVoices().get(2).setInstrumentName(inst3);
+        
         Section s = fp.getSections().get(0);
         // this will throw an exception if it fails...
         OutputManager om = s.createOutputManager();        
         assertNotNull(om);
+        
+        assertEquals(3, om.getNoteLists().size());
+        assertEquals(com.myronmarston.music.Instrument.getInstrument(inst1), om.getNoteLists().get(0).getInstrument());
+        assertEquals(com.myronmarston.music.Instrument.getInstrument(inst2), om.getNoteLists().get(1).getInstrument());
+        assertEquals(com.myronmarston.music.Instrument.getInstrument(inst3), om.getNoteLists().get(2).getInstrument());
         
         Sequence seq = om.getSequence();
         
@@ -175,5 +191,124 @@ public class SectionTest {
         // settting override to false should nullify the scale...
         s2.setOverridePieceScale(false);
         assertEquals(null, s2.getScale());
+    }
+    
+    @Test
+    public void getGermForSection() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        fp.createDefaultSettings();
+        fp.setScale(new MinorScale(NoteName.E));
+        String germString = "E4 G4 B4 A4 D4 E4";
+        fp.setGermString(germString);
+        
+        for (Section s : fp.getSections()) {
+            // The section germs should be the exact same instance as the piece germ,
+            // since no sections have overriden the scale
+            assertTrue(fp.getGerm() == s.getGermForSection());
+        }
+        
+        // Override the scale with a scale that has the same number of scale
+        // steps; we should still use the same instance of the germ
+        Section s1 = fp.getSections().get(0);
+        s1.setOverridePieceScale(true);
+        s1.setScale(new MajorScale(NoteName.Bb));
+        assertTrue(fp.getGerm() == s1.getGermForSection());
+        
+        // Override the scale with a scale that has a different number of scale
+        // steps; we should have a different section germ.
+        
+        s1.setScale(new MinorPentatonicScale(NoteName.Bb));
+        // parsing it with Bb as the tonic will produce lots of accidentals,
+        // so the original tonic should be used instead
+        NoteList expectedGerm = NoteList.parseNoteListString(germString, new MinorPentatonicScale(NoteName.E));                        
+        NoteListTest.assertNoteListsEqual(expectedGerm, s1.getGermForSection());
+        
+        s1.setScale(new MajorPentatonicScale(NoteName.Bb));        
+        // parsing it with Bb as the tonic will produce lots of accidentals,
+        // and parsing it with the original tonic of E will also produce accidentals,
+        // so try the relative tonic
+        expectedGerm = NoteList.parseNoteListString(germString, new MajorPentatonicScale(NoteName.G));                        
+        NoteListTest.assertNoteListsEqual(expectedGerm, s1.getGermForSection());
+        
+        germString = "G4 A4 B4 G4 F#4";
+        fp.setScale(new ChromaticScale());
+        fp.setGermString(germString);
+        
+        s1.setScale(new MajorScale(NoteName.G));
+        // Parsing it with the given tonic of G will produce no accidentals, so we can
+        // use that here!
+        expectedGerm = NoteList.parseNoteListString(germString, new MajorScale(NoteName.G));                        
+        NoteListTest.assertNoteListsEqual(expectedGerm, s1.getGermForSection());
+        
+        fp.setScale(new MajorScale(NoteName.C));        
+        s1.setScale(new MajorPentatonicScale(NoteName.Bb));
+        // we will have accidentals for each of the posibilities (C Major pentatonic, 
+        // Bb Major pentatonic, A major pentatonic); choose
+        // the one with the fewest accidentals--C Major pentatonic
+        expectedGerm = NoteList.parseNoteListString(germString, new MajorPentatonicScale(NoteName.C));                        
+        NoteListTest.assertNoteListsEqual(expectedGerm, s1.getGermForSection());
+        
+        s1.setScale(new MajorPentatonicScale(NoteName.G));
+        expectedGerm = NoteList.parseNoteListString(germString, new MajorPentatonicScale(NoteName.G));                        
+        NoteListTest.assertNoteListsEqual(expectedGerm, s1.getGermForSection());
+        
+        fp.setScale(new MinorScale(NoteName.E));
+        s1.setScale(new MajorPentatonicScale(NoteName.Bb));
+        expectedGerm = NoteList.parseNoteListString(germString, new MajorPentatonicScale(NoteName.G));                        
+        NoteListTest.assertNoteListsEqual(expectedGerm, s1.getGermForSection());
+    }
+    
+    @Test
+    public void getGermForSection_caching() throws Exception {
+        // Fields that effect the section germ:
+        //    -Section.overridePieceScale
+        //    -Section.scale
+        //    -FractalPiece.scale
+        //    -FractalPiece.germString
+        // When any of these changes, the cached germForSection should be clared.
+        
+        FractalPiece fp = new FractalPiece();
+        fp.createDefaultSettings();
+        fp.setScale(new MinorScale(NoteName.E));        
+        fp.setGermString("E4 G4 B4 A4 D4 E4");
+        
+        Section s1 = fp.getSections().get(0);
+        
+        // Section.overridePieceScale
+        s1.setOverridePieceScale(true);
+        s1.setScale(new MinorPentatonicScale(NoteName.G));
+        NoteList cachedGerm = s1.getGermForSection();            
+        assertTrue(cachedGerm == s1.getGermForSection());
+        s1.setOverridePieceScale(false);
+        assertFalse(cachedGerm == s1.getGermForSection());
+        s1.setOverridePieceScale(true);
+        assertFalse(cachedGerm == s1.getGermForSection());
+        
+        // Section.scale
+        s1.setScale(new MinorPentatonicScale(NoteName.F));
+        cachedGerm = s1.getGermForSection();
+        assertTrue(cachedGerm == s1.getGermForSection());
+        s1.setScale(new MajorPentatonicScale(NoteName.D));
+        assertFalse(cachedGerm == s1.getGermForSection());
+        s1.setScale(new MinorPentatonicScale(NoteName.F));
+        assertFalse(cachedGerm == s1.getGermForSection());
+        
+        // FractalPiece.scale
+        fp.setScale(new ChromaticScale());
+        cachedGerm = s1.getGermForSection();
+        assertTrue(cachedGerm == s1.getGermForSection());
+        fp.setScale(new MajorScale(NoteName.D));
+        assertFalse(cachedGerm == s1.getGermForSection());
+        fp.setScale(new ChromaticScale());
+        assertFalse(cachedGerm == s1.getGermForSection());
+        
+        // FractalPiece.germString
+        fp.setGermString("A4 B4");
+        cachedGerm = s1.getGermForSection();
+        assertTrue(cachedGerm == s1.getGermForSection());
+        fp.setGermString("A4 B4 A4");
+        assertFalse(cachedGerm == s1.getGermForSection());
+        fp.setGermString("A4 B4");
+        assertFalse(cachedGerm == s1.getGermForSection());        
     }
 }

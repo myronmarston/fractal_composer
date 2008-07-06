@@ -149,6 +149,11 @@ public class SelfSimilarityTransformer implements Transformer {
         // if there's no volume range left to use, we have no way to scale it...
         if (remainingVolumeRange == 0) return input;
         
+        // Our input note volume should not be 0, or we will get a scale factor of -1,
+        // which our volume transformer does not allow.  But the code that calls this
+        // method should check for this, so this should never occur...
+        assert inputNote.getVolume() != 0 : inputNote.getVolume();
+        
         double scaleFactor = (inputNote.getVolume() - firstNote.getVolume()) / (double) remainingVolumeRange;
         VolumeTransformer volumeScaler = new VolumeTransformer(scaleFactor);
         return volumeScaler.transform(input);        

@@ -63,8 +63,7 @@ public class VolumeTransformerTest {
     
     @Test(expected=IllegalArgumentException.class)
     public void volumeTransformerBadScaleFactor() {
-        // a scale factor < -1 or > 1 should throw an exception
-        Transformer t = new VolumeTransformer(-2);
-    }
-    
+        // a scale factor <= -1 or > 1 should throw an exception
+        Transformer t = new VolumeTransformer(-1);
+    }    
 }

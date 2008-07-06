@@ -19,6 +19,7 @@
 
 package com.myronmarston.music.scales;
 
+import com.myronmarston.music.MidiNote;
 import com.myronmarston.music.NoteName;
 
 import org.simpleframework.xml.*;
@@ -39,9 +40,13 @@ public class KeySignature {
     @Attribute
     private NoteName keyName;
     
+    @Attribute(required=false)
+    private NoteName relativeKeyName;
+    
     @Attribute
     private Tonality tonality;    
     private MetaMessage keySignatureMidiMessage;    
+    
     
     /**
      * Taken from http://www.sonicspot.com/guide/midifiles.html.
@@ -97,6 +102,25 @@ public class KeySignature {
     }     
     
     /**
+     * Gets the note name of the relative key.  For a major key, it will be the
+     * note a minor 3rd below.  For a minor key, it will be the note a minor
+     * 3rd above the key.
+     * 
+     * @return the relative key name
+     */
+    public NoteName getRelativeKeyName() {
+        if (relativeKeyName == null) {
+            int tonalityMultiplier = (this.getTonality() == Tonality.Major ? -1 : 1);
+            int letterNumberOffset = 2 * tonalityMultiplier;
+            int noteNumberOffset = 3 * tonalityMultiplier;                        
+            
+            relativeKeyName = this.getKeyName().getNoteNameFromInterval(letterNumberOffset, noteNumberOffset);
+        }
+        
+        return relativeKeyName;
+    }
+    
+    /**
      * Gets a string representing this key signature in GUIDO notation.
      * 
      * @return the Guido string
@@ -123,7 +147,7 @@ public class KeySignature {
      */
     public MidiEvent getKeySignatureMidiEvent(long tick) {
         if (this.keySignatureMidiMessage == null) this.keySignatureMidiMessage = generateMidiKeySignatureMessage();                    
-        return new MidiEvent(this.keySignatureMidiMessage, tick);
+        return new MidiEvent(this.keySignatureMidiMessage, tick + MidiNote.MIDI_SEQUENCE_START_SILENCE_TICK_OFFSET);
     }
     
     /**

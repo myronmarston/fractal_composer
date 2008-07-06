@@ -4,7 +4,7 @@
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <TITLE>
-SectionSettings
+AbstractVoiceOrSectionSettings
 </TITLE>
 
 
@@ -14,7 +14,7 @@ SectionSettings
 function windowTitle()
 {
     if (location.href.indexOf('is-external=true') == -1) {
-        parent.document.title="SectionSettings";
+        parent.document.title="AbstractVoiceOrSectionSettings";
     }
 }
 </SCRIPT>
@@ -39,7 +39,7 @@ function windowTitle()
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/SectionSettings.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/AbstractVoiceOrSectionSettings.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -54,11 +54,11 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/settings/SelfSimilaritySettings.html" title="class in com.myronmarston.music.settings"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="class in com.myronmarston.music.settings"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/myronmarston/music/settings/SectionSettings.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="SectionSettings.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="AbstractVoiceOrSectionSettings.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -89,23 +89,27 @@ DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&n
 <FONT SIZE="-1">
 com.myronmarston.music.settings</FONT>
 <BR>
-Class SectionSettings</H2>
+Class AbstractVoiceOrSectionSettings</H2>
 <PRE>
 java.lang.Object
   <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/myronmarston/util/AbstractPublisher.html" title="class in com.myronmarston.util">com.myronmarston.util.AbstractPublisher</A>
-      <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html" title="class in com.myronmarston.music.settings">com.myronmarston.music.settings.AbstractVoiceOrSectionSettings</A>
-          <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.settings.SectionSettings</B>
+      <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.settings.AbstractVoiceOrSectionSettings</B>
 </PRE>
 <DL>
 <DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../../com/myronmarston/util/Publisher.html" title="interface in com.myronmarston.util">Publisher</A>, java.lang.Cloneable</DD>
 </DL>
+<DL>
+<DT><B>Direct Known Subclasses:</B> <DD><A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html" title="class in com.myronmarston.music.settings">SectionSettings</A>, <A HREF="../../../../com/myronmarston/music/settings/VoiceSettings.html" title="class in com.myronmarston.music.settings">VoiceSettings</A></DD>
+</DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>SectionSettings</B><DT>extends <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSectionSettings</A></DL>
+<DT><PRE>public class <B>AbstractVoiceOrSectionSettings</B><DT>extends <A HREF="../../../../com/myronmarston/util/AbstractPublisher.html" title="class in com.myronmarston.util">AbstractPublisher</A></DL>
 </PRE>
 
 <P>
-Specifies settings for a section.
+Class that has settings that can be set either on a voice or a section.  This
+ also contains some common logic used by both the VoiceSettings and 
+ SectionSetttings classes.
 <P>
 
 <P>
@@ -122,17 +126,10 @@ Specifies settings for a section.
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html#SectionSettings()">SectionSettings</A></B>()</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#AbstractVoiceOrSectionSettings()">AbstractVoiceOrSectionSettings</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html#SectionSettings(boolean, boolean)">SectionSettings</A></B>(boolean&nbsp;applyInversion,
-                boolean&nbsp;applyRetrograde)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -147,7 +144,7 @@ Specifies settings for a section.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html#applySettingsToNoteList(com.myronmarston.music.NoteList, com.myronmarston.music.scales.Scale)">applySettingsToNoteList</A></B>(<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&nbsp;noteList,
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#applySettingsToNoteList(com.myronmarston.music.NoteList, com.myronmarston.music.scales.Scale)">applySettingsToNoteList</A></B>(<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&nbsp;noteList,
                         <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</CODE>
 
 <BR>
@@ -156,31 +153,15 @@ Specifies settings for a section.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html#equals(java.lang.Object)">equals</A></B>(java.lang.Object&nbsp;obj)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#equals(java.lang.Object)">equals</A></B>(java.lang.Object&nbsp;obj)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html#getApplyInversion()">getApplyInversion</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets whether or not to apply inversion to this section.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html#getApplyRetrograde()">getApplyRetrograde</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets whether or not to apply retrograde to this section.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html" title="class in com.myronmarston.music.settings">SectionSettings</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html#getReadOnlyCopy()">getReadOnlyCopy</A></B>()</CODE>
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSectionSettings</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#getReadOnlyCopy()">getReadOnlyCopy</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a read-only copy of this object.</TD>
@@ -188,35 +169,58 @@ Specifies settings for a section.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html#hashCode()">hashCode</A></B>()</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#getScaleStepOffset()">getScaleStepOffset</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the scale step offset.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;double</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#getVolumeAdjustment()">getVolumeAdjustment</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the volume adjustment.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#hashCode()">hashCode</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html#setApplyInversion(boolean)">setApplyInversion</A></B>(boolean&nbsp;applyInversion)</CODE>
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#isReadOnly()">isReadOnly</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets whether or not to apply inversion to this section.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a value indicating whether or not this settings object is read-only.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#readOnlyException()">readOnlyException</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If the object is read-only, throws an UnsupportedOperationException.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html#setApplyRetrograde(boolean)">setApplyRetrograde</A></B>(boolean&nbsp;applyRetrograde)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#setScaleStepOffset(int)">setScaleStepOffset</A></B>(int&nbsp;scaleStepOffset)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets whether or not to apply retrograde to this section.</TD>
-</TR>
-</TABLE>
-&nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.settings.AbstractVoiceOrSectionSettings"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.settings.<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSectionSettings</A></B></TH>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the scale step offset.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#getScaleStepOffset()">getScaleStepOffset</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#getVolumeAdjustment()">getVolumeAdjustment</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#isReadOnly()">isReadOnly</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#readOnlyException()">readOnlyException</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#setScaleStepOffset(int)">setScaleStepOffset</A>, <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#setVolumeAdjustment(double)">setVolumeAdjustment</A></CODE></TD>
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#setVolumeAdjustment(double)">setVolumeAdjustment</A></B>(double&nbsp;volumeAdjustment)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the volume adjustment.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.util.AbstractPublisher"><!-- --></A>
@@ -250,26 +254,11 @@ Specifies settings for a section.
 </TR>
 </TABLE>
 
-<A NAME="SectionSettings()"><!-- --></A><H3>
-SectionSettings</H3>
+<A NAME="AbstractVoiceOrSectionSettings()"><!-- --></A><H3>
+AbstractVoiceOrSectionSettings</H3>
 <PRE>
-public <B>SectionSettings</B>()</PRE>
+public <B>AbstractVoiceOrSectionSettings</B>()</PRE>
 <DL>
-<DD>Constructor.
-<P>
-</DL>
-<HR>
-
-<A NAME="SectionSettings(boolean, boolean)"><!-- --></A><H3>
-SectionSettings</H3>
-<PRE>
-public <B>SectionSettings</B>(boolean&nbsp;applyInversion,
-                       boolean&nbsp;applyRetrograde)</PRE>
-<DL>
-<DD>Constructor.
-<P>
-<DL>
-<DT><B>Parameters:</B><DD><CODE>applyInversion</CODE> - whether or not to apply inversion to this section<DD><CODE>applyRetrograde</CODE> - whether or not to apply retrograde to this section</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -282,68 +271,104 @@ public <B>SectionSettings</B>(boolean&nbsp;applyInversion,
 </TR>
 </TABLE>
 
-<A NAME="getApplyInversion()"><!-- --></A><H3>
-getApplyInversion</H3>
+<A NAME="getScaleStepOffset()"><!-- --></A><H3>
+getScaleStepOffset</H3>
 <PRE>
-public boolean <B>getApplyInversion</B>()</PRE>
+public int <B>getScaleStepOffset</B>()</PRE>
 <DL>
-<DD>Gets whether or not to apply inversion to this section.  This is the default 
- for the voice sections in this section; they can individually override
- this setting.
+<DD>Gets the scale step offset.  This can be used to move the music to a 
+ different pitch level.
 <P>
 <DD><DL>
 
-<DT><B>Returns:</B><DD>whether or not to apply inversion to this section</DL>
+<DT><B>Returns:</B><DD>the scale step offset</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="setApplyInversion(boolean)"><!-- --></A><H3>
-setApplyInversion</H3>
+<A NAME="setScaleStepOffset(int)"><!-- --></A><H3>
+setScaleStepOffset</H3>
 <PRE>
-public void <B>setApplyInversion</B>(boolean&nbsp;applyInversion)
-                       throws java.lang.UnsupportedOperationException</PRE>
+public void <B>setScaleStepOffset</B>(int&nbsp;scaleStepOffset)
+                        throws java.lang.IllegalArgumentException,
+                               java.lang.UnsupportedOperationException</PRE>
 <DL>
-<DD>Sets whether or not to apply inversion to this section.  This is the default 
- for the voice sections in this section; they can individually override
- this setting.
+<DD>Sets the scale step offset.  This can be used to move the music to a 
+ different pitch level.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>applyInversion</CODE> - whether or not to apply inversion to this section
+<DT><B>Parameters:</B><DD><CODE>scaleStepOffset</CODE> - the scale step offset
 <DT><B>Throws:</B>
+<DD><CODE>java.lang.IllegalArgumentException</CODE> - if the scale step offset is outside of
+         the range -11 to 11
 <DD><CODE>java.lang.UnsupportedOperationException</CODE> - if this object is read-only</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="getApplyRetrograde()"><!-- --></A><H3>
-getApplyRetrograde</H3>
+<A NAME="getVolumeAdjustment()"><!-- --></A><H3>
+getVolumeAdjustment</H3>
 <PRE>
-public boolean <B>getApplyRetrograde</B>()</PRE>
+public double <B>getVolumeAdjustment</B>()</PRE>
 <DL>
-<DD>Gets whether or not to apply retrograde to this section.  This is the default 
- for the voice sections in this section; they can individually override
- this setting.
+<DD>Gets the volume adjustment.  This will be used to scale the volume of
+ this voice or section.  Should be between -1 and 1.  Negative values
+ decrease the volume; positive values increase it.
 <P>
 <DD><DL>
 
-<DT><B>Returns:</B><DD>whether or not to apply retrograde to this section</DL>
+<DT><B>Returns:</B><DD>the volume adjustment</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="setApplyRetrograde(boolean)"><!-- --></A><H3>
-setApplyRetrograde</H3>
+<A NAME="setVolumeAdjustment(double)"><!-- --></A><H3>
+setVolumeAdjustment</H3>
 <PRE>
-public void <B>setApplyRetrograde</B>(boolean&nbsp;applyRetrograde)
-                        throws java.lang.UnsupportedOperationException</PRE>
+public void <B>setVolumeAdjustment</B>(double&nbsp;volumeAdjustment)
+                         throws java.lang.IllegalArgumentException,
+                                java.lang.UnsupportedOperationException</PRE>
 <DL>
-<DD>Sets whether or not to apply retrograde to this section.  This is the default 
- for the voice sections in this section; they can individually override
- this setting.
+<DD>Sets the volume adjustment.  This will be used to scale the volume of
+ this voice or section.  Should be between -1 and 1.  Negative values
+ decrease the volume; positive values increase it.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>applyRetrograde</CODE> - whether or not to apply retrograde to this section
+<DT><B>Parameters:</B><DD><CODE>volumeAdjustment</CODE> - the volume adjustment
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.IllegalArgumentException</CODE> - if the volume adjustment is outside of 
+         the range -1 to 1
+<DD><CODE>java.lang.UnsupportedOperationException</CODE> - if this is a read-only object</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isReadOnly()"><!-- --></A><H3>
+isReadOnly</H3>
+<PRE>
+public boolean <B>isReadOnly</B>()</PRE>
+<DL>
+<DD>Gets a value indicating whether or not this settings object is read-only.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>true if this object is read-only</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="readOnlyException()"><!-- --></A><H3>
+readOnlyException</H3>
+<PRE>
+protected void <B>readOnlyException</B>()
+                          throws java.lang.UnsupportedOperationException</PRE>
+<DL>
+<DD>If the object is read-only, throws an UnsupportedOperationException. This
+ method should be called at the start of every setter in this class and
+ all sub classes.
+<P>
+<DD><DL>
+
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.UnsupportedOperationException</CODE> - if this object is read-only</DL>
 </DD>
@@ -356,12 +381,8 @@ applySettingsToNoteList</H3>
 public <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A> <B>applySettingsToNoteList</B>(<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&nbsp;noteList,
                                         <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</PRE>
 <DL>
-<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#applySettingsToNoteList(com.myronmarston.music.NoteList, com.myronmarston.music.scales.Scale)">AbstractVoiceOrSectionSettings</A></CODE></B></DD>
 <DD>Applies these settings to the given note list.
 <P>
-<DD><DL>
-<DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#applySettingsToNoteList(com.myronmarston.music.NoteList, com.myronmarston.music.scales.Scale)">applySettingsToNoteList</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSectionSettings</A></CODE></DL>
-</DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>noteList</CODE> - the note list to apply the settings to<DD><CODE>scale</CODE> - the scale to use in conjunction with the settings
 <DT><B>Returns:</B><DD>the result of applying the settings to the note list</DL>
@@ -372,14 +393,10 @@ public <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class i
 <A NAME="getReadOnlyCopy()"><!-- --></A><H3>
 getReadOnlyCopy</H3>
 <PRE>
-public <A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html" title="class in com.myronmarston.music.settings">SectionSettings</A> <B>getReadOnlyCopy</B>()</PRE>
+public <A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSectionSettings</A> <B>getReadOnlyCopy</B>()</PRE>
 <DL>
-<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#getReadOnlyCopy()">AbstractVoiceOrSectionSettings</A></CODE></B></DD>
 <DD>Gets a read-only copy of this object.
 <P>
-<DD><DL>
-<DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#getReadOnlyCopy()">getReadOnlyCopy</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSectionSettings</A></CODE></DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>a read-only copy of this object</DL>
@@ -393,7 +410,7 @@ equals</H3>
 public boolean <B>equals</B>(java.lang.Object&nbsp;obj)</PRE>
 <DL>
 <DD><DL>
-<DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#equals(java.lang.Object)">equals</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSectionSettings</A></CODE></DL>
+<DT><B>Overrides:</B><DD><CODE>equals</CODE> in class <CODE>java.lang.Object</CODE></DL>
 </DD>
 <DD><DL>
 </DL>
@@ -407,7 +424,7 @@ hashCode</H3>
 public int <B>hashCode</B>()</PRE>
 <DL>
 <DD><DL>
-<DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#hashCode()">hashCode</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSectionSettings</A></CODE></DL>
+<DT><B>Overrides:</B><DD><CODE>hashCode</CODE> in class <CODE>java.lang.Object</CODE></DL>
 </DD>
 <DD><DL>
 </DL>
@@ -429,7 +446,7 @@ public int <B>hashCode</B>()</PRE>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/SectionSettings.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/AbstractVoiceOrSectionSettings.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -444,11 +461,11 @@ public int <B>hashCode</B>()</PRE>
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/settings/SelfSimilaritySettings.html" title="class in com.myronmarston.music.settings"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="class in com.myronmarston.music.settings"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/myronmarston/music/settings/SectionSettings.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="SectionSettings.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="AbstractVoiceOrSectionSettings.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {

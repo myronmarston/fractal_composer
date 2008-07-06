@@ -147,6 +147,15 @@ public class SelfSimilaritySettings extends AbstractPublisher {
     }
 
     /**
+     * Whether or not this object is read-only.
+     *  
+     * @return true if this object is read-only
+     */
+    public boolean isReadOnly() {
+        return readOnly;
+    }        
+
+    /**
      * Gets the number of self-similarity iterations.  The germ will be applied 
      * to itself for the first iteration, and then applied to the previous 
      * result for each successive iteration.

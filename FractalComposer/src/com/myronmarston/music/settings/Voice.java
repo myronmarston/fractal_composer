@@ -40,8 +40,7 @@ import java.util.*;
  * @author Myron
  */
 @Root
-public class Voice extends AbstractVoiceOrSection<Voice, Section> {       
-    private NoteList modifiedGerm;      
+public class Voice extends AbstractVoiceOrSection<Voice, Section> {           
     
     @Attribute
     private String instrumentName = Instrument.DEFAULT.getName();
@@ -100,21 +99,7 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
         
         this.instrumentName = instrumentName;                
     }        
-            
-    /**
-     * Gets the modified germ, based on the current settings.
-     * 
-     * @return the modified germ
-     */
-    public NoteList getModifiedGerm() {
-        if (modifiedGerm == null) this.modifiedGerm = this.getSettings().applySettingsToNoteList(this.getFractalPiece().getGerm());
-        
-        // the germ instrument is a setting on the entire note list, so we just set it here
-        // rather than having to regenerate our modified germ every time it changes
-        this.modifiedGerm.setInstrument(Instrument.getInstrument(this.getInstrumentName()));
-        return modifiedGerm;
-    }
-    
+               
     /**
      * Gets a NoteList containing the notes for all sections of this voice.
      * 
@@ -140,25 +125,15 @@ public class Voice extends AbstractVoiceOrSection<Voice, Section> {
      * @return the output manager
      * @throws com.myronmarston.music.GermIsEmptyException if the germ is empty
      */
-    public OutputManager createOutputManager() throws GermIsEmptyException {
-        //TODO: cache this?
+    public OutputManager createOutputManager() throws GermIsEmptyException {        
         return new OutputManager(this.getFractalPiece(), Arrays.asList(this.getEntireVoice()));
     }
 
     public void publisherNotification(Publisher p, Object args) {
         assert p == this.getSettings() : p;
-        this.clearVoiceSectionResults();
-        this.clearModifiedGerm();
+        this.clearVoiceSectionResults();        
     }            
-
-    /**
-     * Sets the modifiedGerm field to null.  Should be called anytime a field
-     * that affects the modified germ changes.
-     */
-    private void clearModifiedGerm() {
-        this.modifiedGerm = null;
-    }       
-    
+   
     @Override
     protected VoiceOrSectionList<Voice, Section> getListOfMainType() {
         return this.getFractalPiece().getVoices();

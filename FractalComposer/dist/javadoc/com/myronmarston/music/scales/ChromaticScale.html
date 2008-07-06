@@ -174,6 +174,15 @@ Chromatic Scale--a scale containing all 12 pitches.  This scale does not have
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/ChromaticScale.html#getRecommendedTransposeLetterNumber(int)">getRecommendedTransposeLetterNumber</A></B>(int&nbsp;transposeScaleSteps)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a recommended number of letter numbers to transpose, based on the 
+ given number of scale steps.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;int[]</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/ChromaticScale.html#getScaleStepArray()">getScaleStepArray</A></B>()</CODE>
 
@@ -206,7 +215,7 @@ Chromatic Scale--a scale containing all 12 pitches.  This scale does not have
 <TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.scales.<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#clone()">clone</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#equals(java.lang.Object)">equals</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeyName()">getKeyName</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeySignature()">getKeySignature</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getNormalizedChromaticAdjustment(int)">getNormalizedChromaticAdjustment</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#hashCode()">hashCode</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#setNotePitchValues_Helper(com.myronmarston.music.Note, com.myronmarston.music.NoteName, int)">setNotePitchValues_Helper</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#toString()">toString</A></CODE></TD>
+<TD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#clone()">clone</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#equals(java.lang.Object)">equals</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getCopyWithDifferentKey(com.myronmarston.music.NoteName)">getCopyWithDifferentKey</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeyName()">getKeyName</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeySignature()">getKeySignature</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getNormalizedChromaticAdjustment(int)">getNormalizedChromaticAdjustment</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#getNormalizedScaleStep(int)">getNormalizedScaleStep</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#hashCode()">hashCode</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#setNotePitchValues_Helper(com.myronmarston.music.Note, com.myronmarston.music.NoteName, int)">setNotePitchValues_Helper</A>, <A HREF="../../../../com/myronmarston/music/scales/Scale.html#toString()">toString</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -305,6 +314,25 @@ public int[] <B>getLetterNumberArray</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>throws an UnsupportedOperationException</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRecommendedTransposeLetterNumber(int)"><!-- --></A><H3>
+getRecommendedTransposeLetterNumber</H3>
+<PRE>
+public int <B>getRecommendedTransposeLetterNumber</B>(int&nbsp;transposeScaleSteps)</PRE>
+<DL>
+<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getRecommendedTransposeLetterNumber(int)">Scale</A></CODE></B></DD>
+<DD>Gets a recommended number of letter numbers to transpose, based on the 
+ given number of scale steps.
+<P>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getRecommendedTransposeLetterNumber(int)">getRecommendedTransposeLetterNumber</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>transposeScaleSteps</CODE> - the number of scale steps
+<DT><B>Returns:</B><DD>the recommended number of letter numbers to transpose</DL>
 </DD>
 </DL>
 <HR>

@@ -94,6 +94,22 @@ public class NoteListTest {
             assertEquals(s2, n.getScale());
         }
     }
+    
+    @Test
+    public void getNumberOfAccidentals() throws Exception {
+        String germString = "G4 A4 F4 E4 B4";
+        NoteList nl = NoteList.parseNoteListString(germString, new MajorScale(NoteName.C));
+        assertEquals(0, nl.getNumberOfAccidentals());
+        
+        nl = NoteList.parseNoteListString(germString, new MajorScale(NoteName.A));
+        assertEquals(2, nl.getNumberOfAccidentals());
+        
+        nl = NoteList.parseNoteListString(germString, new MajorScale(NoteName.G));
+        assertEquals(1, nl.getNumberOfAccidentals());
+        
+        nl = NoteList.parseNoteListString(germString, new MajorPentatonicScale(NoteName.C));
+        assertEquals(2, nl.getNumberOfAccidentals());
+    }
                 
     public static void assertNoteListsEqual(NoteList expected, NoteList actual) {        
         assertEquals(expected.size(), actual.size());
@@ -102,16 +118,10 @@ public class NoteListTest {
         Instrument actualInstr = (actual.getInstrument() == null ? Instrument.DEFAULT : actual.getInstrument());                
         assertEquals(expectedInstr, actualInstr);
         
-        assertEquals(expected.getDuration(), actual.getDuration());
-        assertEquals(expected.getFirstAudibleNote(), actual.getFirstAudibleNote());
-        for (int i = 0; i < actual.size(); i++) {
-            Note expectedNote = expected.get(i);
-            Note actualNote = actual.get(i);
-                        
-            expectedNote = expectedNote.getNormalizedNote();
-            actualNote = actualNote.getNormalizedNote();
-                
-            assertEquals(expectedNote, actualNote);
+        assertEquals(expected.getDuration(), actual.getDuration());        
+        NoteTest.assertNotesEqual(expected.getFirstAudibleNote(), actual.getFirstAudibleNote());
+        for (int i = 0; i < actual.size(); i++) {            
+            NoteTest.assertNotesEqual(expected.get(i), actual.get(i));
         }   
     }            
 }

@@ -90,6 +90,7 @@ public class FractalPiece {
      */
     public NoteList getGerm() {   
         assert germ != null : germ; // germ should never be null!
+        //TODO: return a read-only version of the germ....
         return germ;
     }
 
@@ -113,6 +114,11 @@ public class FractalPiece {
     public void setGermString(String germString) throws NoteStringParseException {
         this.germ = NoteList.parseNoteListString(germString, this.getScale());
         this.germString = germString;
+        
+        // the germ string effects each section's germ for section, so clear them...
+        for (Section section : this.getSections()) {
+            section.clearCachedGermForSection();
+        }
     }
 
     /**
@@ -154,8 +160,9 @@ public class FractalPiece {
      * key signature of the Midi sequence.
      * 
      * @param scale the Scale to be used by this FractalPiece
+     * @throws IllegalArgumentException if the passed scale is null
      */
-    public void setScale(Scale scale) {
+    public void setScale(Scale scale) throws IllegalArgumentException {
         if (scale == null) throw new IllegalArgumentException("Scale cannot be set to null.");        
         
         if (this.getGermString() != null && !this.getGermString().isEmpty()) {
@@ -169,9 +176,14 @@ public class FractalPiece {
                 // error.
                 throw new UndeclaredThrowableException(ex, "An error occured while parsing the note list string '" + this.getGermString() + "' using the scale " + scale.toString() + ".  This indicates a programming error.");        
             }
-        }     
+        }                   
         
-        this.scale = scale;
+        this.scale = scale;                
+        
+        // the scale effects each section's germ for section, so clear them...
+        for (Section section : this.getSections()) {
+            section.clearCachedGermForSection();
+        }
     }
 
     /**
@@ -269,11 +281,10 @@ public class FractalPiece {
         
         // sort the list using a fast-to-slow comparator...
         Collections.sort(sortableVoiceList, new Comparator<Voice>() {
-                public int compare(Voice v1, Voice v2) {        
-                    return v2.getSettings().getSpeedScaleFactor().compareTo(v1.getSettings().getSpeedScaleFactor());
-                }
-             }
-        );
+            public int compare(Voice v1, Voice v2) {        
+                return v2.getSettings().getSpeedScaleFactor().compareTo(v1.getSettings().getSpeedScaleFactor());
+            }
+        });
         
         return Collections.unmodifiableList(sortableVoiceList);
     }
@@ -508,8 +519,7 @@ public class FractalPiece {
      * @return the output manager
      * @throws com.myronmarston.music.GermIsEmptyException if the germ is empty
      */
-    public OutputManager createGermOutputManager() throws GermIsEmptyException {
-        // TODO: can this be cached?
+    public OutputManager createGermOutputManager() throws GermIsEmptyException {        
         return new OutputManager(this, Arrays.asList(this.getGerm()), false, false);
     }
    

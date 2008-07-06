@@ -136,7 +136,7 @@ Uses of <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class 
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.util.Collection&lt;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;</CODE></FONT></TD>
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;</CODE></FONT></TD>
 <TD><CODE><B>OutputManager.</B><B><A HREF="../../../../com/myronmarston/music/OutputManager.html#getNoteLists()">getNoteLists</A></B>()</CODE>
 
 <BR>
@@ -167,15 +167,15 @@ Uses of <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class 
 <TH ALIGN="left" COLSPAN="2">Constructor parameters in <A HREF="../../../../com/myronmarston/music/package-summary.html">com.myronmarston.music</A> with type arguments of type <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/OutputManager.html#OutputManager(com.myronmarston.music.settings.FractalPiece, java.util.Collection)">OutputManager</A></B>(<A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
-              java.util.Collection&lt;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/OutputManager.html#OutputManager(com.myronmarston.music.settings.FractalPiece, java.util.List)">OutputManager</A></B>(<A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
+              java.util.List&lt;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/OutputManager.html#OutputManager(com.myronmarston.music.settings.FractalPiece, java.util.Collection, boolean, boolean)">OutputManager</A></B>(<A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
-              java.util.Collection&lt;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists,
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/OutputManager.html#OutputManager(com.myronmarston.music.settings.FractalPiece, java.util.List, boolean, boolean)">OutputManager</A></B>(<A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>&nbsp;fractalPiece,
+              java.util.List&lt;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&gt;&nbsp;noteLists,
               boolean&nbsp;includeTempoOnSheetMusic,
               boolean&nbsp;includeInstrumentOnSheetMusic)</CODE>
 
@@ -202,18 +202,29 @@ Uses of <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class 
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
-<TD><CODE><B>SectionSettings.</B><B><A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html#applySettingsToNoteList(com.myronmarston.music.NoteList)">applySettingsToNoteList</A></B>(<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&nbsp;noteList)</CODE>
+<TD><CODE><B>AbstractVoiceOrSectionSettings.</B><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#applySettingsToNoteList(com.myronmarston.music.NoteList, com.myronmarston.music.scales.Scale)">applySettingsToNoteList</A></B>(<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&nbsp;noteList,
+                        <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Applies these section settings to the given note list.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Applies these settings to the given note list.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
-<TD><CODE><B>VoiceSettings.</B><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSettings.html#applySettingsToNoteList(com.myronmarston.music.NoteList)">applySettingsToNoteList</A></B>(<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&nbsp;noteList)</CODE>
+<TD><CODE><B>SectionSettings.</B><B><A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html#applySettingsToNoteList(com.myronmarston.music.NoteList, com.myronmarston.music.scales.Scale)">applySettingsToNoteList</A></B>(<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&nbsp;noteList,
+                        <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Applies these voice settings to the given note list.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
+<TD><CODE><B>VoiceSettings.</B><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSettings.html#applySettingsToNoteList(com.myronmarston.music.NoteList, com.myronmarston.music.scales.Scale)">applySettingsToNoteList</A></B>(<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&nbsp;noteList,
+                        <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -234,19 +245,19 @@ Uses of <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class 
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
+<TD><CODE><B>Section.</B><B><A HREF="../../../../com/myronmarston/music/settings/Section.html#getGermForSection()">getGermForSection</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the germ to use for this section.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
 <TD><CODE><B>VoiceSection.</B><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html#getLengthenedVoiceSectionResult(com.myronmarston.util.Fraction)">getLengthenedVoiceSectionResult</A></B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;length)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the voice section result, set to a particular length by padding 
  it with repeats and/or rests as appropriate.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
-<TD><CODE><B>Voice.</B><B><A HREF="../../../../com/myronmarston/music/settings/Voice.html#getModifiedGerm()">getModifiedGerm</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the modified germ, based on the current settings.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -267,18 +278,29 @@ Uses of <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class 
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
-<TD><CODE><B>SectionSettings.</B><B><A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html#applySettingsToNoteList(com.myronmarston.music.NoteList)">applySettingsToNoteList</A></B>(<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&nbsp;noteList)</CODE>
+<TD><CODE><B>AbstractVoiceOrSectionSettings.</B><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#applySettingsToNoteList(com.myronmarston.music.NoteList, com.myronmarston.music.scales.Scale)">applySettingsToNoteList</A></B>(<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&nbsp;noteList,
+                        <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Applies these section settings to the given note list.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Applies these settings to the given note list.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
-<TD><CODE><B>VoiceSettings.</B><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSettings.html#applySettingsToNoteList(com.myronmarston.music.NoteList)">applySettingsToNoteList</A></B>(<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&nbsp;noteList)</CODE>
+<TD><CODE><B>SectionSettings.</B><B><A HREF="../../../../com/myronmarston/music/settings/SectionSettings.html#applySettingsToNoteList(com.myronmarston.music.NoteList, com.myronmarston.music.scales.Scale)">applySettingsToNoteList</A></B>(<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&nbsp;noteList,
+                        <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Applies these voice settings to the given note list.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
+<TD><CODE><B>VoiceSettings.</B><B><A HREF="../../../../com/myronmarston/music/settings/VoiceSettings.html#applySettingsToNoteList(com.myronmarston.music.NoteList, com.myronmarston.music.scales.Scale)">applySettingsToNoteList</A></B>(<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>&nbsp;noteList,
+                        <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 </TABLE>
 &nbsp;

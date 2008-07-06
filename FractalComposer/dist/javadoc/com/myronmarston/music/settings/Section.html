@@ -142,6 +142,14 @@ The entire fractal piece is composed of a series of sections.  Each section
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Section.html#clearCachedGermForSection()">clearCachedGermForSection</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clears the cached germForSection.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music">OutputManager</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Section.html#createOutputManager()">createOutputManager</A></B>()</CODE>
 
@@ -155,6 +163,14 @@ The entire fractal piece is composed of a series of sections.  Each section
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the duration for this entire section.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/Section.html#getGermForSection()">getGermForSection</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the germ to use for this section.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -400,6 +416,37 @@ public void <B>setScale</B>(<A HREF="../../../../com/myronmarston/music/scales/S
 </DL>
 <HR>
 
+<A NAME="getGermForSection()"><!-- --></A><H3>
+getGermForSection</H3>
+<PRE>
+public <A HREF="../../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A> <B>getGermForSection</B>()</PRE>
+<DL>
+<DD>Gets the germ to use for this section.  Usually this will be the Fractal
+ Piece's germ, but if the scale is overriden with a scale containing 
+ different number of scale steps from the FractalPiece scale, the germ
+ will be reparsed.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the germ to use for this section</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="clearCachedGermForSection()"><!-- --></A><H3>
+clearCachedGermForSection</H3>
+<PRE>
+protected void <B>clearCachedGermForSection</B>()</PRE>
+<DL>
+<DD>Clears the cached germForSection.  Should be called anytime a value that
+ effects germForSection is changed.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="getSectionKeySignature()"><!-- --></A><H3>
 getSectionKeySignature</H3>
 <PRE>
@@ -426,7 +473,7 @@ public void <B>setSelfSimilaritySettingsOnAllVoiceSections</B>(boolean&nbsp;appl
  updates the overrideVoiceSettings property to true.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>applyToPitch</CODE> - new value<DD><CODE>applyToRhythm</CODE> - new value<DD><CODE>applyToVolume</CODE> - new value</DL>
+<DT><B>Parameters:</B><DD><CODE>applyToPitch</CODE> - new value<DD><CODE>applyToRhythm</CODE> - new value<DD><CODE>applyToVolume</CODE> - new value<DD><CODE>selfSimilarityIterations</CODE> - new value</DL>
 </DD>
 </DL>
 <HR>

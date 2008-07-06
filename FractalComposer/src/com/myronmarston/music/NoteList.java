@@ -185,6 +185,23 @@ public class NoteList extends ArrayList<Note> {
         }
     }
     
+    /**
+     * Gets the number of notes that have chromatic adjustements.
+     * 
+     * @return the number of notes with chromatic adjustments
+     */
+    public int getNumberOfAccidentals() {
+        int accidentalCount = 0;
+        
+        for (Note n : this) {
+            if (n.getChromaticAdjustment() != 0 || n.getSegmentChromaticAdjustment() != 0) {
+                accidentalCount++;                        
+            }
+        }
+        
+        return accidentalCount;
+    }
+    
     @Override
     /**
      * Clones the note list.  Each individual note is also cloned.

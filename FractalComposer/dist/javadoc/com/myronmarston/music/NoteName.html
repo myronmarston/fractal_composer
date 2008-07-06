@@ -427,20 +427,20 @@ Enumerates all the valid note names.  These are used to parse a note string
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteName.html#getNormalizedValue(int, int)">getNormalizedValue</A></B>(int&nbsp;value,
-                   int&nbsp;mod)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Normalizes a value into a certain range.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;<A HREF="../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteName.html#getNoteName(java.lang.String)">getNoteName</A></B>(java.lang.String&nbsp;str)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the NoteName that corresponds to the given string.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteName.html#getNoteNameFromInterval(int, int)">getNoteNameFromInterval</A></B>(int&nbsp;letterNumberOffset,
+                        int&nbsp;noteNumberOffset)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the NoteName that is the given interval away from this NoteName.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -1075,6 +1075,29 @@ public int <B>getPositiveIntervalSize</B>(<A HREF="../../../com/myronmarston/mus
 </DL>
 <HR>
 
+<A NAME="getNoteNameFromInterval(int, int)"><!-- --></A><H3>
+getNoteNameFromInterval</H3>
+<PRE>
+public <A HREF="../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A> <B>getNoteNameFromInterval</B>(int&nbsp;letterNumberOffset,
+                                        int&nbsp;noteNumberOffset)
+                                 throws java.lang.IllegalArgumentException</PRE>
+<DL>
+<DD>Gets the NoteName that is the given interval away from this NoteName. The
+ interva. is given using two parameters, the letter number offset, and the
+ note number offset.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>letterNumberOffset</CODE> - a value to add to the letter number to get the
+        letter number of the new NoteName<DD><CODE>noteNumberOffset</CODE> - a value to add to the note number to get the note
+        number of the new NoteName
+<DT><B>Returns:</B><DD>the NoteName for the given interval
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.IllegalArgumentException</CODE> - if no NoteName can be found
+         for the given parameters</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="getPositiveChromaticSteps(com.myronmarston.music.NoteName)"><!-- --></A><H3>
 getPositiveChromaticSteps</H3>
 <PRE>
@@ -1085,22 +1108,6 @@ public int <B>getPositiveChromaticSteps</B>(<A HREF="../../../com/myronmarston/m
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>other</CODE> - the note name to compare to
 <DT><B>Returns:</B><DD>the number of positive chromatic steps</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getNormalizedValue(int, int)"><!-- --></A><H3>
-getNormalizedValue</H3>
-<PRE>
-public static int <B>getNormalizedValue</B>(int&nbsp;value,
-                                     int&nbsp;mod)</PRE>
-<DL>
-<DD>Normalizes a value into a certain range. This is like a modulus function,
- only this properly handles negative values.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>value</CODE> - the value to normalize<DD><CODE>mod</CODE> - the modulus number
-<DT><B>Returns:</B><DD>the normalized value</DL>
 </DD>
 </DL>
 <HR>

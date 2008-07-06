@@ -26,7 +26,6 @@ import com.myronmarston.music.scales.MajorScale;
 import com.myronmarston.music.scales.Scale;
 import com.myronmarston.util.Fraction;
 import com.myronmarston.util.Publisher;
-import com.myronmarston.util.Subscriber;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -35,21 +34,37 @@ import static org.junit.Assert.*;
  *
  * @author Myron
  */
-public class VoiceSettingsTest implements Subscriber {
+public class VoiceSettingsTest extends AbstractVoiceOrSectionSettingsTest {
     
     private VoiceSettings settings; 
     private int subscriberNotificationCount = 0;
 
+    @Override
     public void publisherNotification(Publisher p, Object args) {
         assert p == settings : p;
         this.subscriberNotificationCount++;
+        super.publisherNotification(p, args);
     }   
     
     @Before
+    @Override
     public void setUp() throws Exception {
-        settings = new VoiceSettings();
-        settings.addSubscriber(this);
-    }           
+        super.setUp();
+        settings = getSettingsInstance();        
+    }
+
+    @Override
+    protected VoiceSettings getSettingsInstance() {
+        if (this.settings == null) settings = new VoiceSettings();
+        return settings;
+    }
+
+    @Override
+    protected void setDefaultSettingsValues() {
+        this.settings.setOctaveAdjustment(0);
+        this.settings.setSpeedScaleFactor(new Fraction(1, 1));
+        this.settings.setSelfSimilaritySettings(new SelfSimilaritySettings(false, false, false, 1));
+    }        
     
     @Test
     public void setOctaveAdjustment() {
@@ -116,20 +131,20 @@ public class VoiceSettingsTest implements Subscriber {
         vs.setSpeedScaleFactor(new Fraction(4, 1));        
         
         NoteList expected = NoteList.parseNoteListString("G6,1/4 A6,1/8 B6,1/8 G6,1/4", scale);
-        NoteListTest.assertNoteListsEqual(expected, vs.applySettingsToNoteList(input));
+        NoteListTest.assertNoteListsEqual(expected, vs.applySettingsToNoteList(input, scale));
         
         vs.setSpeedScaleFactor(new Fraction(1, 2));
         expected = NoteList.parseNoteListString("G6,2/1 A6,1/1 B6,1/1 G6,2/1", scale);        
-        NoteListTest.assertNoteListsEqual(expected, vs.applySettingsToNoteList(input));
+        NoteListTest.assertNoteListsEqual(expected, vs.applySettingsToNoteList(input, scale));
         
         vs.setOctaveAdjustment(-1);
         expected = NoteList.parseNoteListString("G3,2/1 A3,1/1 B3,1/1 G3,2/1", scale);        
-        NoteListTest.assertNoteListsEqual(expected, vs.applySettingsToNoteList(input)); 
+        NoteListTest.assertNoteListsEqual(expected, vs.applySettingsToNoteList(input, scale)); 
         
         vs.getSelfSimilaritySettings().setApplyToPitch(true);
         vs.getSelfSimilaritySettings().setApplyToRhythm(true);
         expected = NoteList.parseNoteListString("G3,2/1 A3,1/1 B3,1/1 G3,2/1  A3,1/1 B3,1/2 C4,1/2 A3,1/1  B3,1/1 C4,1/2 D4,1/2 B3,1/1  G3,2/1 A3,1/1 B3,1/1 G3,2/1", scale);        
-        NoteListTest.assertNoteListsEqual(expected, vs.applySettingsToNoteList(input)); 
+        NoteListTest.assertNoteListsEqual(expected, vs.applySettingsToNoteList(input, scale));                 
     }
     
     @Test

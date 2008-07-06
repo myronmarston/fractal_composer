@@ -200,6 +200,14 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getCopyWithDifferentKey(com.myronmarston.music.NoteName)">getCopyWithDifferentKey</A></B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;key)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a new scale that is of the same type, but uses a different key.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getKeyName()">getKeyName</A></B>()</CODE>
 
@@ -229,6 +237,24 @@ Scales are used to convert a Note to a MidiNote and to provide the midi file
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Normalizes a chromatic adjustment, putting it in the range -6 to 6.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getNormalizedScaleStep(int)">getNormalizedScaleStep</A></B>(int&nbsp;scaleStep)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Normalizes the given scale step value to be between 0 and the number of
+ scale steps for this scale minus 1.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getRecommendedTransposeLetterNumber(int)">getRecommendedTransposeLetterNumber</A></B>(int&nbsp;transposeScaleSteps)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a recommended number of letter numbers to transpose, based on the 
+ given number of scale steps.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -459,6 +485,25 @@ public static int <B>getNormalizedChromaticAdjustment</B>(int&nbsp;chromaticAdju
 </DL>
 <HR>
 
+<A NAME="getNormalizedScaleStep(int)"><!-- --></A><H3>
+getNormalizedScaleStep</H3>
+<PRE>
+public int <B>getNormalizedScaleStep</B>(int&nbsp;scaleStep)</PRE>
+<DL>
+<DD>Normalizes the given scale step value to be between 0 and the number of
+ scale steps for this scale minus 1.  For example, for diatonic scales, 
+ the value is put in the range 0 to 7.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>scaleStep</CODE> - the scale step to normalize
+<DT><B>Returns:</B><DD>the normalized scale step</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="setNotePitchValues(com.myronmarston.music.Note, com.myronmarston.music.NoteName)"><!-- --></A><H3>
 setNotePitchValues</H3>
 <PRE>
@@ -514,6 +559,46 @@ public java.util.List&lt;<A HREF="../../../../com/myronmarston/music/NoteName.ht
 <DD><DL>
 
 <DT><B>Returns:</B><DD>a list of valid keys</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getCopyWithDifferentKey(com.myronmarston.music.NoteName)"><!-- --></A><H3>
+getCopyWithDifferentKey</H3>
+<PRE>
+public <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A> <B>getCopyWithDifferentKey</B>(<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>&nbsp;key)
+                              throws <A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></PRE>
+<DL>
+<DD>Gets a new scale that is of the same type, but uses a different key.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>key</CODE> - the new key
+<DT><B>Returns:</B><DD>the new scale
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales">InvalidKeySignatureException</A></CODE> - if
+         the given key produces a KeySignature with more than 7 sharps or
+         flats</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRecommendedTransposeLetterNumber(int)"><!-- --></A><H3>
+getRecommendedTransposeLetterNumber</H3>
+<PRE>
+public int <B>getRecommendedTransposeLetterNumber</B>(int&nbsp;transposeScaleSteps)</PRE>
+<DL>
+<DD>Gets a recommended number of letter numbers to transpose, based on the 
+ given number of scale steps.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>transposeScaleSteps</CODE> - the number of scale steps
+<DT><B>Returns:</B><DD>the recommended number of letter numbers to transpose</DL>
 </DD>
 </DL>
 <HR>

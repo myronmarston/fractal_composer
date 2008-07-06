@@ -32,21 +32,36 @@ import static org.junit.Assert.*;
  *
  * @author Myron
  */
-public class SectionSettingsTest implements Subscriber {
+public class SectionSettingsTest extends AbstractVoiceOrSectionSettingsTest {
 
     private SectionSettings settings; 
     private int subscriberNotificationCount = 0;
 
+    @Override
+    protected SectionSettings getSettingsInstance() {
+        if (settings == null) settings = new SectionSettings();
+        return settings;
+    }   
+    
+    @Override
     public void publisherNotification(Publisher p, Object args) {
         assert p == settings : p;
         this.subscriberNotificationCount++;
+        super.publisherNotification(p, args);
     }   
     
     @Before
+    @Override
     public void setUp() throws Exception {
-        settings = new SectionSettings();
-        settings.addSubscriber(this);
+        super.setUp();
+        settings = this.getSettingsInstance();        
     }   
+    
+    @Override
+    protected void setDefaultSettingsValues() {
+        this.settings.setApplyInversion(false);
+        this.settings.setApplyRetrograde(false);
+    }        
 
     @Test
     public void setApplyInversion() {
@@ -80,8 +95,7 @@ public class SectionSettingsTest implements Subscriber {
     
     @Test
     public void applySettingsToNoteList() throws Exception {
-        Scale scale = new MajorScale(NoteName.G);
-        Scale scale2 = new HarmonicMinorScale(NoteName.C);
+        Scale scale = new MajorScale(NoteName.G);        
         SectionSettings ss = new SectionSettings();
         NoteList input = NoteList.parseNoteListString("G4,1/1 A4,1/2 B4,1/2 G4,1/1", scale);
         
@@ -89,19 +103,19 @@ public class SectionSettingsTest implements Subscriber {
         ss.setApplyRetrograde(false);
         
         NoteList expected = NoteList.parseNoteListString("G4,1/1 A4,1/2 B4,1/2 G4,1/1", scale);
-        NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input));
+        NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input, scale));
         
         ss.setApplyInversion(true);
         expected = NoteList.parseNoteListString("G4,1/1 F#4,1/2 E4,1/2 G4,1/1", scale);
-        NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input));
+        NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input, scale));
         
         ss.setApplyRetrograde(true);
         expected = NoteList.parseNoteListString("G4,1/1 E4,1/2 F#4,1/2 G4,1/1", scale);        
-        NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input));
+        NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input, scale));
         
         ss.setApplyInversion(false);
         expected = NoteList.parseNoteListString("G4,1/1 B4,1/2 A4,1/2 G4,1/1", scale);
-        NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input));
+        NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input, scale));
     }        
     
     @Test

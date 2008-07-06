@@ -101,4 +101,20 @@ public class MathHelper {
         if (num == 0) return false;
         return (num & (num - 1)) == 0;
     }
+    
+    /**
+     * Normalizes a value into a certain range. This is like a modulus function,
+     * only this properly handles negative values.
+     * 
+     * @param value the value to normalize
+     * @param mod the modulus number
+     * @return the normalized value
+     */
+    public static int getNormalizedValue(int value, int mod) {        
+        while (value < 0) value += mod;        
+        int returnVal = value % mod;
+        assert returnVal >= 0 && returnVal < mod : returnVal;
+        
+        return returnVal;
+    }
 }

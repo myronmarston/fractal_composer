@@ -22,6 +22,7 @@ package com.myronmarston.music;
 import com.myronmarston.music.scales.Scale;
 import com.myronmarston.music.NoteStringInvalidPartException.NoteStringPart;
 import com.myronmarston.util.Fraction;
+import com.myronmarston.util.MathHelper;
 import org.simpleframework.xml.*;
 
 import java.lang.reflect.UndeclaredThrowableException;
@@ -91,7 +92,7 @@ public class Note implements Cloneable {
      */
     @Attribute
     private int letterNumber;
-    
+        
     private static Pattern noteParser;
     
     /**
@@ -596,7 +597,7 @@ public class Note implements Cloneable {
         }
         
         assert tempNote.getScaleStep() >= 0 && tempNote.getScaleStep() < numScaleStepsInOctave : tempNote.getScaleStep();
-        tempNote.setLetterNumber(NoteName.getNormalizedValue(tempNote.getLetterNumber(), NoteName.NUM_LETTER_NAMES));
+        tempNote.setLetterNumber(MathHelper.getNormalizedValue(tempNote.getLetterNumber(), NoteName.NUM_LETTER_NAMES));
         
         return tempNote;
     }
@@ -684,7 +685,7 @@ public class Note implements Cloneable {
         MidiNote midiNote = new MidiNote();       
             
         midiNote.setDuration(convertWholeNotesToTicks(this.getDuration(), midiTickResolution));
-        midiNote.setStartTime(convertWholeNotesToTicks(startTime, midiTickResolution));
+        midiNote.setStartTime(convertWholeNotesToTicks(startTime, midiTickResolution) + MidiNote.MIDI_SEQUENCE_START_SILENCE_TICK_OFFSET);
         midiNote.setVelocity(this.getVolume());        
         midiNote.setPitch(this.getMidiPitchNumber(keepExactPitch));
         midiNote.setChannel(channel);

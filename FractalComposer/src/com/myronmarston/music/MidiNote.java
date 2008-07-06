@@ -19,7 +19,6 @@
 
 package com.myronmarston.music;
 
-import com.myronmarston.music.scales.Scale;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiEvent;
 import javax.sound.midi.ShortMessage;
@@ -69,6 +68,13 @@ public class MidiNote {
      * The minimum allowed velocity, 0.
      */
     public static final int MIN_VELOCITY = 0;
+    
+    /**
+     * An offset that provides a brief moment of silence at the start of a midi 
+     * sequence.  Without this, sometimes there is a loud annoying sound at 
+     * the start of playback.
+     */
+    public static final int MIDI_SEQUENCE_START_SILENCE_TICK_OFFSET = 1;
     
     /**
      * Constructor.  Takes all of the main parameters of a MidiNote.

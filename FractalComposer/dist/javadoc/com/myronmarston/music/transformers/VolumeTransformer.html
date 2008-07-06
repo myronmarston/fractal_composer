@@ -142,6 +142,14 @@ Transformer that adjusts the volume of each note based on some scale factor.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/transformers/VolumeTransformer.html#checkVolumeScaleFactorValidity(double)">checkVolumeScaleFactorValidity</A></B>(double&nbsp;scaleFactor)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checks the given scale factor for validity.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;double</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/transformers/VolumeTransformer.html#getScaleFactor()">getScaleFactor</A></B>()</CODE>
 
@@ -215,6 +223,27 @@ public double <B>getScaleFactor</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the scale factor.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="checkVolumeScaleFactorValidity(double)"><!-- --></A><H3>
+checkVolumeScaleFactorValidity</H3>
+<PRE>
+public static void <B>checkVolumeScaleFactorValidity</B>(double&nbsp;scaleFactor)
+                                           throws java.lang.IllegalArgumentException</PRE>
+<DL>
+<DD>Checks the given scale factor for validity.  If it is outside the valid
+ range, an exception will be thrown.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>scaleFactor</CODE> - the value to test
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.IllegalArgumentException</CODE> - if the scale factor is outside the valid
+         range</DL>
 </DD>
 </DL>
 <HR>

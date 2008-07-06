@@ -251,4 +251,17 @@ public class NoteNameTest {
         assertEquals('b', NoteName.Bs.getLetter(true));
         assertEquals('b', NoteName.Bx.getLetter(true));
     }        
+    
+    @Test
+    public void getNoteNameFromInterval() {
+        assertEquals(NoteName.Fs, NoteName.C.getNoteNameFromInterval(3, 6));
+        assertEquals(NoteName.A, NoteName.C.getNoteNameFromInterval(-2, -3));
+        assertEquals(NoteName.Ab, NoteName.C.getNoteNameFromInterval(-2, -4));
+        assertEquals(NoteName.Abb, NoteName.C.getNoteNameFromInterval(-2, -5));                        
+        
+        try {
+            NoteName.C.getNoteNameFromInterval(-2, -6);
+            fail();            
+        } catch (IllegalArgumentException ex) {}
+    }    
 }

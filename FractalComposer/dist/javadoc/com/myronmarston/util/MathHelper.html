@@ -135,6 +135,15 @@ A class containing static helper methods for some math functions used to
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/MathHelper.html#getNormalizedValue(int, int)">getNormalizedValue</A></B>(int&nbsp;value,
+                   int&nbsp;mod)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Normalizes a value into a certain range.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;long</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/util/MathHelper.html#greatestCommonDivisor(long, long)">greatestCommonDivisor</A></B>(long&nbsp;m,
                       long&nbsp;n)</CODE>
@@ -285,6 +294,22 @@ public static boolean <B>numIsPowerOf2</B>(long&nbsp;num)</PRE>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>num</CODE> - the number to check
 <DT><B>Returns:</B><DD>true if it is a power of 2</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNormalizedValue(int, int)"><!-- --></A><H3>
+getNormalizedValue</H3>
+<PRE>
+public static int <B>getNormalizedValue</B>(int&nbsp;value,
+                                     int&nbsp;mod)</PRE>
+<DL>
+<DD>Normalizes a value into a certain range. This is like a modulus function,
+ only this properly handles negative values.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>value</CODE> - the value to normalize<DD><CODE>mod</CODE> - the modulus number
+<DT><B>Returns:</B><DD>the normalized value</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

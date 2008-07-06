@@ -388,9 +388,7 @@ public class ScaleTest {
         note.setScaleStep(19);
         note.setOctave(2);
         result = note.convertToMidiNote(new Fraction(2, 1), midiTickResolution, MidiNote.DEFAULT_CHANNEL, true);
-        assertMidiNoteValues(result, 69, 40, 16, 24);
-        
-        // TODO: check something at the octave change...        
+        assertMidiNoteValues(result, 69, 40, 16, 24);                
     }
     
     @Test
@@ -638,6 +636,68 @@ public class ScaleTest {
         assertEquals(s, s2);
     }
     
+    @Test
+    public void getCopyWithDifferentKey() throws Exception {
+        Scale s = new MajorPentatonicScale(NoteName.D);
+        Scale s2 = s.getCopyWithDifferentKey(NoteName.Bb);
+        assertEquals(NoteName.Bb, s2.getKeyName());
+    }
+    
+    @Test
+    public void getNormalizedScaleStep() throws Exception {
+        assertEquals(4, (new MajorScale(NoteName.C)).getNormalizedScaleStep(4));
+        assertEquals(4, (new MajorScale(NoteName.C)).getNormalizedScaleStep(11));
+        assertEquals(4, (new MajorScale(NoteName.C)).getNormalizedScaleStep(18));
+        assertEquals(4, (new MajorScale(NoteName.C)).getNormalizedScaleStep(-3));
+        assertEquals(4, (new MajorScale(NoteName.C)).getNormalizedScaleStep(-10));
+        
+        assertEquals(1, (new MajorPentatonicScale(NoteName.C)).getNormalizedScaleStep(1));
+        assertEquals(1, (new MajorPentatonicScale(NoteName.C)).getNormalizedScaleStep(6));
+        assertEquals(1, (new MajorPentatonicScale(NoteName.C)).getNormalizedScaleStep(11));
+        assertEquals(1, (new MajorPentatonicScale(NoteName.C)).getNormalizedScaleStep(-4));
+        assertEquals(1, (new MajorPentatonicScale(NoteName.C)).getNormalizedScaleStep(-9));
+        
+        assertEquals(3, (new ChromaticScale()).getNormalizedScaleStep(3));
+        assertEquals(3, (new ChromaticScale()).getNormalizedScaleStep(15));
+        assertEquals(3, (new ChromaticScale()).getNormalizedScaleStep(27));
+        assertEquals(3, (new ChromaticScale()).getNormalizedScaleStep(-9));
+        assertEquals(3, (new ChromaticScale()).getNormalizedScaleStep(-21));
+    }
+    
+    @Test
+    public void getRecommendedTransposeLetter() throws Exception {
+        for (int i=-10; i < 10; i++) {
+            assertEquals((i+14) % 7, (new MajorScale(NoteName.C)).getRecommendedTransposeLetterNumber(i));
+        }        
+        
+        assertEquals(0, (new MajorPentatonicScale(NoteName.C)).getRecommendedTransposeLetterNumber(0));
+        assertEquals(1, (new MajorPentatonicScale(NoteName.C)).getRecommendedTransposeLetterNumber(1));
+        assertEquals(2, (new MajorPentatonicScale(NoteName.C)).getRecommendedTransposeLetterNumber(2));
+        assertEquals(4, (new MajorPentatonicScale(NoteName.C)).getRecommendedTransposeLetterNumber(3));
+        assertEquals(5, (new MajorPentatonicScale(NoteName.C)).getRecommendedTransposeLetterNumber(4));
+        assertEquals(0, (new MajorPentatonicScale(NoteName.C)).getRecommendedTransposeLetterNumber(5));
+        
+        assertEquals(0, (new MinorPentatonicScale(NoteName.C)).getRecommendedTransposeLetterNumber(0));
+        assertEquals(2, (new MinorPentatonicScale(NoteName.C)).getRecommendedTransposeLetterNumber(1));
+        assertEquals(3, (new MinorPentatonicScale(NoteName.C)).getRecommendedTransposeLetterNumber(2));
+        assertEquals(4, (new MinorPentatonicScale(NoteName.C)).getRecommendedTransposeLetterNumber(3));
+        assertEquals(6, (new MinorPentatonicScale(NoteName.C)).getRecommendedTransposeLetterNumber(4));
+        assertEquals(0, (new MinorPentatonicScale(NoteName.C)).getRecommendedTransposeLetterNumber(5));
+        
+        assertEquals(0, (new ChromaticScale()).getRecommendedTransposeLetterNumber(0));
+        assertEquals(1, (new ChromaticScale()).getRecommendedTransposeLetterNumber(1));
+        assertEquals(1, (new ChromaticScale()).getRecommendedTransposeLetterNumber(2));
+        assertEquals(2, (new ChromaticScale()).getRecommendedTransposeLetterNumber(3));
+        assertEquals(2, (new ChromaticScale()).getRecommendedTransposeLetterNumber(4));
+        assertEquals(3, (new ChromaticScale()).getRecommendedTransposeLetterNumber(5));
+        assertEquals(3, (new ChromaticScale()).getRecommendedTransposeLetterNumber(6));
+        assertEquals(4, (new ChromaticScale()).getRecommendedTransposeLetterNumber(7));
+        assertEquals(5, (new ChromaticScale()).getRecommendedTransposeLetterNumber(8));
+        assertEquals(5, (new ChromaticScale()).getRecommendedTransposeLetterNumber(9));
+        assertEquals(6, (new ChromaticScale()).getRecommendedTransposeLetterNumber(10));
+        assertEquals(6, (new ChromaticScale()).getRecommendedTransposeLetterNumber(11));
+    }
+    
     protected static void testSetNotePitchValues(Scale s, Note n, NoteName nn, int scaleStep, int chromaticAdjustment) {
         s.setNotePitchValues(n, nn);
         assertEquals(scaleStep, n.getScaleStep());
@@ -647,7 +707,7 @@ public class ScaleTest {
     protected static void assertMidiNoteValues(MidiNote midiNote, int pitch, int velocity, long startTime, long duration) {
         assertEquals(pitch, midiNote.getPitch());
         assertEquals(velocity, midiNote.getVelocity());
-        assertEquals(startTime, midiNote.getStartTime());
+        assertEquals(startTime, midiNote.getStartTime() - MidiNote.MIDI_SEQUENCE_START_SILENCE_TICK_OFFSET);
         assertEquals(duration, midiNote.getDuration());        
     }
 }

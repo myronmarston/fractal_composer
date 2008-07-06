@@ -335,6 +335,26 @@ public class FractalPieceTest {
         fp.createPieceResultOutputManager();
     }
     
+    @Test
+    public void changingScaleOrGermClearsCachedVoiceSectionResults() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        fp.setScale(new MajorScale(NoteName.G));
+        fp.setGermString("G4 A4 G4");
+        fp.createDefaultSettings();
+        
+        VoiceSection vs = fp.getVoices().get(0).getVoiceSections().get(0);
+        vs.getVoiceSectionResult(); // call this so the caching occurs
+        
+        fp.setScale(new MajorScale(NoteName.C));
+        NoteList expectedResult = NoteList.parseNoteListString("G5,1/8 A5 G5  A5 B5 A5  G5 A5 G5", new MajorScale(NoteName.C));
+        NoteListTest.assertNoteListsEqual(expectedResult, vs.getVoiceSectionResult());
+        
+        fp.setScale(new MajorScale(NoteName.G));
+        fp.setGermString("G4 F#4 G4");
+        expectedResult = NoteList.parseNoteListString("G5,1/8 F#5 G5  F#5 E5 F#5  G5 F#5 G5", new MajorScale(NoteName.G));
+        NoteListTest.assertNoteListsEqual(expectedResult, vs.getVoiceSectionResult());
+    }
+    
     static protected List<Scale> getAllScalePossibilities() throws IllegalAccessException, IllegalArgumentException, InstantiationException, NoSuchMethodException {
         Scale s;
         List<Scale> list = new ArrayList<Scale>();

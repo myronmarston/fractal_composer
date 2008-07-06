@@ -232,6 +232,48 @@ public class VoiceSectionTest {
         expected.add(Note.createRest(new Fraction(3, 4)));
         NoteListTest.assertNoteListsEqual(expected, vs1.getVoiceSectionResult());                
     }
+    
+    @Test
+    public void getVoiceSectionResult_withScaleStepOffsetAndVolumeAdjustment() throws Exception {
+        // these features were added later and it was easier just to make a seperate test for them
+        
+        FractalPiece fp = new FractalPiece();
+        fp.setScale(new MajorScale(NoteName.C));
+        fp.setGermString("G4 A4");
+        fp.createDefaultSettings();
+        
+        VoiceSection vs = fp.getVoices().get(1).getVoiceSections().get(0);
+        VoiceSettings vSettings = vs.getVoice().getSettings();
+        SectionSettings sSettings = vs.getSection().getSettings();
+        
+        vSettings.setVolumeAdjustment(0.5d);
+        vSettings.setScaleStepOffset(2);        
+        
+        sSettings.setVolumeAdjustment(0.5d);
+        sSettings.setScaleStepOffset(1);
+        
+        int expectedVolume = 113;
+        NoteList expected = NoteList.parseNoteListString("C5 D5", new MajorScale(NoteName.C));
+        expected.get(0).setVolume(expectedVolume);
+        expected.get(1).setVolume(expectedVolume);
+        
+        NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());
+        
+        //test that the cached results are cleared...
+        vSettings.setScaleStepOffset(-2);
+        expected = NoteList.parseNoteListString("F4 G4", new MajorScale(NoteName.C));
+        expected.get(0).setVolume(expectedVolume);
+        expected.get(1).setVolume(expectedVolume);
+        
+        NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());
+                
+        sSettings.setVolumeAdjustment(-0.5d);
+        expectedVolume = 81;
+        expected = NoteList.parseNoteListString("F4 G4", new MajorScale(NoteName.C));
+        expected.get(0).setVolume(expectedVolume);
+        expected.get(1).setVolume(expectedVolume);
+        NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());
+    }
         
     @Test(expected=IllegalArgumentException.class)    
     public void getLengthenedVoiceSectionResultErrorIfLengthTooShort() {
@@ -293,9 +335,31 @@ public class VoiceSectionTest {
         FractalPiece fp = new FractalPiece();
         fp.createDefaultSettings();
         fp.setGermString("G4 A4");
+
+        String inst1 = Instrument.AVAILABLE_INSTRUMENTS.get(10);
+        assertFalse(Instrument.getInstrument(inst1).equals(Instrument.DEFAULT));
         
-        VoiceSection vs = fp.getVoices().get(0).getVoiceSections().get(0);
-        assertNotNull(vs.createOutputManager());
+        Voice v1 = fp.getVoices().get(0);
+        v1.setInstrumentName(inst1);
+        VoiceSection vs = v1.getVoiceSections().get(0);
+                                        
+        OutputManager om = vs.createOutputManager();
+        assertNotNull(om);
+        
+        // Check that it is the full voice section (as it would be in the context
+        // of the generated piece), including repeats due to lengthening.
+        
+        // We want to test a caser where the voice section "normal" length is less than
+        // the section's length, so test that first...        
+        Fraction sectionDuration = vs.getSection().getDuration();
+        Fraction naturalVSDuration = vs.getVoiceSectionResult().getDuration();        
+        assertFalse(sectionDuration.equals(naturalVSDuration));
+        
+        // we should have only one note list for out output manager
+        assertEquals(1, om.getNoteLists().size());
+        assertEquals(sectionDuration, om.getNoteLists().get(0).getDuration());        
+        
+        assertEquals(Instrument.getInstrument(inst1), om.getNoteLists().get(0).getInstrument());
     }
 
     @Test
@@ -334,6 +398,25 @@ public class VoiceSectionTest {
     }
     
     @Test
+    public void getSectionResult_withInstrument() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        fp.setGermString("G4 A4 B4");
+        fp.createDefaultSettings();
+        String inst1 = Instrument.AVAILABLE_INSTRUMENTS.get(10);        
+        assertFalse(Instrument.getInstrument(inst1).equals(Instrument.DEFAULT));
+        
+        Voice v1 = fp.getVoices().get(0);
+        v1.setInstrumentName(inst1);
+        VoiceSection vs = v1.getVoiceSections().get(0);
+        
+        NoteList result = vs.getVoiceSectionResult();
+        assertEquals(Instrument.getInstrument(inst1), result.getInstrument());
+        
+        NoteList lengthenedResult = vs.getLengthenedVoiceSectionResult(result.getDuration().times(2L));
+        assertEquals(Instrument.getInstrument(inst1), lengthenedResult.getInstrument());
+    }
+    
+    @Test
     public void getVoiceSectionResult_withScale() throws Exception {
         FractalPiece fp = new FractalPiece();
         Scale scale = new MajorScale(NoteName.C);
@@ -357,5 +440,28 @@ public class VoiceSectionTest {
         expected.clear();
         expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), MidiNote.DEFAULT_VELOCITY, scale, 0));
         NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());
+    }
+    
+    @Test
+    public void getVoiceSectionResult_withDifferentNumScaleStepsScale() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        fp.setGermString("G4 E5 D5 G4");
+        fp.setScale(new MajorScale(NoteName.G));
+        fp.createDefaultSettings();
+        
+        Section s1 = fp.getSections().get(0);
+        VoiceSection vs1 = s1.getVoiceSections().get(0);
+        
+        NoteList expectedResult = NoteList.parseNoteListString("G5,1/8 E6 D6 G5  E6 C7 B6 E6  D6 B6 A6 D6  G5 E6 D6 G5", new MajorScale(NoteName.G));
+        NoteListTest.assertNoteListsEqual(expectedResult, vs1.getVoiceSectionResult());
+        
+        s1.setOverridePieceScale(true);
+        s1.setScale(new MajorPentatonicScale(NoteName.D));
+        expectedResult = NoteList.parseNoteListString("D5,1/8 B5 A5 D5  B5 A6 F#6 B5  A5 F#6 E6 A5  D5 B5 A5 D5", new MajorPentatonicScale(NoteName.D));
+        NoteListTest.assertNoteListsEqual(expectedResult, vs1.getVoiceSectionResult());
+        
+        s1.setScale(new ChromaticScale());
+        expectedResult = NoteList.parseNoteListString("G5,1/8 E6 D6 G5  E6 C#7 B6 E6  D6 B6 A6 D6  G5 E6 D6 G5", new ChromaticScale());
+        NoteListTest.assertNoteListsEqual(expectedResult, vs1.getVoiceSectionResult());
     }
 }

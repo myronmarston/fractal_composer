@@ -53,8 +53,22 @@ public class VolumeTransformer implements Transformer {
      *        reduce the volume; positive values will increase the volume.
      */
     public VolumeTransformer(double scaleFactor) {
-        if (Math.abs(scaleFactor) > 1) throw new IllegalArgumentException("The scale factor must be between -1 and 1.");
+        checkVolumeScaleFactorValidity(scaleFactor);        
         this.scaleFactor = scaleFactor;
+    }
+    
+    /**
+     * Checks the given scale factor for validity.  If it is outside the valid
+     * range, an exception will be thrown.
+     * 
+     * @param scaleFactor the value to test
+     * @throws IllegalArgumentException if the scale factor is outside the valid
+     *         range
+     */
+    public static void checkVolumeScaleFactorValidity(double scaleFactor) throws IllegalArgumentException {
+        // we specifically disallow -1 as that would make everything a rest, 
+        // which would be very confusing to our users
+        if (Math.abs(scaleFactor) > 1 || scaleFactor == -1) throw new IllegalArgumentException("The volume scale factor must be between -1 and 1.");
     }
     
     public NoteList transform(NoteList input) {

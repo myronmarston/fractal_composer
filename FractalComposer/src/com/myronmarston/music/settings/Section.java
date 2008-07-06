@@ -19,16 +19,18 @@
 
 package com.myronmarston.music.settings;
 
-import com.myronmarston.music.OutputManager;
 import com.myronmarston.music.GermIsEmptyException;
 import com.myronmarston.music.NoteList;
+import com.myronmarston.music.NoteStringParseException;
+import com.myronmarston.music.OutputManager;
+import com.myronmarston.music.scales.InvalidKeySignatureException;
 import com.myronmarston.music.scales.KeySignature;
 import com.myronmarston.music.scales.Scale;
 import com.myronmarston.util.Fraction;
 import com.myronmarston.util.Publisher;
+import java.lang.reflect.UndeclaredThrowableException;
 import org.simpleframework.xml.*;
 import java.util.*;
-
 
 /**
  * The entire fractal piece is composed of a series of sections.  Each section
@@ -47,6 +49,9 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
     
     @Attribute
     private boolean overridePieceScale = false;   
+    
+    @Element(required=false)
+    private NoteList germForSection;
     
     /**
      * Constructor.
@@ -105,7 +110,7 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
                 this.setScale((Scale) this.getFractalPiece().getScale().clone());   
             } else {
                 this.setScale(null);
-            }
+            }            
         }        
     }
     
@@ -134,7 +139,126 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
         
         this.scale = scale;
         this.clearVoiceSectionResults();
+        this.clearCachedGermForSection();
+    }
+
+    /**
+     * Gets the germ to use for this section.  Usually this will be the Fractal
+     * Piece's germ, but if the scale is overriden with a scale containing 
+     * different number of scale steps from the FractalPiece scale, the germ
+     * will be reparsed.
+     * 
+     * @return the germ to use for this section
+     */
+    public NoteList getGermForSection() {
+        if (!this.getOverridePieceScale() || 
+            this.getScale().getScaleStepArray().length == this.getFractalPiece().getScale().getScaleStepArray().length) {
+            // There is no reason to use a different scale here, as we are either
+            // not overriding the scale, or using a scale with the same number of
+            // scale steps.  It'll work fine to just use the germ set on the whole piece.
+            return this.getFractalPiece().getGerm();
+        }
+
+        // We are using a different scale, and we have a different number of 
+        // scale steps as the whole piece's scale.  The FractalPiece's germ
+        // won't work well for this section, so we should reparse the germ
+        // using our Section scale.
+        if (germForSection == null) germForSection = this.parseGermForSection();
+        return germForSection;
     }        
+    
+    /**
+     * Parses the FractalPiece's germ using this section's scale.  
+     * 
+     * @return the re-parsed germ
+     */
+    private NoteList parseGermForSection() {
+        assert this.getOverridePieceScale() : "parseGermForSection should only be called when the piece scale is being overriden.";
+        assert this.getScale().getScaleStepArray().length != this.getFractalPiece().getScale().getScaleStepArray().length : "parseGermForSection should only be called when the piece scale and section scale have a different number of scale steps.";
+        
+        // It's a little ambiguous what it means to have a different scale for a section.
+        // I could spell this out in the instructions of the webpage, but that would
+        // only add complexity and confusion.
+        // Does the user mean to reparse the germ using the selected scale, but the 
+        // original tonic?  Or reparse the scale using the selected tonic, too?
+        // We try to intelligently guess here based on the number of accidentals
+        // that are produced.
+        
+        String germString = this.getFractalPiece().getGermString();
+        try {
+            // first try parsing the germ using the selected scale and tonic...            
+            NoteList testGerm1 = NoteList.parseNoteListString(germString, this.getScale());                                
+            int testGerm1AccidentalCount = testGerm1.getNumberOfAccidentals();
+            if (testGerm1AccidentalCount == 0) return testGerm1;
+            
+            // We got accidentals; try parsing the germ using the selected scale 
+            // type, but the original tonic
+            Scale scale2 = null;            
+            NoteList testGerm2 = null;
+            int testGerm2AccidentalCount = 0;
+            try {
+                scale2 = this.getScale().getCopyWithDifferentKey(this.getFractalPiece().getScale().getKeyName());
+                testGerm2 = NoteList.parseNoteListString(germString, scale2);                                
+                testGerm2AccidentalCount = testGerm2.getNumberOfAccidentals();
+                if (testGerm2AccidentalCount == 0) return testGerm2;
+            } catch (InvalidKeySignatureException ivksex) {
+                // there's no need to raise an exception here; we'll just keep trying other possibilities
+                
+                // set the accidental count to a value that will ensure testGerm2
+                // will never have the fewest accidentals
+                testGerm2AccidentalCount = Integer.MAX_VALUE;                                
+            }                                                               
+            
+            // We still have accidentals; try parsing the germ using the 
+            // selected  scale type, but the relative of the original tonic
+            Scale scale3 = null;            
+            NoteList testGerm3 = null;
+            int testGerm3AccidentalCount = Integer.MAX_VALUE;
+            try {
+                scale3 = this.getScale().getCopyWithDifferentKey(this.getFractalPiece().getScale().getKeySignature().getRelativeKeyName());
+                testGerm3 = NoteList.parseNoteListString(germString, scale3);                                
+                testGerm3AccidentalCount = testGerm3.getNumberOfAccidentals();
+                if (testGerm3AccidentalCount == 0) return testGerm3;
+            } catch (InvalidKeySignatureException ivksex) {
+                // there's no need to raise an exception here; we'll just keep trying other possibilities
+                
+                // set the accidental count to a value that will ensure testGerm3
+                // will never have the fewest accidentals
+                testGerm3AccidentalCount = Integer.MAX_VALUE;                                
+            }
+            
+            // all three possibilities have accidentals; just choose the one
+            // with the fewest accidentals
+            if (testGerm1AccidentalCount <= testGerm2AccidentalCount && testGerm1AccidentalCount <= testGerm3AccidentalCount) {
+                return testGerm1;
+            } else if (testGerm2AccidentalCount <= testGerm3AccidentalCount) {
+                assert testGerm2AccidentalCount <= testGerm1AccidentalCount : "testGerm2 had more accidentals than testGerm1.";
+                return testGerm2;
+            } else {
+                assert testGerm3AccidentalCount <= testGerm1AccidentalCount : "testGerm3 had more accidentals than testGerm1.";
+                assert testGerm3AccidentalCount <= testGerm2AccidentalCount : "testGerm3 had more accidentals than testGerm2.";
+                return testGerm3;
+            }
+        } catch (NoteStringParseException ex) {                
+            // All scales should be able to handle a valid note list string.
+            // if we have a germString, it was valid with the existing scale,
+            // so it should also be valid with this scale.  We should only
+            // get a NoteStringParseException in the case of a programming
+            // error.
+            throw new UndeclaredThrowableException(ex, "An error occured while parsing the note list string '" + germString + ".  This indicates a programming error.");        
+        }        
+    }
+
+    /**
+     * Clears the cached germForSection.  Should be called anytime a value that
+     * effects germForSection is changed.
+     */
+    protected void clearCachedGermForSection() {
+        this.germForSection = null;
+        
+        // the germForSection effects the voice section resutls, so clear that, too...
+        this.clearVoiceSectionResults();
+    }
     
     /**
      * Gets the key signature for this section.
@@ -154,6 +278,7 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
      * @param applyToPitch new value
      * @param applyToRhythm new value
      * @param applyToVolume new value
+     * @param selfSimilarityIterations new value
      */
     public void setSelfSimilaritySettingsOnAllVoiceSections(boolean applyToPitch, boolean applyToRhythm, boolean applyToVolume, int selfSimilarityIterations) {
         for (VoiceSection vs : this.getVoiceSections()) {
@@ -184,7 +309,7 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
         return Collections.max(voiceSectionDurations);
     }    
     
-    public OutputManager createOutputManager() throws GermIsEmptyException {        
+    public OutputManager createOutputManager() throws GermIsEmptyException {                
         Fraction sectionDuration = this.getDuration();
                     
         List<NoteList> voiceSectionResults = new ArrayList<NoteList>(this.getVoiceSections().size());
@@ -192,7 +317,6 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
             voiceSectionResults.add(vs.getLengthenedVoiceSectionResult(sectionDuration));
         }
         
-        //TODO: cache this?
         return new OutputManager(this.getFractalPiece(), voiceSectionResults);
     }
 
