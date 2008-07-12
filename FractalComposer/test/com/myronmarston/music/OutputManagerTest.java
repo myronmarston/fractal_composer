@@ -22,6 +22,7 @@ package com.myronmarston.music;
 import com.myronmarston.music.scales.*;
 import com.myronmarston.music.settings.*;
 import com.myronmarston.util.*;
+import com.myronmarston.music.notation.LilypondRunException;
 import java.io.*;
 import java.util.*;
 import java.awt.image.BufferedImage;
@@ -101,9 +102,21 @@ public class OutputManagerTest {
     public void getGuidoNotation_forConfusingOctaves() throws Exception {        
         FractalPiece fp = new FractalPiece();
         fp.setGermString("Cb4 C4 Cbb4 Bx4 B4 B#4");
-        System.out.println(fp.createGermOutputManager().getGuidoNotation());
+        
         assertTrue(fp.createGermOutputManager().getGuidoNotation().matches(".*c&1\\/4  c1\\/4  c&&1\\/4  b##1\\/4  b1\\/4  b#1\\/4.*"));        
     }
+    
+    @Test
+    public void getPieceNotation() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        fp.setGermString("G4 A4 B4 C5,1/8");
+        fp.createDefaultSettings();
+        OutputManager om = fp.createPieceResultOutputManager();
+        
+        // we'll just check that a piece notation object with the appropriate 
+        // number of parts was created.  We test the actual notation elsewhere.
+        assertEquals(3, om.getPieceNotation().getParts().size());
+    }       
     
     @Test
     public void getSequence_forConfusingOctaves() throws Exception {
@@ -163,6 +176,25 @@ public class OutputManagerTest {
             }
         });
     }
+    
+    @Test
+    public void saveLilypondResults() throws Exception {
+        FileHelper.createAndUseTempFile("TestLilypond", "", new FileHelper.TempFileUser() {
+            public void useTempFile(String tempFileName) throws Exception {
+                OutputManagerTest.this.outputManager.setTestLilypondError(true);
+                try {
+                    OutputManagerTest.this.outputManager.saveLilypondResults(tempFileName);                
+                    fail();
+                } catch (LilypondRunException ex) {}
+                
+                OutputManagerTest.this.outputManager.setTestLilypondError(false);
+                OutputManagerTest.this.outputManager.saveLilypondResults(tempFileName);
+                File file = new File(tempFileName + ".pdf");
+                assertTrue(file.exists());
+                // TODO test png files
+            }
+        });
+    }    
     
     @Test(expected=GermIsEmptyException.class)
     public void errorIfGermIsEmpty() throws Exception {
@@ -266,7 +298,27 @@ public class OutputManagerTest {
                 outputManager.saveMp3File(fileName);
             }
         });              
-    }
+        
+        testALastFileNameMethod("LilypondResults", "", new OutputManagerTest.LastFileName() {
+            public String getLastFileName() throws Exception {
+                return outputManager.getLastLilypondResultsFileNameWithoutExtension();
+            }
+            
+            public void saveFile(String fileName) throws Exception {
+                outputManager.saveLilypondResults(fileName);
+            }
+        });              
+    
+        testALastFileNameMethod("Lilypond", ".ly", new OutputManagerTest.LastFileName() {
+            public String getLastFileName() throws Exception {
+                return outputManager.getLastLilypondFileName();
+            }
+            
+            public void saveFile(String fileName) throws Exception {
+                outputManager.saveLilypondFile(fileName);
+            }
+        });              
+    }    
     
     private interface LastFileName {
         String getLastFileName() throws Exception;
@@ -274,10 +326,9 @@ public class OutputManagerTest {
     }
     
     private void testALastFileNameMethod(String filePrefix, String fileSuffix, final LastFileName lastFileNameMethod) throws Exception {
-        FileHelper.createAndUseTempFile("GifTest", ".gif", new FileHelper.TempFileUser() {
+        FileHelper.createAndUseTempFile(filePrefix, fileSuffix, new FileHelper.TempFileUser() {
             public void useTempFile(String tempFileName) throws Exception {
-                lastFileNameMethod.saveFile(tempFileName);
-                outputManager.saveGifImage(tempFileName);                
+                lastFileNameMethod.saveFile(tempFileName);           
                 assertEquals(tempFileName, lastFileNameMethod.getLastFileName());
             }            
         }); 

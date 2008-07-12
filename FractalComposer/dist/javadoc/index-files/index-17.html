@@ -84,7 +84,7 @@ function windowTitle()
 <DT><A HREF="../com/myronmarston/music/Tempo.html" title="class in com.myronmarston.music"><B>Tempo</B></A> - Class in <A HREF="../com/myronmarston/music/package-summary.html">com.myronmarston.music</A><DD>&nbsp;<DT><A HREF="../com/myronmarston/music/Tempo.html#Tempo()"><B>Tempo()</B></A> - 
 Constructor for class com.myronmarston.music.<A HREF="../com/myronmarston/music/Tempo.html" title="class in com.myronmarston.music">Tempo</A>
 <DD>&nbsp;
-<DT><A HREF="../com/myronmarston/util/ThreadedInputStreamRedirector.html" title="class in com.myronmarston.util"><B>ThreadedInputStreamRedirector</B></A> - Class in <A HREF="../com/myronmarston/util/package-summary.html">com.myronmarston.util</A><DD>A class that redirects an input stream to the System.out stream.<DT><A HREF="../com/myronmarston/util/ThreadedInputStreamRedirector.html#ThreadedInputStreamRedirector(java.io.InputStream)"><B>ThreadedInputStreamRedirector(InputStream)</B></A> - 
+<DT><A HREF="../com/myronmarston/util/ThreadedInputStreamRedirector.html" title="class in com.myronmarston.util"><B>ThreadedInputStreamRedirector</B></A> - Class in <A HREF="../com/myronmarston/util/package-summary.html">com.myronmarston.util</A><DD>A class that redirects an input stream to the System.out stream.<DT><A HREF="../com/myronmarston/util/ThreadedInputStreamRedirector.html#ThreadedInputStreamRedirector(java.io.InputStream, java.io.OutputStream)"><B>ThreadedInputStreamRedirector(InputStream, OutputStream)</B></A> - 
 Constructor for class com.myronmarston.util.<A HREF="../com/myronmarston/util/ThreadedInputStreamRedirector.html" title="class in com.myronmarston.util">ThreadedInputStreamRedirector</A>
 <DD>Constructor.
 <DT><A HREF="../com/myronmarston/util/Fraction.html#times(com.myronmarston.util.Fraction)"><B>times(Fraction)</B></A> - 
@@ -121,7 +121,42 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/Tempo.html#toGuidoString(int)"><B>toGuidoString(int)</B></A> - 
 Static method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Tempo.html" title="class in com.myronmarston.music">Tempo</A>
 <DD>Gets a string representation of this tempo in GUIDO notation.
-<DT><A HREF="../com/myronmarston/music/scales/Tonality.html" title="enum in com.myronmarston.music.scales"><B>Tonality</B></A> - Enum in <A HREF="../com/myronmarston/music/scales/package-summary.html">com.myronmarston.music.scales</A><DD>Enumerates the two main tonalities: Major and Minor.<DT><A HREF="../com/myronmarston/music/Note.html#toString()"><B>toString()</B></A> - 
+<DT><A HREF="../com/myronmarston/music/Instrument.html#toLilypondString()"><B>toLilypondString()</B></A> - 
+Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>
+<DD>Gets a string representing this instrument in Lilypond notation.
+<DT><A HREF="../com/myronmarston/music/notation/NotationElement.html#toLilypondString()"><B>toLilypondString()</B></A> - 
+Method in interface com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A>
+<DD>Gets the representation of this element in the string format used by
+ lilypond.
+<DT><A HREF="../com/myronmarston/music/notation/NotationElementList.html#toLilypondString()"><B>toLilypondString()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>
+<DD>Combines the lilypond strings of each element.
+<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#toLilypondString()"><B>toLilypondString()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
+<DD>Gets the representation of this note in lilypond notation.
+<DT><A HREF="../com/myronmarston/music/notation/Part.html#toLilypondString()"><B>toLilypondString()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>
+<DD>Gets the lilypond notation for this part.
+<DT><A HREF="../com/myronmarston/music/notation/Piece.html#toLilypondString(java.lang.String, java.lang.String)"><B>toLilypondString(String, String)</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation">Piece</A>
+<DD>Gets the lilypond notation of this piece.
+<DT><A HREF="../com/myronmarston/music/notation/Piece.html#toLilypondString()"><B>toLilypondString()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation">Piece</A>
+<DD>Gets the lilypond notation of this piece.
+<DT><A HREF="../com/myronmarston/music/notation/Tuplet.html#toLilypondString()"><B>toLilypondString()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A>
+<DD>Constructs the lilypond string for this tuplet.
+<DT><A HREF="../com/myronmarston/music/scales/KeySignature.html#toLilypondString()"><B>toLilypondString()</B></A> - 
+Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>
+<DD>Gets the representation of this key signature in Lilypond notation.
+<DT><A HREF="../com/myronmarston/music/settings/TimeSignature.html#toLilypondString()"><B>toLilypondString()</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A>
+<DD>Gets the representation of this time signature in Lilypond notation.
+<DT><A HREF="../com/myronmarston/music/scales/Tonality.html" title="enum in com.myronmarston.music.scales"><B>Tonality</B></A> - Enum in <A HREF="../com/myronmarston/music/scales/package-summary.html">com.myronmarston.music.scales</A><DD>Enumerates the two main tonalities: Major and Minor.<DT><A HREF="../com/myronmarston/music/Note.html#toNotationNote(com.myronmarston.music.notation.Part, com.myronmarston.music.MidiNote)"><B>toNotationNote(Part, MidiNote)</B></A> - 
+Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
+<DD>Converts this Note to a Notation Note that can be used to produce GUIDO
+ or Lilypond notation.
+<DT><A HREF="../com/myronmarston/music/Note.html#toString()"><B>toString()</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
 <DD>&nbsp;
 <DT><A HREF="../com/myronmarston/music/NoteName.html#toString()"><B>toString()</B></A> - 
@@ -136,6 +171,10 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/util/Fraction.html#toString()"><B>toString()</B></A> - 
 Method in class com.myronmarston.util.<A HREF="../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>
 <DD>Gets a string representation of this fraction.
+<DT><A HREF="../com/myronmarston/music/notation/NotationElementList.html#totalDurationDenomAddsToPowerOf2(java.util.Collection)"><B>totalDurationDenomAddsToPowerOf2(Collection&lt;NotationElement&gt;)</B></A> - 
+Static method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>
+<DD>Checks to see if the sum total of the denominators of all the durations 
+ is a power of 2.
 <DT><A HREF="../com/myronmarston/music/transformers/InversionTransformer.html#transform(com.myronmarston.music.NoteList)"><B>transform(NoteList)</B></A> - 
 Method in class com.myronmarston.music.transformers.<A HREF="../com/myronmarston/music/transformers/InversionTransformer.html" title="class in com.myronmarston.music.transformers">InversionTransformer</A>
 <DD>&nbsp;
@@ -164,6 +203,9 @@ Method in class com.myronmarston.music.transformers.<A HREF="../com/myronmarston
  it into a new NoteList, using some kind of musical operation.<DT><A HREF="../com/myronmarston/music/transformers/TransposeTransformer.html" title="class in com.myronmarston.music.transformers"><B>TransposeTransformer</B></A> - Class in <A HREF="../com/myronmarston/music/transformers/package-summary.html">com.myronmarston.music.transformers</A><DD>Transformer that transposes the notes of the NoteList to a different pitch
  level.<DT><A HREF="../com/myronmarston/music/transformers/TransposeTransformer.html#TransposeTransformer(int, int)"><B>TransposeTransformer(int, int)</B></A> - 
 Constructor for class com.myronmarston.music.transformers.<A HREF="../com/myronmarston/music/transformers/TransposeTransformer.html" title="class in com.myronmarston.music.transformers">TransposeTransformer</A>
+<DD>Constructor.
+<DT><A HREF="../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation"><B>Tuplet</B></A> - Class in <A HREF="../com/myronmarston/music/notation/package-summary.html">com.myronmarston.music.notation</A><DD>Represents a tuplet (e.g.<DT><A HREF="../com/myronmarston/music/notation/Tuplet.html#Tuplet(java.util.List)"><B>Tuplet(List&lt;NotationElement&gt;)</B></A> - 
+Constructor for class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A>
 <DD>Constructor.
 </DL>
 <HR>

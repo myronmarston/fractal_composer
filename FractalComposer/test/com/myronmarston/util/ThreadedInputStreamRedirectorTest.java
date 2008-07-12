@@ -31,18 +31,27 @@ public class ThreadedInputStreamRedirectorTest {
     
     @Test
     public void run() throws Exception {
-        String aString = "Here is a string.";        
-        byte[] byteArray = aString.getBytes("UTF-8");//myString.getBytes("ISO-8859-1"); // choose a charset
-        ByteArrayInputStream bais = new ByteArrayInputStream(byteArray);
-        ThreadedInputStreamRedirector tisr = new ThreadedInputStreamRedirector(bais);
-        
-        tisr.start();
-        
-        // wait for it to complete...
-        while (tisr.getState() != Thread.State.TERMINATED) {
-            Thread.sleep(10);
-        }
-        
-        assertEquals(0, bais.available());        
+        ByteArrayInputStream bais = null;
+        ByteArrayOutputStream baos = null;
+        try {
+            String aString = "Here is a string.";        
+            byte[] byteArray = aString.getBytes("UTF-8");
+            bais = new ByteArrayInputStream(byteArray);
+            baos = new ByteArrayOutputStream();
+            ThreadedInputStreamRedirector tisr = new ThreadedInputStreamRedirector(bais, baos);
+
+            tisr.start();
+
+            // wait for it to complete...
+            while (tisr.getState() != Thread.State.TERMINATED) {
+                Thread.sleep(10);
+            }
+
+            assertEquals(0, bais.available());        
+            assertEquals(aString, baos.toString("UTF-8"));
+        } finally {
+            if (bais != null) bais.close();
+            if (baos != null) baos.close();
+        }        
     }
 }

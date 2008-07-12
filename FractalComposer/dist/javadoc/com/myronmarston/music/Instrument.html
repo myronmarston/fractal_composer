@@ -94,9 +94,12 @@ Class Instrument</H2>
 java.lang.Object
   <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.Instrument</B>
 </PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DD>
+</DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>Instrument</B><DT>extends java.lang.Object</DL>
+<DT><PRE>public class <B>Instrument</B><DT>extends java.lang.Object<DT>implements <A HREF="../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DL>
 </PRE>
 
 <P>
@@ -183,6 +186,14 @@ Represents a midi instrument.  Cannot be instantiated directly.  Instead,
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a string representing this instrument in GUIDO notation.</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Instrument.html#toLilypondString()">toLilypondString</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a string representing this instrument in Lilypond notation.</TD>
+</TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
@@ -247,6 +258,9 @@ protected javax.sound.midi.Instrument <B>getMidiInstrument</B>()</PRE>
 <DD>Gets the midi instrument.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>the midi instrument object</DL>
 </DD>
@@ -260,6 +274,9 @@ public static <A HREF="../../../com/myronmarston/music/Instrument.html" title="c
 <DL>
 <DD>Gets the instrument with the given name.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>name</CODE> - the case-insensitive name of the instrument
 <DT><B>Returns:</B><DD>the instrument, or null, if none was found with the given name</DL>
@@ -275,6 +292,9 @@ public java.lang.String <B>getName</B>()</PRE>
 <DD>Gets the name of the instrument.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>the name of the instrument</DL>
 </DD>
@@ -289,8 +309,28 @@ public java.lang.String <B>toGuidoString</B>()</PRE>
 <DD>Gets a string representing this instrument in GUIDO notation.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>the guido string</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="toLilypondString()"><!-- --></A><H3>
+toLilypondString</H3>
+<PRE>
+public java.lang.String <B>toLilypondString</B>()</PRE>
+<DL>
+<DD>Gets a string representing this instrument in Lilypond notation.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../com/myronmarston/music/notation/NotationElement.html#toLilypondString()">toLilypondString</A></CODE> in interface <CODE><A HREF="../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the lilypond string</DL>
 </DD>
 </DL>
 <HR>
@@ -303,6 +343,9 @@ public javax.sound.midi.MidiEvent <B>getProgramChangeMidiEvent</B>(int&nbsp;midi
 <DD>Creates a midi program change event on the given channel using this 
  instrument.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>midiChannel</CODE> - the channel to use (0-15)
 <DT><B>Returns:</B><DD>the program change midi event</DL>

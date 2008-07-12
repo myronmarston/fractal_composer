@@ -100,7 +100,7 @@ java.lang.Object
 </PRE>
 
 <P>
-Class that manages the creation of sheet music files.
+Class that manages the creation of sheet music files using Lilypond and GUIDO.
 <P>
 
 <P>
@@ -134,6 +134,14 @@ Class that manages the creation of sheet music files.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/SheetMusicCreator.html#getLilypondDirectory()">getLilypondDirectory</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the directory to use while running the Lilypond process.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>protected &nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/SheetMusicCreator.html#saveAsGifImage(java.lang.String)">saveAsGifImage</A></B>(java.lang.String&nbsp;gifFileName)</CODE>
 
@@ -147,6 +155,23 @@ Class that manages the creation of sheet music files.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the guido notation to a file.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/SheetMusicCreator.html#saveLilypondResults(java.lang.String, java.lang.String)">saveLilypondResults</A></B>(java.lang.String&nbsp;fileNameWithoutExtension,
+                    java.lang.String&nbsp;lilypondContents)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the lilypond results to a PDF file and one PNG file per page.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/SheetMusicCreator.html#setLilypondDirectory(java.lang.String)">setLilypondDirectory</A></B>(java.lang.String&nbsp;dir)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the directory to use while running the Lilypond process.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -193,6 +218,35 @@ public <B>SheetMusicCreator</B>(<A HREF="../../../com/myronmarston/music/OutputM
 </TR>
 </TABLE>
 
+<A NAME="setLilypondDirectory(java.lang.String)"><!-- --></A><H3>
+setLilypondDirectory</H3>
+<PRE>
+public static void <B>setLilypondDirectory</B>(java.lang.String&nbsp;dir)</PRE>
+<DL>
+<DD>Sets the directory to use while running the Lilypond process.  Defaults
+ to the current working directory.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>dir</CODE> - the directory</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLilypondDirectory()"><!-- --></A><H3>
+getLilypondDirectory</H3>
+<PRE>
+public static java.lang.String <B>getLilypondDirectory</B>()</PRE>
+<DL>
+<DD>Gets the directory to use while running the Lilypond process.  Defaults
+ to the current working directory.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the directory</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="saveAsGifImage(java.lang.String)"><!-- --></A><H3>
 saveAsGifImage</H3>
 <PRE>
@@ -221,6 +275,25 @@ protected void <B>saveGuidoFile</B>(java.lang.String&nbsp;fileName)
 <DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the file to save the guido notation to
 <DT><B>Throws:</B>
 <DD><CODE>java.io.IOException</CODE> - if an I/O error occurs</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="saveLilypondResults(java.lang.String, java.lang.String)"><!-- --></A><H3>
+saveLilypondResults</H3>
+<PRE>
+protected static void <B>saveLilypondResults</B>(java.lang.String&nbsp;fileNameWithoutExtension,
+                                          java.lang.String&nbsp;lilypondContents)
+                                   throws java.lang.Exception</PRE>
+<DL>
+<DD>Saves the lilypond results to a PDF file and one PNG file per page.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileNameWithoutExtension</CODE> - the file name to save the results to. The
+        pdf and png extensions, as well as page number, will be added
+        automatically<DD><CODE>lilypondContents</CODE> - the lilypond notation
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.Exception</CODE> - if there is an error</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

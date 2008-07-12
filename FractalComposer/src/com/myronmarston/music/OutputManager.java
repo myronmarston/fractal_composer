@@ -19,9 +19,12 @@
 
 package com.myronmarston.music;
 
+import com.myronmarston.music.notation.*;
+import com.myronmarston.music.scales.InvalidKeySignatureException;
 import com.myronmarston.music.settings.*;
 import com.myronmarston.music.scales.KeySignature;
 import com.myronmarston.music.scales.Scale;
+import com.myronmarston.util.FileHelper;
 import com.myronmarston.util.Fraction;
 import com.myronmarston.util.MathHelper;
 import java.io.*;
@@ -37,6 +40,7 @@ import java.util.*;
  */
 public class OutputManager {
     private StringBuilder guidoNotation = new StringBuilder();
+    private final Piece pieceNotation;
     private Sequence sequence;
     private final FractalPiece fractalPiece;
     private final int tempo;
@@ -45,11 +49,14 @@ public class OutputManager {
     private AudioFileCreator audioFileCreator;
     private boolean includeTempoOnSheetMusic;
     private boolean includeInstrumentOnSheetMusic;
+    private boolean testLilypondError = false;
     private String lastMidiFileName;
     private String lastGuidoFileName;
     private String lastWavFileName;
     private String lastMp3FileName;
     private String lastGifFileName;
+    private String lastLilypondFileName;
+    private String lastLilypondResultsFileNameWithoutExtension;
     
     private static final int MIDI_FILE_TYPE_FOR_MULTI_TRACK_SEQUENCE = 1;    
         
@@ -79,6 +86,26 @@ public class OutputManager {
     public int getTempo() {
         return tempo;
     }
+    
+    /**
+     * Gets a flag that can be used to test that errors in lilypond properly 
+     * raise java exceptions.
+     * 
+     * @return the testLilypondError flag
+     */
+    protected boolean getTestLilypondError() {
+        return testLilypondError;
+    }
+
+    /**
+     * Sets a flag that can be used to test that errors in lilypond properly 
+     * raise java exceptions.
+     * 
+     * @param testLilypondError the testLilypondError flag
+     */
+    protected void setTestLilypondError(boolean testLilypondError) {
+        this.testLilypondError = testLilypondError;
+    }        
 
     /**
      * Gets the sheet music creator.
@@ -116,6 +143,16 @@ public class OutputManager {
      */
     public FractalPiece getFractalPiece() {
         return fractalPiece;
+    }
+
+    /**
+     * Gets the piece notation, which can be used to produce graphical notation
+     * using GUIDO or Lilypond.
+     * 
+     * @return the piece notation
+     */
+    public Piece getPieceNotation() {
+        return pieceNotation;
     }        
     
     /**
@@ -146,8 +183,9 @@ public class OutputManager {
         this.fractalPiece = fractalPiece;
         this.noteLists = noteLists;
         this.includeTempoOnSheetMusic = includeTempoOnSheetMusic;
-        this.includeInstrumentOnSheetMusic = includeInstrumentOnSheetMusic;
-        this.tempo = this.fractalPiece.getTempo();
+        this.includeInstrumentOnSheetMusic = includeInstrumentOnSheetMusic;        
+        this.tempo = this.fractalPiece.getTempo();        
+        this.pieceNotation = new Piece(this.fractalPiece.getScale().getKeySignature(), this.fractalPiece.getTimeSignature(), this.tempo);
         constructMidiSequence();
     }   
     
@@ -244,7 +282,9 @@ public class OutputManager {
         assert numTracks > 0 : numTracks; 
         int midiChannel = numTracks - 1;
         assert midiChannel < MidiNote.MAX_CHANNEL;
-        
+
+        Part part = new Part(this.pieceNotation, instrument);
+        this.pieceNotation.getParts().add(part);
         Track track = sequence.createTrack();
         track.add(instrument.getProgramChangeMidiEvent(midiChannel));        
         
@@ -277,7 +317,7 @@ public class OutputManager {
                     
                     assert thisMidiNote.getPitch() != lastMidiNote.getPitch() : "The midi notes have the same pitch and should not: " + thisMidiNote.getPitch();
                 }              
-                addMidiNoteEventsToTrack(track, lastMidiNote, lastNote);                
+                addMidiNoteEventsToTrack(track, part, lastMidiNote, lastNote);                
             }                                      
             
             //The next note start time will be the end of this note...
@@ -286,18 +326,21 @@ public class OutputManager {
             lastMidiNote = thisMidiNote;
             lastNote = thisNote;
         }           
-        addMidiNoteEventsToTrack(track, lastMidiNote, lastNote);
+        addMidiNoteEventsToTrack(track, part, lastMidiNote, lastNote);
         
         this.guidoNotation.append(" ],");           
     }        
-    
+  
     /**
-     * Adds the midi note on and note off events to a track.
+     * Adds the midi note on and note off events to a track.  Also adds the 
+     * Notation note to the part.
      * 
-     * @param track the track
+     * @param track the midi track
+     * @param part the notation part
      * @param midiNote the midi note
+     * @param note the note
      */
-    private void addMidiNoteEventsToTrack(Track track, MidiNote midiNote, Note note) {
+    private void addMidiNoteEventsToTrack(Track track, Part part, MidiNote midiNote, Note note) {
         try {
             track.add(midiNote.getNoteOnEvent());
             track.add(midiNote.getNoteOffEvent());
@@ -309,7 +352,8 @@ public class OutputManager {
         }        
         
         // add the guido notation...
-        guidoNotation.append(" " + note.toGuidoString(midiNote) + " ");
+        guidoNotation.append(" " + note.toGuidoString(midiNote) + " ");        
+        part.getNotationElements().add(note.toNotationNote(part, midiNote));
     }
 
     /**
@@ -378,7 +422,60 @@ public class OutputManager {
         this.getSheetMusicCreator().saveGuidoFile(fileName);
         this.lastGuidoFileName = fileName;
     }
+
+    /**
+     * Saves the Lilypond notation to file.
+     * 
+     * @param fileName the name of the file to save to
+     * @throws java.io.IOException if an I/O error occurs
+     */
+    public void saveLilypondFile(String fileName) throws IOException {        
+        this.saveLilypondFile(fileName, null, null);
+    }
     
+    /**
+     * Saves the Lilypond notation to file.
+     * 
+     * @param fileName the name of the file to save to
+     * @param title the title to include in the Lilypond file
+     * @param composer the composer to include in the Lilypond file
+     * @throws java.io.IOException if an I/O error occurs
+     */
+    public void saveLilypondFile(String fileName, String title, String composer) throws IOException {        
+        FileHelper.createTextFile(fileName, this.pieceNotation.toLilypondString(title, composer));
+        this.lastLilypondFileName = fileName;
+    }
+    
+    /**
+     * Uses Lilypond to save sheet music notation to a PDF document and one PNG 
+     * file per page.
+     * 
+     * @param fileNameWithoutExtension the file name to save the results to. The
+     *        pdf and png extensions, as well as page number, will be added
+     *        automatically
+     * @throws java.lang.Exception if there is an error
+     */
+    public void saveLilypondResults(String fileNameWithoutExtension) throws Exception {
+        this.saveLilypondResults(fileNameWithoutExtension, null, null);
+    }
+    
+    /**
+     * Uses Lilypond to save sheet music notation to a PDF document and one PNG 
+     * file per page.
+     * 
+     * @param fileNameWithoutExtension the file name to save the results to. The
+     *        pdf and png extensions, as well as page number, will be added
+     *        automatically
+     * @param title the title of the piece
+     * @param composer the composer of the piece
+     * @throws java.lang.Exception if there is an error
+     */
+    public void saveLilypondResults(String fileNameWithoutExtension, String title, String composer) throws Exception {
+        String extra = (this.getTestLilypondError() ? "}" : "");
+        SheetMusicCreator.saveLilypondResults(fileNameWithoutExtension, this.pieceNotation.toLilypondString(title, composer) + extra);
+        this.lastLilypondResultsFileNameWithoutExtension = fileNameWithoutExtension;        
+    }
+                
     /**
      * Saves the music as a sheet music image in gif format.
      * 
@@ -457,5 +554,26 @@ public class OutputManager {
      */
     public String getLastWavFileName() {
         return lastWavFileName;
+    }
+
+    /**
+     * Gets the file name of the last lilypond file saved using this output
+     * manager.
+     * 
+     * @return the last lilypond file
+     */
+    public String getLastLilypondFileName() {
+        return lastLilypondFileName;
+    }
+
+    /**
+     * Gets the file name, without extension, last passed to lilypond to produce
+     * PDF and PNG sheet music output.  The actual files will have appropriate
+     * PDF and PNG extensions, and page numbers for the png files.
+     * 
+     * @return the file name, without extension, last used by lilypond
+     */
+    public String getLastLilypondResultsFileNameWithoutExtension() {
+        return lastLilypondResultsFileNameWithoutExtension;
     }        
 }

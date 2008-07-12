@@ -339,4 +339,40 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
   public int hashCode() {
     return (int) (numerator_ ^ denominator_);
   }
+  
+  /**
+   * Checks to see if the denominator is a pwer of 2.
+   * 
+   * @return true if the denominator is a power of 2
+   */
+  public boolean denomIsPowerOf2() {
+      return MathHelper.numIsPowerOf2(this.denominator_);
+  }
+  
+  /**
+   * Gets the largest fraction that is less than this fraction and has a 
+   * denominator that is a power of 2.  This function assumes the denominator
+   * already is a power of 2 and the numerator is greater than 1.
+   * 
+   * @return the largest fraction less than this fraction with a denominator
+   *         power of 2
+   * @throws UnsupportedOperationException if the fraction's denominator is not
+   *         a power of 2 or the numerator is less than or equal to 1.
+   */
+  public Fraction getLargestPowerOf2FractionThatIsLessThanThis() throws UnsupportedOperationException {
+      if (!this.denomIsPowerOf2() || this.numerator_ <= 1L) {
+          throw new UnsupportedOperationException("This method is not supported on this fraction (" + this.toString() + ").  It is only supported on fractions that have a denominator power of 2 and a numerator greater than 1.");
+      }
+      
+      Fraction subtractionAmount = new Fraction(1, this.denominator_);
+      Fraction test = this.minus(subtractionAmount);
+      while (!MathHelper.numIsPowerOf2(test.denominator_)) {
+          test = test.minus(subtractionAmount);
+          
+          // We don't intend this to ever return a 0 or negative fraction...
+          assert test.numerator_ > 0 : test.numerator_;
+      }
+      
+      return test;
+  }
 }

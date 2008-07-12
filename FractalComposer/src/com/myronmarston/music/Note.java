@@ -19,8 +19,10 @@
 
 package com.myronmarston.music;
 
-import com.myronmarston.music.scales.Scale;
+import com.myronmarston.music.notation.NotationNote;
+import com.myronmarston.music.notation.Part;
 import com.myronmarston.music.NoteStringInvalidPartException.NoteStringPart;
+import com.myronmarston.music.scales.Scale;
 import com.myronmarston.util.Fraction;
 import com.myronmarston.util.MathHelper;
 import org.simpleframework.xml.*;
@@ -692,6 +694,34 @@ public class Note implements Cloneable {
         
         return midiNote;
     }      
+    
+    /**
+     * Converts this Note to a Notation Note that can be used to produce GUIDO
+     * or Lilypond notation.
+     * 
+     * @param part the Notation part
+     * @param midiNote the midi note produced as output from this note
+     * @return the notation note
+     */
+    public NotationNote toNotationNote(Part part, MidiNote midiNote) {
+        if (this.isRest()) return NotationNote.createRest(part, duration);
+        Note normalizedNote = this.getNormalizedNote();        
+        
+        //TODO: change the letter name here if the chrom adjustment > 2
+        
+        // get the letter
+        NoteName letterNoteName = this.getScale().getKeyName().getNaturalNoteNameForLetterNumber(normalizedNote.getLetterNumber());        
+        char letter = letterNoteName.getLetter(true);
+                
+        // get the chromatic adjustment
+        int chromAdjustment = (midiNote.getPitch() % Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE)  - letterNoteName.getNormalizedNoteNumber();                
+        chromAdjustment = Scale.getNormalizedChromaticAdjustment(chromAdjustment);        
+        
+        // get the octave, taking into account the chromatic adjustment for notes like B# and Cb
+        int notationOctave = ((midiNote.getPitch() - chromAdjustment) / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE) - 1;
+        
+        return new NotationNote(part, letter, notationOctave, chromAdjustment, duration);        
+    }
     
     /**
      * Gets a string representing this note in GUIDO notation.

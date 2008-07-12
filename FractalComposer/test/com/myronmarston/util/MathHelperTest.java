@@ -102,4 +102,14 @@ public class MathHelperTest {
         assertEquals(4, MathHelper.getNormalizedValue(-3, 7));
         assertEquals(4, MathHelper.getNormalizedValue(-10, 7));
     }
+    
+    @Test
+    public void getLargestPowerOf2LessThanGivenNumber() {
+        assertEquals(2L, MathHelper.getLargestPowerOf2LessThanGivenNumber(3));
+        assertEquals(4L, MathHelper.getLargestPowerOf2LessThanGivenNumber(5));
+        assertEquals(4L, MathHelper.getLargestPowerOf2LessThanGivenNumber(6));
+        assertEquals(4L, MathHelper.getLargestPowerOf2LessThanGivenNumber(7));
+        assertEquals(8L, MathHelper.getLargestPowerOf2LessThanGivenNumber(9));
+        assertEquals(16L, MathHelper.getLargestPowerOf2LessThanGivenNumber(21));
+    }
 }

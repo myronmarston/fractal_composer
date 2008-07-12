@@ -78,4 +78,31 @@ public class FractionTest {
          assertEquals(num, f.numerator_);
          assertEquals(den, f.denominator_);
     }
+    
+    @Test  
+    public void getLargestPowerOf2FractionThatIsLessThanThis() {        
+        assertEquals(new Fraction(2, 1), (new Fraction(5, 2)).getLargestPowerOf2FractionThatIsLessThanThis());
+        assertEquals(new Fraction(1, 8), (new Fraction(3, 16)).getLargestPowerOf2FractionThatIsLessThanThis());
+        assertEquals(new Fraction(1, 4), (new Fraction(5, 16)).getLargestPowerOf2FractionThatIsLessThanThis());
+        assertEquals(new Fraction(1, 4), (new Fraction(3, 8)).getLargestPowerOf2FractionThatIsLessThanThis());
+        assertEquals(new Fraction(3, 8), (new Fraction(7, 16)).getLargestPowerOf2FractionThatIsLessThanThis());
+        assertEquals(new Fraction(1, 2), (new Fraction(9, 16)).getLargestPowerOf2FractionThatIsLessThanThis());
+        assertEquals(new Fraction(3, 4), (new Fraction(7, 8)).getLargestPowerOf2FractionThatIsLessThanThis());
+        
+        try {
+            (new Fraction(1, 8)).getLargestPowerOf2FractionThatIsLessThanThis();
+            fail();
+        } catch (UnsupportedOperationException ex) {}
+        try {
+            (new Fraction(3, 7)).getLargestPowerOf2FractionThatIsLessThanThis();
+            fail();
+        } catch (UnsupportedOperationException ex) {}
+    }
+    
+    @Test
+    public void denomIsPowerOf2() throws Exception {
+        assertTrue((new Fraction("1/4")).denomIsPowerOf2());
+        assertTrue((new Fraction("19/128")).denomIsPowerOf2());
+        assertFalse((new Fraction("3/7")).denomIsPowerOf2());
+    }
 }

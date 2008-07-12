@@ -69,6 +69,12 @@ public class InstrumentTest {
         assertEquals("\\instr<\"Cello\", \"MIDI 42\">", i.toGuidoString());
     }
     
+    @Test
+    public void toLilypondString() {
+        Instrument i = Instrument.getInstrument("Cello");
+        assertEquals(" \\set Staff.instrumentName = \"Cello\"\n", i.toLilypondString());
+    }
+    
     public static void assertMidiProgramChangeEventEquals(MidiEvent event, long tick, int channel, int patch) {
         assertEquals(tick, event.getTick());
         javax.sound.midi.MidiMessage msg = event.getMessage();

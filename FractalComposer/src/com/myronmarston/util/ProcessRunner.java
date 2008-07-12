@@ -33,21 +33,31 @@ public class ProcessRunner {
      * process.
      * 
      * @param processBuilder ProcessBuilder containing the process to be run
-     * @return the exit value of the process
+     * @return string containing the std and error output from the process
      * @throws java.io.IOException if an I/O exception occurs
      * @throws java.lang.InterruptedException if the process is interrupted
      */
-    public static int runProcess(ProcessBuilder processBuilder) throws IOException, InterruptedException {
-        // start the process...
-        Process p = processBuilder.start();  
-        
-        // redirect the streams so that our process doesn't block...
-        ThreadedInputStreamRedirector errorStr = new ThreadedInputStreamRedirector(p.getErrorStream());
-        ThreadedInputStreamRedirector outputStr = new ThreadedInputStreamRedirector(p.getInputStream());
-        errorStr.start();
-        outputStr.start();
-        
-        // wait for the process to finish...
-        return p.waitFor();
-    }    
+    public static String runProcess(ProcessBuilder processBuilder) throws IOException, InterruptedException {
+        ByteArrayOutputStream baos = null;
+        try {
+            baos = new ByteArrayOutputStream();                                                            
+            
+            // start the process...
+            Process p = processBuilder.start();             
+            
+            // redirect the streams so that our process doesn't block...
+            ThreadedInputStreamRedirector errorStr = new ThreadedInputStreamRedirector(p.getErrorStream(), baos);
+            ThreadedInputStreamRedirector outputStr = new ThreadedInputStreamRedirector(p.getInputStream(), baos);
+            errorStr.start();
+            outputStr.start();
+
+            // wait for the process to finish...
+            p.waitFor();
+            
+            baos.flush();
+            return baos.toString();                    
+        } finally {
+            if (baos != null) baos.close();
+        }        
+    }
 }

@@ -94,9 +94,12 @@ Class KeySignature</H2>
 java.lang.Object
   <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.scales.KeySignature</B>
 </PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DD>
+</DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>KeySignature</B><DT>extends java.lang.Object</DL>
+<DT><PRE>public class <B>KeySignature</B><DT>extends java.lang.Object<DT>implements <A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DL>
 </PRE>
 
 <P>
@@ -214,6 +217,14 @@ Represents a Midi key signature.  This is immutable.
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a string representing this key signature in GUIDO notation.</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/KeySignature.html#toLilypondString()">toLilypondString</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the representation of this key signature in Lilypond notation.</TD>
+</TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
@@ -292,6 +303,9 @@ public <A HREF="../../../../com/myronmarston/music/scales/Tonality.html" title="
 <DD>Gets the tonality of this key.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>either major or minor</DL>
 </DD>
@@ -307,6 +321,9 @@ public int <B>getNumberOfFlatsOrSharps</B>()</PRE>
  indicates flats and a positive number indicates sharps.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>the number of flats or sharps</DL>
 </DD>
@@ -320,6 +337,9 @@ public <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in
 <DL>
 <DD>Gets the note name of the tonal center.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the name of the key</DL>
@@ -337,6 +357,9 @@ public <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in
  3rd above the key.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>the relative key name</DL>
 </DD>
@@ -351,8 +374,28 @@ public java.lang.String <B>toGuidoString</B>()</PRE>
 <DD>Gets a string representing this key signature in GUIDO notation.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>the Guido string</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="toLilypondString()"><!-- --></A><H3>
+toLilypondString</H3>
+<PRE>
+public java.lang.String <B>toLilypondString</B>()</PRE>
+<DL>
+<DD>Gets the representation of this key signature in Lilypond notation.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#toLilypondString()">toLilypondString</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the lilypond string</DL>
 </DD>
 </DL>
 <HR>
@@ -364,6 +407,9 @@ public javax.sound.midi.MidiEvent <B>getKeySignatureMidiEvent</B>(long&nbsp;tick
 <DL>
 <DD>Gets a midi key signature event.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>tick</CODE> - the time-stamp for when this key signature should be used
 <DT><B>Returns:</B><DD>the midi event</DL>

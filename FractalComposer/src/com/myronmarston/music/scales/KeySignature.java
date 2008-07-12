@@ -21,10 +21,13 @@ package com.myronmarston.music.scales;
 
 import com.myronmarston.music.MidiNote;
 import com.myronmarston.music.NoteName;
+import com.myronmarston.music.notation.NotationElement;
+import com.myronmarston.music.notation.NotationNote;
 
 import org.simpleframework.xml.*;
 
 import java.lang.reflect.UndeclaredThrowableException;
+import java.util.Locale;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MetaMessage;
 import javax.sound.midi.MidiEvent;
@@ -35,7 +38,7 @@ import javax.sound.midi.MidiEvent;
  * @author Myron
  */
 @Root
-public class KeySignature {  
+public class KeySignature implements NotationElement {  
     
     @Attribute
     private NoteName keyName;
@@ -46,6 +49,7 @@ public class KeySignature {
     @Attribute
     private Tonality tonality;    
     private MetaMessage keySignatureMidiMessage;    
+    private String lilypondString;    
     
     
     /**
@@ -129,6 +133,26 @@ public class KeySignature {
         char keyLetterName = this.getKeyName().getLetter(this.getTonality() == Tonality.Minor);        
         String accidentals = this.getKeyName().toString().substring(1).replaceAll("b", "&").replaceAll("s", "#").replaceAll("x", "##");        
         return "\\key<\"" + keyLetterName + accidentals + "\">";
+    }
+    
+    /**
+     * Gets the representation of this key signature in Lilypond notation.
+     * 
+     * @return the lilypond string
+     */
+    public String toLilypondString() {                
+        if (lilypondString == null) {
+            String key = this.getKeyName().toString().toLowerCase(Locale.ENGLISH);
+            key = key.replace('b', NotationNote.LILYPOND_FLAT_CHAR);
+            key = key.replace("x", "##");
+            key = key.replace('#', NotationNote.LILYPOND_SHARP_CHAR);
+
+            String tonalityStr = this.getTonality().toString().toLowerCase(Locale.ENGLISH);
+            
+            lilypondString = " \\key " + key + " \\" + tonalityStr + "\n";
+        }
+                
+        return lilypondString;
     }
     
     private static void checkValidityOfKeySignature(NoteName keyName, Tonality tonality) throws InvalidKeySignatureException {

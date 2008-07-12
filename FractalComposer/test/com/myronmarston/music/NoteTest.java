@@ -22,7 +22,9 @@ package com.myronmarston.music;
 import com.myronmarston.music.NoteStringInvalidPartException.NoteStringPart;
 import com.myronmarston.music.scales.*;
 import com.myronmarston.util.Fraction;
+import com.myronmarston.music.notation.*;
 
+import com.myronmarston.music.settings.TimeSignature;
 import javax.sound.midi.InvalidMidiDataException;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -244,6 +246,25 @@ public class NoteTest {
         String expectedWithScale = "Note = LN(1), SS(1), O(4), CA(1), D(1/4), V(70), S(Bb Major Scale), SCA(0)";        
         Note n = new Note(1, 1, 4, 1, new Fraction(1, 4), 70, new MajorScale(NoteName.Bb), 0);
         assertEquals(expectedWithScale, n.toString());            
+    }
+    
+    @Test
+    public void toNotationNote() throws Exception {
+        testToNotationNote(new MajorScale(NoteName.G), "G4,3/8", 'g', 4, 0, "3/8");
+        testToNotationNote(new ChromaticScale(), "B#4,1/16", 'b', 4, 1, "1/16");
+        testToNotationNote(new ChromaticScale(), "Cb5,1/6", 'c', 5, -1, "1/6");
+    }
+    
+    private static void testToNotationNote(Scale scale, String noteString, char letterName, int octave, int accidental, String duration) throws Exception {
+        Piece piece = new Piece(scale.getKeySignature(), TimeSignature.DEFAULT, Tempo.DEFAULT);
+        Part part = new Part(piece, Instrument.DEFAULT);
+        Note n = Note.parseNoteString(noteString, scale, new Fraction("1/4"), Dynamic.MF.getMidiVolume());        
+        NotationNote nn = n.toNotationNote(part, n.convertToMidiNote(new Fraction(0, 1), (int) n.getDuration().denominator() * 4, 0, true));
+        
+        assertEquals(accidental, nn.getAccidental());
+        assertEquals(octave, nn.getOctave());
+        assertEquals(letterName, nn.getLetterName());
+        assertEquals(new Fraction(duration), nn.getDuration());
     }
     
     @Test

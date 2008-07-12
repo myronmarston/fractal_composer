@@ -19,6 +19,8 @@
 
 package com.myronmarston.music;
 
+import com.myronmarston.music.notation.NotationElement;
+
 import javax.sound.midi.*;
 import java.util.*;
 import java.lang.reflect.UndeclaredThrowableException;
@@ -29,7 +31,7 @@ import java.lang.reflect.UndeclaredThrowableException;
  * 
  * @author Myron
  */
-public class Instrument {
+public class Instrument implements NotationElement {
     private final javax.sound.midi.Instrument midiInstrument;
     private static final int REGULAR_INSTRUMENT_BANK = 0;    
     private static final Map<String, Instrument> INSTRUMENT_MAP;
@@ -121,6 +123,15 @@ public class Instrument {
     public String toGuidoString() {
         return "\\instr<\"" + this.getName() + "\", \"MIDI " + this.getMidiInstrument().getPatch().getProgram() + "\">";
     }
+
+    /**
+     * Gets a string representing this instrument in Lilypond notation.
+     * 
+     * @return the lilypond string
+     */
+    public String toLilypondString() {        
+        return " \\set Staff.instrumentName = \"" + this.getName() + "\"\n";
+    }        
     
     /**
      * Creates a midi program change event on the given channel using this 

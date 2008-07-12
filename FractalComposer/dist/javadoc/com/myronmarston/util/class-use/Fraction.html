@@ -93,6 +93,10 @@ Packages that use <A HREF="../../../../com/myronmarston/util/Fraction.html" titl
 <TD>&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><A HREF="#com.myronmarston.music.notation"><B>com.myronmarston.music.notation</B></A></TD>
+<TD>&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><A HREF="#com.myronmarston.music.settings"><B>com.myronmarston.music.settings</B></A></TD>
 <TD>&nbsp;&nbsp;</TD>
 </TR>
@@ -201,6 +205,91 @@ Uses of <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class i
      int&nbsp;volume,
      <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale,
      int&nbsp;segmentChromaticAdjustment)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+<A NAME="com.myronmarston.music.notation"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+Uses of <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A> in <A HREF="../../../../com/myronmarston/music/notation/package-summary.html">com.myronmarston.music.notation</A></FONT></TH>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left" COLSPAN="2">Methods in <A HREF="../../../../com/myronmarston/music/notation/package-summary.html">com.myronmarston.music.notation</A> that return <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A></CODE></FONT></TD>
+<TD><CODE><B>NotationNote.</B><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#getDuration()">getDuration</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the rhythmic duration of this notation note.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A></CODE></FONT></TD>
+<TD><CODE><B>Tuplet.</B><B><A HREF="../../../../com/myronmarston/music/notation/Tuplet.html#getTupletMultiplier()">getTupletMultiplier</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the tuplet multiplier.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left" COLSPAN="2">Methods in <A HREF="../../../../com/myronmarston/music/notation/package-summary.html">com.myronmarston.music.notation</A> with parameters of type <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A></CODE></FONT></TD>
+<TD><CODE><B>NotationNote.</B><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#applyTupletMultiplier(com.myronmarston.util.Fraction)">applyTupletMultiplier</A></B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;multiplier)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new notation note with a duration that is scaled by the 
+ given multiplier, which can be used when grouping tuplets.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A></CODE></FONT></TD>
+<TD><CODE><B>NotationNote.</B><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#createRest(com.myronmarston.music.notation.Part, com.myronmarston.util.Fraction)">createRest</A></B>(<A HREF="../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>&nbsp;part,
+           <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a rest.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected static&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B>NotationNote.</B><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#getLilypondDurationString(com.myronmarston.util.Fraction)">getLilypondDurationString</A></B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a string representing the given duration in lilypond notation.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left" COLSPAN="2">Constructors in <A HREF="../../../../com/myronmarston/music/notation/package-summary.html">com.myronmarston.music.notation</A> with parameters of type <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#NotationNote(com.myronmarston.music.notation.Part, char, int, int, com.myronmarston.util.Fraction)">NotationNote</A></B>(<A HREF="../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>&nbsp;part,
+             char&nbsp;letterName,
+             int&nbsp;octave,
+             int&nbsp;accidental,
+             <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
@@ -367,6 +456,15 @@ Uses of <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class i
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return a Fraction representing this Fraction divided by n</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A></CODE></FONT></TD>
+<TD><CODE><B>Fraction.</B><B><A HREF="../../../../com/myronmarston/util/Fraction.html#getLargestPowerOf2FractionThatIsLessThanThis()">getLargestPowerOf2FractionThatIsLessThanThis</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the largest fraction that is less than this fraction and has a 
+ denominator that is a power of 2.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">

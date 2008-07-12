@@ -134,7 +134,7 @@ A class that manages the running of a process.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;int</CODE></FONT></TD>
+<CODE>static&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/util/ProcessRunner.html#runProcess(java.lang.ProcessBuilder)">runProcess</A></B>(java.lang.ProcessBuilder&nbsp;processBuilder)</CODE>
 
 <BR>
@@ -184,16 +184,16 @@ public <B>ProcessRunner</B>()</PRE>
 <A NAME="runProcess(java.lang.ProcessBuilder)"><!-- --></A><H3>
 runProcess</H3>
 <PRE>
-public static int <B>runProcess</B>(java.lang.ProcessBuilder&nbsp;processBuilder)
-                      throws java.io.IOException,
-                             java.lang.InterruptedException</PRE>
+public static java.lang.String <B>runProcess</B>(java.lang.ProcessBuilder&nbsp;processBuilder)
+                                   throws java.io.IOException,
+                                          java.lang.InterruptedException</PRE>
 <DL>
 <DD>Runs the given process, taking care of the necessary streams from the 
  process.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>processBuilder</CODE> - ProcessBuilder containing the process to be run
-<DT><B>Returns:</B><DD>the exit value of the process
+<DT><B>Returns:</B><DD>string containing the std and error output from the process
 <DT><B>Throws:</B>
 <DD><CODE>java.io.IOException</CODE> - if an I/O exception occurs
 <DD><CODE>java.lang.InterruptedException</CODE> - if the process is interrupted</DL>

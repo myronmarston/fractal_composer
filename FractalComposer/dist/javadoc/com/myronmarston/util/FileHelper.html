@@ -179,6 +179,15 @@ A class that provides static methods to manage temporary file resources.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/FileHelper.html#createTextFile(java.lang.String, java.lang.String)">createTextFile</A></B>(java.lang.String&nbsp;fileName,
+               java.lang.String&nbsp;fileContents)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a text file, using UTF-8 encoding.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/util/FileHelper.html#readFileIntoString(java.lang.String)">readFileIntoString</A></B>(java.lang.String&nbsp;fileName)</CODE>
 
@@ -259,6 +268,23 @@ public static void <B>createAndUseFileBufferedWriter</B>(java.lang.String&nbsp;f
 <DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the file<DD><CODE>bufferedWriterUser</CODE> - the object that will use the buffered writer
 <DT><B>Throws:</B>
 <DD><CODE>java.io.IOException</CODE> - if an I/O error occurs</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="createTextFile(java.lang.String, java.lang.String)"><!-- --></A><H3>
+createTextFile</H3>
+<PRE>
+public static void <B>createTextFile</B>(java.lang.String&nbsp;fileName,
+                                  java.lang.String&nbsp;fileContents)
+                           throws java.io.IOException</PRE>
+<DL>
+<DD>Creates a text file, using UTF-8 encoding.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the text file<DD><CODE>fileContents</CODE> - the text contents to put in the text file
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE> - if there is an I/O error</DL>
 </DD>
 </DL>
 <HR>

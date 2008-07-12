@@ -101,6 +101,28 @@ public class MathHelper {
         if (num == 0) return false;
         return (num & (num - 1)) == 0;
     }
+
+    /**
+     * Gets the largest power of 2 that is less than the given number.  For 
+     * example, given 7, 4 will be returned.  Given 18, 16 will be returned.
+     * 
+     * @param num the given number
+     * @return the largest power of 2 less than num
+     */
+    public static long getLargestPowerOf2LessThanGivenNumber(long num) {
+        if (num <= 1) {
+            throw new UnsupportedOperationException("This method is not designed to handle the given number.  It only deals with numbers that are greater than 1.");
+        }
+        
+        //TODO: is there a more efficient algorithm for this?
+        while (true) {
+            num -= 1;
+            if (numIsPowerOf2(num)) return num;
+            
+            // given our asserted assumptions above, we should never wind up negative...
+            assert num > 0 : num;
+        }        
+    }
     
     /**
      * Normalizes a value into a certain range. This is like a modulus function,

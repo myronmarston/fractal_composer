@@ -159,7 +159,8 @@ A class that redirects an input stream to the System.out stream.  This
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../com/myronmarston/util/ThreadedInputStreamRedirector.html#ThreadedInputStreamRedirector(java.io.InputStream)">ThreadedInputStreamRedirector</A></B>(java.io.InputStream&nbsp;inputStream)</CODE>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/ThreadedInputStreamRedirector.html#ThreadedInputStreamRedirector(java.io.InputStream, java.io.OutputStream)">ThreadedInputStreamRedirector</A></B>(java.io.InputStream&nbsp;inputStream,
+                              java.io.OutputStream&nbsp;redirectStream)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
@@ -214,15 +215,16 @@ A class that redirects an input stream to the System.out stream.  This
 </TR>
 </TABLE>
 
-<A NAME="ThreadedInputStreamRedirector(java.io.InputStream)"><!-- --></A><H3>
+<A NAME="ThreadedInputStreamRedirector(java.io.InputStream, java.io.OutputStream)"><!-- --></A><H3>
 ThreadedInputStreamRedirector</H3>
 <PRE>
-public <B>ThreadedInputStreamRedirector</B>(java.io.InputStream&nbsp;inputStream)</PRE>
+public <B>ThreadedInputStreamRedirector</B>(java.io.InputStream&nbsp;inputStream,
+                                     java.io.OutputStream&nbsp;redirectStream)</PRE>
 <DL>
 <DD>Constructor.
 <P>
 <DL>
-<DT><B>Parameters:</B><DD><CODE>inputStream</CODE> - the input stream to redirect</DL>
+<DT><B>Parameters:</B><DD><CODE>inputStream</CODE> - the input stream to redirect<DD><CODE>redirectStream</CODE> - </DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->

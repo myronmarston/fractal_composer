@@ -186,6 +186,18 @@ public class TimeSignatureTest {
         assertEquals("\\meter<\"c/\">", ts.toGuidoString());
     }
     
+    @Test
+    public void toLilypondString() throws Exception {
+        testToLilypondString("4/4", " \\time 4/4\n");
+        testToLilypondString("6/8", " \\time 6/8\n");
+        testToLilypondString("5/4", " \\time 5/4\n");
+    }
+    
+    private static void testToLilypondString(String timeSignature, String expected) throws Exception {
+        TimeSignature ts = new TimeSignature(timeSignature);
+        assertEquals(expected, ts.toLilypondString());
+    }
+    
     static public void assertTimeSignatureEventEqual(MidiEvent timeSignatureEvent, byte byte1, byte byte2) {
         assertEquals(0L, timeSignatureEvent.getTick());
         javax.sound.midi.MidiMessage msg = timeSignatureEvent.getMessage();

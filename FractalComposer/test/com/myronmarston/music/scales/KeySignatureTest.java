@@ -91,6 +91,17 @@ public class KeySignatureTest {
     }
     
     @Test
+    public void toLilypondString() throws Exception {
+        testToLilypondString(Tonality.Major, NoteName.Cs, " \\key cs \\major\n");        
+        testToLilypondString(Tonality.Minor, NoteName.Ab, " \\key af \\minor\n");
+    }
+    
+    private static void testToLilypondString(Tonality tonality, NoteName key, String expected) throws Exception {
+        KeySignature ks = new KeySignature(tonality, key);
+        assertEquals(expected, ks.toLilypondString());
+    }
+    
+    @Test
     public void getRelativeKeyName() throws Exception {                
         testRelativeKeyName(NoteName.Cb, NoteName.Ab);
         testRelativeKeyName(NoteName.C, NoteName.A);

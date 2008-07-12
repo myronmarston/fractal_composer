@@ -30,14 +30,17 @@ import java.lang.reflect.UndeclaredThrowableException;
  */
 public class ThreadedInputStreamRedirector extends Thread {
     private final InputStream inputStream;          
+    private final OutputStream redirectStream;
 
     /**
      * Constructor.
      * 
      * @param inputStream the input stream to redirect
-     */
-    public ThreadedInputStreamRedirector(InputStream inputStream) {
+     * @param redirectStream 
+     */    
+    public ThreadedInputStreamRedirector(InputStream inputStream, OutputStream redirectStream) {
         this.inputStream = inputStream;
+        this.redirectStream = redirectStream;
     }                
 
     @Override
@@ -45,21 +48,48 @@ public class ThreadedInputStreamRedirector extends Thread {
      * Starts the process of redirecting the stream on its own thread.
      */
     public void run() {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(this.inputStream));            
-        String line = null;
-        do {            
+        InputStreamReader iReader = null;
+        OutputStreamWriter oWriter = null;        
+        BufferedReader bufferedReader = null;
+        BufferedWriter bufferedWriter = null;
+        try {        
             try {
-                line = bufferedReader.readLine();                
-            } catch (IOException ex) {
-                // we can't simply declare this exception on our run method 
-                // since it's not declared on the superclass's run method,
-                // so we wrap it in an unchecked exception to pass it on 
-                // up the stack...
-                throw new UndeclaredThrowableException(ex, "I/O Error reading line.");                
-            }  
+                iReader = new InputStreamReader(this.inputStream);
+                oWriter = new OutputStreamWriter(this.redirectStream);
+                bufferedReader = new BufferedReader(iReader);            
+                bufferedWriter = new BufferedWriter(oWriter);
 
-            if (line == null) break;
-            System.out.println(line);
-        } while (true);            
+                String line = null;
+                boolean firstLineComplete = false;
+                while (true) {            
+                    try {
+                        line = bufferedReader.readLine();                
+                    } catch (IOException ex) {
+                        // we can't simply declare this exception on our run method 
+                        // since it's not declared on the superclass's run method,
+                        // so we wrap it in an unchecked exception to pass it on 
+                        // up the stack...
+                        throw new UndeclaredThrowableException(ex, "I/O Error reading line.");                
+                    }  
+
+                    if (line == null) break;
+                    
+                    if (firstLineComplete) bufferedWriter.newLine();
+                    bufferedWriter.write(line);                    
+                    firstLineComplete = true;
+                }         
+            } finally {
+                iReader.close();
+                bufferedReader.close();
+                oWriter.flush();
+                bufferedWriter.flush();                
+                oWriter.close();                
+                bufferedWriter.close();                                
+            }       
+        } catch (IOException ex) {
+            // to conform to the runnable interface, we can't throw any checked exceptions,
+            // so we catch this and transform it to an unchecked exception
+            throw new UndeclaredThrowableException(ex, "An error occured while redirecting the input stream: " + ex.getMessage());
+        }            
     }                      
 }

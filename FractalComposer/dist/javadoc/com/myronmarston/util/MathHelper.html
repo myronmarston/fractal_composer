@@ -135,6 +135,14 @@ A class containing static helper methods for some math functions used to
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/MathHelper.html#getLargestPowerOf2LessThanGivenNumber(long)">getLargestPowerOf2LessThanGivenNumber</A></B>(long&nbsp;num)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the largest power of 2 that is less than the given number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/util/MathHelper.html#getNormalizedValue(int, int)">getNormalizedValue</A></B>(int&nbsp;value,
                    int&nbsp;mod)</CODE>
@@ -294,6 +302,21 @@ public static boolean <B>numIsPowerOf2</B>(long&nbsp;num)</PRE>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>num</CODE> - the number to check
 <DT><B>Returns:</B><DD>true if it is a power of 2</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLargestPowerOf2LessThanGivenNumber(long)"><!-- --></A><H3>
+getLargestPowerOf2LessThanGivenNumber</H3>
+<PRE>
+public static long <B>getLargestPowerOf2LessThanGivenNumber</B>(long&nbsp;num)</PRE>
+<DL>
+<DD>Gets the largest power of 2 that is less than the given number.  For 
+ example, given 7, 4 will be returned.  Given 18, 16 will be returned.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>num</CODE> - the given number
+<DT><B>Returns:</B><DD>the largest power of 2 less than num</DL>
 </DD>
 </DL>
 <HR>

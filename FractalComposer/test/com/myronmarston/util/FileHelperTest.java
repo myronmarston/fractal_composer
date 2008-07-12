@@ -88,4 +88,18 @@ public class FileHelperTest {
             }
         });
     }
+    
+    @Test
+    public void createTextFile() throws Exception {
+        final String contents = "Here is some content for a text file.";
+                
+        FileHelper.createAndUseTempFile("Test", ".txt", new FileHelper.TempFileUser() {
+            public void useTempFile(String tempFileName) throws Exception {
+                FileHelper.createTextFile(tempFileName, contents);
+                
+                String fileContents = FileHelper.readFileIntoString(tempFileName);                
+                assertEquals(contents, fileContents);
+            }
+        });
+    }
 }

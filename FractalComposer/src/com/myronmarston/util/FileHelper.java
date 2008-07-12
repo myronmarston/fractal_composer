@@ -100,7 +100,7 @@ public class FileHelper {
         try {
             fos = new FileOutputStream(fileName);
             osw = new OutputStreamWriter(fos, "UTF-8");
-            bw = new BufferedWriter(osw);
+            bw = new BufferedWriter(osw);            
             bufferedWriterUser.useBufferedWriter(bw);
         } finally {                   
             // first, flush the buffered writer...
@@ -111,6 +111,26 @@ public class FileHelper {
             if (osw != null) osw.close();
             if (bw != null) bw.close();
         }   
+    }
+   
+    /**
+     * Creates a text file, using UTF-8 encoding.
+     * 
+     * @param fileName the name of the text file
+     * @param fileContents the text contents to put in the text file
+     * @throws java.io.IOException if there is an I/O error
+     */
+    public static void createTextFile(final String fileName, final String fileContents) throws IOException {   
+        FileHelper.createAndUseFileBufferedWriter(fileName, new FileHelper.BufferedWriterUser() {
+            public void useBufferedWriter(BufferedWriter bufferedWriter) throws IOException {                                
+                boolean firstLineWritten = false;
+                for (String line : fileContents.split("\n")) {
+                    if (firstLineWritten) bufferedWriter.newLine();
+                    bufferedWriter.write(line);
+                    firstLineWritten = true;
+                }                                
+            }
+        });
     }
     
     /**

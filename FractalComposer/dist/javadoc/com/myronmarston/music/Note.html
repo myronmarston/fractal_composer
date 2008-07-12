@@ -374,6 +374,16 @@ Represents a note, relative to a particular scale.  This note will need to be
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#toNotationNote(com.myronmarston.music.notation.Part, com.myronmarston.music.MidiNote)">toNotationNote</A></B>(<A HREF="../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>&nbsp;part,
+               <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A>&nbsp;midiNote)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts this Note to a Notation Note that can be used to produce GUIDO
+ or Lilypond notation.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#toString()">toString</A></B>()</CODE>
 
@@ -863,6 +873,25 @@ public <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in c
         parameters; false to allow the chromaticAdjustment to be changed
         if it would create a note that is already found in the scale
 <DT><B>Returns:</B><DD>the MidiNote</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="toNotationNote(com.myronmarston.music.notation.Part, com.myronmarston.music.MidiNote)"><!-- --></A><H3>
+toNotationNote</H3>
+<PRE>
+public <A HREF="../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A> <B>toNotationNote</B>(<A HREF="../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>&nbsp;part,
+                                   <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A>&nbsp;midiNote)</PRE>
+<DL>
+<DD>Converts this Note to a Notation Note that can be used to produce GUIDO
+ or Lilypond notation.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>part</CODE> - the Notation part<DD><CODE>midiNote</CODE> - the midi note produced as output from this note
+<DT><B>Returns:</B><DD>the notation note</DL>
 </DD>
 </DL>
 <HR>
