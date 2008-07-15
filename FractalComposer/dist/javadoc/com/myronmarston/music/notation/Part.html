@@ -155,6 +155,54 @@ Represents one instrumental part of the notation.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Part.html#getPieceComposer()">getPieceComposer</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the composer of the piece.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Part.html#getPieceTitle()">getPieceTitle</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the title of the piece.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Part.html#isPartFirstPartOfPiece()">isPartFirstPartOfPiece</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checks to see if this part is the first part of the piece.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Part.html#setPieceComposer(java.lang.String)">setPieceComposer</A></B>(java.lang.String&nbsp;pieceComposer)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the composer of the piece.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Part.html#setPieceTitle(java.lang.String)">setPieceTitle</A></B>(java.lang.String&nbsp;pieceTitle)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the title of the piece.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Part.html#toGuidoString()">toGuidoString</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the GUIDO notation for this part.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Part.html#toLilypondString()">toLilypondString</A></B>()</CODE>
 
 <BR>
@@ -222,6 +270,93 @@ public <A HREF="../../../../com/myronmarston/music/notation/Piece.html" title="c
 </DL>
 <HR>
 
+<A NAME="isPartFirstPartOfPiece()"><!-- --></A><H3>
+isPartFirstPartOfPiece</H3>
+<PRE>
+protected boolean <B>isPartFirstPartOfPiece</B>()</PRE>
+<DL>
+<DD>Checks to see if this part is the first part of the piece.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>true if this is the first part of the piece</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getPieceComposer()"><!-- --></A><H3>
+getPieceComposer</H3>
+<PRE>
+public java.lang.String <B>getPieceComposer</B>()</PRE>
+<DL>
+<DD>Gets the composer of the piece.  It is available here because in 
+ Guido notation the composer is notated in the first part.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the piece composer</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setPieceComposer(java.lang.String)"><!-- --></A><H3>
+setPieceComposer</H3>
+<PRE>
+public void <B>setPieceComposer</B>(java.lang.String&nbsp;pieceComposer)</PRE>
+<DL>
+<DD>Sets the composer of the piece.  It is available here because in 
+ Guido notation the composer is notated in the first part.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>pieceComposer</CODE> - the composer of the piece</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getPieceTitle()"><!-- --></A><H3>
+getPieceTitle</H3>
+<PRE>
+public java.lang.String <B>getPieceTitle</B>()</PRE>
+<DL>
+<DD>Gets the title of the piece.  It is available here because in 
+ Guido notation the title is notated in the first part.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the title of the piece</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setPieceTitle(java.lang.String)"><!-- --></A><H3>
+setPieceTitle</H3>
+<PRE>
+public void <B>setPieceTitle</B>(java.lang.String&nbsp;pieceTitle)</PRE>
+<DL>
+<DD>Sets the title of the piece.  It is available here because in 
+ Guido notation the title is notated in the first part.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>pieceTitle</CODE> - the title of the piece</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="getNotationElements()"><!-- --></A><H3>
 getNotationElements</H3>
 <PRE>
@@ -252,6 +387,23 @@ public java.lang.String <B>toLilypondString</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the lilypond string</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="toGuidoString()"><!-- --></A><H3>
+toGuidoString</H3>
+<PRE>
+public java.lang.String <B>toGuidoString</B>()</PRE>
+<DL>
+<DD>Gets the GUIDO notation for this part.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#toGuidoString()">toGuidoString</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the GUIDO notation for this part</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

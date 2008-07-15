@@ -21,6 +21,7 @@ package com.myronmarston.music;
 
 import com.myronmarston.music.notation.NotationElement;
 
+import com.myronmarston.util.FileHelper;
 import javax.sound.midi.*;
 import java.util.*;
 import java.lang.reflect.UndeclaredThrowableException;
@@ -130,7 +131,7 @@ public class Instrument implements NotationElement {
      * @return the lilypond string
      */
     public String toLilypondString() {        
-        return " \\set Staff.instrumentName = \"" + this.getName() + "\"\n";
+        return "\\set Staff.instrumentName = \"" + this.getName() + "\"" + FileHelper.NEW_LINE;
     }        
     
     /**

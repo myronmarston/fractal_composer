@@ -34,6 +34,13 @@ public interface NotationElement {
      */
     public String toLilypondString();
     
-    //TODO: provide support here to scale duration denominators.
-    //TODO: use this to create GUIDO string as well
+    /**
+     * Gets the representation of this element in the string format used by 
+     * Guido.
+     * 
+     * @return the guido representation of this element
+     */
+    public String toGuidoString();
+    
+    //TODO: provide support here to scale duration denominators.    
 }

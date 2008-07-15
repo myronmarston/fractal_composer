@@ -22,6 +22,7 @@ package com.myronmarston.music.notation;
 import com.myronmarston.music.scales.KeySignature;
 import com.myronmarston.music.settings.TimeSignature;
 
+import com.myronmarston.util.FileHelper;
 import java.util.*;
 
 /**
@@ -29,63 +30,33 @@ import java.util.*;
  * 
  * @author Myron
  */
-public class Piece implements NotationElement {
+public class Piece {
     private final TimeSignature timeSignature;
     private final KeySignature keySignature;
     private final int tempo;
-    private String title;
-    private String composer;    
     private final NotationElementList parts = new NotationElementList();
-
+    private final boolean includeTempo;
+    private final boolean includeInstruments;
+  
     /**
      * Constructor.
      * 
      * @param keySignature the key signature of the piece
      * @param timeSignature the time signature of the piece
      * @param tempo the tempo of the piece, in beats per minute
+     * @param includeTempo whether or not to include a tempo marking on the 
+     *        notation
+     * @param includeInstrument whether or not to include the instrument name
+     *        on the notation
      */
-    public Piece(KeySignature keySignature, TimeSignature timeSignature, int tempo) {
+    public Piece(KeySignature keySignature, TimeSignature timeSignature, int tempo, boolean includeTempo, boolean includeInstrument) {
         this.keySignature = keySignature;
-        this.timeSignature = timeSignature;        
+        this.timeSignature = timeSignature;                
         this.tempo = tempo;
+        this.includeTempo = includeTempo;
+        this.includeInstruments = includeInstrument;
     }   
     
-    /**
-     * Gets the name of the composer of this piece.
-     * 
-     * @return the composer
-     */
-    public String getComposer() {
-        return composer;
-    }
-
-    /**
-     * Sets the name of the composer of this piece.
-     * 
-     * @param composer the composer
-     */
-    public void setComposer(String composer) {
-        this.composer = composer;
-    }        
-
-    /**
-     * Gets the title of this piece.
-     * 
-     * @return the title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * Sets the title of this piece.
-     * 
-     * @param title the title
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     /**
      * Gets the key signature of this piece.
      * 
@@ -111,8 +82,26 @@ public class Piece implements NotationElement {
      */
     public int getTempo() {
         return tempo;
-    }        
+    }
 
+    /**
+     * Gets whether or not to include the instruments in the output.
+     * 
+     * @return true if the instruments should be included in the output
+     */
+    public boolean getIncludeInstruments() {
+        return includeInstruments;
+    }
+
+    /**
+     * Gets whether or not the tempo should be included in the output.
+     * 
+     * @return true if the tempo should be included in hte output
+     */
+    public boolean getIncludeTempo() {
+        return includeTempo;
+    }
+        
     /**
      * Gets the instrumental parts of this piece.
      * 
@@ -120,8 +109,8 @@ public class Piece implements NotationElement {
      */
     public NotationElementList getParts() {
         return parts;
-    }        
-
+    }           
+            
     /**
      * Gets the lilypond notation of this piece.
      * 
@@ -130,32 +119,63 @@ public class Piece implements NotationElement {
      * @return the lilypond string
      */
     public String toLilypondString(String title, String composer) {
-        this.setTitle(title);
-        this.setComposer(composer);
-        return this.toLilypondString();
-    }
-            
-    /**
-     * Gets the lilypond notation of this piece.
-     * 
-     * @return the lilypond string
-     */
-    public String toLilypondString() {
+        this.getParts().setElementSeperator(FileHelper.NEW_LINE);
         StringBuilder str = new StringBuilder();
-        str.append("\\version \"2.11.47\"\n\n");
-        str.append("\\include \"english.ly\"\n\n");
-        str.append("\\header {\n");
-        if (this.getTitle() != null && !this.getTitle().isEmpty()) str.append("  title = \"" + this.getTitle() + "\"\n");
-        if (this.getComposer() != null && !this.getComposer().isEmpty()) str.append("  composer = \"" + this.getComposer() + "\"\n");
-        str.append("  copyright = \"Copyright " + Calendar.getInstance().get(Calendar.YEAR) + ",  fractalcomposer.com\"\n");
-        str.append("}\n\n");                
-        str.append("\\score {\n");        
-        str.append("        \\new StaffGroup <<\n");
+        str.append("\\version \"2.11.47\"" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);
+        str.append("\\include \"english.ly\"" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);
+        str.append("\\header {" + FileHelper.NEW_LINE);
+        if (title != null && !title.isEmpty()) str.append("  title = \"" + title + "\"" + FileHelper.NEW_LINE);
+        if (title != null && !composer.isEmpty()) str.append("  composer = \"" + composer + "\"" + FileHelper.NEW_LINE);
+        str.append("  copyright = \"Copyright " + Calendar.getInstance().get(Calendar.YEAR) + ",  fractalcomposer.com\"" + FileHelper.NEW_LINE);
+        str.append("}" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);                
+        str.append("\\score {" + FileHelper.NEW_LINE);        
+        str.append("        \\new StaffGroup <<" + FileHelper.NEW_LINE);
         str.append(this.getParts().toLilypondString());
-        str.append("        >>\n");
-        str.append("   \\layout { }\n");
+        str.append("        >>" + FileHelper.NEW_LINE);
+        str.append("   \\layout { }" + FileHelper.NEW_LINE);
         str.append("}");                        
         
         return str.toString();
-    }    
+    }   
+    
+    /**
+     * Gets the GUIDO notation for this piece.  No title or composer will be
+     * included in the output.
+     * 
+     * @return the guido notation for this piece
+     */
+    public String toGuidoString() {
+        return toGuidoString(null, null);
+    }
+    
+    /**
+     * Gets the GUIDO notation for this piece.
+     * 
+     * @param title the title of the piece
+     * @param composer the composer of the piece
+     * @return the guido string
+     */
+    public String toGuidoString(String title, String composer) {                
+        this.getParts().setElementSeperator("," + FileHelper.NEW_LINE);
+        
+        Part firstPart = null;
+        for (NotationElement element : this.getParts()) {
+            if (element instanceof Part) {
+                firstPart = (Part) element;
+                break;
+            } 
+        }
+            
+        if (firstPart != null) {
+            firstPart.setPieceTitle(title);
+            firstPart.setPieceComposer(composer);
+        }
+                
+        StringBuilder str = new StringBuilder();
+        str.append("{" + FileHelper.NEW_LINE);        
+        str.append(this.getParts().toGuidoString());        
+        str.append(FileHelper.NEW_LINE + "}");
+        return str.toString();
+    }
+        
 }

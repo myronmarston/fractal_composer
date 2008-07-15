@@ -19,6 +19,7 @@
 
 package com.myronmarston.music.notation;
 
+import com.myronmarston.util.FileHelper;
 
 /**
  * Exception that is thrown when an error occurs while running Lilypond.
@@ -36,7 +37,7 @@ public class LilypondRunException extends Exception {
      * @param lilypondOutput the output from running lilypond.
      */
     public LilypondRunException(String lilypondOutput) {
-        super("An error occurred while running Lilypond: \n" + lilypondOutput);
+        super("An error occurred while running Lilypond: " + FileHelper.NEW_LINE + lilypondOutput);
         this.lilypondOutput = lilypondOutput;
     }
 

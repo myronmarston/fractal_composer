@@ -28,6 +28,11 @@ import java.util.logging.*;
  * @author Myron
  */
 public class FileHelper {
+
+    /**
+     * The new line string for this environment.
+     */
+    public static final String NEW_LINE = System.getProperty("line.separator");
     
     /**
      * Interface for using a temporary file.
@@ -124,7 +129,7 @@ public class FileHelper {
         FileHelper.createAndUseFileBufferedWriter(fileName, new FileHelper.BufferedWriterUser() {
             public void useBufferedWriter(BufferedWriter bufferedWriter) throws IOException {                                
                 boolean firstLineWritten = false;
-                for (String line : fileContents.split("\n")) {
+                for (String line : fileContents.split(FileHelper.NEW_LINE)) {
                     if (firstLineWritten) bufferedWriter.newLine();
                     bufferedWriter.write(line);
                     firstLineWritten = true;
@@ -144,8 +149,7 @@ public class FileHelper {
         StringBuilder strBuilder = new StringBuilder();
         FileInputStream fis = null;
         InputStreamReader isr = null;
-        BufferedReader br = null;     
-        String newLine = System.getProperty("line.separator");
+        BufferedReader br = null;             
         String line;
         boolean firstLineRead = false;
         try {
@@ -157,7 +161,7 @@ public class FileHelper {
                 line = br.readLine();
                 if (line == null) break;
                 
-                if (firstLineRead) strBuilder.append(newLine);
+                if (firstLineRead) strBuilder.append(NEW_LINE);
                 strBuilder.append(line);                
                 firstLineRead = true;
             }

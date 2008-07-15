@@ -47,15 +47,24 @@ public class TupletTest {
         assertEquals(new Fraction(expectedMultiplier), t.getTupletMultiplier());
     }
     
-    @Test
-    public void toLilypondString() throws Exception {
+    private static Tuplet constructTestTuplet() throws Exception {
         NotationElementList list = new NotationElementList();
         list.add(new NotationNote(NotationNoteTest.DEFAULT_PART, 'c', 3, 0, new Fraction("1/12")));
         list.add(new NotationNote(NotationNoteTest.DEFAULT_PART, 'd', 3, 0, new Fraction("1/12")));
         list.add(new NotationNote(NotationNoteTest.DEFAULT_PART, 'e', 3, 0, new Fraction("1/12")));
         
-        Tuplet tuplet = new Tuplet(list);
-        
-        assertEquals(" \\times 2/3 {  c8  d8  e8  } ", tuplet.toLilypondString());
+        return new Tuplet(list);
+    }
+    
+    @Test
+    public void toLilypondString() throws Exception {
+        Tuplet tuplet = constructTestTuplet();        
+        assertEquals("\\times 2/3 { c8 d8 e8 }", tuplet.toLilypondString());
+    }
+    
+    @Test(expected=UnsupportedOperationException.class) 
+    public void toGuidoString() throws Exception {
+        Tuplet tuplet = constructTestTuplet();
+        tuplet.toGuidoString();
     }
 }

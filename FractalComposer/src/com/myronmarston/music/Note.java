@@ -723,37 +723,6 @@ public class Note implements Cloneable {
         return new NotationNote(part, letter, notationOctave, chromAdjustment, duration);        
     }
     
-    /**
-     * Gets a string representing this note in GUIDO notation.
-     *      
-     * @param midiNote used to figure out the accidental and octave
-     * @return the guido string
-     */
-    public String toGuidoString(MidiNote midiNote) {         
-        if (this.isRest()) return "_" + this.getDuration().toGuidoDurationString();        
-                       
-        Note normalizedNote = this.getNormalizedNote();        
-        
-        // get the letter
-        NoteName letterNoteName = this.getScale().getKeyName().getNaturalNoteNameForLetterNumber(normalizedNote.getLetterNumber());        
-        char letter = letterNoteName.getLetter(true);
-                
-        // get the chromatic adjustment
-        int chromAdjustment = (midiNote.getPitch() % Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE)  - letterNoteName.getNormalizedNoteNumber();                
-        chromAdjustment = Scale.getNormalizedChromaticAdjustment(chromAdjustment);
-        String accidentals = "";        
-        if (chromAdjustment != 0) {
-            char[] accidentalChars = new char[Math.abs(chromAdjustment)];
-            Arrays.fill(accidentalChars, (chromAdjustment < 0 ? '&' : '#'));
-            accidentals = String.copyValueOf(accidentalChars);
-        }
-        
-        // get the octave, taking into account the chromatic adjustment for notes like B# and Cb
-        int guidoOctave = ((midiNote.getPitch() - chromAdjustment) / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE) - 4;
-        
-        return letter + accidentals + guidoOctave + this.getDuration().toGuidoDurationString();
-    }
-
     @Override
     public String toString() {
         return String.format(

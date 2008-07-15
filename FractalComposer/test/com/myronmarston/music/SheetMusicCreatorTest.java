@@ -40,7 +40,7 @@ public class SheetMusicCreatorTest {
         
         FileHelper.createAndUseTempFile("TestGifFile", ".gif", new FileHelper.TempFileUser() {
             public void useTempFile(String tempFileName) throws Exception {
-                fp.createGermOutputManager().getSheetMusicCreator().saveAsGifImage(tempFileName);                
+                fp.createGermOutputManager().getSheetMusicCreator().saveAsGifImage(tempFileName, null, null);                
                 File file = new File(tempFileName);
                 BufferedImage image = ImageIO.read(file);
                 assertNotNull(image.getData());

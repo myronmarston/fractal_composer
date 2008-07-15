@@ -156,6 +156,14 @@ Represents a tuplet (e.g. triplet, quintuplet, etc) using a tuplet multiplier
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Tuplet.html#toGuidoString()">toGuidoString</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tuplet is not supported for guido notation.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Tuplet.html#toLilypondString()">toLilypondString</A></B>()</CODE>
 
 <BR>
@@ -252,6 +260,26 @@ public java.lang.String <B>toLilypondString</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the lilypond string</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="toGuidoString()"><!-- --></A><H3>
+toGuidoString</H3>
+<PRE>
+public java.lang.String <B>toGuidoString</B>()
+                               throws java.lang.UnsupportedOperationException</PRE>
+<DL>
+<DD>Tuplet is not supported for guido notation.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#toGuidoString()">toGuidoString</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>an UnsupportedOperationException is thrown
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.UnsupportedOperationException</CODE> - always thrown</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

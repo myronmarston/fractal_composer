@@ -22,6 +22,7 @@ package com.myronmarston.music.settings;
 import com.myronmarston.util.MathHelper;
 import com.myronmarston.music.notation.NotationElement;
 
+import com.myronmarston.util.FileHelper;
 import java.lang.reflect.UndeclaredThrowableException;
 import org.simpleframework.xml.*;
 
@@ -206,7 +207,7 @@ public class TimeSignature implements NotationElement {
      * @return the lilypond string
      */
     public String toLilypondString() {
-        return " \\time " + this.toString() + "\n";
+        return "\\time " + this.toString() + FileHelper.NEW_LINE;
     }
     
     /**

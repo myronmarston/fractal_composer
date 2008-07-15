@@ -31,7 +31,43 @@ import java.util.*;
 public class NotationElementList extends ArrayList<NotationElement> implements NotationElement {
     // Used to serialize the class.  Change this if the class has a change significant enough to change the way the class is serialized.
     private static final long serialVersionUID = 1L;
+    private String elementSeperator = "";    
 
+    /**
+     * Interface that specifies a method to use to convert a notation element to
+     * a string.
+     */    
+    private interface ToNotationStringMethod {
+        /**
+         * Converts a notation element to a notation string.
+         * 
+         * @param element the element
+         * @return the notation string
+         */
+        public String toNotationString(NotationElement element);
+    }
+    
+    /**
+     * Gets the string used to seperate the elements when getting the lilypond 
+     * or guido string for this list.
+     * 
+     * @return the element seperator
+     */
+    public String getElementSeperator() {
+        return elementSeperator;
+    }
+
+    /**
+     * Sets the string used to seperate the elements when getting the lilypond
+     * or guido string for this list.
+     * 
+     * @param elementSeperator the element seperator
+     */
+    public void setElementSeperator(String elementSeperator) {
+        if (elementSeperator == null) throw new NullPointerException("elementSeperator cannot be null.");
+        this.elementSeperator = elementSeperator;
+    }
+        
     /**
      * Constructor.
      */
@@ -58,20 +94,52 @@ public class NotationElementList extends ArrayList<NotationElement> implements N
     }
     
     /**
+     * Helper method for toLilypondString() and toGuidoString() containing
+     * common logic.
+     * 
+     * @param toNotationStringMethod specifies whether toLilypondString() or
+     *        toGuidoString() should be called on the elements.
+     * @return the lilypond or guido string
+     */
+    private String toLilypondOrGuidoStringHelper(ToNotationStringMethod toNotationStringMethod) {
+        StringBuilder strBuilder = new StringBuilder();
+        boolean firstElementDone = false;
+        
+        for (NotationElement element : this) {
+            if (firstElementDone) strBuilder.append(this.elementSeperator);
+            strBuilder.append(toNotationStringMethod.toNotationString(element));
+            firstElementDone = true;
+        }
+        
+        return strBuilder.toString();
+    }
+    
+    /**
      * Combines the lilypond strings of each element.
      * 
      * @return the lilypond string for this NotationElementList
      */
-    public String toLilypondString() {        
-        StringBuilder strBuilder = new StringBuilder();
-        
-        for (NotationElement element : this) {
-            strBuilder.append(element.toLilypondString());
-        }
-        
-        return strBuilder.toString();
-    }                
-    
+    public String toLilypondString() { 
+        return toLilypondOrGuidoStringHelper(new NotationElementList.ToNotationStringMethod() {
+            public String toNotationString(NotationElement element) {
+                return element.toLilypondString();
+            }
+        });
+    }
+
+    /**
+     * Combines the guido strings of each element.
+     * 
+     * @return the guido string for this NotationElementList
+     */
+    public String toGuidoString() {
+        return toLilypondOrGuidoStringHelper(new NotationElementList.ToNotationStringMethod() {
+            public String toNotationString(NotationElement element) {
+                return element.toGuidoString();
+            }
+        });        
+    }
+            
     /**
      * Checks to see if the sum total of the denominators of all the durations 
      * is a power of 2.

@@ -121,6 +121,22 @@ Represents one note of music notation.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;char</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#GUIDO_FLAT_CHAR">GUIDO_FLAT_CHAR</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The character used for a flat in Guido notation.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;char</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#GUIDO_SHARP_CHAR">GUIDO_SHARP_CHAR</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The character used for a sharp in Guido notation.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;char</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#LILYPOND_FLAT_CHAR">LILYPOND_FLAT_CHAR</A></B></CODE>
 
 <BR>
@@ -200,6 +216,22 @@ Represents one note of music notation.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#getGuidoAccidentalString()">getGuidoAccidentalString</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a string representing the accidental in guido notation.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#getGuidoOctave()">getGuidoOctave</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the octave number used for guido notation.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;char</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#getLetterName()">getLetterName</A></B>()</CODE>
 
@@ -213,14 +245,6 @@ Represents one note of music notation.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a string representing the accidental in lilypond notation.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected static&nbsp;java.lang.String</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#getLilypondDurationString(com.myronmarston.util.Fraction)">getLilypondDurationString</A></B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a string representing the given duration in lilypond notation.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -253,6 +277,14 @@ Represents one note of music notation.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checks to see if this notation note is a rest.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#toGuidoString()">toGuidoString</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the representation of this note in GUIDO notation.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -297,6 +329,18 @@ public static final char <B>LILYPOND_FLAT_CHAR</B></PRE>
 </DL>
 <HR>
 
+<A NAME="GUIDO_FLAT_CHAR"><!-- --></A><H3>
+GUIDO_FLAT_CHAR</H3>
+<PRE>
+public static final char <B>GUIDO_FLAT_CHAR</B></PRE>
+<DL>
+<DD>The character used for a flat in Guido notation.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../constant-values.html#com.myronmarston.music.notation.NotationNote.GUIDO_FLAT_CHAR">Constant Field Values</A></DL>
+</DL>
+<HR>
+
 <A NAME="LILYPOND_SHARP_CHAR"><!-- --></A><H3>
 LILYPOND_SHARP_CHAR</H3>
 <PRE>
@@ -306,6 +350,18 @@ public static final char <B>LILYPOND_SHARP_CHAR</B></PRE>
 <P>
 <DL>
 <DT><B>See Also:</B><DD><A HREF="../../../../constant-values.html#com.myronmarston.music.notation.NotationNote.LILYPOND_SHARP_CHAR">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="GUIDO_SHARP_CHAR"><!-- --></A><H3>
+GUIDO_SHARP_CHAR</H3>
+<PRE>
+public static final char <B>GUIDO_SHARP_CHAR</B></PRE>
+<DL>
+<DD>The character used for a sharp in Guido notation.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../constant-values.html#com.myronmarston.music.notation.NotationNote.GUIDO_SHARP_CHAR">Constant Field Values</A></DL>
 </DL>
 
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
@@ -487,6 +543,23 @@ protected java.lang.String <B>getLilypondOctaveString</B>()</PRE>
 </DL>
 <HR>
 
+<A NAME="getGuidoOctave()"><!-- --></A><H3>
+getGuidoOctave</H3>
+<PRE>
+protected int <B>getGuidoOctave</B>()</PRE>
+<DL>
+<DD>Gets the octave number used for guido notation.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the octave number used by guido notation</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="getLilypondAccidentalString()"><!-- --></A><H3>
 getLilypondAccidentalString</H3>
 <PRE>
@@ -504,28 +577,19 @@ protected java.lang.String <B>getLilypondAccidentalString</B>()</PRE>
 </DL>
 <HR>
 
-<A NAME="getLilypondDurationString(com.myronmarston.util.Fraction)"><!-- --></A><H3>
-getLilypondDurationString</H3>
+<A NAME="getGuidoAccidentalString()"><!-- --></A><H3>
+getGuidoAccidentalString</H3>
 <PRE>
-protected static java.lang.String <B>getLilypondDurationString</B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration)
-                                                     throws java.lang.IllegalArgumentException,
-                                                            java.lang.UnsupportedOperationException</PRE>
+protected java.lang.String <B>getGuidoAccidentalString</B>()</PRE>
 <DL>
-<DD>Gets a string representing the given duration in lilypond notation.  The
- string will have format placeholders for where the rest of the lilypond
- notation note should go.
+<DD>Gets a string representing the accidental in guido notation.
 <P>
 <DD><DL>
 </DL>
 </DD>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>duration</CODE> - the duration
-<DT><B>Returns:</B><DD>the lilypond duration string for the given duration
-<DT><B>Throws:</B>
-<DD><CODE>java.lang.IllegalArgumentException</CODE> - if the dnominator of the duration is
-         greater than the miximum supported by lilypond
-<DD><CODE>java.lang.UnsupportedOperationException</CODE> - if the duration is a tuplet 
-         duration</DL>
+
+<DT><B>Returns:</B><DD>the guido accidental string</DL>
 </DD>
 </DL>
 <HR>
@@ -543,6 +607,23 @@ public java.lang.String <B>toLilypondString</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the representation of this note in lilypond notation</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="toGuidoString()"><!-- --></A><H3>
+toGuidoString</H3>
+<PRE>
+public java.lang.String <B>toGuidoString</B>()</PRE>
+<DL>
+<DD>Gets the representation of this note in GUIDO notation.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#toGuidoString()">toGuidoString</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the representation of this note in GUIDO notation</DL>
 </DD>
 </DL>
 <HR>

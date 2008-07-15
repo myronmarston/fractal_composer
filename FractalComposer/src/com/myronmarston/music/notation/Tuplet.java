@@ -109,8 +109,19 @@ public class Tuplet implements NotationElement {
      */
     public String toLilypondString() {
         if (lilypondString == null) {
-            lilypondString = " \\times " + tupletMultiplier.toString() + " { " + notes.toLilypondString() + " } ";
+            this.getNotes().setElementSeperator(" ");
+            lilypondString = "\\times " + tupletMultiplier.toString() + " { " + notes.toLilypondString() + " }";
         }
         return lilypondString;
-    }    
+    }
+
+    /**
+     * Tuplet is not supported for guido notation.
+     * 
+     * @return an UnsupportedOperationException is thrown
+     * @throws java.lang.UnsupportedOperationException always thrown
+     */
+    public String toGuidoString() throws UnsupportedOperationException {
+        throw new UnsupportedOperationException("Tuplet is only needed for Lilypond notation.  There is no equivalent in Guido notation.");
+    }        
 }

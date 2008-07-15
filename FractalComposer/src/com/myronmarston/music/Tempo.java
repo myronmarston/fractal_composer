@@ -60,6 +60,16 @@ public class Tempo {
     public static String toGuidoString(int tempo) {        
         return "\\tempo<\"" + getTempoName(tempo) + "\",\"1/4=" + tempo + "\">";
     }
+        
+    /**
+     * Gets a string representation of this tempo in Lilypond notation.
+     * 
+     * @param tempo the tempo in BPM
+     * @return the lilypond string
+     */
+    public static String toLilypondString(int tempo) {
+        return "\\tempo 4=" + tempo;
+    }    
     
     /**
      * Gets the name of the given tempo.

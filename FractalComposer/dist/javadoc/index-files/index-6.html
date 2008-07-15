@@ -136,9 +136,6 @@ Static method in class com.myronmarston.util.<A HREF="../com/myronmarston/util/C
 <DT><A HREF="../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getClassName()"><B>getClassName()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSection</A>
 <DD>Gets the name of this class--e.g., "Voice" or "Section".
-<DT><A HREF="../com/myronmarston/music/notation/Piece.html#getComposer()"><B>getComposer()</B></A> - 
-Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation">Piece</A>
-<DD>Gets the name of the composer of this piece.
 <DT><A HREF="../com/myronmarston/music/scales/Scale.html#getCopyWithDifferentKey(com.myronmarston.music.NoteName)"><B>getCopyWithDifferentKey(NoteName)</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>
 <DD>Gets a new scale that is of the same type, but uses a different key.
@@ -175,6 +172,10 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/Dynamic.html#getDynamicExampleString()"><B>getDynamicExampleString()</B></A> - 
 Static method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/Dynamic.html" title="enum in com.myronmarston.music">Dynamic</A>
 <DD>Gets a list of possible dynamic values.
+<DT><A HREF="../com/myronmarston/music/notation/NotationElementList.html#getElementSeperator()"><B>getElementSeperator()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>
+<DD>Gets the string used to seperate the elements when getting the lilypond 
+ or guido string for this list.
 <DT><A HREF="../com/myronmarston/music/notation/NotationElementList.html#getEndIndexForTupletGroup(int)"><B>getEndIndexForTupletGroup(int)</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>
 <DD>Finds the end index that should be used to create a tuplet collection.
@@ -210,9 +211,18 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#getGermString()"><B>getGermString()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
 <DD>Gets the germ string.
-<DT><A HREF="../com/myronmarston/music/OutputManager.html#getGuidoNotation()"><B>getGuidoNotation()</B></A> - 
-Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music">OutputManager</A>
-<DD>Gets the guido notation representing this piece of music.
+<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#getGuidoAccidentalString()"><B>getGuidoAccidentalString()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
+<DD>Gets a string representing the accidental in guido notation.
+<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#getGuidoOctave()"><B>getGuidoOctave()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
+<DD>Gets the octave number used for guido notation.
+<DT><A HREF="../com/myronmarston/music/notation/GuidoRunException.html#getGuidoOutput()"><B>getGuidoOutput()</B></A> - 
+Method in exception com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/GuidoRunException.html" title="class in com.myronmarston.music.notation">GuidoRunException</A>
+<DD>Gets the output from running guido.
+<DT><A HREF="../com/myronmarston/music/SheetMusicCreator.html#getGuidoParentDirectory()"><B>getGuidoParentDirectory()</B></A> - 
+Static method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/SheetMusicCreator.html" title="class in com.myronmarston.music">SheetMusicCreator</A>
+<DD>Gets the directory under which Guido is located.
 <DT><A HREF="../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getHashMapKeyForOtherTypeIndex(int)"><B>getHashMapKeyForOtherTypeIndex(int)</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSection</A>
 <DD>Creates a VoiceSectionHashMapKey, combining this object with an object 
@@ -233,6 +243,12 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/settings/Voice.html#getHashMapKeyForOtherTypeUniqueIndex(int)"><B>getHashMapKeyForOtherTypeUniqueIndex(int)</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>
 <DD>&nbsp;
+<DT><A HREF="../com/myronmarston/music/notation/Piece.html#getIncludeInstruments()"><B>getIncludeInstruments()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation">Piece</A>
+<DD>Gets whether or not to include the instruments in the output.
+<DT><A HREF="../com/myronmarston/music/notation/Piece.html#getIncludeTempo()"><B>getIncludeTempo()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation">Piece</A>
+<DD>Gets whether or not the tempo should be included in the output.
 <DT><A HREF="../com/myronmarston/music/Instrument.html#getInstrument(java.lang.String)"><B>getInstrument(String)</B></A> - 
 Static method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>
 <DD>Gets the instrument with the given name.
@@ -328,9 +344,6 @@ Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/SheetMusicCreator.html#getLilypondDirectory()"><B>getLilypondDirectory()</B></A> - 
 Static method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/SheetMusicCreator.html" title="class in com.myronmarston.music">SheetMusicCreator</A>
 <DD>Gets the directory to use while running the Lilypond process.
-<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#getLilypondDurationString(com.myronmarston.util.Fraction)"><B>getLilypondDurationString(Fraction)</B></A> - 
-Static method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
-<DD>Gets a string representing the given duration in lilypond notation.
 <DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#getLilypondOctaveString()"><B>getLilypondOctaveString()</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
 <DD>Gets a string representing the octave in Lilypond notation.
@@ -497,10 +510,16 @@ Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/notation/Part.html#getPiece()"><B>getPiece()</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>
 <DD>Gets the notation piece that owns this part.
+<DT><A HREF="../com/myronmarston/music/notation/Part.html#getPieceComposer()"><B>getPieceComposer()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>
+<DD>Gets the composer of the piece.
 <DT><A HREF="../com/myronmarston/music/OutputManager.html#getPieceNotation()"><B>getPieceNotation()</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music">OutputManager</A>
 <DD>Gets the piece notation, which can be used to produce graphical notation
  using GUIDO or Lilypond.
+<DT><A HREF="../com/myronmarston/music/notation/Part.html#getPieceTitle()"><B>getPieceTitle()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>
+<DD>Gets the title of the piece.
 <DT><A HREF="../com/myronmarston/music/MidiNote.html#getPitch()"><B>getPitch()</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A>
 <DD>Gets the note's pitch, in half-step increments.
@@ -656,7 +675,7 @@ Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Output
 <DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#getTempo()"><B>getTempo()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
 <DD>Gets the tempo of the piece, in beats per minute.
-<DT><A HREF="../com/myronmarston/music/OutputManager.html#getTestLilypondError()"><B>getTestLilypondError()</B></A> - 
+<DT><A HREF="../com/myronmarston/music/OutputManager.html#getTestNotationError()"><B>getTestNotationError()</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music">OutputManager</A>
 <DD>Gets a flag that can be used to test that errors in lilypond properly 
  raise java exceptions.
@@ -666,9 +685,6 @@ Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#getTimeSignature()"><B>getTimeSignature()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
 <DD>Gets the time signature for this piece.
-<DT><A HREF="../com/myronmarston/music/notation/Piece.html#getTitle()"><B>getTitle()</B></A> - 
-Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation">Piece</A>
-<DD>Gets the title of this piece.
 <DT><A HREF="../com/myronmarston/music/scales/KeySignature.html#getTonality()"><B>getTonality()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>
 <DD>Gets the tonality of this key.
@@ -735,6 +751,15 @@ Static method in class com.myronmarston.util.<A HREF="../com/myronmarston/util/M
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>
 <DD>Searches the list for any notes that should be grouped as a tuplet and
  wraps them in a Tuplet.
+<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#GUIDO_FLAT_CHAR"><B>GUIDO_FLAT_CHAR</B></A> - 
+Static variable in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
+<DD>The character used for a flat in Guido notation.
+<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#GUIDO_SHARP_CHAR"><B>GUIDO_SHARP_CHAR</B></A> - 
+Static variable in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
+<DD>The character used for a sharp in Guido notation.
+<DT><A HREF="../com/myronmarston/music/notation/GuidoRunException.html" title="class in com.myronmarston.music.notation"><B>GuidoRunException</B></A> - Exception in <A HREF="../com/myronmarston/music/notation/package-summary.html">com.myronmarston.music.notation</A><DD>Exception that is thrown when an error occurs while running Guido.<DT><A HREF="../com/myronmarston/music/notation/GuidoRunException.html#GuidoRunException(java.lang.String)"><B>GuidoRunException(String)</B></A> - 
+Constructor for exception com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/GuidoRunException.html" title="class in com.myronmarston.music.notation">GuidoRunException</A>
+<DD>Constructor.
 </DL>
 <HR>
 

@@ -29,15 +29,26 @@ import java.util.*;
  * @author Myron
  */
 public class NotationNote implements NotationElement {
+    
     /**
      * The character used for a flat in lilypond notation.
      */
     public static final char LILYPOND_FLAT_CHAR = 'f';
     
     /**
+     * The character used for a flat in Guido notation.
+     */
+    public static final char GUIDO_FLAT_CHAR = '&';
+    
+    /**
      * The character used for a sharp in lilypond notation.
      */
     public static final char LILYPOND_SHARP_CHAR = 's';    
+    
+    /**
+     * The character used for a sharp in Guido notation.
+     */
+    public static final char GUIDO_SHARP_CHAR = '#';
     
     /**
      * The character used to increase the octave in lilypond notation.
@@ -50,25 +61,15 @@ public class NotationNote implements NotationElement {
     private static final char LILYPOND_NEGATIVE_OCTAVE_CHAR = ',';     
     
     /**
-     * The symbol that represents a tie in lilypond notation.
-     */
-    private static final String LILYPOND_TIE = " ~ ";
-    
-    /**
-     * The character used to augment rhythmic durations in lilypond notation.
-     */
-    private static final char LILYPOND_AUGMENTATION_CHAR = '.';
-    
-    /**
      * The symbol used to indicate a rest in lilypond notation.
      */
     private static final String LILYPOND_REST = "r";
     
     /**
-     * The maximum duration denominator supported by lilypond.
+     * The symbol used to indicate a rest in guido notation.
      */
-    private static final long MAX_ALLOWED_DURATION_DENOM = 64L;
-        
+    private static final String GUIDO_REST = "_";
+    
     private final Part part;
     private final boolean rest;
     private final char letterName;
@@ -76,6 +77,7 @@ public class NotationNote implements NotationElement {
     private final int accidental;
     private final Fraction duration;
     private String lilypondString;
+    private String guidoString;
     
     /**
      * Constructor.  Creates a rest.  
@@ -205,6 +207,15 @@ public class NotationNote implements NotationElement {
         // special mark.
         int adjustedOct = this.octave - 3;        
         return createCharCopyString(adjustedOct, LILYPOND_NEGATIVE_OCTAVE_CHAR, LILYPOND_POSITIVE_OCTAVE_CHAR);        
+    }        
+    
+    /**
+     * Gets the octave number used for guido notation.
+     * 
+     * @return the octave number used by guido notation
+     */
+    protected int getGuidoOctave() {
+        return this.getOctave() - 3;
     }
     
     /**
@@ -217,43 +228,12 @@ public class NotationNote implements NotationElement {
     }
     
     /**
-     * Gets a string representing the given duration in lilypond notation.  The
-     * string will have format placeholders for where the rest of the lilypond
-     * notation note should go.
+     * Gets a string representing the accidental in guido notation.
      * 
-     * @param duration the duration
-     * @return the lilypond duration string for the given duration
-     * @throws IllegalArgumentException if the dnominator of the duration is
-     *         greater than the miximum supported by lilypond
-     * @throws UnsupportedOperationException if the duration is a tuplet 
-     *         duration
+     * @return the guido accidental string
      */
-    protected static String getLilypondDurationString(Fraction duration) throws IllegalArgumentException, UnsupportedOperationException {        
-        String notePlaceHolder = "%1$s";
-        Long denom = duration.denominator();
-        if (MathHelper.numIsPowerOf2(denom)) {
-            if (denom > MAX_ALLOWED_DURATION_DENOM) {
-                throw new IllegalArgumentException("The given duration (" + duration.toString() + ") has a denominator that is outside of the allowed range.  The denominator cannot be greater than " + MAX_ALLOWED_DURATION_DENOM + ".");
-            }
-            
-            // first take care of the easy cases: notes such as 1/4, 1/8, and
-            // notes using augmentation dots (3/8, 7/16, etc).
-            switch ((int) duration.numerator()) {
-                case 1: return notePlaceHolder + Long.toString(denom);
-                case 3: if (denom < 2) break;
-                        return notePlaceHolder + Long.toString(denom / 2) + LILYPOND_AUGMENTATION_CHAR;
-                case 7: if (denom < 4) break;
-                        return notePlaceHolder + Long.toString(denom / 4) + LILYPOND_AUGMENTATION_CHAR + LILYPOND_AUGMENTATION_CHAR;
-            }       
-            
-            // split the duration into two seperate durations that can be tied together
-            Fraction d1 = duration.getLargestPowerOf2FractionThatIsLessThanThis();
-            Fraction d2 = duration.minus(d1);
-            
-            return getLilypondDurationString(d1) + LILYPOND_TIE + getLilypondDurationString(d2);
-        } else {
-            throw new UnsupportedOperationException("Lilypond does not support note durations that do not have a denominator power of 2.  Instead, wrap the note in a Tuplet with the appropriate multiplier.");            
-        }        
+    protected String getGuidoAccidentalString() {
+        return createCharCopyString(this.accidental, GUIDO_FLAT_CHAR, GUIDO_SHARP_CHAR); 
     }
     
     /**
@@ -286,7 +266,7 @@ public class NotationNote implements NotationElement {
                     this.rest ? LILYPOND_REST : 
                     this.getLetterName() + this.getLilypondAccidentalString() + this.getLilypondOctaveString());
                    
-                lilypondString = " " +  String.format(getLilypondDurationString(this.getDuration()), allButDuration) + " ";
+                lilypondString = String.format(this.getDuration().toLilypondString(), allButDuration);
             } else {
                 Tuplet tuplet = new Tuplet(Arrays.asList((NotationElement)this));
                 lilypondString = tuplet.toLilypondString();
@@ -295,7 +275,24 @@ public class NotationNote implements NotationElement {
         
         return lilypondString;
     }
-    
+
+    /**
+     * Gets the representation of this note in GUIDO notation.
+     * 
+     * @return the representation of this note in GUIDO notation
+     */
+    public String toGuidoString() {        
+        if (guidoString == null) {
+            String allButDuration = (
+                this.rest ? GUIDO_REST : 
+                this.getLetterName() + this.getGuidoAccidentalString() + this.getGuidoOctave());
+
+            guidoString = allButDuration + this.getDuration().toGuidoString();
+        }
+        
+        return guidoString;        
+    }
+            
     /**
      * Creates a new notation note with a duration that is scaled by the 
      * given multiplier, which can be used when grouping tuplets.

@@ -253,10 +253,11 @@ public class NoteTest {
         testToNotationNote(new MajorScale(NoteName.G), "G4,3/8", 'g', 4, 0, "3/8");
         testToNotationNote(new ChromaticScale(), "B#4,1/16", 'b', 4, 1, "1/16");
         testToNotationNote(new ChromaticScale(), "Cb5,1/6", 'c', 5, -1, "1/6");
+        
     }
     
     private static void testToNotationNote(Scale scale, String noteString, char letterName, int octave, int accidental, String duration) throws Exception {
-        Piece piece = new Piece(scale.getKeySignature(), TimeSignature.DEFAULT, Tempo.DEFAULT);
+        Piece piece = new Piece(scale.getKeySignature(), TimeSignature.DEFAULT, Tempo.DEFAULT, true, true);
         Part part = new Part(piece, Instrument.DEFAULT);
         Note n = Note.parseNoteString(noteString, scale, new Fraction("1/4"), Dynamic.MF.getMidiVolume());        
         NotationNote nn = n.toNotationNote(part, n.convertToMidiNote(new Fraction(0, 1), (int) n.getDuration().denominator() * 4, 0, true));
@@ -265,83 +266,7 @@ public class NoteTest {
         assertEquals(octave, nn.getOctave());
         assertEquals(letterName, nn.getLetterName());
         assertEquals(new Fraction(duration), nn.getDuration());
-    }
-    
-    @Test
-    public void toGuidoNoteString() throws Exception {
-        Scale s = new MajorScale(NoteName.C);
-        MidiNote md = new MidiNote();
-        
-        // test that the note name comes from the note's scale step,
-        // and the accidentals/octave from the midi note's pitch...
-        md.setPitch(61);        
-        Note n = new Note(0, 0, 4, 1, new Fraction(1, 16), Dynamic.F.getMidiVolume(), s, 0);        
-        assertEquals("c#1/16", n.toGuidoString(md));
-        
-        md.setPitch(64);
-        assertEquals("c####1/16", n.toGuidoString(md));
-        
-        md.setPitch(58);
-        assertEquals("c&&1/16", n.toGuidoString(md));                
-        
-        n.setLetterNumber(6);
-        assertEquals("b&0/16", n.toGuidoString(md));                
-        
-        // test that the note is properly normalized...
-        n.setScaleStep(-1);
-        n.setLetterNumber(-1);
-        assertEquals("b&0/16", n.toGuidoString(md));
-        
-        n.setScaleStep(10);
-        n.setLetterNumber(3);
-        md.setPitch(77);
-        assertEquals("f2/16", n.toGuidoString(md));
-
-        // test a scale with accidentals...
-        s = new HarmonicMinorScale(NoteName.Bb);
-        n = new Note(2, 2, 3, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), s, 0);
-        md.setPitch(61);
-        assertEquals("d&1/4", n.toGuidoString(md));
-        
-        n.setScaleStep(6);
-        n.setLetterNumber(6);
-        md.setPitch(70);
-        assertEquals("a#1/4", n.toGuidoString(md));
-        
-        // test a chromatic scale...
-        s = new ChromaticScale();
-        md.setPitch(71);
-        n.setScale(s);
-        n.setDuration(new Fraction(2, 3));
-        n.setScaleStep(11);        
-        n.setLetterNumber(6);
-        assertEquals("b1*2/3", n.toGuidoString(md));   
-        
-        // test a pentatonic scale...
-        s = new MinorPentatonicScale(NoteName.Fs);
-        n.setScale(s);
-        n.setScaleStep(3);
-        n.setLetterNumber(4);
-        md.setPitch(23);
-        assertEquals("c&-2*2/3", n.toGuidoString(md));   
-        
-        n.setLetterNumber(3);        
-        assertEquals("b-3*2/3", n.toGuidoString(md));   
-        
-        md.setPitch(24);
-        n.setLetterNumber(4);
-        assertEquals("c-2*2/3", n.toGuidoString(md));   
-        
-        md.setPitch(25);
-        assertEquals("c#-2*2/3", n.toGuidoString(md));   
-    }
-    
-    @Test
-    public void toGuidoNoteString_rest() throws Exception {
-        Note n = Note.createRest(new Fraction(1, 8));        
-        MidiNote md = new MidiNote();
-        assertEquals("_/8", n.toGuidoString(md));
-    }        
+    }               
     
     @Test(expected=UnsupportedOperationException.class)
     public void setLetterNumberOnRest() throws Exception {

@@ -21,6 +21,7 @@ package com.myronmarston.music.scales;
 
 import com.myronmarston.music.MidiNote;
 import com.myronmarston.music.NoteName;
+import com.myronmarston.util.FileHelper;
 import javax.sound.midi.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -92,8 +93,8 @@ public class KeySignatureTest {
     
     @Test
     public void toLilypondString() throws Exception {
-        testToLilypondString(Tonality.Major, NoteName.Cs, " \\key cs \\major\n");        
-        testToLilypondString(Tonality.Minor, NoteName.Ab, " \\key af \\minor\n");
+        testToLilypondString(Tonality.Major, NoteName.Cs, "\\key cs \\major" + FileHelper.NEW_LINE);        
+        testToLilypondString(Tonality.Minor, NoteName.Ab, "\\key af \\minor" + FileHelper.NEW_LINE);
     }
     
     private static void testToLilypondString(Tonality tonality, NoteName key, String expected) throws Exception {

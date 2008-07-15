@@ -170,14 +170,6 @@ Class that manages the outputs from FractalComposer, such as Midi files, WAV
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;java.lang.String</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getGuidoNotation()">getGuidoNotation</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the guido notation representing this piece of music.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getLastGifFileName()">getLastGifFileName</A></B>()</CODE>
 
 <BR>
@@ -286,7 +278,7 @@ Class that manages the outputs from FractalComposer, such as Midi files, WAV
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>protected &nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getTestLilypondError()">getTestLilypondError</A></B>()</CODE>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getTestNotationError()">getTestNotationError</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a flag that can be used to test that errors in lilypond properly 
@@ -303,7 +295,27 @@ Class that manages the outputs from FractalComposer, such as Midi files, WAV
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#saveGifImage(java.lang.String, java.lang.String, java.lang.String)">saveGifImage</A></B>(java.lang.String&nbsp;fileName,
+             java.lang.String&nbsp;title,
+             java.lang.String&nbsp;composer)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the music as a sheet music image in gif format.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#saveGuidoFile(java.lang.String)">saveGuidoFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the guido notation to file.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#saveGuidoFile(java.lang.String, java.lang.String, java.lang.String)">saveGuidoFile</A></B>(java.lang.String&nbsp;fileName,
+              java.lang.String&nbsp;title,
+              java.lang.String&nbsp;composer)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the guido notation to file.</TD>
@@ -373,11 +385,11 @@ Class that manages the outputs from FractalComposer, such as Midi files, WAV
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>protected &nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#setTestLilypondError(boolean)">setTestLilypondError</A></B>(boolean&nbsp;testLilypondError)</CODE>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#setTestNotationError(boolean)">setTestNotationError</A></B>(boolean&nbsp;testNotationError)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets a flag that can be used to test that errors in lilypond properly 
- raise java exceptions.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets a flag that can be used to test that errors in guido or lilypond 
+ properly raise java exceptions.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -449,20 +461,6 @@ public <B>OutputManager</B>(<A HREF="../../../com/myronmarston/music/settings/Fr
 </TR>
 </TABLE>
 
-<A NAME="getGuidoNotation()"><!-- --></A><H3>
-getGuidoNotation</H3>
-<PRE>
-public java.lang.String <B>getGuidoNotation</B>()</PRE>
-<DL>
-<DD>Gets the guido notation representing this piece of music.
-<P>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>the guido notation string</DL>
-</DD>
-</DL>
-<HR>
-
 <A NAME="getSequence()"><!-- --></A><H3>
 getSequence</H3>
 <PRE>
@@ -491,10 +489,10 @@ public int <B>getTempo</B>()</PRE>
 </DL>
 <HR>
 
-<A NAME="getTestLilypondError()"><!-- --></A><H3>
-getTestLilypondError</H3>
+<A NAME="getTestNotationError()"><!-- --></A><H3>
+getTestNotationError</H3>
 <PRE>
-protected boolean <B>getTestLilypondError</B>()</PRE>
+protected boolean <B>getTestNotationError</B>()</PRE>
 <DL>
 <DD>Gets a flag that can be used to test that errors in lilypond properly 
  raise java exceptions.
@@ -506,16 +504,16 @@ protected boolean <B>getTestLilypondError</B>()</PRE>
 </DL>
 <HR>
 
-<A NAME="setTestLilypondError(boolean)"><!-- --></A><H3>
-setTestLilypondError</H3>
+<A NAME="setTestNotationError(boolean)"><!-- --></A><H3>
+setTestNotationError</H3>
 <PRE>
-protected void <B>setTestLilypondError</B>(boolean&nbsp;testLilypondError)</PRE>
+protected void <B>setTestNotationError</B>(boolean&nbsp;testNotationError)</PRE>
 <DL>
-<DD>Sets a flag that can be used to test that errors in lilypond properly 
- raise java exceptions.
+<DD>Sets a flag that can be used to test that errors in guido or lilypond 
+ properly raise java exceptions.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>testLilypondError</CODE> - the testLilypondError flag</DL>
+<DT><B>Parameters:</B><DD><CODE>testNotationError</CODE> - the testNotationError flag</DL>
 </DD>
 </DL>
 <HR>
@@ -651,6 +649,24 @@ public void <B>saveGuidoFile</B>(java.lang.String&nbsp;fileName)
 </DL>
 <HR>
 
+<A NAME="saveGuidoFile(java.lang.String, java.lang.String, java.lang.String)"><!-- --></A><H3>
+saveGuidoFile</H3>
+<PRE>
+public void <B>saveGuidoFile</B>(java.lang.String&nbsp;fileName,
+                          java.lang.String&nbsp;title,
+                          java.lang.String&nbsp;composer)
+                   throws java.io.IOException</PRE>
+<DL>
+<DD>Saves the guido notation to file.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the file to save to<DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE> - if an I/O error occurs</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="saveLilypondFile(java.lang.String)"><!-- --></A><H3>
 saveLilypondFile</H3>
 <PRE>
@@ -735,6 +751,24 @@ public void <B>saveGifImage</B>(java.lang.String&nbsp;fileName)
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name to save to
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.Exception</CODE> - if an error occurs</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="saveGifImage(java.lang.String, java.lang.String, java.lang.String)"><!-- --></A><H3>
+saveGifImage</H3>
+<PRE>
+public void <B>saveGifImage</B>(java.lang.String&nbsp;fileName,
+                         java.lang.String&nbsp;title,
+                         java.lang.String&nbsp;composer)
+                  throws java.lang.Exception</PRE>
+<DL>
+<DD>Saves the music as a sheet music image in gif format.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name to save to<DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.Exception</CODE> - if an error occurs</DL>
 </DD>

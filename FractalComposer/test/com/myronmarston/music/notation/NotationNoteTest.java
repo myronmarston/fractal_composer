@@ -19,12 +19,14 @@
 
 package com.myronmarston.music.notation;
 
+import com.myronmarston.music.Dynamic;
 import com.myronmarston.music.Instrument;
+import com.myronmarston.music.Note;
 import com.myronmarston.music.scales.Scale;
 import com.myronmarston.music.settings.TimeSignature;
 import com.myronmarston.music.Tempo;
 import com.myronmarston.util.*;
-import java.util.List;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -33,7 +35,7 @@ import static org.junit.Assert.*;
  * @author Myron
  */
 public class NotationNoteTest {
-    public static final Piece DEFAULT_PIECE = new Piece(Scale.DEFAULT.getKeySignature(), TimeSignature.DEFAULT, Tempo.DEFAULT);
+    public static final Piece DEFAULT_PIECE = new Piece(Scale.DEFAULT.getKeySignature(), TimeSignature.DEFAULT, Tempo.DEFAULT, true, true);
     public static final Part DEFAULT_PART = new Part(DEFAULT_PIECE, Instrument.DEFAULT);
     
     @Test
@@ -81,6 +83,24 @@ public class NotationNoteTest {
     }
     
     @Test
+    public void getGuidoOctave() throws Exception {
+        testGetGuidoOctave(0, -3);
+        testGetGuidoOctave(1, -2);
+        testGetGuidoOctave(2, -1);
+        testGetGuidoOctave(3, 0);
+        testGetGuidoOctave(4, 1);
+        testGetGuidoOctave(5, 2);
+        testGetGuidoOctave(6, 3);
+        testGetGuidoOctave(7, 4);
+        testGetGuidoOctave(8, 5);
+    }
+    
+    private static void testGetGuidoOctave(int notationNoteOctave, int guidoOctave) throws Exception {
+        NotationNote nn = new NotationNote(DEFAULT_PART, 'c', notationNoteOctave, 0, new Fraction(1, 4));
+        assertEquals(guidoOctave, nn.getGuidoOctave());
+    }
+    
+    @Test
     public void getLilypondAccidentalString() {
         assertEquals("ff", (new NotationNote(DEFAULT_PART, 'c', 4, -2, new Fraction(1, 4)).getLilypondAccidentalString()));        
         assertEquals("f", (new NotationNote(DEFAULT_PART, 'c', 4, -1, new Fraction(1, 4)).getLilypondAccidentalString()));        
@@ -88,63 +108,45 @@ public class NotationNoteTest {
         assertEquals("s", (new NotationNote(DEFAULT_PART, 'c', 4, 1, new Fraction(1, 4)).getLilypondAccidentalString()));
         assertEquals("ss", (new NotationNote(DEFAULT_PART, 'c', 4, 2, new Fraction(1, 4)).getLilypondAccidentalString()));
     }
+    
+    @Test
+    public void getGuidoAccidentalString() throws Exception {
+        testGetGuidoAccidentalString(-2, "&&");
+        testGetGuidoAccidentalString(-1, "&");
+        testGetGuidoAccidentalString(0, "");
+        testGetGuidoAccidentalString(1, "#");
+        testGetGuidoAccidentalString(2, "##");
+    }
+    
+    private static void testGetGuidoAccidentalString(int accidental, String result) throws Exception {
+        NotationNote nn = new NotationNote(DEFAULT_PART, 'c', 4, accidental, new Fraction(1, 4));
+        assertEquals(result, nn.getGuidoAccidentalString());
+    }
         
     @Test
     public void toLilypondString() {
-        assertEquals(" cs4. ", (new NotationNote(DEFAULT_PART, 'c', 3, 1, new Fraction(3, 8))).toLilypondString());
-        assertEquals(" bf''2 ~ bf''8 ", (new NotationNote(DEFAULT_PART, 'b', 5, -1, new Fraction(5, 8))).toLilypondString());
-        assertEquals(" dss,,4 ", (new NotationNote(DEFAULT_PART, 'd', 1, 2, new Fraction(1, 4))).toLilypondString());
-        assertEquals(" r2.. ", (NotationNote.createRest(DEFAULT_PART, new Fraction(7, 8))).toLilypondString());
-        assertEquals(" r1 ~ r1 ~ r2 ", (NotationNote.createRest(DEFAULT_PART, new Fraction(5, 2))).toLilypondString());        
+        assertEquals("cs4.", (new NotationNote(DEFAULT_PART, 'c', 3, 1, new Fraction(3, 8))).toLilypondString());
+        assertEquals("bf''2 ~ bf''8", (new NotationNote(DEFAULT_PART, 'b', 5, -1, new Fraction(5, 8))).toLilypondString());
+        assertEquals("dss,,4", (new NotationNote(DEFAULT_PART, 'd', 1, 2, new Fraction(1, 4))).toLilypondString());
+        assertEquals("r2..", (NotationNote.createRest(DEFAULT_PART, new Fraction(7, 8))).toLilypondString());
+        assertEquals("r1 ~ r1 ~ r2", (NotationNote.createRest(DEFAULT_PART, new Fraction(5, 2))).toLilypondString());        
                         
-        assertEquals(" \\times 2/3 {  c4  } ", (new NotationNote(DEFAULT_PART, 'c', 3, 0, new Fraction(1, 6))).toLilypondString());
+        assertEquals("\\times 2/3 { c4 }", (new NotationNote(DEFAULT_PART, 'c', 3, 0, new Fraction(1, 6))).toLilypondString());
     }
-         
-    @Test
-    public void getLilypondDurationString() {
-        testLilypondDurationStrings("1/1", "%1$s1");
-        testLilypondDurationStrings("1/2", "%1$s2");
-        testLilypondDurationStrings("1/4", "%1$s4");
-        testLilypondDurationStrings("1/8", "%1$s8");
-        testLilypondDurationStrings("1/16", "%1$s16");
-        testLilypondDurationStrings("1/32", "%1$s32");
-        testLilypondDurationStrings("1/64", "%1$s64");
-                
-        testLilypondDurationStrings("3/8", "%1$s4.");
-        testLilypondDurationStrings("7/16", "%1$s4..");
-        testLilypondDurationStrings("7/32", "%1$s8..");
-        testLilypondDurationStrings("7/4", "%1$s1..");
-        testLilypondDurationStrings("3/2", "%1$s1.");
-        testLilypondDurationStrings("3/1", "%1$s1 ~ %1$s1 ~ %1$s1");
-        testLilypondDurationStrings("5/2", "%1$s1 ~ %1$s1 ~ %1$s2");
-        testLilypondDurationStrings("21/32", "%1$s2 ~ %1$s8 ~ %1$s32");
-        
-        // durations with denoms greater than 64 are not allowed
-        try {
-            NotationNote.getLilypondDurationString(new Fraction("1/128"));
-            fail();
-        } catch (IllegalArgumentException ex) { }
-
-        
-// 128 and higher denoms are not supported by lilypond, so we use a grace note hack.  This could work,
-// but a better solution is just to scale all the duration fractions so that we don't have any durations greater than 64
-//        testLilypondDurationStrings("1/128", "\\grace %1$s8 \\hideNotes %1$s1*1/128 \\unHideNotes");
-//        testLilypondDurationStrings("1/256", "\\grace %1$s16 \\hideNotes %1$s1*1/256 \\unHideNotes");
-//        testLilypondDurationStrings("1/512", "\\grace %1$s32 \\hideNotes %1$s1*1/512 \\unHideNotes");
-//        testLilypondDurationStrings("1/1024", "\\grace %1$s64 \\hideNotes %1$s1*1/1024 \\unHideNotes");
-//        testLilypondDurationStrings("1/2048", "\\grace %1$s64 \\hideNotes %1$s1*1/2048 \\unHideNotes");
-//        testLilypondDurationStrings("3/128", "%1$s64.");
-//        testLilypondDurationStrings("3/256", "\\grace %1$s8. \\hideNotes %1$s1*3/256 \\unHideNotes");
-//        testLilypondDurationStrings("7/256", "%1$s64..");
-//        testLilypondDurationStrings("7/512", "\\grace %1$s8.. \\hideNotes %1$s1*7/512 \\unHideNotes");
-
-    }
-        
-    public static void testLilypondDurationStrings(String durationFraction, String expectedString) {
-        String actualString = NotationNote.getLilypondDurationString(new Fraction(durationFraction));
-        assertEquals(expectedString, actualString);        
-    }                
     
+    @Test
+    public void toGuidoString() throws Exception {
+        testToGuidoString("C#4,1/16", "c#1/16");
+        testToGuidoString("Bb2,5/8", "b&-1*5/8");
+        testToGuidoString("R,1/4", "_/4");
+    }
+    
+    private static void testToGuidoString(String noteString, String guidoString) throws Exception {
+        Note n = Note.parseNoteString(noteString, Scale.DEFAULT, new Fraction(1, 4), Dynamic.MF.getMidiVolume());
+        NotationNote nn = n.toNotationNote(DEFAULT_PART, n.convertToMidiNote(new Fraction(0, 1), 480, 0, true));
+        assertEquals(guidoString, nn.toGuidoString());
+    }
+             
     @Test
     public void applyTupletMultiplier() throws Exception {
         testApplyTupletMultiplier("1/12", "2/3", "1/8");

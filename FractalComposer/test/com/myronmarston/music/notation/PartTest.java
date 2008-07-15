@@ -22,6 +22,7 @@ package com.myronmarston.music.notation;
 import com.myronmarston.music.Instrument;
 import com.myronmarston.music.scales.Scale;
 import com.myronmarston.music.settings.TimeSignature;
+import com.myronmarston.util.FileHelper;
 import com.myronmarston.util.Fraction;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -33,14 +34,35 @@ import static org.junit.Assert.*;
 public class PartTest {
         
     @Test
-    public void testToLilypondString() throws Exception {
-        StringBuilder expected = new StringBuilder();
-        Part part = createTestPart(expected);
-        assertEquals(expected.toString(), part.toLilypondString());
+    public void toLilypondString() throws Exception {
+        StringBuilder expectedLilypondString = new StringBuilder();
+        Part part = createTestPart(expectedLilypondString, null, true, true);
+        assertEquals(expectedLilypondString.toString(), part.toLilypondString());
+        
+        expectedLilypondString = new StringBuilder();
+        part = createTestPart(expectedLilypondString, null, false, false);
+        assertEquals(expectedLilypondString.toString(), part.toLilypondString());
     }
     
-    protected static Part createTestPart(StringBuilder expectedPartString) throws Exception {
-        Piece piece = new Piece(Scale.DEFAULT.getKeySignature(), new TimeSignature(6, 8), 93);        
+    @Test
+    public void toGuidoString() throws Exception {
+        StringBuilder expectedGuidoString = new StringBuilder();
+        Part part = createTestPart(null, expectedGuidoString, true, true, "Etude 6", "Myron");
+        part.setPieceTitle("Etude 6");
+        part.setPieceComposer("Myron");
+        assertEquals(expectedGuidoString.toString(), part.toGuidoString());
+        
+        expectedGuidoString = new StringBuilder();
+        part = createTestPart(null, expectedGuidoString, false, false);
+        assertEquals(expectedGuidoString.toString(), part.toGuidoString());
+    }
+    
+    protected static Part createTestPart(StringBuilder expectedLilypondPartString, StringBuilder expectedGuidoPartString, boolean includeTempo, boolean includeInstrument) throws Exception {
+        return createTestPart(expectedLilypondPartString, expectedGuidoPartString, includeTempo, includeInstrument, null, null);
+    }
+    
+    protected static Part createTestPart(StringBuilder expectedLilypondPartString, StringBuilder expectedGuidoPartString, boolean includeTempo, boolean includeInstrument, String title, String composer) throws Exception {
+        Piece piece = new Piece(Scale.DEFAULT.getKeySignature(), new TimeSignature(6, 8), 93, includeTempo, includeInstrument);        
         Part part = new Part(piece, Instrument.getInstrument("Cello"));
         piece.getParts().add(part);
         part.getNotationElements().add(new NotationNote(part, 'c', 4, 0, new Fraction(1, 4)));
@@ -48,20 +70,44 @@ public class PartTest {
         part.getNotationElements().add(new NotationNote(part, 'e', 4, 0, new Fraction(1, 6)));
         part.getNotationElements().add(new NotationNote(part, 'f', 4, 0, new Fraction(1, 6)));
         
-        expectedPartString.append("\\new Voice \\with {\n");
-        expectedPartString.append("    \\remove \"Note_heads_engraver\"\n");
-        expectedPartString.append("    \\consists \"Completion_heads_engraver\"\n");
-        expectedPartString.append("}\n");
-        expectedPartString.append("{\n");
-        expectedPartString.append("        \\tempo 4=93\n");
-        expectedPartString.append("        \\time 6/8\n");
-        expectedPartString.append("        \\key c \\major\n");
-        expectedPartString.append("        \\set Staff.instrumentName = \"Cello\"\n");
-        expectedPartString.append("        c'4  \\times 2/3 {  d'4  e'4  f'4  }");
-        expectedPartString.append("        \\bar \"|.\"\n");
-        expectedPartString.append("}\n\n");            
+        if (expectedLilypondPartString != null) {            
+            expectedLilypondPartString.append("\\new Voice \\with {" + FileHelper.NEW_LINE);
+            expectedLilypondPartString.append("    \\remove \"Note_heads_engraver\"" + FileHelper.NEW_LINE);
+            expectedLilypondPartString.append("    \\consists \"Completion_heads_engraver\"" + FileHelper.NEW_LINE);
+            expectedLilypondPartString.append("}" + FileHelper.NEW_LINE);
+            expectedLilypondPartString.append("{" + FileHelper.NEW_LINE);
+            if (includeTempo) expectedLilypondPartString.append("       \\tempo 4=93" + FileHelper.NEW_LINE);
+            expectedLilypondPartString.append("       \\time 6/8" + FileHelper.NEW_LINE);
+            expectedLilypondPartString.append("       \\key c \\major" + FileHelper.NEW_LINE);
+            if (includeInstrument) expectedLilypondPartString.append("       \\set Staff.instrumentName = \"Cello\"" + FileHelper.NEW_LINE);
+            expectedLilypondPartString.append("       c'4 \\times 2/3 { d'4 e'4 f'4 }");
+            expectedLilypondPartString.append("       \\bar \"|.\"" + FileHelper.NEW_LINE);
+            expectedLilypondPartString.append("}" + FileHelper.NEW_LINE);            
+        }
+        
+        if (expectedGuidoPartString != null) {
+            expectedGuidoPartString.append("[");
+            if (includeInstrument) expectedGuidoPartString.append("\\instr<\"Cello\", \"MIDI 42\"> ");
+            expectedGuidoPartString.append("\\key<\"C\"> \\meter<\"6/8\"> ");
+            if (includeTempo) expectedGuidoPartString.append("\\tempo<\"Andante\",\"1/4=93\"> ");
+            if (title != null) expectedGuidoPartString.append("\\title<\"" + title + "\">");
+            if (composer != null) expectedGuidoPartString.append("\\composer<\"" + composer + "\">");
+            expectedGuidoPartString.append("c1/4 d1/6 e1/6 f1/6]");            
+        }
         
         return part;
+    }
+    
+    @Test
+    public void isPartFirstPartOfPiece() throws Exception {
+        Piece piece = new Piece(Scale.DEFAULT.getKeySignature(), new TimeSignature(6, 8), 93, true, true);        
+        Part part1 = new Part(piece, Instrument.getInstrument("Cello"));
+        Part part2 = new Part(piece, Instrument.getInstrument("Trumpet"));
+        piece.getParts().add(part1);
+        piece.getParts().add(part2);
+        
+        assertTrue(part1.isPartFirstPartOfPiece());
+        assertFalse(part2.isPartFirstPartOfPiece());
     }
 
 }

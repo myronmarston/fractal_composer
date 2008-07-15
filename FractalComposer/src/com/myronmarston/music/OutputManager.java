@@ -20,7 +20,6 @@
 package com.myronmarston.music;
 
 import com.myronmarston.music.notation.*;
-import com.myronmarston.music.scales.InvalidKeySignatureException;
 import com.myronmarston.music.settings.*;
 import com.myronmarston.music.scales.KeySignature;
 import com.myronmarston.music.scales.Scale;
@@ -39,7 +38,7 @@ import java.util.*;
  * @author Myron
  */
 public class OutputManager {
-    private StringBuilder guidoNotation = new StringBuilder();
+    //private StringBuilder guidoNotation = new StringBuilder();
     private final Piece pieceNotation;
     private Sequence sequence;
     private final FractalPiece fractalPiece;
@@ -47,9 +46,7 @@ public class OutputManager {
     private List<NoteList> noteLists;
     private SheetMusicCreator sheetMusicCreator;
     private AudioFileCreator audioFileCreator;
-    private boolean includeTempoOnSheetMusic;
-    private boolean includeInstrumentOnSheetMusic;
-    private boolean testLilypondError = false;
+    private boolean testNotationError = false;
     private String lastMidiFileName;
     private String lastGuidoFileName;
     private String lastWavFileName;
@@ -60,15 +57,6 @@ public class OutputManager {
     
     private static final int MIDI_FILE_TYPE_FOR_MULTI_TRACK_SEQUENCE = 1;    
         
-    /**
-     * Gets the guido notation representing this piece of music.
-     * 
-     * @return the guido notation string
-     */
-    public String getGuidoNotation() {        
-        return guidoNotation.toString();
-    }
-
     /**
      * Gets the Midi sequence.
      * 
@@ -93,18 +81,18 @@ public class OutputManager {
      * 
      * @return the testLilypondError flag
      */
-    protected boolean getTestLilypondError() {
-        return testLilypondError;
+    protected boolean getTestNotationError() {
+        return testNotationError;
     }
 
     /**
-     * Sets a flag that can be used to test that errors in lilypond properly 
-     * raise java exceptions.
+     * Sets a flag that can be used to test that errors in guido or lilypond 
+     * properly raise java exceptions.
      * 
-     * @param testLilypondError the testLilypondError flag
+     * @param testNotationError the testNotationError flag
      */
-    protected void setTestLilypondError(boolean testLilypondError) {
-        this.testLilypondError = testLilypondError;
+    protected void setTestNotationError(boolean testNotationError) {
+        this.testNotationError = testNotationError;
     }        
 
     /**
@@ -182,10 +170,8 @@ public class OutputManager {
     public OutputManager(FractalPiece fractalPiece, List<NoteList> noteLists, boolean includeTempoOnSheetMusic, boolean includeInstrumentOnSheetMusic) throws GermIsEmptyException {
         this.fractalPiece = fractalPiece;
         this.noteLists = noteLists;
-        this.includeTempoOnSheetMusic = includeTempoOnSheetMusic;
-        this.includeInstrumentOnSheetMusic = includeInstrumentOnSheetMusic;        
         this.tempo = this.fractalPiece.getTempo();        
-        this.pieceNotation = new Piece(this.fractalPiece.getScale().getKeySignature(), this.fractalPiece.getTimeSignature(), this.tempo);
+        this.pieceNotation = new Piece(this.fractalPiece.getScale().getKeySignature(), this.fractalPiece.getTimeSignature(), this.tempo, includeTempoOnSheetMusic, includeInstrumentOnSheetMusic);
         constructMidiSequence();
     }   
     
@@ -199,9 +185,7 @@ public class OutputManager {
         assert this.sequence == null : sequence;
         
         // We can't create any midi sequence if we don't have a germ from which to "grow" our piece...
-        if (this.fractalPiece.getGerm() == null || this.fractalPiece.getGerm().size() == 0) throw new GermIsEmptyException();
-        
-        this.guidoNotation.append("{"); // start of the guido notation...
+        if (this.fractalPiece.getGerm() == null || this.fractalPiece.getGerm().size() == 0) throw new GermIsEmptyException();                
                 
         try {
             this.sequence = new Sequence(Sequence.PPQ, this.getMidiTickResolution());
@@ -222,11 +206,7 @@ public class OutputManager {
         // finally, create and fill our midi tracks...
         for (NoteList nl : noteLists) {                       
             this.constructMidiTrack(nl);             
-        }
-        
-        // remove the trailing comma...
-        this.guidoNotation.deleteCharAt(this.guidoNotation.length() - 1);        
-        this.guidoNotation.append("}"); // end of the guido notation...                
+        }        
     }
     
     /**
@@ -236,6 +216,7 @@ public class OutputManager {
      * @param sequenceResolution the midi sequence resolution
      */
     private void addSectionKeySigEventsToTrack(Track track, int sequenceResolution) {
+        // TODO: add section key signatures to notation
         // add key signatures for each section that uses a different one...
         Fraction durationSoFar = new Fraction(0, 1);
         KeySignature lastKeySignature = this.fractalPiece.getScale().getKeySignature();
@@ -268,14 +249,7 @@ public class OutputManager {
         
         // get a default instrument if we we're not passed one...
         Instrument instrument = (noteList.getInstrument() == null ? Instrument.DEFAULT : noteList.getInstrument());
-        
-        this.guidoNotation.append("[ ");
-        //If a pageFromat should be specified, put it here, such as \pageFormat<"A4",10pt,10pt,10pt,10pt>
-        if (this.includeInstrumentOnSheetMusic) this.guidoNotation.append(instrument.toGuidoString() + " ");
-        this.guidoNotation.append(scale.getKeySignature().toGuidoString() + " ");
-        this.guidoNotation.append(fractalPiece.getTimeSignature().toGuidoString() + " ");
-        if (this.includeTempoOnSheetMusic) this.guidoNotation.append(Tempo.toGuidoString(fractalPiece.getTempo()) + " ");
-        
+                                
         // make each track be on a different channel, but make sure we don't go over our total number of channels...
         int numTracks = sequence.getTracks().length;
         // The 1st track should be the tempo/key sig/time sig track        
@@ -292,9 +266,6 @@ public class OutputManager {
         int midiTicksPerWholeNote = convertMidiTickUnitFromQuarterNotesToWholeNotesInt(sequence.getResolution());
         
         for (Note thisNote : noteList.getListWithNormalizedRests()) {
-            // TODO: add some stuff to the guidoNotation if the note is the 
-            // first or last note of a voice section            
-            
             thisMidiNote = thisNote.convertToMidiNote(startTime, midiTicksPerWholeNote, midiChannel, true);                        
             
             if (lastMidiNote != null) {
@@ -326,9 +297,7 @@ public class OutputManager {
             lastMidiNote = thisMidiNote;
             lastNote = thisNote;
         }           
-        addMidiNoteEventsToTrack(track, part, lastMidiNote, lastNote);
-        
-        this.guidoNotation.append(" ],");           
+        addMidiNoteEventsToTrack(track, part, lastMidiNote, lastNote);                
     }        
   
     /**
@@ -351,8 +320,7 @@ public class OutputManager {
             throw new UndeclaredThrowableException(ex, "MidiNote's note on and note off events could not be created.  This indicates a programming error of some sort.");                
         }        
         
-        // add the guido notation...
-        guidoNotation.append(" " + note.toGuidoString(midiNote) + " ");        
+        // also add the NotationNote to our part...
         part.getNotationElements().add(note.toNotationNote(part, midiNote));
     }
 
@@ -419,7 +387,19 @@ public class OutputManager {
      * @throws java.io.IOException if an I/O error occurs
      */
     public void saveGuidoFile(String fileName) throws IOException {
-        this.getSheetMusicCreator().saveGuidoFile(fileName);
+        this.saveGuidoFile(fileName, null, null);
+    }
+    
+    /**
+     * Saves the guido notation to file.
+     * 
+     * @param fileName the name of the file to save to
+     * @param title the title of the piece
+     * @param composer the composer of the piece
+     * @throws java.io.IOException if an I/O error occurs
+     */
+    public void saveGuidoFile(String fileName, String title, String composer) throws IOException {
+        this.getSheetMusicCreator().saveGuidoFile(fileName, title, composer);
         this.lastGuidoFileName = fileName;
     }
 
@@ -442,7 +422,7 @@ public class OutputManager {
      * @throws java.io.IOException if an I/O error occurs
      */
     public void saveLilypondFile(String fileName, String title, String composer) throws IOException {        
-        FileHelper.createTextFile(fileName, this.pieceNotation.toLilypondString(title, composer));
+        this.getSheetMusicCreator().saveLilypondFile(fileName, title, composer);        
         this.lastLilypondFileName = fileName;
     }
     
@@ -471,8 +451,7 @@ public class OutputManager {
      * @throws java.lang.Exception if there is an error
      */
     public void saveLilypondResults(String fileNameWithoutExtension, String title, String composer) throws Exception {
-        String extra = (this.getTestLilypondError() ? "}" : "");
-        SheetMusicCreator.saveLilypondResults(fileNameWithoutExtension, this.pieceNotation.toLilypondString(title, composer) + extra);
+        this.getSheetMusicCreator().saveLilypondResults(fileNameWithoutExtension, title, composer);
         this.lastLilypondResultsFileNameWithoutExtension = fileNameWithoutExtension;        
     }
                 
@@ -483,7 +462,19 @@ public class OutputManager {
      * @throws java.lang.Exception if an error occurs
      */
     public void saveGifImage(String fileName) throws Exception {
-        this.getSheetMusicCreator().saveAsGifImage(fileName);    
+        this.saveGifImage(fileName, null, null);
+    }
+    
+    /**
+     * Saves the music as a sheet music image in gif format.
+     * 
+     * @param fileName the file name to save to
+     * @param title the title of the piece
+     * @param composer the composer of the piece
+     * @throws java.lang.Exception if an error occurs
+     */
+    public void saveGifImage(String fileName, String title, String composer) throws Exception {
+        this.getSheetMusicCreator().saveAsGifImage(fileName, title, composer);    
         this.lastGifFileName = fileName;
     }
     

@@ -19,6 +19,7 @@
 
 package com.myronmarston.music;
 
+import com.myronmarston.util.FileHelper;
 import javax.sound.midi.MidiEvent;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -72,7 +73,7 @@ public class InstrumentTest {
     @Test
     public void toLilypondString() {
         Instrument i = Instrument.getInstrument("Cello");
-        assertEquals(" \\set Staff.instrumentName = \"Cello\"\n", i.toLilypondString());
+        assertEquals("\\set Staff.instrumentName = \"Cello\"" + FileHelper.NEW_LINE, i.toLilypondString());
     }
     
     public static void assertMidiProgramChangeEventEquals(MidiEvent event, long tick, int channel, int patch) {

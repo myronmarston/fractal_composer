@@ -173,6 +173,15 @@ A list of notation elements.  This is intended to be used for a list of notes,
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html#getElementSeperator()">getElementSeperator</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the string used to seperate the elements when getting the lilypond 
+ or guido string for this list.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html#getEndIndexForTupletGroup(int)">getEndIndexForTupletGroup</A></B>(int&nbsp;beginIndex)</CODE>
 
@@ -204,6 +213,23 @@ A list of notation elements.  This is intended to be used for a list of notes,
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Removes individual notes, or groups of consecutive notes, with duration
  denominators that are a power of 2.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html#setElementSeperator(java.lang.String)">setElementSeperator</A></B>(java.lang.String&nbsp;elementSeperator)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the string used to seperate the elements when getting the lilypond
+ or guido string for this list.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html#toGuidoString()">toGuidoString</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Combines the guido strings of each element.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -324,6 +350,41 @@ public <B>NotationElementList</B>(java.util.Collection&lt;<A HREF="../../../../c
 </TR>
 </TABLE>
 
+<A NAME="getElementSeperator()"><!-- --></A><H3>
+getElementSeperator</H3>
+<PRE>
+public java.lang.String <B>getElementSeperator</B>()</PRE>
+<DL>
+<DD>Gets the string used to seperate the elements when getting the lilypond 
+ or guido string for this list.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the element seperator</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setElementSeperator(java.lang.String)"><!-- --></A><H3>
+setElementSeperator</H3>
+<PRE>
+public void <B>setElementSeperator</B>(java.lang.String&nbsp;elementSeperator)</PRE>
+<DL>
+<DD>Sets the string used to seperate the elements when getting the lilypond
+ or guido string for this list.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>elementSeperator</CODE> - the element seperator</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="toLilypondString()"><!-- --></A><H3>
 toLilypondString</H3>
 <PRE>
@@ -337,6 +398,23 @@ public java.lang.String <B>toLilypondString</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the lilypond string for this NotationElementList</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="toGuidoString()"><!-- --></A><H3>
+toGuidoString</H3>
+<PRE>
+public java.lang.String <B>toGuidoString</B>()</PRE>
+<DL>
+<DD>Combines the guido strings of each element.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#toGuidoString()">toGuidoString</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the guido string for this NotationElementList</DL>
 </DD>
 </DL>
 <HR>

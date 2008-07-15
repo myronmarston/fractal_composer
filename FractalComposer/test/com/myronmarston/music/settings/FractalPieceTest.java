@@ -272,13 +272,13 @@ public class FractalPieceTest {
             public void useTempFile(String tempFileName) throws Exception {                
                 fp.createGermOutputManager().saveMidiFile(tempFileName);
                 final Track baselineTrack = MidiSystem.getSequence(new File(tempFileName)).getTracks()[1];
-                String baselineGuido = fp.createGermOutputManager().getGuidoNotation().replaceFirst("\\\\key<.*?>", "");
+                String baselineGuido = fp.createGermOutputManager().getPieceNotation().toGuidoString().replaceFirst("\\\\key<.*?>", "");
 
                 for (Scale s : getAllScalePossibilities()) {
                     //System.out.println("Testing " + s.toString());
                     fp.setScale(s);
                     final OutputManager outputManager = fp.createGermOutputManager();
-                    assertEquals(baselineGuido, outputManager.getGuidoNotation().replaceFirst("\\\\key<.*?>", ""));
+                    assertEquals(baselineGuido, outputManager.getPieceNotation().toGuidoString().replaceFirst("\\\\key<.*?>", ""));
                     FileHelper.createAndUseTempFile("TestMidiFile", ".mid", new FileHelper.TempFileUser() {
                         public void useTempFile(String tempFileName) throws Exception {                            
                             outputManager.saveMidiFile(tempFileName);

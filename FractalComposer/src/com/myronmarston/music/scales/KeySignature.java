@@ -23,6 +23,7 @@ import com.myronmarston.music.MidiNote;
 import com.myronmarston.music.NoteName;
 import com.myronmarston.music.notation.NotationElement;
 import com.myronmarston.music.notation.NotationNote;
+import com.myronmarston.util.FileHelper;
 
 import org.simpleframework.xml.*;
 
@@ -149,7 +150,7 @@ public class KeySignature implements NotationElement {
 
             String tonalityStr = this.getTonality().toString().toLowerCase(Locale.ENGLISH);
             
-            lilypondString = " \\key " + key + " \\" + tonalityStr + "\n";
+            lilypondString = "\\key " + key + " \\" + tonalityStr + FileHelper.NEW_LINE;
         }
                 
         return lilypondString;

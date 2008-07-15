@@ -19,6 +19,7 @@
 
 package com.myronmarston.music.settings;
 
+import com.myronmarston.util.FileHelper;
 import javax.sound.midi.MidiEvent;
 
 import org.junit.Test;
@@ -188,9 +189,9 @@ public class TimeSignatureTest {
     
     @Test
     public void toLilypondString() throws Exception {
-        testToLilypondString("4/4", " \\time 4/4\n");
-        testToLilypondString("6/8", " \\time 6/8\n");
-        testToLilypondString("5/4", " \\time 5/4\n");
+        testToLilypondString("4/4", "\\time 4/4" + FileHelper.NEW_LINE);
+        testToLilypondString("6/8", "\\time 6/8" + FileHelper.NEW_LINE);
+        testToLilypondString("5/4", "\\time 5/4" + FileHelper.NEW_LINE);
     }
     
     private static void testToLilypondString(String timeSignature, String expected) throws Exception {

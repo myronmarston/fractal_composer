@@ -91,7 +91,7 @@ com.myronmarston.music.notation</FONT>
 <BR>
 Interface NotationElement</H2>
 <DL>
-<DT><B>All Known Implementing Classes:</B> <DD><A HREF="../../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>, <A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>, <A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>, <A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>, <A HREF="../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>, <A HREF="../../../../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation">Piece</A>, <A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A>, <A HREF="../../../../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A></DD>
+<DT><B>All Known Implementing Classes:</B> <DD><A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>, <A HREF="../../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>, <A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>, <A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>, <A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>, <A HREF="../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>, <A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A>, <A HREF="../../../../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A></DD>
 </DL>
 <HR>
 <DL>
@@ -114,6 +114,15 @@ Interface that represents an element of musical notation.
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#toGuidoString()">toGuidoString</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the representation of this element in the string format used by 
+ Guido.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -149,6 +158,21 @@ java.lang.String <B>toLilypondString</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the lilypond representation of this element</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="toGuidoString()"><!-- --></A><H3>
+toGuidoString</H3>
+<PRE>
+java.lang.String <B>toGuidoString</B>()</PRE>
+<DL>
+<DD>Gets the representation of this element in the string format used by 
+ Guido.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the guido representation of this element</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

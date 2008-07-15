@@ -20,6 +20,8 @@
 package com.myronmarston.music.notation;
 
 import com.myronmarston.music.Instrument;
+import com.myronmarston.music.Tempo;
+import com.myronmarston.util.FileHelper;
 
 /**
  * Represents one instrumental part of the notation.  
@@ -30,8 +32,9 @@ public class Part implements NotationElement {
     private final NotationElementList notationElements = new NotationElementList();
     private final Piece piece;
     private final Instrument instrument;
-    private String lilypondString;
-
+    private String pieceTitle;
+    private String pieceComposer;        
+    
     /**
      * Constructor.
      * 
@@ -45,7 +48,7 @@ public class Part implements NotationElement {
         this.piece = piece;
         this.instrument = instrument;
     }
-
+        
     /**
      * Gets the notation piece that owns this part.
      * 
@@ -54,7 +57,57 @@ public class Part implements NotationElement {
     public Piece getPiece() {
         return piece;
     }
-        
+    
+    /**
+     * Checks to see if this part is the first part of the piece.
+     * 
+     * @return true if this is the first part of the piece
+     */
+    protected boolean isPartFirstPartOfPiece() {       
+        return this == this.piece.getParts().get(0);
+    }
+
+    /**
+     * Gets the composer of the piece.  It is available here because in 
+     * Guido notation the composer is notated in the first part.
+     * 
+     * @return the piece composer
+     */
+    public String getPieceComposer() {
+        return pieceComposer;
+    }
+    
+    /**
+     * Sets the composer of the piece.  It is available here because in 
+     * Guido notation the composer is notated in the first part.
+     * 
+     * @param pieceComposer the composer of the piece
+     */            
+    public void setPieceComposer(String pieceComposer) {
+        assert this.isPartFirstPartOfPiece() : "This should only be set on the first part of the piece.";
+        this.pieceComposer = pieceComposer;
+    }
+
+    /**
+     * Gets the title of the piece.  It is available here because in 
+     * Guido notation the title is notated in the first part.
+     * 
+     * @return the title of the piece
+     */
+    public String getPieceTitle() {
+        return pieceTitle;
+    }
+
+    /**
+     * Sets the title of the piece.  It is available here because in 
+     * Guido notation the title is notated in the first part.
+     * 
+     * @param pieceTitle the title of the piece
+     */
+    public void setPieceTitle(String pieceTitle) {
+        assert this.isPartFirstPartOfPiece() : "This should only be set on the first part of the piece.";        
+        this.pieceTitle = pieceTitle;
+    }   
     
     /**
      * Gets the notation elements for this part.
@@ -73,6 +126,7 @@ public class Part implements NotationElement {
      */
     private NotationElementList getNotationElementsWithGroupedTuplets() {
         NotationElementList list = (NotationElementList) this.getNotationElements().clone();
+        list.setElementSeperator(" ");
         list.groupTuplets();
         return list;
     }
@@ -82,25 +136,60 @@ public class Part implements NotationElement {
      * 
      * @return the lilypond string
      */
-    public String toLilypondString() {
-        if (lilypondString == null) {
-            //TODO: clef
-            lilypondString =
-            "\\new Voice \\with {\n" +
-            "    \\remove \"Note_heads_engraver\"\n" +
-            "    \\consists \"Completion_heads_engraver\"\n" +
-            "}\n" +
-            "{\n" + 
-            (this == this.piece.getParts().get(0) ? "        \\tempo 4=" + this.piece.getTempo() + "\n" : "") +
-            "       " + this.piece.getTimeSignature().toLilypondString() +
-            "       " + this.piece.getKeySignature().toLilypondString() +
-            "       " + this.instrument.toLilypondString() + 
-            "       " + this.getNotationElementsWithGroupedTuplets().toLilypondString() +
-            "       \\bar \"|.\"\n" + 
-            "}\n\n";            
-        }
-        
-        return lilypondString;        
+    public String toLilypondString() {        
+        //TODO: clef            
+
+        StringBuilder str = new StringBuilder();
+
+        str.append("\\new Voice \\with {" + FileHelper.NEW_LINE);
+        str.append("    \\remove \"Note_heads_engraver\"" + FileHelper.NEW_LINE);
+        str.append("    \\consists \"Completion_heads_engraver\"" + FileHelper.NEW_LINE);
+        str.append("}" + FileHelper.NEW_LINE);
+        str.append("{" + FileHelper.NEW_LINE); 
+        if (this.isPartFirstPartOfPiece() && this.piece.getIncludeTempo()) str.append("       " + Tempo.toLilypondString(this.piece.getTempo()) + FileHelper.NEW_LINE);
+        str.append("       " + this.piece.getTimeSignature().toLilypondString());
+        str.append("       " + this.piece.getKeySignature().toLilypondString());
+        if (this.piece.getIncludeInstruments()) str.append("       " + this.instrument.toLilypondString()); 
+        str.append("       " + this.getNotationElementsWithGroupedTuplets().toLilypondString());
+        str.append("       \\bar \"|.\"" + FileHelper.NEW_LINE); 
+        str.append("}" + FileHelper.NEW_LINE);            
+
+        return str.toString();        
     }
 
+    /**
+     * Gets the GUIDO notation for this part.
+     * 
+     * @return the GUIDO notation for this part
+     */
+    public String toGuidoString() {
+        this.getNotationElements().setElementSeperator(" ");
+        StringBuilder str = new StringBuilder();        
+        str.append("[");
+        //If a pageFormat should be specified, put it here, such as \pageFormat<"A4",10pt,10pt,10pt,10pt>
+                
+        if (this.piece.getIncludeInstruments()) {
+            str.append(instrument.toGuidoString() + " ");
+        }
+        
+        str.append(this.piece.getKeySignature().toGuidoString() + " ");
+        str.append(this.piece.getTimeSignature().toGuidoString() + " ");                
+        
+        if (this.isPartFirstPartOfPiece()) {
+            if (this.piece.getIncludeTempo()) {
+                str.append(Tempo.toGuidoString(this.piece.getTempo()) + " ");
+            }
+            if (this.getPieceTitle() != null && !this.getPieceTitle().isEmpty()) {
+                str.append("\\title<\"" + this.getPieceTitle() + "\">");
+            }
+            if (this.getPieceComposer() != null && !this.getPieceComposer().isEmpty()) {
+                str.append("\\composer<\"" + this.getPieceComposer() + "\">");
+            }
+        }        
+
+        str.append(this.getNotationElements().toGuidoString());
+        str.append("]");           
+        return str.toString();
+    }
+   
 }

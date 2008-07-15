@@ -103,15 +103,31 @@ Constructor for class com.myronmarston.music.settings.<A HREF="../com/myronmarst
  of 2.<DT><A HREF="../com/myronmarston/music/settings/TimeSignatureDenominatorNotAPowerOf2Exception.html#TimeSignatureDenominatorNotAPowerOf2Exception(int)"><B>TimeSignatureDenominatorNotAPowerOf2Exception(int)</B></A> - 
 Constructor for exception com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/TimeSignatureDenominatorNotAPowerOf2Exception.html" title="class in com.myronmarston.music.settings">TimeSignatureDenominatorNotAPowerOf2Exception</A>
 <DD>Constructor.
-<DT><A HREF="../com/myronmarston/util/Fraction.html#toGuidoDurationString()"><B>toGuidoDurationString()</B></A> - 
-Method in class com.myronmarston.util.<A HREF="../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>
-<DD>Gets a string representation of this fraction in GUIDO notation.
 <DT><A HREF="../com/myronmarston/music/Instrument.html#toGuidoString()"><B>toGuidoString()</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>
 <DD>Gets a string representing this instrument in GUIDO notation.
-<DT><A HREF="../com/myronmarston/music/Note.html#toGuidoString(com.myronmarston.music.MidiNote)"><B>toGuidoString(MidiNote)</B></A> - 
-Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
-<DD>Gets a string representing this note in GUIDO notation.
+<DT><A HREF="../com/myronmarston/music/notation/NotationElement.html#toGuidoString()"><B>toGuidoString()</B></A> - 
+Method in interface com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A>
+<DD>Gets the representation of this element in the string format used by 
+ Guido.
+<DT><A HREF="../com/myronmarston/music/notation/NotationElementList.html#toGuidoString()"><B>toGuidoString()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>
+<DD>Combines the guido strings of each element.
+<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#toGuidoString()"><B>toGuidoString()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
+<DD>Gets the representation of this note in GUIDO notation.
+<DT><A HREF="../com/myronmarston/music/notation/Part.html#toGuidoString()"><B>toGuidoString()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>
+<DD>Gets the GUIDO notation for this part.
+<DT><A HREF="../com/myronmarston/music/notation/Piece.html#toGuidoString()"><B>toGuidoString()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation">Piece</A>
+<DD>Gets the GUIDO notation for this piece.
+<DT><A HREF="../com/myronmarston/music/notation/Piece.html#toGuidoString(java.lang.String, java.lang.String)"><B>toGuidoString(String, String)</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation">Piece</A>
+<DD>Gets the GUIDO notation for this piece.
+<DT><A HREF="../com/myronmarston/music/notation/Tuplet.html#toGuidoString()"><B>toGuidoString()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A>
+<DD>Tuplet is not supported for guido notation.
 <DT><A HREF="../com/myronmarston/music/scales/KeySignature.html#toGuidoString()"><B>toGuidoString()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>
 <DD>Gets a string representing this key signature in GUIDO notation.
@@ -121,6 +137,10 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/Tempo.html#toGuidoString(int)"><B>toGuidoString(int)</B></A> - 
 Static method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Tempo.html" title="class in com.myronmarston.music">Tempo</A>
 <DD>Gets a string representation of this tempo in GUIDO notation.
+<DT><A HREF="../com/myronmarston/util/Fraction.html#toGuidoString()"><B>toGuidoString()</B></A> - 
+Method in class com.myronmarston.util.<A HREF="../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>
+<DD>Gets a string representation of this fraction in GUIDO notation for a
+ note duration.
 <DT><A HREF="../com/myronmarston/music/Instrument.html#toLilypondString()"><B>toLilypondString()</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>
 <DD>Gets a string representing this instrument in Lilypond notation.
@@ -140,9 +160,6 @@ Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/notation/Piece.html#toLilypondString(java.lang.String, java.lang.String)"><B>toLilypondString(String, String)</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation">Piece</A>
 <DD>Gets the lilypond notation of this piece.
-<DT><A HREF="../com/myronmarston/music/notation/Piece.html#toLilypondString()"><B>toLilypondString()</B></A> - 
-Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation">Piece</A>
-<DD>Gets the lilypond notation of this piece.
 <DT><A HREF="../com/myronmarston/music/notation/Tuplet.html#toLilypondString()"><B>toLilypondString()</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A>
 <DD>Constructs the lilypond string for this tuplet.
@@ -152,6 +169,12 @@ Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music
 <DT><A HREF="../com/myronmarston/music/settings/TimeSignature.html#toLilypondString()"><B>toLilypondString()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A>
 <DD>Gets the representation of this time signature in Lilypond notation.
+<DT><A HREF="../com/myronmarston/music/Tempo.html#toLilypondString(int)"><B>toLilypondString(int)</B></A> - 
+Static method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Tempo.html" title="class in com.myronmarston.music">Tempo</A>
+<DD>Gets a string representation of this tempo in Lilypond notation.
+<DT><A HREF="../com/myronmarston/util/Fraction.html#toLilypondString()"><B>toLilypondString()</B></A> - 
+Method in class com.myronmarston.util.<A HREF="../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>
+<DD>Gets a string representing this duration fraction in lilypond notation.
 <DT><A HREF="../com/myronmarston/music/scales/Tonality.html" title="enum in com.myronmarston.music.scales"><B>Tonality</B></A> - Enum in <A HREF="../com/myronmarston/music/scales/package-summary.html">com.myronmarston.music.scales</A><DD>Enumerates the two main tonalities: Major and Minor.<DT><A HREF="../com/myronmarston/music/Note.html#toNotationNote(com.myronmarston.music.notation.Part, com.myronmarston.music.MidiNote)"><B>toNotationNote(Part, MidiNote)</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
 <DD>Converts this Note to a Notation Note that can be used to produce GUIDO

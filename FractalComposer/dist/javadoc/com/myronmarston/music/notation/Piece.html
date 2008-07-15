@@ -94,12 +94,9 @@ Class Piece</H2>
 java.lang.Object
   <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.notation.Piece</B>
 </PRE>
-<DL>
-<DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DD>
-</DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>Piece</B><DT>extends java.lang.Object<DT>implements <A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DL>
+<DT><PRE>public class <B>Piece</B><DT>extends java.lang.Object</DL>
 </PRE>
 
 <P>
@@ -120,9 +117,11 @@ This class contains the notation of an entire fractal piece.
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Piece.html#Piece(com.myronmarston.music.scales.KeySignature, com.myronmarston.music.settings.TimeSignature, int)">Piece</A></B>(<A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>&nbsp;keySignature,
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Piece.html#Piece(com.myronmarston.music.scales.KeySignature, com.myronmarston.music.settings.TimeSignature, int, boolean, boolean)">Piece</A></B>(<A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>&nbsp;keySignature,
       <A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A>&nbsp;timeSignature,
-      int&nbsp;tempo)</CODE>
+      int&nbsp;tempo,
+      boolean&nbsp;includeTempo,
+      boolean&nbsp;includeInstrument)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
@@ -139,11 +138,19 @@ This class contains the notation of an entire fractal piece.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Piece.html#getComposer()">getComposer</A></B>()</CODE>
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Piece.html#getIncludeInstruments()">getIncludeInstruments</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the name of the composer of this piece.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets whether or not to include the instruments in the output.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Piece.html#getIncludeTempo()">getIncludeTempo</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets whether or not the tempo should be included in the output.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -180,34 +187,19 @@ This class contains the notation of an entire fractal piece.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;java.lang.String</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Piece.html#getTitle()">getTitle</A></B>()</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Piece.html#toGuidoString()">toGuidoString</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the title of this piece.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Piece.html#setComposer(java.lang.String)">setComposer</A></B>(java.lang.String&nbsp;composer)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the name of the composer of this piece.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Piece.html#setTitle(java.lang.String)">setTitle</A></B>(java.lang.String&nbsp;title)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the title of this piece.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the GUIDO notation for this piece.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;java.lang.String</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Piece.html#toLilypondString()">toLilypondString</A></B>()</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Piece.html#toGuidoString(java.lang.String, java.lang.String)">toGuidoString</A></B>(java.lang.String&nbsp;title,
+              java.lang.String&nbsp;composer)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the lilypond notation of this piece.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the GUIDO notation for this piece.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -241,17 +233,21 @@ This class contains the notation of an entire fractal piece.
 </TR>
 </TABLE>
 
-<A NAME="Piece(com.myronmarston.music.scales.KeySignature, com.myronmarston.music.settings.TimeSignature, int)"><!-- --></A><H3>
+<A NAME="Piece(com.myronmarston.music.scales.KeySignature, com.myronmarston.music.settings.TimeSignature, int, boolean, boolean)"><!-- --></A><H3>
 Piece</H3>
 <PRE>
 public <B>Piece</B>(<A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>&nbsp;keySignature,
              <A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A>&nbsp;timeSignature,
-             int&nbsp;tempo)</PRE>
+             int&nbsp;tempo,
+             boolean&nbsp;includeTempo,
+             boolean&nbsp;includeInstrument)</PRE>
 <DL>
 <DD>Constructor.
 <P>
 <DL>
-<DT><B>Parameters:</B><DD><CODE>keySignature</CODE> - the key signature of the piece<DD><CODE>timeSignature</CODE> - the time signature of the piece<DD><CODE>tempo</CODE> - the tempo of the piece, in beats per minute</DL>
+<DT><B>Parameters:</B><DD><CODE>keySignature</CODE> - the key signature of the piece<DD><CODE>timeSignature</CODE> - the time signature of the piece<DD><CODE>tempo</CODE> - the tempo of the piece, in beats per minute<DD><CODE>includeTempo</CODE> - whether or not to include a tempo marking on the 
+        notation<DD><CODE>includeInstrument</CODE> - whether or not to include the instrument name
+        on the notation</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -264,72 +260,6 @@ public <B>Piece</B>(<A HREF="../../../../com/myronmarston/music/scales/KeySignat
 </TR>
 </TABLE>
 
-<A NAME="getComposer()"><!-- --></A><H3>
-getComposer</H3>
-<PRE>
-public java.lang.String <B>getComposer</B>()</PRE>
-<DL>
-<DD>Gets the name of the composer of this piece.
-<P>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>the composer</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="setComposer(java.lang.String)"><!-- --></A><H3>
-setComposer</H3>
-<PRE>
-public void <B>setComposer</B>(java.lang.String&nbsp;composer)</PRE>
-<DL>
-<DD>Sets the name of the composer of this piece.
-<P>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>composer</CODE> - the composer</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getTitle()"><!-- --></A><H3>
-getTitle</H3>
-<PRE>
-public java.lang.String <B>getTitle</B>()</PRE>
-<DL>
-<DD>Gets the title of this piece.
-<P>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>the title</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="setTitle(java.lang.String)"><!-- --></A><H3>
-setTitle</H3>
-<PRE>
-public void <B>setTitle</B>(java.lang.String&nbsp;title)</PRE>
-<DL>
-<DD>Sets the title of this piece.
-<P>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>title</CODE> - the title</DL>
-</DD>
-</DL>
-<HR>
-
 <A NAME="getKeySignature()"><!-- --></A><H3>
 getKeySignature</H3>
 <PRE>
@@ -337,9 +267,6 @@ public <A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" tit
 <DL>
 <DD>Gets the key signature of this piece.
 <P>
-<DD><DL>
-</DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the key signature</DL>
@@ -355,9 +282,6 @@ public <A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html" 
 <DD>Gets the time signature of this piece.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the time signature</DL>
 </DD>
@@ -372,11 +296,36 @@ public int <B>getTempo</B>()</PRE>
 <DD>Gets the tempo, in beats per minute, of this piece.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the tempo, in beats per minute</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getIncludeInstruments()"><!-- --></A><H3>
+getIncludeInstruments</H3>
+<PRE>
+public boolean <B>getIncludeInstruments</B>()</PRE>
+<DL>
+<DD>Gets whether or not to include the instruments in the output.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>true if the instruments should be included in the output</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getIncludeTempo()"><!-- --></A><H3>
+getIncludeTempo</H3>
+<PRE>
+public boolean <B>getIncludeTempo</B>()</PRE>
+<DL>
+<DD>Gets whether or not the tempo should be included in the output.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>true if the tempo should be included in hte output</DL>
 </DD>
 </DL>
 <HR>
@@ -388,9 +337,6 @@ public <A HREF="../../../../com/myronmarston/music/notation/NotationElementList.
 <DL>
 <DD>Gets the instrumental parts of this piece.
 <P>
-<DD><DL>
-</DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the instrumental parts</DL>
@@ -407,28 +353,38 @@ public java.lang.String <B>toLilypondString</B>(java.lang.String&nbsp;title,
 <DD>Gets the lilypond notation of this piece.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece
 <DT><B>Returns:</B><DD>the lilypond string</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="toLilypondString()"><!-- --></A><H3>
-toLilypondString</H3>
+<A NAME="toGuidoString()"><!-- --></A><H3>
+toGuidoString</H3>
 <PRE>
-public java.lang.String <B>toLilypondString</B>()</PRE>
+public java.lang.String <B>toGuidoString</B>()</PRE>
 <DL>
-<DD>Gets the lilypond notation of this piece.
+<DD>Gets the GUIDO notation for this piece.  No title or composer will be
+ included in the output.
 <P>
 <DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#toLilypondString()">toLilypondString</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
-</DD>
-<DD><DL>
 
-<DT><B>Returns:</B><DD>the lilypond string</DL>
+<DT><B>Returns:</B><DD>the guido notation for this piece</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="toGuidoString(java.lang.String, java.lang.String)"><!-- --></A><H3>
+toGuidoString</H3>
+<PRE>
+public java.lang.String <B>toGuidoString</B>(java.lang.String&nbsp;title,
+                                      java.lang.String&nbsp;composer)</PRE>
+<DL>
+<DD>Gets the GUIDO notation for this piece.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece
+<DT><B>Returns:</B><DD>the guido string</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

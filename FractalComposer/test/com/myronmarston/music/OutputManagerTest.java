@@ -19,12 +19,14 @@
 
 package com.myronmarston.music;
 
+import com.myronmarston.music.notation.GuidoRunException;
 import com.myronmarston.music.scales.*;
 import com.myronmarston.music.settings.*;
 import com.myronmarston.util.*;
 import com.myronmarston.music.notation.LilypondRunException;
 import java.io.*;
 import java.util.*;
+import java.util.regex.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.*;
 import javax.sound.midi.*;
@@ -49,10 +51,10 @@ public class OutputManagerTest {
         
         outputManager = new OutputManager(fp, Arrays.asList(nl));
     } 
-    
+            
     @Test
     public void getGuidoNotation() throws Exception {
-        String guidoNotationFormatString = "{[ %s\\key<\"C\"> \\meter<\"C\"> %s d1/4  e1/4  c1/4  ]}";
+        String guidoNotationFormatString = "{" + FileHelper.NEW_LINE + "[%s\\key<\"C\"> \\meter<\"C\"> %sd1/4 e1/4 c1/4]" + FileHelper.NEW_LINE + "}";
         String instrumentString = "\\instr<\"Piano 1\", \"MIDI 0\"> ";
         String tempoString = "\\tempo<\"Andante\",\"1/4=90\"> ";
         String fullGuidoString = String.format(guidoNotationFormatString, instrumentString, tempoString);
@@ -65,7 +67,7 @@ public class OutputManagerTest {
     }
     
     public static void testGuidoNotation(final OutputManager om, final String expectedNotation) throws Exception {
-        assertEquals(expectedNotation, om.getGuidoNotation());
+        assertEquals(expectedNotation, om.getPieceNotation().toGuidoString());
         
         FileHelper.createAndUseTempFile("TestGuido", ".gmn", new FileHelper.TempFileUser() {
             public void useTempFile(String tempFileName) throws Exception {
@@ -76,6 +78,20 @@ public class OutputManagerTest {
             }
         });
     }
+    
+    @Test
+    public void testGuidoError() throws Exception {
+           final OutputManager om = new OutputManager(this.outputManager.getFractalPiece(), this.outputManager.getNoteLists(), false, false);        
+           om.setTestNotationError(true);
+           FileHelper.createAndUseTempFile("TestGif", ".gif", new FileHelper.TempFileUser() {
+            public void useTempFile(String tempFileName) throws Exception {
+                try {
+                    om.saveGifImage(tempFileName);
+                    fail();
+                } catch (GuidoRunException ex) {}                
+            }
+        });           
+    }
 
     @Test
     public void getGuidoNotation_forPentatonicScale() throws Exception {
@@ -85,16 +101,16 @@ public class OutputManagerTest {
         fp.setGermString("G4,1/2 A4,1/4 B4 G4,1/2 E5 D5");
         fp.createDefaultSettings();
         
-        String expected = "g2/4  a2/8  b2/8  g2/4  e3/4  d3/4  a2/4  b2/8  d3/8  a2/4  g3/4  e3/4  b2/4  d3/8  e3/8  b2/4  a3/4  g3/4  g2/4  a2/8  b2/8  g2/4  e3/4  d3/4  e3/4  g3/8  a3/8  e3/4  d4/4  b3/4  d3/4  e3/8  g3/8  d3/4  b3/4  a3/4";        
-        String notation = fp.getVoices().get(0).getVoiceSections().get(0).createOutputManager().getGuidoNotation();
+        String expected = "g2/4 a2/8 b2/8 g2/4 e3/4 d3/4 a2/4 b2/8 d3/8 a2/4 g3/4 e3/4 b2/4 d3/8 e3/8 b2/4 a3/4 g3/4 g2/4 a2/8 b2/8 g2/4 e3/4 d3/4 e3/4 g3/8 a3/8 e3/4 d4/4 b3/4 d3/4 e3/8 g3/8 d3/4 b3/4 a3/4";        
+        String notation = fp.getVoices().get(0).getVoiceSections().get(0).createOutputManager().getPieceNotation().toGuidoString();
         assertTrue(notation.contains(expected));
         
         fp.setScale(new MinorPentatonicScale(NoteName.G));
         fp.setGermString("G4,1/2 Bb4,1/4 C5 G4,1/2 F5 D5");
         fp.createDefaultSettings();
         
-        expected = "g2/4  b&2/8  c3/8  g2/4  f3/4  d3/4  b&2/4  c3/8  d3/8  b&2/4  g3/4  f3/4  c3/4  d3/8  f3/8  c3/4  b&3/4  g3/4  g2/4  b&2/8  c3/8  g2/4  f3/4  d3/4  f3/4  g3/8  b&3/8  f3/4  d4/4  c4/4  d3/4  f3/8  g3/8  d3/4  c4/4  b&3/4";        
-        notation = fp.getVoices().get(0).getVoiceSections().get(0).createOutputManager().getGuidoNotation();
+        expected = "g2/4 b&2/8 c3/8 g2/4 f3/4 d3/4 b&2/4 c3/8 d3/8 b&2/4 g3/4 f3/4 c3/4 d3/8 f3/8 c3/4 b&3/4 g3/4 g2/4 b&2/8 c3/8 g2/4 f3/4 d3/4 f3/4 g3/8 b&3/8 f3/4 d4/4 c4/4 d3/4 f3/8 g3/8 d3/4 c4/4 b&3/4";    
+        notation = fp.getVoices().get(0).getVoiceSections().get(0).createOutputManager().getPieceNotation().toGuidoString();
         assertTrue(notation.contains(expected));
     }
     
@@ -103,7 +119,9 @@ public class OutputManagerTest {
         FractalPiece fp = new FractalPiece();
         fp.setGermString("Cb4 C4 Cbb4 Bx4 B4 B#4");
         
-        assertTrue(fp.createGermOutputManager().getGuidoNotation().matches(".*c&1\\/4  c1\\/4  c&&1\\/4  b##1\\/4  b1\\/4  b#1\\/4.*"));        
+        Pattern pat = Pattern.compile(".*c&1\\/4 c1\\/4 c&&1\\/4 b##1\\/4 b1\\/4 b#1\\/4.*", Pattern.DOTALL);
+        Matcher matcher = pat.matcher(fp.createGermOutputManager().getPieceNotation().toGuidoString());
+        assertTrue(matcher.matches());        
     }
     
     @Test
@@ -181,13 +199,13 @@ public class OutputManagerTest {
     public void saveLilypondResults() throws Exception {
         FileHelper.createAndUseTempFile("TestLilypond", "", new FileHelper.TempFileUser() {
             public void useTempFile(String tempFileName) throws Exception {
-                OutputManagerTest.this.outputManager.setTestLilypondError(true);
+                OutputManagerTest.this.outputManager.setTestNotationError(true);
                 try {
                     OutputManagerTest.this.outputManager.saveLilypondResults(tempFileName);                
                     fail();
                 } catch (LilypondRunException ex) {}
                 
-                OutputManagerTest.this.outputManager.setTestLilypondError(false);
+                OutputManagerTest.this.outputManager.setTestNotationError(false);
                 OutputManagerTest.this.outputManager.saveLilypondResults(tempFileName);
                 File file = new File(tempFileName + ".pdf");
                 assertTrue(file.exists());

@@ -36,6 +36,7 @@
 
 package com.myronmarston.util;
 
+import com.myronmarston.music.notation.NotationElement;
 import org.simpleframework.xml.*;
 import java.util.regex.*;
 
@@ -45,7 +46,7 @@ import java.util.regex.*;
  * Fractions are always maintained in reduced form.
  **/
 @Root
-public class Fraction implements Cloneable, Comparable, java.io.Serializable {
+public class Fraction implements NotationElement, Cloneable, Comparable, java.io.Serializable {
   @Attribute
   /** The numerator of this fraction. */
   protected final long numerator_;
@@ -64,6 +65,23 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
   
   /** Regular expression pattern to parse a fraction string. */
   private final static Pattern NON_NEGATIVE_FRACTION_REGEX_PATTERN = Pattern.compile(NON_NEGATIVE_FRACTION_REGEX_STRING);  
+  
+  /**
+   * The maximum duration denominator supported by lilypond.
+   */
+  private static final long MAX_ALLOWED_DURATION_DENOM = 64L;
+  
+  /**
+   * The symbol that represents a tie in lilypond notation.
+   */
+  private static final String LILYPOND_TIE = " ~ ";
+    
+  /**
+   * The character used to augment rhythmic durations in lilypond notation.
+   */
+  private static final char LILYPOND_AUGMENTATION_CHAR = '.';
+    
+    
 
   /** Return the numerator **/  
   public final long numerator() { return numerator_; }
@@ -140,15 +158,55 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
   }
   
   /**
-   * Gets a string representation of this fraction in GUIDO notation.
+   * Gets a string representation of this fraction in GUIDO notation for a
+   * note duration.
    * 
    * @return the guido string
    */
-  public String toGuidoDurationString() {      
+  public String toGuidoString() {      
       if (this.numerator() == 1L) return "/" + this.denominator();
       return "*" + this.toString();
   }
 
+  /**
+   * Gets a string representing this duration fraction in lilypond notation.  
+   * The string will have format placeholders for where the rest of the lilypond
+   * notation note should go.
+   *       
+   * @return the lilypond duration string for the given duration
+   * @throws IllegalArgumentException if the dnominator of the duration is
+   *         greater than the miximum supported by lilypond
+   * @throws UnsupportedOperationException if the duration is a tuplet 
+   *         duration
+   */
+  public String toLilypondString() throws IllegalArgumentException, UnsupportedOperationException {
+      String notePlaceHolder = "%1$s";
+      
+      if (MathHelper.numIsPowerOf2(this.denominator_)) {
+          if (this.denominator_ > MAX_ALLOWED_DURATION_DENOM) {
+              throw new IllegalArgumentException("The given duration (" + this.toString() + ") has a denominator that is outside of the allowed range.  The denominator cannot be greater than " + MAX_ALLOWED_DURATION_DENOM + ".");
+          }
+            
+          // first take care of the easy cases: notes such as 1/4, 1/8, and
+          // notes using augmentation dots (3/8, 7/16, etc).
+          switch ((int) this.numerator_) {
+              case 1: return notePlaceHolder + Long.toString(this.denominator_);
+              case 3: if (this.denominator_ < 2) break;
+                      return notePlaceHolder + Long.toString(this.denominator_ / 2) + LILYPOND_AUGMENTATION_CHAR;
+              case 7: if (this.denominator_ < 4) break;
+                      return notePlaceHolder + Long.toString(this.denominator_ / 4) + LILYPOND_AUGMENTATION_CHAR + LILYPOND_AUGMENTATION_CHAR;
+          }       
+            
+          // split the duration into two seperate durations that can be tied together
+          Fraction d1 = this.getLargestPowerOf2FractionThatIsLessThanThis();
+          Fraction d2 = this.minus(d1);
+            
+          return d1.toLilypondString() + LILYPOND_TIE + d2.toLilypondString();
+      } else {
+          throw new UnsupportedOperationException("Lilypond does not support note durations that do not have a denominator power of 2.  Instead, wrap the note in a Tuplet with the appropriate multiplier.");            
+      }        
+  }
+    
   /**
    * Clones this fraction.
    * 

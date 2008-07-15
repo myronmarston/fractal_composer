@@ -71,6 +71,12 @@ public class TempoTest {
         assertEquals("\\tempo<\"Allegro\",\"1/4=140\">", Tempo.toGuidoString(140));
         assertEquals("\\tempo<\"Andante\",\"1/4=93\">", Tempo.toGuidoString(93));
     }
+    
+    @Test
+    public void toLilypondString() throws Exception {
+        assertEquals("\\tempo 4=140", Tempo.toLilypondString(140));
+        assertEquals("\\tempo 4=93", Tempo.toLilypondString(93));
+    }
 
     public static void assertMidiTempoEventIsValidFor120BPM(MidiEvent event) {
         // the midi event has a byte array representing microseconds per quarter note
