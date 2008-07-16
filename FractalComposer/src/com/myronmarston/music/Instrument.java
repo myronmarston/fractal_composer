@@ -19,7 +19,7 @@
 
 package com.myronmarston.music;
 
-import com.myronmarston.music.notation.NotationElement;
+import com.myronmarston.music.notation.AbstractNotationElement;
 
 import com.myronmarston.util.FileHelper;
 import javax.sound.midi.*;
@@ -32,7 +32,7 @@ import java.lang.reflect.UndeclaredThrowableException;
  * 
  * @author Myron
  */
-public class Instrument implements NotationElement {
+public class Instrument extends AbstractNotationElement {
     private final javax.sound.midi.Instrument midiInstrument;
     private static final int REGULAR_INSTRUMENT_BANK = 0;    
     private static final Map<String, Instrument> INSTRUMENT_MAP;
@@ -155,4 +155,15 @@ public class Instrument implements NotationElement {
         
         return new MidiEvent(msg, 0);
     }
+
+    /**
+     * Returns false to indicate that this element does not support duration
+     * scaling since an instrument has no durations.
+     * 
+     * @return false
+     */
+    public boolean supportsDurationScaling() {
+        return false;
+    }
+        
 }

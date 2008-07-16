@@ -92,14 +92,15 @@ com.myronmarston.util</FONT>
 Class Fraction</H2>
 <PRE>
 java.lang.Object
-  <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.util.Fraction</B>
+  <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">com.myronmarston.music.notation.AbstractNotationElement</A>
+      <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.util.Fraction</B>
 </PRE>
 <DL>
 <DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A>, java.io.Serializable, java.lang.Cloneable, java.lang.Comparable</DD>
 </DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>Fraction</B><DT>extends java.lang.Object<DT>implements <A HREF="../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A>, java.lang.Cloneable, java.lang.Comparable, java.io.Serializable</DL>
+<DT><PRE>public class <B>Fraction</B><DT>extends <A HREF="../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A><DT>implements java.lang.Cloneable, java.lang.Comparable, java.io.Serializable</DL>
 </PRE>
 
 <P>
@@ -128,6 +129,14 @@ An immutable class representing fractions as pairs of longs.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#MAX_ALLOWED_DURATION_DENOM">MAX_ALLOWED_DURATION_DENOM</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The maximum duration denominator supported by lilypond.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -359,6 +368,15 @@ An immutable class representing fractions as pairs of longs.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#supportsDurationScaling()">supportsDurationScaling</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns false to indicate that this element does not support duration
+ scaling.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#times(com.myronmarston.util.Fraction)">times</A></B>(<A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;b)</CODE>
 
@@ -397,6 +415,15 @@ An immutable class representing fractions as pairs of longs.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a string representation of this fraction.</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.notation.AbstractNotationElement"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.notation.<A HREF="../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../com/myronmarston/music/notation/AbstractNotationElement.html#getLargestDurationDenominator()">getLargestDurationDenominator</A>, <A HREF="../../../com/myronmarston/music/notation/AbstractNotationElement.html#scaleDurations(long)">scaleDurations</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -462,6 +489,18 @@ public static final java.lang.String <B>POSITIVE_FRACTION_REGEX_STRING</B></PRE>
 <P>
 <DL>
 </DL>
+</DL>
+<HR>
+
+<A NAME="MAX_ALLOWED_DURATION_DENOM"><!-- --></A><H3>
+MAX_ALLOWED_DURATION_DENOM</H3>
+<PRE>
+public static final long <B>MAX_ALLOWED_DURATION_DENOM</B></PRE>
+<DL>
+<DD>The maximum duration denominator supported by lilypond.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../constant-values.html#com.myronmarston.util.Fraction.MAX_ALLOWED_DURATION_DENOM">Constant Field Values</A></DL>
 </DL>
 
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
@@ -614,6 +653,24 @@ public java.lang.String <B>toLilypondString</B>()
          greater than the miximum supported by lilypond
 <DD><CODE>java.lang.UnsupportedOperationException</CODE> - if the duration is a tuplet 
          duration</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="supportsDurationScaling()"><!-- --></A><H3>
+supportsDurationScaling</H3>
+<PRE>
+public boolean <B>supportsDurationScaling</B>()</PRE>
+<DL>
+<DD>Returns false to indicate that this element does not support duration
+ scaling.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../com/myronmarston/music/notation/NotationElement.html#supportsDurationScaling()">supportsDurationScaling</A></CODE> in interface <CODE><A HREF="../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>false</DL>
 </DD>
 </DL>
 <HR>

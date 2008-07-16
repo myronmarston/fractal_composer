@@ -19,7 +19,10 @@
 
 package com.myronmarston.music.notation;
 
+import com.myronmarston.music.Instrument;
 import com.myronmarston.util.Fraction;
+
+import java.util.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -50,7 +53,7 @@ public class NotationElementListTest {
     
     private static void testGetSmallestNoteDenominator(long expectedResult, String ... durations) {
         NotationElementList testList = getTestList(durations);        
-        assertEquals(expectedResult, testList.getLowestNoteDurationDenominator());
+        assertEquals(expectedResult, testList.getSmallestNoteDurationDenominator());
     }
     
     @Test
@@ -167,5 +170,31 @@ public class NotationElementListTest {
         assertTrue(element instanceof NotationNote);
         NotationNote note = (NotationNote) element;
         assertEquals(new Fraction(duration), note.getDuration());
+    }
+    
+    @Test
+    public void getLargestDurationDenominator() throws Exception {
+        testGetLargestDurationDenominator(32, "1/16", "3/32", "7/9");
+    }
+    
+    private static void testGetLargestDurationDenominator(long expected, String ... durations) throws Exception {
+        NotationElementList list = getTestList(durations);
+        assertEquals(expected, list.getLargestDurationDenominator());
+    }
+    
+    @Test
+    public void scaleDurations() throws Exception {
+        NotationElementList list = getTestList2("1/4", "3/8", "5/9");
+        list.scaleDurations(4);
+        assertElementListDurations(list, "1/1", "3/2", "20/9");
+    }
+    
+    private static void assertElementListDurations(NotationElementList list, String ... expectedDurations) throws Exception {
+        assertEquals(list.size(), expectedDurations.length);                
+        for (int i = 0; i < list.size(); i++) {
+            NotationNote actualNote = (NotationNote) list.get(i);
+            Fraction expectedDuration = new Fraction(expectedDurations[i]);
+            assertEquals(expectedDuration, actualNote.getDuration());
+        }                
     }
 }

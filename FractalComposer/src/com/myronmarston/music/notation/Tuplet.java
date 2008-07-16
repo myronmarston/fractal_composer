@@ -31,7 +31,7 @@ import java.util.*;
  * 
  * @author Myron
  */
-public class Tuplet implements NotationElement {
+public class Tuplet extends AbstractNotationElement {
     private final Fraction tupletMultiplier;
     private final NotationElementList notes;
     private String lilypondString;
@@ -78,7 +78,7 @@ public class Tuplet implements NotationElement {
         // tuplets that add up to a power of two on their own
         clonedList.removeConsecutiveNotesWhoseDenomsAddToPowerOf2();
         
-        long smallestDenom = clonedList.getLowestNoteDurationDenominator();
+        long smallestDenom = clonedList.getSmallestNoteDurationDenominator();
         long nextSmallestPowerOf2 = MathHelper.getLargestPowerOf2LessThanGivenNumber(smallestDenom);
         
         return new Fraction(nextSmallestPowerOf2, smallestDenom);
@@ -123,5 +123,26 @@ public class Tuplet implements NotationElement {
      */
     public String toGuidoString() throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Tuplet is only needed for Lilypond notation.  There is no equivalent in Guido notation.");
-    }        
+    }
+
+    /**
+     * Returns true to indicate that this element supports duraiton scaling.
+     * 
+     * @return true
+     */
+    public boolean supportsDurationScaling() {
+        return this.getNotes().supportsDurationScaling();
+    }
+
+    @Override
+    public long getLargestDurationDenominator() {
+        return this.getNotes().getLargestDurationDenominator();
+    }
+
+    @Override
+    public void scaleDurations(long scaleFactor) {
+        assert this.getNotes().supportsDurationScaling();
+        this.getNotes().scaleDurations(scaleFactor);
+    }
+        
 }

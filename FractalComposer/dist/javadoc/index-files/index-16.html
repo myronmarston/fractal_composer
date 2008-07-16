@@ -142,6 +142,30 @@ Constructor for class com.myronmarston.music.scales.<A HREF="../com/myronmarston
 Static variable in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>
 <DD>A list of all valid scale types, mapped to a list of valid key names for
  that scale type.
+<DT><A HREF="../com/myronmarston/music/notation/AbstractNotationElement.html#scaleDurations(long)"><B>scaleDurations(long)</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A>
+<DD>Throws an UnsupportedOperationException.
+<DT><A HREF="../com/myronmarston/music/notation/NotationElement.html#scaleDurations(long)"><B>scaleDurations(long)</B></A> - 
+Method in interface com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A>
+<DD>Scales the durations of this element by multiplying the durations by the
+ given factor.
+<DT><A HREF="../com/myronmarston/music/notation/NotationElementList.html#scaleDurations(long)"><B>scaleDurations(long)</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>
+<DD>Scales the durations by the given scale factor.
+<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#scaleDurations(long)"><B>scaleDurations(long)</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
+<DD>Scales the durations by the given scale factor.
+<DT><A HREF="../com/myronmarston/music/notation/Part.html#scaleDurations(long)"><B>scaleDurations(long)</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>
+<DD>&nbsp;
+<DT><A HREF="../com/myronmarston/music/notation/Tuplet.html#scaleDurations(long)"><B>scaleDurations(long)</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A>
+<DD>&nbsp;
+<DT><A HREF="../com/myronmarston/music/notation/Piece.html#scaleDurationsIfNecessary()"><B>scaleDurationsIfNecessary()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation">Piece</A>
+<DD>If there are any note durations that have denominators too large for 
+ Guido and Lilypond to handle, this will scale all the duration values
+ so that Guido and Lilypond can work properly.
 <DT><A HREF="../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings"><B>Section</B></A> - Class in <A HREF="../com/myronmarston/music/settings/package-summary.html">com.myronmarston.music.settings</A><DD>The entire fractal piece is composed of a series of sections.<DT><A HREF="../com/myronmarston/music/settings/Section.html#Section(com.myronmarston.music.settings.FractalPiece, int)"><B>Section(FractalPiece, int)</B></A> - 
 Constructor for class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>
 <DD>Constructor.
@@ -348,7 +372,38 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 Static variable in class com.myronmarston.music.<A HREF="../com/myronmarston/music/AudioFileCreator.html" title="class in com.myronmarston.music">AudioFileCreator</A>
 <DD>The Midi sound bank used to generate the audio files.
 <DT><A HREF="../com/myronmarston/util/Subscriber.html" title="interface in com.myronmarston.util"><B>Subscriber</B></A> - Interface in <A HREF="../com/myronmarston/util/package-summary.html">com.myronmarston.util</A><DD>Subscriber interface for my implementation of the Observer pattern, that
- overcomes some deficiencies in the Java library implementation.</DL>
+ overcomes some deficiencies in the Java library implementation.<DT><A HREF="../com/myronmarston/music/Instrument.html#supportsDurationScaling()"><B>supportsDurationScaling()</B></A> - 
+Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>
+<DD>Returns false to indicate that this element does not support duration
+ scaling since an instrument has no durations.
+<DT><A HREF="../com/myronmarston/music/notation/NotationElement.html#supportsDurationScaling()"><B>supportsDurationScaling()</B></A> - 
+Method in interface com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A>
+<DD>Indicates whether or not duration scaling is supported.
+<DT><A HREF="../com/myronmarston/music/notation/NotationElementList.html#supportsDurationScaling()"><B>supportsDurationScaling()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>
+<DD>Indicates whether or not this list supports duration scaling.
+<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#supportsDurationScaling()"><B>supportsDurationScaling()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
+<DD>Indicates that duration scaling is supported by this element.
+<DT><A HREF="../com/myronmarston/music/notation/Part.html#supportsDurationScaling()"><B>supportsDurationScaling()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>
+<DD>Indicates whether or not duration scaling is supported by this element.
+<DT><A HREF="../com/myronmarston/music/notation/Tuplet.html#supportsDurationScaling()"><B>supportsDurationScaling()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A>
+<DD>Returns true to indicate that this element supports duraiton scaling.
+<DT><A HREF="../com/myronmarston/music/scales/KeySignature.html#supportsDurationScaling()"><B>supportsDurationScaling()</B></A> - 
+Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>
+<DD>Returns false to indicate that this element does not support duration
+ scaling, since a key signature has no durations.
+<DT><A HREF="../com/myronmarston/music/settings/TimeSignature.html#supportsDurationScaling()"><B>supportsDurationScaling()</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A>
+<DD>Returns false to indicate that this element does not support duration
+ scaling.
+<DT><A HREF="../com/myronmarston/util/Fraction.html#supportsDurationScaling()"><B>supportsDurationScaling()</B></A> - 
+Method in class com.myronmarston.util.<A HREF="../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>
+<DD>Returns false to indicate that this element does not support duration
+ scaling.
+</DL>
 <HR>
 
 

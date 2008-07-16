@@ -92,14 +92,15 @@ com.myronmarston.music.notation</FONT>
 Class Part</H2>
 <PRE>
 java.lang.Object
-  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.notation.Part</B>
+  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">com.myronmarston.music.notation.AbstractNotationElement</A>
+      <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.notation.Part</B>
 </PRE>
 <DL>
 <DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DD>
 </DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>Part</B><DT>extends java.lang.Object<DT>implements <A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DL>
+<DT><PRE>public class <B>Part</B><DT>extends <A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></DL>
 </PRE>
 
 <P>
@@ -135,6 +136,14 @@ Represents one instrumental part of the notation.
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Part.html#getLargestDurationDenominator()">getLargestDurationDenominator</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Throws an UnsupportedOperationException.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -179,6 +188,14 @@ Represents one instrumental part of the notation.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Part.html#scaleDurations(long)">scaleDurations</A></B>(long&nbsp;scaleFactor)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Throws an UnsupportedOperationException.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Part.html#setPieceComposer(java.lang.String)">setPieceComposer</A></B>(java.lang.String&nbsp;pieceComposer)</CODE>
 
 <BR>
@@ -191,6 +208,14 @@ Represents one instrumental part of the notation.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the title of the piece.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Part.html#supportsDurationScaling()">supportsDurationScaling</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indicates whether or not duration scaling is supported by this element.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -261,9 +286,6 @@ public <A HREF="../../../../com/myronmarston/music/notation/Piece.html" title="c
 <DD>Gets the notation piece that owns this part.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the piece</DL>
 </DD>
@@ -277,9 +299,6 @@ protected boolean <B>isPartFirstPartOfPiece</B>()</PRE>
 <DL>
 <DD>Checks to see if this part is the first part of the piece.
 <P>
-<DD><DL>
-</DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>true if this is the first part of the piece</DL>
@@ -296,9 +315,6 @@ public java.lang.String <B>getPieceComposer</B>()</PRE>
  Guido notation the composer is notated in the first part.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the piece composer</DL>
 </DD>
@@ -314,9 +330,6 @@ public void <B>setPieceComposer</B>(java.lang.String&nbsp;pieceComposer)</PRE>
  Guido notation the composer is notated in the first part.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>pieceComposer</CODE> - the composer of the piece</DL>
 </DD>
 </DL>
@@ -330,9 +343,6 @@ public java.lang.String <B>getPieceTitle</B>()</PRE>
 <DD>Gets the title of the piece.  It is available here because in 
  Guido notation the title is notated in the first part.
 <P>
-<DD><DL>
-</DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the title of the piece</DL>
@@ -349,9 +359,6 @@ public void <B>setPieceTitle</B>(java.lang.String&nbsp;pieceTitle)</PRE>
  Guido notation the title is notated in the first part.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>pieceTitle</CODE> - the title of the piece</DL>
 </DD>
 </DL>
@@ -365,11 +372,59 @@ public <A HREF="../../../../com/myronmarston/music/notation/NotationElementList.
 <DD>Gets the notation elements for this part.
 <P>
 <DD><DL>
+
+<DT><B>Returns:</B><DD>the notation elements</DL>
+</DD>
 </DL>
+<HR>
+
+<A NAME="supportsDurationScaling()"><!-- --></A><H3>
+supportsDurationScaling</H3>
+<PRE>
+public boolean <B>supportsDurationScaling</B>()</PRE>
+<DL>
+<DD>Indicates whether or not duration scaling is supported by this element.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>true if any of the notation elements support duration scaling</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLargestDurationDenominator()"><!-- --></A><H3>
+getLargestDurationDenominator</H3>
+<PRE>
+public long <B>getLargestDurationDenominator</B>()</PRE>
+<DL>
+<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#getLargestDurationDenominator()">AbstractNotationElement</A></CODE></B></DD>
+<DD>Throws an UnsupportedOperationException.  This should be overriden
+ if the sub class supports duration scaling.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#getLargestDurationDenominator()">getLargestDurationDenominator</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#getLargestDurationDenominator()">getLargestDurationDenominator</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></CODE></DL>
 </DD>
 <DD><DL>
 
-<DT><B>Returns:</B><DD>the notation elements</DL>
+<DT><B>Returns:</B><DD>throws an UnsupportedOperationException</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="scaleDurations(long)"><!-- --></A><H3>
+scaleDurations</H3>
+<PRE>
+public void <B>scaleDurations</B>(long&nbsp;scaleFactor)</PRE>
+<DL>
+<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#scaleDurations(long)">AbstractNotationElement</A></CODE></B></DD>
+<DD>Throws an UnsupportedOperationException.  This should be overriden
+ if the sub class supports duration scaling.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#scaleDurations(long)">scaleDurations</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#scaleDurations(long)">scaleDurations</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>scaleFactor</CODE> - the scale factor</DL>
 </DD>
 </DL>
 <HR>
@@ -381,9 +436,6 @@ public java.lang.String <B>toLilypondString</B>()</PRE>
 <DL>
 <DD>Gets the lilypond notation for this part.
 <P>
-<DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#toLilypondString()">toLilypondString</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the lilypond string</DL>
@@ -398,9 +450,6 @@ public java.lang.String <B>toGuidoString</B>()</PRE>
 <DL>
 <DD>Gets the GUIDO notation for this part.
 <P>
-<DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#toGuidoString()">toGuidoString</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the GUIDO notation for this part</DL>

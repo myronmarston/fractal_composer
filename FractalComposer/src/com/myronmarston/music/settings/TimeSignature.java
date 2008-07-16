@@ -20,17 +20,17 @@
 package com.myronmarston.music.settings;
 
 import com.myronmarston.util.MathHelper;
-import com.myronmarston.music.notation.NotationElement;
-
+import com.myronmarston.music.notation.AbstractNotationElement;
 import com.myronmarston.util.FileHelper;
-import java.lang.reflect.UndeclaredThrowableException;
+
 import org.simpleframework.xml.*;
 
+import java.lang.reflect.UndeclaredThrowableException;
+import java.util.regex.*;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MetaMessage;
 import javax.sound.midi.MidiEvent;
 
-import java.util.regex.*;
 
 /**
  * Class that holds the time signature for the fractal piece.  A time signature
@@ -40,7 +40,7 @@ import java.util.regex.*;
  * @author Myron
  */
 @Root
-public class TimeSignature implements NotationElement {
+public class TimeSignature extends AbstractNotationElement {
     @Attribute
     private int numerator;
     
@@ -209,6 +209,16 @@ public class TimeSignature implements NotationElement {
     public String toLilypondString() {
         return "\\time " + this.toString() + FileHelper.NEW_LINE;
     }
+
+    /**
+     * Returns false to indicate that this element does not support duration
+     * scaling.
+     * 
+     * @return false
+     */
+    public boolean supportsDurationScaling() {
+        return false;
+    }   
     
     /**
      * Creates the Midi time signature event.

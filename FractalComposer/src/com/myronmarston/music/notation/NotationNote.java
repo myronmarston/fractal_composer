@@ -28,7 +28,8 @@ import java.util.*;
  * 
  * @author Myron
  */
-public class NotationNote implements NotationElement {
+public class NotationNote extends AbstractNotationElement {
+    
     
     /**
      * The character used for a flat in lilypond notation.
@@ -75,8 +76,7 @@ public class NotationNote implements NotationElement {
     private final char letterName;
     private final int octave;
     private final int accidental;
-    private final Fraction duration;
-    private String lilypondString;
+    private Fraction duration;
     private String guidoString;
     
     /**
@@ -260,20 +260,16 @@ public class NotationNote implements NotationElement {
      */
     public String toLilypondString() {
         //TODO: if a rest crosses a bar line, the rest in the next bar is not printed. i.e., whole note rest in 3/4
-        if (lilypondString == null) {
-            if (this.duration.denomIsPowerOf2()) {
-                String allButDuration = (
-                    this.rest ? LILYPOND_REST : 
-                    this.getLetterName() + this.getLilypondAccidentalString() + this.getLilypondOctaveString());
-                   
-                lilypondString = String.format(this.getDuration().toLilypondString(), allButDuration);
-            } else {
-                Tuplet tuplet = new Tuplet(Arrays.asList((NotationElement)this));
-                lilypondString = tuplet.toLilypondString();
-            }  
-        }        
-        
-        return lilypondString;
+        if (this.duration.denomIsPowerOf2()) {
+            String allButDuration = (
+                this.rest ? LILYPOND_REST : 
+                this.getLetterName() + this.getLilypondAccidentalString() + this.getLilypondOctaveString());
+
+            return String.format(this.getDuration().toLilypondString(), allButDuration);
+        } else {
+            Tuplet tuplet = new Tuplet(Arrays.asList((NotationElement)this));
+            return tuplet.toLilypondString();
+        }  
     }
 
     /**
@@ -282,15 +278,11 @@ public class NotationNote implements NotationElement {
      * @return the representation of this note in GUIDO notation
      */
     public String toGuidoString() {        
-        if (guidoString == null) {
-            String allButDuration = (
-                this.rest ? GUIDO_REST : 
-                this.getLetterName() + this.getGuidoAccidentalString() + this.getGuidoOctave());
+        String allButDuration = (
+            this.rest ? GUIDO_REST : 
+            this.getLetterName() + this.getGuidoAccidentalString() + this.getGuidoOctave());
 
-            guidoString = allButDuration + this.getDuration().toGuidoString();
-        }
-        
-        return guidoString;        
+        return allButDuration + this.getDuration().toGuidoString();        
     }
             
     /**
@@ -305,4 +297,34 @@ public class NotationNote implements NotationElement {
     public NotationNote applyTupletMultiplier(Fraction multiplier) throws IllegalArgumentException {
         return new NotationNote(this, this.getDuration().dividedBy(multiplier));        
     }
+
+    /**
+     * Gets the denominator of the duration.
+     * 
+     * @return the duration denominator
+     */
+    @Override
+    public long getLargestDurationDenominator() {
+        return this.getDuration().denominator();
+    }
+
+    /**
+     * Scales the durations by the given scale factor.
+     * 
+     * @param scaleFactor the factor to use to scale the durations
+     */
+    @Override
+    public void scaleDurations(long scaleFactor) {
+        assert MathHelper.numIsPowerOf2(scaleFactor) : scaleFactor;
+        this.duration = this.duration.times(scaleFactor);
+    }        
+    
+    /**
+     * Indicates that duration scaling is supported by this element.
+     * 
+     * @return true
+     */
+    public boolean supportsDurationScaling() {
+        return true;
+    }        
 }

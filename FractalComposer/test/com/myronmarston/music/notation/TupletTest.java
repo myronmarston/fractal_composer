@@ -21,6 +21,7 @@ package com.myronmarston.music.notation;
 
 import com.myronmarston.util.Fraction;
 
+import java.util.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -67,4 +68,41 @@ public class TupletTest {
         Tuplet tuplet = constructTestTuplet();
         tuplet.toGuidoString();
     }
+    
+    @Test
+    public void getLargestDurationDenominator() {
+        testGetLargestDurationDenominator(24, "1/12", "1/36", "1/36", "1/36", "1/12");
+        testGetLargestDurationDenominator(8, "3/10", "1/5");
+    }
+    
+    private static void testGetLargestDurationDenominator(long expected, String ... durations) {
+        NotationElementList list = new NotationElementList();
+        for (String duration : durations) {
+            list.add(new NotationNote(NotationNoteTest.DEFAULT_PART, 'c', 3, 0, new Fraction(duration)));
+        }
+                
+        Tuplet tuplet = new Tuplet(list);
+        assertEquals(expected, tuplet.getLargestDurationDenominator());
+    }
+    
+    @Test
+    public void scaleDurations() throws Exception {
+        testScaleDurations(8L, Arrays.asList("1/12", "1/24", "1/24", "1/12"), Arrays.asList("1/1", "1/2", "1/2", "1/1"));
+    }
+    
+    private static void testScaleDurations(long scaleFactor, List<String> originalDurations, List<String> expectedDurations) throws Exception {
+        assertEquals(originalDurations.size(), expectedDurations.size());
+        NotationElementList list = new NotationElementList();
+        for (String duration : originalDurations) {
+            list.add(new NotationNote(NotationNoteTest.DEFAULT_PART, 'c', 3, 0, new Fraction(duration)));
+        }
+        
+        Tuplet tuplet = new Tuplet(list);        
+        tuplet.scaleDurations(scaleFactor);
+        
+        for (int i = 0; i < originalDurations.size(); i++) {
+            assertEquals(new Fraction(expectedDurations.get(i)), ((NotationNote) tuplet.getNotes().get(i)).getDuration());
+        }
+    }
+    
 }

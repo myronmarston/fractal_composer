@@ -21,10 +21,6 @@ package com.myronmarston.util;
 
 import java.util.ArrayList;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -111,5 +107,5 @@ public class MathHelperTest {
         assertEquals(4L, MathHelper.getLargestPowerOf2LessThanGivenNumber(7));
         assertEquals(8L, MathHelper.getLargestPowerOf2LessThanGivenNumber(9));
         assertEquals(16L, MathHelper.getLargestPowerOf2LessThanGivenNumber(21));
-    }
+    }        
 }

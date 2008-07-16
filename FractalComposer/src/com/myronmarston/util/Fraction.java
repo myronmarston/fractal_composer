@@ -36,7 +36,7 @@
 
 package com.myronmarston.util;
 
-import com.myronmarston.music.notation.NotationElement;
+import com.myronmarston.music.notation.AbstractNotationElement;
 import org.simpleframework.xml.*;
 import java.util.regex.*;
 
@@ -46,7 +46,7 @@ import java.util.regex.*;
  * Fractions are always maintained in reduced form.
  **/
 @Root
-public class Fraction implements NotationElement, Cloneable, Comparable, java.io.Serializable {
+public class Fraction extends AbstractNotationElement implements Cloneable, Comparable, java.io.Serializable {
   @Attribute
   /** The numerator of this fraction. */
   protected final long numerator_;
@@ -69,7 +69,7 @@ public class Fraction implements NotationElement, Cloneable, Comparable, java.io
   /**
    * The maximum duration denominator supported by lilypond.
    */
-  private static final long MAX_ALLOWED_DURATION_DENOM = 64L;
+  public static final long MAX_ALLOWED_DURATION_DENOM = 64L;
   
   /**
    * The symbol that represents a tie in lilypond notation.
@@ -206,6 +206,16 @@ public class Fraction implements NotationElement, Cloneable, Comparable, java.io
           throw new UnsupportedOperationException("Lilypond does not support note durations that do not have a denominator power of 2.  Instead, wrap the note in a Tuplet with the appropriate multiplier.");            
       }        
   }
+
+  /**
+   * Returns false to indicate that this element does not support duration
+   * scaling.
+   * 
+   * @return false
+   */
+  public boolean supportsDurationScaling() {
+      return false;
+  }    
     
   /**
    * Clones this fraction.

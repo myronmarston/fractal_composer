@@ -42,5 +42,27 @@ public interface NotationElement {
      */
     public String toGuidoString();
     
-    //TODO: provide support here to scale duration denominators.    
+    /**
+     * Indicates whether or not duration scaling is supported.  If true is 
+     * returned, getLargestDurationDenominator() and scaleDurations() should 
+     * both work properly without throwing an UnsupportedOperationException.
+     * 
+     * @return whether or not duration scaling is supported on this element
+     */
+    public boolean supportsDurationScaling();
+    
+    /**
+     * Gets the largest duration denominator of this element.
+     * 
+     * @return the largest duration denominator
+     */
+    public long getLargestDurationDenominator();
+        
+    /**
+     * Scales the durations of this element by multiplying the durations by the
+     * given factor.  
+     * @param scaleFactor the factor to multiply the durations by; should be a
+     *        power of two
+     */
+    public void scaleDurations(long scaleFactor);
 }

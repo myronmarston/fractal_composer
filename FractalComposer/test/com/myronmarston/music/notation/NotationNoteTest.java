@@ -173,4 +173,29 @@ public class NotationNoteTest {
         assertEquals(nn.getPart(), nn2.getPart());
         assertEquals(new Fraction(expectedDuration), nn2.getDuration());
     }
+    
+    @Test
+    public void getLargestDurationDenominator() throws Exception {
+        testGetLargestDurationDenominator("3/8", 8L);
+        testGetLargestDurationDenominator("3/100", 100L);
+        testGetLargestDurationDenominator("4/64", 16L);
+    }
+    
+    private static void testGetLargestDurationDenominator(String duration, long expected) {
+        NotationNote nn = new NotationNote(NotationNoteTest.DEFAULT_PART, 'c', 4, 0, new Fraction(duration));
+        assertEquals(expected, nn.getLargestDurationDenominator());
+    }
+    
+    @Test
+    public void scaleDurations() throws Exception {
+        testScaleDurations("3/8", "3/2", 4);
+        testScaleDurations("1/512", "1/64", 8);
+    }
+    
+    private static void testScaleDurations(String originalDuration, String expectedDuration, long scaleFactor) throws Exception {
+        NotationNote nn = new NotationNote(NotationNoteTest.DEFAULT_PART, 'c', 4, 0, new Fraction(originalDuration));
+        nn.scaleDurations(scaleFactor);
+        assertEquals(new Fraction(expectedDuration), nn.getDuration());
+        
+    }
 }

@@ -244,8 +244,7 @@ public class OutputManager {
     protected void constructMidiTrack(NoteList noteList) {
         MidiNote thisMidiNote, lastMidiNote = null;
         Note lastNote = null;
-        Fraction startTime = new Fraction(0, 1);
-        Scale scale = fractalPiece.getScale();        
+        Fraction startTime = new Fraction(0, 1);        
         
         // get a default instrument if we we're not passed one...
         Instrument instrument = (noteList.getInstrument() == null ? Instrument.DEFAULT : noteList.getInstrument());

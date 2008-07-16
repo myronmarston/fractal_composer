@@ -92,14 +92,15 @@ com.myronmarston.music.notation</FONT>
 Class NotationNote</H2>
 <PRE>
 java.lang.Object
-  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.notation.NotationNote</B>
+  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">com.myronmarston.music.notation.AbstractNotationElement</A>
+      <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.notation.NotationNote</B>
 </PRE>
 <DL>
 <DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DD>
 </DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>NotationNote</B><DT>extends java.lang.Object<DT>implements <A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DL>
+<DT><PRE>public class <B>NotationNote</B><DT>extends <A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></DL>
 </PRE>
 
 <P>
@@ -232,6 +233,14 @@ Represents one note of music notation.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#getLargestDurationDenominator()">getLargestDurationDenominator</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the denominator of the duration.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;char</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#getLetterName()">getLetterName</A></B>()</CODE>
 
@@ -277,6 +286,22 @@ Represents one note of music notation.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checks to see if this notation note is a rest.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#scaleDurations(long)">scaleDurations</A></B>(long&nbsp;scaleFactor)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scales the durations by the given scale factor.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#supportsDurationScaling()">supportsDurationScaling</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indicates that duration scaling is supported by this element.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -414,9 +439,6 @@ public static <A HREF="../../../../com/myronmarston/music/notation/NotationNote.
 <DD>Creates a rest.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>part</CODE> - the part that willl own the rest<DD><CODE>duration</CODE> - the duration of the rest
 <DT><B>Returns:</B><DD>the rest</DL>
 </DD>
@@ -430,9 +452,6 @@ public <A HREF="../../../../com/myronmarston/music/notation/Part.html" title="cl
 <DL>
 <DD>Gets the part that owns this notation note.
 <P>
-<DD><DL>
-</DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the part</DL>
@@ -449,9 +468,6 @@ public int <B>getAccidental</B>()</PRE>
  sharps.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the accidental</DL>
 </DD>
@@ -465,9 +481,6 @@ public <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in
 <DL>
 <DD>Gets the rhythmic duration of this notation note.
 <P>
-<DD><DL>
-</DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the rhythmic duration</DL>
@@ -483,9 +496,6 @@ public char <B>getLetterName</B>()</PRE>
 <DD>Gets the letter name of this notation note (a-g).
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the letter name of this notation note</DL>
 </DD>
@@ -499,9 +509,6 @@ public int <B>getOctave</B>()</PRE>
 <DL>
 <DD>Gets the octave number of this notation note.
 <P>
-<DD><DL>
-</DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the octave number</DL>
@@ -517,9 +524,6 @@ public boolean <B>isRest</B>()</PRE>
 <DD>Checks to see if this notation note is a rest.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>true if this notation note is a rest</DL>
 </DD>
@@ -533,9 +537,6 @@ protected java.lang.String <B>getLilypondOctaveString</B>()</PRE>
 <DL>
 <DD>Gets a string representing the octave in Lilypond notation.
 <P>
-<DD><DL>
-</DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the lilypond octave string</DL>
@@ -551,9 +552,6 @@ protected int <B>getGuidoOctave</B>()</PRE>
 <DD>Gets the octave number used for guido notation.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the octave number used by guido notation</DL>
 </DD>
@@ -567,9 +565,6 @@ protected java.lang.String <B>getLilypondAccidentalString</B>()</PRE>
 <DL>
 <DD>Gets a string representing the accidental in lilypond notation.
 <P>
-<DD><DL>
-</DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the lilypond accidental string</DL>
@@ -585,9 +580,6 @@ protected java.lang.String <B>getGuidoAccidentalString</B>()</PRE>
 <DD>Gets a string representing the accidental in guido notation.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the guido accidental string</DL>
 </DD>
@@ -602,9 +594,6 @@ public java.lang.String <B>toLilypondString</B>()</PRE>
 <DD>Gets the representation of this note in lilypond notation.
 <P>
 <DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#toLilypondString()">toLilypondString</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the representation of this note in lilypond notation</DL>
 </DD>
@@ -618,9 +607,6 @@ public java.lang.String <B>toGuidoString</B>()</PRE>
 <DL>
 <DD>Gets the representation of this note in GUIDO notation.
 <P>
-<DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#toGuidoString()">toGuidoString</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the representation of this note in GUIDO notation</DL>
@@ -638,14 +624,58 @@ public <A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" t
  given multiplier, which can be used when grouping tuplets.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>multiplier</CODE> - the tuplet multiplier
 <DT><B>Returns:</B><DD>a new notation note
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.IllegalArgumentException</CODE> - if the multiplier is note
          positive</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLargestDurationDenominator()"><!-- --></A><H3>
+getLargestDurationDenominator</H3>
+<PRE>
+public long <B>getLargestDurationDenominator</B>()</PRE>
+<DL>
+<DD>Gets the denominator of the duration.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#getLargestDurationDenominator()">getLargestDurationDenominator</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#getLargestDurationDenominator()">getLargestDurationDenominator</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the duration denominator</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="scaleDurations(long)"><!-- --></A><H3>
+scaleDurations</H3>
+<PRE>
+public void <B>scaleDurations</B>(long&nbsp;scaleFactor)</PRE>
+<DL>
+<DD>Scales the durations by the given scale factor.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#scaleDurations(long)">scaleDurations</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#scaleDurations(long)">scaleDurations</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>scaleFactor</CODE> - the factor to use to scale the durations</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="supportsDurationScaling()"><!-- --></A><H3>
+supportsDurationScaling</H3>
+<PRE>
+public boolean <B>supportsDurationScaling</B>()</PRE>
+<DL>
+<DD>Indicates that duration scaling is supported by this element.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>true</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

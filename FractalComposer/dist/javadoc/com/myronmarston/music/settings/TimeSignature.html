@@ -92,14 +92,15 @@ com.myronmarston.music.settings</FONT>
 Class TimeSignature</H2>
 <PRE>
 java.lang.Object
-  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.settings.TimeSignature</B>
+  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">com.myronmarston.music.notation.AbstractNotationElement</A>
+      <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.settings.TimeSignature</B>
 </PRE>
 <DL>
 <DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DD>
 </DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>TimeSignature</B><DT>extends java.lang.Object<DT>implements <A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DL>
+<DT><PRE>public class <B>TimeSignature</B><DT>extends <A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></DL>
 </PRE>
 
 <P>
@@ -236,6 +237,15 @@ Class that holds the time signature for the fractal piece.  A time signature
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html#supportsDurationScaling()">supportsDurationScaling</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns false to indicate that this element does not support duration
+ scaling.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html#toGuidoString()">toGuidoString</A></B>()</CODE>
 
@@ -257,6 +267,15 @@ Class that holds the time signature for the fractal piece.  A time signature
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.notation.AbstractNotationElement"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.notation.<A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#getLargestDurationDenominator()">getLargestDurationDenominator</A>, <A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#scaleDurations(long)">scaleDurations</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -364,9 +383,6 @@ public int <B>getDenominator</B>()</PRE>
 <DD>Gets the kind of note that gets one count.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the denominator</DL>
 </DD>
@@ -381,9 +397,6 @@ public void <B>setDenominator</B>(int&nbsp;denominator)
 <DL>
 <DD>Sets the kind of note that gets one count.  Should be a power of 2.
 <P>
-<DD><DL>
-</DL>
-</DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>denominator</CODE> - the value
 <DT><B>Throws:</B>
@@ -400,9 +413,6 @@ public int <B>getNumerator</B>()</PRE>
 <DD>Gets the number of counts per bar.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the numerator</DL>
 </DD>
@@ -417,9 +427,6 @@ public void <B>setNumerator</B>(int&nbsp;numerator)
 <DL>
 <DD>Sets the number of counts per bar.
 <P>
-<DD><DL>
-</DL>
-</DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>numerator</CODE> - the value
 <DT><B>Throws:</B>
@@ -436,9 +443,6 @@ protected int <B>getDenominatorPowerOf2</B>()</PRE>
 <DD>Gets the base 2 logarithm of the denominator.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the base 2 logarithm of the denominator</DL>
 </DD>
@@ -452,9 +456,6 @@ public java.lang.String <B>toGuidoString</B>()</PRE>
 <DL>
 <DD>Gets a string representation of this time signature in GUIDO notation.
 <P>
-<DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#toGuidoString()">toGuidoString</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the time signature in guido notation</DL>
@@ -470,11 +471,23 @@ public java.lang.String <B>toLilypondString</B>()</PRE>
 <DD>Gets the representation of this time signature in Lilypond notation.
 <P>
 <DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#toLilypondString()">toLilypondString</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the lilypond string</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="supportsDurationScaling()"><!-- --></A><H3>
+supportsDurationScaling</H3>
+<PRE>
+public boolean <B>supportsDurationScaling</B>()</PRE>
+<DL>
+<DD>Returns false to indicate that this element does not support duration
+ scaling.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>false</DL>
 </DD>
 </DL>
 <HR>
@@ -486,9 +499,6 @@ public javax.sound.midi.MidiEvent <B>getMidiTimeSignatureEvent</B>()</PRE>
 <DL>
 <DD>Creates the Midi time signature event.
 <P>
-<DD><DL>
-</DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the midi time signature event</DL>

@@ -92,14 +92,15 @@ com.myronmarston.music.scales</FONT>
 Class KeySignature</H2>
 <PRE>
 java.lang.Object
-  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.scales.KeySignature</B>
+  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">com.myronmarston.music.notation.AbstractNotationElement</A>
+      <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.scales.KeySignature</B>
 </PRE>
 <DL>
 <DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DD>
 </DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>KeySignature</B><DT>extends java.lang.Object<DT>implements <A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DL>
+<DT><PRE>public class <B>KeySignature</B><DT>extends <A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></DL>
 </PRE>
 
 <P>
@@ -211,6 +212,15 @@ Represents a Midi key signature.  This is immutable.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/KeySignature.html#supportsDurationScaling()">supportsDurationScaling</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns false to indicate that this element does not support duration
+ scaling, since a key signature has no durations.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/KeySignature.html#toGuidoString()">toGuidoString</A></B>()</CODE>
 
@@ -224,6 +234,15 @@ Represents a Midi key signature.  This is immutable.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the representation of this key signature in Lilypond notation.</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.notation.AbstractNotationElement"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.notation.<A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#getLargestDurationDenominator()">getLargestDurationDenominator</A>, <A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#scaleDurations(long)">scaleDurations</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -303,9 +322,6 @@ public <A HREF="../../../../com/myronmarston/music/scales/Tonality.html" title="
 <DD>Gets the tonality of this key.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>either major or minor</DL>
 </DD>
@@ -321,9 +337,6 @@ public int <B>getNumberOfFlatsOrSharps</B>()</PRE>
  indicates flats and a positive number indicates sharps.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the number of flats or sharps</DL>
 </DD>
@@ -337,9 +350,6 @@ public <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in
 <DL>
 <DD>Gets the note name of the tonal center.
 <P>
-<DD><DL>
-</DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the name of the key</DL>
@@ -357,9 +367,6 @@ public <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in
  3rd above the key.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the relative key name</DL>
 </DD>
@@ -373,9 +380,6 @@ public java.lang.String <B>toGuidoString</B>()</PRE>
 <DL>
 <DD>Gets a string representing this key signature in GUIDO notation.
 <P>
-<DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#toGuidoString()">toGuidoString</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the Guido string</DL>
@@ -391,9 +395,6 @@ public java.lang.String <B>toLilypondString</B>()</PRE>
 <DD>Gets the representation of this key signature in Lilypond notation.
 <P>
 <DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#toLilypondString()">toLilypondString</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the lilypond string</DL>
 </DD>
@@ -408,11 +409,23 @@ public javax.sound.midi.MidiEvent <B>getKeySignatureMidiEvent</B>(long&nbsp;tick
 <DD>Gets a midi key signature event.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>tick</CODE> - the time-stamp for when this key signature should be used
 <DT><B>Returns:</B><DD>the midi event</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="supportsDurationScaling()"><!-- --></A><H3>
+supportsDurationScaling</H3>
+<PRE>
+public boolean <B>supportsDurationScaling</B>()</PRE>
+<DL>
+<DD>Returns false to indicate that this element does not support duration
+ scaling, since a key signature has no durations.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>false</DL>
 </DD>
 </DL>
 <HR>

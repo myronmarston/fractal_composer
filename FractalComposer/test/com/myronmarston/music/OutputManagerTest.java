@@ -351,4 +351,26 @@ public class OutputManagerTest {
             }            
         }); 
     }
+    
+    @Test
+    public void pieceWithReallyFastNotes() throws Exception {
+        // Lilypond and Guido don't allow notes faster than 64ths.  We have some code to
+        // handle this, so just test that this runs and doesn't throw an exception...
+        FractalPiece fp = new FractalPiece();
+        fp.createDefaultSettings();
+        fp.setGermString("G4,1/128 A4,1/256");
+        final OutputManager om = fp.createPieceResultOutputManager();
+        
+        FileHelper.createAndUseTempFile("LilypondTest", "", new FileHelper.TempFileUser() {
+            public void useTempFile(String tempFileName) throws Exception {
+                om.saveLilypondResults(tempFileName);
+            }
+        });
+        
+        FileHelper.createAndUseTempFile("GuidoTest", ".gif", new FileHelper.TempFileUser() {
+            public void useTempFile(String tempFileName) throws Exception {
+                om.saveGifImage(tempFileName);
+            }
+        });
+    }
 }

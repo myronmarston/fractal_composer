@@ -191,10 +191,18 @@ A list of notation elements.  This is intended to be used for a list of notes,
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;long</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html#getLowestNoteDurationDenominator()">getLowestNoteDurationDenominator</A></B>()</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html#getLargestDurationDenominator()">getLargestDurationDenominator</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the lowest note duration denominator in this list.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the largest duration denominator of this element.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html#getSmallestNoteDurationDenominator()">getSmallestNoteDurationDenominator</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the smallest note duration denominator in this list.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -217,11 +225,27 @@ A list of notation elements.  This is intended to be used for a list of notes,
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html#scaleDurations(long)">scaleDurations</A></B>(long&nbsp;scaleFactor)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scales the durations by the given scale factor.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html#setElementSeperator(java.lang.String)">setElementSeperator</A></B>(java.lang.String&nbsp;elementSeperator)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the string used to seperate the elements when getting the lilypond
  or guido string for this list.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html#supportsDurationScaling()">supportsDurationScaling</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indicates whether or not this list supports duration scaling.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -419,6 +443,65 @@ public java.lang.String <B>toGuidoString</B>()</PRE>
 </DL>
 <HR>
 
+<A NAME="getLargestDurationDenominator()"><!-- --></A><H3>
+getLargestDurationDenominator</H3>
+<PRE>
+public long <B>getLargestDurationDenominator</B>()
+                                   throws java.lang.UnsupportedOperationException</PRE>
+<DL>
+<DD>Gets the largest duration denominator of this element.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#getLargestDurationDenominator()">getLargestDurationDenominator</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the largest duration denominator
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.UnsupportedOperationException</CODE> - if this list has no
+         elements that support duration scaling</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="scaleDurations(long)"><!-- --></A><H3>
+scaleDurations</H3>
+<PRE>
+public void <B>scaleDurations</B>(long&nbsp;scaleFactor)
+                    throws java.lang.UnsupportedOperationException</PRE>
+<DL>
+<DD>Scales the durations by the given scale factor.  Each duration is
+ multiplied by it.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#scaleDurations(long)">scaleDurations</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>scaleFactor</CODE> - the scale factor; should be a power of 2
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.UnsupportedOperationException</CODE> - if this list has no
+         elements that support duration scaling</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="supportsDurationScaling()"><!-- --></A><H3>
+supportsDurationScaling</H3>
+<PRE>
+public boolean <B>supportsDurationScaling</B>()</PRE>
+<DL>
+<DD>Indicates whether or not this list supports duration scaling.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#supportsDurationScaling()">supportsDurationScaling</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>true if this list supports duration scaling</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="totalDurationDenomAddsToPowerOf2(java.util.Collection)"><!-- --></A><H3>
 totalDurationDenomAddsToPowerOf2</H3>
 <PRE>
@@ -476,20 +559,20 @@ public int <B>getEndIndexForTupletGroup</B>(int&nbsp;beginIndex)</PRE>
 </DL>
 <HR>
 
-<A NAME="getLowestNoteDurationDenominator()"><!-- --></A><H3>
-getLowestNoteDurationDenominator</H3>
+<A NAME="getSmallestNoteDurationDenominator()"><!-- --></A><H3>
+getSmallestNoteDurationDenominator</H3>
 <PRE>
-public long <B>getLowestNoteDurationDenominator</B>()
-                                      throws java.lang.UnsupportedOperationException</PRE>
+public long <B>getSmallestNoteDurationDenominator</B>()
+                                        throws java.lang.UnsupportedOperationException</PRE>
 <DL>
-<DD>Gets the lowest note duration denominator in this list.
+<DD>Gets the smallest note duration denominator in this list.
 <P>
 <DD><DL>
 </DL>
 </DD>
 <DD><DL>
 
-<DT><B>Returns:</B><DD>the lowest note duration denominator
+<DT><B>Returns:</B><DD>the smallest note duration denominator
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.UnsupportedOperationException</CODE> - if the list does not have any notes</DL>
 </DD>

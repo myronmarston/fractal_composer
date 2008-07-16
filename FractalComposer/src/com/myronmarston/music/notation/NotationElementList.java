@@ -20,6 +20,7 @@
 package com.myronmarston.music.notation;
 
 import com.myronmarston.util.Fraction;
+import com.myronmarston.util.MathHelper;
 import java.util.*;
 
 /**
@@ -139,7 +140,63 @@ public class NotationElementList extends ArrayList<NotationElement> implements N
             }
         });        
     }
-            
+
+    /**
+     * Gets the largest duration denominator of this element.
+     * 
+     * @return the largest duration denominator
+     * @throws java.lang.UnsupportedOperationException if this list has no
+     *         elements that support duration scaling
+     */
+    public long getLargestDurationDenominator() throws UnsupportedOperationException {
+        long largestDenom = Long.MIN_VALUE;
+        boolean supported = false;
+        
+        for (NotationElement e : this) {
+            if (e.supportsDurationScaling()) {
+                supported = true;
+                largestDenom = Math.max(largestDenom, e.getLargestDurationDenominator());
+            }            
+        }
+        
+        if (!supported) throw new UnsupportedOperationException("getLargestDurationDenominator() is not supported on this element.");
+        return largestDenom;
+    }
+    
+    /**
+     * Scales the durations by the given scale factor.  Each duration is
+     * multiplied by it.
+     * 
+     * @param scaleFactor the scale factor; should be a power of 2
+     * @throws java.lang.UnsupportedOperationException if this list has no
+     *         elements that support duration scaling
+     */
+    public void scaleDurations(long scaleFactor) throws UnsupportedOperationException {        
+        assert MathHelper.numIsPowerOf2(scaleFactor) : scaleFactor;
+        boolean supported = false;
+        for (NotationElement e : this) {
+            if (e.supportsDurationScaling()) {
+                supported = true;
+                e.scaleDurations(scaleFactor);
+            }
+        }        
+        
+        if (!supported) throw new UnsupportedOperationException("scaleDurations() is not supported on this element.");
+    }
+
+    /**
+     * Indicates whether or not this list supports duration scaling.
+     * 
+     * @return true if this list supports duration scaling
+     */
+    public boolean supportsDurationScaling() {
+        for (NotationElement element : this) {
+            if (element.supportsDurationScaling()) return true;
+        }
+        
+        return false;
+    }        
+    
     /**
      * Checks to see if the sum total of the denominators of all the durations 
      * is a power of 2.
@@ -246,12 +303,12 @@ public class NotationElementList extends ArrayList<NotationElement> implements N
     }
     
     /**
-     * Gets the lowest note duration denominator in this list.
+     * Gets the smallest note duration denominator in this list.
      * 
-     * @return the lowest note duration denominator
+     * @return the smallest note duration denominator
      * @throws UnsupportedOperationException if the list does not have any notes
      */
-    public long getLowestNoteDurationDenominator() throws UnsupportedOperationException {
+    public long getSmallestNoteDurationDenominator() throws UnsupportedOperationException {
         long smallestDenom = Long.MAX_VALUE;
         boolean noteFound = false;
         
@@ -315,4 +372,5 @@ public class NotationElementList extends ArrayList<NotationElement> implements N
             this.groupTuplets();
         }
     }    
+        
 }

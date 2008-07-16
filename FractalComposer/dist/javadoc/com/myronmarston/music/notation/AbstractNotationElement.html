@@ -4,7 +4,7 @@
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <TITLE>
-GuidoRunException
+AbstractNotationElement
 </TITLE>
 
 
@@ -14,7 +14,7 @@ GuidoRunException
 function windowTitle()
 {
     if (location.href.indexOf('is-external=true') == -1) {
-        parent.document.title="GuidoRunException";
+        parent.document.title="AbstractNotationElement";
     }
 }
 </SCRIPT>
@@ -39,7 +39,7 @@ function windowTitle()
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/GuidoRunException.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/AbstractNotationElement.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -54,11 +54,11 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/notation/LilypondRunException.html" title="class in com.myronmarston.music.notation"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;PREV CLASS&nbsp;
+&nbsp;<A HREF="../../../../com/myronmarston/music/notation/GuidoRunException.html" title="class in com.myronmarston.music.notation"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/myronmarston/music/notation/GuidoRunException.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="GuidoRunException.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/myronmarston/music/notation/AbstractNotationElement.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="AbstractNotationElement.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -89,28 +89,29 @@ DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&n
 <FONT SIZE="-1">
 com.myronmarston.music.notation</FONT>
 <BR>
-Class GuidoRunException</H2>
+Class AbstractNotationElement</H2>
 <PRE>
 java.lang.Object
-  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by ">java.lang.Throwable
-      <IMG SRC="../../../../resources/inherit.gif" ALT="extended by ">java.lang.Exception
-          <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.notation.GuidoRunException</B>
+  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.notation.AbstractNotationElement</B>
 </PRE>
 <DL>
-<DT><B>All Implemented Interfaces:</B> <DD>java.io.Serializable</DD>
+<DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DD>
+</DL>
+<DL>
+<DT><B>Direct Known Subclasses:</B> <DD><A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>, <A HREF="../../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>, <A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>, <A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>, <A HREF="../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>, <A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A>, <A HREF="../../../../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A></DD>
 </DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>GuidoRunException</B><DT>extends java.lang.Exception</DL>
+<DT><PRE>public abstract class <B>AbstractNotationElement</B><DT>extends java.lang.Object<DT>implements <A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DL>
 </PRE>
 
 <P>
-Exception that is thrown when an error occurs while running Guido.
+An abstract class providing a partial implementation of the NotationElement
+ interface.  Classes that should implement the NotationElement interface and 
+ don't extend another class can extend this class.
 <P>
 
 <P>
-<DL>
-<DT><B>See Also:</B><DD><A HREF="../../../../serialized-form.html#com.myronmarston.music.notation.GuidoRunException">Serialized Form</A></DL>
 <HR>
 
 <P>
@@ -124,10 +125,10 @@ Exception that is thrown when an error occurs while running Guido.
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/GuidoRunException.html#GuidoRunException(java.lang.String)">GuidoRunException</A></B>(java.lang.String&nbsp;guidoOutput)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#AbstractNotationElement()">AbstractNotationElement</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -141,20 +142,19 @@ Exception that is thrown when an error occurs while running Guido.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/GuidoRunException.html#getGuidoOutput()">getGuidoOutput</A></B>()</CODE>
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#getLargestDurationDenominator()">getLargestDurationDenominator</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the output from running guido.</TD>
-</TR>
-</TABLE>
-&nbsp;<A NAME="methods_inherited_from_class_java.lang.Throwable"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TH ALIGN="left"><B>Methods inherited from class java.lang.Throwable</B></TH>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Throws an UnsupportedOperationException.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>fillInStackTrace, getCause, getLocalizedMessage, getMessage, getStackTrace, initCause, printStackTrace, printStackTrace, printStackTrace, setStackTrace, toString</CODE></TD>
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#scaleDurations(long)">scaleDurations</A></B>(long&nbsp;scaleFactor)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Throws an UnsupportedOperationException.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -163,7 +163,16 @@ Exception that is thrown when an error occurs while running Guido.
 <TH ALIGN="left"><B>Methods inherited from class java.lang.Object</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</CODE></TD>
+<TD><CODE>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.notation.NotationElement"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from interface com.myronmarston.music.notation.<A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#supportsDurationScaling()">supportsDurationScaling</A>, <A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#toGuidoString()">toGuidoString</A>, <A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#toLilypondString()">toLilypondString</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -179,15 +188,11 @@ Exception that is thrown when an error occurs while running Guido.
 </TR>
 </TABLE>
 
-<A NAME="GuidoRunException(java.lang.String)"><!-- --></A><H3>
-GuidoRunException</H3>
+<A NAME="AbstractNotationElement()"><!-- --></A><H3>
+AbstractNotationElement</H3>
 <PRE>
-public <B>GuidoRunException</B>(java.lang.String&nbsp;guidoOutput)</PRE>
+public <B>AbstractNotationElement</B>()</PRE>
 <DL>
-<DD>Constructor.
-<P>
-<DL>
-<DT><B>Parameters:</B><DD><CODE>guidoOutput</CODE> - the output from running guido</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -200,16 +205,43 @@ public <B>GuidoRunException</B>(java.lang.String&nbsp;guidoOutput)</PRE>
 </TR>
 </TABLE>
 
-<A NAME="getGuidoOutput()"><!-- --></A><H3>
-getGuidoOutput</H3>
+<A NAME="getLargestDurationDenominator()"><!-- --></A><H3>
+getLargestDurationDenominator</H3>
 <PRE>
-public java.lang.String <B>getGuidoOutput</B>()</PRE>
+public long <B>getLargestDurationDenominator</B>()
+                                   throws java.lang.UnsupportedOperationException</PRE>
 <DL>
-<DD>Gets the output from running guido.
+<DD>Throws an UnsupportedOperationException.  This should be overriden
+ if the sub class supports duration scaling.
 <P>
 <DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#getLargestDurationDenominator()">getLargestDurationDenominator</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
+</DD>
+<DD><DL>
 
-<DT><B>Returns:</B><DD>the output from running guido</DL>
+<DT><B>Returns:</B><DD>throws an UnsupportedOperationException
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.UnsupportedOperationException</CODE> - always</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="scaleDurations(long)"><!-- --></A><H3>
+scaleDurations</H3>
+<PRE>
+public void <B>scaleDurations</B>(long&nbsp;scaleFactor)
+                    throws java.lang.UnsupportedOperationException</PRE>
+<DL>
+<DD>Throws an UnsupportedOperationException.  This should be overriden
+ if the sub class supports duration scaling.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#scaleDurations(long)">scaleDurations</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>scaleFactor</CODE> - the scale factor
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.UnsupportedOperationException</CODE> - always</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
@@ -228,7 +260,7 @@ public java.lang.String <B>getGuidoOutput</B>()</PRE>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/GuidoRunException.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/AbstractNotationElement.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -243,11 +275,11 @@ public java.lang.String <B>getGuidoOutput</B>()</PRE>
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/notation/LilypondRunException.html" title="class in com.myronmarston.music.notation"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;PREV CLASS&nbsp;
+&nbsp;<A HREF="../../../../com/myronmarston/music/notation/GuidoRunException.html" title="class in com.myronmarston.music.notation"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/myronmarston/music/notation/GuidoRunException.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="GuidoRunException.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/myronmarston/music/notation/AbstractNotationElement.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="AbstractNotationElement.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {

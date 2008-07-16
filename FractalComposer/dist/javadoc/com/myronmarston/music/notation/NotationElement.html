@@ -91,7 +91,7 @@ com.myronmarston.music.notation</FONT>
 <BR>
 Interface NotationElement</H2>
 <DL>
-<DT><B>All Known Implementing Classes:</B> <DD><A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>, <A HREF="../../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>, <A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>, <A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>, <A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>, <A HREF="../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>, <A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A>, <A HREF="../../../../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A></DD>
+<DT><B>All Known Implementing Classes:</B> <DD><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A>, <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>, <A HREF="../../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>, <A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>, <A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>, <A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>, <A HREF="../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>, <A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A>, <A HREF="../../../../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A></DD>
 </DL>
 <HR>
 <DL>
@@ -114,6 +114,31 @@ Interface that represents an element of musical notation.
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#getLargestDurationDenominator()">getLargestDurationDenominator</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the largest duration denominator of this element.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#scaleDurations(long)">scaleDurations</A></B>(long&nbsp;scaleFactor)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scales the durations of this element by multiplying the durations by the
+ given factor.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#supportsDurationScaling()">supportsDurationScaling</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indicates whether or not duration scaling is supported.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -173,6 +198,51 @@ java.lang.String <B>toGuidoString</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the guido representation of this element</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="supportsDurationScaling()"><!-- --></A><H3>
+supportsDurationScaling</H3>
+<PRE>
+boolean <B>supportsDurationScaling</B>()</PRE>
+<DL>
+<DD>Indicates whether or not duration scaling is supported.  If true is 
+ returned, getLargestDurationDenominator() and scaleDurations() should 
+ both work properly without throwing an UnsupportedOperationException.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>whether or not duration scaling is supported on this element</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLargestDurationDenominator()"><!-- --></A><H3>
+getLargestDurationDenominator</H3>
+<PRE>
+long <B>getLargestDurationDenominator</B>()</PRE>
+<DL>
+<DD>Gets the largest duration denominator of this element.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the largest duration denominator</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="scaleDurations(long)"><!-- --></A><H3>
+scaleDurations</H3>
+<PRE>
+void <B>scaleDurations</B>(long&nbsp;scaleFactor)</PRE>
+<DL>
+<DD>Scales the durations of this element by multiplying the durations by the
+ given factor.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>scaleFactor</CODE> - the factor to multiply the durations by; should be a
+        power of two</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

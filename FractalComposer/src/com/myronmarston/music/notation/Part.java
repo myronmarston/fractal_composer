@@ -28,7 +28,7 @@ import com.myronmarston.util.FileHelper;
  * 
  * @author Myron
  */
-public class Part implements NotationElement {    
+public class Part extends AbstractNotationElement {    
     private final NotationElementList notationElements = new NotationElementList();
     private final Piece piece;
     private final Instrument instrument;
@@ -130,7 +130,29 @@ public class Part implements NotationElement {
         list.groupTuplets();
         return list;
     }
-    
+
+    /**
+     * Indicates whether or not duration scaling is supported by this element.
+     * 
+     * @return true if any of the notation elements support duration scaling
+     */
+    public boolean supportsDurationScaling() {
+        return this.getNotationElements().supportsDurationScaling();
+    }
+
+    @Override
+    public long getLargestDurationDenominator() {
+        // here we use the list with grouped tuplets because we want to get the
+        // duration denominator that will actually be used for the notes, taking
+        // into account tuplets. 
+        return this.getNotationElementsWithGroupedTuplets().getLargestDurationDenominator();
+    }
+
+    @Override
+    public void scaleDurations(long scaleFactor) {
+        this.getNotationElements().scaleDurations(scaleFactor);
+    }
+                    
     /**
      * Gets the lilypond notation for this part.
      * 
@@ -138,7 +160,6 @@ public class Part implements NotationElement {
      */
     public String toLilypondString() {        
         //TODO: clef            
-
         StringBuilder str = new StringBuilder();
 
         str.append("\\new Voice \\with {" + FileHelper.NEW_LINE);

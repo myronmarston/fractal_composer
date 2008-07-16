@@ -186,6 +186,16 @@ This class contains the notation of an entire fractal piece.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Piece.html#scaleDurationsIfNecessary()">scaleDurationsIfNecessary</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If there are any note durations that have denominators too large for 
+ Guido and Lilypond to handle, this will scale all the duration values
+ so that Guido and Lilypond can work properly.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Piece.html#toGuidoString()">toGuidoString</A></B>()</CODE>
 
@@ -385,6 +395,21 @@ public java.lang.String <B>toGuidoString</B>(java.lang.String&nbsp;title,
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece
 <DT><B>Returns:</B><DD>the guido string</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="scaleDurationsIfNecessary()"><!-- --></A><H3>
+scaleDurationsIfNecessary</H3>
+<PRE>
+protected void <B>scaleDurationsIfNecessary</B>()</PRE>
+<DL>
+<DD>If there are any note durations that have denominators too large for 
+ Guido and Lilypond to handle, this will scale all the duration values
+ so that Guido and Lilypond can work properly.
+<P>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

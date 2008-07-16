@@ -19,7 +19,11 @@
 
 package com.myronmarston.music.notation;
 
+import com.myronmarston.music.Instrument;
+import com.myronmarston.music.scales.Scale;
+import com.myronmarston.music.settings.TimeSignature;
 import com.myronmarston.util.FileHelper;
+import com.myronmarston.util.Fraction;
 import java.util.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -64,6 +68,29 @@ public class PieceTest {
         expectedPieceString.append(FileHelper.NEW_LINE + "}");
                
         assertEquals(expectedPieceString.toString(), part.getPiece().toGuidoString(null, null));
+    }
+    
+    @Test
+    @SuppressWarnings("unchecked")
+    public void scaleDurationsIfNecessary() throws Exception {
+        testScaleDurationsIfNecessary(Arrays.asList(Arrays.asList("1/64", "1/64", "1/128", "1/128", "1/256", "1/512", "1/8", "3/17")), 512L, 64L);
+        testScaleDurationsIfNecessary(Arrays.asList(Arrays.asList("1/6", "1/4", "1/32", "1/28", "1/25", "1/12", "1/8", "3/17")), 32L, 32L);
+    }
+    
+    private void testScaleDurationsIfNecessary(List<List<String>> parts, long beforeLongestDuration, long afterLongestDuration) throws Exception {
+        Piece piece = new Piece(Scale.DEFAULT.getKeySignature(), new TimeSignature(6, 8), 93, false, false);        
+                
+        for (List<String> partDurations : parts) {
+            Part part = new Part(piece, Instrument.getInstrument("Cello"));
+            piece.getParts().add(part);
+            for (String duration : partDurations) {
+                part.getNotationElements().add(new NotationNote(part, 'c', 4, 0, new Fraction(duration)));
+            }
+        }
+        
+        assertEquals(beforeLongestDuration, piece.getParts().getLargestDurationDenominator());
+        piece.scaleDurationsIfNecessary();
+        assertEquals(afterLongestDuration, piece.getParts().getLargestDurationDenominator());
     }
 
 }

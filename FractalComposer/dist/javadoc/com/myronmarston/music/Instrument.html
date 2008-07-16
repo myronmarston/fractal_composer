@@ -92,14 +92,15 @@ com.myronmarston.music</FONT>
 Class Instrument</H2>
 <PRE>
 java.lang.Object
-  <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.Instrument</B>
+  <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">com.myronmarston.music.notation.AbstractNotationElement</A>
+      <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.Instrument</B>
 </PRE>
 <DL>
 <DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DD>
 </DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>Instrument</B><DT>extends java.lang.Object<DT>implements <A HREF="../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></DL>
+<DT><PRE>public class <B>Instrument</B><DT>extends <A HREF="../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></DL>
 </PRE>
 
 <P>
@@ -180,6 +181,15 @@ Represents a midi instrument.  Cannot be instantiated directly.  Instead,
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Instrument.html#supportsDurationScaling()">supportsDurationScaling</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns false to indicate that this element does not support duration
+ scaling since an instrument has no durations.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/Instrument.html#toGuidoString()">toGuidoString</A></B>()</CODE>
 
@@ -193,6 +203,15 @@ Represents a midi instrument.  Cannot be instantiated directly.  Instead,
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a string representing this instrument in Lilypond notation.</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.notation.AbstractNotationElement"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.notation.<A HREF="../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../com/myronmarston/music/notation/AbstractNotationElement.html#getLargestDurationDenominator()">getLargestDurationDenominator</A>, <A HREF="../../../com/myronmarston/music/notation/AbstractNotationElement.html#scaleDurations(long)">scaleDurations</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -258,9 +277,6 @@ protected javax.sound.midi.Instrument <B>getMidiInstrument</B>()</PRE>
 <DD>Gets the midi instrument.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the midi instrument object</DL>
 </DD>
@@ -274,9 +290,6 @@ public static <A HREF="../../../com/myronmarston/music/Instrument.html" title="c
 <DL>
 <DD>Gets the instrument with the given name.
 <P>
-<DD><DL>
-</DL>
-</DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>name</CODE> - the case-insensitive name of the instrument
 <DT><B>Returns:</B><DD>the instrument, or null, if none was found with the given name</DL>
@@ -292,9 +305,6 @@ public java.lang.String <B>getName</B>()</PRE>
 <DD>Gets the name of the instrument.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the name of the instrument</DL>
 </DD>
@@ -309,9 +319,6 @@ public java.lang.String <B>toGuidoString</B>()</PRE>
 <DD>Gets a string representing this instrument in GUIDO notation.
 <P>
 <DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../com/myronmarston/music/notation/NotationElement.html#toGuidoString()">toGuidoString</A></CODE> in interface <CODE><A HREF="../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
-</DD>
-<DD><DL>
 
 <DT><B>Returns:</B><DD>the guido string</DL>
 </DD>
@@ -325,9 +332,6 @@ public java.lang.String <B>toLilypondString</B>()</PRE>
 <DL>
 <DD>Gets a string representing this instrument in Lilypond notation.
 <P>
-<DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../com/myronmarston/music/notation/NotationElement.html#toLilypondString()">toLilypondString</A></CODE> in interface <CODE><A HREF="../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
-</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the lilypond string</DL>
@@ -344,11 +348,23 @@ public javax.sound.midi.MidiEvent <B>getProgramChangeMidiEvent</B>(int&nbsp;midi
  instrument.
 <P>
 <DD><DL>
-</DL>
-</DD>
-<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>midiChannel</CODE> - the channel to use (0-15)
 <DT><B>Returns:</B><DD>the program change midi event</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="supportsDurationScaling()"><!-- --></A><H3>
+supportsDurationScaling</H3>
+<PRE>
+public boolean <B>supportsDurationScaling</B>()</PRE>
+<DL>
+<DD>Returns false to indicate that this element does not support duration
+ scaling since an instrument has no durations.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>false</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

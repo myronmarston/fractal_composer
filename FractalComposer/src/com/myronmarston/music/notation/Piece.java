@@ -21,8 +21,9 @@ package com.myronmarston.music.notation;
 
 import com.myronmarston.music.scales.KeySignature;
 import com.myronmarston.music.settings.TimeSignature;
-
 import com.myronmarston.util.FileHelper;
+import com.myronmarston.util.Fraction;
+
 import java.util.*;
 
 /**
@@ -119,7 +120,9 @@ public class Piece {
      * @return the lilypond string
      */
     public String toLilypondString(String title, String composer) {
+        this.scaleDurationsIfNecessary();        
         this.getParts().setElementSeperator(FileHelper.NEW_LINE);
+        
         StringBuilder str = new StringBuilder();
         str.append("\\version \"2.11.47\"" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);
         str.append("\\include \"english.ly\"" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);
@@ -156,6 +159,7 @@ public class Piece {
      * @return the guido string
      */
     public String toGuidoString(String title, String composer) {                
+        this.scaleDurationsIfNecessary();
         this.getParts().setElementSeperator("," + FileHelper.NEW_LINE);
         
         Part firstPart = null;
@@ -176,6 +180,28 @@ public class Piece {
         str.append(this.getParts().toGuidoString());        
         str.append(FileHelper.NEW_LINE + "}");
         return str.toString();
+    }
+    
+    /**
+     * If there are any note durations that have denominators too large for 
+     * Guido and Lilypond to handle, this will scale all the duration values
+     * so that Guido and Lilypond can work properly.
+     */
+    protected void scaleDurationsIfNecessary() {                
+        int powersOf2 = 0;
+        long longestDurationDenominator = this.getParts().getLargestDurationDenominator();
+        
+        while (longestDurationDenominator > Fraction.MAX_ALLOWED_DURATION_DENOM) {
+            longestDurationDenominator >>= 1;
+            powersOf2++;
+        }               
+        
+        if (powersOf2 > 0) {
+            long scaleFactor = 1 << powersOf2;
+            this.getParts().scaleDurations(scaleFactor);
+        }
+        
+        assert this.getParts().getLargestDurationDenominator() <= Fraction.MAX_ALLOWED_DURATION_DENOM : this.getParts().getLargestDurationDenominator();
     }
         
 }

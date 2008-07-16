@@ -100,7 +100,7 @@ public class MathHelper {
         // taken from the wikipedia article http://en.wikipedia.org/wiki/Power_of_two
         if (num == 0) return false;
         return (num & (num - 1)) == 0;
-    }
+    }    
 
     /**
      * Gets the largest power of 2 that is less than the given number.  For 

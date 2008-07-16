@@ -24,6 +24,7 @@ import com.myronmarston.music.scales.Scale;
 import com.myronmarston.music.settings.TimeSignature;
 import com.myronmarston.util.FileHelper;
 import com.myronmarston.util.Fraction;
+import java.util.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -57,14 +58,20 @@ public class PartTest {
         assertEquals(expectedGuidoString.toString(), part.toGuidoString());
     }
     
+    protected static Part createTestPart_barebones(boolean includeTempo, boolean includeInstrument) throws Exception {
+        Piece piece = new Piece(Scale.DEFAULT.getKeySignature(), new TimeSignature(6, 8), 93, includeTempo, includeInstrument);        
+        Part part = new Part(piece, Instrument.getInstrument("Cello"));
+        piece.getParts().add(part);
+        
+        return part;
+    }
+    
     protected static Part createTestPart(StringBuilder expectedLilypondPartString, StringBuilder expectedGuidoPartString, boolean includeTempo, boolean includeInstrument) throws Exception {
         return createTestPart(expectedLilypondPartString, expectedGuidoPartString, includeTempo, includeInstrument, null, null);
     }
     
     protected static Part createTestPart(StringBuilder expectedLilypondPartString, StringBuilder expectedGuidoPartString, boolean includeTempo, boolean includeInstrument, String title, String composer) throws Exception {
-        Piece piece = new Piece(Scale.DEFAULT.getKeySignature(), new TimeSignature(6, 8), 93, includeTempo, includeInstrument);        
-        Part part = new Part(piece, Instrument.getInstrument("Cello"));
-        piece.getParts().add(part);
+        Part part = createTestPart_barebones(includeTempo, includeInstrument);
         part.getNotationElements().add(new NotationNote(part, 'c', 4, 0, new Fraction(1, 4)));
         part.getNotationElements().add(new NotationNote(part, 'd', 4, 0, new Fraction(1, 6)));
         part.getNotationElements().add(new NotationNote(part, 'e', 4, 0, new Fraction(1, 6)));
@@ -108,6 +115,41 @@ public class PartTest {
         
         assertTrue(part1.isPartFirstPartOfPiece());
         assertFalse(part2.isPartFirstPartOfPiece());
+    }
+    
+    @Test
+    public void getLargestDurationDenominator() throws Exception {
+        // this method should create tuplets if necessay, and use the values from that...
+        testGetLargestDurationDenominator(64, "3/16", "1/96", "1/96", "1/96");
+    }
+            
+    private static void testGetLargestDurationDenominator(long expected, String ... durations) throws Exception {
+        Part part = createTestPart_barebones(false, false);
+        
+        for (String duration : durations) {
+            part.getNotationElements().add(new NotationNote(NotationNoteTest.DEFAULT_PART, 'c', 3, 0, new Fraction(duration)));
+        }
+                        
+        assertEquals(expected, part.getLargestDurationDenominator());
+    }
+    
+    @Test
+    public void scaleDurations() throws Exception {
+        testScaleDurations(8L, Arrays.asList("1/12", "1/24", "1/24", "1/12"), Arrays.asList("2/3", "1/3", "1/3", "2/3"));
+    }
+    
+    private static void testScaleDurations(long scaleFactor, List<String> originalDurations, List<String> expectedDurations) throws Exception {
+        assertEquals(originalDurations.size(), expectedDurations.size());
+        Part part = createTestPart_barebones(false, false);
+        for (String duration : originalDurations) {
+            part.getNotationElements().add(new NotationNote(NotationNoteTest.DEFAULT_PART, 'c', 3, 0, new Fraction(duration)));
+        }
+        
+        part.scaleDurations(scaleFactor);
+        
+        for (int i = 0; i < originalDurations.size(); i++) {
+            assertEquals(new Fraction(expectedDurations.get(i)), ((NotationNote) part.getNotationElements().get(i)).getDuration());
+        }
     }
 
 }
