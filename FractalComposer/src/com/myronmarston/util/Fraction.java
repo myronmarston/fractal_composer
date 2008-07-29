@@ -36,17 +36,18 @@
 
 package com.myronmarston.util;
 
-import com.myronmarston.music.notation.AbstractNotationElement;
+import com.myronmarston.music.notation.NotationNote;
 import org.simpleframework.xml.*;
+import java.lang.reflect.UndeclaredThrowableException;
+import java.util.*;
 import java.util.regex.*;
-
 
 /**
  * An immutable class representing fractions as pairs of longs.
  * Fractions are always maintained in reduced form.
  **/
 @Root
-public class Fraction extends AbstractNotationElement implements Cloneable, Comparable, java.io.Serializable {
+public class Fraction implements Cloneable, Comparable, java.io.Serializable {
   @Attribute
   /** The numerator of this fraction. */
   protected final long numerator_;
@@ -80,9 +81,7 @@ public class Fraction extends AbstractNotationElement implements Cloneable, Comp
    * The character used to augment rhythmic durations in lilypond notation.
    */
   private static final char LILYPOND_AUGMENTATION_CHAR = '.';
-    
-    
-
+        
   /** Return the numerator **/  
   public final long numerator() { return numerator_; }
 
@@ -173,62 +172,98 @@ public class Fraction extends AbstractNotationElement implements Cloneable, Comp
    * The string will have format placeholders for where the rest of the lilypond
    * notation note should go.
    *       
+   * @param timeLeftInBar the amount of time that is left in the current bar, 
+   *        in absolute terms (i.e. not scaled by the tupletMultiplier)
+   * @param barLength the length of a bar in absolute terms (i.e. not scaled by
+   *        the tuplet multiplier)
+   * @param tupletMultiplier the tuplet multiplier that has been applied
+   *        to this notation note duration
    * @return the lilypond duration string for the given duration
    * @throws IllegalArgumentException if the dnominator of the duration is
    *         greater than the miximum supported by lilypond
    * @throws UnsupportedOperationException if the duration is a tuplet 
    *         duration
    */
-  public String toLilypondString() throws IllegalArgumentException, UnsupportedOperationException {
-      String notePlaceHolder = "%1$s";
+  public String toLilypondString(Fraction timeLeftInBar, Fraction barLength, Fraction tupletMultiplier) throws IllegalArgumentException, UnsupportedOperationException {
+      String lilypondString = toLilypondString(timeLeftInBar, barLength, tupletMultiplier, true);
+                  
+      // we should only have the dynamic placeholder once in this string...
+      assert lilypondString.contains(NotationNote.NOTE_PLACEHOLDER_2) : lilypondString;
+      assert lilypondString.lastIndexOf(NotationNote.NOTE_PLACEHOLDER_2) == lilypondString.indexOf(NotationNote.NOTE_PLACEHOLDER_2) : lilypondString;
+
+      // the dynamic place holder should only be on the first of all the tied
+      // notes, so check that it is before the tie string...
+      assert !lilypondString.contains(LILYPOND_TIE) || lilypondString.indexOf(NotationNote.NOTE_PLACEHOLDER_2) < lilypondString.indexOf(LILYPOND_TIE);
       
-      if (MathHelper.numIsPowerOf2(this.denominator_)) {
-          if (this.denominator_ > MAX_ALLOWED_DURATION_DENOM) {
-              throw new IllegalArgumentException("The given duration (" + this.toString() + ") has a denominator that is outside of the allowed range.  The denominator cannot be greater than " + MAX_ALLOWED_DURATION_DENOM + ".");
-          }
-            
-          // first take care of the easy cases: notes such as 1/4, 1/8, and
+      return lilypondString;      
+  }
+  
+    private String toLilypondString(Fraction timeLeftInBar, Fraction barLength, Fraction tupletMultiplier, boolean firstNoteInListOfTiedNotes) throws IllegalArgumentException, UnsupportedOperationException {
+      if (!denomIsPowerOf2()) throw new UnsupportedOperationException("Lilypond does not support note durations that do not have a denominator power of 2.  Instead, wrap the note in a Tuplet with the appropriate multiplier."); 
+      if (this.denominator_ > MAX_ALLOWED_DURATION_DENOM) throw new IllegalArgumentException("The given duration (" + this.toString() + ") has a denominator that is outside of the allowed range.  The denominator cannot be greater than " + MAX_ALLOWED_DURATION_DENOM + ".");      
+      assert timeLeftInBar.compareTo(barLength) <= 0 : timeLeftInBar;
+                  
+      Fraction tupletScaledTimeLeftInBar = timeLeftInBar.dividedBy(tupletMultiplier);          
+
+      // this notationDuration should already be tuplet scaled, so compare it to the tupletScaledTimeLeftInBar...
+      if (this.compareTo(tupletScaledTimeLeftInBar) > 0) {
+          // this duration lasts longer than the time we have left in the bar,
+          // so we need to split it and use a tie to connect
+          
+          Fraction tupletScaledRemaining = this.minus(tupletScaledTimeLeftInBar);
+          return tupletScaledTimeLeftInBar.toLilypondString(timeLeftInBar, barLength, tupletMultiplier, true && firstNoteInListOfTiedNotes) 
+                 + LILYPOND_TIE + 
+                 tupletScaledRemaining.toLilypondString(barLength, barLength, tupletMultiplier, false);      
+      } else {
+          // we only want to put a dynamic or articulation marking on the first
+          // note of the tied notes, so we have a special place holder for that
+          String afterFirstNoteString = (firstNoteInListOfTiedNotes ? NotationNote.NOTE_PLACEHOLDER_2 : "");
+          
+          // take care of the easy cases: notes such as 1/4, 1/8, and
           // notes using augmentation dots (3/8, 7/16, etc).
           switch ((int) this.numerator_) {
-              case 1: return notePlaceHolder + Long.toString(this.denominator_);
+              case 1: return NotationNote.NOTE_PLACEHOLDER + 
+                             Long.toString(this.denominator_) + 
+                             afterFirstNoteString;
               case 3: if (this.denominator_ < 2) break;
-                      return notePlaceHolder + Long.toString(this.denominator_ / 2) + LILYPOND_AUGMENTATION_CHAR;
+                      return NotationNote.NOTE_PLACEHOLDER + 
+                             Long.toString(this.denominator_ / 2) + 
+                             LILYPOND_AUGMENTATION_CHAR + 
+                             afterFirstNoteString;
               case 7: if (this.denominator_ < 4) break;
-                      return notePlaceHolder + Long.toString(this.denominator_ / 4) + LILYPOND_AUGMENTATION_CHAR + LILYPOND_AUGMENTATION_CHAR;
+                      return NotationNote.NOTE_PLACEHOLDER + 
+                             Long.toString(this.denominator_ / 4) + 
+                             LILYPOND_AUGMENTATION_CHAR + 
+                             LILYPOND_AUGMENTATION_CHAR + 
+                             afterFirstNoteString;
           }       
-            
+
           // split the duration into two seperate durations that can be tied together
           Fraction d1 = this.getLargestPowerOf2FractionThatIsLessThanThis();
-          Fraction d2 = this.minus(d1);
-            
-          return d1.toLilypondString() + LILYPOND_TIE + d2.toLilypondString();
-      } else {
-          throw new UnsupportedOperationException("Lilypond does not support note durations that do not have a denominator power of 2.  Instead, wrap the note in a Tuplet with the appropriate multiplier.");            
-      }        
-  }
+          Fraction d2 = this.minus(d1);        
+          Fraction timeLeftInBar2 = timeLeftInBar.minus(d1);
+          assert timeLeftInBar2.compareTo(0L) >= 0 : timeLeftInBar2;
 
-  /**
-   * Returns false to indicate that this element does not support duration
-   * scaling.
-   * 
-   * @return false
-   */
-  public boolean supportsDurationScaling() {
-      return false;
-  }    
-    
+          return d1.toLilypondString(timeLeftInBar, barLength, tupletMultiplier, true && firstNoteInListOfTiedNotes)
+                 + LILYPOND_TIE + 
+                 d2.toLilypondString(timeLeftInBar2, barLength, tupletMultiplier, false);      
+      }      
+  }
+   
   /**
    * Clones this fraction.
    * 
    * @return the clone
    */
-  public Object clone() { 
-      // We get a warning from this method when I run FindBugs.
-      // FindBugs expects that all clone() overrides will call super.clone().
-      // Here we can't do that because the numerator_ and denonimator_ fields
-      // are declared final.  And it would only matter if we subclassed
-      // Fraction.
-      return new Fraction(this); 
+  @Override
+  public Fraction clone() { 
+    try {
+      return (Fraction) super.clone();
+    } catch (CloneNotSupportedException ex) {
+      // We have implemented the Cloneable interface, so we should never
+      // get this exception.  If we do, there's something very, very wrong...
+      throw new UndeclaredThrowableException(ex, "Unexpected error while cloning.  This indicates a programming or JVM error.");
+    }      
   }
 
   /** Return the value of the Fraction as a double **/
@@ -343,7 +378,7 @@ public class Fraction extends AbstractNotationElement implements Cloneable, Comp
     long bn = n;
     long bd = 1;
     return new Fraction(an*bd, ad*bn);
-  }
+  }    
 
   /** return a number less, equal, or greater than zero
    * reflecting whether this Fraction is less, equal or greater than 
@@ -384,6 +419,7 @@ public class Fraction extends AbstractNotationElement implements Cloneable, Comp
    * @param other the value to check for equality 
    * @return true if the objects are equal
    */
+  @Override
   public boolean equals(Object other) {
     if (!(other instanceof Fraction)) return false;
     return compareTo((Fraction)other) == 0;
@@ -404,6 +440,7 @@ public class Fraction extends AbstractNotationElement implements Cloneable, Comp
    * 
    * @return the hash code
    */
+  @Override
   public int hashCode() {
     return (int) (numerator_ ^ denominator_);
   }

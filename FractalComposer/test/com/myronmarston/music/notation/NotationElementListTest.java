@@ -108,7 +108,7 @@ public class NotationElementListTest {
     public static NotationElementList getTestList(String[] durations) {
         NotationElementList list = new NotationElementList();
         for (String duration : durations) {
-            list.add(new NotationNote(NotationNoteTest.DEFAULT_PART, 'c', 4, 0, new Fraction(duration)));
+            list.add(NotationNoteTest.instantiateTestNote(duration));
         }   
         
         return list;
@@ -196,5 +196,31 @@ public class NotationElementListTest {
             Fraction expectedDuration = new Fraction(expectedDurations[i]);
             assertEquals(expectedDuration, actualNote.getDuration());
         }                
+    }
+    
+    @Test
+    public void getNotationNotes() {
+        NotationNote n1 = NotationNoteTest.instantiateTestNote("1/4");
+        NotationNote n2 = NotationNoteTest.instantiateTestNote("3/8");
+        NotationNote n3 = NotationNoteTest.instantiateTestNote("1/2");
+        
+        NotationElementList list1 = new NotationElementList();
+        NotationElementList list2 = new NotationElementList();
+        
+        list1.add(n1);
+        list1.add(n2);
+        list2.add(n3);
+        list1.add(list2);
+        
+        List<NotationNote> notationNotes1 = list1.getNotationNotes();
+        List<NotationNote> notationNotes2 = list2.getNotationNotes();
+        
+        assertEquals(3, notationNotes1.size());
+        assertTrue(n1 == notationNotes1.get(0));
+        assertTrue(n2 == notationNotes1.get(1));
+        assertTrue(n3 == notationNotes1.get(2));
+        
+        assertEquals(1, notationNotes2.size());
+        assertTrue(n3 == notationNotes2.get(0));
     }
 }

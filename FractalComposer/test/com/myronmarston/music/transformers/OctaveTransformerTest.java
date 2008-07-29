@@ -41,6 +41,7 @@ public class OctaveTransformerTest {
         input.add(new Note(4, 4, 4, 0, new Fraction(1, 1), 64, scale, 0));
         input.add(new Note(0, 0, 5, 0, new Fraction(1, 1), 64, scale, 0));
         input.add(Note.createRest(new Fraction(1, 1)));
+        input.get(0).setIsFirstNoteOfGermCopy(true);        
 
         Transformer t = new OctaveTransformer(2);
         NoteList expectedOutput = new NoteList();
@@ -49,6 +50,7 @@ public class OctaveTransformerTest {
         expectedOutput.add(new Note(4, 4, 6, 0, new Fraction(1, 1), 64, scale, 0));
         expectedOutput.add(new Note(0, 0, 7, 0, new Fraction(1, 1), 64, scale, 0));   
         expectedOutput.add(Note.createRest(new Fraction(1, 1)));
+        expectedOutput.get(0).setIsFirstNoteOfGermCopy(true);
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
         t = new OctaveTransformer(-3);
@@ -58,6 +60,7 @@ public class OctaveTransformerTest {
         expectedOutput.add(new Note(4, 4, 1, 0, new Fraction(1, 1), 64, scale, 0));
         expectedOutput.add(new Note(0, 0, 2, 0, new Fraction(1, 1), 64, scale, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 1)));
+        expectedOutput.get(0).setIsFirstNoteOfGermCopy(true);
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
         t = new OctaveTransformer(0);
@@ -67,6 +70,7 @@ public class OctaveTransformerTest {
         expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 1), 64, scale, 0));
         expectedOutput.add(new Note(0, 0, 5, 0, new Fraction(1, 1), 64, scale, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 1)));
+        expectedOutput.get(0).setIsFirstNoteOfGermCopy(true);
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
     }
     

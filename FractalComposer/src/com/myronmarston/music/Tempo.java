@@ -58,6 +58,9 @@ public class Tempo {
      * @return the guido string
      */
     public static String toGuidoString(int tempo) {        
+        //TODO: for some reason, the only thing on the guido output is
+        // the tempo description string, not the 1/4=120 string.  Find a way
+        // to include the BPM string.
         return "\\tempo<\"" + getTempoName(tempo) + "\",\"1/4=" + tempo + "\">";
     }
         
@@ -77,7 +80,7 @@ public class Tempo {
      * @param tempo the tempo in BPM
      * @return the  name of the tempo
      */
-    private static String getTempoName(int tempo) {
+    private static String getTempoName(int tempo) {                
         // Here's a list from the Wikipedia Tempo article 
         // (http://en.wikipedia.org/wiki/Tempo).  I modify these slightly and
         // only use some of them.

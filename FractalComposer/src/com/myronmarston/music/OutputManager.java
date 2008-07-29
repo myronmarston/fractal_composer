@@ -37,12 +37,12 @@ import java.util.*;
  * 
  * @author Myron
  */
-public class OutputManager {
-    //private StringBuilder guidoNotation = new StringBuilder();
+public class OutputManager {    
     private final Piece pieceNotation;
     private Sequence sequence;
     private final FractalPiece fractalPiece;
     private final int tempo;
+    private final Fraction timeSignatureFraction;
     private List<NoteList> noteLists;
     private SheetMusicCreator sheetMusicCreator;
     private AudioFileCreator audioFileCreator;
@@ -169,6 +169,7 @@ public class OutputManager {
      */
     public OutputManager(FractalPiece fractalPiece, List<NoteList> noteLists, boolean includeTempoOnSheetMusic, boolean includeInstrumentOnSheetMusic) throws GermIsEmptyException {
         this.fractalPiece = fractalPiece;
+        this.timeSignatureFraction = this.fractalPiece.getTimeSignature().toFraction();
         this.noteLists = noteLists;
         this.tempo = this.fractalPiece.getTempo();        
         this.pieceNotation = new Piece(this.fractalPiece.getScale().getKeySignature(), this.fractalPiece.getTimeSignature(), this.tempo, includeTempoOnSheetMusic, includeInstrumentOnSheetMusic);
@@ -216,8 +217,6 @@ public class OutputManager {
      * @param sequenceResolution the midi sequence resolution
      */
     private void addSectionKeySigEventsToTrack(Track track, int sequenceResolution) {
-        // TODO: add section key signatures to notation
-        // add key signatures for each section that uses a different one...
         Fraction durationSoFar = new Fraction(0, 1);
         KeySignature lastKeySignature = this.fractalPiece.getScale().getKeySignature();
         KeySignature sectionKeySignature;
@@ -255,16 +254,25 @@ public class OutputManager {
         assert numTracks > 0 : numTracks; 
         int midiChannel = numTracks - 1;
         assert midiChannel < MidiNote.MAX_CHANNEL;
-
+        
         Part part = new Part(this.pieceNotation, instrument);
-        this.pieceNotation.getParts().add(part);
+        
+        PartSection partSection = null;
         Track track = sequence.createTrack();
         track.add(instrument.getProgramChangeMidiEvent(midiChannel));        
+        Fraction timeLeftInBar = this.timeSignatureFraction;
         
         // in Midi, the tick resolution is based on quarter notes, but we use whole notes...
         int midiTicksPerWholeNote = convertMidiTickUnitFromQuarterNotesToWholeNotesInt(sequence.getResolution());
         
-        for (Note thisNote : noteList.getListWithNormalizedRests()) {
+        for (Note thisNote : noteList.getListWithNormalizedRests()) {                        
+            // update our part section if necessary...
+            if (partSection == null) {
+                partSection = new PartSection(part, thisNote.getSourceVoiceSection());
+            } else if (lastNote != null && lastNote.getSourceVoiceSection() != partSection.getSourceVoiceSection()) {
+                partSection = new PartSection(part, lastNote.getSourceVoiceSection());
+            }
+            
             thisMidiNote = thisNote.convertToMidiNote(startTime, midiTicksPerWholeNote, midiChannel, true);                        
             
             if (lastMidiNote != null) {
@@ -287,7 +295,7 @@ public class OutputManager {
                     
                     assert thisMidiNote.getPitch() != lastMidiNote.getPitch() : "The midi notes have the same pitch and should not: " + thisMidiNote.getPitch();
                 }              
-                addMidiNoteEventsToTrack(track, part, lastMidiNote, lastNote);                
+                timeLeftInBar = addMidiNoteEventsToTrack(track, partSection, lastMidiNote, lastNote, timeLeftInBar);                
             }                                      
             
             //The next note start time will be the end of this note...
@@ -296,7 +304,7 @@ public class OutputManager {
             lastMidiNote = thisMidiNote;
             lastNote = thisNote;
         }           
-        addMidiNoteEventsToTrack(track, part, lastMidiNote, lastNote);                
+        timeLeftInBar = addMidiNoteEventsToTrack(track, partSection, lastMidiNote, lastNote, timeLeftInBar);                
     }        
   
     /**
@@ -307,8 +315,10 @@ public class OutputManager {
      * @param part the notation part
      * @param midiNote the midi note
      * @param note the note
+     * @param timeLeftInBar the time left in the bar so far
+     * @return the new timeLeftInBar
      */
-    private void addMidiNoteEventsToTrack(Track track, Part part, MidiNote midiNote, Note note) {
+    private Fraction addMidiNoteEventsToTrack(Track track, PartSection partSection, MidiNote midiNote, Note note, Fraction timeLeftInBar) {
         try {
             track.add(midiNote.getNoteOnEvent());
             track.add(midiNote.getNoteOffEvent());
@@ -318,9 +328,14 @@ public class OutputManager {
             // having to declare it on our method.
             throw new UndeclaredThrowableException(ex, "MidiNote's note on and note off events could not be created.  This indicates a programming error of some sort.");                
         }        
+          
+        // add the NotationNote to our partSection...        
+        partSection.getNotationElements().add(note.toNotationNote(partSection, midiNote, timeLeftInBar));
         
-        // also add the NotationNote to our part...
-        part.getNotationElements().add(note.toNotationNote(part, midiNote));
+        // calculate and return the new timeLeftInBar
+        timeLeftInBar = timeLeftInBar.minus(note.getDuration());
+        while (timeLeftInBar.compareTo(0L) <= 0) timeLeftInBar = timeLeftInBar.plus(this.timeSignatureFraction);
+        return timeLeftInBar;
     }
 
     /**

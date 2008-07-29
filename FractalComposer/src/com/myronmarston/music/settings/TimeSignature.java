@@ -22,6 +22,7 @@ package com.myronmarston.music.settings;
 import com.myronmarston.util.MathHelper;
 import com.myronmarston.music.notation.AbstractNotationElement;
 import com.myronmarston.util.FileHelper;
+import com.myronmarston.util.Fraction;
 
 import org.simpleframework.xml.*;
 
@@ -30,7 +31,6 @@ import java.util.regex.*;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MetaMessage;
 import javax.sound.midi.MidiEvent;
-
 
 /**
  * Class that holds the time signature for the fractal piece.  A time signature
@@ -258,6 +258,15 @@ public class TimeSignature extends AbstractNotationElement {
         return new MidiEvent(tsMessage, 0);
     }
 
+    /**
+     * Converts this time signature to a fraction.
+     * 
+     * @return a fraction of numerator/denominator
+     */
+    public Fraction toFraction() {
+        return new Fraction(this.getNumerator(), this.getDenominator());
+    }
+    
     @Override
     public String toString() {
         return this.getNumerator() + "/" + this.getDenominator();

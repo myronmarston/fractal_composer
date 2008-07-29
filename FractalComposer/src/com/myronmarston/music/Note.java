@@ -20,9 +20,10 @@
 package com.myronmarston.music;
 
 import com.myronmarston.music.notation.NotationNote;
-import com.myronmarston.music.notation.Part;
+import com.myronmarston.music.notation.PartSection;
 import com.myronmarston.music.NoteStringInvalidPartException.NoteStringPart;
 import com.myronmarston.music.scales.Scale;
+import com.myronmarston.music.settings.VoiceSection;
 import com.myronmarston.util.Fraction;
 import com.myronmarston.util.MathHelper;
 import org.simpleframework.xml.*;
@@ -94,6 +95,13 @@ public class Note implements Cloneable {
      */
     @Attribute
     private int letterNumber;
+ 
+    
+    @Element(required=false)
+    private VoiceSection sourceVoiceSection;
+    
+    @Attribute
+    private boolean isFirstNoteOfGermCopy = false;
         
     private static Pattern noteParser;
     
@@ -325,7 +333,26 @@ public class Note implements Cloneable {
             this.setChromaticAdjustment(0);
         }
     }
-    
+
+    /**
+     * Gets the voice section that generated this note.
+     * 
+     * @return the voice section that is the source of this note
+     */
+    public VoiceSection getSourceVoiceSection() {
+        return sourceVoiceSection;
+    }
+
+    /**
+     * Sets the voice section that generated this note.
+     * 
+     * @param sourceVoiceSection the voice section that is the source of this
+     *        note
+     */
+    public void setSourceVoiceSection(VoiceSection sourceVoiceSection) {
+        this.sourceVoiceSection = sourceVoiceSection;
+    }
+            
     /**
      * Gets whether or not this note is a rest (i.e., has a volume of 0).
      * 
@@ -333,7 +360,28 @@ public class Note implements Cloneable {
      */
     public boolean isRest() {
         return (this.getVolume() == 0);
-    }    
+    }
+
+    /**
+     * Returns true if this is the first note of the germ, or of a derived copy
+     * of the germ that may have gone through some transformations.
+     * 
+     * @return true if this is the first note of a germ copy.
+     */
+    public boolean isFirstNoteOfGermCopy() {
+        return isFirstNoteOfGermCopy;
+    }
+
+    /**
+     * Sets whether or not this is the first note of a germ or derived copy.
+     * 
+     * @param isFirstNoteOfGermCopy value to set
+     */
+    public void setIsFirstNoteOfGermCopy(boolean isFirstNoteOfGermCopy) {
+        this.isFirstNoteOfGermCopy = isFirstNoteOfGermCopy;
+    }
+
+    
     
     /**
      * Throws an exception if the changing field is not being changed to zero
@@ -583,7 +631,7 @@ public class Note implements Cloneable {
      * @return the normalized note
      */
     public Note getNormalizedNote() {        
-        Note tempNote = (Note) this.clone();
+        Note tempNote = this.clone();
         if (tempNote.isRest()) return tempNote; // rests are always normalized!
         int numScaleStepsInOctave = this.getScale().getScaleStepArray().length; // cache it
         
@@ -699,15 +747,15 @@ public class Note implements Cloneable {
      * Converts this Note to a Notation Note that can be used to produce GUIDO
      * or Lilypond notation.
      * 
-     * @param part the Notation part
+     * @param partSection the Notation partSection
      * @param midiNote the midi note produced as output from this note
+     * @param timeLeftInBar the amount of time that is left in the bar
      * @return the notation note
      */
-    public NotationNote toNotationNote(Part part, MidiNote midiNote) {
-        if (this.isRest()) return NotationNote.createRest(part, duration);
-        Note normalizedNote = this.getNormalizedNote();        
+    public NotationNote toNotationNote(PartSection partSection, MidiNote midiNote, Fraction timeLeftInBar) {
+        if (this.isRest()) return NotationNote.createRest(partSection, duration, timeLeftInBar, this.isFirstNoteOfGermCopy);
         
-        //TODO: change the letter name here if the chrom adjustment > 2
+        Note normalizedNote = this.getNormalizedNote();        
         
         // get the letter
         NoteName letterNoteName = this.getScale().getKeyName().getNaturalNoteNameForLetterNumber(normalizedNote.getLetterNumber());        
@@ -716,27 +764,38 @@ public class Note implements Cloneable {
         // get the chromatic adjustment
         int chromAdjustment = (midiNote.getPitch() % Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE)  - letterNoteName.getNormalizedNoteNumber();                
         chromAdjustment = Scale.getNormalizedChromaticAdjustment(chromAdjustment);        
-        
-        // get the octave, taking into account the chromatic adjustment for notes like B# and Cb
-        int notationOctave = ((midiNote.getPitch() - chromAdjustment) / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE) - 1;
-        
-        return new NotationNote(part, letter, notationOctave, chromAdjustment, duration);        
+
+        if (Math.abs(chromAdjustment) > 2) {
+            // lilypond does not support triple flats or sharps, so we have to
+            // normalize this to a different letter name
+            
+            int letterNumberAdjustment = (chromAdjustment > 0 ? 1 : -1);
+            normalizedNote.performTransformerAdjustment(0, letterNumberAdjustment, 0);
+            return normalizedNote.toNotationNote(partSection, midiNote, timeLeftInBar);
+        } else {
+            // get the octave, taking into account the chromatic adjustment for notes like B# and Cb
+            int notationOctave = ((midiNote.getPitch() - chromAdjustment) / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE) - 1;
+
+            return new NotationNote(partSection, letter, notationOctave, chromAdjustment, this.duration, timeLeftInBar, this.volume, this.isFirstNoteOfGermCopy);        
+        }                        
     }
     
     @Override
     public String toString() {
         return String.format(
-            "Note = LN(%d), SS(%d), O(%d), CA(%d), D(%s), V(%d), S(%s), SCA(%d)", 
+            "Note = LN(%d), SS(%d), O(%d), CA(%d), D(%s), V(%d), S(%s), SCA(%d), SVS(%s), IFN(%s)", 
             this.letterNumber, this.scaleStep, this.octave, this.chromaticAdjustment, 
             (this.duration == null ? "null" : this.duration.toString()), 
             this.volume, (this.scale == null ? "null": this.scale.toString()), 
-            this.segmentChromaticAdjustment);
+            this.segmentChromaticAdjustment,
+            (this.sourceVoiceSection == null ? "null" : this.sourceVoiceSection.toString()),
+            this.isFirstNoteOfGermCopy);
     }
 
     @Override
-    public Object clone() {
+    public Note clone() {
         try {
-            return super.clone();
+            return (Note) super.clone();
         } catch (CloneNotSupportedException ex) {
             // We have implemented the Cloneable interface, so we should never
             // get this exception.  If we do, there's something very, very wrong...
@@ -778,21 +837,29 @@ public class Note implements Cloneable {
         if (this.letterNumber != other.letterNumber) {
             return false;
         }
+        if (this.sourceVoiceSection != other.sourceVoiceSection && (this.sourceVoiceSection == null || !this.sourceVoiceSection.equals(other.sourceVoiceSection))) {
+            return false;
+        }
+        if (this.isFirstNoteOfGermCopy != other.isFirstNoteOfGermCopy) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 43 * hash + this.scaleStep;
-        hash = 43 * hash + this.octave;
-        hash = 43 * hash + this.chromaticAdjustment;
-        hash = 43 * hash + (this.duration != null ? this.duration.hashCode() : 0);
-        hash = 43 * hash + this.volume;
-        hash = 43 * hash + (this.scale != null ? this.scale.hashCode() : 0);
-        hash = 43 * hash + this.segmentChromaticAdjustment;
-        hash = 43 * hash + this.letterNumber;
+        int hash = 3;
+        hash = 41 * hash + this.scaleStep;
+        hash = 41 * hash + this.octave;
+        hash = 41 * hash + this.chromaticAdjustment;
+        hash = 41 * hash + (this.duration != null ? this.duration.hashCode() : 0);
+        hash = 41 * hash + this.volume;
+        hash = 41 * hash + (this.scale != null ? this.scale.hashCode() : 0);
+        hash = 41 * hash + this.segmentChromaticAdjustment;
+        hash = 41 * hash + this.letterNumber;
+        hash = 41 * hash + (this.sourceVoiceSection != null ? this.sourceVoiceSection.hashCode() : 0);
+        hash = 41 * hash + (this.isFirstNoteOfGermCopy ? 1 : 0);
         return hash;
-    }  
-                          
+    }       
+                             
 }

@@ -19,7 +19,7 @@
 
 package com.myronmarston.util;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -108,4 +108,13 @@ public class MathHelperTest {
         assertEquals(8L, MathHelper.getLargestPowerOf2LessThanGivenNumber(9));
         assertEquals(16L, MathHelper.getLargestPowerOf2LessThanGivenNumber(21));
     }        
+    
+    @Test
+    public void getMedianValue() {
+        // odd example
+        assertEquals(17, MathHelper.getMedianValue(Arrays.asList(3, 2342, 9, 90, 17)));
+        
+        // even example
+        assertEquals(7, MathHelper.getMedianValue(Arrays.asList(2, 19, 6, 9, 8, 4)));
+    }
 }

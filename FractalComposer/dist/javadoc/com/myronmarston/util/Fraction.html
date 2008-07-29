@@ -92,15 +92,14 @@ com.myronmarston.util</FONT>
 Class Fraction</H2>
 <PRE>
 java.lang.Object
-  <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">com.myronmarston.music.notation.AbstractNotationElement</A>
-      <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.util.Fraction</B>
+  <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.util.Fraction</B>
 </PRE>
 <DL>
-<DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A>, java.io.Serializable, java.lang.Cloneable, java.lang.Comparable</DD>
+<DT><B>All Implemented Interfaces:</B> <DD>java.io.Serializable, java.lang.Cloneable, java.lang.Comparable</DD>
 </DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>Fraction</B><DT>extends <A HREF="../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A><DT>implements java.lang.Cloneable, java.lang.Comparable, java.io.Serializable</DL>
+<DT><PRE>public class <B>Fraction</B><DT>extends java.lang.Object<DT>implements java.lang.Cloneable, java.lang.Comparable, java.io.Serializable</DL>
 </PRE>
 
 <P>
@@ -211,7 +210,7 @@ An immutable class representing fractions as pairs of longs.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.lang.Object</CODE></FONT></TD>
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#clone()">clone</A></B>()</CODE>
 
 <BR>
@@ -368,15 +367,6 @@ An immutable class representing fractions as pairs of longs.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#supportsDurationScaling()">supportsDurationScaling</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns false to indicate that this element does not support duration
- scaling.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#times(com.myronmarston.util.Fraction)">times</A></B>(<A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;b)</CODE>
 
@@ -403,7 +393,9 @@ An immutable class representing fractions as pairs of longs.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;java.lang.String</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#toLilypondString()">toLilypondString</A></B>()</CODE>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/Fraction.html#toLilypondString(com.myronmarston.util.Fraction, com.myronmarston.util.Fraction, com.myronmarston.util.Fraction)">toLilypondString</A></B>(<A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;timeLeftInBar,
+                 <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;barLength,
+                 <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;tupletMultiplier)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a string representing this duration fraction in lilypond notation.</TD>
@@ -415,15 +407,6 @@ An immutable class representing fractions as pairs of longs.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a string representation of this fraction.</TD>
-</TR>
-</TABLE>
-&nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.notation.AbstractNotationElement"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.notation.<A HREF="../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></B></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../com/myronmarston/music/notation/AbstractNotationElement.html#getLargestDurationDenominator()">getLargestDurationDenominator</A>, <A HREF="../../../com/myronmarston/music/notation/AbstractNotationElement.html#scaleDurations(long)">scaleDurations</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -622,7 +605,7 @@ public java.lang.String <B>toGuidoString</B>()</PRE>
  note duration.
 <P>
 <DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../com/myronmarston/music/notation/NotationElement.html#toGuidoString()">toGuidoString</A></CODE> in interface <CODE><A HREF="../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
+</DL>
 </DD>
 <DD><DL>
 
@@ -631,10 +614,12 @@ public java.lang.String <B>toGuidoString</B>()</PRE>
 </DL>
 <HR>
 
-<A NAME="toLilypondString()"><!-- --></A><H3>
+<A NAME="toLilypondString(com.myronmarston.util.Fraction, com.myronmarston.util.Fraction, com.myronmarston.util.Fraction)"><!-- --></A><H3>
 toLilypondString</H3>
 <PRE>
-public java.lang.String <B>toLilypondString</B>()
+public java.lang.String <B>toLilypondString</B>(<A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;timeLeftInBar,
+                                         <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;barLength,
+                                         <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;tupletMultiplier)
                                   throws java.lang.IllegalArgumentException,
                                          java.lang.UnsupportedOperationException</PRE>
 <DL>
@@ -643,10 +628,13 @@ public java.lang.String <B>toLilypondString</B>()
  notation note should go.
 <P>
 <DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../com/myronmarston/music/notation/NotationElement.html#toLilypondString()">toLilypondString</A></CODE> in interface <CODE><A HREF="../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
+</DL>
 </DD>
 <DD><DL>
-
+<DT><B>Parameters:</B><DD><CODE>timeLeftInBar</CODE> - the amount of time that is left in the current bar, 
+        in absolute terms (i.e. not scaled by the tupletMultiplier)<DD><CODE>barLength</CODE> - the length of a bar in absolute terms (i.e. not scaled by
+        the tuplet multiplier)<DD><CODE>tupletMultiplier</CODE> - the tuplet multiplier that has been applied
+        to this notation note duration
 <DT><B>Returns:</B><DD>the lilypond duration string for the given duration
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.IllegalArgumentException</CODE> - if the dnominator of the duration is
@@ -657,28 +645,10 @@ public java.lang.String <B>toLilypondString</B>()
 </DL>
 <HR>
 
-<A NAME="supportsDurationScaling()"><!-- --></A><H3>
-supportsDurationScaling</H3>
-<PRE>
-public boolean <B>supportsDurationScaling</B>()</PRE>
-<DL>
-<DD>Returns false to indicate that this element does not support duration
- scaling.
-<P>
-<DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../com/myronmarston/music/notation/NotationElement.html#supportsDurationScaling()">supportsDurationScaling</A></CODE> in interface <CODE><A HREF="../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE></DL>
-</DD>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>false</DL>
-</DD>
-</DL>
-<HR>
-
 <A NAME="clone()"><!-- --></A><H3>
 clone</H3>
 <PRE>
-public java.lang.Object <B>clone</B>()</PRE>
+public <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A> <B>clone</B>()</PRE>
 <DL>
 <DD>Clones this fraction.
 <P>

@@ -55,7 +55,7 @@ function windowTitle()
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;<A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/myronmarston/music/notation/Part.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="Part.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
@@ -147,8 +147,26 @@ Represents one instrumental part of the notation.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Part.html#getNextIndexOfFirstNoteOfAGermCopy(java.util.List, int)">getNextIndexOfFirstNoteOfAGermCopy</A></B>(java.util.List&lt;<A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;&nbsp;notes,
+                                   int&nbsp;currentIndex)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the next index of a notation note which is the first not of a germ
+ copy.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Part.html#getNotationNotes()">getNotationNotes</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns an empty list of notation notes.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Part.html#getNotationElements()">getNotationElements</A></B>()</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Part.html#getPartSections()">getPartSections</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the notation elements for this part.</TD>
@@ -192,6 +210,23 @@ Represents one instrumental part of the notation.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Throws an UnsupportedOperationException.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected static&nbsp;<A HREF="../../../../com/myronmarston/music/Dynamic.html" title="enum in com.myronmarston.music">Dynamic</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Part.html#setDynamicsOnGermCopy(java.util.List, com.myronmarston.music.Dynamic)">setDynamicsOnGermCopy</A></B>(java.util.List&lt;<A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;&nbsp;germCopy,
+                      <A HREF="../../../../com/myronmarston/music/Dynamic.html" title="enum in com.myronmarston.music">Dynamic</A>&nbsp;lastGermCopyDynamic)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the notation dynamics on the notation notes in the germ copy.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/Part.html#setNotationNoteDynamics()">setNotationNoteDynamics</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the dynamic on each NotationNote.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -262,7 +297,8 @@ Part</H3>
 public <B>Part</B>(<A HREF="../../../../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation">Piece</A>&nbsp;piece,
             <A HREF="../../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>&nbsp;instrument)</PRE>
 <DL>
-<DD>Constructor.
+<DD>Constructor.  The newly constructed part will automatically be added to 
+ the given piece.
 <P>
 <DL>
 <DT><B>Parameters:</B><DD><CODE>piece</CODE> - the notation piece that owns this part<DD><CODE>instrument</CODE> - the instrument for this part</DL>
@@ -364,10 +400,10 @@ public void <B>setPieceTitle</B>(java.lang.String&nbsp;pieceTitle)</PRE>
 </DL>
 <HR>
 
-<A NAME="getNotationElements()"><!-- --></A><H3>
-getNotationElements</H3>
+<A NAME="getPartSections()"><!-- --></A><H3>
+getPartSections</H3>
 <PRE>
-public <A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A> <B>getNotationElements</B>()</PRE>
+public <A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A> <B>getPartSections</B>()</PRE>
 <DL>
 <DD>Gets the notation elements for this part.
 <P>
@@ -425,6 +461,71 @@ public void <B>scaleDurations</B>(long&nbsp;scaleFactor)</PRE>
 </DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>scaleFactor</CODE> - the scale factor</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNotationNotes()"><!-- --></A><H3>
+getNotationNotes</H3>
+<PRE>
+public java.util.List&lt;<A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt; <B>getNotationNotes</B>()</PRE>
+<DL>
+<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#getNotationNotes()">AbstractNotationElement</A></CODE></B></DD>
+<DD>Returns an empty list of notation notes.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#getNotationNotes()">getNotationNotes</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#getNotationNotes()">getNotationNotes</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>an empty list of notation notes</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setNotationNoteDynamics()"><!-- --></A><H3>
+setNotationNoteDynamics</H3>
+<PRE>
+protected void <B>setNotationNoteDynamics</B>()</PRE>
+<DL>
+<DD>Sets the dynamic on each NotationNote.  Should be called before getting
+ the lilypond or guido string.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNextIndexOfFirstNoteOfAGermCopy(java.util.List, int)"><!-- --></A><H3>
+getNextIndexOfFirstNoteOfAGermCopy</H3>
+<PRE>
+protected static int <B>getNextIndexOfFirstNoteOfAGermCopy</B>(java.util.List&lt;<A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;&nbsp;notes,
+                                                        int&nbsp;currentIndex)</PRE>
+<DL>
+<DD>Gets the next index of a notation note which is the first not of a germ
+ copy.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>notes</CODE> - the list of notation notes<DD><CODE>currentIndex</CODE> - the index to begin the search
+<DT><B>Returns:</B><DD>the next index of a first note of a germ copy, or -1 if none is 
+         found</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setDynamicsOnGermCopy(java.util.List, com.myronmarston.music.Dynamic)"><!-- --></A><H3>
+setDynamicsOnGermCopy</H3>
+<PRE>
+protected static <A HREF="../../../../com/myronmarston/music/Dynamic.html" title="enum in com.myronmarston.music">Dynamic</A> <B>setDynamicsOnGermCopy</B>(java.util.List&lt;<A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;&nbsp;germCopy,
+                                               <A HREF="../../../../com/myronmarston/music/Dynamic.html" title="enum in com.myronmarston.music">Dynamic</A>&nbsp;lastGermCopyDynamic)</PRE>
+<DL>
+<DD>Sets the notation dynamics on the notation notes in the germ copy.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>germCopy</CODE> - a copy of the germ<DD><CODE>lastGermCopyDynamic</CODE> - the dynamic used for the last germ copy
+<DT><B>Returns:</B><DD>the dynamic used for this germ copy, which should be passed to
+         this method as a parameter in the next iteration</DL>
 </DD>
 </DL>
 <HR>
@@ -487,7 +588,7 @@ public java.lang.String <B>toGuidoString</B>()</PRE>
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;<A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/myronmarston/music/notation/Part.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="Part.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;

@@ -149,6 +149,12 @@ NoteList contains a sequence of notes.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default constructor.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#NoteList(java.util.Collection)">NoteList</A></B>(java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;&nbsp;initialCollection)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#NoteList(int)">NoteList</A></B>(int&nbsp;initialCapacity)</CODE>
 
 <BR>
@@ -166,7 +172,7 @@ NoteList contains a sequence of notes.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.lang.Object</CODE></FONT></TD>
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#clone()">clone</A></B>()</CODE>
 
 <BR>
@@ -198,7 +204,7 @@ NoteList contains a sequence of notes.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.util.List&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</CODE></FONT></TD>
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#getListWithNormalizedRests()">getListWithNormalizedRests</A></B>()</CODE>
 
 <BR>
@@ -224,10 +230,27 @@ NoteList contains a sequence of notes.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#setfirstNotesOfGermCopy(int...)">setfirstNotesOfGermCopy</A></B>(int...&nbsp;indices)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets which notes have the firstNoteOfGermCopy flag set to true.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#setInstrument(com.myronmarston.music.Instrument)">setInstrument</A></B>(<A HREF="../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>&nbsp;instrument)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the instrument to use for this note list.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#setSourceVoiceSectionOnAllNotes(com.myronmarston.music.settings.VoiceSection)">setSourceVoiceSectionOnAllNotes</A></B>(<A HREF="../../../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A>&nbsp;source)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the sourceVoiceSection field on all notes of this note list to
+ the given one.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -315,6 +338,18 @@ public <B>NoteList</B>(int&nbsp;initialCapacity)</PRE>
 <P>
 <DL>
 <DT><B>Parameters:</B><DD><CODE>initialCapacity</CODE> - initial capacity for the list</DL>
+</DL>
+<HR>
+
+<A NAME="NoteList(java.util.Collection)"><!-- --></A><H3>
+NoteList</H3>
+<PRE>
+public <B>NoteList</B>(java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;&nbsp;initialCollection)</PRE>
+<DL>
+<DD>Constructor. Initializes the list with the given collection.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>initialCollection</CODE> - collection of notes to put in the list</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -405,7 +440,7 @@ public static <A HREF="../../../com/myronmarston/music/NoteList.html" title="cla
 <A NAME="getListWithNormalizedRests()"><!-- --></A><H3>
 getListWithNormalizedRests</H3>
 <PRE>
-public java.util.List&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt; <B>getListWithNormalizedRests</B>()</PRE>
+public <A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A> <B>getListWithNormalizedRests</B>()</PRE>
 <DL>
 <DD>Gets a list of notes with all rests normalized.  Adjacent rests are 
  combined into one longer rest.
@@ -445,10 +480,42 @@ public int <B>getNumberOfAccidentals</B>()</PRE>
 </DL>
 <HR>
 
+<A NAME="setSourceVoiceSectionOnAllNotes(com.myronmarston.music.settings.VoiceSection)"><!-- --></A><H3>
+setSourceVoiceSectionOnAllNotes</H3>
+<PRE>
+public void <B>setSourceVoiceSectionOnAllNotes</B>(<A HREF="../../../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A>&nbsp;source)</PRE>
+<DL>
+<DD>Sets the sourceVoiceSection field on all notes of this note list to
+ the given one.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>source</CODE> - the voice section that generated the notes in this note 
+        list</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setfirstNotesOfGermCopy(int...)"><!-- --></A><H3>
+setfirstNotesOfGermCopy</H3>
+<PRE>
+public void <B>setfirstNotesOfGermCopy</B>(int...&nbsp;indices)</PRE>
+<DL>
+<DD>Sets which notes have the firstNoteOfGermCopy flag set to true.  The
+ notes of the indices given will have this set to true; all others will
+ be set to false.  This is not intended to be used in production but is 
+ only provided as a convenience method for unit tests.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>indices</CODE> - list of indices of the notes that should be the first
+        notes of a germ copy</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="clone()"><!-- --></A><H3>
 clone</H3>
 <PRE>
-public java.lang.Object <B>clone</B>()</PRE>
+public <A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A> <B>clone</B>()</PRE>
 <DL>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>clone</CODE> in class <CODE>java.util.ArrayList&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</CODE></DL>

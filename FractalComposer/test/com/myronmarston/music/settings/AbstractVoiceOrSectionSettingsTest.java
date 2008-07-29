@@ -155,14 +155,14 @@ public class AbstractVoiceOrSectionSettingsTest implements Subscriber {
         this.settings.setVolumeAdjustment(0.5d);
         int expectedVolume = 99;
         
-        NoteList expected = (NoteList) input.clone();
+        NoteList expected = input.clone();
         expected.get(0).setVolume(expectedVolume);
         expected.get(1).setVolume(expectedVolume);
                 
         NoteListTest.assertNoteListsEqual(expected, settings.applySettingsToNoteList(input, scale));
 
         this.settings.setVolumeAdjustment(-0.5d);
-        expectedVolume = 35;
+        expectedVolume = 36;
         expected.get(0).setVolume(expectedVolume);
         expected.get(1).setVolume(expectedVolume);
         NoteListTest.assertNoteListsEqual(expected, settings.applySettingsToNoteList(input, scale));                
@@ -261,8 +261,8 @@ public class AbstractVoiceOrSectionSettingsTest implements Subscriber {
         if (!this.isInstanceOfSubclass()) return;                
         
         this.setDefaultSettingsValues();
-        AbstractVoiceOrSectionSettings s1 = (AbstractVoiceOrSectionSettings) this.settings.clone();
-        AbstractVoiceOrSectionSettings s2 = (AbstractVoiceOrSectionSettings) this.settings.clone();
+        AbstractVoiceOrSectionSettings s1 = this.settings.clone();
+        AbstractVoiceOrSectionSettings s2 = this.settings.clone();
         s1.setScaleStepOffset(3);
         s1.setVolumeAdjustment(0.5d);
         

@@ -19,6 +19,8 @@
 
 package com.myronmarston.music.notation;
 
+import java.util.*;
+
 /**
  * An abstract class providing a partial implementation of the NotationElement
  * interface.  Classes that should implement the NotationElement interface and 
@@ -58,4 +60,13 @@ public abstract class AbstractNotationElement implements NotationElement {
         throw new UnsupportedOperationException("The operation must be overriden in a sub class.");
     }
 
+    /**
+     * Returns an empty list of notation notes.
+     * 
+     * @return an empty list of notation notes
+     */
+    public List<NotationNote> getNotationNotes() {
+        return new ArrayList<NotationNote>();
+    }
+   
 }

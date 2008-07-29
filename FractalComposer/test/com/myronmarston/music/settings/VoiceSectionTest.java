@@ -144,6 +144,7 @@ public class VoiceSectionTest {
         expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), 64, scale, 0));
         expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), 64, scale, 0));
         expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));                
+        expected.setSourceVoiceSectionOnAllNotes(vs1);
         NoteListTest.assertNoteListsEqual(expected, vs1.getVoiceSectionResult());
                 
         // apply self-similarity...        
@@ -170,6 +171,7 @@ public class VoiceSectionTest {
         expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), 64, scale, 0));
         expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), 64, scale, 0));
         expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.setSourceVoiceSectionOnAllNotes(vs1);
         NoteListTest.assertNoteListsEqual(expected, vs1.getVoiceSectionResult());
         
         // set retrograde on the section, the voice section should use this default
@@ -196,6 +198,7 @@ public class VoiceSectionTest {
         expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), 64, scale, 0));
         expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), 64, scale, 0));
         expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.setSourceVoiceSectionOnAllNotes(vs1);
         NoteListTest.assertNoteListsEqual(expected, vs1.getVoiceSectionResult());
         
         // overide the inversion
@@ -225,11 +228,13 @@ public class VoiceSectionTest {
         expected.add(new Note(-2, -2, 6, 0, new Fraction(1, 8), 64, scale, 0));
         expected.add(new Note(-1, -1, 6, 0, new Fraction(1, 8), 64, scale, 0));
         expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.setSourceVoiceSectionOnAllNotes(vs1);
         NoteListTest.assertNoteListsEqual(expected, vs1.getVoiceSectionResult());
                        
         vs1.setRest(true);
         expected.clear();        
         expected.add(Note.createRest(new Fraction(3, 4)));
+        expected.setSourceVoiceSectionOnAllNotes(vs1);
         NoteListTest.assertNoteListsEqual(expected, vs1.getVoiceSectionResult());                
     }
     
@@ -256,7 +261,7 @@ public class VoiceSectionTest {
         NoteList expected = NoteList.parseNoteListString("C5 D5", new MajorScale(NoteName.C));
         expected.get(0).setVolume(expectedVolume);
         expected.get(1).setVolume(expectedVolume);
-        
+        expected.setSourceVoiceSectionOnAllNotes(vs);
         NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());
         
         //test that the cached results are cleared...
@@ -264,14 +269,15 @@ public class VoiceSectionTest {
         expected = NoteList.parseNoteListString("F4 G4", new MajorScale(NoteName.C));
         expected.get(0).setVolume(expectedVolume);
         expected.get(1).setVolume(expectedVolume);
-        
+        expected.setSourceVoiceSectionOnAllNotes(vs);
         NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());
                 
         sSettings.setVolumeAdjustment(-0.5d);
-        expectedVolume = 81;
+        expectedVolume = 82;
         expected = NoteList.parseNoteListString("F4 G4", new MajorScale(NoteName.C));
         expected.get(0).setVolume(expectedVolume);
         expected.get(1).setVolume(expectedVolume);
+        expected.setSourceVoiceSectionOnAllNotes(vs);
         NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());
     }
         
@@ -385,15 +391,21 @@ public class VoiceSectionTest {
         v.getSettings().getSelfSimilaritySettings().setSelfSimilarityIterations(1);
         
         NoteList expectedResult = NoteList.parseNoteListString("C4 D4 C4  D4 E4 D4  C4 D4 C4", fp.getScale());        
+        expectedResult.setSourceVoiceSectionOnAllNotes(vs);
+        expectedResult.setfirstNotesOfGermCopy(0, 3, 6);        
         NoteListTest.assertNoteListsEqual(expectedResult, vs.getVoiceSectionResult());
         
         v.getSettings().getSelfSimilaritySettings().setSelfSimilarityIterations(3);
         expectedResult = NoteList.parseNoteListString("C4 D4 C4  D4 E4 D4  C4 D4 C4   D4 E4 D4  E4 F4 E4  D4 E4 D4   C4 D4 C4  D4 E4 D4  C4 D4 C4   D4 E4 D4  E4 F4 E4  D4 E4 D4   E4 F4 E4  F4 G4 F4  E4 F4 E4   D4 E4 D4  E4 F4 E4  D4 E4 D4   C4 D4 C4  D4 E4 D4  C4 D4 C4   D4 E4 D4  E4 F4 E4  D4 E4 D4   C4 D4 C4  D4 E4 D4  C4 D4 C4", fp.getScale());
+        expectedResult.setSourceVoiceSectionOnAllNotes(vs);
+        expectedResult.setfirstNotesOfGermCopy(0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57, 60, 63, 66, 69, 72, 75, 78, 81);
         NoteListTest.assertNoteListsEqual(expectedResult, vs.getVoiceSectionResult());
         
         vs.setOverrideVoiceSettings(true);
         vs.getVoiceSettings().getSelfSimilaritySettings().setSelfSimilarityIterations(1);
         expectedResult = NoteList.parseNoteListString("C4 D4 C4  D4 E4 D4  C4 D4 C4", fp.getScale());
+        expectedResult.setfirstNotesOfGermCopy(0, 3, 6);
+        expectedResult.setSourceVoiceSectionOnAllNotes(vs);
         NoteListTest.assertNoteListsEqual(expectedResult, vs.getVoiceSectionResult());
     }
     
@@ -428,17 +440,23 @@ public class VoiceSectionTest {
                 
         NoteList expected = new NoteList();
         expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), MidiNote.DEFAULT_VELOCITY, scale, 0));
+        expected.setSourceVoiceSectionOnAllNotes(vs);
+        expected.setfirstNotesOfGermCopy(0);
         NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());
         
         s.setOverridePieceScale(true);
         s.setScale(new HarmonicMinorScale(NoteName.Bb));
         expected.clear();
         expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), MidiNote.DEFAULT_VELOCITY, new HarmonicMinorScale(NoteName.Bb), 0));
+        expected.setSourceVoiceSectionOnAllNotes(vs);
+        expected.setfirstNotesOfGermCopy(0);
         NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());
                 
         s.setOverridePieceScale(false);        
         expected.clear();
         expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), MidiNote.DEFAULT_VELOCITY, scale, 0));
+        expected.setSourceVoiceSectionOnAllNotes(vs);
+        expected.setfirstNotesOfGermCopy(0);
         NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());
     }
     
@@ -453,15 +471,83 @@ public class VoiceSectionTest {
         VoiceSection vs1 = s1.getVoiceSections().get(0);
         
         NoteList expectedResult = NoteList.parseNoteListString("G5,1/8 E6 D6 G5  E6 C7 B6 E6  D6 B6 A6 D6  G5 E6 D6 G5", new MajorScale(NoteName.G));
+        expectedResult.setSourceVoiceSectionOnAllNotes(vs1);
+        expectedResult.setfirstNotesOfGermCopy(0, 4, 8, 12);
         NoteListTest.assertNoteListsEqual(expectedResult, vs1.getVoiceSectionResult());
         
         s1.setOverridePieceScale(true);
         s1.setScale(new MajorPentatonicScale(NoteName.D));
         expectedResult = NoteList.parseNoteListString("D5,1/8 B5 A5 D5  B5 A6 F#6 B5  A5 F#6 E6 A5  D5 B5 A5 D5", new MajorPentatonicScale(NoteName.D));
+        expectedResult.setSourceVoiceSectionOnAllNotes(vs1);
+        expectedResult.setfirstNotesOfGermCopy(0, 4, 8, 12);
         NoteListTest.assertNoteListsEqual(expectedResult, vs1.getVoiceSectionResult());
         
         s1.setScale(new ChromaticScale());
         expectedResult = NoteList.parseNoteListString("G5,1/8 E6 D6 G5  E6 C#7 B6 E6  D6 B6 A6 D6  G5 E6 D6 G5", new ChromaticScale());
+        expectedResult.setSourceVoiceSectionOnAllNotes(vs1);
+        expectedResult.setfirstNotesOfGermCopy(0, 4, 8, 12);
         NoteListTest.assertNoteListsEqual(expectedResult, vs1.getVoiceSectionResult());
+    }
+    
+    @Test
+    public void resultNotesHaveSourceVoiceSection() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        Voice v1 = fp.createVoice();
+        Section s1 = fp.createSection();
+        VoiceSection vs1 = v1.getVoiceSections().get(0);
+        
+        fp.setGermString("G4 A4 B4");
+        testVoiceSectionResult_SourceVoiceSection(vs1);
+        
+        // test that this works ok if the voice section is rest...
+        vs1.setRest(true);
+        testVoiceSectionResult_SourceVoiceSection(vs1);
+    }
+    
+    private static void testVoiceSectionResult_SourceVoiceSection(VoiceSection vs) {
+        NoteList nl = vs.getVoiceSectionResult();
+        for (Note n : nl) assertTrue(n.getSourceVoiceSection() == vs);
+        
+        nl = vs.getLengthenedVoiceSectionResult(nl.getDuration().times(3L));
+        for (Note n : nl) assertTrue(n.getSourceVoiceSection() == vs);        
+    }
+    
+    @Test
+    public void testClone() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        Voice v1 = fp.createVoice();
+        Section s1 = fp.createSection();
+        VoiceSection vs1 = v1.getVoiceSections().get(0);
+        vs1.setOverrideSectionSettings(true);
+        vs1.setOverrideVoiceSettings(true);
+        
+        VoiceSection cloned = vs1.clone();
+        assertVoiceSectionsEqual(vs1, cloned);
+        
+        // some references should be different
+        assertTrue(vs1 != cloned);        
+        assertTrue(vs1.getSectionSettings() != cloned.getSectionSettings());
+        assertTrue(vs1.getVoiceSettings() != cloned.getVoiceSettings());
+        
+        // but some the same...
+        assertTrue(vs1.getVoice() == cloned.getVoice());
+        assertTrue(vs1.getSection() == cloned.getSection());
+    }
+    
+    public static void assertVoiceSectionsEqual(VoiceSection expected, VoiceSection actual) {
+        assertVoiceSectionsEqual(expected, actual, false);
+    }
+    
+    public static void assertVoiceSectionsEqual(VoiceSection expected, VoiceSection actual, boolean allowDifferentResultNotesVoiceSectionReferences) {
+        assertVoiceSectionsEqual_withoutResult(expected, actual);
+        NoteListTest.assertNoteListsEqual(expected.getVoiceSectionResult(), actual.getVoiceSectionResult(), allowDifferentResultNotesVoiceSectionReferences);        
+    }
+    
+    public static void assertVoiceSectionsEqual_withoutResult(VoiceSection expected, VoiceSection actual) {
+        assertEquals(expected.getOverrideSectionSettings(), actual.getOverrideSectionSettings());
+        assertEquals(expected.getOverrideVoiceSettings(), actual.getOverrideVoiceSettings());
+        assertEquals(expected.getSectionSettings(), actual.getSectionSettings());
+        assertEquals(expected.getVoiceSettings(), actual.getVoiceSettings());                
+        assertEquals(expected.getRest(), actual.getRest());
     }
 }

@@ -20,14 +20,10 @@
 package com.myronmarston.music;
 
 import com.myronmarston.music.scales.Scale;
-import com.myronmarston.util.MathHelper;
+import com.myronmarston.music.settings.VoiceSection;
 import com.myronmarston.util.Fraction;
 
-import java.lang.reflect.UndeclaredThrowableException;
 import java.util.*;
-import javax.sound.midi.InvalidMidiDataException;
-import javax.sound.midi.Sequence;
-import javax.sound.midi.Track;
 
 /**
  * NoteList contains a sequence of notes.
@@ -54,6 +50,15 @@ public class NoteList extends ArrayList<Note> {
      */
     public NoteList(int initialCapacity) {
         super(initialCapacity);        
+    }
+    
+    /**
+     * Constructor. Initializes the list with the given collection.
+     * 
+     * @param initialCollection collection of notes to put in the list
+     */
+    public NoteList(Collection<Note> initialCollection) {
+        super(initialCollection);
     }
 
     /**
@@ -130,6 +135,7 @@ public class NoteList extends ArrayList<Note> {
             list.add(note);
         }
         
+        if (list.size() > 0) list.get(0).setIsFirstNoteOfGermCopy(true);
         return list;
     }
     
@@ -139,31 +145,65 @@ public class NoteList extends ArrayList<Note> {
      * 
      * @return list of notes with normalized rests
      */
-    public List<Note> getListWithNormalizedRests() {
-        ArrayList<Note> newList = new ArrayList<Note>();
+    public NoteList getListWithNormalizedRests() {
+        NoteList newList = new NoteList(this.size());
         
-        Fraction currentRestDuration = new Fraction(0, 1);
-        for (Note n : this) {
-            if (n.isRest()) {
-                // sum up the rest durations...
-                currentRestDuration = currentRestDuration.plus(n.getDuration());
+        if (this.size() == 1) {
+            // our logic below doesn't work for the case where we have a one-note
+            // list, so just make it manually here
+            newList.add(this.get(0));
+        } else {                    
+            Note thisNote, nextNote = null;
+            Fraction currentRestDuration = new Fraction(0, 1);
+
+            for (int i = 0; i < this.size() - 1; i++) {
+                thisNote = this.get(i);
+                nextNote = this.get(i+1);
+
+                if (thisNote.isRest()) {
+                    currentRestDuration = currentRestDuration.plus(thisNote.getDuration());
+
+                    if (!nextNote.isRest() || thisNote.getSourceVoiceSection() != nextNote.getSourceVoiceSection()) {
+                        // the next note should not be collapsed into a rest with this one,
+                        // so just create a rest with our current duration
+                        getListWithNormalizedRests_createRestHelper(newList, currentRestDuration, thisNote);
+
+                        // reset the current rest duration to zero
+                        currentRestDuration = new Fraction(0, 1);
+                    }
+                } else {
+                    // we should never have a rest duration queued up when we reach here
+                    assert currentRestDuration.numerator() == 0L;
+                    newList.add(thisNote);
+                }
+            }            
+
+            // our nextNote should be the last note of the list
+            assert nextNote == this.get(this.size() - 1);
+            if (currentRestDuration.numerator() > 0L) {
+                getListWithNormalizedRests_createRestHelper(newList, currentRestDuration.plus(nextNote.getDuration()), nextNote);                
             } else {
-                if (currentRestDuration.numerator() != 0) {
-                    // the note(s) previous to this one were rests, and we now have
-                    // the total duration.  Create a rest of this length.
-                    newList.add(Note.createRest(currentRestDuration));
-                    
-                    // rest the current rest duration to zero
-                    currentRestDuration = new Fraction(0, 1);
-                } 
-                
-                newList.add(n);
+                newList.add(nextNote);
             }
-        }
-        
-        if (currentRestDuration.numerator() != 0) newList.add(Note.createRest(currentRestDuration)); 
-        
+        }    
+                
         return newList;
+    }
+    
+    /**
+     * Helper method for getListWithNormalizedRests to create the combined
+     * rest note and add it to the new list.
+     * 
+     * @param newList new NoteList to add the rest to
+     * @param currentRestDuration the rest duration of the previous notes
+     * @param restNoteWithSourceVoiceSection a rest note with the desired source voice
+     *        section
+     */
+    private static void getListWithNormalizedRests_createRestHelper(NoteList newList, Fraction currentRestDuration, Note restNoteWithSourceVoiceSection) {
+        assert restNoteWithSourceVoiceSection.isRest();
+        Note rest = Note.createRest(currentRestDuration);
+        rest.setSourceVoiceSection(restNoteWithSourceVoiceSection.getSourceVoiceSection());
+        newList.add(rest);
     }
     
     /**
@@ -201,16 +241,43 @@ public class NoteList extends ArrayList<Note> {
         
         return accidentalCount;
     }
+
+    /**
+     * Sets the sourceVoiceSection field on all notes of this note list to
+     * the given one.
+     * 
+     * @param source the voice section that generated the notes in this note 
+     *        list
+     */
+    public void setSourceVoiceSectionOnAllNotes(VoiceSection source) {
+        for (Note n : this) n.setSourceVoiceSection(source);
+    }
+    
+    /**
+     * Sets which notes have the firstNoteOfGermCopy flag set to true.  The
+     * notes of the indices given will have this set to true; all others will
+     * be set to false.  This is not intended to be used in production but is 
+     * only provided as a convenience method for unit tests.
+     * 
+     * @param indices list of indices of the notes that should be the first
+     *        notes of a germ copy
+     */
+    public void setfirstNotesOfGermCopy(int ... indices) {        
+        for (int i = 0; i < this.size(); i++) {
+            int value = Arrays.binarySearch(indices, i);
+            this.get(i).setIsFirstNoteOfGermCopy(value >= 0);
+        }
+    }
     
     @Override
     /**
      * Clones the note list.  Each individual note is also cloned.
      */
-    public Object clone() {
+    public NoteList clone() {
         NoteList clone = (NoteList) super.clone();
         
         for (int i = 0; i < clone.size(); i++) {
-            clone.set(i, (Note) clone.get(i).clone());
+            clone.set(i, clone.get(i).clone());
         }
         
         return clone;

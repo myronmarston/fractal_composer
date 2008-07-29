@@ -64,50 +64,47 @@ public class FractionTest {
     
     @Test
     public void toLilypondString() {
-        testToLilypondString("1/1", "%1$s1");
-        testToLilypondString("1/2", "%1$s2");
-        testToLilypondString("1/4", "%1$s4");
-        testToLilypondString("1/8", "%1$s8");
-        testToLilypondString("1/16", "%1$s16");
-        testToLilypondString("1/32", "%1$s32");
-        testToLilypondString("1/64", "%1$s64");
+        // simple cases
+        testToLilypondString("1/1", "4/4", "4/4", "1/1", "%1$s1%2$s");
+        testToLilypondString("1/2", "4/4", "4/4", "1/1", "%1$s2%2$s");
+        testToLilypondString("1/4", "4/4", "4/4", "1/1", "%1$s4%2$s");
+        testToLilypondString("1/8", "4/4", "4/4", "1/1", "%1$s8%2$s");
+        testToLilypondString("1/16", "4/4", "4/4", "1/1", "%1$s16%2$s");
+        testToLilypondString("1/32", "4/4", "4/4", "1/1", "%1$s32%2$s");
+        testToLilypondString("1/64", "4/4", "4/4", "1/1", "%1$s64%2$s");
                 
-        testToLilypondString("3/8", "%1$s4.");
-        testToLilypondString("7/16", "%1$s4..");
-        testToLilypondString("7/32", "%1$s8..");
-        testToLilypondString("7/4", "%1$s1..");
-        testToLilypondString("3/2", "%1$s1.");
-        testToLilypondString("3/1", "%1$s1 ~ %1$s1 ~ %1$s1");
-        testToLilypondString("5/2", "%1$s1 ~ %1$s1 ~ %1$s2");
-        testToLilypondString("21/32", "%1$s2 ~ %1$s8 ~ %1$s32");
+        // more complicated--augmentation dots and ties
+        testToLilypondString("3/8", "4/4", "4/4", "1/1", "%1$s4.%2$s");
+        testToLilypondString("7/16", "4/4", "4/4", "1/1", "%1$s4..%2$s");
+        testToLilypondString("7/32", "4/4", "4/4", "1/1", "%1$s8..%2$s");
+        testToLilypondString("7/4", "4/4", "4/4", "1/1", "%1$s1%2$s ~ %1$s2.");
+        testToLilypondString("3/2", "4/4", "4/4", "1/1", "%1$s1%2$s ~ %1$s2");
+        testToLilypondString("3/1", "4/4", "4/4", "1/1", "%1$s1%2$s ~ %1$s1 ~ %1$s1");
+        testToLilypondString("5/2", "4/4", "4/4", "1/1", "%1$s1%2$s ~ %1$s1 ~ %1$s2");
+        testToLilypondString("21/32", "4/4", "4/4", "1/1", "%1$s2%2$s ~ %1$s8 ~ %1$s32");
+        
+        // notes that cross a bar line...
+        testToLilypondString("1/4", "1/8", "4/4", "1/1", "%1$s8%2$s ~ %1$s8");
+        testToLilypondString("3/4", "3/8", "4/4", "1/1", "%1$s4.%2$s ~ %1$s4.");
+        testToLilypondString("9/2", "3/8", "4/4", "1/1", "%1$s4.%2$s ~ %1$s1 ~ %1$s1 ~ %1$s1 ~ %1$s1 ~ %1$s8");        
+        
+        // tuplet-scaled notes...
+        testToLilypondString("1/4", "1/6", "4/4", "2/3", "%1$s4%2$s");
+        testToLilypondString("1/4", "1/12", "4/4", "2/3", "%1$s8%2$s ~ %1$s8");
         
         // durations with denoms greater than 64 are not allowed
         try {
-            (new Fraction("1/128")).toLilypondString();
+            (new Fraction("1/128")).toLilypondString(new Fraction("4/4"), new Fraction("4/4"), new Fraction(1, 1));
             fail();
         } catch (IllegalArgumentException ex) { }
-
-        
-        // 128 and higher denoms are not supported by lilypond, so we use a grace note hack.  This could work,
-        // but a better solution is just to scale all the duration fractions so that we don't have any durations greater than 64
-        //        testToLilypondString("1/128", "\\grace %1$s8 \\hideNotes %1$s1*1/128 \\unHideNotes");
-        //        testToLilypondString("1/256", "\\grace %1$s16 \\hideNotes %1$s1*1/256 \\unHideNotes");
-        //        testToLilypondString("1/512", "\\grace %1$s32 \\hideNotes %1$s1*1/512 \\unHideNotes");
-        //        testToLilypondString("1/1024", "\\grace %1$s64 \\hideNotes %1$s1*1/1024 \\unHideNotes");
-        //        testToLilypondString("1/2048", "\\grace %1$s64 \\hideNotes %1$s1*1/2048 \\unHideNotes");
-        //        testToLilypondString("3/128", "%1$s64.");
-        //        testToLilypondString("3/256", "\\grace %1$s8. \\hideNotes %1$s1*3/256 \\unHideNotes");
-        //        testToLilypondString("7/256", "%1$s64..");
-        //        testToLilypondString("7/512", "\\grace %1$s8.. \\hideNotes %1$s1*7/512 \\unHideNotes");
-
+              
     }
         
-    public static void testToLilypondString(String durationFraction, String expectedString) {
-        String actualString = (new Fraction(durationFraction)).toLilypondString();
+    public static void testToLilypondString(String durationFraction, String timeLeftInBarFraction, String barLengthFraction, String tupletMultiplier, String expectedString) {
+        String actualString = (new Fraction(durationFraction)).toLilypondString(new Fraction(timeLeftInBarFraction), new Fraction(barLengthFraction), new Fraction(tupletMultiplier));
         assertEquals(expectedString, actualString);        
     }                
-    
-    
+        
     @Test
     public void positiveRegex() {
         Pattern p = Pattern.compile(Fraction.POSITIVE_FRACTION_REGEX_STRING);          
@@ -151,4 +148,5 @@ public class FractionTest {
         assertTrue((new Fraction("19/128")).denomIsPowerOf2());
         assertFalse((new Fraction("3/7")).denomIsPowerOf2());
     }
+    
 }

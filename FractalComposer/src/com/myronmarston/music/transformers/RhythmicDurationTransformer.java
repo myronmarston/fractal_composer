@@ -73,7 +73,7 @@ public class RhythmicDurationTransformer implements Transformer {
         NoteList output = new NoteList(input.size());
         
         for (Note inputNote : input) {
-            newNote = (Note) inputNote.clone();
+            newNote = inputNote.clone();
             
             // if the scale factor is zero, we'll get a div-by-zero exception.  
             // our code should prevent it from ever reaching here if it's zero...

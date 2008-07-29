@@ -33,7 +33,7 @@ import static com.myronmarston.music.transformers.TransformerTest.*;
 public class InversionTransformerTest {
     
     @Test
-    public void inversionTransformer() {
+    public void inversionTransformer() throws Exception {
         NoteList input = new NoteList();
         input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, -1));
         input.add(new Note(3, 5, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
@@ -41,6 +41,7 @@ public class InversionTransformerTest {
         input.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
         input.add(new Note(-1, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, -2));
         input.add(Note.createRest(new Fraction(1, 2)));
+        input.get(0).setIsFirstNoteOfGermCopy(true);        
         
         Transformer t = new InversionTransformer();
         NoteList expectedOutput = new NoteList();
@@ -50,6 +51,7 @@ public class InversionTransformerTest {
         expectedOutput.add(new Note(-1, -1, 4, 0, new Fraction(1, 2), 112, Scale.DEFAULT, 0));
         expectedOutput.add(new Note(1, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 2));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));
+        expectedOutput.get(0).setIsFirstNoteOfGermCopy(true);        
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
         //inverting an inversion should produce the original
@@ -65,6 +67,7 @@ public class InversionTransformerTest {
         input.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
         input.add(new Note(6, 6, 3, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
         input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 64, Scale.DEFAULT, 0));
+        input.get(0).setIsFirstNoteOfGermCopy(true);
         
         Transformer t = new InversionTransformer();
         NoteList expectedOutput = new NoteList();
@@ -73,6 +76,7 @@ public class InversionTransformerTest {
         expectedOutput.add(new Note(-1, -1, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
         expectedOutput.add(new Note(-6, -6, 5, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
         expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 64, Scale.DEFAULT, 0));
+        expectedOutput.get(0).setIsFirstNoteOfGermCopy(true);
         
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
@@ -86,6 +90,7 @@ public class InversionTransformerTest {
         input.add(new Note(1, 1, 5, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
         input.add(new Note(6, 6, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
         input.add(new Note(0, 0, 5, 0, new Fraction(1, 1), 64, Scale.DEFAULT, 0));
+        input.get(0).setIsFirstNoteOfGermCopy(true);
         
         expectedOutput.clear();
         expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 64, Scale.DEFAULT, 0));
@@ -93,6 +98,7 @@ public class InversionTransformerTest {
         expectedOutput.add(new Note(-1, -1, 3, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
         expectedOutput.add(new Note(-6, -6, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
         expectedOutput.add(new Note(0, 0, 3, 0, new Fraction(1, 1), 64, Scale.DEFAULT, 0));
+        expectedOutput.get(0).setIsFirstNoteOfGermCopy(true);
         
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
@@ -106,7 +112,9 @@ public class InversionTransformerTest {
         // but not in other cases--this is a test for that.
         
         NoteList input = NoteList.parseNoteListString("G4 E4", new MajorScale(NoteName.C));
+        input.get(0).setIsFirstNoteOfGermCopy(true);
         NoteList expectedOutput = NoteList.parseNoteListString("G4 B4", new MajorScale(NoteName.C));
+        expectedOutput.get(0).setIsFirstNoteOfGermCopy(true);        
         
         Transformer t = new InversionTransformer();
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);

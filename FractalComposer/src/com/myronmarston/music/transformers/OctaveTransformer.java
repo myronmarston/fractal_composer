@@ -55,7 +55,7 @@ public class OctaveTransformer implements Transformer {
         NoteList output = new NoteList(input.size());
         
         for (Note inputNote : input) {
-            newNote = (Note) inputNote.clone();
+            newNote = inputNote.clone();
                         
             if (!newNote.isRest()) { // don't change the octave on a rest...
                 newNote.setOctave(newNote.getOctave() + this.octaveChange);

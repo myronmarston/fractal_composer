@@ -21,6 +21,7 @@ package com.myronmarston.music;
 
 import com.myronmarston.music.NoteStringInvalidPartException.NoteStringPart;
 import com.myronmarston.music.scales.*;
+import com.myronmarston.music.settings.*;
 import com.myronmarston.util.Fraction;
 import com.myronmarston.music.notation.*;
 
@@ -180,15 +181,21 @@ public class NoteTest {
     @Test
     public void testClone() throws Exception {
         Note n = new Note(4, 4, 4, 1, new Fraction(1, 4), 70, new MajorScale(NoteName.G), -1);
-        Note cloned = (Note) n.clone();
+        Note cloned = n.clone();
         assertEquals(n, cloned);        
     }
         
     @Test
     public void testEqualsAndHashCode() throws Exception {
-        Note n1 = new Note(0, 0, 3, 2, new Fraction(1, 3), 70, new MajorScale(NoteName.D), -1);
+        FractalPiece fp = new FractalPiece();
+        fp.createDefaultSettings();
+        VoiceSection vs1 = fp.getVoices().get(0).getVoiceSections().get(0);
+        VoiceSection vs2 = fp.getVoices().get(1).getVoiceSections().get(0);
         
-        Note n2 = (Note) n1.clone();
+        Note n1 = new Note(0, 0, 3, 2, new Fraction(1, 3), 70, new MajorScale(NoteName.D), -1);
+        n1.setSourceVoiceSection(vs1);
+        
+        Note n2 = n1.clone();
         assertTrue(n1.equals(n2));
         assertTrue(n2.equals(n1));
         assertTrue(n1.hashCode() == n2.hashCode());
@@ -198,44 +205,56 @@ public class NoteTest {
         assertFalse(n2.equals(n1));
         assertFalse(n1.hashCode() == n2.hashCode());
         
-        n2 = (Note) n1.clone();
+        n2 = n1.clone();
         n2.setDuration(new Fraction(1, 5));
         assertFalse(n1.equals(n2));
         assertFalse(n2.equals(n1));
         assertFalse(n1.hashCode() == n2.hashCode());
         
-        n2 = (Note) n1.clone();
+        n2 = n1.clone();
         n2.setOctave(7);
         assertFalse(n1.equals(n2));
         assertFalse(n2.equals(n1));
         assertFalse(n1.hashCode() == n2.hashCode());
         
-        n2 = (Note) n1.clone();
+        n2 = n1.clone();
         n2.setScale(Scale.DEFAULT);
         assertFalse(n1.equals(n2));
         assertFalse(n2.equals(n1));
         assertFalse(n1.hashCode() == n2.hashCode());
         
-        n2 = (Note) n1.clone();
+        n2 = n1.clone();
         n2.setScaleStep(-1);
         assertFalse(n1.equals(n2));
         assertFalse(n2.equals(n1));
         assertFalse(n1.hashCode() == n2.hashCode());
         
-        n2 = (Note) n1.clone();
+        n2 = n1.clone();
         n2.setLetterNumber(3);
         assertFalse(n1.equals(n2));
         assertFalse(n2.equals(n1));
         assertFalse(n1.hashCode() == n2.hashCode());
         
-        n2 = (Note) n1.clone();
+        n2 = n1.clone();
         n2.setSegmentChromaticAdjustment(2);
         assertFalse(n1.equals(n2));
         assertFalse(n2.equals(n1));
         assertFalse(n1.hashCode() == n2.hashCode());
         
-        n2 = (Note) n1.clone();
+        n2 = n1.clone();
         n2.setVolume(37);
+        assertFalse(n1.equals(n2));
+        assertFalse(n2.equals(n1));
+        assertFalse(n1.hashCode() == n2.hashCode());
+        
+        n2 = n1.clone();
+        n2.setSourceVoiceSection(vs2);
+        assertFalse(n1.equals(n2));
+        assertFalse(n2.equals(n1));
+        assertFalse(n1.hashCode() == n2.hashCode());
+        
+        n2 = n1.clone();
+        n2.setIsFirstNoteOfGermCopy(!n2.isFirstNoteOfGermCopy());
         assertFalse(n1.equals(n2));
         assertFalse(n2.equals(n1));
         assertFalse(n1.hashCode() == n2.hashCode());
@@ -243,30 +262,50 @@ public class NoteTest {
     
     @Test
     public void testToString() throws Exception {
-        String expectedWithScale = "Note = LN(1), SS(1), O(4), CA(1), D(1/4), V(70), S(Bb Major Scale), SCA(0)";        
+        FractalPiece fp = new FractalPiece();
+        fp.createDefaultSettings();
+        VoiceSection vs = fp.getVoices().get(0).getVoiceSections().get(0);                          
+        
+        String vsString = vs.toString();
+        
+        String expectedWithScale = "Note = LN(1), SS(1), O(4), CA(1), D(1/4), V(70), S(Bb Major Scale), SCA(0), SVS(" + vsString + "), IFN(false)";        
         Note n = new Note(1, 1, 4, 1, new Fraction(1, 4), 70, new MajorScale(NoteName.Bb), 0);
+        n.setSourceVoiceSection(vs);
         assertEquals(expectedWithScale, n.toString());            
     }
     
     @Test
     public void toNotationNote() throws Exception {
-        testToNotationNote(new MajorScale(NoteName.G), "G4,3/8", 'g', 4, 0, "3/8");
-        testToNotationNote(new ChromaticScale(), "B#4,1/16", 'b', 4, 1, "1/16");
-        testToNotationNote(new ChromaticScale(), "Cb5,1/6", 'c', 5, -1, "1/6");
+        testToNotationNote(new MajorScale(NoteName.G), "G4,3/8", 'g', 4, 0, "3/8", "4/4");
+        testToNotationNote(new ChromaticScale(), "B#4,1/16", 'b', 4, 1, "1/16", "3/8");
+        testToNotationNote(new ChromaticScale(), "Cb5,1/6", 'c', 5, -1, "1/6", "1/4");               
         
+        // test that if the chromatic adjustment is more than 2, it changes to a
+        // different letter name
+        // triple sharp of a B# in C# major = B#### = D#
+        Note n = new Note(6, 6, 4, 2, new Fraction(1, 4), MidiNote.DEFAULT_VELOCITY, new MajorScale(NoteName.Cs), 1);
+        MidiNote mn = n.convertToMidiNote(new Fraction(0, 1), 4, 0, true);
+        NotationNote nn = n.toNotationNote(NotationNoteTest.DEFAULT_PART_SECTION, mn, new Fraction(4, 4));
+        assertNotationNote(nn, 'd', 5, 1, "1/4", "4/4");
     }
     
-    private static void testToNotationNote(Scale scale, String noteString, char letterName, int octave, int accidental, String duration) throws Exception {
+    private static void testToNotationNote(Scale scale, String noteString, char letterName, int octave, int accidental, String duration, String timeLeftInBar) throws Exception {
         Piece piece = new Piece(scale.getKeySignature(), TimeSignature.DEFAULT, Tempo.DEFAULT, true, true);
         Part part = new Part(piece, Instrument.DEFAULT);
+        PartSection partSection = new PartSection(part, NotationNoteTest.DEFAULT_VOICE_SECTION);
         Note n = Note.parseNoteString(noteString, scale, new Fraction("1/4"), Dynamic.MF.getMidiVolume());        
-        NotationNote nn = n.toNotationNote(part, n.convertToMidiNote(new Fraction(0, 1), (int) n.getDuration().denominator() * 4, 0, true));
+        NotationNote nn = n.toNotationNote(partSection, n.convertToMidiNote(new Fraction(0, 1), (int) n.getDuration().denominator() * 4, 0, true), new Fraction(timeLeftInBar));
         
+        assertNotationNote(nn, letterName, octave, accidental, duration, timeLeftInBar);        
+    }               
+    
+    private static void assertNotationNote(NotationNote nn, char letterName, int octave, int accidental, String duration, String timeLeftInBar) throws Exception {
         assertEquals(accidental, nn.getAccidental());
         assertEquals(octave, nn.getOctave());
         assertEquals(letterName, nn.getLetterName());
-        assertEquals(new Fraction(duration), nn.getDuration());
-    }               
+        assertEquals(new Fraction(duration), nn.getDuration());        
+        assertEquals(new Fraction(timeLeftInBar), nn.getTimeLeftInBar());        
+    }
     
     @Test(expected=UnsupportedOperationException.class)
     public void setLetterNumberOnRest() throws Exception {
@@ -278,19 +317,19 @@ public class NoteTest {
     public void performTransformerAdjustment() throws Exception {
         Scale scale = new MajorPentatonicScale(NoteName.G);        
         Note n = new Note(2, 2, 4, 0, new Fraction(1, 4), MidiNote.DEFAULT_VELOCITY, scale, 0);
-        Note clone = (Note) n.clone();
+        Note clone = n.clone();
         
         // try a pentatonic scale
-        Note expected = (Note) n.clone();
+        Note expected = n.clone();
         n.performTransformerAdjustment(1, 1, 0);                
         expected.setScaleStep(3);
         expected.setLetterNumber(4);        
         assertEquals(expected, n);
         
         // try it with a pentatonic scale and accidentals
-        n = (Note) clone.clone();
+        n = clone.clone();
         n.setChromaticAdjustment(1);
-        expected = (Note) n.clone();        
+        expected = n.clone();        
         n.performTransformerAdjustment(1, 1, -1);                
         
         expected.setScaleStep(3);
@@ -298,9 +337,9 @@ public class NoteTest {
         expected.setOctave(3);
         assertEquals(expected, n); 
         
-        n = (Note) clone.clone();
+        n = clone.clone();
         n.setSegmentChromaticAdjustment(1);
-        expected = (Note) n.clone();        
+        expected = n.clone();        
         n.performTransformerAdjustment(1, 1, -1);                
         
         expected.setScaleStep(3);
@@ -309,9 +348,9 @@ public class NoteTest {
         assertEquals(expected, n);
         
         // try a diatonic scale
-        n = (Note) clone.clone();
+        n = clone.clone();
         n.setScale(new MajorScale(NoteName.G));
-        expected = (Note) n.clone();        
+        expected = n.clone();        
         n.performTransformerAdjustment(1, 1, 0);                
         
         expected.setScaleStep(3);
@@ -319,7 +358,7 @@ public class NoteTest {
         assertEquals(expected, n);                 
     }
     
-    public static void assertNotesEqual(Note expected, Note actual) {                        
+    public static void assertNotesEqual(Note expected, Note actual, boolean allowDifferentVoiceSectionReferences) {                        
         // These could be null if we passed NoteList.getFirstAudibleNote() as
         // sometimes there is not an audible note
         // Return if both are null or the same instance--we treat them as equal
@@ -328,7 +367,13 @@ public class NoteTest {
         // normalize the notes first...
         Note expectedNote = expected.getNormalizedNote();
         Note actualNote = actual.getNormalizedNote();
-                
+        
+        if (allowDifferentVoiceSectionReferences && expectedNote.getSourceVoiceSection() != actualNote.getSourceVoiceSection()) {
+            VoiceSectionTest.assertVoiceSectionsEqual_withoutResult(expected.getSourceVoiceSection(), actual.getSourceVoiceSection());
+            expectedNote.setSourceVoiceSection(null);
+            actualNote.setSourceVoiceSection(null);                    
+        }        
+        
         assertEquals(expectedNote, actualNote);
     }
 }

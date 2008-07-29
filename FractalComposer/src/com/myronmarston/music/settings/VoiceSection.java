@@ -41,7 +41,7 @@ import java.util.*;
  * @author Myron
  */
 @Root
-public class VoiceSection implements Subscriber {
+public class VoiceSection implements Subscriber, Cloneable {
 
     @Attribute
     private boolean rest = false;
@@ -140,7 +140,7 @@ public class VoiceSection implements Subscriber {
             // the value is changing from using the default settings to overriding them,
             // so create a local settings object that is initially identical to
             // the default            
-            this.setSectionSettings((SectionSettings) this.getSection().getSettings().clone());            
+            this.setSectionSettings(this.getSection().getSettings().clone());            
         }
         
         this.overrideSectionSettings = overrideSectionSettings;
@@ -169,7 +169,7 @@ public class VoiceSection implements Subscriber {
             // the value is changing from using the default settings to overriding them,
             // so create a local settings object that is initially identical to
             // the default            
-            this.setVoiceSettings((VoiceSettings) this.getVoice().getSettings().clone());            
+            this.setVoiceSettings(this.getVoice().getSettings().clone());            
         }
         
         this.overrideVoiceSettings = overrideVoiceSettings;
@@ -276,7 +276,7 @@ public class VoiceSection implements Subscriber {
      */
     public NoteList getLengthenedVoiceSectionResult(Fraction length) {
         // get a clone of the result, so we can modify the clone rather than the original result.
-        NoteList temp = (NoteList) this.getVoiceSectionResult().clone();
+        NoteList temp = this.getVoiceSectionResult().clone();
         Fraction originalVoiceSectionLength = temp.getDuration();
         if (originalVoiceSectionLength.compareTo(length) > 0) {
             throw new IllegalArgumentException(String.format("The voice section length (%f) is longer than the passed argument (%f).  The passed argument must be greater than or equal to the voice section length.", originalVoiceSectionLength.asDouble(), length.asDouble()));
@@ -315,10 +315,11 @@ public class VoiceSection implements Subscriber {
      *         germ
      */
     private NoteList generateVoiceSectionResult() {
-        NoteList clonedGerm = (NoteList) this.getSection().getGermForSection().clone(); 
+        NoteList clonedGerm = this.getSection().getGermForSection().clone(); 
         Scale sectionScale = this.getSection().getScale();
         Scale scaleToUse = (sectionScale == null ? this.getSection().getFractalPiece().getScale() : sectionScale);
         clonedGerm.updateScale(scaleToUse);
+        NoteList temp = null;
         
         if (this.getRest()) {            
             // scale the duration according to the speed of this voice...
@@ -326,19 +327,28 @@ public class VoiceSection implements Subscriber {
             duration = duration.dividedBy(this.getVoiceSettings().getSpeedScaleFactor());
             
             // create a note list of a single rest, the duration of the germ            
-            NoteList restResult = new NoteList();
-            if (duration.compareTo(0L) > 0) restResult.add(Note.createRest(duration));            
-            return restResult;
+            temp = new NoteList();
+            if (duration.compareTo(0L) > 0) temp.add(Note.createRest(duration));                                    
+        } else {
+            temp = this.getSectionSettings().applySettingsToNoteList(clonedGerm, scaleToUse);
+            temp = this.getVoiceSettings().applySettingsToNoteList(temp, scaleToUse);               
         }
-        
-        NoteList temp = this.getSectionSettings().applySettingsToNoteList(clonedGerm, scaleToUse);
-        temp = this.getVoiceSettings().applySettingsToNoteList(temp, scaleToUse);            
-        
+                
+        temp.setSourceVoiceSectionOnAllNotes(this);
         return temp;
-    }
+    }        
 
     public void publisherNotification(Publisher p, Object args) {   
         assert p == this.sectionSettings || p == this.voiceSettings : p;        
         this.clearVoiceSectionResult();
     }
+
+    @Override
+    public VoiceSection clone() throws CloneNotSupportedException {
+        VoiceSection clone = (VoiceSection) super.clone();
+        if (clone.getSectionSettings() != null) clone.setSectionSettings(clone.getSectionSettings().clone());
+        if (clone.getVoiceSettings() != null) clone.setVoiceSettings(clone.getVoiceSettings().clone());
+        return clone;
+    }
+   
 }

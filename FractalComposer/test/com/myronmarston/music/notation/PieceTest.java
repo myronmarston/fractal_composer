@@ -73,24 +73,25 @@ public class PieceTest {
     @Test
     @SuppressWarnings("unchecked")
     public void scaleDurationsIfNecessary() throws Exception {
-        testScaleDurationsIfNecessary(Arrays.asList(Arrays.asList("1/64", "1/64", "1/128", "1/128", "1/256", "1/512", "1/8", "3/17")), 512L, 64L);
-        testScaleDurationsIfNecessary(Arrays.asList(Arrays.asList("1/6", "1/4", "1/32", "1/28", "1/25", "1/12", "1/8", "3/17")), 32L, 32L);
+        testScaleDurationsIfNecessary(Arrays.asList(Arrays.asList("1/64", "1/64", "1/128", "1/128", "1/256", "1/512", "1/8", "3/17")), 512L, 64L, "6/8", "48/8");
+        testScaleDurationsIfNecessary(Arrays.asList(Arrays.asList("1/6", "1/4", "1/32", "1/28", "1/25", "1/12", "1/8", "3/17")), 32L, 32L, "4/4", "4/4");
     }
     
-    private void testScaleDurationsIfNecessary(List<List<String>> parts, long beforeLongestDuration, long afterLongestDuration) throws Exception {
-        Piece piece = new Piece(Scale.DEFAULT.getKeySignature(), new TimeSignature(6, 8), 93, false, false);        
+    private void testScaleDurationsIfNecessary(List<List<String>> parts, long beforeLongestDuration, long afterLongestDuration, String beforeTimeSig, String afterTimeSig) throws Exception {
+        Piece piece = new Piece(Scale.DEFAULT.getKeySignature(), new TimeSignature(beforeTimeSig), 93, false, false);        
                 
         for (List<String> partDurations : parts) {
-            Part part = new Part(piece, Instrument.getInstrument("Cello"));
-            piece.getParts().add(part);
+            Part part = new Part(piece, Instrument.getInstrument("Cello"));                        
+            PartSection partSection = new PartSection(part, NotationNoteTest.DEFAULT_VOICE_SECTION);
             for (String duration : partDurations) {
-                part.getNotationElements().add(new NotationNote(part, 'c', 4, 0, new Fraction(duration)));
+                partSection.getNotationElements().add(NotationNoteTest.instantiateTestNote(duration));
             }
         }
         
         assertEquals(beforeLongestDuration, piece.getParts().getLargestDurationDenominator());
         piece.scaleDurationsIfNecessary();
         assertEquals(afterLongestDuration, piece.getParts().getLargestDurationDenominator());
+        assertEquals(new TimeSignature(afterTimeSig), piece.getTimeSignature());
     }
-
+    
 }

@@ -45,32 +45,37 @@ public class VoiceTest {
         Section s1 = fp.createSection();
         Section s2 = fp.createSection();
         
+        VoiceSection v1s1 = v1.getVoiceSections().get(0);
+        VoiceSection v1s2 = v1.getVoiceSections().get(1);
+        VoiceSection v2s1 = v2.getVoiceSections().get(0);
+        VoiceSection v2s2 = v2.getVoiceSections().get(1);
+        
         v1.getSettings().setOctaveAdjustment(1);
         v1.getSettings().setSpeedScaleFactor(new Fraction(2, 1));
         
-        v1.getVoiceSections().get(0).setOverrideVoiceSettings(true);
-        v1.getVoiceSections().get(1).setOverrideVoiceSettings(true);
-        v1.getVoiceSections().get(0).setOverrideSectionSettings(true);
-        v1.getVoiceSections().get(1).setOverrideSectionSettings(true);
+        v1s1.setOverrideVoiceSettings(true);
+        v1s2.setOverrideVoiceSettings(true);
+        v1s1.setOverrideSectionSettings(true);
+        v1s2.setOverrideSectionSettings(true);
         
-        v2.getVoiceSections().get(0).setOverrideVoiceSettings(true);
-        v2.getVoiceSections().get(1).setOverrideVoiceSettings(true);
-        v2.getVoiceSections().get(0).setOverrideSectionSettings(true);
-        v2.getVoiceSections().get(1).setOverrideSectionSettings(true);
+        v2s1.setOverrideVoiceSettings(true);
+        v2s2.setOverrideVoiceSettings(true);
+        v2s1.setOverrideSectionSettings(true);
+        v2s2.setOverrideSectionSettings(true);
         
-        v1.getVoiceSections().get(0).getVoiceSettings().getSelfSimilaritySettings().setApplyToPitch(true);
-        v1.getVoiceSections().get(0).getVoiceSettings().getSelfSimilaritySettings().setApplyToRhythm(true);
+        v1s1.getVoiceSettings().getSelfSimilaritySettings().setApplyToPitch(true);
+        v1s1.getVoiceSettings().getSelfSimilaritySettings().setApplyToRhythm(true);
         
-        v1.getVoiceSections().get(1).getSectionSettings().setApplyInversion(true);
-        v1.getVoiceSections().get(1).getVoiceSettings().getSelfSimilaritySettings().setApplyToPitch(true);
-        v1.getVoiceSections().get(1).getVoiceSettings().getSelfSimilaritySettings().setApplyToRhythm(true);
+        v1s2.getSectionSettings().setApplyInversion(true);
+        v1s2.getVoiceSettings().getSelfSimilaritySettings().setApplyToPitch(true);
+        v1s2.getVoiceSettings().getSelfSimilaritySettings().setApplyToRhythm(true);
         
-        v2.getVoiceSections().get(0).getVoiceSettings().getSelfSimilaritySettings().setApplyToPitch(true);
-        v2.getVoiceSections().get(0).getVoiceSettings().getSelfSimilaritySettings().setApplyToRhythm(true);
+        v2s1.getVoiceSettings().getSelfSimilaritySettings().setApplyToPitch(true);
+        v2s1.getVoiceSettings().getSelfSimilaritySettings().setApplyToRhythm(true);
         
-        v2.getVoiceSections().get(1).getSectionSettings().setApplyInversion(true);
-        v2.getVoiceSections().get(1).getVoiceSettings().getSelfSimilaritySettings().setApplyToPitch(true);
-        v2.getVoiceSections().get(1).getVoiceSettings().getSelfSimilaritySettings().setApplyToRhythm(true);
+        v2s2.getSectionSettings().setApplyInversion(true);
+        v2s2.getVoiceSettings().getSelfSimilaritySettings().setApplyToPitch(true);
+        v2s2.getVoiceSettings().getSelfSimilaritySettings().setApplyToRhythm(true);
         
         NoteList expected = new NoteList();
         expected.setInstrument(Instrument.DEFAULT);
@@ -156,6 +161,11 @@ public class VoiceTest {
         expected.add(new Note(-1, -1, 5, 0, new Fraction(1, 4), 64, scale, 0));
         expected.add(new Note(-2, -2, 5, 0, new Fraction(1, 4), 64, scale, 0));
         expected.add(new Note(0, 0, 5, 0, new Fraction(1, 2), 96, scale, 0));
+        
+        // half of the voice is from voice section 1, half from voice section 2
+        for (int i = 0; i < expected.size(); i++) {
+            expected.get(i).setSourceVoiceSection(i < expected.size() / 2 ? v1s1 : v1s2);
+        }
         
         NoteListTest.assertNoteListsEqual(expected, v1.getEntireVoice());
     }        

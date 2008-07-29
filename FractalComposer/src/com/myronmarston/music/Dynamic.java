@@ -20,25 +20,29 @@
 package com.myronmarston.music;
 
 /**
- * Pre-defined volume levels based on musical dynamics.
+ * Contains pre-defined volume levels based on musical dynamics.
  * 
  * @author Myron
  */
 public enum Dynamic {
-    PPP(10),
-    PP(25),
-    P(50),
-    MP(60),
-    MF(70),
-    F(85),
-    FF(100),
-    FFF(120);
+    PPP(1),
+    PP(2),
+    P(3),
+    MP(4),
+    MF(5),
+    F(6),
+    FF(7),
+    FFF(8);
     
+    private final int dynamicLevel;
     private final int midiVolume;
     private static String regexPattern;
+    private static final int MIDI_VOLUME_PER_LEVEL = 15;
+    private static final int ADDITIONAL_OFFSET = -4;
 
-    private Dynamic(int midiVolume) {
-        this.midiVolume = midiVolume;
+    private Dynamic(int dynamicLevel) {
+        this.dynamicLevel = dynamicLevel;
+        this.midiVolume = (dynamicLevel * MIDI_VOLUME_PER_LEVEL) + ADDITIONAL_OFFSET;
     }
     
     /**
@@ -48,6 +52,41 @@ public enum Dynamic {
      */
     public int getMidiVolume() {
         return this.midiVolume;
+    }
+
+    /**
+     * Gets the dynamic level for this dynamic.
+     * 
+     * @return this dynamic level
+     */
+    public int getDynamicLevel() {
+        return dynamicLevel;
+    }        
+    
+    /**
+     * Gets the dynamic that matches the given dynamic level.
+     * 
+     * @param dynamicLevel the dynamic level
+     * @return the dynamic that matches the given dynamic level
+     */
+    private static Dynamic getDynamicForDynamicLevel(int dynamicLevel) {
+        Dynamic d = Dynamic.values()[dynamicLevel - 1];
+        assert d.dynamicLevel == dynamicLevel : d;
+        return d;
+    }
+    
+    /**
+     * Gets the Dynamic in whose range the given midiVolume falls.
+     * 
+     * @param midiVolume the midi volume
+     * @return the dynamic for this volume, or null if the midiVolume falls 
+     *         outside of the acceptable range
+     */
+    public static Dynamic getDynamicForMidiVolume(int midiVolume) {
+        if (midiVolume <= MidiNote.MIN_VELOCITY || midiVolume > MidiNote.MAX_VELOCITY) return null;
+        
+        int dynamicLevel = (midiVolume - (MIDI_VOLUME_PER_LEVEL + ADDITIONAL_OFFSET)) / MIDI_VOLUME_PER_LEVEL + 1;
+        return getDynamicForDynamicLevel(dynamicLevel);
     }
     
     /**
@@ -78,5 +117,6 @@ public enum Dynamic {
     public static String getRegexPattern() {
         if (regexPattern == null) regexPattern = "(?:,(.*))?";        
         return regexPattern;
-    }
+    }        
+        
 }

@@ -26,7 +26,7 @@ import java.util.*;
 /**
  * A list of notation elements.  This is intended to be used for a list of notes,
  * but can be used for any list of notation elements.
- * 
+ *  
  * @author Myron
  */
 public class NotationElementList extends ArrayList<NotationElement> implements NotationElement {
@@ -195,7 +195,25 @@ public class NotationElementList extends ArrayList<NotationElement> implements N
         }
         
         return false;
-    }        
+    }  
+    
+    /**
+     * Gets a list of notation notes from owned by this list.  This combines 
+     * and collapses all nested lists into a single list.
+     * 
+     * @return list of notation notes owned by this list
+     */
+    public List<NotationNote> getNotationNotes() {
+        List<NotationNote> notes = new ArrayList<NotationNote>();
+        for (NotationElement element : this) {
+            if (element instanceof NotationNote) {
+                notes.add((NotationNote) element);
+            } else {
+                notes.addAll(element.getNotationNotes());
+            }            
+        }
+        return notes;
+    }       
     
     /**
      * Checks to see if the sum total of the denominators of all the durations 
@@ -371,6 +389,10 @@ public class NotationElementList extends ArrayList<NotationElement> implements N
             // it will continue looking through the list for later tuplets.
             this.groupTuplets();
         }
-    }    
-        
+    }
+
+    @Override
+    public NotationElementList clone() {
+        return (NotationElementList) super.clone();
+    }
 }

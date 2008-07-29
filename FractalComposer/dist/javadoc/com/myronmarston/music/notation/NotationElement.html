@@ -54,7 +54,7 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/myronmarston/music/notation/LilypondRunException.html" title="class in com.myronmarston.music.notation"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/myronmarston/music/notation/NotationDynamic.Articulation.html" title="enum in com.myronmarston.music.notation"><B>PREV CLASS</B></A>&nbsp;
 &nbsp;<A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/myronmarston/music/notation/NotationElement.html" target="_top"><B>FRAMES</B></A>  &nbsp;
@@ -91,7 +91,7 @@ com.myronmarston.music.notation</FONT>
 <BR>
 Interface NotationElement</H2>
 <DL>
-<DT><B>All Known Implementing Classes:</B> <DD><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A>, <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>, <A HREF="../../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>, <A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>, <A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>, <A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>, <A HREF="../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>, <A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A>, <A HREF="../../../../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A></DD>
+<DT><B>All Known Implementing Classes:</B> <DD><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A>, <A HREF="../../../../com/myronmarston/music/notation/Clef.html" title="enum in com.myronmarston.music.notation">Clef</A>, <A HREF="../../../../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>, <A HREF="../../../../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>, <A HREF="../../../../com/myronmarston/music/notation/NotationDynamic.html" title="class in com.myronmarston.music.notation">NotationDynamic</A>, <A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>, <A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>, <A HREF="../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>, <A HREF="../../../../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A>, <A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A>, <A HREF="../../../../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A></DD>
 </DL>
 <HR>
 <DL>
@@ -122,6 +122,15 @@ Interface that represents an element of musical notation.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the largest duration denominator of this element.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#getNotationNotes()">getNotationNotes</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a list of notation notes owned by this element and all owned
+ elements.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -245,6 +254,21 @@ void <B>scaleDurations</B>(long&nbsp;scaleFactor)</PRE>
         power of two</DL>
 </DD>
 </DL>
+<HR>
+
+<A NAME="getNotationNotes()"><!-- --></A><H3>
+getNotationNotes</H3>
+<PRE>
+java.util.List&lt;<A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt; <B>getNotationNotes</B>()</PRE>
+<DL>
+<DD>Gets a list of notation notes owned by this element and all owned
+ elements.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>list of notation notes</DL>
+</DD>
+</DL>
 <!-- ========= END OF CLASS DATA ========= -->
 <HR>
 
@@ -276,7 +300,7 @@ void <B>scaleDurations</B>(long&nbsp;scaleFactor)</PRE>
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/myronmarston/music/notation/LilypondRunException.html" title="class in com.myronmarston.music.notation"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/myronmarston/music/notation/NotationDynamic.Articulation.html" title="enum in com.myronmarston.music.notation"><B>PREV CLASS</B></A>&nbsp;
 &nbsp;<A HREF="../../../../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/myronmarston/music/notation/NotationElement.html" target="_top"><B>FRAMES</B></A>  &nbsp;

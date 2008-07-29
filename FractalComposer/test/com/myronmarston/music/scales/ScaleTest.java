@@ -632,7 +632,7 @@ public class ScaleTest {
     @Test
     public void testClone() throws Exception {
         Scale s = new MinorPentatonicScale(NoteName.Bb);
-        Scale s2 = (Scale) s.clone();
+        Scale s2 = s.clone();
         assertEquals(s, s2);
     }
     

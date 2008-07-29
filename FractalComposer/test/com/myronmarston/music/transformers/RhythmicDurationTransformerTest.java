@@ -41,6 +41,7 @@ public class RhythmicDurationTransformerTest {
         input.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 64, scale, 0));
         input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 64, scale, 0));
         input.add(Note.createRest(new Fraction(1, 1)));
+        input.get(0).setIsFirstNoteOfGermCopy(true);
         
         Transformer t = new RhythmicDurationTransformer(new Fraction(1, 2));
         NoteList expectedOutput = new NoteList();
@@ -49,6 +50,7 @@ public class RhythmicDurationTransformerTest {
         expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 1), 64, scale, 0));
         expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(2, 1), 64, scale, 0));   
         expectedOutput.add(Note.createRest(new Fraction(2, 1)));
+        expectedOutput.get(0).setIsFirstNoteOfGermCopy(true);
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
         t = new RhythmicDurationTransformer(new Fraction(2, 1));
@@ -58,6 +60,7 @@ public class RhythmicDurationTransformerTest {
         expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 4), 64, scale, 0));
         expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 2), 64, scale, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));
+        expectedOutput.get(0).setIsFirstNoteOfGermCopy(true);
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
     }
     

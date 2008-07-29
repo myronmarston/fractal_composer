@@ -19,6 +19,8 @@
 
 package com.myronmarston.music.notation;
 
+import java.util.*;
+
 /**
  * Interface that represents an element of musical notation.
  * 
@@ -65,4 +67,12 @@ public interface NotationElement {
      *        power of two
      */
     public void scaleDurations(long scaleFactor);
+    
+    /**
+     * Gets a list of notation notes owned by this element and all owned
+     * elements.
+     * 
+     * @return list of notation notes
+     */
+    public List<NotationNote> getNotationNotes();
 }

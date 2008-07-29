@@ -104,7 +104,7 @@ java.lang.Object
 </PRE>
 
 <P>
-Pre-defined volume levels based on musical dynamics.
+Contains pre-defined volume levels based on musical dynamics.
 <P>
 
 <P>
@@ -184,6 +184,22 @@ Pre-defined volume levels based on musical dynamics.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a list of possible dynamic values.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../com/myronmarston/music/Dynamic.html" title="enum in com.myronmarston.music">Dynamic</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Dynamic.html#getDynamicForMidiVolume(int)">getDynamicForMidiVolume</A></B>(int&nbsp;midiVolume)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the Dynamic in whose range the given midiVolume falls.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Dynamic.html#getDynamicLevel()">getDynamicLevel</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the dynamic level for this dynamic.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -392,6 +408,35 @@ public int <B>getMidiVolume</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>midi volume</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getDynamicLevel()"><!-- --></A><H3>
+getDynamicLevel</H3>
+<PRE>
+public int <B>getDynamicLevel</B>()</PRE>
+<DL>
+<DD>Gets the dynamic level for this dynamic.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>this dynamic level</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getDynamicForMidiVolume(int)"><!-- --></A><H3>
+getDynamicForMidiVolume</H3>
+<PRE>
+public static <A HREF="../../../com/myronmarston/music/Dynamic.html" title="enum in com.myronmarston.music">Dynamic</A> <B>getDynamicForMidiVolume</B>(int&nbsp;midiVolume)</PRE>
+<DL>
+<DD>Gets the Dynamic in whose range the given midiVolume falls.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>midiVolume</CODE> - the midi volume
+<DT><B>Returns:</B><DD>the dynamic for this volume, or null if the midiVolume falls 
+         outside of the acceptable range</DL>
 </DD>
 </DL>
 <HR>

@@ -116,8 +116,9 @@ Uses of <A HREF="../../../../../com/myronmarston/music/notation/NotationNote.htm
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A></CODE></FONT></TD>
-<TD><CODE><B>Note.</B><B><A HREF="../../../../../com/myronmarston/music/Note.html#toNotationNote(com.myronmarston.music.notation.Part, com.myronmarston.music.MidiNote)">toNotationNote</A></B>(<A HREF="../../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>&nbsp;part,
-               <A HREF="../../../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A>&nbsp;midiNote)</CODE>
+<TD><CODE><B>Note.</B><B><A HREF="../../../../../com/myronmarston/music/Note.html#toNotationNote(com.myronmarston.music.notation.PartSection, com.myronmarston.music.MidiNote, com.myronmarston.util.Fraction)">toNotationNote</A></B>(<A HREF="../../../../../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A>&nbsp;partSection,
+               <A HREF="../../../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A>&nbsp;midiNote,
+               <A HREF="../../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;timeLeftInBar)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts this Note to a Notation Note that can be used to produce GUIDO
@@ -152,11 +153,130 @@ Uses of <A HREF="../../../../../com/myronmarston/music/notation/NotationNote.htm
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;<A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A></CODE></FONT></TD>
-<TD><CODE><B>NotationNote.</B><B><A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html#createRest(com.myronmarston.music.notation.Part, com.myronmarston.util.Fraction)">createRest</A></B>(<A HREF="../../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>&nbsp;part,
-           <A HREF="../../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration)</CODE>
+<TD><CODE><B>NotationNote.</B><B><A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html#createRest(com.myronmarston.music.notation.PartSection, com.myronmarston.util.Fraction, com.myronmarston.util.Fraction, boolean)">createRest</A></B>(<A HREF="../../../../../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A>&nbsp;partSection,
+           <A HREF="../../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration,
+           <A HREF="../../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;timeLeftInBar,
+           boolean&nbsp;isFirstNoteInGermCopy)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a rest.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left" COLSPAN="2">Methods in <A HREF="../../../../../com/myronmarston/music/notation/package-summary.html">com.myronmarston.music.notation</A> that return types with arguments of type <A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B>AbstractNotationElement.</B><B><A HREF="../../../../../com/myronmarston/music/notation/AbstractNotationElement.html#getNotationNotes()">getNotationNotes</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns an empty list of notation notes.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B>Clef.</B><B><A HREF="../../../../../com/myronmarston/music/notation/Clef.html#getNotationNotes()">getNotationNotes</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns an empty list.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B>NotationElement.</B><B><A HREF="../../../../../com/myronmarston/music/notation/NotationElement.html#getNotationNotes()">getNotationNotes</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a list of notation notes owned by this element and all owned
+ elements.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B>NotationElementList.</B><B><A HREF="../../../../../com/myronmarston/music/notation/NotationElementList.html#getNotationNotes()">getNotationNotes</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a list of notation notes from owned by this list.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B>NotationNote.</B><B><A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html#getNotationNotes()">getNotationNotes</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns a list containing one item: this notation note.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B>Part.</B><B><A HREF="../../../../../com/myronmarston/music/notation/Part.html#getNotationNotes()">getNotationNotes</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B>PartSection.</B><B><A HREF="../../../../../com/myronmarston/music/notation/PartSection.html#getNotationNotes()">getNotationNotes</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B>Tuplet.</B><B><A HREF="../../../../../com/myronmarston/music/notation/Tuplet.html#getNotationNotes()">getNotationNotes</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left" COLSPAN="2">Method parameters in <A HREF="../../../../../com/myronmarston/music/notation/package-summary.html">com.myronmarston.music.notation</A> with type arguments of type <A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../../com/myronmarston/music/notation/Clef.html" title="enum in com.myronmarston.music.notation">Clef</A></CODE></FONT></TD>
+<TD><CODE><B>Clef.</B><B><A HREF="../../../../../com/myronmarston/music/notation/Clef.html#getBestMatchForNoteList(java.util.List)">getBestMatchForNoteList</A></B>(java.util.List&lt;<A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;&nbsp;notes)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the clef that is the best match for the given of notes.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B>Clef.</B><B><A HREF="../../../../../com/myronmarston/music/notation/Clef.html#getMedianNoteNumber(java.util.List)">getMedianNoteNumber</A></B>(java.util.List&lt;<A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;&nbsp;notes)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the median notation staff note number for the given list of
+ notation notes.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B>Part.</B><B><A HREF="../../../../../com/myronmarston/music/notation/Part.html#getNextIndexOfFirstNoteOfAGermCopy(java.util.List, int)">getNextIndexOfFirstNoteOfAGermCopy</A></B>(java.util.List&lt;<A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;&nbsp;notes,
+                                   int&nbsp;currentIndex)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the next index of a notation note which is the first not of a germ
+ copy.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected static&nbsp;<A HREF="../../../../../com/myronmarston/music/Dynamic.html" title="enum in com.myronmarston.music">Dynamic</A></CODE></FONT></TD>
+<TD><CODE><B>Part.</B><B><A HREF="../../../../../com/myronmarston/music/notation/Part.html#setDynamicsOnGermCopy(java.util.List, com.myronmarston.music.Dynamic)">setDynamicsOnGermCopy</A></B>(java.util.List&lt;<A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;&nbsp;germCopy,
+                      <A HREF="../../../../../com/myronmarston/music/Dynamic.html" title="enum in com.myronmarston.music">Dynamic</A>&nbsp;lastGermCopyDynamic)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the notation dynamics on the notation notes in the germ copy.</TD>
 </TR>
 </TABLE>
 &nbsp;

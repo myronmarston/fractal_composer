@@ -151,6 +151,23 @@ Represents one note of music notation.
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The character used for a sharp in lilypond notation.</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#NOTE_PLACEHOLDER">NOTE_PLACEHOLDER</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A string that can be used as a note placeholder in a java format string.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#NOTE_PLACEHOLDER_2">NOTE_PLACEHOLDER_2</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A string that can be used as a second note placeholder in a java format
+ string.</TD>
+</TR>
 </TABLE>
 &nbsp;
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -162,11 +179,14 @@ Represents one note of music notation.
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#NotationNote(com.myronmarston.music.notation.Part, char, int, int, com.myronmarston.util.Fraction)">NotationNote</A></B>(<A HREF="../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>&nbsp;part,
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#NotationNote(com.myronmarston.music.notation.PartSection, char, int, int, com.myronmarston.util.Fraction, com.myronmarston.util.Fraction, int, boolean)">NotationNote</A></B>(<A HREF="../../../../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A>&nbsp;partSection,
              char&nbsp;letterName,
              int&nbsp;octave,
              int&nbsp;accidental,
-             <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration)</CODE>
+             <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration,
+             <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;timeLeftInBar,
+             int&nbsp;volume,
+             boolean&nbsp;isFirstNoteInGermCopy)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
@@ -193,8 +213,10 @@ Represents one note of music notation.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;<A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#createRest(com.myronmarston.music.notation.Part, com.myronmarston.util.Fraction)">createRest</A></B>(<A HREF="../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>&nbsp;part,
-           <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#createRest(com.myronmarston.music.notation.PartSection, com.myronmarston.util.Fraction, com.myronmarston.util.Fraction, boolean)">createRest</A></B>(<A HREF="../../../../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A>&nbsp;partSection,
+           <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration,
+           <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;timeLeftInBar,
+           boolean&nbsp;isFirstNoteInGermCopy)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a rest.</TD>
@@ -214,6 +236,14 @@ Represents one note of music notation.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the rhythmic duration of this notation note.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/notation/NotationDynamic.html" title="class in com.myronmarston.music.notation">NotationDynamic</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#getDynamic()">getDynamic</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the notation dynamic for this notation note.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -265,6 +295,23 @@ Represents one note of music notation.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#getNotationNotes()">getNotationNotes</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns a list containing one item: this notation note.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#getNotationStaffNoteNumber()">getNotationStaffNoteNumber</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a number indicating the line or space on the staff used by this       
+ notation note.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#getOctave()">getOctave</A></B>()</CODE>
 
@@ -273,11 +320,43 @@ Represents one note of music notation.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#getPart()">getPart</A></B>()</CODE>
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#getPartSection()">getPartSection</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the part that owns this notation note.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the part section that owns this notation note.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#getTimeLeftInBar()">getTimeLeftInBar</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the amount of time left in this bar.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#getTupletMultiplier()">getTupletMultiplier</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the tuplet multiplier that has been applied to this note.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#getVolume()">getVolume</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the raw midi volume of this note.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#isFirstNoteInGermCopy()">isFirstNoteInGermCopy</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indicates whether or not this is the first note of a germ copy.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -293,7 +372,15 @@ Represents one note of music notation.
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#scaleDurations(long)">scaleDurations</A></B>(long&nbsp;scaleFactor)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scales the durations by the given scale factor.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scales the durations and timeTimeLeftInBar by the given scale factor.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/NotationNote.html#setDynamic(com.myronmarston.music.notation.NotationDynamic)">setDynamic</A></B>(<A HREF="../../../../com/myronmarston/music/notation/NotationDynamic.html" title="class in com.myronmarston.music.notation">NotationDynamic</A>&nbsp;dynamic)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the notation dynamic for this notation note.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -388,6 +475,31 @@ public static final char <B>GUIDO_SHARP_CHAR</B></PRE>
 <DL>
 <DT><B>See Also:</B><DD><A HREF="../../../../constant-values.html#com.myronmarston.music.notation.NotationNote.GUIDO_SHARP_CHAR">Constant Field Values</A></DL>
 </DL>
+<HR>
+
+<A NAME="NOTE_PLACEHOLDER"><!-- --></A><H3>
+NOTE_PLACEHOLDER</H3>
+<PRE>
+public static final java.lang.String <B>NOTE_PLACEHOLDER</B></PRE>
+<DL>
+<DD>A string that can be used as a note placeholder in a java format string.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../constant-values.html#com.myronmarston.music.notation.NotationNote.NOTE_PLACEHOLDER">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="NOTE_PLACEHOLDER_2"><!-- --></A><H3>
+NOTE_PLACEHOLDER_2</H3>
+<PRE>
+public static final java.lang.String <B>NOTE_PLACEHOLDER_2</B></PRE>
+<DL>
+<DD>A string that can be used as a second note placeholder in a java format
+ string.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../constant-values.html#com.myronmarston.music.notation.NotationNote.NOTE_PLACEHOLDER_2">Constant Field Values</A></DL>
+</DL>
 
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 
@@ -399,25 +511,30 @@ public static final char <B>GUIDO_SHARP_CHAR</B></PRE>
 </TR>
 </TABLE>
 
-<A NAME="NotationNote(com.myronmarston.music.notation.Part, char, int, int, com.myronmarston.util.Fraction)"><!-- --></A><H3>
+<A NAME="NotationNote(com.myronmarston.music.notation.PartSection, char, int, int, com.myronmarston.util.Fraction, com.myronmarston.util.Fraction, int, boolean)"><!-- --></A><H3>
 NotationNote</H3>
 <PRE>
-public <B>NotationNote</B>(<A HREF="../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>&nbsp;part,
+public <B>NotationNote</B>(<A HREF="../../../../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A>&nbsp;partSection,
                     char&nbsp;letterName,
                     int&nbsp;octave,
                     int&nbsp;accidental,
-                    <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration)
+                    <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration,
+                    <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;timeLeftInBar,
+                    int&nbsp;volume,
+                    boolean&nbsp;isFirstNoteInGermCopy)
              throws java.lang.IllegalArgumentException</PRE>
 <DL>
 <DD>Constructor.
 <P>
 <DL>
-<DT><B>Parameters:</B><DD><CODE>part</CODE> - the part that owns this notation note<DD><CODE>letterName</CODE> - the letter name for this notation note (a-g)<DD><CODE>octave</CODE> - the octave for this notation note<DD><CODE>accidental</CODE> - the accidental for this notation note; positive 
+<DT><B>Parameters:</B><DD><CODE>partSection</CODE> - the partSection that owns this notation note<DD><CODE>letterName</CODE> - the letter name for this notation note (a-g)<DD><CODE>octave</CODE> - the octave for this notation note<DD><CODE>accidental</CODE> - the accidental for this notation note; positive 
         indicates a number of sharps and negative indicates a number of
-        flats<DD><CODE>duration</CODE> - the rhythmic duration of this notation note
+        flats<DD><CODE>duration</CODE> - the rhythmic duration of this notation note<DD><CODE>timeLeftInBar</CODE> - the amount of time left in the current bar<DD><CODE>volume</CODE> - the raw midi volume of the note<DD><CODE>isFirstNoteInGermCopy</CODE> - whether or not this is the first note in a 
+        copy of the germ
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.IllegalArgumentException</CODE> - if the accidental outside of the range
- -2 - 2, or the letterName is invalid, or the duration is negative</DL>
+         -2 to 2, the letterName is invalid, the duration is negative, or 
+         the volume is not in the allowed range</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -430,31 +547,34 @@ public <B>NotationNote</B>(<A HREF="../../../../com/myronmarston/music/notation/
 </TR>
 </TABLE>
 
-<A NAME="createRest(com.myronmarston.music.notation.Part, com.myronmarston.util.Fraction)"><!-- --></A><H3>
+<A NAME="createRest(com.myronmarston.music.notation.PartSection, com.myronmarston.util.Fraction, com.myronmarston.util.Fraction, boolean)"><!-- --></A><H3>
 createRest</H3>
 <PRE>
-public static <A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A> <B>createRest</B>(<A HREF="../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>&nbsp;part,
-                                      <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration)</PRE>
+public static <A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A> <B>createRest</B>(<A HREF="../../../../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A>&nbsp;partSection,
+                                      <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration,
+                                      <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;timeLeftInBar,
+                                      boolean&nbsp;isFirstNoteInGermCopy)</PRE>
 <DL>
 <DD>Creates a rest.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>part</CODE> - the part that willl own the rest<DD><CODE>duration</CODE> - the duration of the rest
+<DT><B>Parameters:</B><DD><CODE>partSection</CODE> - the partSection that will own the rest<DD><CODE>duration</CODE> - the duration of the rest<DD><CODE>timeLeftInBar</CODE> - the amount of time left in the bar<DD><CODE>isFirstNoteInGermCopy</CODE> - whether or not this is the first note in 
+        a series of notes that makes a germ copy
 <DT><B>Returns:</B><DD>the rest</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="getPart()"><!-- --></A><H3>
-getPart</H3>
+<A NAME="getPartSection()"><!-- --></A><H3>
+getPartSection</H3>
 <PRE>
-public <A HREF="../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A> <B>getPart</B>()</PRE>
+public <A HREF="../../../../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A> <B>getPartSection</B>()</PRE>
 <DL>
-<DD>Gets the part that owns this notation note.
+<DD>Gets the part section that owns this notation note.
 <P>
 <DD><DL>
 
-<DT><B>Returns:</B><DD>the part</DL>
+<DT><B>Returns:</B><DD>the part section</DL>
 </DD>
 </DL>
 <HR>
@@ -512,6 +632,91 @@ public int <B>getOctave</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the octave number</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getTimeLeftInBar()"><!-- --></A><H3>
+getTimeLeftInBar</H3>
+<PRE>
+public <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A> <B>getTimeLeftInBar</B>()</PRE>
+<DL>
+<DD>Gets the amount of time left in this bar.  This is needed to be able
+ to split a long rest across a bar lines.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the amount of time tha this is left in the bar</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getTupletMultiplier()"><!-- --></A><H3>
+getTupletMultiplier</H3>
+<PRE>
+public <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A> <B>getTupletMultiplier</B>()</PRE>
+<DL>
+<DD>Gets the tuplet multiplier that has been applied to this note.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the tuplet multiplier</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getVolume()"><!-- --></A><H3>
+getVolume</H3>
+<PRE>
+public int <B>getVolume</B>()</PRE>
+<DL>
+<DD>Gets the raw midi volume of this note.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the raw midi volume of this note</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isFirstNoteInGermCopy()"><!-- --></A><H3>
+isFirstNoteInGermCopy</H3>
+<PRE>
+public boolean <B>isFirstNoteInGermCopy</B>()</PRE>
+<DL>
+<DD>Indicates whether or not this is the first note of a germ copy.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>true if this is the first note of a germ copy</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getDynamic()"><!-- --></A><H3>
+getDynamic</H3>
+<PRE>
+public <A HREF="../../../../com/myronmarston/music/notation/NotationDynamic.html" title="class in com.myronmarston.music.notation">NotationDynamic</A> <B>getDynamic</B>()</PRE>
+<DL>
+<DD>Gets the notation dynamic for this notation note.  If none has been set,
+ the default empty dynamic will be returned.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the dynamic</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setDynamic(com.myronmarston.music.notation.NotationDynamic)"><!-- --></A><H3>
+setDynamic</H3>
+<PRE>
+public void <B>setDynamic</B>(<A HREF="../../../../com/myronmarston/music/notation/NotationDynamic.html" title="class in com.myronmarston.music.notation">NotationDynamic</A>&nbsp;dynamic)</PRE>
+<DL>
+<DD>Sets the notation dynamic for this notation note.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>dynamic</CODE> - the dynamic</DL>
 </DD>
 </DL>
 <HR>
@@ -655,7 +860,7 @@ scaleDurations</H3>
 <PRE>
 public void <B>scaleDurations</B>(long&nbsp;scaleFactor)</PRE>
 <DL>
-<DD>Scales the durations by the given scale factor.
+<DD>Scales the durations and timeTimeLeftInBar by the given scale factor.
 <P>
 <DD><DL>
 <DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#scaleDurations(long)">scaleDurations</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#scaleDurations(long)">scaleDurations</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></CODE></DL>
@@ -676,6 +881,41 @@ public boolean <B>supportsDurationScaling</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>true</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNotationNotes()"><!-- --></A><H3>
+getNotationNotes</H3>
+<PRE>
+public java.util.List&lt;<A HREF="../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>&gt; <B>getNotationNotes</B>()</PRE>
+<DL>
+<DD>Returns a list containing one item: this notation note.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html#getNotationNotes()">getNotationNotes</A></CODE> in interface <CODE><A HREF="../../../../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A></CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#getNotationNotes()">getNotationNotes</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>list of notation notes</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNotationStaffNoteNumber()"><!-- --></A><H3>
+getNotationStaffNoteNumber</H3>
+<PRE>
+public int <B>getNotationStaffNoteNumber</B>()
+                               throws java.lang.UnsupportedOperationException</PRE>
+<DL>
+<DD>Gets a number indicating the line or space on the staff used by this       
+ notation note.  C0 is 0, and each successive letter is one more.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the notation staff note number
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.UnsupportedOperationException</CODE> - if this note is a rest</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

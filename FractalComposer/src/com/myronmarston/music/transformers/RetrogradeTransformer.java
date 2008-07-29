@@ -19,9 +19,9 @@
 
 package com.myronmarston.music.transformers;
 
+import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
-import java.util.Collections;
-
+import java.util.*;
 
 /**
  * Transformer that applies retrograde to the given NoteList.
@@ -33,10 +33,35 @@ public class RetrogradeTransformer implements Transformer {
         
     public NoteList transform(NoteList input) {
         // make a copy to reverse...
-        NoteList copy = (NoteList) input.clone();
+        NoteList copy = input.clone();
         
         // reverse the copy, rather than the original input...
         Collections.reverse(copy);        
+
+        // set our first germ note properly.
+        // we might have multiple copies of the germ, so we have to iterate over
+        // the list and fix it
+        int listSize = copy.size();
+        List<Note> notesThatShouldBeFirstInGermCopy = new ArrayList<Note>(copy.size());
+        for (int i = 0; i < listSize; i++) {
+            Note note = copy.get(i);
+            
+            if (note.isFirstNoteOfGermCopy()) {
+                // if this note was the first note of a germ copy, it is now the
+                // last note of a germ copy, and that means the next note will
+                // be the first note of a germ copy, or, in the case of the last
+                // note of the entire list, using mod listSize gives us the
+                // first note of the entire list
+                notesThatShouldBeFirstInGermCopy.add(copy.get((i + 1) % listSize));                
+            }
+            
+            // set all notes to false; we will set the ones that should be true
+            // below based on our list
+            note.setIsFirstNoteOfGermCopy(false);
+        }
+        
+        for (Note note : notesThatShouldBeFirstInGermCopy) note.setIsFirstNoteOfGermCopy(true);
+        
         return copy;
     }
 }

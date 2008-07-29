@@ -19,9 +19,12 @@
 
 package com.myronmarston.music.notation;
 
+import com.myronmarston.music.Dynamic;
 import com.myronmarston.music.Instrument;
 import com.myronmarston.music.Tempo;
+import com.myronmarston.music.scales.KeySignature;
 import com.myronmarston.util.FileHelper;
+import java.util.*;
 
 /**
  * Represents one instrumental part of the notation.  
@@ -29,14 +32,15 @@ import com.myronmarston.util.FileHelper;
  * @author Myron
  */
 public class Part extends AbstractNotationElement {    
-    private final NotationElementList notationElements = new NotationElementList();
+    private final NotationElementList partSections = new NotationElementList();
     private final Piece piece;
     private final Instrument instrument;
     private String pieceTitle;
     private String pieceComposer;        
     
     /**
-     * Constructor.
+     * Constructor.  The newly constructed part will automatically be added to 
+     * the given piece.
      * 
      * @param piece the notation piece that owns this part
      * @param instrument the instrument for this part
@@ -46,6 +50,7 @@ public class Part extends AbstractNotationElement {
         assert instrument != null : "Instrument should not be null.";
         
         this.piece = piece;
+        piece.getParts().add(this);
         this.instrument = instrument;
     }
         
@@ -114,21 +119,23 @@ public class Part extends AbstractNotationElement {
      * 
      * @return the notation elements
      */
-    public NotationElementList getNotationElements() {
-        return notationElements;
-    }    
+    public NotationElementList getPartSections() {
+        return partSections;
+    }   
     
     /**
-     * Gets a copy of the list of notation elements, with notes that have tuplet 
-     * durations properly grouped.
+     * Gets the first key signature used by this part.
      * 
-     * @return list of elements with tuplets properly grouped
+     * @return the first key signature
      */
-    private NotationElementList getNotationElementsWithGroupedTuplets() {
-        NotationElementList list = (NotationElementList) this.getNotationElements().clone();
-        list.setElementSeperator(" ");
-        list.groupTuplets();
-        return list;
+    private KeySignature getFirstKeySignature() {
+        for (NotationElement element : partSections) {
+            if (element instanceof PartSection) {
+                return ((PartSection) element).getSectionKeySignature();
+            }
+        }
+        
+        return this.piece.getKeySignature();
     }
 
     /**
@@ -137,41 +144,157 @@ public class Part extends AbstractNotationElement {
      * @return true if any of the notation elements support duration scaling
      */
     public boolean supportsDurationScaling() {
-        return this.getNotationElements().supportsDurationScaling();
+        return this.getPartSections().supportsDurationScaling();
     }
 
     @Override
     public long getLargestDurationDenominator() {
-        // here we use the list with grouped tuplets because we want to get the
-        // duration denominator that will actually be used for the notes, taking
-        // into account tuplets. 
-        return this.getNotationElementsWithGroupedTuplets().getLargestDurationDenominator();
+        return this.getPartSections().getLargestDurationDenominator();        
     }
 
     @Override
     public void scaleDurations(long scaleFactor) {
-        this.getNotationElements().scaleDurations(scaleFactor);
+        this.getPartSections().scaleDurations(scaleFactor);
     }
-                    
+
+    @Override
+    public List<NotationNote> getNotationNotes() {
+        return this.getPartSections().getNotationNotes();
+    }
+    
+    /**
+     * Sets the dynamic on each NotationNote.  Should be called before getting
+     * the lilypond or guido string.
+     */
+    protected void setNotationNoteDynamics() {        
+        List<NotationNote> notes = this.getNotationNotes();
+        List<NotationNote> germCopy;
+        Dynamic lastGermCopyDynamic = null;
+        int firstNoteOfGermCopy_curIndex = getNextIndexOfFirstNoteOfAGermCopy(notes, 0);
+        int firstNoteOfGermCopy_nextIndex;
+        
+        // Seperate the list into copies of the germ, and figure out the dynamics
+        // for each copy.  We do this because each copy of the germ could be
+        // volume-scaled, producing a different dynamic level for that part of
+        // the piece.  Dynamics on individual notes can be treated as articulations
+        while(firstNoteOfGermCopy_curIndex < notes.size()) {            
+            firstNoteOfGermCopy_nextIndex = getNextIndexOfFirstNoteOfAGermCopy(notes, firstNoteOfGermCopy_curIndex + 1);            
+            if (firstNoteOfGermCopy_nextIndex == -1) firstNoteOfGermCopy_nextIndex = notes.size();        
+                                    
+            // make sure the start index note isFirstNoteOfGermCopy
+            assert notes.get(firstNoteOfGermCopy_curIndex).isFirstNoteInGermCopy();
+            
+            // make sure the end index is the index before the next firstNote, or the last index of the list
+            assert firstNoteOfGermCopy_nextIndex == notes.size() || notes.get(firstNoteOfGermCopy_nextIndex).isFirstNoteInGermCopy();
+            
+            germCopy = notes.subList(firstNoteOfGermCopy_curIndex, firstNoteOfGermCopy_nextIndex);            
+            firstNoteOfGermCopy_curIndex = firstNoteOfGermCopy_nextIndex;
+            
+            lastGermCopyDynamic = setDynamicsOnGermCopy(germCopy, lastGermCopyDynamic);
+        }         
+    }
+        
+    /**
+     * Gets the next index of a notation note which is the first not of a germ
+     * copy.
+     * 
+     * @param notes the list of notation notes
+     * @param currentIndex the index to begin the search
+     * @return the next index of a first note of a germ copy, or -1 if none is 
+     *         found
+     */
+    protected static int getNextIndexOfFirstNoteOfAGermCopy(List<NotationNote> notes, int currentIndex) {
+        for (int i = currentIndex; i < notes.size(); i++) {
+            if (notes.get(i).isFirstNoteInGermCopy()) return i;
+        }
+        
+        return -1;
+    }
+    
+    /**
+     * Sets the notation dynamics on the notation notes in the germ copy.
+     * 
+     * @param germCopy a copy of the germ
+     * @param lastGermCopyDynamic the dynamic used for the last germ copy
+     * @return the dynamic used for this germ copy, which should be passed to
+     *         this method as a parameter in the next iteration
+     */
+    protected static Dynamic setDynamicsOnGermCopy(List<NotationNote> germCopy, Dynamic lastGermCopyDynamic) {                
+        assert germCopy.get(0).isFirstNoteInGermCopy() : germCopy.get(0);
+        
+        List<Dynamic> dynamics = new ArrayList<Dynamic>();
+        Dynamic thisDynamic;
+        
+        for (NotationNote note : germCopy) {            
+            if (!note.isRest()) {
+                thisDynamic = Dynamic.getDynamicForMidiVolume(note.getVolume());
+                if (!dynamics.contains(thisDynamic)) dynamics.add(thisDynamic);
+            }            
+        }
+               
+        Collections.sort(dynamics);
+        Map<Dynamic, NotationDynamic.Articulation> articulations = new HashMap<Dynamic, NotationDynamic.Articulation>();        
+        NotationDynamic.Articulation articulation;
+        int numDynamicLevels = dynamics.size();
+
+        // assign articulations to our different dynamic levels...
+        for (int i = 0; i < numDynamicLevels; i++) {
+            if (i == 0) {
+                // the lowest level.  This is simply the dynamic (i.e. mf) for our germ copy
+                articulation = NotationDynamic.Articulation.NONE;
+            } else if (numDynamicLevels > 2 && i == numDynamicLevels - 1) {
+                // this is the loudest dynamic among 3 or more dynamic levels; 
+                // use a marcato mark since this is a heavy accent
+                articulation = NotationDynamic.Articulation.MARCATO;
+            } else {
+                // accent marks are more common in notation than marcatos,
+                // so we use accents for everything else. This is louder than our 
+                // dynamic marking, but softer than the loudest level
+                articulation = NotationDynamic.Articulation.ACCENT;
+            }
+            
+            articulations.put(dynamics.get(i), articulation);
+        }
+        
+        // Get the dynamic level for this germ copy--the lowest dynamic level.
+        // But, we only care to print it if it is different from the dynamic 
+        // level of the last germ copy.
+        Dynamic lowestDynamic = dynamics.get(0);
+        Dynamic dynamicForThisGermCopy = (lowestDynamic == lastGermCopyDynamic ? null : lowestDynamic);        
+        
+        for (NotationNote note : germCopy) {
+            // get the articulation based on the dynamic level; rests are always none
+            articulation = 
+                (note.isRest() ? 
+                 NotationDynamic.Articulation.NONE : 
+                 articulations.get(Dynamic.getDynamicForMidiVolume(note.getVolume())));
+            
+            // the dynamic should only be printed once, on the first note of the germ copy
+            thisDynamic = (note.isFirstNoteInGermCopy() ? dynamicForThisGermCopy : null);
+            note.setDynamic(new NotationDynamic(thisDynamic, articulation));
+        }
+        
+        return lowestDynamic;
+    }    
+                            
     /**
      * Gets the lilypond notation for this part.
      * 
      * @return the lilypond string
      */
-    public String toLilypondString() {        
-        //TODO: clef            
+    public String toLilypondString() {  
+        this.setNotationNoteDynamics();
+        this.getPartSections().setElementSeperator(" ");
         StringBuilder str = new StringBuilder();
 
-        str.append("\\new Voice \\with {" + FileHelper.NEW_LINE);
-        str.append("    \\remove \"Note_heads_engraver\"" + FileHelper.NEW_LINE);
-        str.append("    \\consists \"Completion_heads_engraver\"" + FileHelper.NEW_LINE);
-        str.append("}" + FileHelper.NEW_LINE);
+        str.append("\\new Voice " + FileHelper.NEW_LINE);
         str.append("{" + FileHelper.NEW_LINE); 
         if (this.isPartFirstPartOfPiece() && this.piece.getIncludeTempo()) str.append("       " + Tempo.toLilypondString(this.piece.getTempo()) + FileHelper.NEW_LINE);
         str.append("       " + this.piece.getTimeSignature().toLilypondString());
-        str.append("       " + this.piece.getKeySignature().toLilypondString());
+        str.append("       " + this.getFirstKeySignature().toLilypondString());
         if (this.piece.getIncludeInstruments()) str.append("       " + this.instrument.toLilypondString()); 
-        str.append("       " + this.getNotationElementsWithGroupedTuplets().toLilypondString());
+        str.append("       " + Clef.getBestMatchForNoteList(this.getNotationNotes()).toLilypondString() + FileHelper.NEW_LINE);
+        str.append("       " + this.getPartSections().toLilypondString());
         str.append("       \\bar \"|.\"" + FileHelper.NEW_LINE); 
         str.append("}" + FileHelper.NEW_LINE);            
 
@@ -184,7 +307,10 @@ public class Part extends AbstractNotationElement {
      * @return the GUIDO notation for this part
      */
     public String toGuidoString() {
-        this.getNotationElements().setElementSeperator(" ");
+        assert this.partSections.size() > 0; 
+        
+        this.setNotationNoteDynamics();
+        this.getPartSections().setElementSeperator(" ");
         StringBuilder str = new StringBuilder();        
         str.append("[");
         //If a pageFormat should be specified, put it here, such as \pageFormat<"A4",10pt,10pt,10pt,10pt>
@@ -192,9 +318,10 @@ public class Part extends AbstractNotationElement {
         if (this.piece.getIncludeInstruments()) {
             str.append(instrument.toGuidoString() + " ");
         }
-        
-        str.append(this.piece.getKeySignature().toGuidoString() + " ");
+                
+        str.append(this.getFirstKeySignature().toGuidoString() + " ");
         str.append(this.piece.getTimeSignature().toGuidoString() + " ");                
+        str.append(Clef.getBestMatchForNoteList(this.getNotationNotes()).toGuidoString() + " ");
         
         if (this.isPartFirstPartOfPiece()) {
             if (this.piece.getIncludeTempo()) {
@@ -208,7 +335,7 @@ public class Part extends AbstractNotationElement {
             }
         }        
 
-        str.append(this.getNotationElements().toGuidoString());
+        str.append(this.getPartSections().toGuidoString());
         str.append("]");           
         return str.toString();
     }

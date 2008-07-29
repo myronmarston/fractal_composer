@@ -21,9 +21,11 @@ package com.myronmarston.music.notation;
 
 import com.myronmarston.music.scales.KeySignature;
 import com.myronmarston.music.settings.TimeSignature;
+import com.myronmarston.music.settings.InvalidTimeSignatureException;
 import com.myronmarston.util.FileHelper;
 import com.myronmarston.util.Fraction;
 
+import java.lang.reflect.UndeclaredThrowableException;
 import java.util.*;
 
 /**
@@ -32,7 +34,8 @@ import java.util.*;
  * @author Myron
  */
 public class Piece {
-    private final TimeSignature timeSignature;
+    private TimeSignature timeSignature;
+    private Fraction timeSignatureFraction;
     private final KeySignature keySignature;
     private final int tempo;
     private final NotationElementList parts = new NotationElementList();
@@ -52,7 +55,7 @@ public class Piece {
      */
     public Piece(KeySignature keySignature, TimeSignature timeSignature, int tempo, boolean includeTempo, boolean includeInstrument) {
         this.keySignature = keySignature;
-        this.timeSignature = timeSignature;                
+        this.setTimeSignature(timeSignature);
         this.tempo = tempo;
         this.includeTempo = includeTempo;
         this.includeInstruments = includeInstrument;
@@ -75,6 +78,25 @@ public class Piece {
     public TimeSignature getTimeSignature() {
         return timeSignature;
     }
+    
+    /**
+     * Sets the time signature and time signature fraction fields.
+     * 
+     * @param timeSignature the time signature
+     */
+    private void setTimeSignature(TimeSignature timeSignature) {
+        this.timeSignature = timeSignature;
+        this.timeSignatureFraction = this.timeSignature.toFraction();
+    }
+
+    /**
+     * Gets the time signature of this piece in fractional form.
+     * 
+     * @return the time signature of this piece in fractional form
+     */
+    public Fraction getTimeSignatureFraction() {
+        return timeSignatureFraction;
+    }        
 
     /**
      * Gets the tempo, in beats per minute, of this piece.
@@ -199,6 +221,11 @@ public class Piece {
         if (powersOf2 > 0) {
             long scaleFactor = 1 << powersOf2;
             this.getParts().scaleDurations(scaleFactor);
+            try {
+                this.setTimeSignature(new TimeSignature((int) (this.getTimeSignature().getNumerator() * scaleFactor), this.getTimeSignature().getDenominator()));
+            } catch (InvalidTimeSignatureException ex) {
+                throw new UndeclaredThrowableException(ex, "An unexpected error occured while instantiating the time signature.  This should never occur and indicates a programming error of some sort.");
+            }
         }
         
         assert this.getParts().getLargestDurationDenominator() <= Fraction.MAX_ALLOWED_DURATION_DENOM : this.getParts().getLargestDurationDenominator();

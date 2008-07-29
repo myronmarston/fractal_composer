@@ -107,7 +107,7 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
         // if the value changed, update our scale appropriately...
         if (valueChanged) {
             if (overridePieceScale) {
-                this.setScale((Scale) this.getFractalPiece().getScale().clone());   
+                this.setScale(this.getFractalPiece().getScale().clone());   
             } else {
                 this.setScale(null);
             }            
@@ -185,6 +185,7 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
         // that are produced.
         
         String germString = this.getFractalPiece().getGermString();
+        if (germString.isEmpty()) return new NoteList();
         try {
             // first try parsing the germ using the selected scale and tonic...            
             NoteList testGerm1 = NoteList.parseNoteListString(germString, this.getScale());                                
@@ -350,5 +351,6 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
     @Override
     protected VoiceSection instantiateVoiceSection(Voice vOrS) {
         return new VoiceSection(vOrS, this);
-    }           
+    }
+       
 }

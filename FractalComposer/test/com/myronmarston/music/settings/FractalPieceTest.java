@@ -177,6 +177,7 @@ public class FractalPieceTest {
         expected.add(new Note(1, 1, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume(), scale, 0));
         expected.add(new Note(2, 2, 4, 0, new Fraction(1, 8), Dynamic.F.getMidiVolume(), scale, 0));
         expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
+        expected.setfirstNotesOfGermCopy(0);
         
         fp.setGermString("G4,1/4,MF A4,1/8,F B4,1/8,F G4,1/4,MF");
         NoteListTest.assertNoteListsEqual(expected, fp.getGerm());
@@ -228,6 +229,7 @@ public class FractalPieceTest {
         expected.add(new Note(2, 2, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
         expected.add(new Note(3, 3, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
         expected.add(new Note(4, 4, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
+        expected.setfirstNotesOfGermCopy(0);
         
         NoteListTest.assertNoteListsEqual(expected, fp.getGerm());
         
@@ -238,6 +240,7 @@ public class FractalPieceTest {
         expected.add(new Note(5, 5, 3, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
         expected.add(new Note(6, 6, 3, -1, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
         expected.add(new Note(0, 0, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
+        expected.setfirstNotesOfGermCopy(0);
         
         NoteListTest.assertNoteListsEqual(expected, fp.getGerm());
         
@@ -248,6 +251,7 @@ public class FractalPieceTest {
         expected.add(new Note(2, 4, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
         expected.add(new Note(3, 5, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
         expected.add(new Note(4, 7, 4, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), scale, 0));
+        expected.setfirstNotesOfGermCopy(0);
         
         NoteListTest.assertNoteListsEqual(expected, fp.getGerm());
     }
@@ -347,11 +351,15 @@ public class FractalPieceTest {
         
         fp.setScale(new MajorScale(NoteName.C));
         NoteList expectedResult = NoteList.parseNoteListString("G5,1/8 A5 G5  A5 B5 A5  G5 A5 G5", new MajorScale(NoteName.C));
+        expectedResult.setSourceVoiceSectionOnAllNotes(vs);
+        expectedResult.setfirstNotesOfGermCopy(0, 3, 6);
         NoteListTest.assertNoteListsEqual(expectedResult, vs.getVoiceSectionResult());
         
         fp.setScale(new MajorScale(NoteName.G));
         fp.setGermString("G4 F#4 G4");
         expectedResult = NoteList.parseNoteListString("G5,1/8 F#5 G5  F#5 E5 F#5  G5 F#5 G5", new MajorScale(NoteName.G));
+        expectedResult.setSourceVoiceSectionOnAllNotes(vs);
+        expectedResult.setfirstNotesOfGermCopy(0, 3, 6);
         NoteListTest.assertNoteListsEqual(expectedResult, vs.getVoiceSectionResult());
     }
     

@@ -19,6 +19,7 @@
 
 package com.myronmarston.music.notation;
 
+import com.myronmarston.music.*;
 import com.myronmarston.util.Fraction;
 
 import java.util.*;
@@ -50,9 +51,9 @@ public class TupletTest {
     
     private static Tuplet constructTestTuplet() throws Exception {
         NotationElementList list = new NotationElementList();
-        list.add(new NotationNote(NotationNoteTest.DEFAULT_PART, 'c', 3, 0, new Fraction("1/12")));
-        list.add(new NotationNote(NotationNoteTest.DEFAULT_PART, 'd', 3, 0, new Fraction("1/12")));
-        list.add(new NotationNote(NotationNoteTest.DEFAULT_PART, 'e', 3, 0, new Fraction("1/12")));
+        list.add(new NotationNote(NotationNoteTest.DEFAULT_PART_SECTION, 'c', 3, 0, new Fraction("1/12"), new Fraction(4, 4), MidiNote.DEFAULT_VELOCITY, true));
+        list.add(new NotationNote(NotationNoteTest.DEFAULT_PART_SECTION, 'd', 3, 0, new Fraction("1/12"), new Fraction(11, 12), MidiNote.DEFAULT_VELOCITY, false));
+        list.add(new NotationNote(NotationNoteTest.DEFAULT_PART_SECTION, 'e', 3, 0, new Fraction("1/12"), new Fraction(5, 6), MidiNote.DEFAULT_VELOCITY, false));
         
         return new Tuplet(list);
     }
@@ -78,7 +79,7 @@ public class TupletTest {
     private static void testGetLargestDurationDenominator(long expected, String ... durations) {
         NotationElementList list = new NotationElementList();
         for (String duration : durations) {
-            list.add(new NotationNote(NotationNoteTest.DEFAULT_PART, 'c', 3, 0, new Fraction(duration)));
+            list.add(NotationNoteTest.instantiateTestNote(duration));
         }
                 
         Tuplet tuplet = new Tuplet(list);
@@ -94,7 +95,7 @@ public class TupletTest {
         assertEquals(originalDurations.size(), expectedDurations.size());
         NotationElementList list = new NotationElementList();
         for (String duration : originalDurations) {
-            list.add(new NotationNote(NotationNoteTest.DEFAULT_PART, 'c', 3, 0, new Fraction(duration)));
+            list.add(NotationNoteTest.instantiateTestNote(duration));
         }
         
         Tuplet tuplet = new Tuplet(list);        

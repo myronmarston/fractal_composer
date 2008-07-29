@@ -266,7 +266,7 @@ public abstract class Scale implements Cloneable {
      *         flats
      */
     public Scale getCopyWithDifferentKey(NoteName key) throws InvalidKeySignatureException {
-        Scale scale = (Scale) this.clone();
+        Scale scale = this.clone();
         scale.keySignature = new KeySignature(this.keySignature.getTonality(), key);
         return scale;
     }
@@ -283,9 +283,9 @@ public abstract class Scale implements Cloneable {
     }
         
     @Override
-    public Object clone() {
+    public Scale clone() {
         try {
-            return super.clone();
+            return (Scale) super.clone();
         } catch (CloneNotSupportedException ex) {
             // We have implemented the Cloneable interface, so we should never
             // get this exception.  If we do, there's something very, very wrong...

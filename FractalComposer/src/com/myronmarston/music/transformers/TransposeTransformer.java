@@ -69,7 +69,7 @@ public class TransposeTransformer implements Transformer {
         NoteList output = new NoteList(input.size());
         
         for (Note inputNote : input) {
-            newNote = (Note) inputNote.clone();
+            newNote = inputNote.clone();
             
             if (!newNote.isRest()) { // don't change a rest...
                 newNote.performTransformerAdjustment(this.transposeSteps, this.transposeLetterNumbers, 0);

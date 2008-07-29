@@ -42,6 +42,7 @@ public class RetrogradeTransformerTest {
         input.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 112, scale, 0));
         input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));
         input.add(Note.createRest(new Fraction(1, 2)));
+        input.setfirstNotesOfGermCopy(0, 2); // 0 5 | 2 1 0 R
         
         Transformer t = new RetrogradeTransformer();
         NoteList expectedOutput = new NoteList();
@@ -51,9 +52,10 @@ public class RetrogradeTransformerTest {
         expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 112, scale, 0));        
         expectedOutput.add(new Note(5, 5, 4, 0, new Fraction(1, 2), 64, scale, 0));        
         expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));        
+        expectedOutput.setfirstNotesOfGermCopy(0, 4); // R 0 1 2 | 5 0
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
-        //inverting an inversion should produce the original
+        //retrograding a retrograde should produce the original
         assertTransformerProducesExpectedOutput(t, expectedOutput, input);
     }
     

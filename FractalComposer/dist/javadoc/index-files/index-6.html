@@ -116,6 +116,9 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/OutputManager.html#getAudioFileCreator()"><B>getAudioFileCreator()</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music">OutputManager</A>
 <DD>Gets the audio file creator.
+<DT><A HREF="../com/myronmarston/music/notation/Clef.html#getBestMatchForNoteList(java.util.List)"><B>getBestMatchForNoteList(List&lt;NotationNote&gt;)</B></A> - 
+Static method in enum com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Clef.html" title="enum in com.myronmarston.music.notation">Clef</A>
+<DD>Gets the clef that is the best match for the given of notes.
 <DT><A HREF="../com/myronmarston/music/settings/VoiceSectionList.html#getByOtherTypeUniqueIndex(int)"><B>getByOtherTypeUniqueIndex(int)</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/VoiceSectionList.html" title="class in com.myronmarston.music.settings">VoiceSectionList</A>
 <DD>Gets the voice section that is for the voice or section of the other type
@@ -136,6 +139,10 @@ Static method in class com.myronmarston.util.<A HREF="../com/myronmarston/util/C
 <DT><A HREF="../com/myronmarston/music/settings/AbstractVoiceOrSection.html#getClassName()"><B>getClassName()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/AbstractVoiceOrSection.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSection</A>
 <DD>Gets the name of this class--e.g., "Voice" or "Section".
+<DT><A HREF="../com/myronmarston/music/notation/Clef.html#getClosestClefToNoteNumber(int)"><B>getClosestClefToNoteNumber(int)</B></A> - 
+Static method in enum com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Clef.html" title="enum in com.myronmarston.music.notation">Clef</A>
+<DD>Gets the clef whose middle line is the shortest distance from the 
+ given note number.
 <DT><A HREF="../com/myronmarston/music/scales/Scale.html#getCopyWithDifferentKey(com.myronmarston.music.NoteName)"><B>getCopyWithDifferentKey(NoteName)</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>
 <DD>Gets a new scale that is of the same type, but uses a different key.
@@ -169,9 +176,18 @@ Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteLi
 <DT><A HREF="../com/myronmarston/music/settings/Section.html#getDuration()"><B>getDuration()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>
 <DD>Gets the duration for this entire section.
+<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#getDynamic()"><B>getDynamic()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
+<DD>Gets the notation dynamic for this notation note.
 <DT><A HREF="../com/myronmarston/music/Dynamic.html#getDynamicExampleString()"><B>getDynamicExampleString()</B></A> - 
 Static method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/Dynamic.html" title="enum in com.myronmarston.music">Dynamic</A>
 <DD>Gets a list of possible dynamic values.
+<DT><A HREF="../com/myronmarston/music/Dynamic.html#getDynamicForMidiVolume(int)"><B>getDynamicForMidiVolume(int)</B></A> - 
+Static method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/Dynamic.html" title="enum in com.myronmarston.music">Dynamic</A>
+<DD>Gets the Dynamic in whose range the given midiVolume falls.
+<DT><A HREF="../com/myronmarston/music/Dynamic.html#getDynamicLevel()"><B>getDynamicLevel()</B></A> - 
+Method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/Dynamic.html" title="enum in com.myronmarston.music">Dynamic</A>
+<DD>Gets the dynamic level for this dynamic.
 <DT><A HREF="../com/myronmarston/music/notation/NotationElementList.html#getElementSeperator()"><B>getElementSeperator()</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>
 <DD>Gets the string used to seperate the elements when getting the lilypond 
@@ -276,6 +292,9 @@ Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music
 <DT><A HREF="../com/myronmarston/music/notation/AbstractNotationElement.html#getLargestDurationDenominator()"><B>getLargestDurationDenominator()</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A>
 <DD>Throws an UnsupportedOperationException.
+<DT><A HREF="../com/myronmarston/music/notation/Clef.html#getLargestDurationDenominator()"><B>getLargestDurationDenominator()</B></A> - 
+Method in enum com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Clef.html" title="enum in com.myronmarston.music.notation">Clef</A>
+<DD>Throws an unsupported operation exception.
 <DT><A HREF="../com/myronmarston/music/notation/NotationElement.html#getLargestDurationDenominator()"><B>getLargestDurationDenominator()</B></A> - 
 Method in interface com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A>
 <DD>Gets the largest duration denominator of this element.
@@ -288,6 +307,9 @@ Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/notation/Part.html#getLargestDurationDenominator()"><B>getLargestDurationDenominator()</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>
 <DD>&nbsp;
+<DT><A HREF="../com/myronmarston/music/notation/PartSection.html#getLargestDurationDenominator()"><B>getLargestDurationDenominator()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A>
+<DD>Gets the largest duration denominator found in this part seciton.
 <DT><A HREF="../com/myronmarston/music/notation/Tuplet.html#getLargestDurationDenominator()"><B>getLargestDurationDenominator()</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A>
 <DD>&nbsp;
@@ -393,6 +415,13 @@ Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteLi
 <DT><A HREF="../com/myronmarston/music/NoteName.html#getMajorKeySharpsOrFlats()"><B>getMajorKeySharpsOrFlats()</B></A> - 
 Method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>
 <DD>Gets the number of sharps or flats for this major key.
+<DT><A HREF="../com/myronmarston/music/notation/Clef.html#getMedianNoteNumber(java.util.List)"><B>getMedianNoteNumber(List&lt;NotationNote&gt;)</B></A> - 
+Static method in enum com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Clef.html" title="enum in com.myronmarston.music.notation">Clef</A>
+<DD>Gets the median notation staff note number for the given list of
+ notation notes.
+<DT><A HREF="../com/myronmarston/util/MathHelper.html#getMedianValue(java.util.List)"><B>getMedianValue(List&lt;Integer&gt;)</B></A> - 
+Static method in class com.myronmarston.util.<A HREF="../com/myronmarston/util/MathHelper.html" title="class in com.myronmarston.util">MathHelper</A>
+<DD>Gets the median value from a list of numbers.
 <DT><A HREF="../com/myronmarston/music/Instrument.html#getMidiInstrument()"><B>getMidiInstrument()</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>
 <DD>Gets the midi instrument.
@@ -425,6 +454,10 @@ Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Instru
 Method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>
 <DD>Gets the note name without any accidentals for the given letter number,
  relative to this note name.
+<DT><A HREF="../com/myronmarston/music/notation/Part.html#getNextIndexOfFirstNoteOfAGermCopy(java.util.List, int)"><B>getNextIndexOfFirstNoteOfAGermCopy(List&lt;NotationNote&gt;, int)</B></A> - 
+Static method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>
+<DD>Gets the next index of a notation note which is the first not of a germ
+ copy.
 <DT><A HREF="../com/myronmarston/music/settings/VoiceOrSectionList.html#getNextUniqueIndex()"><B>getNextUniqueIndex()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/VoiceOrSectionList.html" title="class in com.myronmarston.music.settings">VoiceOrSectionList</A>
 <DD>Gets the next available unique index, and increments the unique index
@@ -446,9 +479,38 @@ Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music
 <DT><A HREF="../com/myronmarston/util/MathHelper.html#getNormalizedValue(int, int)"><B>getNormalizedValue(int, int)</B></A> - 
 Static method in class com.myronmarston.util.<A HREF="../com/myronmarston/util/MathHelper.html" title="class in com.myronmarston.util">MathHelper</A>
 <DD>Normalizes a value into a certain range.
-<DT><A HREF="../com/myronmarston/music/notation/Part.html#getNotationElements()"><B>getNotationElements()</B></A> - 
+<DT><A HREF="../com/myronmarston/music/notation/PartSection.html#getNotationElements()"><B>getNotationElements()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A>
+<DD>Gets the list of notation elements for this part section.
+<DT><A HREF="../com/myronmarston/music/notation/AbstractNotationElement.html#getNotationNotes()"><B>getNotationNotes()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A>
+<DD>Returns an empty list of notation notes.
+<DT><A HREF="../com/myronmarston/music/notation/Clef.html#getNotationNotes()"><B>getNotationNotes()</B></A> - 
+Method in enum com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Clef.html" title="enum in com.myronmarston.music.notation">Clef</A>
+<DD>Returns an empty list.
+<DT><A HREF="../com/myronmarston/music/notation/NotationElement.html#getNotationNotes()"><B>getNotationNotes()</B></A> - 
+Method in interface com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A>
+<DD>Gets a list of notation notes owned by this element and all owned
+ elements.
+<DT><A HREF="../com/myronmarston/music/notation/NotationElementList.html#getNotationNotes()"><B>getNotationNotes()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>
+<DD>Gets a list of notation notes from owned by this list.
+<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#getNotationNotes()"><B>getNotationNotes()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
+<DD>Returns a list containing one item: this notation note.
+<DT><A HREF="../com/myronmarston/music/notation/Part.html#getNotationNotes()"><B>getNotationNotes()</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>
-<DD>Gets the notation elements for this part.
+<DD>&nbsp;
+<DT><A HREF="../com/myronmarston/music/notation/PartSection.html#getNotationNotes()"><B>getNotationNotes()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A>
+<DD>&nbsp;
+<DT><A HREF="../com/myronmarston/music/notation/Tuplet.html#getNotationNotes()"><B>getNotationNotes()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A>
+<DD>&nbsp;
+<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#getNotationStaffNoteNumber()"><B>getNotationStaffNoteNumber()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
+<DD>Gets a number indicating the line or space on the staff used by this       
+ notation note.
 <DT><A HREF="../com/myronmarston/music/MidiNote.html#getNoteEnd()"><B>getNoteEnd()</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A>
 <DD>Gets the time, in midi ticks, when this note will end.
@@ -516,12 +578,18 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A>
 <DD>Gets a value indicating whether or not this voice section will override
  the voice settings.
-<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#getPart()"><B>getPart()</B></A> - 
-Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
-<DD>Gets the part that owns this notation note.
+<DT><A HREF="../com/myronmarston/music/notation/PartSection.html#getPart()"><B>getPart()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A>
+<DD>The notation part that owns this part section.
 <DT><A HREF="../com/myronmarston/music/notation/Piece.html#getParts()"><B>getParts()</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation">Piece</A>
 <DD>Gets the instrumental parts of this piece.
+<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#getPartSection()"><B>getPartSection()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
+<DD>Gets the part section that owns this notation note.
+<DT><A HREF="../com/myronmarston/music/notation/Part.html#getPartSections()"><B>getPartSections()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>
+<DD>Gets the notation elements for this part.
 <DT><A HREF="../com/myronmarston/music/notation/Part.html#getPiece()"><B>getPiece()</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>
 <DD>Gets the notation piece that owns this part.
@@ -632,6 +700,9 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/settings/VoiceSectionHashMapKey.html#getSection()"><B>getSection()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/VoiceSectionHashMapKey.html" title="class in com.myronmarston.music.settings">VoiceSectionHashMapKey</A>
 <DD>Gets the Section for this key.
+<DT><A HREF="../com/myronmarston/music/notation/PartSection.html#getSectionKeySignature()"><B>getSectionKeySignature()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A>
+<DD>Gets the key signature for this part section.
 <DT><A HREF="../com/myronmarston/music/settings/Section.html#getSectionKeySignature()"><B>getSectionKeySignature()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>
 <DD>Gets the key signature for this section.
@@ -672,6 +743,12 @@ Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Output
 <DT><A HREF="../com/myronmarston/music/notation/NotationElementList.html#getSmallestNoteDurationDenominator()"><B>getSmallestNoteDurationDenominator()</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>
 <DD>Gets the smallest note duration denominator in this list.
+<DT><A HREF="../com/myronmarston/music/notation/PartSection.html#getSourceVoiceSection()"><B>getSourceVoiceSection()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A>
+<DD>The source voice section for this part section.
+<DT><A HREF="../com/myronmarston/music/Note.html#getSourceVoiceSection()"><B>getSourceVoiceSection()</B></A> - 
+Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
+<DD>Gets the voice section that generated this note.
 <DT><A HREF="../com/myronmarston/music/settings/VoiceSettings.html#getSpeedScaleFactor()"><B>getSpeedScaleFactor()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/VoiceSettings.html" title="class in com.myronmarston.music.settings">VoiceSettings</A>
 <DD>Gets the speed scale factor to apply to the germ for use by this voice.
@@ -697,12 +774,18 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music">OutputManager</A>
 <DD>Gets a flag that can be used to test that errors in lilypond properly 
  raise java exceptions.
+<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#getTimeLeftInBar()"><B>getTimeLeftInBar()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
+<DD>Gets the amount of time left in this bar.
 <DT><A HREF="../com/myronmarston/music/notation/Piece.html#getTimeSignature()"><B>getTimeSignature()</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation">Piece</A>
 <DD>Gets the time signature of this piece.
 <DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#getTimeSignature()"><B>getTimeSignature()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
 <DD>Gets the time signature for this piece.
+<DT><A HREF="../com/myronmarston/music/notation/Piece.html#getTimeSignatureFraction()"><B>getTimeSignatureFraction()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation">Piece</A>
+<DD>Gets the time signature of this piece in fractional form.
 <DT><A HREF="../com/myronmarston/music/scales/KeySignature.html#getTonality()"><B>getTonality()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>
 <DD>Gets the tonality of this key.
@@ -712,6 +795,9 @@ Method in class com.myronmarston.music.transformers.<A HREF="../com/myronmarston
 <DT><A HREF="../com/myronmarston/music/transformers/TransposeTransformer.html#getTransposeSteps()"><B>getTransposeSteps()</B></A> - 
 Method in class com.myronmarston.music.transformers.<A HREF="../com/myronmarston/music/transformers/TransposeTransformer.html" title="class in com.myronmarston.music.transformers">TransposeTransformer</A>
 <DD>Gets the number of scale steps to transpose the given NoteList.
+<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#getTupletMultiplier()"><B>getTupletMultiplier()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
+<DD>Gets the tuplet multiplier that has been applied to this note.
 <DT><A HREF="../com/myronmarston/music/notation/Tuplet.html#getTupletMultiplier()"><B>getTupletMultiplier()</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A>
 <DD>Gets the tuplet multiplier.
@@ -752,6 +838,9 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/settings/VoiceSection.html#getVoiceSettings()"><B>getVoiceSettings()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A>
 <DD>Gets the voice settings for this voice section.
+<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#getVolume()"><B>getVolume()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
+<DD>Gets the raw midi volume of this note.
 <DT><A HREF="../com/myronmarston/music/Note.html#getVolume()"><B>getVolume()</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
 <DD>Gets how loud the note should be (0-127).

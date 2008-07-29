@@ -111,7 +111,7 @@ public class FractalPiece {
      * @throws com.myronmarston.music.NoteStringParseException if the note list
      *         string cannot be parsed
      */
-    public void setGermString(String germString) throws NoteStringParseException {
+    public void setGermString(String germString) throws NoteStringParseException {        
         this.germ = NoteList.parseNoteListString(germString, this.getScale());
         this.germString = germString;
         

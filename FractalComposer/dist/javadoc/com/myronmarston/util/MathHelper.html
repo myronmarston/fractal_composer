@@ -144,6 +144,14 @@ A class containing static helper methods for some math functions used to
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/MathHelper.html#getMedianValue(java.util.List)">getMedianValue</A></B>(java.util.List&lt;java.lang.Integer&gt;&nbsp;nums)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the median value from a list of numbers.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/util/MathHelper.html#getNormalizedValue(int, int)">getNormalizedValue</A></B>(int&nbsp;value,
                    int&nbsp;mod)</CODE>
 
@@ -333,6 +341,23 @@ public static int <B>getNormalizedValue</B>(int&nbsp;value,
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>value</CODE> - the value to normalize<DD><CODE>mod</CODE> - the modulus number
 <DT><B>Returns:</B><DD>the normalized value</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMedianValue(java.util.List)"><!-- --></A><H3>
+getMedianValue</H3>
+<PRE>
+public static int <B>getMedianValue</B>(java.util.List&lt;java.lang.Integer&gt;&nbsp;nums)</PRE>
+<DL>
+<DD>Gets the median value from a list of numbers.  This is the value that has
+ the same number of values above it and below it when the list has
+ been sorted.  For a list that has an even number of entries, this method
+ will return the average of the middle two values.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>nums</CODE> - the list of values
+<DT><B>Returns:</B><DD>the median</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

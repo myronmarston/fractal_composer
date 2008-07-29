@@ -89,39 +89,8 @@ function windowTitle()
 Packages that use <A HREF="../../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><A HREF="#com.myronmarston.music"><B>com.myronmarston.music</B></A></TD>
-<TD>&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><A HREF="#com.myronmarston.music.notation"><B>com.myronmarston.music.notation</B></A></TD>
 <TD>&nbsp;&nbsp;</TD>
-</TR>
-</TABLE>
-&nbsp;
-<P>
-<A NAME="com.myronmarston.music"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
-Uses of <A HREF="../../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A> in <A HREF="../../../../../com/myronmarston/music/package-summary.html">com.myronmarston.music</A></FONT></TH>
-</TR>
-</TABLE>
-&nbsp;
-<P>
-
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
-<TH ALIGN="left" COLSPAN="2">Methods in <A HREF="../../../../../com/myronmarston/music/package-summary.html">com.myronmarston.music</A> with parameters of type <A HREF="../../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A></FONT></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A></CODE></FONT></TD>
-<TD><CODE><B>Note.</B><B><A HREF="../../../../../com/myronmarston/music/Note.html#toNotationNote(com.myronmarston.music.notation.Part, com.myronmarston.music.MidiNote)">toNotationNote</A></B>(<A HREF="../../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>&nbsp;part,
-               <A HREF="../../../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A>&nbsp;midiNote)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts this Note to a Notation Note that can be used to produce GUIDO
- or Lilypond notation.</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -143,27 +112,10 @@ Uses of <A HREF="../../../../../com/myronmarston/music/notation/Part.html" title
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A></CODE></FONT></TD>
-<TD><CODE><B>NotationNote.</B><B><A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html#getPart()">getPart</A></B>()</CODE>
+<TD><CODE><B>PartSection.</B><B><A HREF="../../../../../com/myronmarston/music/notation/PartSection.html#getPart()">getPart</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the part that owns this notation note.</TD>
-</TR>
-</TABLE>
-&nbsp;
-<P>
-
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
-<TH ALIGN="left" COLSPAN="2">Methods in <A HREF="../../../../../com/myronmarston/music/notation/package-summary.html">com.myronmarston.music.notation</A> with parameters of type <A HREF="../../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A></FONT></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;<A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A></CODE></FONT></TD>
-<TD><CODE><B>NotationNote.</B><B><A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html#createRest(com.myronmarston.music.notation.Part, com.myronmarston.util.Fraction)">createRest</A></B>(<A HREF="../../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>&nbsp;part,
-           <A HREF="../../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a rest.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The notation part that owns this part section.</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -174,11 +126,8 @@ Uses of <A HREF="../../../../../com/myronmarston/music/notation/Part.html" title
 <TH ALIGN="left" COLSPAN="2">Constructors in <A HREF="../../../../../com/myronmarston/music/notation/package-summary.html">com.myronmarston.music.notation</A> with parameters of type <A HREF="../../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../../com/myronmarston/music/notation/NotationNote.html#NotationNote(com.myronmarston.music.notation.Part, char, int, int, com.myronmarston.util.Fraction)">NotationNote</A></B>(<A HREF="../../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>&nbsp;part,
-             char&nbsp;letterName,
-             int&nbsp;octave,
-             int&nbsp;accidental,
-             <A HREF="../../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;duration)</CODE>
+<TD><CODE><B><A HREF="../../../../../com/myronmarston/music/notation/PartSection.html#PartSection(com.myronmarston.music.notation.Part, com.myronmarston.music.settings.VoiceSection)">PartSection</A></B>(<A HREF="../../../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>&nbsp;part,
+            <A HREF="../../../../../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A>&nbsp;sourceVoiceSection)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>

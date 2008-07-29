@@ -57,12 +57,13 @@ public class XmlSerializationTest {
     public void serializeNote() throws Exception {
         Note n = new Note(2, 3, 4, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), new MajorScale(NoteName.E), 1);                        
         String expected = 
-        "<note id=\"0\" scaleStep=\"3\" octave=\"4\" chromaticAdjustment=\"0\" volume=\"85\" segmentChromaticAdjustment=\"1\" letterNumber=\"2\">\n"+                
+        "<note id=\"0\" scaleStep=\"3\" octave=\"4\" chromaticAdjustment=\"0\" volume=\"86\" segmentChromaticAdjustment=\"1\" letterNumber=\"2\" isFirstNoteOfGermCopy=\"false\">\n"+                
         "   <duration id=\"1\" numerator_=\"1\" denominator_=\"4\"/>\n" +
         "   <scale class=\"com.myronmarston.music.scales.MajorScale\" id=\"2\">\n" +
         "      <keySignature id=\"3\" keyName=\"E\" tonality=\"Major\"/>\n" +
         "   </scale>\n" +
         "</note>";    
+        this.printSerializationResults(n);
         testSerialization(n, expected);        
     }
     
@@ -111,7 +112,7 @@ public class XmlSerializationTest {
         s.setScale(new MinorPentatonicScale(NoteName.G));
         s.getSettings().setVolumeAdjustment(0.7575d);
         s.getSettings().setScaleStepOffset(2);
-        s.getGermForSection(); //cause thto get a value...
+        s.getGermForSection(); //cause it to get a value...
         
         String expected =   
         "<section id=\"0\" uniqueIndex=\"1\" overridePieceScale=\"true\">\n" +
@@ -190,7 +191,7 @@ public class XmlSerializationTest {
             assertEquals(v.getUniqueIndex(), newV.getUniqueIndex());
             assertEquals(v.getSettings(), newV.getSettings());
             assertEquals(v.getInstrumentName(), newV.getInstrumentName());            
-            NoteListTest.assertNoteListsEqual(v.getEntireVoice(), newV.getEntireVoice());
+            NoteListTest.assertNoteListsEqual(v.getEntireVoice(), newV.getEntireVoice(), true);
             assertEquals(newFp, newV.getFractalPiece());
         }
         
@@ -206,7 +207,7 @@ public class XmlSerializationTest {
             assertEquals(s.getDuration(), newS.getDuration());
             assertEquals(s.getOverridePieceScale(), newS.getOverridePieceScale());
             assertEquals(newFp, newFp.getSections().get(i).getFractalPiece());
-            NoteListTest.assertNoteListsEqual(s.getGermForSection(), newS.getGermForSection());            
+            NoteListTest.assertNoteListsEqual(s.getGermForSection(), newS.getGermForSection(), true);            
         }        
         
         // check voice sections...
@@ -215,12 +216,8 @@ public class XmlSerializationTest {
             for (int s = 0; s < fp.getSections().size(); s++) {
                 VoiceSection vs = fp.getVoiceSections().get(fp.getVoices().get(v).getHashMapKeyForOtherTypeIndex(s));
                 VoiceSection newVs = newFp.getVoiceSections().get(newFp.getVoices().get(v).getHashMapKeyForOtherTypeIndex(s));
-                assertEquals(vs.getOverrideSectionSettings(), newVs.getOverrideSectionSettings());
-                assertEquals(vs.getOverrideVoiceSettings(), newVs.getOverrideVoiceSettings());
-                assertEquals(vs.getSectionSettings(), newVs.getSectionSettings());
-                assertEquals(vs.getVoiceSettings(), newVs.getVoiceSettings());                
-                assertEquals(vs.getRest(), newVs.getRest());
-                assertEquals(vs.getVoiceSectionResult(), newVs.getVoiceSectionResult());                       
+                
+                VoiceSectionTest.assertVoiceSectionsEqual(vs, newVs, true);                
             }
         }
     }

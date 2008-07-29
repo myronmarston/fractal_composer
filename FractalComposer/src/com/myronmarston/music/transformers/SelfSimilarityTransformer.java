@@ -78,7 +78,7 @@ public class SelfSimilarityTransformer implements Transformer {
     public NoteList transform(NoteList input) {                
         if (!this.getSettings().selfSimilarityShouldBeAppliedToSomething()) {
             // there is no self-similarity, so just return a copy of the input
-            return (NoteList) input.clone();            
+            return input.clone();            
         }            
              
         NoteList tempList = input;
@@ -98,7 +98,13 @@ public class SelfSimilarityTransformer implements Transformer {
         for (Note germNote : germ) {                  
             if (germNote.isRest()) {                
                 transformedList = new NoteList();
-                transformedList.add(Note.createRest(input.getDuration()));                
+                
+                // the rest one will be one complete copy of the germ, all enclosed in a rest,
+                // so we need to set the first note flag on it
+                Note restNote = Note.createRest(input.getDuration());
+                restNote.setIsFirstNoteOfGermCopy(true);
+                
+                transformedList.add(restNote);                
                 transformedList = transform_rhythm(transformedList, firstGermNote, germNote);
             } else {                
                 transformedList = transform_pitch(input, firstGermNote, germNote);

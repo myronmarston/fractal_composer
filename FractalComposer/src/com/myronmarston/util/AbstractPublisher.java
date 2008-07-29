@@ -75,7 +75,7 @@ public abstract class AbstractPublisher implements Publisher, Cloneable {
      * Clones this object.  The subscriber list is not cloned--instead a new
      * list is created.
      */
-    public Object clone() {
+    public AbstractPublisher clone() {
         AbstractPublisher clonedAP;
         
         try {

@@ -246,6 +246,14 @@ Class that holds the time signature for the fractal piece.  A time signature
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html#toFraction()">toFraction</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts this time signature to a fraction.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/TimeSignature.html#toGuidoString()">toGuidoString</A></B>()</CODE>
 
@@ -275,7 +283,7 @@ Class that holds the time signature for the fractal piece.  A time signature
 <TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.notation.<A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A></B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#getLargestDurationDenominator()">getLargestDurationDenominator</A>, <A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#scaleDurations(long)">scaleDurations</A></CODE></TD>
+<TD><CODE><A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#getLargestDurationDenominator()">getLargestDurationDenominator</A>, <A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#getNotationNotes()">getNotationNotes</A>, <A HREF="../../../../com/myronmarston/music/notation/AbstractNotationElement.html#scaleDurations(long)">scaleDurations</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -502,6 +510,20 @@ public javax.sound.midi.MidiEvent <B>getMidiTimeSignatureEvent</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the midi time signature event</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="toFraction()"><!-- --></A><H3>
+toFraction</H3>
+<PRE>
+public <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A> <B>toFraction</B>()</PRE>
+<DL>
+<DD>Converts this time signature to a fraction.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>a fraction of numerator/denominator</DL>
 </DD>
 </DL>
 <HR>

@@ -19,7 +19,7 @@
 
 package com.myronmarston.music.settings;
 
-import com.myronmarston.util.FileHelper;
+import com.myronmarston.util.*;
 import javax.sound.midi.MidiEvent;
 
 import org.junit.Test;
@@ -170,6 +170,12 @@ public class TimeSignatureTest {
             TimeSignature ts = new TimeSignature(null);
             fail();
         } catch (InvalidTimeSignatureException ex) {}
+    }
+    
+    @Test
+    public void toFraction() throws Exception {
+        TimeSignature ts = new TimeSignature(3, 8);
+        assertEquals(new Fraction("3/8"), ts.toFraction());
     }
     
     @Test

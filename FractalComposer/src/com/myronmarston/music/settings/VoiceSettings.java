@@ -161,15 +161,15 @@ public class VoiceSettings extends AbstractVoiceOrSectionSettings implements Sub
     public VoiceSettings getReadOnlyCopy() {
         if (this.getSelfSimilaritySettings().isReadOnly()) return (VoiceSettings) super.getReadOnlyCopy();
         
-        VoiceSettings vs = (VoiceSettings) this.clone();        
+        VoiceSettings vs = this.clone();        
         vs.setSelfSimilaritySettings(vs.getSelfSimilaritySettings().getReadOnlyCopy());        
         return vs.getReadOnlyCopy();
     }                
     
     @Override
-    public Object clone() {        
+    public VoiceSettings clone() {        
         VoiceSettings cloned = (VoiceSettings) super.clone();                
-        SelfSimilaritySettings clonedSSS = (SelfSimilaritySettings) cloned.getSelfSimilaritySettings().clone();                
+        SelfSimilaritySettings clonedSSS = cloned.getSelfSimilaritySettings().clone();                
         cloned.setSelfSimilaritySettings(clonedSSS);
         return cloned;
     }

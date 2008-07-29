@@ -128,7 +128,7 @@ public class SelfSimilaritySettingsTest implements Subscriber {
     public void testClone() throws Exception {        
         SelfSimilaritySettings instance = new SelfSimilaritySettings(true, true, false, 6);
         
-        SelfSimilaritySettings newInstance = (SelfSimilaritySettings) instance.clone();
+        SelfSimilaritySettings newInstance = instance.clone();
         assertTrue(instance != newInstance);
         assertTrue(instance.equals(newInstance));
         assertEquals(instance.hashCode(), newInstance.hashCode());        

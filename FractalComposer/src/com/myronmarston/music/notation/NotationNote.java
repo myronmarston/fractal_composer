@@ -19,6 +19,8 @@
 
 package com.myronmarston.music.notation;
 
+import com.myronmarston.music.MidiNote;
+import com.myronmarston.music.NoteName;
 import com.myronmarston.util.Fraction;
 import com.myronmarston.util.MathHelper;
 import java.util.*;
@@ -28,8 +30,7 @@ import java.util.*;
  * 
  * @author Myron
  */
-public class NotationNote extends AbstractNotationElement {
-    
+public class NotationNote extends AbstractNotationElement {    
     
     /**
      * The character used for a flat in lilypond notation.
@@ -71,84 +72,115 @@ public class NotationNote extends AbstractNotationElement {
      */
     private static final String GUIDO_REST = "_";
     
-    private final Part part;
+    /**
+     * A string that can be used as a note placeholder in a java format string.
+     */
+    public static final String NOTE_PLACEHOLDER = "%1$s";      
+    
+    /**
+     * A string that can be used as a second note placeholder in a java format
+     * string.
+     */
+    public static final String NOTE_PLACEHOLDER_2 = "%2$s";                  
+        
+    private final PartSection partSection;
     private final boolean rest;
     private final char letterName;
     private final int octave;
     private final int accidental;
-    private Fraction duration;
-    private String guidoString;
+    private final int volume;
+    private final Fraction tupletMultiplier;
+    private boolean isFirstNoteInGermCopy;
+    private Fraction timeLeftInBar;
+    private NotationDynamic dynamic;    
+    private Fraction duration;            
     
     /**
      * Constructor.  Creates a rest.  
      * 
-     * @param part the part that owns this notation note
+     * @param partSection the partSection that owns this notation note
      * @param duration the duration of this notation note
+     * @param timeLeftInBar the amount of time left in the bar
+     * @param isFirstNoteInGermCopy whether or not this is the first note of a 
+     *        copy of the germ
      */
-    private NotationNote(Part part, Fraction duration) {                       
-        this.part = part;
-        this.letterName = java.lang.Character.MIN_VALUE;
-        this.octave = 0;
-        this.accidental = 0;
-        this.duration = duration;
-        this.rest = true;
+    private NotationNote(PartSection partSection, Fraction duration, Fraction timeLeftInBar, boolean isFirstNoteInGermCopy) {                       
+        this(partSection, 'r', 0, 0, duration, timeLeftInBar, new Fraction(1, 1), 0, isFirstNoteInGermCopy, null);        
     }
     
     /**
      * Constructor.  Creates a notation note having the same values as the
-     * given notation note and duration.
+     * given notation note, using the tuplet multiplier to scale the duration.
      * 
      * @param note the notation note from which to copy values
-     * @param duration the duration to use
+     * @param tupletMultiplier the tuplet multiplier for this notation note
      */
-    private NotationNote(NotationNote note, Fraction duration) {
-        this(note.part, note.letterName, note.octave, note.accidental, duration);
-    }
+    private NotationNote(NotationNote note, Fraction tupletMultiplier) {
+        this(note.partSection, note.letterName, note.octave, note.accidental, note.duration.dividedBy(tupletMultiplier), note.timeLeftInBar, tupletMultiplier, note.volume, note.isFirstNoteInGermCopy, note.dynamic);        
+    }    
     
     /**
      * Constructor.
      * 
-     * @param part the part that owns this notation note
+     * @param partSection the partSection that owns this notation note
      * @param letterName the letter name for this notation note (a-g)
      * @param octave the octave for this notation note
      * @param accidental the accidental for this notation note; positive 
      *        indicates a number of sharps and negative indicates a number of
      *        flats
      * @param duration the rhythmic duration of this notation note
+     * @param timeLeftInBar the amount of time left in the current bar
+     * @param volume the raw midi volume of the note
+     * @param isFirstNoteInGermCopy whether or not this is the first note in a 
+     *        copy of the germ
      * @throws IllegalArgumentException if the accidental outside of the range
-     * -2 - 2, or the letterName is invalid, or the duration is negative
+     *         -2 to 2, the letterName is invalid, the duration is negative, or 
+     *         the volume is not in the allowed range
      */
-    public NotationNote(Part part, char letterName, int octave, int accidental, Fraction duration) throws IllegalArgumentException {        
+    public NotationNote(PartSection partSection, char letterName, int octave, int accidental, Fraction duration, Fraction timeLeftInBar, int volume, boolean isFirstNoteInGermCopy) throws IllegalArgumentException {   
+        this(partSection, letterName, octave, accidental, duration, timeLeftInBar, new Fraction(1, 1), volume, isFirstNoteInGermCopy, null);
+    }
+    
+    private NotationNote(PartSection partSection, char letterName, int octave, int accidental, Fraction duration, Fraction timeLeftInBar, Fraction tupletMultiplier, int volume, boolean isFirstNoteInGermCopy, NotationDynamic dynamic) throws IllegalArgumentException {   
         if (Math.abs(accidental) > 2) throw new IllegalArgumentException("The accidental is outside the allowable range.");
-        if (letterName < 'a' || letterName > 'g') throw new IllegalArgumentException("The letterName is outside the allowable range.");
-        if (duration.asDouble() <= 0) throw new IllegalArgumentException("The duration must be positive.");
+        if (letterName != 'r' && (letterName < 'a' || letterName > 'g')) throw new IllegalArgumentException("The letterName is outside the allowable range.");
+        if (duration.asDouble() <= 0) throw new IllegalArgumentException("The duration must be positive.");        
+        if (volume < MidiNote.MIN_VELOCITY || volume > MidiNote.MAX_VELOCITY) throw new IllegalArgumentException("The volume is not in the allowed range.");
 
-        this.part = part;
+        this.partSection = partSection;
         this.letterName = letterName;
         this.octave = octave;
         this.accidental = accidental;
         this.duration = duration;
-        this.rest = false;
+        this.timeLeftInBar = timeLeftInBar;
+        this.rest = (letterName == 'r');
+        this.tupletMultiplier = tupletMultiplier;
+        this.volume = volume;
+        this.dynamic = dynamic; 
+        this.isFirstNoteInGermCopy = isFirstNoteInGermCopy;
     }
     
     /**
      * Creates a rest.
      * 
-     * @param part the part that willl own the rest
+     * @param partSection the partSection that will own the rest
      * @param duration the duration of the rest
+     * @param timeLeftInBar the amount of time left in the bar
+     * @param isFirstNoteInGermCopy whether or not this is the first note in 
+     *        a series of notes that makes a germ copy
      * @return the rest
      */
-    static public NotationNote createRest(Part part, Fraction duration) {
-        return new NotationNote(part, duration);
-    }
+    static public NotationNote createRest(PartSection partSection, Fraction duration, Fraction timeLeftInBar, boolean isFirstNoteInGermCopy) {
+        return new NotationNote(partSection, duration, timeLeftInBar, isFirstNoteInGermCopy);
+    }    
 
     /**
-     * Gets the part that owns this notation note.
+     * Gets the part section that owns this notation note.
      * 
-     * @return the part
+     * @return the part section
      */
-    public Part getPart() {
-        return part;
+    public PartSection getPartSection() {
+        return partSection;
     }        
 
     /**
@@ -188,6 +220,63 @@ public class NotationNote extends AbstractNotationElement {
         return octave;
     }
 
+    /**
+     * Gets the amount of time left in this bar.  This is needed to be able
+     * to split a long rest across a bar lines.
+     * 
+     * @return the amount of time tha this is left in the bar
+     */
+    public Fraction getTimeLeftInBar() {
+        return timeLeftInBar;
+    }
+
+    /**
+     * Gets the tuplet multiplier that has been applied to this note.
+     * 
+     * @return the tuplet multiplier
+     */
+    public Fraction getTupletMultiplier() {
+        return tupletMultiplier;
+    }
+
+    /**
+     * Gets the raw midi volume of this note.
+     * 
+     * @return the raw midi volume of this note
+     */
+    public int getVolume() {
+        return volume;
+    }
+
+    /**
+     * Indicates whether or not this is the first note of a germ copy.
+     * 
+     * @return true if this is the first note of a germ copy
+     */
+    public boolean isFirstNoteInGermCopy() {
+        return isFirstNoteInGermCopy;
+    }
+        
+    /**
+     * Gets the notation dynamic for this notation note.  If none has been set,
+     * the default empty dynamic will be returned.
+     * 
+     * @return the dynamic
+     */
+    public NotationDynamic getDynamic() {
+        if (dynamic == null) dynamic = NotationDynamic.DEFAULT_EMPTY;
+        return dynamic;
+    }
+
+    /**
+     * Sets the notation dynamic for this notation note.
+     * 
+     * @param dynamic the dynamic
+     */
+    public void setDynamic(NotationDynamic dynamic) {
+        this.dynamic = dynamic;
+    }        
+                
     /**
      * Checks to see if this notation note is a rest.
      * 
@@ -251,21 +340,21 @@ public class NotationNote extends AbstractNotationElement {
         char[] chars = new char[Math.abs(count)];
         Arrays.fill(chars, (count < 0 ? negChar : posChar));
         return String.copyValueOf(chars);        
-    }
+    }    
 
     /**
      * Gets the representation of this note in lilypond notation.
      * 
      * @return the representation of this note in lilypond notation
      */
-    public String toLilypondString() {
-        //TODO: if a rest crosses a bar line, the rest in the next bar is not printed. i.e., whole note rest in 3/4
+    public String toLilypondString() {        
         if (this.duration.denomIsPowerOf2()) {
-            String allButDuration = (
+            String pitchInfo = (
                 this.rest ? LILYPOND_REST : 
                 this.getLetterName() + this.getLilypondAccidentalString() + this.getLilypondOctaveString());
 
-            return String.format(this.getDuration().toLilypondString(), allButDuration);
+            String durationFormatString = this.getDuration().toLilypondString(this.getTimeLeftInBar(), this.getPartSection().getPart().getPiece().getTimeSignatureFraction(), this.getTupletMultiplier());
+            return String.format(durationFormatString, pitchInfo, this.getDynamic().toLilypondString());
         } else {
             Tuplet tuplet = new Tuplet(Arrays.asList((NotationElement)this));
             return tuplet.toLilypondString();
@@ -278,11 +367,12 @@ public class NotationNote extends AbstractNotationElement {
      * @return the representation of this note in GUIDO notation
      */
     public String toGuidoString() {        
-        String allButDuration = (
+        String pitchInfo = (
             this.rest ? GUIDO_REST : 
             this.getLetterName() + this.getGuidoAccidentalString() + this.getGuidoOctave());
 
-        return allButDuration + this.getDuration().toGuidoString();        
+        String noteWithoutDynamic = pitchInfo + this.getDuration().toGuidoString();        
+        return String.format(this.getDynamic().toGuidoString(), noteWithoutDynamic);
     }
             
     /**
@@ -295,7 +385,7 @@ public class NotationNote extends AbstractNotationElement {
      *         positive
      */
     public NotationNote applyTupletMultiplier(Fraction multiplier) throws IllegalArgumentException {
-        return new NotationNote(this, this.getDuration().dividedBy(multiplier));        
+        return new NotationNote(this, multiplier);        
     }
 
     /**
@@ -309,14 +399,15 @@ public class NotationNote extends AbstractNotationElement {
     }
 
     /**
-     * Scales the durations by the given scale factor.
+     * Scales the durations and timeTimeLeftInBar by the given scale factor.
      * 
      * @param scaleFactor the factor to use to scale the durations
      */
     @Override
-    public void scaleDurations(long scaleFactor) {
+    public void scaleDurations(long scaleFactor) {        
         assert MathHelper.numIsPowerOf2(scaleFactor) : scaleFactor;
         this.duration = this.duration.times(scaleFactor);
+        this.timeLeftInBar = this.timeLeftInBar.times(scaleFactor);
     }        
     
     /**
@@ -326,5 +417,29 @@ public class NotationNote extends AbstractNotationElement {
      */
     public boolean supportsDurationScaling() {
         return true;
-    }        
+    }
+
+    /**
+     * Returns a list containing one item: this notation note.
+     * 
+     * @return list of notation notes
+     */
+    @Override
+    public List<NotationNote> getNotationNotes() {
+        return new ArrayList<NotationNote>(Arrays.asList(this));
+    }
+            
+    /**
+     * Gets a number indicating the line or space on the staff used by this       
+     * notation note.  C0 is 0, and each successive letter is one more.          
+     * 
+     * @return the notation staff note number
+     * @throws UnsupportedOperationException if this note is a rest
+     */
+    public int getNotationStaffNoteNumber() throws UnsupportedOperationException {
+        if (this.isRest()) throw new UnsupportedOperationException("This is a rest, so there is no notation staff note number.");
+        assert this.letterName >= 'a' && this.letterName <= 'g' : this.letterName;
+        int letterNumber = MathHelper.getNormalizedValue(Character.getNumericValue(this.letterName) - Character.getNumericValue('a') - 2, NoteName.NUM_LETTER_NAMES);
+        return letterNumber + (this.getOctave() * NoteName.NUM_LETTER_NAMES);
+    }
 }

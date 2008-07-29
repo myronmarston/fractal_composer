@@ -23,7 +23,7 @@ import com.myronmarston.music.notation.GuidoRunException;
 import com.myronmarston.music.scales.*;
 import com.myronmarston.music.settings.*;
 import com.myronmarston.util.*;
-import com.myronmarston.music.notation.LilypondRunException;
+import com.myronmarston.music.notation.*;
 import java.io.*;
 import java.util.*;
 import java.util.regex.*;
@@ -54,7 +54,7 @@ public class OutputManagerTest {
             
     @Test
     public void getGuidoNotation() throws Exception {
-        String guidoNotationFormatString = "{" + FileHelper.NEW_LINE + "[%s\\key<\"C\"> \\meter<\"C\"> %sd1/4 e1/4 c1/4]" + FileHelper.NEW_LINE + "}";
+        String guidoNotationFormatString = "{" + FileHelper.NEW_LINE + "[%s\\key<\"C\"> \\meter<\"C\"> \\clef<\"g2-8\"> %s\\intens<\"mf\"> d1/4 e1/4 c1/4]" + FileHelper.NEW_LINE + "}";
         String instrumentString = "\\instr<\"Piano 1\", \"MIDI 0\"> ";
         String tempoString = "\\tempo<\"Andante\",\"1/4=90\"> ";
         String fullGuidoString = String.format(guidoNotationFormatString, instrumentString, tempoString);
@@ -153,7 +153,7 @@ public class OutputManagerTest {
         assertEquals(pitchNumbers.length * 2 + 2, t.size());
         
         for (int i = 0; i < pitchNumbers.length; i++) {            
-            PieceTest.assertTrackMidiNoteEqual(t, i, i * 4, 4, pitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 0);
+            com.myronmarston.music.settings.PieceTest.assertTrackMidiNoteEqual(t, i, i * 4, 4, pitchNumbers[i], MidiNote.DEFAULT_VELOCITY, 0);
         }
     }
     
@@ -209,7 +209,10 @@ public class OutputManagerTest {
                 OutputManagerTest.this.outputManager.saveLilypondResults(tempFileName);
                 File file = new File(tempFileName + ".pdf");
                 assertTrue(file.exists());
-                // TODO test png files
+                
+                file = new File(tempFileName + ".png");
+                BufferedImage image = ImageIO.read(file);
+                assertNotNull(image.getData());                
             }
         });
     }    
@@ -372,5 +375,25 @@ public class OutputManagerTest {
                 om.saveGifImage(tempFileName);
             }
         });
+    }
+    
+    @Test
+    public void timeLeftInBarSetOnNotationNotes() throws Exception {
+        FractalPiece fp = new FractalPiece();       
+        fp.setTimeSignature(new TimeSignature(4, 4));
+        fp.setGermString("G4,1/3 R,1/6 A4,1/4 G4,1/4 B4,1/2 C4,1/4 R,1/1 D4,3/1 E4,1/4");
+        OutputManager om = fp.createGermOutputManager();        
+        Part part = (Part) om.getPieceNotation().getParts().get(0);
+        PartSection partSection = (PartSection) part.getPartSections().get(0);
+        testTimeLeftInBarOnNotes(partSection.getNotationElements(), "1/1", "2/3", "1/2", "1/4", "1/1", "1/2", "1/4", "1/4", "1/4");
+    }
+    
+    private static void testTimeLeftInBarOnNotes(NotationElementList notes, String ... expectedTimesLeft) throws Exception {
+        assertEquals(expectedTimesLeft.length, notes.size());
+        for (int i = 0; i < expectedTimesLeft.length; i++) {
+            NotationNote nn = (NotationNote) notes.get(i);
+            Fraction expected = new Fraction(expectedTimesLeft[i]);
+            assertEquals(expected, nn.getTimeLeftInBar());
+        }       
     }
 }

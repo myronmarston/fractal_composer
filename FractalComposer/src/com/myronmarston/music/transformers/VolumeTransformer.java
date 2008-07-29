@@ -78,7 +78,7 @@ public class VolumeTransformer implements Transformer {
         NoteList output = new NoteList(input.size());
         
         for (Note inputNote : input) {
-            newNote = (Note) inputNote.clone();
+            newNote = inputNote.clone();
             
             if (!newNote.isRest()) { // don't change the volume of rests...                    
                 remainingVolumeRange = 

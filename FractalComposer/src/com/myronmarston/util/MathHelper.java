@@ -19,8 +19,7 @@
 
 package com.myronmarston.util;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * A class containing static helper methods for some math functions used to
@@ -138,5 +137,33 @@ public class MathHelper {
         assert returnVal >= 0 && returnVal < mod : returnVal;
         
         return returnVal;
+    }
+    
+    /**
+     * Gets the median value from a list of numbers.  This is the value that has
+     * the same number of values above it and below it when the list has
+     * been sorted.  For a list that has an even number of entries, this method
+     * will return the average of the middle two values.
+     * 
+     * @param nums the list of values
+     * @return the median
+     */
+    public static int getMedianValue(List<Integer> nums) {
+        List<Integer> copy = new ArrayList<Integer>(nums);
+        Collections.sort(copy);
+        
+        int numberOfValues = copy.size();
+        if (numberOfValues % 2 == 0) {
+            // we have an even number of values
+            // example: for 6 values, we want to return the average of indices 2 and 3
+            // (0, 1, 2, 3, 4, 5)
+            int val1 = copy.get(numberOfValues / 2);
+            int val2 = copy.get((numberOfValues - 2) / 2);
+            return (val1 + val2) / 2;
+        } else {
+            // we have an odd number of values
+            // example: for 5 values, we want to return the number at index 2 (0, 1, 2, 3, 4)
+            return copy.get((numberOfValues - 1) / 2);
+        }        
     }
 }

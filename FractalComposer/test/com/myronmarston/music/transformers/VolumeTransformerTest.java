@@ -41,6 +41,7 @@ public class VolumeTransformerTest {
         input.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 32, scale, 0));
         input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 64, scale, 0));
         input.add(Note.createRest(new Fraction(1, 2)));
+        input.get(0).setIsFirstNoteOfGermCopy(true);
         
         Transformer t = new VolumeTransformer(0.5d);
         NoteList expectedOutput = new NoteList();
@@ -49,6 +50,7 @@ public class VolumeTransformerTest {
         expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 80, scale, 0));
         expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));
+        expectedOutput.get(0).setIsFirstNoteOfGermCopy(true);
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
         t = new VolumeTransformer(-0.5d);
@@ -58,6 +60,7 @@ public class VolumeTransformerTest {
         expectedOutput.add(new Note(2, 2, 4, 0, new Fraction(1, 2), 16, scale, 0));
         expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 32, scale, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 2)));
+        expectedOutput.get(0).setIsFirstNoteOfGermCopy(true);
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);        
     }
     

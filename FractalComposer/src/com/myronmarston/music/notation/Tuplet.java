@@ -70,9 +70,8 @@ public class Tuplet extends AbstractNotationElement {
      * 
      * @return the tuplet multiplier
      */
-    private Fraction calculateTupletMultiplier() {
-        @SuppressWarnings("unchecked")
-        NotationElementList clonedList = new NotationElementList((List<NotationElement>) this.notes.clone());
+    private Fraction calculateTupletMultiplier() {        
+        NotationElementList clonedList = new NotationElementList(this.notes.clone());
         
         // ignore notes that already have a power of 2 denominator and any nested
         // tuplets that add up to a power of two on their own
@@ -144,5 +143,9 @@ public class Tuplet extends AbstractNotationElement {
         assert this.getNotes().supportsDurationScaling();
         this.getNotes().scaleDurations(scaleFactor);
     }
-        
+    
+    @Override
+    public List<NotationNote> getNotationNotes() {
+        return this.getNotes().getNotationNotes();
+    }
 }

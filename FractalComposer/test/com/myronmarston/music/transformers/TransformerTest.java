@@ -43,6 +43,7 @@ public class TransformerTest {
         NoteList result = t.transform(input);
         assertEquals(expectedOutput.size(), result.size());
         for (int i = 0; i < result.size(); i++) {
+            //System.out.println("testing transformer note " + i);
             assertEquals(expectedOutput.get(i), result.get(i));
         }                                
     }    

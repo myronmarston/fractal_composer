@@ -155,7 +155,7 @@ public class SectionSettingsTest extends AbstractVoiceOrSectionSettingsTest {
         instance.setApplyInversion(true);
         instance.setApplyRetrograde(false);
         
-        SectionSettings newInstance = (SectionSettings) instance.clone();
+        SectionSettings newInstance = instance.clone();
         assertTrue(instance != newInstance);
         assertTrue(instance.equals(newInstance));
         assertEquals(instance.hashCode(), newInstance.hashCode());        

@@ -39,6 +39,7 @@ public class TransposeTransformerTest {
         input.add(new Note(1, 2, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
         input.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 64, Scale.DEFAULT, 0));
         input.add(Note.createRest(new Fraction(1, 1)));
+        input.get(0).setIsFirstNoteOfGermCopy(true);
         
         Transformer t = new TransposeTransformer(4, 4);
         NoteList expectedOutput = new NoteList();
@@ -47,6 +48,8 @@ public class TransposeTransformerTest {
         expectedOutput.add(new Note(5, 6, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
         expectedOutput.add(new Note(4, 4, 4, 0, new Fraction(1, 1), 64, Scale.DEFAULT, 0));     
         expectedOutput.add(Note.createRest(new Fraction(1, 1)));
+        expectedOutput.get(0).setIsFirstNoteOfGermCopy(true);
+        
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
         t = new TransposeTransformer(-2, -2);
@@ -56,6 +59,7 @@ public class TransposeTransformerTest {
         expectedOutput.add(new Note(-1, 0, 4, 0, new Fraction(1, 2), 64, Scale.DEFAULT, 0));
         expectedOutput.add(new Note(-2, -2, 4, 0, new Fraction(1, 1), 64, Scale.DEFAULT, 0));
         expectedOutput.add(Note.createRest(new Fraction(1, 1)));
+        expectedOutput.get(0).setIsFirstNoteOfGermCopy(true);
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
     }
     

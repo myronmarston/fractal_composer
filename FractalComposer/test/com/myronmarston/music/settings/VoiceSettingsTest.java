@@ -144,6 +144,7 @@ public class VoiceSettingsTest extends AbstractVoiceOrSectionSettingsTest {
         vs.getSelfSimilaritySettings().setApplyToPitch(true);
         vs.getSelfSimilaritySettings().setApplyToRhythm(true);
         expected = NoteList.parseNoteListString("G3,2/1 A3,1/1 B3,1/1 G3,2/1  A3,1/1 B3,1/2 C4,1/2 A3,1/1  B3,1/1 C4,1/2 D4,1/2 B3,1/1  G3,2/1 A3,1/1 B3,1/1 G3,2/1", scale);        
+        expected.setfirstNotesOfGermCopy(0, 4, 8, 12);
         NoteListTest.assertNoteListsEqual(expected, vs.applySettingsToNoteList(input, scale));                 
     }
     
@@ -172,7 +173,7 @@ public class VoiceSettingsTest extends AbstractVoiceOrSectionSettingsTest {
         instance.setOctaveAdjustment(4);
         instance.setSpeedScaleFactor(new Fraction(3, 1));        
         
-        VoiceSettings newInstance = (VoiceSettings) instance.clone();
+        VoiceSettings newInstance = instance.clone();
         assertTrue(instance != newInstance);
         assertTrue(instance.equals(newInstance));
         assertEquals(instance.hashCode(), newInstance.hashCode()); 

@@ -145,6 +145,9 @@ Static variable in class com.myronmarston.music.scales.<A HREF="../com/myronmars
 <DT><A HREF="../com/myronmarston/music/notation/AbstractNotationElement.html#scaleDurations(long)"><B>scaleDurations(long)</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/AbstractNotationElement.html" title="class in com.myronmarston.music.notation">AbstractNotationElement</A>
 <DD>Throws an UnsupportedOperationException.
+<DT><A HREF="../com/myronmarston/music/notation/Clef.html#scaleDurations(long)"><B>scaleDurations(long)</B></A> - 
+Method in enum com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Clef.html" title="enum in com.myronmarston.music.notation">Clef</A>
+<DD>Throws an unsupported operation exception.
 <DT><A HREF="../com/myronmarston/music/notation/NotationElement.html#scaleDurations(long)"><B>scaleDurations(long)</B></A> - 
 Method in interface com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A>
 <DD>Scales the durations of this element by multiplying the durations by the
@@ -154,10 +157,13 @@ Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/mus
 <DD>Scales the durations by the given scale factor.
 <DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#scaleDurations(long)"><B>scaleDurations(long)</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
-<DD>Scales the durations by the given scale factor.
+<DD>Scales the durations and timeTimeLeftInBar by the given scale factor.
 <DT><A HREF="../com/myronmarston/music/notation/Part.html#scaleDurations(long)"><B>scaleDurations(long)</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>
 <DD>&nbsp;
+<DT><A HREF="../com/myronmarston/music/notation/PartSection.html#scaleDurations(long)"><B>scaleDurations(long)</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A>
+<DD>Scales all durations by the given scale factor.
 <DT><A HREF="../com/myronmarston/music/notation/Tuplet.html#scaleDurations(long)"><B>scaleDurations(long)</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A>
 <DD>&nbsp;
@@ -227,10 +233,19 @@ Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/MidiNo
 <DT><A HREF="../com/myronmarston/music/Note.html#setDuration(com.myronmarston.util.Fraction)"><B>setDuration(Fraction)</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
 <DD>Sets how long the note should last, in whole notes.
+<DT><A HREF="../com/myronmarston/music/notation/NotationNote.html#setDynamic(com.myronmarston.music.notation.NotationDynamic)"><B>setDynamic(NotationDynamic)</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A>
+<DD>Sets the notation dynamic for this notation note.
+<DT><A HREF="../com/myronmarston/music/notation/Part.html#setDynamicsOnGermCopy(java.util.List, com.myronmarston.music.Dynamic)"><B>setDynamicsOnGermCopy(List&lt;NotationNote&gt;, Dynamic)</B></A> - 
+Static method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>
+<DD>Sets the notation dynamics on the notation notes in the germ copy.
 <DT><A HREF="../com/myronmarston/music/notation/NotationElementList.html#setElementSeperator(java.lang.String)"><B>setElementSeperator(String)</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElementList.html" title="class in com.myronmarston.music.notation">NotationElementList</A>
 <DD>Sets the string used to seperate the elements when getting the lilypond
  or guido string for this list.
+<DT><A HREF="../com/myronmarston/music/NoteList.html#setfirstNotesOfGermCopy(int...)"><B>setfirstNotesOfGermCopy(int...)</B></A> - 
+Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>
+<DD>Sets which notes have the firstNoteOfGermCopy flag set to true.
 <DT><A HREF="../com/myronmarston/music/settings/FractalPiece.html#setGenerateLayeredIntro(boolean)"><B>setGenerateLayeredIntro(boolean)</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/FractalPiece.html" title="class in com.myronmarston.music.settings">FractalPiece</A>
 <DD>Sets whether or not a layered intro should be included in the generated
@@ -251,12 +266,18 @@ Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteLi
 <DT><A HREF="../com/myronmarston/music/settings/Voice.html#setInstrumentName(java.lang.String)"><B>setInstrumentName(String)</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/Voice.html" title="class in com.myronmarston.music.settings">Voice</A>
 <DD>Sets the name of the instrument used by this voice.
+<DT><A HREF="../com/myronmarston/music/Note.html#setIsFirstNoteOfGermCopy(boolean)"><B>setIsFirstNoteOfGermCopy(boolean)</B></A> - 
+Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
+<DD>Sets whether or not this is the first note of a germ or derived copy.
 <DT><A HREF="../com/myronmarston/music/Note.html#setLetterNumber(int)"><B>setLetterNumber(int)</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
 <DD>Sets the letter number for this note.
 <DT><A HREF="../com/myronmarston/music/SheetMusicCreator.html#setLilypondDirectory(java.lang.String)"><B>setLilypondDirectory(String)</B></A> - 
 Static method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/SheetMusicCreator.html" title="class in com.myronmarston.music">SheetMusicCreator</A>
 <DD>Sets the directory to use while running the Lilypond process.
+<DT><A HREF="../com/myronmarston/music/notation/Part.html#setNotationNoteDynamics()"><B>setNotationNoteDynamics()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>
+<DD>Sets the dynamic on each NotationNote.
 <DT><A HREF="../com/myronmarston/music/scales/ChromaticScale.html#setNotePitchValues(com.myronmarston.music.Note, com.myronmarston.music.NoteName)"><B>setNotePitchValues(Note, NoteName)</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/ChromaticScale.html" title="class in com.myronmarston.music.scales">ChromaticScale</A>
 <DD>&nbsp;
@@ -331,6 +352,13 @@ Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/settings/Section.html#setSelfSimilaritySettingsOnAllVoiceSections(boolean, boolean, boolean, int)"><B>setSelfSimilaritySettingsOnAllVoiceSections(boolean, boolean, boolean, int)</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/Section.html" title="class in com.myronmarston.music.settings">Section</A>
 <DD>Updates the self-similarity settings of all voice sections.
+<DT><A HREF="../com/myronmarston/music/Note.html#setSourceVoiceSection(com.myronmarston.music.settings.VoiceSection)"><B>setSourceVoiceSection(VoiceSection)</B></A> - 
+Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
+<DD>Sets the voice section that generated this note.
+<DT><A HREF="../com/myronmarston/music/NoteList.html#setSourceVoiceSectionOnAllNotes(com.myronmarston.music.settings.VoiceSection)"><B>setSourceVoiceSectionOnAllNotes(VoiceSection)</B></A> - 
+Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A>
+<DD>Sets the sourceVoiceSection field on all notes of this note list to
+ the given one.
 <DT><A HREF="../com/myronmarston/music/settings/VoiceSettings.html#setSpeedScaleFactor(com.myronmarston.util.Fraction)"><B>setSpeedScaleFactor(Fraction)</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/VoiceSettings.html" title="class in com.myronmarston.music.settings">VoiceSettings</A>
 <DD>Sets the speed scale factor to apply to the germ for use by this voice.
@@ -376,6 +404,12 @@ Static variable in class com.myronmarston.music.<A HREF="../com/myronmarston/mus
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>
 <DD>Returns false to indicate that this element does not support duration
  scaling since an instrument has no durations.
+<DT><A HREF="../com/myronmarston/music/notation/Clef.html#supportsDurationScaling()"><B>supportsDurationScaling()</B></A> - 
+Method in enum com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Clef.html" title="enum in com.myronmarston.music.notation">Clef</A>
+<DD>Returns false as this is not supported on a clef.
+<DT><A HREF="../com/myronmarston/music/notation/NotationDynamic.html#supportsDurationScaling()"><B>supportsDurationScaling()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationDynamic.html" title="class in com.myronmarston.music.notation">NotationDynamic</A>
+<DD>Returns false since this element does not support duration scaling.
 <DT><A HREF="../com/myronmarston/music/notation/NotationElement.html#supportsDurationScaling()"><B>supportsDurationScaling()</B></A> - 
 Method in interface com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/NotationElement.html" title="interface in com.myronmarston.music.notation">NotationElement</A>
 <DD>Indicates whether or not duration scaling is supported.
@@ -388,6 +422,9 @@ Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/notation/Part.html#supportsDurationScaling()"><B>supportsDurationScaling()</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>
 <DD>Indicates whether or not duration scaling is supported by this element.
+<DT><A HREF="../com/myronmarston/music/notation/PartSection.html#supportsDurationScaling()"><B>supportsDurationScaling()</B></A> - 
+Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A>
+<DD>Gets a value indicating if this supports duration scaling.
 <DT><A HREF="../com/myronmarston/music/notation/Tuplet.html#supportsDurationScaling()"><B>supportsDurationScaling()</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Tuplet.html" title="class in com.myronmarston.music.notation">Tuplet</A>
 <DD>Returns true to indicate that this element supports duraiton scaling.
@@ -397,10 +434,6 @@ Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music
  scaling, since a key signature has no durations.
 <DT><A HREF="../com/myronmarston/music/settings/TimeSignature.html#supportsDurationScaling()"><B>supportsDurationScaling()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/TimeSignature.html" title="class in com.myronmarston.music.settings">TimeSignature</A>
-<DD>Returns false to indicate that this element does not support duration
- scaling.
-<DT><A HREF="../com/myronmarston/util/Fraction.html#supportsDurationScaling()"><B>supportsDurationScaling()</B></A> - 
-Method in class com.myronmarston.util.<A HREF="../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>
 <DD>Returns false to indicate that this element does not support duration
  scaling.
 </DL>

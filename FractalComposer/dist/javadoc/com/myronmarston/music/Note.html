@@ -152,7 +152,7 @@ Represents a note, relative to a particular scale.  This note will need to be
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.lang.Object</CODE></FONT></TD>
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#clone()">clone</A></B>()</CODE>
 
 <BR>
@@ -255,6 +255,14 @@ Represents a note, relative to a particular scale.  This note will need to be
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#getSourceVoiceSection()">getSourceVoiceSection</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the voice section that generated this note.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#getVolume()">getVolume</A></B>()</CODE>
 
@@ -268,6 +276,15 @@ Represents a note, relative to a particular scale.  This note will need to be
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#isFirstNoteOfGermCopy()">isFirstNoteOfGermCopy</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns true if this is the first note of the germ, or of a derived copy
+ of the germ that may have gone through some transformations.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -318,6 +335,14 @@ Represents a note, relative to a particular scale.  This note will need to be
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#setIsFirstNoteOfGermCopy(boolean)">setIsFirstNoteOfGermCopy</A></B>(boolean&nbsp;isFirstNoteOfGermCopy)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets whether or not this is the first note of a germ or derived copy.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#setLetterNumber(int)">setLetterNumber</A></B>(int&nbsp;letterNumber)</CODE>
 
 <BR>
@@ -359,6 +384,14 @@ Represents a note, relative to a particular scale.  This note will need to be
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#setSourceVoiceSection(com.myronmarston.music.settings.VoiceSection)">setSourceVoiceSection</A></B>(<A HREF="../../../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A>&nbsp;sourceVoiceSection)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the voice section that generated this note.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#setVolume(int)">setVolume</A></B>(int&nbsp;volume)</CODE>
 
 <BR>
@@ -367,8 +400,9 @@ Represents a note, relative to a particular scale.  This note will need to be
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#toNotationNote(com.myronmarston.music.notation.Part, com.myronmarston.music.MidiNote)">toNotationNote</A></B>(<A HREF="../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>&nbsp;part,
-               <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A>&nbsp;midiNote)</CODE>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/Note.html#toNotationNote(com.myronmarston.music.notation.PartSection, com.myronmarston.music.MidiNote, com.myronmarston.util.Fraction)">toNotationNote</A></B>(<A HREF="../../../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A>&nbsp;partSection,
+               <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A>&nbsp;midiNote,
+               <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;timeLeftInBar)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts this Note to a Notation Note that can be used to produce GUIDO
@@ -759,6 +793,40 @@ public void <B>setVolume</B>(int&nbsp;volume)
 </DL>
 <HR>
 
+<A NAME="getSourceVoiceSection()"><!-- --></A><H3>
+getSourceVoiceSection</H3>
+<PRE>
+public <A HREF="../../../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A> <B>getSourceVoiceSection</B>()</PRE>
+<DL>
+<DD>Gets the voice section that generated this note.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the voice section that is the source of this note</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setSourceVoiceSection(com.myronmarston.music.settings.VoiceSection)"><!-- --></A><H3>
+setSourceVoiceSection</H3>
+<PRE>
+public void <B>setSourceVoiceSection</B>(<A HREF="../../../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A>&nbsp;sourceVoiceSection)</PRE>
+<DL>
+<DD>Sets the voice section that generated this note.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>sourceVoiceSection</CODE> - the voice section that is the source of this
+        note</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="isRest()"><!-- --></A><H3>
 isRest</H3>
 <PRE>
@@ -772,6 +840,40 @@ public boolean <B>isRest</B>()</PRE>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>true if the volume is 0</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isFirstNoteOfGermCopy()"><!-- --></A><H3>
+isFirstNoteOfGermCopy</H3>
+<PRE>
+public boolean <B>isFirstNoteOfGermCopy</B>()</PRE>
+<DL>
+<DD>Returns true if this is the first note of the germ, or of a derived copy
+ of the germ that may have gone through some transformations.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>true if this is the first note of a germ copy.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setIsFirstNoteOfGermCopy(boolean)"><!-- --></A><H3>
+setIsFirstNoteOfGermCopy</H3>
+<PRE>
+public void <B>setIsFirstNoteOfGermCopy</B>(boolean&nbsp;isFirstNoteOfGermCopy)</PRE>
+<DL>
+<DD>Sets whether or not this is the first note of a germ or derived copy.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>isFirstNoteOfGermCopy</CODE> - value to set</DL>
 </DD>
 </DL>
 <HR>
@@ -869,11 +971,12 @@ public <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in c
 </DL>
 <HR>
 
-<A NAME="toNotationNote(com.myronmarston.music.notation.Part, com.myronmarston.music.MidiNote)"><!-- --></A><H3>
+<A NAME="toNotationNote(com.myronmarston.music.notation.PartSection, com.myronmarston.music.MidiNote, com.myronmarston.util.Fraction)"><!-- --></A><H3>
 toNotationNote</H3>
 <PRE>
-public <A HREF="../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A> <B>toNotationNote</B>(<A HREF="../../../com/myronmarston/music/notation/Part.html" title="class in com.myronmarston.music.notation">Part</A>&nbsp;part,
-                                   <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A>&nbsp;midiNote)</PRE>
+public <A HREF="../../../com/myronmarston/music/notation/NotationNote.html" title="class in com.myronmarston.music.notation">NotationNote</A> <B>toNotationNote</B>(<A HREF="../../../com/myronmarston/music/notation/PartSection.html" title="class in com.myronmarston.music.notation">PartSection</A>&nbsp;partSection,
+                                   <A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A>&nbsp;midiNote,
+                                   <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;timeLeftInBar)</PRE>
 <DL>
 <DD>Converts this Note to a Notation Note that can be used to produce GUIDO
  or Lilypond notation.
@@ -882,7 +985,7 @@ public <A HREF="../../../com/myronmarston/music/notation/NotationNote.html" titl
 </DL>
 </DD>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>part</CODE> - the Notation part<DD><CODE>midiNote</CODE> - the midi note produced as output from this note
+<DT><B>Parameters:</B><DD><CODE>partSection</CODE> - the Notation partSection<DD><CODE>midiNote</CODE> - the midi note produced as output from this note<DD><CODE>timeLeftInBar</CODE> - the amount of time that is left in the bar
 <DT><B>Returns:</B><DD>the notation note</DL>
 </DD>
 </DL>
@@ -905,7 +1008,7 @@ public java.lang.String <B>toString</B>()</PRE>
 <A NAME="clone()"><!-- --></A><H3>
 clone</H3>
 <PRE>
-public java.lang.Object <B>clone</B>()</PRE>
+public <A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A> <B>clone</B>()</PRE>
 <DL>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>clone</CODE> in class <CODE>java.lang.Object</CODE></DL>
