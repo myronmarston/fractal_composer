@@ -138,7 +138,7 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>protected &nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#clearTempIntroOutroSections()">clearTempIntroOutroSections</A></B>()</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#clearTempIntroOutroSections(int)">clearTempIntroOutroSections</A></B>(int&nbsp;sectionLastUniqueIndex)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clears out any temporary intro or outro sections.</TD>
@@ -309,7 +309,7 @@ The GrandDaddy of them all.  This class controls the entire piece of music.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;java.util.HashMap&lt;<A HREF="../../../../com/myronmarston/music/settings/VoiceSectionHashMapKey.html" title="class in com.myronmarston.music.settings">VoiceSectionHashMapKey</A>,<A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A>&gt;</CODE></FONT></TD>
+<CODE>protected &nbsp;java.util.Map&lt;<A HREF="../../../../com/myronmarston/music/settings/VoiceSectionHashMapKey.html" title="class in com.myronmarston.music.settings">VoiceSectionHashMapKey</A>,<A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A>&gt;</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/FractalPiece.html#getVoiceSections()">getVoiceSections</A></B>()</CODE>
 
 <BR>
@@ -630,7 +630,7 @@ public void <B>setTimeSignature</B>(<A HREF="../../../../com/myronmarston/music/
 <A NAME="getVoiceSections()"><!-- --></A><H3>
 getVoiceSections</H3>
 <PRE>
-protected java.util.HashMap&lt;<A HREF="../../../../com/myronmarston/music/settings/VoiceSectionHashMapKey.html" title="class in com.myronmarston.music.settings">VoiceSectionHashMapKey</A>,<A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A>&gt; <B>getVoiceSections</B>()</PRE>
+protected java.util.Map&lt;<A HREF="../../../../com/myronmarston/music/settings/VoiceSectionHashMapKey.html" title="class in com.myronmarston.music.settings">VoiceSectionHashMapKey</A>,<A HREF="../../../../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A>&gt; <B>getVoiceSections</B>()</PRE>
 <DL>
 <DD>Gets the hash table containing all the VoiceSections for the entire
  piece.
@@ -820,17 +820,17 @@ protected void <B>createOutroSections</B>()</PRE>
 </DL>
 <HR>
 
-<A NAME="clearTempIntroOutroSections()"><!-- --></A><H3>
+<A NAME="clearTempIntroOutroSections(int)"><!-- --></A><H3>
 clearTempIntroOutroSections</H3>
 <PRE>
-protected void <B>clearTempIntroOutroSections</B>()</PRE>
+protected void <B>clearTempIntroOutroSections</B>(int&nbsp;sectionLastUniqueIndex)</PRE>
 <DL>
 <DD>Clears out any temporary intro or outro sections.  These are created 
  during fractal piece generation and should not be available the rest of 
  the time.
 <P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>sectionLastUniqueIndex</CODE> - the lastUniqueIndex to set on the sections</DL>
 </DD>
 </DL>
 <HR>

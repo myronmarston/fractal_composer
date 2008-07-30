@@ -87,8 +87,8 @@
   <td class="src"><pre class="src">&nbsp;    <span class="comment">//TODO: this scale should be renamed as NaturalMinorScale as that is</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;35</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="comment">// more clear about the scale type.</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;36</td>  <td class="nbHitsCovered">&nbsp;31</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span>[] SCALE_STEPS = <span class="keyword">new</span> <span class="keyword">int</span>[] {0, 2, 3, 5, 7, 8, 10};</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;37</td>  <td class="nbHitsCovered">&nbsp;31</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span>[] LETTER_NUMBERS = <span class="keyword">new</span> <span class="keyword">int</span>[] {0, 1, 2, 3, 4, 5, 6};</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;36</td>  <td class="nbHitsCovered">&nbsp;64</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span>[] SCALE_STEPS = <span class="keyword">new</span> <span class="keyword">int</span>[] {0, 2, 3, 5, 7, 8, 10};</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;37</td>  <td class="nbHitsCovered">&nbsp;64</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span>[] LETTER_NUMBERS = <span class="keyword">new</span> <span class="keyword">int</span>[] {0, 1, 2, 3, 4, 5, 6};</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;38</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;39</td>  <td class="nbHits">&nbsp;</td>
@@ -107,8 +107,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;46</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> MinorScale(NoteName keyName) <span class="keyword">throws</span> InvalidKeySignatureException {        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;47</td>  <td class="nbHitsCovered">&nbsp;360</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">super</span>(<span class="keyword">new</span> KeySignature(Tonality.Minor, keyName));        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;48</td>  <td class="nbHitsCovered">&nbsp;299</td>  <td class="src"><pre class="src">&nbsp;    }    </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;47</td>  <td class="nbHitsCovered">&nbsp;734</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">super</span>(<span class="keyword">new</span> KeySignature(Tonality.Minor, keyName));        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;48</td>  <td class="nbHitsCovered">&nbsp;612</td>  <td class="src"><pre class="src">&nbsp;    }    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;49</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;50</td>  <td class="nbHits">&nbsp;</td>
@@ -125,15 +125,15 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;56</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> MinorScale() <span class="keyword">throws</span> InvalidKeySignatureException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;57</td>  <td class="nbHitsCovered">&nbsp;196</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>(Tonality.Minor.getDefaultKey());</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;58</td>  <td class="nbHitsCovered">&nbsp;196</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;57</td>  <td class="nbHitsCovered">&nbsp;404</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>(Tonality.Minor.getDefaultKey());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;58</td>  <td class="nbHitsCovered">&nbsp;404</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;59</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;60</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    @Override</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;61</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">int</span>[] getScaleStepArray() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;62</td>  <td class="nbHitsCovered">&nbsp;2344</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> Arrays.copyOf(SCALE_STEPS, SCALE_STEPS.length);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;62</td>  <td class="nbHitsCovered">&nbsp;5623</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> Arrays.copyOf(SCALE_STEPS, SCALE_STEPS.length);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;63</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;64</td>  <td class="nbHits">&nbsp;</td>
@@ -142,13 +142,13 @@
   <td class="src"><pre class="src">&nbsp;    @Override</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;66</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">int</span>[] getLetterNumberArray() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;67</td>  <td class="nbHitsCovered">&nbsp;355</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> Arrays.copyOf(LETTER_NUMBERS, LETTER_NUMBERS.length);        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;67</td>  <td class="nbHitsCovered">&nbsp;724</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> Arrays.copyOf(LETTER_NUMBERS, LETTER_NUMBERS.length);        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;68</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;69</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 7/23/08 7:49 PM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 7/30/08 12:13 AM.</div>
 </body>
 </html>

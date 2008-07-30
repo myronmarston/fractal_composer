@@ -102,6 +102,7 @@ public class FractalPieceTest {
         v1.getSettings().setSpeedScaleFactor(new Fraction(2, 1));
         v3.getSettings().setSpeedScaleFactor(new Fraction(1, 2));
         
+        int sectionIndex = fp.getSections().getLastUniqueIndex();
         fp.createIntroSections();
         assertVoiceSectionEqual(v1.getVoiceSections().get(0), false, false, true, false, false, false);
         assertVoiceSectionEqual(v1.getVoiceSections().get(1), false, false, true, false, false, false);
@@ -114,12 +115,13 @@ public class FractalPieceTest {
         assertVoiceSectionEqual(v3.getVoiceSections().get(0), false, false, false, false, false, false);
         assertVoiceSectionEqual(v3.getVoiceSections().get(1), false, false, false, false, false, false);
         assertVoiceSectionEqual(v3.getVoiceSections().get(2), false, false, false, false, false, false);
-        fp.clearTempIntroOutroSections();
+        fp.clearTempIntroOutroSections(sectionIndex);
         assertEquals(0, fp.getSections().size());
         
         // change the speed factors; this should change which voices gets rests when...
         v2.getSettings().setSpeedScaleFactor(new Fraction(1, 4));
         
+        sectionIndex = fp.getSections().getLastUniqueIndex();
         fp.createIntroSections();
         assertVoiceSectionEqual(v1.getVoiceSections().get(0), false, false, true, false, false, false);
         assertVoiceSectionEqual(v1.getVoiceSections().get(1), false, false, true, false, false, false);
@@ -132,8 +134,9 @@ public class FractalPieceTest {
         assertVoiceSectionEqual(v3.getVoiceSections().get(0), false, false, true, false, false, false);
         assertVoiceSectionEqual(v3.getVoiceSections().get(1), false, false, false, false, false, false);
         assertVoiceSectionEqual(v3.getVoiceSections().get(2), false, false, false, false, false, false);
-        fp.clearTempIntroOutroSections();
+        fp.clearTempIntroOutroSections(sectionIndex);
         
+        sectionIndex = fp.getSections().getLastUniqueIndex();
         fp.createOutroSections();
         assertVoiceSectionEqual(v1.getVoiceSections().get(0), false, false, false, false, false, false);
         assertVoiceSectionEqual(v1.getVoiceSections().get(1), false, false, true, false, false, false);
@@ -146,11 +149,12 @@ public class FractalPieceTest {
         assertVoiceSectionEqual(v3.getVoiceSections().get(0), false, false, false, false, false, false);
         assertVoiceSectionEqual(v3.getVoiceSections().get(1), false, false, false, false, false, false);
         assertVoiceSectionEqual(v3.getVoiceSections().get(2), false, false, true, false, false, false);
-        fp.clearTempIntroOutroSections();    
+        fp.clearTempIntroOutroSections(sectionIndex);    
         
         // change the speed scale factor of a voice; this should change where the rests go...
         v1.getSettings().setSpeedScaleFactor(new Fraction(1, 8));
         
+        sectionIndex = fp.getSections().getLastUniqueIndex();
         fp.createOutroSections();
         assertVoiceSectionEqual(v1.getVoiceSections().get(0), false, false, false, false, false, false);
         assertVoiceSectionEqual(v1.getVoiceSections().get(1), false, false, false, false, false, false);
@@ -163,7 +167,7 @@ public class FractalPieceTest {
         assertVoiceSectionEqual(v3.getVoiceSections().get(0), false, false, false, false, false, false);
         assertVoiceSectionEqual(v3.getVoiceSections().get(1), false, false, true, false, false, false);
         assertVoiceSectionEqual(v3.getVoiceSections().get(2), false, false, true, false, false, false);
-        fp.clearTempIntroOutroSections();  
+        fp.clearTempIntroOutroSections(sectionIndex);  
     }        
     
     @Test
@@ -190,8 +194,14 @@ public class FractalPieceTest {
         fp.setGermString("G4,1/4,MF A4,1/8,F B4,1/8,F G4,1/4,MF");  
         fp.createDefaultSettings();
         
+        int beforeUniqueSectionIndex = fp.getSections().getLastUniqueIndex();
+        int beforeUniqueVoiceIndex = fp.getVoices().getLastUniqueIndex();
+        
         // we have other tests that test that the output manager properly works
         assertNotNull(fp.createPieceResultOutputManager());
+        
+        assertEquals(beforeUniqueSectionIndex, fp.getSections().getLastUniqueIndex());
+        assertEquals(beforeUniqueVoiceIndex, fp.getVoices().getLastUniqueIndex());
     }
     
     @Test

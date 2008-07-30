@@ -63,7 +63,7 @@ public class XmlSerializationTest {
         "      <keySignature id=\"3\" keyName=\"E\" tonality=\"Major\"/>\n" +
         "   </scale>\n" +
         "</note>";    
-        this.printSerializationResults(n);
+        //this.printSerializationResults(n);
         testSerialization(n, expected);        
     }
     
@@ -77,7 +77,7 @@ public class XmlSerializationTest {
     public void serializeKeySignature() throws Exception {        
         KeySignature ks = new KeySignature(Tonality.Major, NoteName.G);
         assertEquals(NoteName.E, ks.getRelativeKeyName());
-        testSerialization(ks, "<keySignature id=\"0\" keyName=\"G\" relativeKeyName=\"E\" tonality=\"Major\"/>");
+        testSerialization(ks, "<keySignature id=\"0\" keyName=\"G\" tonality=\"Major\"/>");
     }
     
     @Test
@@ -93,11 +93,11 @@ public class XmlSerializationTest {
         String expected = 
         "<voice id=\"0\" uniqueIndex=\"1\" instrumentName=\"Piano 1\">\n" +
         // fractal piece section that gets stripped goes here...
-        "   <settings id=\"51\" volumeAdjustment=\"0.0\" scaleStepOffset=\"0\" readOnly=\"false\" octaveAdjustment=\"1\">\n" +
-        "      <speedScaleFactor id=\"52\" numerator_=\"2\" denominator_=\"1\"/>\n" +
-        "      <selfSimilaritySettings id=\"53\" applyToPitch=\"true\" applyToRhythm=\"false\" applyToVolume=\"true\" selfSimilarityIterations=\"1\" readOnly=\"false\"/>\n" +
+        "   <settings id=\"40\" volumeAdjustment=\"0.0\" scaleStepOffset=\"0\" readOnly=\"false\" octaveAdjustment=\"1\">\n" +
+        "      <speedScaleFactor id=\"41\" numerator_=\"2\" denominator_=\"1\"/>\n" +
+        "      <selfSimilaritySettings id=\"42\" applyToPitch=\"true\" applyToRhythm=\"false\" applyToVolume=\"true\" selfSimilarityIterations=\"1\" readOnly=\"false\"/>\n" +
         "   </settings>\n" +
-        "</voice>";
+        "</voice>";                
         
         //printSerializationResults(v);
         testSerialization(v, expected, true);        
@@ -116,11 +116,10 @@ public class XmlSerializationTest {
         
         String expected =   
         "<section id=\"0\" uniqueIndex=\"1\" overridePieceScale=\"true\">\n" +
-        "   <settings id=\"53\" volumeAdjustment=\"0.7575\" scaleStepOffset=\"2\" readOnly=\"false\" applyInversion=\"true\" applyRetrograde=\"false\"/>\n" +
-        "   <scale class=\"com.myronmarston.music.scales.MinorPentatonicScale\" id=\"54\">\n" +
-        "      <keySignature id=\"55\" keyName=\"G\" tonality=\"Minor\"/>\n" +
-        "   </scale>\n" +
-        "   <germForSection id=\"56\"/>\n" +
+        "   <settings id=\"42\" volumeAdjustment=\"0.7575\" scaleStepOffset=\"2\" readOnly=\"false\" applyInversion=\"true\" applyRetrograde=\"false\"/>\n" +
+        "   <scale class=\"com.myronmarston.music.scales.MinorPentatonicScale\" id=\"43\">\n" +
+        "      <keySignature id=\"44\" keyName=\"G\" tonality=\"Minor\"/>\n" +
+        "   </scale>\n" +        
         // fractal piece section that gets stripped goes here...
         "</section>";
 
@@ -170,8 +169,18 @@ public class XmlSerializationTest {
         
         
         String xml = fp.getXmlRepresentation();  
-        System.out.println(xml);
+        // re-serializing the same thing should produce the same xml
+        assertEquals(xml, fp.getXmlRepresentation());
+        //System.out.println(xml);
         FractalPiece newFp = FractalPiece.loadFromXml(xml);
+        
+        // serializing the deserialized fractal piece should produce the same result...
+        assertEquals(xml, newFp.getXmlRepresentation());
+        
+        // at one point in time, creating the output manager slightly modified some settings
+        // on the piece on accident.  this code will check that that no longer happens
+        newFp.createPieceResultOutputManager();
+        assertEquals(xml, newFp.getXmlRepresentation());
         
         // check that our fractal pieces have all the same values...
         NoteListTest.assertNoteListsEqual(fp.getGerm(), newFp.getGerm());
@@ -219,7 +228,7 @@ public class XmlSerializationTest {
                 
                 VoiceSectionTest.assertVoiceSectionsEqual(vs, newVs, true);                
             }
-        }
+        }        
     }
     
     @Test

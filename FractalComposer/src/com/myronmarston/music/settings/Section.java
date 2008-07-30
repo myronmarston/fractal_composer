@@ -49,8 +49,7 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
     
     @Attribute
     private boolean overridePieceScale = false;   
-    
-    @Element(required=false)
+        
     private NoteList germForSection;
     
     /**

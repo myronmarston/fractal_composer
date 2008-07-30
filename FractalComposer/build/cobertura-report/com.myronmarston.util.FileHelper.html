@@ -87,7 +87,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     * The new line string for this environment.</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;34</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;35</td>  <td class="nbHitsCovered">&nbsp;10</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String NEW_LINE = System.getProperty(<span class="string">"line.separator"</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;35</td>  <td class="nbHitsCovered">&nbsp;22</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String NEW_LINE = System.getProperty(<span class="string">"line.separator"</span>);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;36</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;37</td>  <td class="nbHits">&nbsp;</td>
@@ -161,18 +161,18 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;72</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> createAndUseTempFile(String tempFilePrefix, String tempFileSuffix, TempFileUser tempFileUser) <span class="keyword">throws</span> Exception {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;73</td>  <td class="nbHitsCovered">&nbsp;110</td>  <td class="src"><pre class="src">&nbsp;        File tempFile = <span class="keyword">null</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;73</td>  <td class="nbHitsCovered">&nbsp;238</td>  <td class="src"><pre class="src">&nbsp;        File tempFile = <span class="keyword">null</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;74</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">try</span> {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;75</td>  <td class="nbHitsCovered">&nbsp;110</td>  <td class="src"><pre class="src">&nbsp;            tempFile = File.createTempFile(tempFilePrefix, tempFileSuffix);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;76</td>  <td class="nbHitsCovered">&nbsp;110</td>  <td class="src"><pre class="src">&nbsp;            String tempFileName = tempFile.getCanonicalPath();                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;77</td>  <td class="nbHitsCovered">&nbsp;110</td>  <td class="src"><pre class="src">&nbsp;            tempFileUser.useTempFile(tempFileName);            </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;75</td>  <td class="nbHitsCovered">&nbsp;238</td>  <td class="src"><pre class="src">&nbsp;            tempFile = File.createTempFile(tempFilePrefix, tempFileSuffix);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;76</td>  <td class="nbHitsCovered">&nbsp;238</td>  <td class="src"><pre class="src">&nbsp;            String tempFileName = tempFile.getCanonicalPath();                </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;77</td>  <td class="nbHitsCovered">&nbsp;238</td>  <td class="src"><pre class="src">&nbsp;            tempFileUser.useTempFile(tempFileName);            </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;78</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        } <span class="keyword">finally</span> {        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;79</td>  <td class="nbHitsUncovered"><a title="Line 79: Conditional coverage 50% (1/2).">&nbsp;110</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 79: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (tempFile != <span class="keyword">null</span>) {</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;79</td>  <td class="nbHitsUncovered"><a title="Line 79: Conditional coverage 50% (1/2).">&nbsp;238</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 79: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (tempFile != <span class="keyword">null</span>) {</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;80</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">try</span> { </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;81</td>  <td class="nbHitsCovered">&nbsp;110</td>  <td class="src"><pre class="src">&nbsp;                    tempFile.delete();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;81</td>  <td class="nbHitsCovered">&nbsp;238</td>  <td class="src"><pre class="src">&nbsp;                    tempFile.delete();</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;82</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                } <span class="keyword">catch</span> (Exception ex) {</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;83</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="comment">// It's a temp file, so if we can't delete it, it's not really a big deal.</span></pre></td></tr>
@@ -181,12 +181,12 @@
 <tr>  <td class="numLine">&nbsp;85</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="comment">// the exception up the call stack.</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;86</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                    Logger.getLogger(FileHelper.<span class="keyword">class</span>.getName()).log(Level.SEVERE, <span class="keyword">null</span>, ex);</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;87</td>  <td class="nbHitsCovered">&nbsp;112</td>  <td class="src"><pre class="src">&nbsp;                }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;87</td>  <td class="nbHitsCovered">&nbsp;250</td>  <td class="src"><pre class="src">&nbsp;                }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;88</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;89</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;90</td>  <td class="nbHitsCovered">&nbsp;108</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;90</td>  <td class="nbHitsCovered">&nbsp;226</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;91</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;92</td>  <td class="nbHits">&nbsp;</td>
@@ -209,30 +209,30 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;101</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> createAndUseFileBufferedWriter(String fileName, BufferedWriterUser bufferedWriterUser) <span class="keyword">throws</span> IOException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;102</td>  <td class="nbHitsCovered">&nbsp;16</td>  <td class="src"><pre class="src">&nbsp;        FileOutputStream fos = <span class="keyword">null</span>;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;103</td>  <td class="nbHitsCovered">&nbsp;16</td>  <td class="src"><pre class="src">&nbsp;        OutputStreamWriter osw = <span class="keyword">null</span>;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;104</td>  <td class="nbHitsCovered">&nbsp;16</td>  <td class="src"><pre class="src">&nbsp;        BufferedWriter bw = <span class="keyword">null</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;102</td>  <td class="nbHitsCovered">&nbsp;42</td>  <td class="src"><pre class="src">&nbsp;        FileOutputStream fos = <span class="keyword">null</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;103</td>  <td class="nbHitsCovered">&nbsp;42</td>  <td class="src"><pre class="src">&nbsp;        OutputStreamWriter osw = <span class="keyword">null</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;104</td>  <td class="nbHitsCovered">&nbsp;42</td>  <td class="src"><pre class="src">&nbsp;        BufferedWriter bw = <span class="keyword">null</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;105</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">try</span> {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;106</td>  <td class="nbHitsCovered">&nbsp;16</td>  <td class="src"><pre class="src">&nbsp;            fos = <span class="keyword">new</span> FileOutputStream(fileName);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;107</td>  <td class="nbHitsCovered">&nbsp;16</td>  <td class="src"><pre class="src">&nbsp;            osw = <span class="keyword">new</span> OutputStreamWriter(fos, <span class="string">"UTF-8"</span>);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;108</td>  <td class="nbHitsCovered">&nbsp;16</td>  <td class="src"><pre class="src">&nbsp;            bw = <span class="keyword">new</span> BufferedWriter(osw);            </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;109</td>  <td class="nbHitsCovered">&nbsp;16</td>  <td class="src"><pre class="src">&nbsp;            bufferedWriterUser.useBufferedWriter(bw);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;106</td>  <td class="nbHitsCovered">&nbsp;42</td>  <td class="src"><pre class="src">&nbsp;            fos = <span class="keyword">new</span> FileOutputStream(fileName);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;107</td>  <td class="nbHitsCovered">&nbsp;42</td>  <td class="src"><pre class="src">&nbsp;            osw = <span class="keyword">new</span> OutputStreamWriter(fos, <span class="string">"UTF-8"</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;108</td>  <td class="nbHitsCovered">&nbsp;42</td>  <td class="src"><pre class="src">&nbsp;            bw = <span class="keyword">new</span> BufferedWriter(osw);            </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;109</td>  <td class="nbHitsCovered">&nbsp;42</td>  <td class="src"><pre class="src">&nbsp;            bufferedWriterUser.useBufferedWriter(bw);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;110</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        } <span class="keyword">finally</span> {                   </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;111</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// first, flush the buffered writer...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;112</td>  <td class="nbHitsUncovered"><a title="Line 112: Conditional coverage 50% (1/2).">&nbsp;16</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 112: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (bw != <span class="keyword">null</span>) bw.flush();</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;112</td>  <td class="nbHitsUncovered"><a title="Line 112: Conditional coverage 50% (1/2).">&nbsp;42</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 112: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (bw != <span class="keyword">null</span>) bw.flush();</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;113</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;114</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// close our streams, in the order we opened them</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;115</td>  <td class="nbHitsUncovered"><a title="Line 115: Conditional coverage 50% (1/2).">&nbsp;16</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 115: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (fos != <span class="keyword">null</span>) fos.close();                    </a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;116</td>  <td class="nbHitsUncovered"><a title="Line 116: Conditional coverage 50% (1/2).">&nbsp;16</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 116: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (osw != <span class="keyword">null</span>) osw.close();</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;117</td>  <td class="nbHitsUncovered"><a title="Line 117: Conditional coverage 50% (1/2).">&nbsp;16</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 117: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (bw != <span class="keyword">null</span>) bw.close();</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;115</td>  <td class="nbHitsUncovered"><a title="Line 115: Conditional coverage 50% (1/2).">&nbsp;42</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 115: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (fos != <span class="keyword">null</span>) fos.close();                    </a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;116</td>  <td class="nbHitsUncovered"><a title="Line 116: Conditional coverage 50% (1/2).">&nbsp;42</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 116: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (osw != <span class="keyword">null</span>) osw.close();</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;117</td>  <td class="nbHitsUncovered"><a title="Line 117: Conditional coverage 50% (1/2).">&nbsp;42</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 117: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (bw != <span class="keyword">null</span>) bw.close();</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;118</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }   </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;119</td>  <td class="nbHitsCovered">&nbsp;16</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;119</td>  <td class="nbHitsCovered">&nbsp;42</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;120</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;   </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;121</td>  <td class="nbHits">&nbsp;</td>
@@ -251,20 +251,20 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;128</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> createTextFile(<span class="keyword">final</span> String fileName, <span class="keyword">final</span> String fileContents) <span class="keyword">throws</span> IOException {   </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;129</td>  <td class="nbHitsCovered">&nbsp;14</td>  <td class="src"><pre class="src">&nbsp;        FileHelper.createAndUseFileBufferedWriter(fileName, <span class="keyword">new</span> FileHelper.BufferedWriterUser() {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;129</td>  <td class="nbHitsCovered">&nbsp;38</td>  <td class="src"><pre class="src">&nbsp;        FileHelper.createAndUseFileBufferedWriter(fileName, <span class="keyword">new</span> FileHelper.BufferedWriterUser() {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;130</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">public</span> <span class="keyword">void</span> useBufferedWriter(BufferedWriter bufferedWriter) <span class="keyword">throws</span> IOException {                                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;131</td>  <td class="nbHitsCovered">&nbsp;14</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">boolean</span> firstLineWritten = <span class="keyword">false</span>;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;132</td>  <td class="nbHitsCovered"><a title="Line 132: Conditional coverage 100% (2/2).">&nbsp;169</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 132: Conditional coverage 100% (2/2).">                <span class="keyword">for</span> (String line : fileContents.split(FileHelper.NEW_LINE)) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;133</td>  <td class="nbHitsCovered"><a title="Line 133: Conditional coverage 100% (2/2).">&nbsp;155</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 133: Conditional coverage 100% (2/2).">                    <span class="keyword">if</span> (firstLineWritten) bufferedWriter.newLine();</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;134</td>  <td class="nbHitsCovered">&nbsp;155</td>  <td class="src"><pre class="src">&nbsp;                    bufferedWriter.write(line);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;135</td>  <td class="nbHitsCovered">&nbsp;155</td>  <td class="src"><pre class="src">&nbsp;                    firstLineWritten = <span class="keyword">true</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;131</td>  <td class="nbHitsCovered">&nbsp;38</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">boolean</span> firstLineWritten = <span class="keyword">false</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;132</td>  <td class="nbHitsCovered"><a title="Line 132: Conditional coverage 100% (2/2).">&nbsp;455</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 132: Conditional coverage 100% (2/2).">                <span class="keyword">for</span> (String line : fileContents.split(FileHelper.NEW_LINE)) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;133</td>  <td class="nbHitsCovered"><a title="Line 133: Conditional coverage 100% (2/2).">&nbsp;417</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 133: Conditional coverage 100% (2/2).">                    <span class="keyword">if</span> (firstLineWritten) bufferedWriter.newLine();</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;134</td>  <td class="nbHitsCovered">&nbsp;417</td>  <td class="src"><pre class="src">&nbsp;                    bufferedWriter.write(line);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;135</td>  <td class="nbHitsCovered">&nbsp;417</td>  <td class="src"><pre class="src">&nbsp;                    firstLineWritten = <span class="keyword">true</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;136</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                }                                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;137</td>  <td class="nbHitsCovered">&nbsp;14</td>  <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;137</td>  <td class="nbHitsCovered">&nbsp;38</td>  <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;138</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        });</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;139</td>  <td class="nbHitsCovered">&nbsp;14</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;139</td>  <td class="nbHitsCovered">&nbsp;38</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;140</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;141</td>  <td class="nbHits">&nbsp;</td>
@@ -283,39 +283,39 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;148</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">static</span> String readFileIntoString(String fileName) <span class="keyword">throws</span> IOException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;149</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;        StringBuilder strBuilder = <span class="keyword">new</span> StringBuilder();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;150</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;        FileInputStream fis = <span class="keyword">null</span>;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;151</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;        InputStreamReader isr = <span class="keyword">null</span>;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;152</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;        BufferedReader br = <span class="keyword">null</span>;             </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;149</td>  <td class="nbHitsCovered">&nbsp;10</td>  <td class="src"><pre class="src">&nbsp;        StringBuilder strBuilder = <span class="keyword">new</span> StringBuilder();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;150</td>  <td class="nbHitsCovered">&nbsp;10</td>  <td class="src"><pre class="src">&nbsp;        FileInputStream fis = <span class="keyword">null</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;151</td>  <td class="nbHitsCovered">&nbsp;10</td>  <td class="src"><pre class="src">&nbsp;        InputStreamReader isr = <span class="keyword">null</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;152</td>  <td class="nbHitsCovered">&nbsp;10</td>  <td class="src"><pre class="src">&nbsp;        BufferedReader br = <span class="keyword">null</span>;             </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;153</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        String line;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;154</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> firstLineRead = <span class="keyword">false</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;154</td>  <td class="nbHitsCovered">&nbsp;10</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> firstLineRead = <span class="keyword">false</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;155</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">try</span> {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;156</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;            fis = <span class="keyword">new</span> FileInputStream(fileName);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;157</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;            isr = <span class="keyword">new</span> InputStreamReader(fis, <span class="string">"UTF-8"</span>);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;158</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;            br = <span class="keyword">new</span> BufferedReader(isr);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;156</td>  <td class="nbHitsCovered">&nbsp;10</td>  <td class="src"><pre class="src">&nbsp;            fis = <span class="keyword">new</span> FileInputStream(fileName);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;157</td>  <td class="nbHitsCovered">&nbsp;10</td>  <td class="src"><pre class="src">&nbsp;            isr = <span class="keyword">new</span> InputStreamReader(fis, <span class="string">"UTF-8"</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;158</td>  <td class="nbHitsCovered">&nbsp;10</td>  <td class="src"><pre class="src">&nbsp;            br = <span class="keyword">new</span> BufferedReader(isr);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;159</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;160</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">while</span> (<span class="keyword">true</span>) {                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;161</td>  <td class="nbHitsCovered">&nbsp;14</td>  <td class="src"><pre class="src">&nbsp;                line = br.readLine();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;162</td>  <td class="nbHitsCovered"><a title="Line 162: Conditional coverage 100% (2/2).">&nbsp;14</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 162: Conditional coverage 100% (2/2).">                <span class="keyword">if</span> (line == <span class="keyword">null</span>) <span class="keyword">break</span>;</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;161</td>  <td class="nbHitsCovered">&nbsp;36</td>  <td class="src"><pre class="src">&nbsp;                line = br.readLine();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;162</td>  <td class="nbHitsCovered"><a title="Line 162: Conditional coverage 100% (2/2).">&nbsp;36</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 162: Conditional coverage 100% (2/2).">                <span class="keyword">if</span> (line == <span class="keyword">null</span>) <span class="keyword">break</span>;</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;163</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;164</td>  <td class="nbHitsCovered"><a title="Line 164: Conditional coverage 100% (2/2).">&nbsp;10</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 164: Conditional coverage 100% (2/2).">                <span class="keyword">if</span> (firstLineRead) strBuilder.append(NEW_LINE);</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;165</td>  <td class="nbHitsCovered">&nbsp;10</td>  <td class="src"><pre class="src">&nbsp;                strBuilder.append(line);                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;166</td>  <td class="nbHitsCovered">&nbsp;10</td>  <td class="src"><pre class="src">&nbsp;                firstLineRead = <span class="keyword">true</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;164</td>  <td class="nbHitsCovered"><a title="Line 164: Conditional coverage 100% (2/2).">&nbsp;26</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 164: Conditional coverage 100% (2/2).">                <span class="keyword">if</span> (firstLineRead) strBuilder.append(NEW_LINE);</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;165</td>  <td class="nbHitsCovered">&nbsp;26</td>  <td class="src"><pre class="src">&nbsp;                strBuilder.append(line);                </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;166</td>  <td class="nbHitsCovered">&nbsp;26</td>  <td class="src"><pre class="src">&nbsp;                firstLineRead = <span class="keyword">true</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;167</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;168</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;169</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> strBuilder.toString();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;169</td>  <td class="nbHitsCovered">&nbsp;10</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> strBuilder.toString();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;170</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        } <span class="keyword">finally</span> {            </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;171</td>  <td class="nbHitsUncovered"><a title="Line 171: Conditional coverage 50% (1/2).">&nbsp;4</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 171: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (fis != <span class="keyword">null</span>) fis.close();</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;172</td>  <td class="nbHitsUncovered"><a title="Line 172: Conditional coverage 50% (1/2).">&nbsp;4</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 172: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (isr != <span class="keyword">null</span>) isr.close();</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;173</td>  <td class="nbHitsUncovered"><a title="Line 173: Conditional coverage 50% (1/2).">&nbsp;4</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 173: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (br != <span class="keyword">null</span>) br.close();</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;171</td>  <td class="nbHitsUncovered"><a title="Line 171: Conditional coverage 50% (1/2).">&nbsp;10</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 171: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (fis != <span class="keyword">null</span>) fis.close();</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;172</td>  <td class="nbHitsUncovered"><a title="Line 172: Conditional coverage 50% (1/2).">&nbsp;10</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 172: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (isr != <span class="keyword">null</span>) isr.close();</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;173</td>  <td class="nbHitsUncovered"><a title="Line 173: Conditional coverage 50% (1/2).">&nbsp;10</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 173: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (br != <span class="keyword">null</span>) br.close();</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;174</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;175</td>  <td class="nbHits">&nbsp;</td>
@@ -324,6 +324,6 @@
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 7/23/08 7:49 PM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 7/30/08 12:13 AM.</div>
 </body>
 </html>

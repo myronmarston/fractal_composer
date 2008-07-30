@@ -95,7 +95,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment"> * @author Myron</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;39</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment"> */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;40</td>  <td class="nbHitsCovered">&nbsp;9</td>  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> OutputManager {    </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;40</td>  <td class="nbHitsCovered">&nbsp;22</td>  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> OutputManager {    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;41</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">final</span> Piece pieceNotation;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;42</td>  <td class="nbHits">&nbsp;</td>
@@ -112,7 +112,7 @@
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> SheetMusicCreator sheetMusicCreator;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;48</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> AudioFileCreator audioFileCreator;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;49</td>  <td class="nbHitsCovered">&nbsp;124</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">boolean</span> testNotationError = <span class="keyword">false</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;49</td>  <td class="nbHitsCovered">&nbsp;282</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">boolean</span> testNotationError = <span class="keyword">false</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;50</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> String lastMidiFileName;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;51</td>  <td class="nbHits">&nbsp;</td>
@@ -145,7 +145,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;65</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> Sequence getSequence() {        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;66</td>  <td class="nbHitsCovered">&nbsp;91</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> sequence;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;66</td>  <td class="nbHitsCovered">&nbsp;186</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> sequence;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;67</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;68</td>  <td class="nbHits">&nbsp;</td>
@@ -162,7 +162,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;74</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">int</span> getTempo() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;75</td>  <td class="nbHitsCovered">&nbsp;125</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> tempo;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;75</td>  <td class="nbHitsCovered">&nbsp;285</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> tempo;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;76</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;77</td>  <td class="nbHits">&nbsp;</td>
@@ -181,7 +181,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;84</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> <span class="keyword">boolean</span> getTestNotationError() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;85</td>  <td class="nbHitsCovered">&nbsp;13</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> testNotationError;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;85</td>  <td class="nbHitsCovered">&nbsp;36</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> testNotationError;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;86</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;87</td>  <td class="nbHits">&nbsp;</td>
@@ -200,8 +200,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;94</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> <span class="keyword">void</span> setTestNotationError(<span class="keyword">boolean</span> testNotationError) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;95</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.testNotationError = testNotationError;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;96</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;    }        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;95</td>  <td class="nbHitsCovered">&nbsp;9</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.testNotationError = testNotationError;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;96</td>  <td class="nbHitsCovered">&nbsp;9</td>  <td class="src"><pre class="src">&nbsp;    }        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;97</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;98</td>  <td class="nbHits">&nbsp;</td>
@@ -216,8 +216,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;103</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> SheetMusicCreator getSheetMusicCreator() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;104</td>  <td class="nbHitsCovered"><a title="Line 104: Conditional coverage 100% (2/2).">&nbsp;14</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 104: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (sheetMusicCreator == <span class="keyword">null</span>) sheetMusicCreator = <span class="keyword">new</span> SheetMusicCreator(<span class="keyword">this</span>);</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;105</td>  <td class="nbHitsCovered">&nbsp;14</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> sheetMusicCreator;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;104</td>  <td class="nbHitsCovered"><a title="Line 104: Conditional coverage 100% (2/2).">&nbsp;39</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 104: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (sheetMusicCreator == <span class="keyword">null</span>) sheetMusicCreator = <span class="keyword">new</span> SheetMusicCreator(<span class="keyword">this</span>);</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;105</td>  <td class="nbHitsCovered">&nbsp;39</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> sheetMusicCreator;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;106</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;107</td>  <td class="nbHits">&nbsp;</td>
@@ -234,8 +234,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;113</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> AudioFileCreator getAudioFileCreator() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;114</td>  <td class="nbHitsCovered"><a title="Line 114: Conditional coverage 100% (2/2).">&nbsp;4</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 114: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (audioFileCreator == <span class="keyword">null</span>) audioFileCreator = <span class="keyword">new</span> AudioFileCreator(<span class="keyword">this</span>);</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;115</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> audioFileCreator;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;114</td>  <td class="nbHitsCovered"><a title="Line 114: Conditional coverage 100% (2/2).">&nbsp;8</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 114: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (audioFileCreator == <span class="keyword">null</span>) audioFileCreator = <span class="keyword">new</span> AudioFileCreator(<span class="keyword">this</span>);</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;115</td>  <td class="nbHitsCovered">&nbsp;8</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> audioFileCreator;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;116</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;117</td>  <td class="nbHits">&nbsp;</td>
@@ -252,7 +252,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;123</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> List&lt;NoteList&gt; getNoteLists() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;124</td>  <td class="nbHitsCovered">&nbsp;10</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">this</span>.noteLists;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;124</td>  <td class="nbHitsCovered">&nbsp;23</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">this</span>.noteLists;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;125</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;126</td>  <td class="nbHits">&nbsp;</td>
@@ -269,7 +269,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;132</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> FractalPiece getFractalPiece() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;133</td>  <td class="nbHitsCovered">&nbsp;7</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> fractalPiece;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;133</td>  <td class="nbHitsCovered">&nbsp;17</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> fractalPiece;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;134</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;135</td>  <td class="nbHits">&nbsp;</td>
@@ -288,7 +288,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;142</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> Piece getPieceNotation() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;143</td>  <td class="nbHitsCovered">&nbsp;99</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> pieceNotation;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;143</td>  <td class="nbHitsCovered">&nbsp;215</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> pieceNotation;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;144</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;145</td>  <td class="nbHits">&nbsp;</td>
@@ -311,8 +311,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;154</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> OutputManager(FractalPiece fractalPiece, List&lt;NoteList&gt; noteLists) <span class="keyword">throws</span> GermIsEmptyException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;155</td>  <td class="nbHitsCovered">&nbsp;36</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>(fractalPiece, noteLists, <span class="keyword">true</span>, <span class="keyword">true</span>);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;156</td>  <td class="nbHitsCovered">&nbsp;35</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;155</td>  <td class="nbHitsCovered">&nbsp;100</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>(fractalPiece, noteLists, <span class="keyword">true</span>, <span class="keyword">true</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;156</td>  <td class="nbHitsCovered">&nbsp;97</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;157</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;158</td>  <td class="nbHits">&nbsp;</td>
@@ -339,14 +339,14 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     * @throws com.myronmarston.music.GermIsEmptyException if the germ is empty</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;169</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;170</td>  <td class="nbHitsCovered">&nbsp;124</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> OutputManager(FractalPiece fractalPiece, List&lt;NoteList&gt; noteLists, <span class="keyword">boolean</span> includeTempoOnSheetMusic, <span class="keyword">boolean</span> includeInstrumentOnSheetMusic) <span class="keyword">throws</span> GermIsEmptyException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;171</td>  <td class="nbHitsCovered">&nbsp;124</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.fractalPiece = fractalPiece;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;172</td>  <td class="nbHitsCovered">&nbsp;124</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.timeSignatureFraction = <span class="keyword">this</span>.fractalPiece.getTimeSignature().toFraction();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;173</td>  <td class="nbHitsCovered">&nbsp;124</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.noteLists = noteLists;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;174</td>  <td class="nbHitsCovered">&nbsp;124</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.tempo = <span class="keyword">this</span>.fractalPiece.getTempo();        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;175</td>  <td class="nbHitsCovered">&nbsp;124</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.pieceNotation = <span class="keyword">new</span> Piece(<span class="keyword">this</span>.fractalPiece.getScale().getKeySignature(), <span class="keyword">this</span>.fractalPiece.getTimeSignature(), <span class="keyword">this</span>.tempo, includeTempoOnSheetMusic, includeInstrumentOnSheetMusic);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;176</td>  <td class="nbHitsCovered">&nbsp;124</td>  <td class="src"><pre class="src">&nbsp;        constructMidiSequence();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;177</td>  <td class="nbHitsCovered">&nbsp;123</td>  <td class="src"><pre class="src">&nbsp;    }   </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;170</td>  <td class="nbHitsCovered">&nbsp;282</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> OutputManager(FractalPiece fractalPiece, List&lt;NoteList&gt; noteLists, <span class="keyword">boolean</span> includeTempoOnSheetMusic, <span class="keyword">boolean</span> includeInstrumentOnSheetMusic) <span class="keyword">throws</span> GermIsEmptyException {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;171</td>  <td class="nbHitsCovered">&nbsp;282</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.fractalPiece = fractalPiece;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;172</td>  <td class="nbHitsCovered">&nbsp;282</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.timeSignatureFraction = <span class="keyword">this</span>.fractalPiece.getTimeSignature().toFraction();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;173</td>  <td class="nbHitsCovered">&nbsp;282</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.noteLists = noteLists;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;174</td>  <td class="nbHitsCovered">&nbsp;282</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.tempo = <span class="keyword">this</span>.fractalPiece.getTempo();        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;175</td>  <td class="nbHitsCovered">&nbsp;282</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.pieceNotation = <span class="keyword">new</span> Piece(<span class="keyword">this</span>.fractalPiece.getScale().getKeySignature(), <span class="keyword">this</span>.fractalPiece.getTimeSignature(), <span class="keyword">this</span>.tempo, includeTempoOnSheetMusic, includeInstrumentOnSheetMusic);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;176</td>  <td class="nbHitsCovered">&nbsp;282</td>  <td class="src"><pre class="src">&nbsp;        constructMidiSequence();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;177</td>  <td class="nbHitsCovered">&nbsp;279</td>  <td class="src"><pre class="src">&nbsp;    }   </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;178</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;179</td>  <td class="nbHits">&nbsp;</td>
@@ -363,17 +363,17 @@
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">void</span> constructMidiSequence() <span class="keyword">throws</span> GermIsEmptyException {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;185</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// this is only meant to be called once, to construct the sequence...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;186</td>  <td class="nbHitsUncovered"><a title="Line 186: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;124</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 186: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> <span class="keyword">this</span>.sequence == <span class="keyword">null</span> : sequence;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;186</td>  <td class="nbHitsUncovered"><a title="Line 186: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;282</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 186: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> <span class="keyword">this</span>.sequence == <span class="keyword">null</span> : sequence;</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;187</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;188</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// We can't create any midi sequence if we don't have a germ from which to "grow" our piece...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;189</td>  <td class="nbHitsUncovered"><a title="Line 189: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">&nbsp;124</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 189: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">        <span class="keyword">if</span> (<span class="keyword">this</span>.fractalPiece.getGerm() == <span class="keyword">null</span> || <span class="keyword">this</span>.fractalPiece.getGerm().size() == 0) <span class="keyword">throw</span> <span class="keyword">new</span> GermIsEmptyException();                </a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;189</td>  <td class="nbHitsUncovered"><a title="Line 189: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">&nbsp;282</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 189: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">        <span class="keyword">if</span> (<span class="keyword">this</span>.fractalPiece.getGerm() == <span class="keyword">null</span> || <span class="keyword">this</span>.fractalPiece.getGerm().size() == 0) <span class="keyword">throw</span> <span class="keyword">new</span> GermIsEmptyException();                </a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;190</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;191</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">try</span> {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;192</td>  <td class="nbHitsCovered">&nbsp;123</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.sequence = <span class="keyword">new</span> Sequence(Sequence.PPQ, <span class="keyword">this</span>.getMidiTickResolution());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;192</td>  <td class="nbHitsCovered">&nbsp;279</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.sequence = <span class="keyword">new</span> Sequence(Sequence.PPQ, <span class="keyword">this</span>.getMidiTickResolution());</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;193</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        } <span class="keyword">catch</span> (InvalidMidiDataException ex) {</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;194</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// our logic should prevent this exception from ever occurring, </span></pre></td></tr>
@@ -382,25 +382,25 @@
 <tr>  <td class="numLine">&nbsp;196</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// having to declare it on our method.</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;197</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            <span class="keyword">throw</span> <span class="keyword">new</span> UndeclaredThrowableException(ex, <span class="string">"Error while creating sequence.  This indicates a programming error of some sort."</span>);                </span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;198</td>  <td class="nbHitsCovered">&nbsp;123</td>  <td class="src"><pre class="src">&nbsp;        }  </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;198</td>  <td class="nbHitsCovered">&nbsp;279</td>  <td class="src"><pre class="src">&nbsp;        }  </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;199</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;200</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// next, use the first track to set key signature, time signature and tempo...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;201</td>  <td class="nbHitsCovered">&nbsp;123</td>  <td class="src"><pre class="src">&nbsp;        Track track1 = sequence.createTrack();        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;202</td>  <td class="nbHitsCovered">&nbsp;123</td>  <td class="src"><pre class="src">&nbsp;        track1.add(<span class="keyword">this</span>.fractalPiece.getScale().getKeySignature().getKeySignatureMidiEvent(0));                  </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;203</td>  <td class="nbHitsCovered">&nbsp;123</td>  <td class="src"><pre class="src">&nbsp;        addSectionKeySigEventsToTrack(track1, sequence.getResolution());</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;204</td>  <td class="nbHitsCovered">&nbsp;123</td>  <td class="src"><pre class="src">&nbsp;        track1.add(<span class="keyword">this</span>.fractalPiece.getTimeSignature().getMidiTimeSignatureEvent());</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;205</td>  <td class="nbHitsCovered">&nbsp;123</td>  <td class="src"><pre class="src">&nbsp;        track1.add(Tempo.getMidiTempoEvent(<span class="keyword">this</span>.getTempo()));</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;201</td>  <td class="nbHitsCovered">&nbsp;279</td>  <td class="src"><pre class="src">&nbsp;        Track track1 = sequence.createTrack();        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;202</td>  <td class="nbHitsCovered">&nbsp;279</td>  <td class="src"><pre class="src">&nbsp;        track1.add(<span class="keyword">this</span>.fractalPiece.getScale().getKeySignature().getKeySignatureMidiEvent(0));                  </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;203</td>  <td class="nbHitsCovered">&nbsp;279</td>  <td class="src"><pre class="src">&nbsp;        addSectionKeySigEventsToTrack(track1, sequence.getResolution());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;204</td>  <td class="nbHitsCovered">&nbsp;279</td>  <td class="src"><pre class="src">&nbsp;        track1.add(<span class="keyword">this</span>.fractalPiece.getTimeSignature().getMidiTimeSignatureEvent());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;205</td>  <td class="nbHitsCovered">&nbsp;279</td>  <td class="src"><pre class="src">&nbsp;        track1.add(Tempo.getMidiTempoEvent(<span class="keyword">this</span>.getTempo()));</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;206</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;207</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// finally, create and fill our midi tracks...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;208</td>  <td class="nbHitsCovered"><a title="Line 208: Conditional coverage 100% (2/2).">&nbsp;123</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 208: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (NoteList nl : noteLists) {                       </a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;209</td>  <td class="nbHitsCovered">&nbsp;138</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.constructMidiTrack(nl);             </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;208</td>  <td class="nbHitsCovered"><a title="Line 208: Conditional coverage 100% (2/2).">&nbsp;279</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 208: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (NoteList nl : noteLists) {                       </a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;209</td>  <td class="nbHitsCovered">&nbsp;317</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.constructMidiTrack(nl);             </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;210</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;211</td>  <td class="nbHitsCovered">&nbsp;123</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;211</td>  <td class="nbHitsCovered">&nbsp;279</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;212</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;213</td>  <td class="nbHits">&nbsp;</td>
@@ -417,28 +417,28 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;219</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">void</span> addSectionKeySigEventsToTrack(Track track, <span class="keyword">int</span> sequenceResolution) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;220</td>  <td class="nbHitsCovered">&nbsp;123</td>  <td class="src"><pre class="src">&nbsp;        Fraction durationSoFar = <span class="keyword">new</span> Fraction(0, 1);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;221</td>  <td class="nbHitsCovered">&nbsp;123</td>  <td class="src"><pre class="src">&nbsp;        KeySignature lastKeySignature = <span class="keyword">this</span>.fractalPiece.getScale().getKeySignature();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;220</td>  <td class="nbHitsCovered">&nbsp;279</td>  <td class="src"><pre class="src">&nbsp;        Fraction durationSoFar = <span class="keyword">new</span> Fraction(0, 1);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;221</td>  <td class="nbHitsCovered">&nbsp;279</td>  <td class="src"><pre class="src">&nbsp;        KeySignature lastKeySignature = <span class="keyword">this</span>.fractalPiece.getScale().getKeySignature();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;222</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        KeySignature sectionKeySignature;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;223</td>  <td class="nbHitsCovered"><a title="Line 223: Conditional coverage 100% (2/2).">&nbsp;123</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 223: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (Section s : <span class="keyword">this</span>.fractalPiece.getSections()) { </a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;224</td>  <td class="nbHitsCovered">&nbsp;100</td>  <td class="src"><pre class="src">&nbsp;            sectionKeySignature = s.getSectionKeySignature();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;225</td>  <td class="nbHitsCovered"><a title="Line 225: Conditional coverage 100% (2/2).">&nbsp;100</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 225: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (!lastKeySignature.equals(sectionKeySignature)) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;226</td>  <td class="nbHitsCovered">&nbsp;5</td>  <td class="src"><pre class="src">&nbsp;                Fraction tickCount = durationSoFar.times(sequenceResolution);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;223</td>  <td class="nbHitsCovered"><a title="Line 223: Conditional coverage 100% (2/2).">&nbsp;279</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 223: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (Section s : <span class="keyword">this</span>.fractalPiece.getSections()) { </a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;224</td>  <td class="nbHitsCovered">&nbsp;254</td>  <td class="src"><pre class="src">&nbsp;            sectionKeySignature = s.getSectionKeySignature();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;225</td>  <td class="nbHitsCovered"><a title="Line 225: Conditional coverage 100% (2/2).">&nbsp;254</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 225: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (!lastKeySignature.equals(sectionKeySignature)) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;226</td>  <td class="nbHitsCovered">&nbsp;15</td>  <td class="src"><pre class="src">&nbsp;                Fraction tickCount = durationSoFar.times(sequenceResolution);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;227</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;228</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                <span class="comment">// our tick count should be an integral value...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;229</td>  <td class="nbHitsUncovered"><a title="Line 229: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;5</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 229: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">                <span class="keyword">assert</span> tickCount.denominator() == 1L : tickCount.denominator();</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;230</td>  <td class="nbHitsCovered">&nbsp;5</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">long</span> tickValue = convertMidiTickUnitFromQuarterNotesToWholeNotes((<span class="keyword">long</span>) tickCount.asDouble());</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;231</td>  <td class="nbHitsCovered">&nbsp;5</td>  <td class="src"><pre class="src">&nbsp;                track.add(sectionKeySignature.getKeySignatureMidiEvent(tickValue));</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;229</td>  <td class="nbHitsUncovered"><a title="Line 229: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;15</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 229: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">                <span class="keyword">assert</span> tickCount.denominator() == 1L : tickCount.denominator();</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;230</td>  <td class="nbHitsCovered">&nbsp;15</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">long</span> tickValue = convertMidiTickUnitFromQuarterNotesToWholeNotes((<span class="keyword">long</span>) tickCount.asDouble());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;231</td>  <td class="nbHitsCovered">&nbsp;15</td>  <td class="src"><pre class="src">&nbsp;                track.add(sectionKeySignature.getKeySignatureMidiEvent(tickValue));</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;232</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;233</td>  <td class="nbHitsCovered">&nbsp;100</td>  <td class="src"><pre class="src">&nbsp;            lastKeySignature = sectionKeySignature;            </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;234</td>  <td class="nbHitsCovered">&nbsp;100</td>  <td class="src"><pre class="src">&nbsp;            durationSoFar = durationSoFar.plus(s.getDuration());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;233</td>  <td class="nbHitsCovered">&nbsp;254</td>  <td class="src"><pre class="src">&nbsp;            lastKeySignature = sectionKeySignature;            </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;234</td>  <td class="nbHitsCovered">&nbsp;254</td>  <td class="src"><pre class="src">&nbsp;            durationSoFar = durationSoFar.plus(s.getDuration());</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;235</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;236</td>  <td class="nbHitsCovered">&nbsp;123</td>  <td class="src"><pre class="src">&nbsp;    }    </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;236</td>  <td class="nbHitsCovered">&nbsp;279</td>  <td class="src"><pre class="src">&nbsp;    }    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;237</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;238</td>  <td class="nbHits">&nbsp;</td>
@@ -453,69 +453,69 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;243</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> <span class="keyword">void</span> constructMidiTrack(NoteList noteList) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;244</td>  <td class="nbHitsCovered">&nbsp;138</td>  <td class="src"><pre class="src">&nbsp;        MidiNote thisMidiNote, lastMidiNote = <span class="keyword">null</span>;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;245</td>  <td class="nbHitsCovered">&nbsp;138</td>  <td class="src"><pre class="src">&nbsp;        Note lastNote = <span class="keyword">null</span>;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;246</td>  <td class="nbHitsCovered">&nbsp;138</td>  <td class="src"><pre class="src">&nbsp;        Fraction startTime = <span class="keyword">new</span> Fraction(0, 1);        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;244</td>  <td class="nbHitsCovered">&nbsp;317</td>  <td class="src"><pre class="src">&nbsp;        MidiNote thisMidiNote, lastMidiNote = <span class="keyword">null</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;245</td>  <td class="nbHitsCovered">&nbsp;317</td>  <td class="src"><pre class="src">&nbsp;        Note lastNote = <span class="keyword">null</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;246</td>  <td class="nbHitsCovered">&nbsp;317</td>  <td class="src"><pre class="src">&nbsp;        Fraction startTime = <span class="keyword">new</span> Fraction(0, 1);        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;247</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;248</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// get a default instrument if we we're not passed one...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;249</td>  <td class="nbHitsCovered"><a title="Line 249: Conditional coverage 100% (2/2).">&nbsp;138</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 249: Conditional coverage 100% (2/2).">        Instrument instrument = (noteList.getInstrument() == <span class="keyword">null</span> ? Instrument.DEFAULT : noteList.getInstrument());</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;249</td>  <td class="nbHitsCovered"><a title="Line 249: Conditional coverage 100% (2/2).">&nbsp;317</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 249: Conditional coverage 100% (2/2).">        Instrument instrument = (noteList.getInstrument() == <span class="keyword">null</span> ? Instrument.DEFAULT : noteList.getInstrument());</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;250</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                                </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;251</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// make each track be on a different channel, but make sure we don't go over our total number of channels...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;252</td>  <td class="nbHitsCovered">&nbsp;138</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> numTracks = sequence.getTracks().length;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;252</td>  <td class="nbHitsCovered">&nbsp;317</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> numTracks = sequence.getTracks().length;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;253</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// The 1st track should be the tempo/key sig/time sig track        </span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;254</td>  <td class="nbHitsUncovered"><a title="Line 254: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;138</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 254: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> numTracks &gt; 0 : numTracks; </a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;255</td>  <td class="nbHitsCovered">&nbsp;138</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> midiChannel = numTracks - 1;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;256</td>  <td class="nbHitsUncovered"><a title="Line 256: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;138</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 256: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> midiChannel &lt; MidiNote.MAX_CHANNEL;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;254</td>  <td class="nbHitsUncovered"><a title="Line 254: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;317</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 254: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> numTracks &gt; 0 : numTracks; </a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;255</td>  <td class="nbHitsCovered">&nbsp;317</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> midiChannel = numTracks - 1;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;256</td>  <td class="nbHitsUncovered"><a title="Line 256: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;317</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 256: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> midiChannel &lt; MidiNote.MAX_CHANNEL;</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;257</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;258</td>  <td class="nbHitsCovered">&nbsp;138</td>  <td class="src"><pre class="src">&nbsp;        Part part = <span class="keyword">new</span> Part(<span class="keyword">this</span>.pieceNotation, instrument);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;258</td>  <td class="nbHitsCovered">&nbsp;317</td>  <td class="src"><pre class="src">&nbsp;        Part part = <span class="keyword">new</span> Part(<span class="keyword">this</span>.pieceNotation, instrument);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;259</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;260</td>  <td class="nbHitsCovered">&nbsp;138</td>  <td class="src"><pre class="src">&nbsp;        PartSection partSection = <span class="keyword">null</span>;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;261</td>  <td class="nbHitsCovered">&nbsp;138</td>  <td class="src"><pre class="src">&nbsp;        Track track = sequence.createTrack();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;262</td>  <td class="nbHitsCovered">&nbsp;138</td>  <td class="src"><pre class="src">&nbsp;        track.add(instrument.getProgramChangeMidiEvent(midiChannel));        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;263</td>  <td class="nbHitsCovered">&nbsp;138</td>  <td class="src"><pre class="src">&nbsp;        Fraction timeLeftInBar = <span class="keyword">this</span>.timeSignatureFraction;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;260</td>  <td class="nbHitsCovered">&nbsp;317</td>  <td class="src"><pre class="src">&nbsp;        PartSection partSection = <span class="keyword">null</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;261</td>  <td class="nbHitsCovered">&nbsp;317</td>  <td class="src"><pre class="src">&nbsp;        Track track = sequence.createTrack();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;262</td>  <td class="nbHitsCovered">&nbsp;317</td>  <td class="src"><pre class="src">&nbsp;        track.add(instrument.getProgramChangeMidiEvent(midiChannel));        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;263</td>  <td class="nbHitsCovered">&nbsp;317</td>  <td class="src"><pre class="src">&nbsp;        Fraction timeLeftInBar = <span class="keyword">this</span>.timeSignatureFraction;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;264</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;265</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// in Midi, the tick resolution is based on quarter notes, but we use whole notes...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;266</td>  <td class="nbHitsCovered">&nbsp;138</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> midiTicksPerWholeNote = convertMidiTickUnitFromQuarterNotesToWholeNotesInt(sequence.getResolution());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;266</td>  <td class="nbHitsCovered">&nbsp;317</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> midiTicksPerWholeNote = convertMidiTickUnitFromQuarterNotesToWholeNotesInt(sequence.getResolution());</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;267</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;268</td>  <td class="nbHitsCovered"><a title="Line 268: Conditional coverage 100% (2/2).">&nbsp;138</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 268: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (Note thisNote : noteList.getListWithNormalizedRests()) {                        </a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;268</td>  <td class="nbHitsCovered"><a title="Line 268: Conditional coverage 100% (2/2).">&nbsp;317</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 268: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (Note thisNote : noteList.getListWithNormalizedRests()) {                        </a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;269</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// update our part section if necessary...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;270</td>  <td class="nbHitsCovered"><a title="Line 270: Conditional coverage 100% (2/2).">&nbsp;2095</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 270: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (partSection == <span class="keyword">null</span>) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;271</td>  <td class="nbHitsCovered">&nbsp;138</td>  <td class="src"><pre class="src">&nbsp;                partSection = <span class="keyword">new</span> PartSection(part, thisNote.getSourceVoiceSection());</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;272</td>  <td class="nbHitsUncovered"><a title="Line 272: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">&nbsp;1957</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 272: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">            } <span class="keyword">else</span> <span class="keyword">if</span> (lastNote != <span class="keyword">null</span> &amp;&amp; lastNote.getSourceVoiceSection() != partSection.getSourceVoiceSection()) {</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;273</td>  <td class="nbHitsCovered">&nbsp;154</td>  <td class="src"><pre class="src">&nbsp;                partSection = <span class="keyword">new</span> PartSection(part, lastNote.getSourceVoiceSection());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;270</td>  <td class="nbHitsCovered"><a title="Line 270: Conditional coverage 100% (2/2).">&nbsp;5093</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 270: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (partSection == <span class="keyword">null</span>) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;271</td>  <td class="nbHitsCovered">&nbsp;317</td>  <td class="src"><pre class="src">&nbsp;                partSection = <span class="keyword">new</span> PartSection(part, thisNote.getSourceVoiceSection());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;272</td>  <td class="nbHitsUncovered"><a title="Line 272: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">&nbsp;4776</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 272: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">            } <span class="keyword">else</span> <span class="keyword">if</span> (lastNote != <span class="keyword">null</span> &amp;&amp; lastNote.getSourceVoiceSection() != partSection.getSourceVoiceSection()) {</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;273</td>  <td class="nbHitsCovered">&nbsp;407</td>  <td class="src"><pre class="src">&nbsp;                partSection = <span class="keyword">new</span> PartSection(part, lastNote.getSourceVoiceSection());</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;274</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;275</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;276</td>  <td class="nbHitsCovered">&nbsp;2095</td>  <td class="src"><pre class="src">&nbsp;            thisMidiNote = thisNote.convertToMidiNote(startTime, midiTicksPerWholeNote, midiChannel, <span class="keyword">true</span>);                        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;276</td>  <td class="nbHitsCovered">&nbsp;5093</td>  <td class="src"><pre class="src">&nbsp;            thisMidiNote = thisNote.convertToMidiNote(startTime, midiTicksPerWholeNote, midiChannel, <span class="keyword">true</span>);                        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;277</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;278</td>  <td class="nbHitsCovered"><a title="Line 278: Conditional coverage 100% (2/2).">&nbsp;2095</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 278: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (lastMidiNote != <span class="keyword">null</span>) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;279</td>  <td class="nbHitsUncovered"><a title="Line 279: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;1957</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 279: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">                <span class="keyword">assert</span> lastNote != <span class="keyword">null</span>;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;278</td>  <td class="nbHitsCovered"><a title="Line 278: Conditional coverage 100% (2/2).">&nbsp;5093</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 278: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (lastMidiNote != <span class="keyword">null</span>) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;279</td>  <td class="nbHitsUncovered"><a title="Line 279: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;4776</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 279: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">                <span class="keyword">assert</span> lastNote != <span class="keyword">null</span>;</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;280</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;281</td>  <td class="nbHitsCovered"><a title="Line 281: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;1957</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 281: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">                <span class="keyword">if</span> (thisMidiNote.getPitch() == lastMidiNote.getPitch() &amp;&amp; lastNote.getNormalizedNote().getScaleStep() != thisNote.getNormalizedNote().getScaleStep()) {               </a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;281</td>  <td class="nbHitsCovered"><a title="Line 281: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;4776</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 281: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">                <span class="keyword">if</span> (thisMidiNote.getPitch() == lastMidiNote.getPitch() &amp;&amp; lastNote.getNormalizedNote().getScaleStep() != thisNote.getNormalizedNote().getScaleStep()) {               </a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;282</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="comment">// the notes are different scale steps and should have different pitches.</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;283</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="comment">// This can happen with notes like B# and C in the key of C.</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;284</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;285</td>  <td class="nbHitsCovered"><a title="Line 285: Conditional coverage 100% (2/2).">&nbsp;27</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 285: Conditional coverage 100% (2/2).">                    <span class="keyword">if</span> (lastNote.getChromaticAdjustment() != 0) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;286</td>  <td class="nbHitsCovered">&nbsp;13</td>  <td class="src"><pre class="src">&nbsp;                        lastMidiNote = lastNote.convertToMidiNote(startTime.minus(thisNote.getDuration()), midiTicksPerWholeNote, midiChannel, <span class="keyword">false</span>);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;287</td>  <td class="nbHitsUncovered"><a title="Line 287: Conditional coverage 50% (1/2).">&nbsp;14</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 287: Conditional coverage 50% (1/2).">                    } <span class="keyword">else</span> <span class="keyword">if</span> (thisNote.getChromaticAdjustment() != 0) {</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;288</td>  <td class="nbHitsCovered">&nbsp;14</td>  <td class="src"><pre class="src">&nbsp;                        thisMidiNote = thisNote.convertToMidiNote(startTime, midiTicksPerWholeNote, midiChannel, <span class="keyword">false</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;285</td>  <td class="nbHitsCovered"><a title="Line 285: Conditional coverage 100% (2/2).">&nbsp;54</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 285: Conditional coverage 100% (2/2).">                    <span class="keyword">if</span> (lastNote.getChromaticAdjustment() != 0) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;286</td>  <td class="nbHitsCovered">&nbsp;26</td>  <td class="src"><pre class="src">&nbsp;                        lastMidiNote = lastNote.convertToMidiNote(startTime.minus(thisNote.getDuration()), midiTicksPerWholeNote, midiChannel, <span class="keyword">false</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;287</td>  <td class="nbHitsUncovered"><a title="Line 287: Conditional coverage 50% (1/2).">&nbsp;28</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 287: Conditional coverage 50% (1/2).">                    } <span class="keyword">else</span> <span class="keyword">if</span> (thisNote.getChromaticAdjustment() != 0) {</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;288</td>  <td class="nbHitsCovered">&nbsp;28</td>  <td class="src"><pre class="src">&nbsp;                        thisMidiNote = thisNote.convertToMidiNote(startTime, midiTicksPerWholeNote, midiChannel, <span class="keyword">false</span>);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;289</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    } <span class="keyword">else</span> {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;290</td>  <td class="nbHits">&nbsp;</td>
@@ -529,25 +529,25 @@
   <td class="src"><pre class="src">&nbsp;                    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;295</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;296</td>  <td class="nbHitsUncovered"><a title="Line 296: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;27</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 296: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">                    <span class="keyword">assert</span> thisMidiNote.getPitch() != lastMidiNote.getPitch() : <span class="string">"The midi notes have the same pitch and should not: "</span> + thisMidiNote.getPitch();</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;296</td>  <td class="nbHitsUncovered"><a title="Line 296: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;54</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 296: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">                    <span class="keyword">assert</span> thisMidiNote.getPitch() != lastMidiNote.getPitch() : <span class="string">"The midi notes have the same pitch and should not: "</span> + thisMidiNote.getPitch();</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;297</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                }              </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;298</td>  <td class="nbHitsCovered">&nbsp;1957</td>  <td class="src"><pre class="src">&nbsp;                timeLeftInBar = addMidiNoteEventsToTrack(track, partSection, lastMidiNote, lastNote, timeLeftInBar);                </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;298</td>  <td class="nbHitsCovered">&nbsp;4776</td>  <td class="src"><pre class="src">&nbsp;                timeLeftInBar = addMidiNoteEventsToTrack(track, partSection, lastMidiNote, lastNote, timeLeftInBar);                </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;299</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }                                      </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;300</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;301</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">//The next note start time will be the end of this note...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;302</td>  <td class="nbHitsCovered">&nbsp;2095</td>  <td class="src"><pre class="src">&nbsp;            startTime = startTime.plus(thisNote.getDuration());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;302</td>  <td class="nbHitsCovered">&nbsp;5093</td>  <td class="src"><pre class="src">&nbsp;            startTime = startTime.plus(thisNote.getDuration());</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;303</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;304</td>  <td class="nbHitsCovered">&nbsp;2095</td>  <td class="src"><pre class="src">&nbsp;            lastMidiNote = thisMidiNote;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;305</td>  <td class="nbHitsCovered">&nbsp;2095</td>  <td class="src"><pre class="src">&nbsp;            lastNote = thisNote;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;304</td>  <td class="nbHitsCovered">&nbsp;5093</td>  <td class="src"><pre class="src">&nbsp;            lastMidiNote = thisMidiNote;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;305</td>  <td class="nbHitsCovered">&nbsp;5093</td>  <td class="src"><pre class="src">&nbsp;            lastNote = thisNote;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;306</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }           </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;307</td>  <td class="nbHitsCovered">&nbsp;138</td>  <td class="src"><pre class="src">&nbsp;        timeLeftInBar = addMidiNoteEventsToTrack(track, partSection, lastMidiNote, lastNote, timeLeftInBar);                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;308</td>  <td class="nbHitsCovered">&nbsp;138</td>  <td class="src"><pre class="src">&nbsp;    }        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;307</td>  <td class="nbHitsCovered">&nbsp;317</td>  <td class="src"><pre class="src">&nbsp;        timeLeftInBar = addMidiNoteEventsToTrack(track, partSection, lastMidiNote, lastNote, timeLeftInBar);                </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;308</td>  <td class="nbHitsCovered">&nbsp;317</td>  <td class="src"><pre class="src">&nbsp;    }        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;309</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;310</td>  <td class="nbHits">&nbsp;</td>
@@ -576,8 +576,8 @@
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> Fraction addMidiNoteEventsToTrack(Track track, PartSection partSection, MidiNote midiNote, Note note, Fraction timeLeftInBar) {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;322</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">try</span> {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;323</td>  <td class="nbHitsCovered">&nbsp;2095</td>  <td class="src"><pre class="src">&nbsp;            track.add(midiNote.getNoteOnEvent());</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;324</td>  <td class="nbHitsCovered">&nbsp;2095</td>  <td class="src"><pre class="src">&nbsp;            track.add(midiNote.getNoteOffEvent());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;323</td>  <td class="nbHitsCovered">&nbsp;5093</td>  <td class="src"><pre class="src">&nbsp;            track.add(midiNote.getNoteOnEvent());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;324</td>  <td class="nbHitsCovered">&nbsp;5093</td>  <td class="src"><pre class="src">&nbsp;            track.add(midiNote.getNoteOffEvent());</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;325</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        } <span class="keyword">catch</span> (InvalidMidiDataException ex) {</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;326</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// our logic should prevent this exception from ever occurring, </span></pre></td></tr>
@@ -586,19 +586,19 @@
 <tr>  <td class="numLine">&nbsp;328</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// having to declare it on our method.</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;329</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            <span class="keyword">throw</span> <span class="keyword">new</span> UndeclaredThrowableException(ex, <span class="string">"MidiNote's note on and note off events could not be created.  This indicates a programming error of some sort."</span>);                </span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;330</td>  <td class="nbHitsCovered">&nbsp;2095</td>  <td class="src"><pre class="src">&nbsp;        }        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;330</td>  <td class="nbHitsCovered">&nbsp;5093</td>  <td class="src"><pre class="src">&nbsp;        }        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;331</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;          </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;332</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// add the NotationNote to our partSection...        </span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;333</td>  <td class="nbHitsCovered">&nbsp;2095</td>  <td class="src"><pre class="src">&nbsp;        partSection.getNotationElements().add(note.toNotationNote(partSection, midiNote, timeLeftInBar));</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;333</td>  <td class="nbHitsCovered">&nbsp;5093</td>  <td class="src"><pre class="src">&nbsp;        partSection.getNotationElements().add(note.toNotationNote(partSection, midiNote, timeLeftInBar));</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;334</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;335</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// calculate and return the new timeLeftInBar</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;336</td>  <td class="nbHitsCovered">&nbsp;2095</td>  <td class="src"><pre class="src">&nbsp;        timeLeftInBar = timeLeftInBar.minus(note.getDuration());</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;337</td>  <td class="nbHitsCovered"><a title="Line 337: Conditional coverage 100% (2/2).">&nbsp;2438</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 337: Conditional coverage 100% (2/2).">        <span class="keyword">while</span> (timeLeftInBar.compareTo(0L) &lt;= 0) timeLeftInBar = timeLeftInBar.plus(<span class="keyword">this</span>.timeSignatureFraction);</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;338</td>  <td class="nbHitsCovered">&nbsp;2095</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> timeLeftInBar;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;336</td>  <td class="nbHitsCovered">&nbsp;5093</td>  <td class="src"><pre class="src">&nbsp;        timeLeftInBar = timeLeftInBar.minus(note.getDuration());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;337</td>  <td class="nbHitsCovered"><a title="Line 337: Conditional coverage 100% (2/2).">&nbsp;5918</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 337: Conditional coverage 100% (2/2).">        <span class="keyword">while</span> (timeLeftInBar.compareTo(0L) &lt;= 0) timeLeftInBar = timeLeftInBar.plus(<span class="keyword">this</span>.timeSignatureFraction);</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;338</td>  <td class="nbHitsCovered">&nbsp;5093</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> timeLeftInBar;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;339</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;340</td>  <td class="nbHits">&nbsp;</td>
@@ -619,11 +619,11 @@
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> <span class="keyword">int</span> getMidiTickResolution() {        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;348</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// next, figure out the resolution of our Midi sequence...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;349</td>  <td class="nbHitsCovered">&nbsp;124</td>  <td class="src"><pre class="src">&nbsp;        ArrayList&lt;Long&gt; uniqueDurationDenominators = <span class="keyword">new</span> ArrayList&lt;Long&gt;();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;350</td>  <td class="nbHitsCovered"><a title="Line 350: Conditional coverage 100% (2/2).">&nbsp;124</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 350: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (NoteList nl : noteLists) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;351</td>  <td class="nbHitsCovered"><a title="Line 351: Conditional coverage 100% (2/2).">&nbsp;139</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 351: Conditional coverage 100% (2/2).">            <span class="keyword">for</span> (Note n : nl) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;352</td>  <td class="nbHitsCovered"><a title="Line 352: Conditional coverage 100% (2/2).">&nbsp;2184</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 352: Conditional coverage 100% (2/2).">                <span class="keyword">if</span> (!uniqueDurationDenominators.contains(n.getDuration().denominator())) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;353</td>  <td class="nbHitsCovered">&nbsp;234</td>  <td class="src"><pre class="src">&nbsp;                    uniqueDurationDenominators.add(n.getDuration().denominator());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;349</td>  <td class="nbHitsCovered">&nbsp;282</td>  <td class="src"><pre class="src">&nbsp;        ArrayList&lt;Long&gt; uniqueDurationDenominators = <span class="keyword">new</span> ArrayList&lt;Long&gt;();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;350</td>  <td class="nbHitsCovered"><a title="Line 350: Conditional coverage 100% (2/2).">&nbsp;282</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 350: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (NoteList nl : noteLists) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;351</td>  <td class="nbHitsCovered"><a title="Line 351: Conditional coverage 100% (2/2).">&nbsp;320</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 351: Conditional coverage 100% (2/2).">            <span class="keyword">for</span> (Note n : nl) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;352</td>  <td class="nbHitsCovered"><a title="Line 352: Conditional coverage 100% (2/2).">&nbsp;5320</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 352: Conditional coverage 100% (2/2).">                <span class="keyword">if</span> (!uniqueDurationDenominators.contains(n.getDuration().denominator())) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;353</td>  <td class="nbHitsCovered">&nbsp;528</td>  <td class="src"><pre class="src">&nbsp;                    uniqueDurationDenominators.add(n.getDuration().denominator());</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;354</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                }                </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;355</td>  <td class="nbHits">&nbsp;</td>
@@ -632,9 +632,9 @@
   <td class="src"><pre class="src">&nbsp;        }        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;357</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;358</td>  <td class="nbHitsCovered">&nbsp;124</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">long</span> resolution = MathHelper.leastCommonMultiple(uniqueDurationDenominators);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;359</td>  <td class="nbHitsUncovered"><a title="Line 359: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;124</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 359: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> resolution &lt; Integer.MAX_VALUE;</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;360</td>  <td class="nbHitsCovered">&nbsp;124</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> (<span class="keyword">int</span>) resolution;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;358</td>  <td class="nbHitsCovered">&nbsp;282</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">long</span> resolution = MathHelper.leastCommonMultiple(uniqueDurationDenominators);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;359</td>  <td class="nbHitsUncovered"><a title="Line 359: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;282</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 359: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> resolution &lt; Integer.MAX_VALUE;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;360</td>  <td class="nbHitsCovered">&nbsp;282</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> (<span class="keyword">int</span>) resolution;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;361</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;362</td>  <td class="nbHits">&nbsp;</td>
@@ -655,7 +655,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;370</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> convertMidiTickUnitFromQuarterNotesToWholeNotes(<span class="keyword">long</span> ticksInWholeNotes) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;371</td>  <td class="nbHitsCovered">&nbsp;5</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> ticksInWholeNotes * 4;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;371</td>  <td class="nbHitsCovered">&nbsp;15</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> ticksInWholeNotes * 4;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;372</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;373</td>  <td class="nbHits">&nbsp;</td>
@@ -676,7 +676,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;381</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> convertMidiTickUnitFromQuarterNotesToWholeNotesInt(<span class="keyword">int</span> ticksInWholeNotes) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;382</td>  <td class="nbHitsCovered">&nbsp;138</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> ticksInWholeNotes * 4;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;382</td>  <td class="nbHitsCovered">&nbsp;317</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> ticksInWholeNotes * 4;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;383</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;384</td>  <td class="nbHits">&nbsp;</td>
@@ -695,10 +695,10 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;391</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> saveMidiFile(String fileName) <span class="keyword">throws</span> IOException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;392</td>  <td class="nbHitsCovered">&nbsp;79</td>  <td class="src"><pre class="src">&nbsp;        File outputFile = <span class="keyword">new</span> File(fileName);                        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;393</td>  <td class="nbHitsCovered">&nbsp;79</td>  <td class="src"><pre class="src">&nbsp;        MidiSystem.write(<span class="keyword">this</span>.getSequence(), MIDI_FILE_TYPE_FOR_MULTI_TRACK_SEQUENCE, outputFile);        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;394</td>  <td class="nbHitsCovered">&nbsp;79</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.lastMidiFileName = fileName;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;395</td>  <td class="nbHitsCovered">&nbsp;79</td>  <td class="src"><pre class="src">&nbsp;    }    </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;392</td>  <td class="nbHitsCovered">&nbsp;159</td>  <td class="src"><pre class="src">&nbsp;        File outputFile = <span class="keyword">new</span> File(fileName);                        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;393</td>  <td class="nbHitsCovered">&nbsp;159</td>  <td class="src"><pre class="src">&nbsp;        MidiSystem.write(<span class="keyword">this</span>.getSequence(), MIDI_FILE_TYPE_FOR_MULTI_TRACK_SEQUENCE, outputFile);        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;394</td>  <td class="nbHitsCovered">&nbsp;159</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.lastMidiFileName = fileName;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;395</td>  <td class="nbHitsCovered">&nbsp;159</td>  <td class="src"><pre class="src">&nbsp;    }    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;396</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;397</td>  <td class="nbHits">&nbsp;</td>
@@ -715,8 +715,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;403</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> saveGuidoFile(String fileName) <span class="keyword">throws</span> IOException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;404</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.saveGuidoFile(fileName, <span class="keyword">null</span>, <span class="keyword">null</span>);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;405</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;404</td>  <td class="nbHitsCovered">&nbsp;8</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.saveGuidoFile(fileName, <span class="keyword">null</span>, <span class="keyword">null</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;405</td>  <td class="nbHitsCovered">&nbsp;8</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;406</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;407</td>  <td class="nbHits">&nbsp;</td>
@@ -737,9 +737,9 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;415</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> saveGuidoFile(String fileName, String title, String composer) <span class="keyword">throws</span> IOException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;416</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.getSheetMusicCreator().saveGuidoFile(fileName, title, composer);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;417</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.lastGuidoFileName = fileName;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;418</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;416</td>  <td class="nbHitsCovered">&nbsp;8</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.getSheetMusicCreator().saveGuidoFile(fileName, title, composer);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;417</td>  <td class="nbHitsCovered">&nbsp;8</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.lastGuidoFileName = fileName;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;418</td>  <td class="nbHitsCovered">&nbsp;8</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;419</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;420</td>  <td class="nbHits">&nbsp;</td>
@@ -756,8 +756,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;426</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> saveLilypondFile(String fileName) <span class="keyword">throws</span> IOException {        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;427</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.saveLilypondFile(fileName, <span class="keyword">null</span>, <span class="keyword">null</span>);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;428</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;427</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.saveLilypondFile(fileName, <span class="keyword">null</span>, <span class="keyword">null</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;428</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;429</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;430</td>  <td class="nbHits">&nbsp;</td>
@@ -778,9 +778,9 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;438</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> saveLilypondFile(String fileName, String title, String composer) <span class="keyword">throws</span> IOException {        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;439</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.getSheetMusicCreator().saveLilypondFile(fileName, title, composer);        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;440</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.lastLilypondFileName = fileName;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;441</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;439</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.getSheetMusicCreator().saveLilypondFile(fileName, title, composer);        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;440</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.lastLilypondFileName = fileName;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;441</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;442</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;443</td>  <td class="nbHits">&nbsp;</td>
@@ -803,8 +803,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;452</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> saveLilypondResults(String fileNameWithoutExtension) <span class="keyword">throws</span> Exception {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;453</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.saveLilypondResults(fileNameWithoutExtension, <span class="keyword">null</span>, <span class="keyword">null</span>);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;454</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;453</td>  <td class="nbHitsCovered">&nbsp;11</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.saveLilypondResults(fileNameWithoutExtension, <span class="keyword">null</span>, <span class="keyword">null</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;454</td>  <td class="nbHitsCovered">&nbsp;8</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;455</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;456</td>  <td class="nbHits">&nbsp;</td>
@@ -831,9 +831,9 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;467</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> saveLilypondResults(String fileNameWithoutExtension, String title, String composer) <span class="keyword">throws</span> Exception {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;468</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.getSheetMusicCreator().saveLilypondResults(fileNameWithoutExtension, title, composer);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;469</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.lastLilypondResultsFileNameWithoutExtension = fileNameWithoutExtension;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;470</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;468</td>  <td class="nbHitsCovered">&nbsp;11</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.getSheetMusicCreator().saveLilypondResults(fileNameWithoutExtension, title, composer);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;469</td>  <td class="nbHitsCovered">&nbsp;8</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.lastLilypondResultsFileNameWithoutExtension = fileNameWithoutExtension;        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;470</td>  <td class="nbHitsCovered">&nbsp;8</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;471</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;472</td>  <td class="nbHits">&nbsp;</td>
@@ -850,8 +850,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;478</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> saveGifImage(String fileName) <span class="keyword">throws</span> Exception {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;479</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.saveGifImage(fileName, <span class="keyword">null</span>, <span class="keyword">null</span>);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;480</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;479</td>  <td class="nbHitsCovered">&nbsp;12</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.saveGifImage(fileName, <span class="keyword">null</span>, <span class="keyword">null</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;480</td>  <td class="nbHitsCovered">&nbsp;7</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;481</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;482</td>  <td class="nbHits">&nbsp;</td>
@@ -872,9 +872,9 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;490</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> saveGifImage(String fileName, String title, String composer) <span class="keyword">throws</span> Exception {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;491</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.getSheetMusicCreator().saveAsGifImage(fileName, title, composer);    </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;492</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.lastGifFileName = fileName;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;493</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;491</td>  <td class="nbHitsCovered">&nbsp;12</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.getSheetMusicCreator().saveAsGifImage(fileName, title, composer);    </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;492</td>  <td class="nbHitsCovered">&nbsp;7</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.lastGifFileName = fileName;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;493</td>  <td class="nbHitsCovered">&nbsp;7</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;494</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;495</td>  <td class="nbHits">&nbsp;</td>
@@ -895,9 +895,9 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;503</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> saveWavFile(String fileName) <span class="keyword">throws</span> MidiUnavailableException, IOException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;504</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.getAudioFileCreator().saveWavFile(fileName);    </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;505</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.lastWavFileName = fileName;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;506</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;504</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.getAudioFileCreator().saveWavFile(fileName);    </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;505</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.lastWavFileName = fileName;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;506</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;507</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;508</td>  <td class="nbHits">&nbsp;</td>
@@ -914,9 +914,9 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;514</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> saveMp3File(String fileName) <span class="keyword">throws</span> Exception {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;515</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.getAudioFileCreator().saveMp3File(fileName);  </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;516</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.lastMp3FileName = fileName;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;517</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;515</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.getAudioFileCreator().saveMp3File(fileName);  </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;516</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.lastMp3FileName = fileName;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;517</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;518</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;519</td>  <td class="nbHits">&nbsp;</td>
@@ -931,7 +931,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;524</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> String getLastGifFileName() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;525</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> lastGifFileName;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;525</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> lastGifFileName;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;526</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;527</td>  <td class="nbHits">&nbsp;</td>
@@ -948,7 +948,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;533</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> String getLastGuidoFileName() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;534</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> lastGuidoFileName;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;534</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> lastGuidoFileName;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;535</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;536</td>  <td class="nbHits">&nbsp;</td>
@@ -965,7 +965,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;542</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> String getLastMidiFileName() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;543</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> lastMidiFileName;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;543</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> lastMidiFileName;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;544</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;545</td>  <td class="nbHits">&nbsp;</td>
@@ -982,7 +982,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;551</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> String getLastMp3FileName() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;552</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> lastMp3FileName;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;552</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> lastMp3FileName;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;553</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;554</td>  <td class="nbHits">&nbsp;</td>
@@ -999,7 +999,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;560</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> String getLastWavFileName() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;561</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> lastWavFileName;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;561</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> lastWavFileName;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;562</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;563</td>  <td class="nbHits">&nbsp;</td>
@@ -1018,7 +1018,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;570</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> String getLastLilypondFileName() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;571</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> lastLilypondFileName;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;571</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> lastLilypondFileName;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;572</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;573</td>  <td class="nbHits">&nbsp;</td>
@@ -1039,13 +1039,13 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;581</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> String getLastLilypondResultsFileNameWithoutExtension() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;582</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> lastLilypondResultsFileNameWithoutExtension;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;582</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> lastLilypondResultsFileNameWithoutExtension;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;583</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;584</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 7/23/08 7:49 PM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 7/30/08 12:13 AM.</div>
 </body>
 </html>

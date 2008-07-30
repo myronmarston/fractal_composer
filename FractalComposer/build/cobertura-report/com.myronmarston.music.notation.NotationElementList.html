@@ -82,12 +82,12 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment"> * @author Myron</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;31</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment"> */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;32</td>  <td class="nbHitsCovered">&nbsp;15</td>  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> NotationElementList <span class="keyword">extends</span> ArrayList&lt;NotationElement&gt; <span class="keyword">implements</span> NotationElement {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;32</td>  <td class="nbHitsCovered">&nbsp;34</td>  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> NotationElementList <span class="keyword">extends</span> ArrayList&lt;NotationElement&gt; <span class="keyword">implements</span> NotationElement {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;33</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="comment">// Used to serialize the class.  Change this if the class has a change significant enough to change the way the class is serialized.</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;34</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = 1L;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;35</td>  <td class="nbHitsCovered">&nbsp;705</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> String elementSeperator = <span class="string">""</span>;    </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;35</td>  <td class="nbHitsCovered">&nbsp;1625</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> String elementSeperator = <span class="string">""</span>;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;36</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;37</td>  <td class="nbHits">&nbsp;</td>
@@ -151,9 +151,9 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;67</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> setElementSeperator(String elementSeperator) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;68</td>  <td class="nbHitsUncovered"><a title="Line 68: Conditional coverage 50% (1/2).">&nbsp;674</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 68: Conditional coverage 50% (1/2).">        <span class="keyword">if</span> (elementSeperator == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"elementSeperator cannot be null."</span>);</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;69</td>  <td class="nbHitsCovered">&nbsp;674</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.elementSeperator = elementSeperator;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;70</td>  <td class="nbHitsCovered">&nbsp;674</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;68</td>  <td class="nbHitsUncovered"><a title="Line 68: Conditional coverage 50% (1/2).">&nbsp;1589</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 68: Conditional coverage 50% (1/2).">        <span class="keyword">if</span> (elementSeperator == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"elementSeperator cannot be null."</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;69</td>  <td class="nbHitsCovered">&nbsp;1589</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.elementSeperator = elementSeperator;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;70</td>  <td class="nbHitsCovered">&nbsp;1589</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;71</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;72</td>  <td class="nbHits">&nbsp;</td>
@@ -164,8 +164,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;75</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> NotationElementList() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;76</td>  <td class="nbHitsCovered">&nbsp;657</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">super</span>();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;77</td>  <td class="nbHitsCovered">&nbsp;657</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;76</td>  <td class="nbHitsCovered">&nbsp;1529</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">super</span>();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;77</td>  <td class="nbHitsCovered">&nbsp;1529</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;78</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;79</td>  <td class="nbHits">&nbsp;</td>
@@ -196,8 +196,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;93</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> NotationElementList(Collection&lt;NotationElement&gt; elements) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;94</td>  <td class="nbHitsCovered">&nbsp;48</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">super</span>(elements);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;95</td>  <td class="nbHitsCovered">&nbsp;48</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;94</td>  <td class="nbHitsCovered">&nbsp;96</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">super</span>(elements);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;95</td>  <td class="nbHitsCovered">&nbsp;96</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;96</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;97</td>  <td class="nbHits">&nbsp;</td>
@@ -218,19 +218,19 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;105</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> String toLilypondOrGuidoStringHelper(ToNotationStringMethod toNotationStringMethod) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;106</td>  <td class="nbHitsCovered">&nbsp;363</td>  <td class="src"><pre class="src">&nbsp;        StringBuilder strBuilder = <span class="keyword">new</span> StringBuilder();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;107</td>  <td class="nbHitsCovered">&nbsp;363</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> firstElementDone = <span class="keyword">false</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;106</td>  <td class="nbHitsCovered">&nbsp;829</td>  <td class="src"><pre class="src">&nbsp;        StringBuilder strBuilder = <span class="keyword">new</span> StringBuilder();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;107</td>  <td class="nbHitsCovered">&nbsp;829</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> firstElementDone = <span class="keyword">false</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;108</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;109</td>  <td class="nbHitsCovered"><a title="Line 109: Conditional coverage 100% (2/2).">&nbsp;363</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 109: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (NotationElement element : <span class="keyword">this</span>) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;110</td>  <td class="nbHitsCovered"><a title="Line 110: Conditional coverage 100% (2/2).">&nbsp;1231</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 110: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (firstElementDone) strBuilder.append(<span class="keyword">this</span>.elementSeperator);</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;111</td>  <td class="nbHitsCovered">&nbsp;1231</td>  <td class="src"><pre class="src">&nbsp;            strBuilder.append(toNotationStringMethod.toNotationString(element));</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;112</td>  <td class="nbHitsCovered">&nbsp;1231</td>  <td class="src"><pre class="src">&nbsp;            firstElementDone = <span class="keyword">true</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;109</td>  <td class="nbHitsCovered"><a title="Line 109: Conditional coverage 100% (2/2).">&nbsp;829</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 109: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (NotationElement element : <span class="keyword">this</span>) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;110</td>  <td class="nbHitsCovered"><a title="Line 110: Conditional coverage 100% (2/2).">&nbsp;2868</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 110: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (firstElementDone) strBuilder.append(<span class="keyword">this</span>.elementSeperator);</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;111</td>  <td class="nbHitsCovered">&nbsp;2868</td>  <td class="src"><pre class="src">&nbsp;            strBuilder.append(toNotationStringMethod.toNotationString(element));</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;112</td>  <td class="nbHitsCovered">&nbsp;2868</td>  <td class="src"><pre class="src">&nbsp;            firstElementDone = <span class="keyword">true</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;113</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;114</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;115</td>  <td class="nbHitsCovered">&nbsp;363</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> strBuilder.toString();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;115</td>  <td class="nbHitsCovered">&nbsp;829</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> strBuilder.toString();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;116</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;117</td>  <td class="nbHits">&nbsp;</td>
@@ -247,10 +247,10 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;123</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> String toLilypondString() { </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;124</td>  <td class="nbHitsCovered">&nbsp;57</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> toLilypondOrGuidoStringHelper(<span class="keyword">new</span> NotationElementList.ToNotationStringMethod() {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;124</td>  <td class="nbHitsCovered">&nbsp;152</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> toLilypondOrGuidoStringHelper(<span class="keyword">new</span> NotationElementList.ToNotationStringMethod() {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;125</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">public</span> String toNotationString(NotationElement element) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;126</td>  <td class="nbHitsCovered">&nbsp;181</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">return</span> element.toLilypondString();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;126</td>  <td class="nbHitsCovered">&nbsp;509</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">return</span> element.toLilypondString();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;127</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;128</td>  <td class="nbHits">&nbsp;</td>
@@ -271,10 +271,10 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;136</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> String toGuidoString() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;137</td>  <td class="nbHitsCovered">&nbsp;306</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> toLilypondOrGuidoStringHelper(<span class="keyword">new</span> NotationElementList.ToNotationStringMethod() {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;137</td>  <td class="nbHitsCovered">&nbsp;677</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> toLilypondOrGuidoStringHelper(<span class="keyword">new</span> NotationElementList.ToNotationStringMethod() {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;138</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">public</span> String toNotationString(NotationElement element) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;139</td>  <td class="nbHitsCovered">&nbsp;1050</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">return</span> element.toGuidoString();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;139</td>  <td class="nbHitsCovered">&nbsp;2359</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">return</span> element.toGuidoString();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;140</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;141</td>  <td class="nbHits">&nbsp;</td>
@@ -299,22 +299,22 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;151</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">long</span> getLargestDurationDenominator() <span class="keyword">throws</span> UnsupportedOperationException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;152</td>  <td class="nbHitsCovered">&nbsp;732</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">long</span> largestDenom = Long.MIN_VALUE;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;153</td>  <td class="nbHitsCovered">&nbsp;732</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> supported = <span class="keyword">false</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;152</td>  <td class="nbHitsCovered">&nbsp;1670</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">long</span> largestDenom = Long.MIN_VALUE;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;153</td>  <td class="nbHitsCovered">&nbsp;1670</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> supported = <span class="keyword">false</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;154</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;155</td>  <td class="nbHitsCovered"><a title="Line 155: Conditional coverage 100% (2/2).">&nbsp;732</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 155: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (NotationElement e : <span class="keyword">this</span>) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;156</td>  <td class="nbHitsUncovered"><a title="Line 156: Conditional coverage 50% (1/2).">&nbsp;2506</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 156: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (e.supportsDurationScaling()) {</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;157</td>  <td class="nbHitsCovered">&nbsp;2506</td>  <td class="src"><pre class="src">&nbsp;                supported = <span class="keyword">true</span>;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;158</td>  <td class="nbHitsCovered">&nbsp;2506</td>  <td class="src"><pre class="src">&nbsp;                largestDenom = Math.max(largestDenom, e.getLargestDurationDenominator());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;155</td>  <td class="nbHitsCovered"><a title="Line 155: Conditional coverage 100% (2/2).">&nbsp;1670</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 155: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (NotationElement e : <span class="keyword">this</span>) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;156</td>  <td class="nbHitsUncovered"><a title="Line 156: Conditional coverage 50% (1/2).">&nbsp;5824</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 156: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (e.supportsDurationScaling()) {</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;157</td>  <td class="nbHitsCovered">&nbsp;5824</td>  <td class="src"><pre class="src">&nbsp;                supported = <span class="keyword">true</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;158</td>  <td class="nbHitsCovered">&nbsp;5824</td>  <td class="src"><pre class="src">&nbsp;                largestDenom = Math.max(largestDenom, e.getLargestDurationDenominator());</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;159</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }            </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;160</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;161</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;162</td>  <td class="nbHitsUncovered"><a title="Line 162: Conditional coverage 50% (1/2).">&nbsp;732</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 162: Conditional coverage 50% (1/2).">        <span class="keyword">if</span> (!supported) <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"getLargestDurationDenominator() is not supported on this element."</span>);</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;163</td>  <td class="nbHitsCovered">&nbsp;732</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> largestDenom;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;162</td>  <td class="nbHitsUncovered"><a title="Line 162: Conditional coverage 50% (1/2).">&nbsp;1670</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 162: Conditional coverage 50% (1/2).">        <span class="keyword">if</span> (!supported) <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"getLargestDurationDenominator() is not supported on this element."</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;163</td>  <td class="nbHitsCovered">&nbsp;1670</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> largestDenom;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;164</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;165</td>  <td class="nbHits">&nbsp;</td>
@@ -337,20 +337,20 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;174</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> scaleDurations(<span class="keyword">long</span> scaleFactor) <span class="keyword">throws</span> UnsupportedOperationException {        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;175</td>  <td class="nbHitsUncovered"><a title="Line 175: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;39</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 175: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> MathHelper.numIsPowerOf2(scaleFactor) : scaleFactor;</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;176</td>  <td class="nbHitsCovered">&nbsp;39</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> supported = <span class="keyword">false</span>;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;177</td>  <td class="nbHitsCovered"><a title="Line 177: Conditional coverage 100% (2/2).">&nbsp;39</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 177: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (NotationElement e : <span class="keyword">this</span>) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;178</td>  <td class="nbHitsUncovered"><a title="Line 178: Conditional coverage 50% (1/2).">&nbsp;159</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 178: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (e.supportsDurationScaling()) {</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;179</td>  <td class="nbHitsCovered">&nbsp;159</td>  <td class="src"><pre class="src">&nbsp;                supported = <span class="keyword">true</span>;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;180</td>  <td class="nbHitsCovered">&nbsp;159</td>  <td class="src"><pre class="src">&nbsp;                e.scaleDurations(scaleFactor);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;175</td>  <td class="nbHitsUncovered"><a title="Line 175: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;110</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 175: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> MathHelper.numIsPowerOf2(scaleFactor) : scaleFactor;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;176</td>  <td class="nbHitsCovered">&nbsp;110</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> supported = <span class="keyword">false</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;177</td>  <td class="nbHitsCovered"><a title="Line 177: Conditional coverage 100% (2/2).">&nbsp;110</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 177: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (NotationElement e : <span class="keyword">this</span>) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;178</td>  <td class="nbHitsUncovered"><a title="Line 178: Conditional coverage 50% (1/2).">&nbsp;455</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 178: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (e.supportsDurationScaling()) {</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;179</td>  <td class="nbHitsCovered">&nbsp;455</td>  <td class="src"><pre class="src">&nbsp;                supported = <span class="keyword">true</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;180</td>  <td class="nbHitsCovered">&nbsp;455</td>  <td class="src"><pre class="src">&nbsp;                e.scaleDurations(scaleFactor);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;181</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;182</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;183</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;184</td>  <td class="nbHitsUncovered"><a title="Line 184: Conditional coverage 50% (1/2).">&nbsp;39</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 184: Conditional coverage 50% (1/2).">        <span class="keyword">if</span> (!supported) <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"scaleDurations() is not supported on this element."</span>);</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;185</td>  <td class="nbHitsCovered">&nbsp;39</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;184</td>  <td class="nbHitsUncovered"><a title="Line 184: Conditional coverage 50% (1/2).">&nbsp;110</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 184: Conditional coverage 50% (1/2).">        <span class="keyword">if</span> (!supported) <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"scaleDurations() is not supported on this element."</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;185</td>  <td class="nbHitsCovered">&nbsp;110</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;186</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;187</td>  <td class="nbHits">&nbsp;</td>
@@ -365,8 +365,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;192</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">boolean</span> supportsDurationScaling() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;193</td>  <td class="nbHitsUncovered"><a title="Line 193: Conditional coverage 50% (1/2).">&nbsp;775</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 193: Conditional coverage 50% (1/2).">        <span class="keyword">for</span> (NotationElement element : <span class="keyword">this</span>) {</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;194</td>  <td class="nbHitsUncovered"><a title="Line 194: Conditional coverage 50% (1/2).">&nbsp;775</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 194: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (element.supportsDurationScaling()) <span class="keyword">return</span> <span class="keyword">true</span>;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;193</td>  <td class="nbHitsUncovered"><a title="Line 193: Conditional coverage 50% (1/2).">&nbsp;1798</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 193: Conditional coverage 50% (1/2).">        <span class="keyword">for</span> (NotationElement element : <span class="keyword">this</span>) {</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;194</td>  <td class="nbHitsUncovered"><a title="Line 194: Conditional coverage 50% (1/2).">&nbsp;1798</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 194: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (element.supportsDurationScaling()) <span class="keyword">return</span> <span class="keyword">true</span>;</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;195</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;196</td>  <td class="nbHits">&nbsp;</td>
@@ -390,18 +390,18 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;206</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> List&lt;NotationNote&gt; getNotationNotes() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;207</td>  <td class="nbHitsCovered">&nbsp;530</td>  <td class="src"><pre class="src">&nbsp;        List&lt;NotationNote&gt; notes = <span class="keyword">new</span> ArrayList&lt;NotationNote&gt;();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;208</td>  <td class="nbHitsCovered"><a title="Line 208: Conditional coverage 100% (2/2).">&nbsp;530</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 208: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (NotationElement element : <span class="keyword">this</span>) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;209</td>  <td class="nbHitsCovered"><a title="Line 209: Conditional coverage 100% (2/2).">&nbsp;2297</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 209: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (element <span class="keyword">instanceof</span> NotationNote) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;210</td>  <td class="nbHitsCovered">&nbsp;1983</td>  <td class="src"><pre class="src">&nbsp;                notes.add((NotationNote) element);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;207</td>  <td class="nbHitsCovered">&nbsp;1236</td>  <td class="src"><pre class="src">&nbsp;        List&lt;NotationNote&gt; notes = <span class="keyword">new</span> ArrayList&lt;NotationNote&gt;();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;208</td>  <td class="nbHitsCovered"><a title="Line 208: Conditional coverage 100% (2/2).">&nbsp;1236</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 208: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (NotationElement element : <span class="keyword">this</span>) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;209</td>  <td class="nbHitsCovered"><a title="Line 209: Conditional coverage 100% (2/2).">&nbsp;5368</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 209: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (element <span class="keyword">instanceof</span> NotationNote) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;210</td>  <td class="nbHitsCovered">&nbsp;4602</td>  <td class="src"><pre class="src">&nbsp;                notes.add((NotationNote) element);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;211</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;212</td>  <td class="nbHitsCovered">&nbsp;314</td>  <td class="src"><pre class="src">&nbsp;                notes.addAll(element.getNotationNotes());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;212</td>  <td class="nbHitsCovered">&nbsp;766</td>  <td class="src"><pre class="src">&nbsp;                notes.addAll(element.getNotationNotes());</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;213</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }            </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;214</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;215</td>  <td class="nbHitsCovered">&nbsp;530</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> notes;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;215</td>  <td class="nbHitsCovered">&nbsp;1236</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> notes;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;216</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }       </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;217</td>  <td class="nbHits">&nbsp;</td>
@@ -424,20 +424,20 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;226</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> totalDurationDenomAddsToPowerOf2(Collection&lt;NotationElement&gt; elements) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;227</td>  <td class="nbHitsCovered">&nbsp;120</td>  <td class="src"><pre class="src">&nbsp;        Fraction duration = <span class="keyword">new</span> Fraction(0, 1);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;227</td>  <td class="nbHitsCovered">&nbsp;240</td>  <td class="src"><pre class="src">&nbsp;        Fraction duration = <span class="keyword">new</span> Fraction(0, 1);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;228</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        NotationNote note;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;229</td>  <td class="nbHitsCovered"><a title="Line 229: Conditional coverage 100% (2/2).">&nbsp;120</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 229: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (NotationElement element : elements) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;230</td>  <td class="nbHitsUncovered"><a title="Line 230: Conditional coverage 50% (1/2).">&nbsp;352</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 230: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (element <span class="keyword">instanceof</span> NotationNote) {</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;231</td>  <td class="nbHitsCovered">&nbsp;352</td>  <td class="src"><pre class="src">&nbsp;                note = (NotationNote) element;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;232</td>  <td class="nbHitsCovered">&nbsp;352</td>  <td class="src"><pre class="src">&nbsp;                duration = duration.plus(note.getDuration());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;229</td>  <td class="nbHitsCovered"><a title="Line 229: Conditional coverage 100% (2/2).">&nbsp;240</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 229: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (NotationElement element : elements) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;230</td>  <td class="nbHitsUncovered"><a title="Line 230: Conditional coverage 50% (1/2).">&nbsp;704</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 230: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (element <span class="keyword">instanceof</span> NotationNote) {</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;231</td>  <td class="nbHitsCovered">&nbsp;704</td>  <td class="src"><pre class="src">&nbsp;                note = (NotationNote) element;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;232</td>  <td class="nbHitsCovered">&nbsp;704</td>  <td class="src"><pre class="src">&nbsp;                duration = duration.plus(note.getDuration());</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;233</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;234</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;235</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;236</td>  <td class="nbHitsCovered">&nbsp;120</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> duration.denomIsPowerOf2();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;236</td>  <td class="nbHitsCovered">&nbsp;240</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> duration.denomIsPowerOf2();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;237</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;238</td>  <td class="nbHits">&nbsp;</td>
@@ -456,23 +456,23 @@
   <td class="src"><pre class="src">&nbsp;        NotationNote note;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;245</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;246</td>  <td class="nbHitsCovered"><a title="Line 246: Conditional coverage 100% (2/2).">&nbsp;134</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 246: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="keyword">this</span>.size() - 1; i &gt;= 0; i--) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;246</td>  <td class="nbHitsCovered"><a title="Line 246: Conditional coverage 100% (2/2).">&nbsp;268</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 246: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="keyword">this</span>.size() - 1; i &gt;= 0; i--) {</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;247</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// count down, so that we can remove the notes, and it won't change</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;248</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// the indices of the ones we haven't checked yet</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;249</td>  <td class="nbHitsCovered">&nbsp;105</td>  <td class="src"><pre class="src">&nbsp;            element = <span class="keyword">this</span>.get(i);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;250</td>  <td class="nbHitsUncovered"><a title="Line 250: Conditional coverage 50% (1/2).">&nbsp;105</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 250: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (element <span class="keyword">instanceof</span> NotationNote) {</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;251</td>  <td class="nbHitsCovered">&nbsp;105</td>  <td class="src"><pre class="src">&nbsp;                note = (NotationNote) element;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;252</td>  <td class="nbHitsCovered"><a title="Line 252: Conditional coverage 100% (2/2).">&nbsp;105</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 252: Conditional coverage 100% (2/2).">                <span class="keyword">if</span> (note.getDuration().denomIsPowerOf2()) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;253</td>  <td class="nbHitsCovered">&nbsp;7</td>  <td class="src"><pre class="src">&nbsp;                    <span class="keyword">this</span>.remove(i);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;249</td>  <td class="nbHitsCovered">&nbsp;210</td>  <td class="src"><pre class="src">&nbsp;            element = <span class="keyword">this</span>.get(i);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;250</td>  <td class="nbHitsUncovered"><a title="Line 250: Conditional coverage 50% (1/2).">&nbsp;210</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 250: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (element <span class="keyword">instanceof</span> NotationNote) {</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;251</td>  <td class="nbHitsCovered">&nbsp;210</td>  <td class="src"><pre class="src">&nbsp;                note = (NotationNote) element;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;252</td>  <td class="nbHitsCovered"><a title="Line 252: Conditional coverage 100% (2/2).">&nbsp;210</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 252: Conditional coverage 100% (2/2).">                <span class="keyword">if</span> (note.getDuration().denomIsPowerOf2()) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;253</td>  <td class="nbHitsCovered">&nbsp;14</td>  <td class="src"><pre class="src">&nbsp;                    <span class="keyword">this</span>.remove(i);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;254</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;255</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;256</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;257</td>  <td class="nbHitsCovered">&nbsp;29</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;257</td>  <td class="nbHitsCovered">&nbsp;58</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;258</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;259</td>  <td class="nbHits">&nbsp;</td>
@@ -485,28 +485,28 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;263</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">void</span> removeSublistsWhoseDenomsAddToPowerOf2() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;264</td>  <td class="nbHitsCovered">&nbsp;31</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> sublistRemoved = <span class="keyword">false</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;264</td>  <td class="nbHitsCovered">&nbsp;62</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> sublistRemoved = <span class="keyword">false</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;265</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;266</td>  <td class="nbHitsCovered"><a title="Line 266: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;97</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 266: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">        <span class="keyword">for</span> (<span class="keyword">int</span> firstIndex = 0; !sublistRemoved &amp;&amp; firstIndex &lt; <span class="keyword">this</span>.size() - 1; firstIndex++) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;267</td>  <td class="nbHitsCovered"><a title="Line 267: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;208</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 267: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">            <span class="keyword">for</span> (<span class="keyword">int</span> lastIndex = firstIndex + 1; !sublistRemoved &amp;&amp; lastIndex &lt; <span class="keyword">this</span>.size(); lastIndex++) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;266</td>  <td class="nbHitsCovered"><a title="Line 266: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;194</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 266: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">        <span class="keyword">for</span> (<span class="keyword">int</span> firstIndex = 0; !sublistRemoved &amp;&amp; firstIndex &lt; <span class="keyword">this</span>.size() - 1; firstIndex++) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;267</td>  <td class="nbHitsCovered"><a title="Line 267: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;416</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 267: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">            <span class="keyword">for</span> (<span class="keyword">int</span> lastIndex = firstIndex + 1; !sublistRemoved &amp;&amp; lastIndex &lt; <span class="keyword">this</span>.size(); lastIndex++) {</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;268</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                <span class="comment">// we don't want to remove the entire list, just sub lists, so</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;269</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                <span class="comment">// skip the case where we have the first and last index of the entire list...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;270</td>  <td class="nbHitsCovered"><a title="Line 270: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;142</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 270: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">                <span class="keyword">if</span> (firstIndex == 0 &amp;&amp; lastIndex == <span class="keyword">this</span>.size() - 1) <span class="keyword">continue</span>;</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;270</td>  <td class="nbHitsCovered"><a title="Line 270: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;284</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 270: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">                <span class="keyword">if</span> (firstIndex == 0 &amp;&amp; lastIndex == <span class="keyword">this</span>.size() - 1) <span class="keyword">continue</span>;</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;271</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;272</td>  <td class="nbHitsCovered">&nbsp;116</td>  <td class="src"><pre class="src">&nbsp;                List&lt;NotationElement&gt; sublist = <span class="keyword">this</span>.subList(firstIndex, lastIndex + 1);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;273</td>  <td class="nbHitsCovered"><a title="Line 273: Conditional coverage 100% (2/2).">&nbsp;116</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 273: Conditional coverage 100% (2/2).">                <span class="keyword">if</span> (NotationElementList.totalDurationDenomAddsToPowerOf2(sublist)) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;274</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;                    sublist.clear();                    </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;272</td>  <td class="nbHitsCovered">&nbsp;232</td>  <td class="src"><pre class="src">&nbsp;                List&lt;NotationElement&gt; sublist = <span class="keyword">this</span>.subList(firstIndex, lastIndex + 1);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;273</td>  <td class="nbHitsCovered"><a title="Line 273: Conditional coverage 100% (2/2).">&nbsp;232</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 273: Conditional coverage 100% (2/2).">                <span class="keyword">if</span> (NotationElementList.totalDurationDenomAddsToPowerOf2(sublist)) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;274</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;                    sublist.clear();                    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;275</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;276</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="comment">// now that we've removed a sublist, the indices will have </span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;277</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="comment">// changed, so set our flag that will exit the for loops...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;278</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;                    sublistRemoved = <span class="keyword">true</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;278</td>  <td class="nbHitsCovered">&nbsp;4</td>  <td class="src"><pre class="src">&nbsp;                    sublistRemoved = <span class="keyword">true</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;279</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;280</td>  <td class="nbHits">&nbsp;</td>
@@ -517,8 +517,8 @@
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;283</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// run this algorithm again until we don't find any more sublists to remove...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;284</td>  <td class="nbHitsCovered"><a title="Line 284: Conditional coverage 100% (2/2).">&nbsp;31</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 284: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (sublistRemoved) removeSublistsWhoseDenomsAddToPowerOf2();</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;285</td>  <td class="nbHitsCovered">&nbsp;31</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;284</td>  <td class="nbHitsCovered"><a title="Line 284: Conditional coverage 100% (2/2).">&nbsp;62</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 284: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (sublistRemoved) removeSublistsWhoseDenomsAddToPowerOf2();</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;285</td>  <td class="nbHitsCovered">&nbsp;62</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;286</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;287</td>  <td class="nbHits">&nbsp;</td>
@@ -533,9 +533,9 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;292</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> removeConsecutiveNotesWhoseDenomsAddToPowerOf2() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;293</td>  <td class="nbHitsCovered">&nbsp;29</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.removeNotesWhoseDenomsArePowerOf2();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;294</td>  <td class="nbHitsCovered">&nbsp;29</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.removeSublistsWhoseDenomsAddToPowerOf2();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;295</td>  <td class="nbHitsCovered">&nbsp;29</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;293</td>  <td class="nbHitsCovered">&nbsp;58</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.removeNotesWhoseDenomsArePowerOf2();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;294</td>  <td class="nbHitsCovered">&nbsp;58</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.removeSublistsWhoseDenomsAddToPowerOf2();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;295</td>  <td class="nbHitsCovered">&nbsp;58</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;296</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;297</td>  <td class="nbHits">&nbsp;</td>
@@ -562,22 +562,22 @@
   <td class="src"><pre class="src">&nbsp;        NotationElement element;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;308</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        NotationNote note;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;309</td>  <td class="nbHitsCovered">&nbsp;179</td>  <td class="src"><pre class="src">&nbsp;        Fraction durationSoFar = <span class="keyword">new</span> Fraction(0, 1);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;310</td>  <td class="nbHitsCovered"><a title="Line 310: Conditional coverage 100% (2/2).">&nbsp;879</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 310: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">int</span> i = beginIndex; i &lt; <span class="keyword">this</span>.size(); i++) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;311</td>  <td class="nbHitsCovered">&nbsp;715</td>  <td class="src"><pre class="src">&nbsp;            element = <span class="keyword">this</span>.get(i);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;312</td>  <td class="nbHitsUncovered"><a title="Line 312: Conditional coverage 50% (1/2).">&nbsp;715</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 312: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (element <span class="keyword">instanceof</span> NotationNote) {                </a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;313</td>  <td class="nbHitsCovered">&nbsp;715</td>  <td class="src"><pre class="src">&nbsp;                note = (NotationNote) element;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;314</td>  <td class="nbHitsCovered">&nbsp;715</td>  <td class="src"><pre class="src">&nbsp;                durationSoFar = durationSoFar.plus(note.getDuration());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;309</td>  <td class="nbHitsCovered">&nbsp;358</td>  <td class="src"><pre class="src">&nbsp;        Fraction durationSoFar = <span class="keyword">new</span> Fraction(0, 1);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;310</td>  <td class="nbHitsCovered"><a title="Line 310: Conditional coverage 100% (2/2).">&nbsp;1758</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 310: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">int</span> i = beginIndex; i &lt; <span class="keyword">this</span>.size(); i++) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;311</td>  <td class="nbHitsCovered">&nbsp;1430</td>  <td class="src"><pre class="src">&nbsp;            element = <span class="keyword">this</span>.get(i);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;312</td>  <td class="nbHitsUncovered"><a title="Line 312: Conditional coverage 50% (1/2).">&nbsp;1430</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 312: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (element <span class="keyword">instanceof</span> NotationNote) {                </a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;313</td>  <td class="nbHitsCovered">&nbsp;1430</td>  <td class="src"><pre class="src">&nbsp;                note = (NotationNote) element;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;314</td>  <td class="nbHitsCovered">&nbsp;1430</td>  <td class="src"><pre class="src">&nbsp;                durationSoFar = durationSoFar.plus(note.getDuration());</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;315</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;316</td>  <td class="nbHitsCovered"><a title="Line 316: Conditional coverage 100% (2/2).">&nbsp;715</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 316: Conditional coverage 100% (2/2).">                <span class="keyword">if</span> (durationSoFar.denomIsPowerOf2()) <span class="keyword">return</span> i;                </a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;316</td>  <td class="nbHitsCovered"><a title="Line 316: Conditional coverage 100% (2/2).">&nbsp;1430</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 316: Conditional coverage 100% (2/2).">                <span class="keyword">if</span> (durationSoFar.denomIsPowerOf2()) <span class="keyword">return</span> i;                </a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;317</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;318</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;319</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;320</td>  <td class="nbHitsCovered">&nbsp;164</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> -1;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;320</td>  <td class="nbHitsCovered">&nbsp;328</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> -1;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;321</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;322</td>  <td class="nbHits">&nbsp;</td>
@@ -596,27 +596,27 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;329</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">long</span> getSmallestNoteDurationDenominator() <span class="keyword">throws</span> UnsupportedOperationException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;330</td>  <td class="nbHitsCovered">&nbsp;26</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">long</span> smallestDenom = Long.MAX_VALUE;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;331</td>  <td class="nbHitsCovered">&nbsp;26</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> noteFound = <span class="keyword">false</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;330</td>  <td class="nbHitsCovered">&nbsp;52</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">long</span> smallestDenom = Long.MAX_VALUE;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;331</td>  <td class="nbHitsCovered">&nbsp;52</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> noteFound = <span class="keyword">false</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;332</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;333</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        NotationNote note;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;334</td>  <td class="nbHitsCovered"><a title="Line 334: Conditional coverage 100% (2/2).">&nbsp;26</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 334: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (NotationElement element : <span class="keyword">this</span>) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;335</td>  <td class="nbHitsUncovered"><a title="Line 335: Conditional coverage 50% (1/2).">&nbsp;78</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 335: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (element <span class="keyword">instanceof</span> NotationNote) {</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;336</td>  <td class="nbHitsCovered">&nbsp;78</td>  <td class="src"><pre class="src">&nbsp;                noteFound = <span class="keyword">true</span>;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;337</td>  <td class="nbHitsCovered">&nbsp;78</td>  <td class="src"><pre class="src">&nbsp;                note = (NotationNote) element;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;338</td>  <td class="nbHitsCovered">&nbsp;78</td>  <td class="src"><pre class="src">&nbsp;                smallestDenom = Math.min(smallestDenom, note.getDuration().denominator());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;334</td>  <td class="nbHitsCovered"><a title="Line 334: Conditional coverage 100% (2/2).">&nbsp;52</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 334: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (NotationElement element : <span class="keyword">this</span>) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;335</td>  <td class="nbHitsUncovered"><a title="Line 335: Conditional coverage 50% (1/2).">&nbsp;156</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 335: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (element <span class="keyword">instanceof</span> NotationNote) {</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;336</td>  <td class="nbHitsCovered">&nbsp;156</td>  <td class="src"><pre class="src">&nbsp;                noteFound = <span class="keyword">true</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;337</td>  <td class="nbHitsCovered">&nbsp;156</td>  <td class="src"><pre class="src">&nbsp;                note = (NotationNote) element;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;338</td>  <td class="nbHitsCovered">&nbsp;156</td>  <td class="src"><pre class="src">&nbsp;                smallestDenom = Math.min(smallestDenom, note.getDuration().denominator());</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;339</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;340</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;341</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;342</td>  <td class="nbHitsUncovered"><a title="Line 342: Conditional coverage 50% (1/2).">&nbsp;26</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 342: Conditional coverage 50% (1/2).">        <span class="keyword">if</span> (!noteFound) <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"This list does not have any notes, so this operation is not supported."</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;342</td>  <td class="nbHitsUncovered"><a title="Line 342: Conditional coverage 50% (1/2).">&nbsp;52</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 342: Conditional coverage 50% (1/2).">        <span class="keyword">if</span> (!noteFound) <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"This list does not have any notes, so this operation is not supported."</span>);</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;343</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;344</td>  <td class="nbHitsCovered">&nbsp;26</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> smallestDenom;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;344</td>  <td class="nbHitsCovered">&nbsp;52</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> smallestDenom;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;345</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;346</td>  <td class="nbHits">&nbsp;</td>
@@ -635,24 +635,24 @@
   <td class="src"><pre class="src">&nbsp;        NotationNote note;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;353</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        NotationElement element;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;354</td>  <td class="nbHitsCovered">&nbsp;369</td>  <td class="src"><pre class="src">&nbsp;        Tuplet tuplet = <span class="keyword">null</span>;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;355</td>  <td class="nbHitsCovered">&nbsp;369</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> firstTupletIndex, lastTupletIndex = 0;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;354</td>  <td class="nbHitsCovered">&nbsp;906</td>  <td class="src"><pre class="src">&nbsp;        Tuplet tuplet = <span class="keyword">null</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;355</td>  <td class="nbHitsCovered">&nbsp;906</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> firstTupletIndex, lastTupletIndex = 0;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;356</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;357</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// look through our list for the first note duration that does not have a denominator power of 2</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;358</td>  <td class="nbHitsCovered"><a title="Line 358: Conditional coverage 100% (2/2).">&nbsp;1861</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 358: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (firstTupletIndex = 0; firstTupletIndex &lt; <span class="keyword">this</span>.size(); firstTupletIndex++) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;359</td>  <td class="nbHitsCovered">&nbsp;1666</td>  <td class="src"><pre class="src">&nbsp;            element = <span class="keyword">this</span>.get(firstTupletIndex);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;360</td>  <td class="nbHitsCovered"><a title="Line 360: Conditional coverage 100% (2/2).">&nbsp;1666</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 360: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (element <span class="keyword">instanceof</span> NotationNote) {                </a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;361</td>  <td class="nbHitsCovered">&nbsp;1654</td>  <td class="src"><pre class="src">&nbsp;                note = (NotationNote) element;                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;362</td>  <td class="nbHitsCovered"><a title="Line 362: Conditional coverage 100% (2/2).">&nbsp;1654</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 362: Conditional coverage 100% (2/2).">                <span class="keyword">if</span> (!note.getDuration().denomIsPowerOf2()) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;358</td>  <td class="nbHitsCovered"><a title="Line 358: Conditional coverage 100% (2/2).">&nbsp;4638</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 358: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (firstTupletIndex = 0; firstTupletIndex &lt; <span class="keyword">this</span>.size(); firstTupletIndex++) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;359</td>  <td class="nbHitsCovered">&nbsp;4080</td>  <td class="src"><pre class="src">&nbsp;            element = <span class="keyword">this</span>.get(firstTupletIndex);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;360</td>  <td class="nbHitsCovered"><a title="Line 360: Conditional coverage 100% (2/2).">&nbsp;4080</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 360: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (element <span class="keyword">instanceof</span> NotationNote) {                </a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;361</td>  <td class="nbHitsCovered">&nbsp;4056</td>  <td class="src"><pre class="src">&nbsp;                note = (NotationNote) element;                </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;362</td>  <td class="nbHitsCovered"><a title="Line 362: Conditional coverage 100% (2/2).">&nbsp;4056</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 362: Conditional coverage 100% (2/2).">                <span class="keyword">if</span> (!note.getDuration().denomIsPowerOf2()) {</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;363</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="comment">// make a tuplet sublist...                    </span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;364</td>  <td class="nbHitsCovered">&nbsp;174</td>  <td class="src"><pre class="src">&nbsp;                    lastTupletIndex = <span class="keyword">this</span>.getEndIndexForTupletGroup(firstTupletIndex);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;364</td>  <td class="nbHitsCovered">&nbsp;348</td>  <td class="src"><pre class="src">&nbsp;                    lastTupletIndex = <span class="keyword">this</span>.getEndIndexForTupletGroup(firstTupletIndex);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;365</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;366</td>  <td class="nbHitsCovered"><a title="Line 366: Conditional coverage 100% (2/2).">&nbsp;174</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 366: Conditional coverage 100% (2/2).">                    <span class="keyword">if</span> (lastTupletIndex != -1) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;367</td>  <td class="nbHitsCovered">&nbsp;11</td>  <td class="src"><pre class="src">&nbsp;                        tuplet = <span class="keyword">new</span> Tuplet(<span class="keyword">this</span>.subList(firstTupletIndex, lastTupletIndex + 1));</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;366</td>  <td class="nbHitsCovered"><a title="Line 366: Conditional coverage 100% (2/2).">&nbsp;348</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 366: Conditional coverage 100% (2/2).">                    <span class="keyword">if</span> (lastTupletIndex != -1) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;367</td>  <td class="nbHitsCovered">&nbsp;22</td>  <td class="src"><pre class="src">&nbsp;                        tuplet = <span class="keyword">new</span> Tuplet(<span class="keyword">this</span>.subList(firstTupletIndex, lastTupletIndex + 1));</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;368</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    }              </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;369</td>  <td class="nbHits">&nbsp;</td>
@@ -667,18 +667,18 @@
   <td class="src"><pre class="src">&nbsp;        }        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;374</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;375</td>  <td class="nbHitsCovered"><a title="Line 375: Conditional coverage 100% (2/2).">&nbsp;369</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 375: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (tuplet != <span class="keyword">null</span>) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;375</td>  <td class="nbHitsCovered"><a title="Line 375: Conditional coverage 100% (2/2).">&nbsp;906</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 375: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (tuplet != <span class="keyword">null</span>) {</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;376</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// we created a tuplet sublist; replace the original range with</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;377</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// this new sublist...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;378</td>  <td class="nbHitsCovered">&nbsp;11</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.removeRange(firstTupletIndex, lastTupletIndex + 1);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;379</td>  <td class="nbHitsCovered">&nbsp;11</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.add(firstTupletIndex, tuplet);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;378</td>  <td class="nbHitsCovered">&nbsp;22</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.removeRange(firstTupletIndex, lastTupletIndex + 1);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;379</td>  <td class="nbHitsCovered">&nbsp;22</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.add(firstTupletIndex, tuplet);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;380</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;381</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// we might have nested tuplets, so wrap those as well...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;382</td>  <td class="nbHitsCovered">&nbsp;11</td>  <td class="src"><pre class="src">&nbsp;            tuplet.getNotes().groupTuplets();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;382</td>  <td class="nbHitsCovered">&nbsp;22</td>  <td class="src"><pre class="src">&nbsp;            tuplet.getNotes().groupTuplets();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;383</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;384</td>  <td class="nbHits">&nbsp;</td>
@@ -693,23 +693,23 @@
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// this method.  The tuplet we just dealt with will be skipped, and</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;389</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// it will continue looking through the list for later tuplets.</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;390</td>  <td class="nbHitsCovered">&nbsp;11</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.groupTuplets();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;390</td>  <td class="nbHitsCovered">&nbsp;22</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.groupTuplets();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;391</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;392</td>  <td class="nbHitsCovered">&nbsp;369</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;392</td>  <td class="nbHitsCovered">&nbsp;906</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;393</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;394</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    @Override</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;395</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> NotationElementList clone() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;396</td>  <td class="nbHitsCovered">&nbsp;370</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> (NotationElementList) <span class="keyword">super</span>.clone();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;396</td>  <td class="nbHitsCovered">&nbsp;908</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> (NotationElementList) <span class="keyword">super</span>.clone();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;397</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;398</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 7/23/08 7:49 PM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 7/30/08 12:13 AM.</div>
 </body>
 </html>

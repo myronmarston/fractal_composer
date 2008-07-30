@@ -36,8 +36,8 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
     @ElementList(type=AbstractVoiceOrSection.class)
     private ArrayList<M> internalList = new ArrayList<M>();
     
-    @ElementMap(entry="voiceSection")
-    private HashMap<VoiceSectionHashMapKey, VoiceSection> voiceSections;
+    @Element
+    private FractalPiece fractalPiece;
     
     @Attribute
     private int lastUniqueIndex = 0;
@@ -48,10 +48,10 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
     /**
      * Constructor.
      * 
-     * @param voiceSections the hash map of VoiceSections for the FractalPiece.
+     * @param fractalPiece the fractal piece that owns this list
      */
-    public VoiceOrSectionList(HashMap<VoiceSectionHashMapKey, VoiceSection> voiceSections) {
-        this.voiceSections = voiceSections;
+    public VoiceOrSectionList(FractalPiece fractalPiece) {
+        this.fractalPiece = fractalPiece;
     }
     
     /**
@@ -60,7 +60,16 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
     private VoiceOrSectionList() {
         isDeserializing = true;
     }
-    
+
+    /**
+     * Gets the hash table of voice sections for the entire fractal piece.
+     * 
+     * @return the hash table of voice sections
+     */
+    private Map<VoiceSectionHashMapKey, VoiceSection> getVoiceSections() {
+        return fractalPiece.getVoiceSections();
+    }
+            
     @Override
     public M get(int index) {
         return internalList.get(index);
@@ -121,8 +130,8 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
             vs = mainVorS.instantiateVoiceSection(otherVOrS);
             
             key = vs.createHashMapKey();
-            assert !this.voiceSections.containsKey(key) : this.voiceSections.get(key);
-            this.voiceSections.put(key, vs);
+            assert !this.getVoiceSections().containsKey(key) : this.getVoiceSections().get(key);
+            this.getVoiceSections().put(key, vs);
             
             // assert that our lists have it...
             assert mainVorS.getVoiceSections().get(otherTypeIndex++) == vs;
@@ -154,7 +163,7 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
         this.internalList.remove(index);
         
         for (VoiceSection vs : voiceSectionsToRemove) {
-            this.voiceSections.remove(vs.createHashMapKey());
+            this.getVoiceSections().remove(vs.createHashMapKey());
                                                
             // notify the VoiceSectionLists that they have been modified...
             vs.getVoice().getVoiceSections().incrementModCount();
@@ -185,6 +194,24 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
         
         throw new IndexOutOfBoundsException("No item with unique index " + uniqueIndex + " could be found.");
     }
+
+    /**
+     * Gets the last unique index used by this list.
+     * 
+     * @return the last unique index
+     */
+    protected int getLastUniqueIndex() {        
+        return this.lastUniqueIndex;
+    }
+
+    /**
+     * Sets the value for the last unique index.
+     * 
+     * @param lastUniqueIndex the value
+     */
+    public void setLastUniqueIndex(int lastUniqueIndex) {
+        this.lastUniqueIndex = lastUniqueIndex;
+    }        
     
     /**
      * Gets the next available unique index, and increments the unique index
@@ -192,8 +219,8 @@ public class VoiceOrSectionList<M extends AbstractVoiceOrSection, O extends Abst
      *   
      * @return the next available unique index
      */
-    protected int getNextUniqueIndex() {
-        lastUniqueIndex++;
+    protected int getNextUniqueIndex() {        
+        lastUniqueIndex++;        
         return this.lastUniqueIndex;
     }
     

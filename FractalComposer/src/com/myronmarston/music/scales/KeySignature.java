@@ -44,7 +44,6 @@ public class KeySignature extends AbstractNotationElement {
     @Attribute
     private NoteName keyName;
     
-    @Attribute(required=false)
     private NoteName relativeKeyName;
     
     @Attribute

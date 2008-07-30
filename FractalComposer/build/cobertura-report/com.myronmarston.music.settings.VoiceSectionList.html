@@ -62,7 +62,7 @@
 <tr>  <td class="numLine">&nbsp;22</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.util.AbstractList;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;23</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.util.HashMap;</pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.util.Map;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;24</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;25</td>  <td class="nbHits">&nbsp;</td>
@@ -91,9 +91,9 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment"> * @author Myron</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;37</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment"> */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;38</td>  <td class="nbHitsCovered">&nbsp;3601</td>  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> VoiceSectionList <span class="keyword">extends</span> AbstractList&lt;VoiceSection&gt; {       </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;38</td>  <td class="nbHitsCovered">&nbsp;8364</td>  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> VoiceSectionList <span class="keyword">extends</span> AbstractList&lt;VoiceSection&gt; {       </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;39</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> HashMap&lt;VoiceSectionHashMapKey, VoiceSection&gt; voiceSectionHash;</pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> Map&lt;VoiceSectionHashMapKey, VoiceSection&gt; voiceSectionHash;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;40</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> AbstractVoiceOrSection constantVoiceOrSection;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;41</td>  <td class="nbHits">&nbsp;</td>
@@ -114,18 +114,18 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     *        all VoiceSections in this list</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;49</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;50</td>  <td class="nbHitsCovered">&nbsp;479</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> VoiceSectionList(HashMap&lt;VoiceSectionHashMapKey, VoiceSection&gt; voiceSectionHash, AbstractVoiceOrSection constantVoiceOrSection) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;51</td>  <td class="nbHitsCovered">&nbsp;479</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.voiceSectionHash = voiceSectionHash;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;52</td>  <td class="nbHitsCovered">&nbsp;479</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.constantVoiceOrSection = constantVoiceOrSection;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;53</td>  <td class="nbHitsCovered">&nbsp;479</td>  <td class="src"><pre class="src">&nbsp;    }    </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;50</td>  <td class="nbHitsCovered">&nbsp;1022</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> VoiceSectionList(Map&lt;VoiceSectionHashMapKey, VoiceSection&gt; voiceSectionHash, AbstractVoiceOrSection constantVoiceOrSection) {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;51</td>  <td class="nbHitsCovered">&nbsp;1022</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.voiceSectionHash = voiceSectionHash;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;52</td>  <td class="nbHitsCovered">&nbsp;1022</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.constantVoiceOrSection = constantVoiceOrSection;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;53</td>  <td class="nbHitsCovered">&nbsp;1022</td>  <td class="src"><pre class="src">&nbsp;    }    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;54</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;55</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    @Override</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;56</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> VoiceSection get(<span class="keyword">int</span> index) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;57</td>  <td class="nbHitsCovered">&nbsp;5291</td>  <td class="src"><pre class="src">&nbsp;        VoiceSectionHashMapKey key = <span class="keyword">this</span>.constantVoiceOrSection.getHashMapKeyForOtherTypeIndex(index);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;58</td>  <td class="nbHitsCovered">&nbsp;5291</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">this</span>.voiceSectionHash.get(key);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;57</td>  <td class="nbHitsCovered">&nbsp;12026</td>  <td class="src"><pre class="src">&nbsp;        VoiceSectionHashMapKey key = <span class="keyword">this</span>.constantVoiceOrSection.getHashMapKeyForOtherTypeIndex(index);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;58</td>  <td class="nbHitsCovered">&nbsp;12026</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">this</span>.voiceSectionHash.get(key);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;59</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;60</td>  <td class="nbHits">&nbsp;</td>
@@ -146,8 +146,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;68</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> VoiceSection getByOtherTypeUniqueIndex(<span class="keyword">int</span> uniqueIndex) {        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;69</td>  <td class="nbHitsCovered">&nbsp;7</td>  <td class="src"><pre class="src">&nbsp;        VoiceSectionHashMapKey key = <span class="keyword">this</span>.constantVoiceOrSection.getHashMapKeyForOtherTypeUniqueIndex(uniqueIndex);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;70</td>  <td class="nbHitsCovered">&nbsp;7</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">this</span>.voiceSectionHash.get(key);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;69</td>  <td class="nbHitsCovered">&nbsp;14</td>  <td class="src"><pre class="src">&nbsp;        VoiceSectionHashMapKey key = <span class="keyword">this</span>.constantVoiceOrSection.getHashMapKeyForOtherTypeUniqueIndex(uniqueIndex);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;70</td>  <td class="nbHitsCovered">&nbsp;14</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">this</span>.voiceSectionHash.get(key);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;71</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;72</td>  <td class="nbHits">&nbsp;</td>
@@ -156,13 +156,13 @@
   <td class="src"><pre class="src">&nbsp;    @Override</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;74</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">int</span> size() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;75</td>  <td class="nbHitsCovered"><a title="Line 75: Conditional coverage 100% (2/2).">&nbsp;5792</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 75: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (<span class="keyword">this</span>.constantVoiceOrSection.getListOfMainType().contains(<span class="keyword">this</span>.constantVoiceOrSection)) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;76</td>  <td class="nbHitsCovered">&nbsp;5720</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> <span class="keyword">this</span>.constantVoiceOrSection.getListOfOtherType().size();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;75</td>  <td class="nbHitsCovered"><a title="Line 75: Conditional coverage 100% (2/2).">&nbsp;13275</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 75: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (<span class="keyword">this</span>.constantVoiceOrSection.getListOfMainType().contains(<span class="keyword">this</span>.constantVoiceOrSection)) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;76</td>  <td class="nbHitsCovered">&nbsp;13100</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> <span class="keyword">this</span>.constantVoiceOrSection.getListOfOtherType().size();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;77</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;78</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;79</td>  <td class="nbHitsCovered">&nbsp;72</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> 0;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;79</td>  <td class="nbHitsCovered">&nbsp;175</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> 0;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;80</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;81</td>  <td class="nbHits">&nbsp;</td>
@@ -187,12 +187,12 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;91</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> <span class="keyword">void</span> incrementModCount() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;92</td>  <td class="nbHitsCovered">&nbsp;2000</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.modCount++;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;93</td>  <td class="nbHitsCovered">&nbsp;2000</td>  <td class="src"><pre class="src">&nbsp;    }         </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;92</td>  <td class="nbHitsCovered">&nbsp;4456</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.modCount++;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;93</td>  <td class="nbHitsCovered">&nbsp;4456</td>  <td class="src"><pre class="src">&nbsp;    }         </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;94</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 7/23/08 7:49 PM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 7/30/08 12:13 AM.</div>
 </body>
 </html>

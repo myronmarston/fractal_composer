@@ -20,7 +20,7 @@
 package com.myronmarston.music.settings;
 
 import java.util.AbstractList;
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * An instance of this contains a subset of all the VoiceSections of the
@@ -36,7 +36,7 @@ import java.util.HashMap;
  * @author Myron
  */
 public class VoiceSectionList extends AbstractList<VoiceSection> {       
-    private HashMap<VoiceSectionHashMapKey, VoiceSection> voiceSectionHash;
+    private Map<VoiceSectionHashMapKey, VoiceSection> voiceSectionHash;
     private AbstractVoiceOrSection constantVoiceOrSection;
 
     /**
@@ -47,7 +47,7 @@ public class VoiceSectionList extends AbstractList<VoiceSection> {
      * @param constantVoiceOrSection the Voice or Section that is constant for
      *        all VoiceSections in this list
      */
-    public VoiceSectionList(HashMap<VoiceSectionHashMapKey, VoiceSection> voiceSectionHash, AbstractVoiceOrSection constantVoiceOrSection) {
+    public VoiceSectionList(Map<VoiceSectionHashMapKey, VoiceSection> voiceSectionHash, AbstractVoiceOrSection constantVoiceOrSection) {
         this.voiceSectionHash = voiceSectionHash;
         this.constantVoiceOrSection = constantVoiceOrSection;
     }    

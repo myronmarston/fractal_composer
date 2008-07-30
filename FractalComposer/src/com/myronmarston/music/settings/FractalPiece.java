@@ -48,7 +48,7 @@ import java.util.*;
 @Root
 public class FractalPiece {    
     private static interface InsertIndexProvider { int getInsertIndex(List l); }
-    
+       
     @ElementList(type=Note.class, required=false)
     private NoteList germ = new NoteList();
     
@@ -65,22 +65,21 @@ public class FractalPiece {
     private TimeSignature timeSignature = TimeSignature.DEFAULT;
     
     @Element
-    private VoiceOrSectionList<Voice, Section> voices = new VoiceOrSectionList<Voice, Section>(this.getVoiceSections());
+    private VoiceOrSectionList<Voice, Section> voices = new VoiceOrSectionList<Voice, Section>(this);
     
     @Element
-    private VoiceOrSectionList<Section, Voice> sections = new VoiceOrSectionList<Section, Voice>(this.getVoiceSections());
+    private VoiceOrSectionList<Section, Voice> sections = new VoiceOrSectionList<Section, Voice>(this);
     
-    @ElementMap(entry="voiceSection")
-    private HashMap<VoiceSectionHashMapKey, VoiceSection> voiceSections;
-    
+    @Element
+    private Map<VoiceSectionHashMapKey, VoiceSection> voiceSections = new VoiceSectionHashMap();
+       
     @Attribute
     private boolean generateLayeredIntro = true;
     
     @Attribute
     private boolean generateLayeredOutro = true;        
         
-    private List<Section> tempIntroOutroSections = new ArrayList<Section>();
-    
+    private List<Section> tempIntroOutroSections = new ArrayList<Section>();    
                                     
     /**
      * Returns the germ NoteList.  Guarenteed to never be null.  
@@ -253,8 +252,7 @@ public class FractalPiece {
      * 
      * @return the hash table containing all VoiceSections
      */
-    protected HashMap<VoiceSectionHashMapKey, VoiceSection> getVoiceSections() {
-        if (voiceSections == null) voiceSections = new HashMap<VoiceSectionHashMapKey, VoiceSection>();
+    protected Map<VoiceSectionHashMapKey, VoiceSection> getVoiceSections() {
         return voiceSections;
     }
     
@@ -481,13 +479,16 @@ public class FractalPiece {
      * Clears out any temporary intro or outro sections.  These are created 
      * during fractal piece generation and should not be available the rest of 
      * the time.
+     * 
+     * @param sectionLastUniqueIndex the lastUniqueIndex to set on the sections
      */
-    protected void clearTempIntroOutroSections() {
+    protected void clearTempIntroOutroSections(int sectionLastUniqueIndex) {
         // clear out any sections that were temporarily created...
         for (Section s : this.tempIntroOutroSections) {
             this.getSections().remove(s);
         }
         this.tempIntroOutroSections.clear();
+        this.getSections().setLastUniqueIndex(sectionLastUniqueIndex);
     }                      
     
     /**
@@ -499,6 +500,7 @@ public class FractalPiece {
      */
     public OutputManager createPieceResultOutputManager() throws GermIsEmptyException, UnsupportedOperationException {
         if (this.voices.isEmpty() || this.sections.isEmpty()) throw new UnsupportedOperationException("You must have at least one voice and one section to generate a fractal piece.");
+        int originalSectionUniqueIndex = this.sections.getLastUniqueIndex();
         try {
             // create our intro and outro...
             this.createIntroSections();
@@ -509,7 +511,7 @@ public class FractalPiece {
             
             return new OutputManager(this, voiceResults);
         } finally {
-            this.clearTempIntroOutroSections();
+            this.clearTempIntroOutroSections(originalSectionUniqueIndex);
         }         
     }
     
@@ -531,6 +533,9 @@ public class FractalPiece {
      * @throws java.lang.Exception if there is a deserialization error
      */
     public static FractalPiece loadFromXml(String xml) throws Exception {
+        //TODO: I think this class loader business is no longer necessary
+        // because of changes to JRuby.  Try removing it.
+        
         // Sometimes we get ClassNotFoundExceptions when this is called from
         // JRuby, because the JRuby current thread context class loader doesn't
         // seem to have our classes in it.

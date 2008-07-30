@@ -32,6 +32,7 @@ import java.util.regex.*;
  * @author Myron
  */
 public class SheetMusicCreator {    
+    // TODO: move this class to the notation package
     private final OutputManager outputManager;
     private static final String GUIDO_2_GIF_EXE_FILE = "guido2gif.exe";
     private static final String GUIDO_SUB_DIRECTORY = "guido";
@@ -120,6 +121,7 @@ public class SheetMusicCreator {
 
                 // if lilypond had a problem, throw an exception...
                 if (lilypondOrGuidoOutputIndicatesError(output, SheetMusicCreator.GUIDO_OUTPUT_SUCCESS)) {                    
+                    System.out.println("Error running Guido: " + output);
                     throw new GuidoRunException(output);
                 } else {
                     System.out.println(output);   
