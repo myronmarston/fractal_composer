@@ -53,7 +53,8 @@ public class OutputManager {
     private String lastMp3FileName;
     private String lastGifFileName;
     private String lastLilypondFileName;
-    private String lastLilypondResultsFileNameWithoutExtension;
+    private String lastPdfFileName;
+    private String lastPngFileName;
     
     private static final int MIDI_FILE_TYPE_FOR_MULTI_TRACK_SEQUENCE = 1;    
         
@@ -424,7 +425,7 @@ public class OutputManager {
      * @throws java.io.IOException if an I/O error occurs
      */
     public void saveLilypondFile(String fileName) throws IOException {        
-        this.saveLilypondFile(fileName, null, null);
+        this.saveLilypondFile(fileName, null, null, 0);
     }
     
     /**
@@ -433,40 +434,60 @@ public class OutputManager {
      * @param fileName the name of the file to save to
      * @param title the title to include in the Lilypond file
      * @param composer the composer to include in the Lilypond file
+     * @param imageWidth the width of the paper in pixels
      * @throws java.io.IOException if an I/O error occurs
      */
-    public void saveLilypondFile(String fileName, String title, String composer) throws IOException {        
-        this.getSheetMusicCreator().saveLilypondFile(fileName, title, composer);        
+    public void saveLilypondFile(String fileName, String title, String composer, int imageWidth) throws IOException {        
+        this.getSheetMusicCreator().saveLilypondFile(fileName, title, composer, imageWidth);        
         this.lastLilypondFileName = fileName;
     }
     
     /**
-     * Uses Lilypond to save sheet music notation to a PDF document and one PNG 
-     * file per page.
+     * Uses Lilypond to save sheet music notation to a PDF document.
      * 
-     * @param fileNameWithoutExtension the file name to save the results to. The
-     *        pdf and png extensions, as well as page number, will be added
-     *        automatically
+     * @param fileName the file name to save the pdf file to
      * @throws java.lang.Exception if there is an error
      */
-    public void saveLilypondResults(String fileNameWithoutExtension) throws Exception {
-        this.saveLilypondResults(fileNameWithoutExtension, null, null);
+    public void savePdfFile(String fileName) throws Exception {
+        this.savePdfFile(fileName, null, null);
     }
     
     /**
-     * Uses Lilypond to save sheet music notation to a PDF document and one PNG 
-     * file per page.
+     * Uses Lilypond to save sheet music notation to a PDF document.
      * 
-     * @param fileNameWithoutExtension the file name to save the results to. The
-     *        pdf and png extensions, as well as page number, will be added
-     *        automatically
+     * @param fileName the file name to save the pdf file to
      * @param title the title of the piece
      * @param composer the composer of the piece
      * @throws java.lang.Exception if there is an error
      */
-    public void saveLilypondResults(String fileNameWithoutExtension, String title, String composer) throws Exception {
-        this.getSheetMusicCreator().saveLilypondResults(fileNameWithoutExtension, title, composer);
-        this.lastLilypondResultsFileNameWithoutExtension = fileNameWithoutExtension;        
+    public void savePdfFile(String fileName, String title, String composer) throws Exception {
+        this.getSheetMusicCreator().saveAsPdf(fileName, title, composer);
+        this.lastPdfFileName = fileName;        
+    }
+    
+    /**
+     * Saves notation to a png file using lilypond.
+     * 
+     * @param fileName the name of the file
+     * @param imageWidth the desired width of the image
+     * @throws java.lang.Exception if an error occurs
+     */
+    public void savePngFile(String fileName, int imageWidth) throws Exception {
+        this.savePngFile(fileName, null, null, imageWidth);
+    }
+    
+    /**
+     * Saves notation to a png file using lilypond.
+     * 
+     * @param fileName the name of the file
+     * @param title the title of the piece
+     * @param composer the composer of the piece
+     * @param imageWidth the desired width of the image
+     * @throws java.lang.Exception if an error occurs
+     */
+    public void savePngFile(String fileName, String title, String composer, int imageWidth) throws Exception {
+        this.getSheetMusicCreator().saveAsPng(fileName, title, composer, imageWidth);
+        this.lastPngFileName = fileName;
     }
                 
     /**
@@ -572,13 +593,22 @@ public class OutputManager {
     }
 
     /**
-     * Gets the file name, without extension, last passed to lilypond to produce
-     * PDF and PNG sheet music output.  The actual files will have appropriate
-     * PDF and PNG extensions, and page numbers for the png files.
+     * Gets the file name last passed to lilypond to produce PDF sheet music
+     * output.
      * 
-     * @return the file name, without extension, last used by lilypond
+     * @return the pdf file name last used by lilypond
      */
-    public String getLastLilypondResultsFileNameWithoutExtension() {
-        return lastLilypondResultsFileNameWithoutExtension;
+    public String getLastPdfFileName() {
+        return lastPdfFileName;
+    }        
+    
+    /**
+     * Gets the file name last passed to lilypond to produce png sheet music
+     * output.
+     * 
+     * @return the png file name last used by lilypond
+     */
+    public String getLastPngFileName() {
+        return lastPngFileName;
     }        
 }

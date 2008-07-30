@@ -161,6 +161,27 @@ Class that manages the creation of sheet music files using Lilypond and GUIDO.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>protected &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/SheetMusicCreator.html#saveAsPdf(java.lang.String, java.lang.String, java.lang.String)">saveAsPdf</A></B>(java.lang.String&nbsp;fileName,
+          java.lang.String&nbsp;title,
+          java.lang.String&nbsp;composer)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the notation to a PDF file using lilypond.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/SheetMusicCreator.html#saveAsPng(java.lang.String, java.lang.String, java.lang.String, int)">saveAsPng</A></B>(java.lang.String&nbsp;fileName,
+          java.lang.String&nbsp;title,
+          java.lang.String&nbsp;composer,
+          int&nbsp;imageWidth)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/SheetMusicCreator.html#saveGuidoFile(java.lang.String, java.lang.String, java.lang.String)">saveGuidoFile</A></B>(java.lang.String&nbsp;fileName,
               java.lang.String&nbsp;title,
               java.lang.String&nbsp;composer)</CODE>
@@ -171,22 +192,13 @@ Class that manages the creation of sheet music files using Lilypond and GUIDO.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>protected &nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/SheetMusicCreator.html#saveLilypondFile(java.lang.String, java.lang.String, java.lang.String)">saveLilypondFile</A></B>(java.lang.String&nbsp;fileName,
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/SheetMusicCreator.html#saveLilypondFile(java.lang.String, java.lang.String, java.lang.String, int)">saveLilypondFile</A></B>(java.lang.String&nbsp;fileName,
                  java.lang.String&nbsp;title,
-                 java.lang.String&nbsp;composer)</CODE>
+                 java.lang.String&nbsp;composer,
+                 int&nbsp;imageWidth)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the lilypond notation to a file.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/SheetMusicCreator.html#saveLilypondResults(java.lang.String, java.lang.String, java.lang.String)">saveLilypondResults</A></B>(java.lang.String&nbsp;fileNameWithoutExtension,
-                    java.lang.String&nbsp;title,
-                    java.lang.String&nbsp;composer)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the lilypond results to a PDF file and one PNG file per page.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -343,40 +355,56 @@ protected void <B>saveGuidoFile</B>(java.lang.String&nbsp;fileName,
 </DL>
 <HR>
 
-<A NAME="saveLilypondFile(java.lang.String, java.lang.String, java.lang.String)"><!-- --></A><H3>
+<A NAME="saveLilypondFile(java.lang.String, java.lang.String, java.lang.String, int)"><!-- --></A><H3>
 saveLilypondFile</H3>
 <PRE>
 protected void <B>saveLilypondFile</B>(java.lang.String&nbsp;fileName,
                                 java.lang.String&nbsp;title,
-                                java.lang.String&nbsp;composer)
+                                java.lang.String&nbsp;composer,
+                                int&nbsp;imageWidth)
                          throws java.io.IOException</PRE>
 <DL>
 <DD>Saves the lilypond notation to a file.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the file to save the lilypond notation to<DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the file to save the lilypond notation to<DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece<DD><CODE>imageWidth</CODE> - the width of the image, or use 0 to use the default paper size
 <DT><B>Throws:</B>
 <DD><CODE>java.io.IOException</CODE> - if an I/O error occurs</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="saveLilypondResults(java.lang.String, java.lang.String, java.lang.String)"><!-- --></A><H3>
-saveLilypondResults</H3>
+<A NAME="saveAsPdf(java.lang.String, java.lang.String, java.lang.String)"><!-- --></A><H3>
+saveAsPdf</H3>
 <PRE>
-protected void <B>saveLilypondResults</B>(java.lang.String&nbsp;fileNameWithoutExtension,
-                                   java.lang.String&nbsp;title,
-                                   java.lang.String&nbsp;composer)
-                            throws java.lang.Exception</PRE>
+protected void <B>saveAsPdf</B>(java.lang.String&nbsp;fileName,
+                         java.lang.String&nbsp;title,
+                         java.lang.String&nbsp;composer)
+                  throws java.lang.Exception</PRE>
 <DL>
-<DD>Saves the lilypond results to a PDF file and one PNG file per page.
+<DD>Saves the notation to a PDF file using lilypond.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>fileNameWithoutExtension</CODE> - the file name to save the results to. The
-        pdf and png extensions, as well as page number, will be added
-        automatically<DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name to save the results to.<DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.Exception</CODE> - if there is an error</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="saveAsPng(java.lang.String, java.lang.String, java.lang.String, int)"><!-- --></A><H3>
+saveAsPng</H3>
+<PRE>
+protected void <B>saveAsPng</B>(java.lang.String&nbsp;fileName,
+                         java.lang.String&nbsp;title,
+                         java.lang.String&nbsp;composer,
+                         int&nbsp;imageWidth)
+                  throws java.lang.Exception</PRE>
+<DL>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.Exception</CODE></DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

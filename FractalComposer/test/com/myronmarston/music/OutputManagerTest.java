@@ -201,15 +201,22 @@ public class OutputManagerTest {
             public void useTempFile(String tempFileName) throws Exception {
                 OutputManagerTest.this.outputManager.setTestNotationError(true);
                 try {
-                    OutputManagerTest.this.outputManager.saveLilypondResults(tempFileName);                
+                    OutputManagerTest.this.outputManager.savePdfFile(tempFileName + ".pdf");                
+                    fail();
+                } catch (LilypondRunException ex) {}
+                
+                try {
+                    OutputManagerTest.this.outputManager.savePngFile(tempFileName + ".png", 500);                
                     fail();
                 } catch (LilypondRunException ex) {}
                 
                 OutputManagerTest.this.outputManager.setTestNotationError(false);
-                OutputManagerTest.this.outputManager.saveLilypondResults(tempFileName);
+                
+                OutputManagerTest.this.outputManager.savePdfFile(tempFileName + ".pdf");
                 File file = new File(tempFileName + ".pdf");
                 assertTrue(file.exists());
                 
+                OutputManagerTest.this.outputManager.savePngFile(tempFileName + ".png", 500);
                 file = new File(tempFileName + ".png");
                 BufferedImage image = ImageIO.read(file);
                 assertNotNull(image.getData());                
@@ -320,13 +327,23 @@ public class OutputManagerTest {
             }
         });              
         
-        testALastFileNameMethod("LilypondResults", "", new OutputManagerTest.LastFileName() {
+        testALastFileNameMethod("LilypondPdf", ".pdf", new OutputManagerTest.LastFileName() {
             public String getLastFileName() throws Exception {
-                return outputManager.getLastLilypondResultsFileNameWithoutExtension();
+                return outputManager.getLastPdfFileName();
             }
             
             public void saveFile(String fileName) throws Exception {
-                outputManager.saveLilypondResults(fileName);
+                outputManager.savePdfFile(fileName);
+            }
+        });              
+        
+        testALastFileNameMethod("LilypondPng", ".png", new OutputManagerTest.LastFileName() {
+            public String getLastFileName() throws Exception {
+                return outputManager.getLastPngFileName();
+            }
+            
+            public void saveFile(String fileName) throws Exception {
+                outputManager.savePngFile(fileName, 500);
             }
         });              
     
@@ -364,9 +381,15 @@ public class OutputManagerTest {
         fp.setGermString("G4,1/128 A4,1/256");
         final OutputManager om = fp.createPieceResultOutputManager();
         
-        FileHelper.createAndUseTempFile("LilypondTest", "", new FileHelper.TempFileUser() {
+        FileHelper.createAndUseTempFile("LilypondTest", ".pdf", new FileHelper.TempFileUser() {
             public void useTempFile(String tempFileName) throws Exception {
-                om.saveLilypondResults(tempFileName);
+                om.savePdfFile(tempFileName);
+            }
+        });
+        
+        FileHelper.createAndUseTempFile("LilypondTest", ".png", new FileHelper.TempFileUser() {
+            public void useTempFile(String tempFileName) throws Exception {
+                om.savePngFile(tempFileName, 500);
             }
         });
         

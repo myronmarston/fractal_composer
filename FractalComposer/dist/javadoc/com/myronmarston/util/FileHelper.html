@@ -131,6 +131,14 @@ A class that provides static methods to manage temporary file resources.
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interface for using a temporary file.</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;interface</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/FileHelper.TransientFileUser.html" title="interface in com.myronmarston.util">FileHelper.TransientFileUser</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interface used by method deleteNewTransientFiles.</TD>
+</TR>
 </TABLE>
 &nbsp;<!-- =========== FIELD SUMMARY =========== -->
 
@@ -205,11 +213,46 @@ A class that provides static methods to manage temporary file resources.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/FileHelper.html#deleteNewTransientFiles(java.io.File, java.io.FileFilter, com.myronmarston.util.FileHelper.TransientFileUser)">deleteNewTransientFiles</A></B>(java.io.File&nbsp;directory,
+                        java.io.FileFilter&nbsp;transientFileFilter,
+                        <A HREF="../../../com/myronmarston/util/FileHelper.TransientFileUser.html" title="interface in com.myronmarston.util">FileHelper.TransientFileUser</A>&nbsp;transientFileUser)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Manages the deletion of transient files--i.e.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/FileHelper.html#fileExists(java.lang.String)">fileExists</A></B>(java.lang.String&nbsp;fileName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checks to see if the given file exists.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;java.io.File</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/FileHelper.html#getTempDirectory()">getTempDirectory</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the temporary directory used on this system.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/util/FileHelper.html#readFileIntoString(java.lang.String)">readFileIntoString</A></B>(java.lang.String&nbsp;fileName)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reads the contents of a file into a string using UTF-8 encoding.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/FileHelper.html#stripFileExtension(java.lang.String, java.lang.String)">stripFileExtension</A></B>(java.lang.String&nbsp;fileName,
+                   java.lang.String&nbsp;expectedFileExtension)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the file name without the extension.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -340,6 +383,85 @@ public static java.lang.String <B>readFileIntoString</B>(java.lang.String&nbsp;f
 <DT><B>Returns:</B><DD>the string contents of the file
 <DT><B>Throws:</B>
 <DD><CODE>java.io.IOException</CODE> - if an I/O error occurs</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="deleteNewTransientFiles(java.io.File, java.io.FileFilter, com.myronmarston.util.FileHelper.TransientFileUser)"><!-- --></A><H3>
+deleteNewTransientFiles</H3>
+<PRE>
+public static void <B>deleteNewTransientFiles</B>(java.io.File&nbsp;directory,
+                                           java.io.FileFilter&nbsp;transientFileFilter,
+                                           <A HREF="../../../com/myronmarston/util/FileHelper.TransientFileUser.html" title="interface in com.myronmarston.util">FileHelper.TransientFileUser</A>&nbsp;transientFileUser)
+                                    throws java.lang.Exception</PRE>
+<DL>
+<DD>Manages the deletion of transient files--i.e. files created by some 
+ external process that are no longer needed and can be deleted.  The
+ transientFileFilter determines what qualifies as a transient file.  
+ Any existing files the match this filter will be kept; any files that
+ are created by the transientFileUser.doWork() method that match the
+ filter will be deleted.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>directory</CODE> - the directory in which the transient files will be 
+        created<DD><CODE>transientFileFilter</CODE> - filter that determines what is a transient 
+        file<DD><CODE>transientFileUser</CODE> - object containing a doWork() method that might 
+        create some transient files
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.Exception</CODE> - if an error occurs</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getTempDirectory()"><!-- --></A><H3>
+getTempDirectory</H3>
+<PRE>
+public static java.io.File <B>getTempDirectory</B>()
+                                     throws java.io.IOException</PRE>
+<DL>
+<DD>Gets the temporary directory used on this system.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the temp directory
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE> - if an error occurred while getting the temp
+         directory</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="stripFileExtension(java.lang.String, java.lang.String)"><!-- --></A><H3>
+stripFileExtension</H3>
+<PRE>
+public static java.lang.String <B>stripFileExtension</B>(java.lang.String&nbsp;fileName,
+                                                  java.lang.String&nbsp;expectedFileExtension)
+                                           throws java.lang.IllegalArgumentException</PRE>
+<DL>
+<DD>Returns the file name without the extension.  If the file does not have
+ the expected extension, throws an IllegalArgumentException.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name<DD><CODE>expectedFileExtension</CODE> - the expected extension
+<DT><B>Returns:</B><DD>the file name without the extension
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.IllegalArgumentException</CODE> - if the file name does not
+         have the extension</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="fileExists(java.lang.String)"><!-- --></A><H3>
+fileExists</H3>
+<PRE>
+public static boolean <B>fileExists</B>(java.lang.String&nbsp;fileName)</PRE>
+<DL>
+<DD>Checks to see if the given file exists.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name to check
+<DT><B>Returns:</B><DD>true if it exists; false if it does not or is a directory rather 
+         than a file</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

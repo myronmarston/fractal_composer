@@ -195,15 +195,6 @@ Class that manages the outputs from FractalComposer, such as Midi files, WAV
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;java.lang.String</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getLastLilypondResultsFileNameWithoutExtension()">getLastLilypondResultsFileNameWithoutExtension</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the file name, without extension, last passed to lilypond to produce
- PDF and PNG sheet music output.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getLastMidiFileName()">getLastMidiFileName</A></B>()</CODE>
 
 <BR>
@@ -216,6 +207,24 @@ Class that manages the outputs from FractalComposer, such as Midi files, WAV
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the file name of the last mp3 file saved using this output manager.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getLastPdfFileName()">getLastPdfFileName</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the file name last passed to lilypond to produce PDF sheet music
+ output.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#getLastPngFileName()">getLastPngFileName</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the file name last passed to lilypond to produce png sheet music
+ output.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -331,32 +340,13 @@ Class that manages the outputs from FractalComposer, such as Midi files, WAV
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#saveLilypondFile(java.lang.String, java.lang.String, java.lang.String)">saveLilypondFile</A></B>(java.lang.String&nbsp;fileName,
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#saveLilypondFile(java.lang.String, java.lang.String, java.lang.String, int)">saveLilypondFile</A></B>(java.lang.String&nbsp;fileName,
                  java.lang.String&nbsp;title,
-                 java.lang.String&nbsp;composer)</CODE>
+                 java.lang.String&nbsp;composer,
+                 int&nbsp;imageWidth)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the Lilypond notation to file.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#saveLilypondResults(java.lang.String)">saveLilypondResults</A></B>(java.lang.String&nbsp;fileNameWithoutExtension)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uses Lilypond to save sheet music notation to a PDF document and one PNG 
- file per page.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#saveLilypondResults(java.lang.String, java.lang.String, java.lang.String)">saveLilypondResults</A></B>(java.lang.String&nbsp;fileNameWithoutExtension,
-                    java.lang.String&nbsp;title,
-                    java.lang.String&nbsp;composer)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uses Lilypond to save sheet music notation to a PDF document and one PNG 
- file per page.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -373,6 +363,44 @@ Class that manages the outputs from FractalComposer, such as Midi files, WAV
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the music to an mp3 file.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#savePdfFile(java.lang.String)">savePdfFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uses Lilypond to save sheet music notation to a PDF document.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#savePdfFile(java.lang.String, java.lang.String, java.lang.String)">savePdfFile</A></B>(java.lang.String&nbsp;fileName,
+            java.lang.String&nbsp;title,
+            java.lang.String&nbsp;composer)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uses Lilypond to save sheet music notation to a PDF document.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#savePngFile(java.lang.String, int)">savePngFile</A></B>(java.lang.String&nbsp;fileName,
+            int&nbsp;imageWidth)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves notation to a png file using lilypond.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#savePngFile(java.lang.String, java.lang.String, java.lang.String, int)">savePngFile</A></B>(java.lang.String&nbsp;fileName,
+            java.lang.String&nbsp;title,
+            java.lang.String&nbsp;composer,
+            int&nbsp;imageWidth)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves notation to a png file using lilypond.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -683,60 +711,91 @@ public void <B>saveLilypondFile</B>(java.lang.String&nbsp;fileName)
 </DL>
 <HR>
 
-<A NAME="saveLilypondFile(java.lang.String, java.lang.String, java.lang.String)"><!-- --></A><H3>
+<A NAME="saveLilypondFile(java.lang.String, java.lang.String, java.lang.String, int)"><!-- --></A><H3>
 saveLilypondFile</H3>
 <PRE>
 public void <B>saveLilypondFile</B>(java.lang.String&nbsp;fileName,
                              java.lang.String&nbsp;title,
-                             java.lang.String&nbsp;composer)
+                             java.lang.String&nbsp;composer,
+                             int&nbsp;imageWidth)
                       throws java.io.IOException</PRE>
 <DL>
 <DD>Saves the Lilypond notation to file.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the file to save to<DD><CODE>title</CODE> - the title to include in the Lilypond file<DD><CODE>composer</CODE> - the composer to include in the Lilypond file
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the file to save to<DD><CODE>title</CODE> - the title to include in the Lilypond file<DD><CODE>composer</CODE> - the composer to include in the Lilypond file<DD><CODE>imageWidth</CODE> - the width of the paper in pixels
 <DT><B>Throws:</B>
 <DD><CODE>java.io.IOException</CODE> - if an I/O error occurs</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="saveLilypondResults(java.lang.String)"><!-- --></A><H3>
-saveLilypondResults</H3>
+<A NAME="savePdfFile(java.lang.String)"><!-- --></A><H3>
+savePdfFile</H3>
 <PRE>
-public void <B>saveLilypondResults</B>(java.lang.String&nbsp;fileNameWithoutExtension)
-                         throws java.lang.Exception</PRE>
+public void <B>savePdfFile</B>(java.lang.String&nbsp;fileName)
+                 throws java.lang.Exception</PRE>
 <DL>
-<DD>Uses Lilypond to save sheet music notation to a PDF document and one PNG 
- file per page.
+<DD>Uses Lilypond to save sheet music notation to a PDF document.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>fileNameWithoutExtension</CODE> - the file name to save the results to. The
-        pdf and png extensions, as well as page number, will be added
-        automatically
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name to save the pdf file to
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.Exception</CODE> - if there is an error</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="saveLilypondResults(java.lang.String, java.lang.String, java.lang.String)"><!-- --></A><H3>
-saveLilypondResults</H3>
+<A NAME="savePdfFile(java.lang.String, java.lang.String, java.lang.String)"><!-- --></A><H3>
+savePdfFile</H3>
 <PRE>
-public void <B>saveLilypondResults</B>(java.lang.String&nbsp;fileNameWithoutExtension,
-                                java.lang.String&nbsp;title,
-                                java.lang.String&nbsp;composer)
-                         throws java.lang.Exception</PRE>
+public void <B>savePdfFile</B>(java.lang.String&nbsp;fileName,
+                        java.lang.String&nbsp;title,
+                        java.lang.String&nbsp;composer)
+                 throws java.lang.Exception</PRE>
 <DL>
-<DD>Uses Lilypond to save sheet music notation to a PDF document and one PNG 
- file per page.
+<DD>Uses Lilypond to save sheet music notation to a PDF document.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>fileNameWithoutExtension</CODE> - the file name to save the results to. The
-        pdf and png extensions, as well as page number, will be added
-        automatically<DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name to save the pdf file to<DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.Exception</CODE> - if there is an error</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="savePngFile(java.lang.String, int)"><!-- --></A><H3>
+savePngFile</H3>
+<PRE>
+public void <B>savePngFile</B>(java.lang.String&nbsp;fileName,
+                        int&nbsp;imageWidth)
+                 throws java.lang.Exception</PRE>
+<DL>
+<DD>Saves notation to a png file using lilypond.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the file<DD><CODE>imageWidth</CODE> - the desired width of the image
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.Exception</CODE> - if an error occurs</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="savePngFile(java.lang.String, java.lang.String, java.lang.String, int)"><!-- --></A><H3>
+savePngFile</H3>
+<PRE>
+public void <B>savePngFile</B>(java.lang.String&nbsp;fileName,
+                        java.lang.String&nbsp;title,
+                        java.lang.String&nbsp;composer,
+                        int&nbsp;imageWidth)
+                 throws java.lang.Exception</PRE>
+<DL>
+<DD>Saves notation to a png file using lilypond.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the file<DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece<DD><CODE>imageWidth</CODE> - the desired width of the image
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.Exception</CODE> - if an error occurs</DL>
 </DD>
 </DL>
 <HR>
@@ -895,18 +954,32 @@ public java.lang.String <B>getLastLilypondFileName</B>()</PRE>
 </DL>
 <HR>
 
-<A NAME="getLastLilypondResultsFileNameWithoutExtension()"><!-- --></A><H3>
-getLastLilypondResultsFileNameWithoutExtension</H3>
+<A NAME="getLastPdfFileName()"><!-- --></A><H3>
+getLastPdfFileName</H3>
 <PRE>
-public java.lang.String <B>getLastLilypondResultsFileNameWithoutExtension</B>()</PRE>
+public java.lang.String <B>getLastPdfFileName</B>()</PRE>
 <DL>
-<DD>Gets the file name, without extension, last passed to lilypond to produce
- PDF and PNG sheet music output.  The actual files will have appropriate
- PDF and PNG extensions, and page numbers for the png files.
+<DD>Gets the file name last passed to lilypond to produce PDF sheet music
+ output.
 <P>
 <DD><DL>
 
-<DT><B>Returns:</B><DD>the file name, without extension, last used by lilypond</DL>
+<DT><B>Returns:</B><DD>the pdf file name last used by lilypond</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLastPngFileName()"><!-- --></A><H3>
+getLastPngFileName</H3>
+<PRE>
+public java.lang.String <B>getLastPngFileName</B>()</PRE>
+<DL>
+<DD>Gets the file name last passed to lilypond to produce png sheet music
+ output.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the png file name last used by lilypond</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

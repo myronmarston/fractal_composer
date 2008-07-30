@@ -90,8 +90,10 @@ public class AudioFileCreator {
             // Play Sequence into AudioSynthesizer Receiver.
             double totalLength = this.sendOutputSequenceMidiEvents(synth.getReceiver());
 
+            // give it an extra 2 seconds, to the reverb to fade out--otherwise it sounds unnatural
+            totalLength += 2;
             // Calculate how long the WAVE file needs to be.
-            long len = (long) (stream1.getFormat().getFrameRate() * (totalLength + 4));
+            long len = (long) (stream1.getFormat().getFrameRate() * totalLength);
             stream2 = new AudioInputStream(stream1, stream1.getFormat(), len);
             
             // Write the wave file to disk

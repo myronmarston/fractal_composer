@@ -102,4 +102,55 @@ public class FileHelperTest {
             }
         });
     }
+        
+    @Test
+    public void deleteTransientFilesWhenDone() throws Exception {        
+        final String suffix = ".match";
+        
+        FileHelper.createAndUseTempFile("Test", suffix, new FileHelper.TempFileUser() {
+            public void useTempFile(String tempFileName) throws Exception {
+                File originalTempFile = new File(tempFileName);
+                assertTrue(originalTempFile.exists());
+                                
+                final File newTransientFile = File.createTempFile("TestTransient", suffix);
+                newTransientFile.delete();
+                assertFalse(newTransientFile.exists());                
+                
+                FileHelper.deleteNewTransientFiles(FileHelper.getTempDirectory(), new java.io.FileFilter() {
+                    public boolean accept(File pathname) {
+                        return pathname.getName().endsWith(suffix);
+                    }
+                }, new FileHelper.TransientFileUser() {
+                    public void doWork() throws Exception {                        
+                        newTransientFile.createNewFile();
+                        assertTrue(newTransientFile.exists());
+                    }
+                });
+                
+                assertFalse(newTransientFile.exists());
+                assertTrue(originalTempFile.exists());
+            }
+        });        
+    }
+    
+    @Test
+    public void stripFileExtension() throws Exception {        
+        assertEquals("example", FileHelper.stripFileExtension("example.pdf", ".pdf"));
+        assertEquals("looooong_fiiiiiiilename", FileHelper.stripFileExtension("looooong_fiiiiiiilename.longextension", ".longextension"));
+        
+        try {
+            FileHelper.stripFileExtension("filename_without_extension", ".missing_extension");
+            fail();
+        } catch (IllegalArgumentException ex) {}
+    }
+    
+    @Test
+    public void fileExists() throws Exception {
+        FileHelper.createAndUseTempFile("test", ".txt", new FileHelper.TempFileUser() {
+            public void useTempFile(String tempFileName) throws Exception {
+                assertTrue(FileHelper.fileExists(tempFileName));
+                assertFalse(FileHelper.fileExists(tempFileName + "not_a_file"));
+            }
+        });
+    }
 }

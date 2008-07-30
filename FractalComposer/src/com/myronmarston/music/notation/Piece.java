@@ -19,6 +19,7 @@
 
 package com.myronmarston.music.notation;
 
+import com.myronmarston.music.SheetMusicCreator;
 import com.myronmarston.music.scales.KeySignature;
 import com.myronmarston.music.settings.TimeSignature;
 import com.myronmarston.music.settings.InvalidTimeSignatureException;
@@ -135,19 +136,48 @@ public class Piece {
     }           
             
     /**
+     * Gets the lilypond paper section.  If the image width is less than or 
+     * equal to zero, an empty string is returned so that the lilypond default 
+     * is used.
+     * 
+     * @param imageWidth desired width of the image lilypond generates in pixels
+     * @return the lilypond paper section string
+     */
+    private static String getLilypondPaperSection(int imageWidth) {
+        if (imageWidth <= 0) return "";
+
+        // lilypond uses a point unit that is not exactly equivalent to 
+        // pixels.  I thought it would be 72 points per inch, but based on
+        // my testing, 0.7 is the right value to use to convert.        
+        int ptImageWidth = (int) (imageWidth * 0.7d);
+        
+        // http://lilypond.org/doc/v2.11/Documentation/user/lilypond-program/Inserting-LilyPond-output-into-other-programs#Inserting-LilyPond-output-into-other-programs
+        return "\\paper{" + FileHelper.NEW_LINE +
+               "    indent=50\\pt" + FileHelper.NEW_LINE +
+               "    line-width=" + ptImageWidth + "\\pt" + FileHelper.NEW_LINE +
+               "    oddFooterMarkup=##f" + FileHelper.NEW_LINE +
+               "    oddHeaderMarkup=##f" + FileHelper.NEW_LINE +
+               "    bookTitleMarkup = ##f" + FileHelper.NEW_LINE +
+               "    scoreTitleMarkup = ##f" + FileHelper.NEW_LINE +
+               "}" + FileHelper.NEW_LINE + FileHelper.NEW_LINE;
+    }
+    
+    /**
      * Gets the lilypond notation of this piece.
      * 
      * @param title the title of the piece
      * @param composer the composer of the piece
      * @return the lilypond string
      */
-    public String toLilypondString(String title, String composer) {
+    public String toLilypondString(String title, String composer, int width) {
         this.scaleDurationsIfNecessary();        
         this.getParts().setElementSeperator(FileHelper.NEW_LINE);
         
         StringBuilder str = new StringBuilder();
         str.append("\\version \"2.11.47\"" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);
         str.append("\\include \"english.ly\"" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);
+        str.append("#(ly:set-option 'point-and-click #f)" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);
+        str.append(getLilypondPaperSection(width));
         str.append("\\header {" + FileHelper.NEW_LINE);
         if (title != null && !title.isEmpty()) str.append("  title = \"" + title + "\"" + FileHelper.NEW_LINE);
         if (title != null && !composer.isEmpty()) str.append("  composer = \"" + composer + "\"" + FileHelper.NEW_LINE);

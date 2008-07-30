@@ -42,6 +42,15 @@ public class PieceTest {
         StringBuilder expectedPieceString = new StringBuilder();
         expectedPieceString.append("\\version \"2.11.47\"" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);
         expectedPieceString.append("\\include \"english.ly\"" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);
+        expectedPieceString.append("#(ly:set-option 'point-and-click #f)" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);
+        expectedPieceString.append("\\paper{" + FileHelper.NEW_LINE);
+        expectedPieceString.append("    indent=50\\pt" + FileHelper.NEW_LINE);
+        expectedPieceString.append("    line-width=350\\pt" + FileHelper.NEW_LINE);
+        expectedPieceString.append("    oddFooterMarkup=##f" + FileHelper.NEW_LINE);
+        expectedPieceString.append("    oddHeaderMarkup=##f" + FileHelper.NEW_LINE);
+        expectedPieceString.append("    bookTitleMarkup = ##f" + FileHelper.NEW_LINE);
+        expectedPieceString.append("    scoreTitleMarkup = ##f" + FileHelper.NEW_LINE);
+        expectedPieceString.append("}" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);
         expectedPieceString.append("\\header {" + FileHelper.NEW_LINE);
         expectedPieceString.append("  title = \"Etude 6\"" + FileHelper.NEW_LINE);
         expectedPieceString.append("  composer = \"Myron Marston\"" + FileHelper.NEW_LINE);
@@ -54,7 +63,7 @@ public class PieceTest {
         expectedPieceString.append("   \\layout { }" + FileHelper.NEW_LINE);
         expectedPieceString.append("}");                        
                
-        assertEquals(expectedPieceString.toString(), part.getPiece().toLilypondString("Etude 6", "Myron Marston"));
+        assertEquals(expectedPieceString.toString(), part.getPiece().toLilypondString("Etude 6", "Myron Marston", 500));
     }
     
     @Test

@@ -24,6 +24,7 @@ import com.myronmarston.music.notation.LilypondRunException;
 import com.myronmarston.util.ProcessRunner;
 import com.myronmarston.util.FileHelper;
 import java.io.*;
+import java.util.*;
 import java.util.regex.*;
 
 /**
@@ -40,9 +41,7 @@ public class SheetMusicCreator {
     private static String lilypondDirectory = CURRENT_DIR;
     private static String guidoParentDirectory = CURRENT_DIR;
     private static final String LILYPOND_EXE_FILE = "lilypond.exe";
-    private static final Pattern LILYPOND_OUTPUT_SUCCESS = Pattern.compile(".*?converting to .*?(pdf|png).*", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);    
-    private static final Pattern LILYPOND_OR_GUIDO_OUTPUT_ERRPR = Pattern.compile(".*?(warning|error).*", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);       
-    private static final Pattern GUIDO_OUTPUT_SUCCESS = Pattern.compile(".*?Creating Gif.*?", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);        
+    private static final Pattern LILYPOND_OR_GUIDO_OUTPUT_ERROR = Pattern.compile(".*?(warning|error).*", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);       
     
     /**
      * Constructor.
@@ -120,8 +119,7 @@ public class SheetMusicCreator {
                 String output = ProcessRunner.runProcess(pb);
 
                 // if lilypond had a problem, throw an exception...
-                if (lilypondOrGuidoOutputIndicatesError(output, SheetMusicCreator.GUIDO_OUTPUT_SUCCESS)) {                    
-                    System.out.println("Error running Guido: " + output);
+                if (!FileHelper.fileExists(gifFileName) || lilypondOrGuidoOutputIndicatesError(output)) {                    
                     throw new GuidoRunException(output);
                 } else {
                     System.out.println(output);   
@@ -150,79 +148,123 @@ public class SheetMusicCreator {
      * @param fileName the name of the file to save the lilypond notation to
      * @param title the title of the piece
      * @param composer the composer of the piece
+     * @param imageWidth the width of the image, or use 0 to use the default paper size
      * @throws java.io.IOException if an I/O error occurs
      */
-    protected void saveLilypondFile(String fileName, String title, String composer) throws IOException {        
-        String lilypondContent = this.outputManager.getPieceNotation().toLilypondString(title, composer);
+    protected void saveLilypondFile(String fileName, String title, String composer, int imageWidth) throws IOException {        
+        String lilypondContent = this.outputManager.getPieceNotation().toLilypondString(title, composer, imageWidth);
         if (this.outputManager.getTestNotationError()) lilypondContent += "}";
         FileHelper.createTextFile(fileName, lilypondContent);        
     }
     
     /**
-     * Saves the lilypond results to a PDF file and one PNG file per page.
+     * Saves the notation to a PDF file using lilypond.
      * 
-     * @param fileNameWithoutExtension the file name to save the results to. The
-     *        pdf and png extensions, as well as page number, will be added
-     *        automatically
+     * @param fileName the file name to save the results to. 
      * @param title the title of the piece
      * @param composer the composer of the piece
      * @throws java.lang.Exception if there is an error
      */
-    protected void saveLilypondResults(final String fileNameWithoutExtension, final String title, final String composer) throws Exception {       
-        final File psFile = new File(fileNameWithoutExtension + ".ps");
-        final boolean psFileExistedBeforeLilypondRun = psFile.exists();
-        try {
-            FileHelper.createAndUseTempFile("Lilypond", ".ly", new FileHelper.TempFileUser() {
-                public void useTempFile(String tempFileName) throws Exception {                    
-                    SheetMusicCreator.this.saveLilypondFile(tempFileName, title, composer);
-
-                    ProcessBuilder pb = new ProcessBuilder();                   
-                    pb.directory(new File(getLilypondDirectory()));
-
-                    pb.command(
-                        LILYPOND_EXE_FILE,        
-                        "--pdf",
-                        "--png",
-                        "--output=" + fileNameWithoutExtension,
-                        tempFileName);
-                                        
-                    String output = ProcessRunner.runProcess(pb);                    
-                                                             
-                    // if lilypond had a problem, throw an exception...
-                    if (lilypondOrGuidoOutputIndicatesError(output, SheetMusicCreator.LILYPOND_OUTPUT_SUCCESS)) {
-                        throw new LilypondRunException(output);
-                    } else {
-                        System.out.println(output);   
-                    }
+    protected void saveAsPdf(final String fileName, final String title, final String composer) throws Exception {       
+        final String fileNameWithoutExtension = FileHelper.stripFileExtension(fileName, ".pdf");
+        this.runLilypond(
+            fileName, 
+            title, 
+            composer, 
+            0, 
+            ".pdf", 
+            new java.io.FileFilter() {
+                public boolean accept(File pathname) {
+                    return pathname.getName().endsWith(fileNameWithoutExtension + ".ps");
                 }
-            });        
-        } finally {
-            // clean up the ps file created by Lilypond
-            if (psFile.exists() && !psFileExistedBeforeLilypondRun) {
-                psFile.delete();
-            }
-        }        
+            }, 
+            "--pdf"
+        );                    
+    }
+    
+    protected void saveAsPng(final String fileName, final String title, final String composer, final int imageWidth) throws Exception {                       
+        String fileNameWithoutExtension = FileHelper.stripFileExtension(fileName, ".png");
+        String fileNameWithoutExtensionOrFolderPath = (new File(fileNameWithoutExtension)).getName();
+        assert !fileNameWithoutExtensionOrFolderPath.contains(File.separator);
+        final Pattern transientFilePattern = Pattern.compile(".*?" + fileNameWithoutExtensionOrFolderPath + "(.*?eps|-system.*?)", Pattern.DOTALL);
+        
+        this.runLilypond(
+            fileName, 
+            title, 
+            composer, 
+            imageWidth, 
+            ".png", 
+            new java.io.FileFilter() {
+                public boolean accept(File pathname) {
+                    return transientFilePattern.matcher(pathname.getName()).matches();                    
+                }
+            },         
+            // http://lilypond.org/doc/v2.11/Documentation/user/lilypond-program/Inserting-LilyPond-output-into-other-programs#Inserting-LilyPond-output-into-other-programs
+            "-dbackend=eps",
+            "-dno-gs-load-fonts",
+            "-dinclude-eps-fonts",
+            "--png"
+        );
     }
     
     /**
-     * Checks the logging messages produced by lilypond to see if it there was
-     * an error.  
+     * Runs lilypond, using the given options.
+     * 
+     * @param fileName the name of file to save the results to
+     * @param title the title of the piece
+     * @param composer the composer of the piece
+     * @param imageWidth the desired image width in pixels, or 0 to use the 
+     *        default
+     * @param fileExtension the file extension used
+     * @param transientFileFilter filter that specifies which transient files
+     *        to delete
+     * @param lilypondCommandLineOptions list of command line options to pass
+     *        to lilypond
+     * @throws java.lang.Exception if an error occurs
+     */
+    private void runLilypond(final String fileName, final String title, final String composer, final int imageWidth, final String fileExtension, final FileFilter transientFileFilter, final String ... lilypondCommandLineOptions) throws Exception {       
+        final String fileNameWithoutExtension = FileHelper.stripFileExtension(fileName, fileExtension);
+        final File lilypondDir = new File(getLilypondDirectory());
+        
+        FileHelper.deleteNewTransientFiles(lilypondDir, transientFileFilter, new FileHelper.TransientFileUser() {
+            public void doWork() throws Exception {
+                FileHelper.createAndUseTempFile("Lilypond", ".ly", new FileHelper.TempFileUser() {
+                    public void useTempFile(String tempFileName) throws Exception {                    
+                       SheetMusicCreator.this.saveLilypondFile(tempFileName, title, composer, imageWidth);
+
+                        List<String> commandLineOptions = new ArrayList<String>();
+                        commandLineOptions.add(LILYPOND_EXE_FILE);
+                        commandLineOptions.addAll(Arrays.asList(lilypondCommandLineOptions));
+                        commandLineOptions.add("--output=" + fileNameWithoutExtension);
+                        commandLineOptions.add(tempFileName);                        
+                        
+                        ProcessBuilder pb = new ProcessBuilder();                   
+                        pb.directory(lilypondDir);                        
+                        pb.command(commandLineOptions);
+
+                        String output = ProcessRunner.runProcess(pb);                    
+
+                        // if lilypond had a problem, throw an exception...
+                        if (!FileHelper.fileExists(fileName) || lilypondOrGuidoOutputIndicatesError(output)) {
+                            throw new LilypondRunException(output);
+                        } else {
+                            System.out.println(output);   
+                        }
+                    }
+                });        
+            }
+        });        
+    }
+    
+    /**
+     * Checks the logging messages produced by lilypond or guido to see if it 
+     * there was an error.  
      * 
      * @param lilypondOutput the logging messages produced by lilypond
-     * @param successPattern a regex pattern matching successful output
      * @return true if there was an error
      */    
-    private static boolean lilypondOrGuidoOutputIndicatesError(String output, Pattern successPattern) {
-        // We check two things here:
-        // 1. The presence of the expected success message.  If it is
-        //    missing, this is taken to be an indication of failure.
-        // 2. The presence of a message containing the words "error" or 
-        //    "warning".  This is taken to be an indication of failure.
-        
-        Matcher successMatches = successPattern.matcher(output);
-        if (!successMatches.matches()) return true;
-        
-        Matcher errorMatches = SheetMusicCreator.LILYPOND_OR_GUIDO_OUTPUT_ERRPR.matcher(output);
+    private static boolean lilypondOrGuidoOutputIndicatesError(String output) {
+        Matcher errorMatches = SheetMusicCreator.LILYPOND_OR_GUIDO_OUTPUT_ERROR.matcher(output);
         return (errorMatches.matches());
     }        
 }
