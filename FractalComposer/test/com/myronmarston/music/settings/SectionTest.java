@@ -33,13 +33,10 @@ import static org.junit.Assert.*;
 public class SectionTest {
         
     @Test
-    public void getSectionDuration() {
+    public void getSectionDuration() throws Exception {
         FractalPiece fp = new FractalPiece();
         Scale scale = fp.getScale();
-        fp.getGerm().add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));
-        fp.getGerm().add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, scale, 0));
-        fp.getGerm().add(new Note(2, 2, 4, 0, new Fraction(1, 2), 64, scale, 0));
-        fp.getGerm().add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));
+        fp.setGermString("C4,1/1,F D4,1/2,MP E4,1/2,MP C4,1/1,F");
         
         Voice v1 = fp.createVoice();
         v1.getSettings().setOctaveAdjustment(1);
@@ -136,7 +133,7 @@ public class SectionTest {
     @Test
     public void getSectionKeySignature() throws Exception {
         Scale FMajor = new MajorScale(NoteName.F);
-        Scale GMinor = new MinorScale(NoteName.G);
+        Scale GMinor = new NaturalMinorScale(NoteName.G);
         FractalPiece fp = new FractalPiece();
         fp.setScale(FMajor);
         fp.createDefaultSettings();
@@ -155,7 +152,7 @@ public class SectionTest {
     @Test
     public void overridePieceScale() throws Exception {
         Scale FMajor = new MajorScale(NoteName.F);
-        Scale GMinor = new MinorScale(NoteName.G);        
+        Scale GMinor = new NaturalMinorScale(NoteName.G);        
         FractalPiece fp = new FractalPiece();
         fp.setScale(FMajor);
         fp.createDefaultSettings();
@@ -197,7 +194,7 @@ public class SectionTest {
     public void getGermForSection() throws Exception {
         FractalPiece fp = new FractalPiece();
         fp.createDefaultSettings();
-        fp.setScale(new MinorScale(NoteName.E));
+        fp.setScale(new NaturalMinorScale(NoteName.E));
         String germString = "E4 G4 B4 A4 D4 E4";
         fp.setGermString(germString);
         
@@ -252,7 +249,7 @@ public class SectionTest {
         expectedGerm = NoteList.parseNoteListString(germString, new MajorPentatonicScale(NoteName.G));                        
         NoteListTest.assertNoteListsEqual(expectedGerm, s1.getGermForSection());
         
-        fp.setScale(new MinorScale(NoteName.E));
+        fp.setScale(new NaturalMinorScale(NoteName.E));
         s1.setScale(new MajorPentatonicScale(NoteName.Bb));
         expectedGerm = NoteList.parseNoteListString(germString, new MajorPentatonicScale(NoteName.G));                        
         NoteListTest.assertNoteListsEqual(expectedGerm, s1.getGermForSection());
@@ -269,7 +266,7 @@ public class SectionTest {
         
         FractalPiece fp = new FractalPiece();
         fp.createDefaultSettings();
-        fp.setScale(new MinorScale(NoteName.E));        
+        fp.setScale(new NaturalMinorScale(NoteName.E));        
         fp.setGermString("E4 G4 B4 A4 D4 E4");
         
         Section s1 = fp.getSections().get(0);

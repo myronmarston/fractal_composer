@@ -268,7 +268,7 @@ public class PieceTest {
         Section s1 = fp.createSection();
         Section s2 = fp.createSection();   
         s1.setOverridePieceScale(true);
-        s1.setScale(new MinorScale(NoteName.C));        
+        s1.setScale(new NaturalMinorScale(NoteName.C));        
         
         Sequence seq = fp.createPieceResultOutputManager().getSequence();
                                 

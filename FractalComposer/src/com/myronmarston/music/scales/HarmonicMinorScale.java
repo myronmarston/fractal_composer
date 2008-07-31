@@ -29,7 +29,7 @@ import org.simpleframework.xml.*;
  * @author Myron
  */
 @Root
-public class HarmonicMinorScale extends MinorScale {
+public class HarmonicMinorScale extends NaturalMinorScale {
     private final static int[] SCALE_STEPS = new int[] {0, 2, 3, 5, 7, 8, 11};
     
     /**

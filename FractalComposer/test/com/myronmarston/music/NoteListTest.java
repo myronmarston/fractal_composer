@@ -160,6 +160,38 @@ public class NoteListTest {
         NoteList expected = NoteList.parseNoteListString("G4", Scale.DEFAULT);
         NoteListTest.assertNoteListsEqual(expected, normalized);
     }        
+    
+    @Test
+    public void getReadOnlyCopy() throws Exception {
+        NoteList nl = NoteList.parseNoteListString("G4 A4 B4", Scale.DEFAULT);
+        NoteList readOnlyCopy = nl.getReadOnlyCopy();
+        
+        try {
+            readOnlyCopy.add(Note.createRest(new Fraction("1/4")));
+            fail();
+        } catch (UnsupportedOperationException ex) {}
+        
+        try {
+            readOnlyCopy.remove(0);
+            fail();
+        } catch (UnsupportedOperationException ex) {}
+        
+        try {
+            readOnlyCopy.set(1, Note.createRest(new Fraction("1/4")));
+            fail();
+        } catch (UnsupportedOperationException ex) {}
+        
+        assertFalse(nl.isReadOnly());
+        assertTrue(readOnlyCopy.isReadOnly());
+        
+        // the clone should be modifiable...
+        assertFalse(readOnlyCopy.clone().isReadOnly());
+    }
+    
+    @Test(expected=NoteStringOnlyRestException.class)
+    public void errorIfOnlyRests() throws Exception {
+        NoteList.parseNoteListString("R,1/4", Scale.DEFAULT);
+    }
                 
     public static void assertNoteListsEqual(NoteList expected, NoteList actual) {        
         assertNoteListsEqual(expected, actual, false);
@@ -177,5 +209,27 @@ public class NoteListTest {
         for (int i = 0; i < actual.size(); i++) {            
             NoteTest.assertNotesEqual(expected.get(i), actual.get(i), allowDifferentVoiceSectionReferences);
         }   
+        
+        assertEquals(expected.isReadOnly(), actual.isReadOnly());
+        testNoteListReadOnlyness(expected);
+        testNoteListReadOnlyness(actual);
     }            
+    
+    public static void testNoteListReadOnlyness(NoteList nl) {
+        if (!nl.isReadOnly()) return;
+        try {
+            nl.add(Note.createRest(new Fraction("1/4")));
+            fail();
+        } catch (UnsupportedOperationException ex) {}
+        
+        try {
+            nl.remove(0);
+            fail();
+        } catch (UnsupportedOperationException ex) {}
+        
+        try {
+            nl.set(1, Note.createRest(new Fraction("1/4")));
+            fail();
+        } catch (UnsupportedOperationException ex) {}
+    }
 } 

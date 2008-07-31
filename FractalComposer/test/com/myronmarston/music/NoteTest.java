@@ -84,7 +84,7 @@ public class NoteTest {
         parseNoteStringTestHelper(new Note(1, 1, 2, 1, new Fraction(2, 1), 67, new MajorScale(NoteName.B), 0), "Cx3", new MajorScale(NoteName.B), new Fraction(2, 1), 67);
         
         // a default rhythm, and an entered volume
-        parseNoteStringTestHelper(new Note(4, 4, 2, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), new MinorScale(NoteName.B), 0), "F#3,MF", new MinorScale(NoteName.B), new Fraction(1, 4), null);
+        parseNoteStringTestHelper(new Note(4, 4, 2, 0, new Fraction(1, 4), Dynamic.MF.getMidiVolume(), new NaturalMinorScale(NoteName.B), 0), "F#3,MF", new NaturalMinorScale(NoteName.B), new Fraction(1, 4), null);
         
         // a rest
         parseNoteStringTestHelper(Note.createRest(new Fraction(1, 3)), "R,1/3", new MajorScale(NoteName.B), null, null);

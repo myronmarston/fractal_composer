@@ -34,7 +34,8 @@ import org.simpleframework.xml.*;
  */
 @Root
 public class VoiceSettings extends AbstractVoiceOrSectionSettings implements Subscriber {   
-    
+    // TODO: move octave adjustment and speed scale factor to
+    //       AbstractVoiceOrSectionSettings
     @Attribute
     private int octaveAdjustment;
     

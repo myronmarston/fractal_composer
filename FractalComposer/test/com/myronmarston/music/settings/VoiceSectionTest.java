@@ -121,16 +121,14 @@ public class VoiceSectionTest {
     }
     
     @Test
-    public void voiceSectionGetVoiceSectionResult() {
+    public void voiceSectionGetVoiceSectionResult() throws Exception {
         // this method is meant to test two things:
         // 1. that the voice section results are correct
         // 2. that our caching of the results are cleared when settings change
         FractalPiece fp = new FractalPiece();
+        fp.setScale(new MajorScale(NoteName.C));
         Scale scale = fp.getScale();
-        fp.getGerm().add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));
-        fp.getGerm().add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, scale, 0));
-        fp.getGerm().add(new Note(2, 2, 4, 0, new Fraction(1, 2), 64, scale, 0));
-        fp.getGerm().add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));
+        fp.setGermString("C4,1/1,F D4,1/2,MP E4,1/2,MP C4,1/1,F");
         
         Voice v1 = fp.createVoice();
         v1.getSettings().setOctaveAdjustment(2);
@@ -140,11 +138,12 @@ public class VoiceSectionTest {
         VoiceSection vs1 = v1.getVoiceSections().get(0);
         
         NoteList expected = new NoteList();
-        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
-        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));                
+        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), scale, 0));
+        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), scale, 0));                
         expected.setSourceVoiceSectionOnAllNotes(vs1);
+        expected.setfirstNotesOfGermCopy(0);
         NoteListTest.assertNoteListsEqual(expected, vs1.getVoiceSectionResult());
                 
         // apply self-similarity...        
@@ -152,25 +151,26 @@ public class VoiceSectionTest {
         v1.getSettings().getSelfSimilaritySettings().setApplyToRhythm(true);
         v1.getSettings().getSelfSimilaritySettings().setApplyToVolume(true);
         expected.clear();
-        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
-        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), scale, 0));
+        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), scale, 0));
         
-        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 16), 43, scale, 0));
-        expected.add(new Note(3, 3, 6, 0, new Fraction(1, 16), 43, scale, 0));
-        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 16), 36, scale, 0));
+        expected.add(new Note(3, 3, 6, 0, new Fraction(1, 16), 36, scale, 0));
+        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
         
-        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(3, 3, 6, 0, new Fraction(1, 16), 43, scale, 0));
-        expected.add(new Note(4, 4, 6, 0, new Fraction(1, 16), 43, scale, 0));
-        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(3, 3, 6, 0, new Fraction(1, 16), 36, scale, 0));
+        expected.add(new Note(4, 4, 6, 0, new Fraction(1, 16), 36, scale, 0));
+        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
         
-        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
-        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), scale, 0));
+        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), scale, 0));
+        expected.setfirstNotesOfGermCopy(0, 4, 8, 12);
         expected.setSourceVoiceSectionOnAllNotes(vs1);
         NoteListTest.assertNoteListsEqual(expected, vs1.getVoiceSectionResult());
         
@@ -179,25 +179,26 @@ public class VoiceSectionTest {
         s1.getSettings().setApplyRetrograde(true);        
         assertEquals(false, s1.getSettings().getApplyInversion());
         assertEquals(true, s1.getSettings().getApplyRetrograde());       
-        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
-        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), scale, 0));
+        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), scale, 0));
         
-        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(4, 4, 6, 0, new Fraction(1, 16), 43, scale, 0));
-        expected.add(new Note(3, 3, 6, 0, new Fraction(1, 16), 43, scale, 0));
-        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(4, 4, 6, 0, new Fraction(1, 16), 36, scale, 0));
+        expected.add(new Note(3, 3, 6, 0, new Fraction(1, 16), 36, scale, 0));
+        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
         
-        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(3, 3, 6, 0, new Fraction(1, 16), 43, scale, 0));
-        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 16), 43, scale, 0));
-        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(3, 3, 6, 0, new Fraction(1, 16), 36, scale, 0));
+        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 16), 36, scale, 0));
+        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
         
-        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
-        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), scale, 0));
+        expected.add(new Note(2, 2, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(1, 1, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), scale, 0));
+        expected.setfirstNotesOfGermCopy(0, 4, 8, 12);
         expected.setSourceVoiceSectionOnAllNotes(vs1);
         NoteListTest.assertNoteListsEqual(expected, vs1.getVoiceSectionResult());
         
@@ -209,25 +210,26 @@ public class VoiceSectionTest {
         assertEquals(true, s1.getSettings().getApplyRetrograde());
         assertEquals(true, vs1.getSectionSettings().getApplyInversion());
         assertEquals(true, vs1.getSectionSettings().getApplyRetrograde());
-        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
-        expected.add(new Note(-2, -2, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(-1, -1, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), scale, 0));
+        expected.add(new Note(-2, -2, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(-1, -1, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), scale, 0));
         
-        expected.add(new Note(-2, -2, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(-4, -4, 6, 0, new Fraction(1, 16), 43, scale, 0));
-        expected.add(new Note(-3, -3, 6, 0, new Fraction(1, 16), 43, scale, 0));
-        expected.add(new Note(-2, -2, 6, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(-2, -2, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(-4, -4, 6, 0, new Fraction(1, 16), 36, scale, 0));
+        expected.add(new Note(-3, -3, 6, 0, new Fraction(1, 16), 36, scale, 0));
+        expected.add(new Note(-2, -2, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
         
-        expected.add(new Note(-1, -1, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(-3, -3, 6, 0, new Fraction(1, 16), 43, scale, 0));
-        expected.add(new Note(-2, -2, 6, 0, new Fraction(1, 16), 43, scale, 0));
-        expected.add(new Note(-1, -1, 6, 0, new Fraction(1, 8), 64, scale, 0));
+        expected.add(new Note(-1, -1, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(-3, -3, 6, 0, new Fraction(1, 16), 36, scale, 0));
+        expected.add(new Note(-2, -2, 6, 0, new Fraction(1, 16), 36, scale, 0));
+        expected.add(new Note(-1, -1, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
         
-        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
-        expected.add(new Note(-2, -2, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(-1, -1, 6, 0, new Fraction(1, 8), 64, scale, 0));
-        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), 96, scale, 0));
+        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), scale, 0));
+        expected.add(new Note(-2, -2, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(-1, -1, 6, 0, new Fraction(1, 8), Dynamic.MP.getMidiVolume(), scale, 0));
+        expected.add(new Note(0, 0, 6, 0, new Fraction(1, 4), Dynamic.F.getMidiVolume(), scale, 0));
+        expected.setfirstNotesOfGermCopy(0, 4, 8, 12);
         expected.setSourceVoiceSectionOnAllNotes(vs1);
         NoteListTest.assertNoteListsEqual(expected, vs1.getVoiceSectionResult());
                        
@@ -282,13 +284,11 @@ public class VoiceSectionTest {
     }
         
     @Test(expected=IllegalArgumentException.class)    
-    public void getLengthenedVoiceSectionResultErrorIfLengthTooShort() {
+    public void getLengthenedVoiceSectionResultErrorIfLengthTooShort() throws Exception {
         FractalPiece fp = new FractalPiece();
+        fp.setScale(new MajorScale(NoteName.C));
         Scale scale = fp.getScale();
-        fp.getGerm().add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));
-        fp.getGerm().add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, scale, 0));
-        fp.getGerm().add(new Note(2, 2, 4, 0, new Fraction(1, 2), 64, scale, 0));
-        fp.getGerm().add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));
+        fp.setGermString("C4,1/1,F D4,1/2,MP E4,1/2,MP C4,1/1,F");        
         
         Voice v1 = fp.createVoice();                
         Section s1 = fp.createSection();
@@ -298,13 +298,11 @@ public class VoiceSectionTest {
     }
             
     @Test
-    public void getLengthenedVoiceSectionResult() {
+    public void getLengthenedVoiceSectionResult() throws Exception {
         FractalPiece fp = new FractalPiece();
+        fp.setScale(new MajorScale(NoteName.C));
         Scale scale = fp.getScale();
-        fp.getGerm().add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));
-        fp.getGerm().add(new Note(1, 1, 4, 0, new Fraction(1, 2), 64, scale, 0));
-        fp.getGerm().add(new Note(2, 2, 4, 0, new Fraction(1, 2), 64, scale, 0));
-        fp.getGerm().add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));
+        fp.setGermString("C4,1/1,F D4,1/2,MP E4,1/2,MP C4,1/1,F");
         
         Voice v1 = fp.createVoice();                
         Section s1 = fp.createSection();

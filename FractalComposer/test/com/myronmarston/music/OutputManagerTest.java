@@ -242,7 +242,7 @@ public class OutputManagerTest {
         Section s4 = fp.createSection();
         
         s1.setOverridePieceScale(true);
-        s1.setScale(new MinorScale(NoteName.G));
+        s1.setScale(new NaturalMinorScale(NoteName.G));
         s2.setOverridePieceScale(true);
         s2.setScale(new MajorScale(NoteName.G));
         s3.setOverridePieceScale(true);

@@ -17,10 +17,9 @@
  * along with Fractal Composer.  If not, see <http://www.gnu.org/licenses/>. 
  */
 
-package com.myronmarston.music;
+package com.myronmarston.music.notation;
 
-import com.myronmarston.music.notation.GuidoRunException;
-import com.myronmarston.music.notation.LilypondRunException;
+import com.myronmarston.music.OutputManager;
 import com.myronmarston.util.ProcessRunner;
 import com.myronmarston.util.FileHelper;
 import java.io.*;
@@ -32,8 +31,7 @@ import java.util.regex.*;
  * 
  * @author Myron
  */
-public class SheetMusicCreator {    
-    // TODO: move this class to the notation package
+public class SheetMusicCreator {        
     private final OutputManager outputManager;
     private static final String GUIDO_2_GIF_EXE_FILE = "guido2gif.exe";
     private static final String GUIDO_SUB_DIRECTORY = "guido";
@@ -102,7 +100,7 @@ public class SheetMusicCreator {
      * @param composer the composer of the piece
      * @throws java.lang.Exception if an error occurs
      */
-    protected void saveAsGifImage(final String gifFileName, final String title, final String composer) throws Exception {
+    public void saveAsGifImage(final String gifFileName, final String title, final String composer) throws Exception {
         // create a temp file...
         FileHelper.createAndUseTempFile("TempGuido", ".gmn", new FileHelper.TempFileUser() {
             public void useTempFile(String tempFileName) throws Exception {                    
@@ -136,7 +134,7 @@ public class SheetMusicCreator {
      * @param composer the composer of the piece
      * @throws java.io.IOException if an I/O error occurs
      */
-    protected void saveGuidoFile(String fileName, String title, String composer) throws IOException {
+    public void saveGuidoFile(String fileName, String title, String composer) throws IOException {
         String guidoContent = this.outputManager.getPieceNotation().toGuidoString(title, composer);
         if (this.outputManager.getTestNotationError()) guidoContent += "}";
         FileHelper.createTextFile(fileName, guidoContent);        
@@ -151,7 +149,7 @@ public class SheetMusicCreator {
      * @param imageWidth the width of the image, or use 0 to use the default paper size
      * @throws java.io.IOException if an I/O error occurs
      */
-    protected void saveLilypondFile(String fileName, String title, String composer, int imageWidth) throws IOException {        
+    public void saveLilypondFile(String fileName, String title, String composer, int imageWidth) throws IOException {        
         String lilypondContent = this.outputManager.getPieceNotation().toLilypondString(title, composer, imageWidth);
         if (this.outputManager.getTestNotationError()) lilypondContent += "}";
         FileHelper.createTextFile(fileName, lilypondContent);        
@@ -165,7 +163,7 @@ public class SheetMusicCreator {
      * @param composer the composer of the piece
      * @throws java.lang.Exception if there is an error
      */
-    protected void saveAsPdf(final String fileName, final String title, final String composer) throws Exception {       
+    public void saveAsPdf(final String fileName, final String title, final String composer) throws Exception {       
         final String fileNameWithoutExtension = FileHelper.stripFileExtension(fileName, ".pdf");
         this.runLilypond(
             fileName, 
@@ -182,7 +180,7 @@ public class SheetMusicCreator {
         );                    
     }
     
-    protected void saveAsPng(final String fileName, final String title, final String composer, final int imageWidth) throws Exception {                       
+    public void saveAsPng(final String fileName, final String title, final String composer, final int imageWidth) throws Exception {                       
         String fileNameWithoutExtension = FileHelper.stripFileExtension(fileName, ".png");
         String fileNameWithoutExtensionOrFolderPath = (new File(fileNameWithoutExtension)).getName();
         assert !fileNameWithoutExtensionOrFolderPath.contains(File.separator);

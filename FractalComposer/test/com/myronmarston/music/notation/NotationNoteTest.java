@@ -81,7 +81,7 @@ public class NotationNoteTest {
             fail();
         } catch (IllegalArgumentException ex) {} 
         
-        //TODO: volume
+        // volume
         try {
             NotationNote nn = new NotationNote(DEFAULT_PART_SECTION, 'c', 4, 0, new Fraction(1, 4), new Fraction(4, 4), MidiNote.MIN_VELOCITY - 1, false);
             fail();

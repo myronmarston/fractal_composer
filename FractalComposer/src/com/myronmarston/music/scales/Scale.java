@@ -69,24 +69,17 @@ public abstract class Scale implements Cloneable {
             throw new UndeclaredThrowableException(ex, "An exception occurred while instantiating a ChromaticScale.  This indicates a programming error.");
         }
                      
-        // The JRuby current thread context class loader doesn't seem to have 
-        // our classes in it, so we don't get any scale types.
-        // We can work around this by temporarily changing the class loader to
-        // the class loader that was used to load this class.
-        ClassLoader oldLoader = Thread.currentThread().getContextClassLoader();
         List<Class> scaleTypeList;
         try {                
-            Thread.currentThread().setContextClassLoader(Scale.class.getClassLoader());
             scaleTypeList = ClassHelper.getSubclassesInPackage(Scale.class.getPackage().getName(), Scale.class);            
         } catch (ClassNotFoundException ex) {
             // our code above is guarenteed to pass a valid package name, so we 
             // should never get this exception; if we do, there is a bug in the
             // code somewhere, so throw an assertion error.
             throw new UndeclaredThrowableException(ex, "An exception occurred while getting the scale types.  This indicates a programming error.");
-        } finally {
-            Thread.currentThread().setContextClassLoader(oldLoader);
-        }
+        } 
         
+        //TODO: make SCALE_TYPES unmodifiable
         SCALE_TYPES = new LinkedHashMap<Class, List<NoteName>>(scaleTypeList.size());
         for (Class scaleType : scaleTypeList) {   
             try {
@@ -101,7 +94,7 @@ public abstract class Scale implements Cloneable {
                 // occur...
                 throw new UndeclaredThrowableException(ex, "An exception occurred while getting the valid key names.  This indicates a programming error.");
             }                    
-        }
+        }        
     }
     
     /**

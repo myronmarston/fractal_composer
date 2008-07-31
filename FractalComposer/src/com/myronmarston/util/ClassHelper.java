@@ -106,7 +106,7 @@ public class ClassHelper {
      */
     public static List<Class> getSubclassesInPackage(String packageName, Class superClass) throws ClassNotFoundException {
         List<Class> classList = new ArrayList<Class>();
-        //TODO: use instanceof
+
         for (Class discovered : getClassesInPackage(packageName)) {            
             if (isClassSubclassOfClass(discovered, superClass)) {
                 classList.add(discovered);

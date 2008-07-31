@@ -35,10 +35,15 @@ public enum Dynamic {
     FFF(8);
     
     private final int dynamicLevel;
-    private final int midiVolume;
-    private static String regexPattern;
+    private final int midiVolume;   
     private static final int MIDI_VOLUME_PER_LEVEL = 15;
     private static final int ADDITIONAL_OFFSET = -4;
+    
+    /**
+     * Regular expression pattern that can be used to parse a dynamic in a 
+     * note string.
+     */
+    public static String REGEX_PATTERN = "(?:,(.*))?";
 
     private Dynamic(int dynamicLevel) {
         this.dynamicLevel = dynamicLevel;
@@ -106,17 +111,5 @@ public enum Dynamic {
         }
         
         return str.toString();        
-    }
-    
-    /**
-     * Gets a regular expression pattern string based on this dynamic enum that 
-     * can be used to parse a note string.
-     * 
-     * @return a regular expression pattern string
-     */
-    public static String getRegexPattern() {
-        if (regexPattern == null) regexPattern = "(?:,(.*))?";        
-        return regexPattern;
-    }        
-        
+    }            
 }

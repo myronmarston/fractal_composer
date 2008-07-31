@@ -93,16 +93,15 @@ Class NoteList</H2>
 <PRE>
 java.lang.Object
   <IMG SRC="../../../resources/inherit.gif" ALT="extended by ">java.util.AbstractCollection&lt;E&gt;
-      <IMG SRC="../../../resources/inherit.gif" ALT="extended by ">java.util.AbstractList&lt;E&gt;
-          <IMG SRC="../../../resources/inherit.gif" ALT="extended by ">java.util.ArrayList&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;
-              <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.NoteList</B>
+      <IMG SRC="../../../resources/inherit.gif" ALT="extended by ">java.util.AbstractList&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;
+          <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.NoteList</B>
 </PRE>
 <DL>
-<DT><B>All Implemented Interfaces:</B> <DD>java.io.Serializable, java.lang.Cloneable, java.lang.Iterable&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;, java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;, java.util.List&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;, java.util.RandomAccess</DD>
+<DT><B>All Implemented Interfaces:</B> <DD>java.lang.Cloneable, java.lang.Iterable&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;, java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;, java.util.List&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</DD>
 </DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>NoteList</B><DT>extends java.util.ArrayList&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</DL>
+<DT><PRE>public class <B>NoteList</B><DT>extends java.util.AbstractList&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;<DT>implements java.lang.Cloneable</DL>
 </PRE>
 
 <P>
@@ -110,8 +109,6 @@ NoteList contains a sequence of notes.
 <P>
 
 <P>
-<DL>
-<DT><B>See Also:</B><DD><A HREF="../../../serialized-form.html#com.myronmarston.music.NoteList">Serialized Form</A></DL>
 <HR>
 
 <P>
@@ -172,8 +169,25 @@ NoteList contains a sequence of notes.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#add(int, com.myronmarston.music.Note)">add</A></B>(int&nbsp;index,
+    <A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&nbsp;element)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#clone()">clone</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#get(int)">get</A></B>(int&nbsp;index)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -220,12 +234,45 @@ NoteList contains a sequence of notes.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#getReadOnlyCopy()">getReadOnlyCopy</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets a read-only copy of this note list.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#isReadOnly()">isReadOnly</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True if this list is read-only.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;<A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#parseNoteListString(java.lang.String, com.myronmarston.music.scales.Scale)">parseNoteListString</A></B>(java.lang.String&nbsp;noteListString,
                     <A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new note list based on the given note list string.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#remove(int)">remove</A></B>(int&nbsp;index)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#set(int, com.myronmarston.music.Note)">set</A></B>(int&nbsp;index,
+    <A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&nbsp;element)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -254,20 +301,19 @@ NoteList contains a sequence of notes.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#size()">size</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#updateScale(com.myronmarston.music.scales.Scale)">updateScale</A></B>(<A HREF="../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>&nbsp;scale)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updates the scale on all the notes.</TD>
-</TR>
-</TABLE>
-&nbsp;<A NAME="methods_inherited_from_class_java.util.ArrayList"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TH ALIGN="left"><B>Methods inherited from class java.util.ArrayList</B></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>add, add, addAll, addAll, clear, contains, ensureCapacity, get, indexOf, isEmpty, lastIndexOf, remove, remove, removeRange, set, size, toArray, toArray, trimToSize</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.util.AbstractList"><!-- --></A>
@@ -276,7 +322,7 @@ NoteList contains a sequence of notes.
 <TH ALIGN="left"><B>Methods inherited from class java.util.AbstractList</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>equals, hashCode, iterator, listIterator, listIterator, subList</CODE></TD>
+<TD><CODE>add, addAll, clear, equals, hashCode, indexOf, iterator, lastIndexOf, listIterator, listIterator, removeRange, subList</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.util.AbstractCollection"><!-- --></A>
@@ -285,7 +331,7 @@ NoteList contains a sequence of notes.
 <TH ALIGN="left"><B>Methods inherited from class java.util.AbstractCollection</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>containsAll, removeAll, retainAll, toString</CODE></TD>
+<TD><CODE>addAll, contains, containsAll, isEmpty, remove, removeAll, retainAll, toArray, toArray, toString</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -303,7 +349,7 @@ NoteList contains a sequence of notes.
 <TH ALIGN="left"><B>Methods inherited from interface java.util.List</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>containsAll, equals, hashCode, iterator, listIterator, listIterator, removeAll, retainAll, subList</CODE></TD>
+<TD><CODE>addAll, contains, containsAll, isEmpty, remove, removeAll, retainAll, toArray, toArray</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -362,6 +408,95 @@ public <B>NoteList</B>(java.util.Collection&lt;<A HREF="../../../com/myronmarsto
 </TR>
 </TABLE>
 
+<A NAME="get(int)"><!-- --></A><H3>
+get</H3>
+<PRE>
+public <A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A> <B>get</B>(int&nbsp;index)</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>get</CODE> in interface <CODE>java.util.List&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</CODE><DT><B>Specified by:</B><DD><CODE>get</CODE> in class <CODE>java.util.AbstractList&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="size()"><!-- --></A><H3>
+size</H3>
+<PRE>
+public int <B>size</B>()</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>size</CODE> in interface <CODE>java.util.Collection&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</CODE><DT><B>Specified by:</B><DD><CODE>size</CODE> in interface <CODE>java.util.List&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</CODE><DT><B>Specified by:</B><DD><CODE>size</CODE> in class <CODE>java.util.AbstractCollection&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="add(int, com.myronmarston.music.Note)"><!-- --></A><H3>
+add</H3>
+<PRE>
+public void <B>add</B>(int&nbsp;index,
+                <A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&nbsp;element)</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>add</CODE> in interface <CODE>java.util.List&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</CODE><DT><B>Overrides:</B><DD><CODE>add</CODE> in class <CODE>java.util.AbstractList&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="remove(int)"><!-- --></A><H3>
+remove</H3>
+<PRE>
+public <A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A> <B>remove</B>(int&nbsp;index)</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>remove</CODE> in interface <CODE>java.util.List&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</CODE><DT><B>Overrides:</B><DD><CODE>remove</CODE> in class <CODE>java.util.AbstractList&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="set(int, com.myronmarston.music.Note)"><!-- --></A><H3>
+set</H3>
+<PRE>
+public <A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A> <B>set</B>(int&nbsp;index,
+                <A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&nbsp;element)</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>set</CODE> in interface <CODE>java.util.List&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</CODE><DT><B>Overrides:</B><DD><CODE>set</CODE> in class <CODE>java.util.AbstractList&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isReadOnly()"><!-- --></A><H3>
+isReadOnly</H3>
+<PRE>
+public boolean <B>isReadOnly</B>()</PRE>
+<DL>
+<DD>True if this list is read-only.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>true if this list is read-only</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="getInstrument()"><!-- --></A><H3>
 getInstrument</H3>
 <PRE>
@@ -369,6 +504,9 @@ public <A HREF="../../../com/myronmarston/music/Instrument.html" title="class in
 <DL>
 <DD>Gets the instrument for this note list.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the instrument</DL>
@@ -384,6 +522,9 @@ public void <B>setInstrument</B>(<A HREF="../../../com/myronmarston/music/Instru
 <DD>Sets the instrument to use for this note list.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>instrument</CODE> - the instrument</DL>
 </DD>
 </DL>
@@ -396,6 +537,9 @@ public <A HREF="../../../com/myronmarston/music/Note.html" title="class in com.m
 <DL>
 <DD>Gets the first note you can hear--the first note that's not a rest.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the first note that is audible, or null</DL>
@@ -410,6 +554,9 @@ public <A HREF="../../../com/myronmarston/util/Fraction.html" title="class in co
 <DL>
 <DD>Gets the total length of the note list.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the duration of the note list</DL>
@@ -426,6 +573,9 @@ public static <A HREF="../../../com/myronmarston/music/NoteList.html" title="cla
 <DL>
 <DD>Creates a new note list based on the given note list string.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>noteListString</CODE> - string containing space-seperated notes, each of 
         the form 'F#4,1/4,PP'<DD><CODE>scale</CODE> - the scale to use to determine the note's pitch information
@@ -446,6 +596,9 @@ public <A HREF="../../../com/myronmarston/music/NoteList.html" title="class in c
  combined into one longer rest.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>list of notes with normalized rests</DL>
 </DD>
@@ -461,6 +614,9 @@ public void <B>updateScale</B>(<A HREF="../../../com/myronmarston/music/scales/S
  know that all the notes of this note list have the same note list.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>scale</CODE> - the new scale for the notes</DL>
 </DD>
 </DL>
@@ -473,6 +629,9 @@ public int <B>getNumberOfAccidentals</B>()</PRE>
 <DL>
 <DD>Gets the number of notes that have chromatic adjustements.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the number of notes with chromatic adjustments</DL>
@@ -488,6 +647,9 @@ public void <B>setSourceVoiceSectionOnAllNotes</B>(<A HREF="../../../com/myronma
 <DD>Sets the sourceVoiceSection field on all notes of this note list to
  the given one.
 <P>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>source</CODE> - the voice section that generated the notes in this note 
         list</DL>
@@ -506,8 +668,28 @@ public void <B>setfirstNotesOfGermCopy</B>(int...&nbsp;indices)</PRE>
  only provided as a convenience method for unit tests.
 <P>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 <DT><B>Parameters:</B><DD><CODE>indices</CODE> - list of indices of the notes that should be the first
         notes of a germ copy</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getReadOnlyCopy()"><!-- --></A><H3>
+getReadOnlyCopy</H3>
+<PRE>
+public <A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A> <B>getReadOnlyCopy</B>()</PRE>
+<DL>
+<DD>Gets a read-only copy of this note list.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>a read-only copy</DL>
 </DD>
 </DL>
 <HR>
@@ -518,7 +700,7 @@ clone</H3>
 public <A HREF="../../../com/myronmarston/music/NoteList.html" title="class in com.myronmarston.music">NoteList</A> <B>clone</B>()</PRE>
 <DL>
 <DD><DL>
-<DT><B>Overrides:</B><DD><CODE>clone</CODE> in class <CODE>java.util.ArrayList&lt;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>&gt;</CODE></DL>
+<DT><B>Overrides:</B><DD><CODE>clone</CODE> in class <CODE>java.lang.Object</CODE></DL>
 </DD>
 <DD><DL>
 </DL>

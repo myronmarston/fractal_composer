@@ -23,6 +23,10 @@ import com.myronmarston.music.scales.Scale;
 import com.myronmarston.music.settings.VoiceSection;
 import com.myronmarston.util.Fraction;
 
+import org.simpleframework.xml.*;
+import org.simpleframework.xml.load.*;
+
+import java.lang.reflect.UndeclaredThrowableException;
 import java.util.*;
 
 /**
@@ -30,17 +34,26 @@ import java.util.*;
  * 
  * @author Myron
  */
-public class NoteList extends ArrayList<Note> {
+@Root
+public class NoteList extends AbstractList<Note> implements Cloneable {
     // Used to serialize the class.  Change this if the class has a change significant enough to change the way the class is serialized.
     private static final long serialVersionUID = 1L;
+        
+    private List<Note> internalList = new ArrayList<Note>();
+    
+    @ElementList(type=Note.class, required=false)    
+    private List<Note> listForSerialization;
     
     private transient Instrument instrument;
+    
+    @Attribute
+    private boolean readOnly;
     
     /**
      * Default constructor.
      */
     public NoteList() {
-        super();
+        this(null);
     }
     
     /**
@@ -49,7 +62,7 @@ public class NoteList extends ArrayList<Note> {
      * @param initialCapacity initial capacity for the list
      */
     public NoteList(int initialCapacity) {
-        super(initialCapacity);        
+        this(new ArrayList<Note>(initialCapacity));        
     }
     
     /**
@@ -58,9 +71,57 @@ public class NoteList extends ArrayList<Note> {
      * @param initialCollection collection of notes to put in the list
      */
     public NoteList(Collection<Note> initialCollection) {
-        super(initialCollection);
+        this(new ArrayList<Note>(initialCollection));
+    }
+    
+    private NoteList(List<Note> internalList) {        
+        this.internalList = (internalList == null ? new ArrayList<Note>() : internalList);
     }
 
+    @Override
+    public Note get(int index) {
+        return this.internalList.get(index);
+    }
+
+    @Override
+    public int size() {
+        return this.internalList.size();
+    }
+
+    @Override
+    public void add(int index, Note element) {
+        this.modCount++;        
+        this.internalList.add(index, element);
+    }
+
+    @Override
+    public Note remove(int index) {
+        this.modCount++;
+        return this.internalList.remove(index);
+    }
+
+    @Override
+    public Note set(int index, Note element) {        
+        this.modCount++;
+        return this.internalList.set(index, element);
+    }
+
+    /**
+     * True if this list is read-only.
+     * 
+     * @return true if this list is read-only
+     */
+    public boolean isReadOnly() {
+        return readOnly;
+    }    
+    
+    private void updateListInstanceBasedOnReadOnlySetting() {
+        this.internalList = (
+            this.isReadOnly() ?  
+            Collections.unmodifiableList(this.internalList) :
+            new ArrayList<Note>(this.internalList));
+    }
+        
     /**
      * Gets the instrument for this note list.
      * 
@@ -116,7 +177,6 @@ public class NoteList extends ArrayList<Note> {
      *         note list string is invalid
      */
     public static NoteList parseNoteListString(String noteListString, Scale scale) throws NoteStringParseException {                
-        // TODO: throw exception if the note list is just a single rest
         // TODO: run some tests to figure out what kind of maximum length I should 
         // allow based on memory requirements
         Note note = null;
@@ -134,8 +194,19 @@ public class NoteList extends ArrayList<Note> {
             
             list.add(note);
         }
+                        
+        if (list.size() > 0) {
+            // we should have at least one non-rest note
+            boolean nonRestFound = false;
+            for (Note n : list) {
+                nonRestFound = !n.isRest();
+                if (nonRestFound) break;
+            }
+            if (!nonRestFound) throw new NoteStringOnlyRestException(noteListString);
+            
+            list.get(0).setIsFirstNoteOfGermCopy(true);                        
+        }
         
-        if (list.size() > 0) list.get(0).setIsFirstNoteOfGermCopy(true);
         return list;
     }
     
@@ -269,12 +340,56 @@ public class NoteList extends ArrayList<Note> {
         }
     }
     
+    /**
+     * Gets a read-only copy of this note list.
+     * 
+     * @return a read-only copy
+     */
+    public NoteList getReadOnlyCopy() {
+        NoteList copy = this.clone();        
+        copy.readOnly = true;
+        copy.updateListInstanceBasedOnReadOnlySetting();
+        return copy;
+    }
+    
+    @Persist
+    private void prepareForXmlSerialization() {
+        listForSerialization = new ArrayList<Note>(this.internalList);
+    }
+    
+    @Complete
+    private void xmlSerializationCompleted() {        
+        assert this.listForSerialization != null;
+        this.listForSerialization = null;
+    }
+    
+    @Commit
+    private void xmlDeserializationCompleted() {      
+        assert this.listForSerialization != null;  
+        this.internalList = this.listForSerialization;
+        updateListInstanceBasedOnReadOnlySetting();
+        this.listForSerialization = null;
+    }
+    
     @Override
     /**
      * Clones the note list.  Each individual note is also cloned.
      */
     public NoteList clone() {
-        NoteList clone = (NoteList) super.clone();
+        NoteList clone;
+        try {
+            clone = (NoteList) super.clone();
+        } catch (CloneNotSupportedException ex) {
+            // We have implemented the Cloneable interface, so we should never
+            // get this exception.  If we do, there's something very, very wrong...
+            throw new UndeclaredThrowableException(ex, "Unexpected error while cloning.  This indicates a programming or JVM error.");
+        }
+     
+        // we want our clones to always be modifiable, since the entire
+        // purpose of a clone is getting a copy we can modify while leaving
+        // the original untouched.
+        clone.readOnly = false;
+        clone.updateListInstanceBasedOnReadOnlySetting();
         
         for (int i = 0; i < clone.size(); i++) {
             clone.set(i, clone.get(i).clone());

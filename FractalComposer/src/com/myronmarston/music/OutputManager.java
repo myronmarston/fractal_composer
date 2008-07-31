@@ -82,7 +82,7 @@ public class OutputManager {
      * 
      * @return the testLilypondError flag
      */
-    protected boolean getTestNotationError() {
+    public boolean getTestNotationError() {
         return testNotationError;
     }
 

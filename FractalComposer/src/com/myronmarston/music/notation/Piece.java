@@ -19,7 +19,7 @@
 
 package com.myronmarston.music.notation;
 
-import com.myronmarston.music.SheetMusicCreator;
+import com.myronmarston.music.notation.SheetMusicCreator;
 import com.myronmarston.music.scales.KeySignature;
 import com.myronmarston.music.settings.TimeSignature;
 import com.myronmarston.music.settings.InvalidTimeSignatureException;

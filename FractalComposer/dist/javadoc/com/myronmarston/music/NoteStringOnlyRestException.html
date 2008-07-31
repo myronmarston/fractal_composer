@@ -4,7 +4,7 @@
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <TITLE>
-NoteStringParseException
+NoteStringOnlyRestException
 </TITLE>
 
 
@@ -14,7 +14,7 @@ NoteStringParseException
 function windowTitle()
 {
     if (location.href.indexOf('is-external=true') == -1) {
-        parent.document.title="NoteStringParseException";
+        parent.document.title="NoteStringOnlyRestException";
     }
 }
 </SCRIPT>
@@ -39,7 +39,7 @@ function windowTitle()
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/NoteStringParseException.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/NoteStringOnlyRestException.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -54,11 +54,11 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../com/myronmarston/music/NoteStringOnlyRestException.html" title="class in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../com/myronmarston/music/NoteStringInvalidPartException.NoteStringPart.html" title="enum in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../index.html?com/myronmarston/music/NoteStringParseException.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="NoteStringParseException.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?com/myronmarston/music/NoteStringOnlyRestException.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="NoteStringOnlyRestException.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -75,9 +75,9 @@ function windowTitle()
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#methods_inherited_from_class_com.myronmarston.music.NoteStringParseException">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;METHOD</FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_top"></A>
@@ -89,31 +89,25 @@ DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&n
 <FONT SIZE="-1">
 com.myronmarston.music</FONT>
 <BR>
-Class NoteStringParseException</H2>
+Class NoteStringOnlyRestException</H2>
 <PRE>
 java.lang.Object
   <IMG SRC="../../../resources/inherit.gif" ALT="extended by ">java.lang.Throwable
       <IMG SRC="../../../resources/inherit.gif" ALT="extended by ">java.lang.Exception
-          <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.NoteStringParseException</B>
+          <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music">com.myronmarston.music.NoteStringParseException</A>
+              <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.NoteStringOnlyRestException</B>
 </PRE>
 <DL>
 <DT><B>All Implemented Interfaces:</B> <DD>java.io.Serializable</DD>
 </DL>
-<DL>
-<DT><B>Direct Known Subclasses:</B> <DD><A HREF="../../../com/myronmarston/music/IncorrectNoteStringException.html" title="class in com.myronmarston.music">IncorrectNoteStringException</A>, <A HREF="../../../com/myronmarston/music/NoteStringInvalidPartException.html" title="class in com.myronmarston.music">NoteStringInvalidPartException</A>, <A HREF="../../../com/myronmarston/music/NoteStringOnlyRestException.html" title="class in com.myronmarston.music">NoteStringOnlyRestException</A></DD>
-</DL>
 <HR>
 <DL>
-<DT><PRE>public abstract class <B>NoteStringParseException</B><DT>extends java.lang.Exception</DL>
+<DT><PRE>public class <B>NoteStringOnlyRestException</B><DT>extends <A HREF="../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music">NoteStringParseException</A></DL>
 </PRE>
 
 <P>
-Base exception class for all errors encountered while parsing a note string.
-<P>
-
-<P>
 <DL>
-<DT><B>See Also:</B><DD><A HREF="../../../serialized-form.html#com.myronmarston.music.NoteStringParseException">Serialized Form</A></DL>
+<DT><B>See Also:</B><DD><A HREF="../../../serialized-form.html#com.myronmarston.music.NoteStringOnlyRestException">Serialized Form</A></DL>
 <HR>
 
 <P>
@@ -127,8 +121,7 @@ Base exception class for all errors encountered while parsing a note string.
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteStringParseException.html#NoteStringParseException(java.lang.String, java.lang.String)">NoteStringParseException</A></B>(java.lang.String&nbsp;noteString,
-                         java.lang.String&nbsp;msg)</CODE>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteStringOnlyRestException.html#NoteStringOnlyRestException(java.lang.String)">NoteStringOnlyRestException</A></B>(java.lang.String&nbsp;noteString)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
@@ -143,13 +136,14 @@ Base exception class for all errors encountered while parsing a note string.
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Method Summary</B></FONT></TH>
 </TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.NoteStringParseException"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.<A HREF="../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music">NoteStringParseException</A></B></TH>
+</TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteStringParseException.html#getNoteString()">getNoteString</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the note string that could not be parsed.</TD>
+<TD><CODE><A HREF="../../../com/myronmarston/music/NoteStringParseException.html#getNoteString()">getNoteString</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Throwable"><!-- --></A>
@@ -183,39 +177,15 @@ Base exception class for all errors encountered while parsing a note string.
 </TR>
 </TABLE>
 
-<A NAME="NoteStringParseException(java.lang.String, java.lang.String)"><!-- --></A><H3>
-NoteStringParseException</H3>
+<A NAME="NoteStringOnlyRestException(java.lang.String)"><!-- --></A><H3>
+NoteStringOnlyRestException</H3>
 <PRE>
-public <B>NoteStringParseException</B>(java.lang.String&nbsp;noteString,
-                                java.lang.String&nbsp;msg)</PRE>
+public <B>NoteStringOnlyRestException</B>(java.lang.String&nbsp;noteString)</PRE>
 <DL>
 <DD>Constructor.
 <P>
 <DL>
-<DT><B>Parameters:</B><DD><CODE>noteString</CODE> - the note string being parsed<DD><CODE>msg</CODE> - the detail message</DL>
-</DL>
-
-<!-- ============ METHOD DETAIL ========== -->
-
-<A NAME="method_detail"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
-<B>Method Detail</B></FONT></TH>
-</TR>
-</TABLE>
-
-<A NAME="getNoteString()"><!-- --></A><H3>
-getNoteString</H3>
-<PRE>
-public java.lang.String <B>getNoteString</B>()</PRE>
-<DL>
-<DD>Gets the note string that could not be parsed.
-<P>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>the note string</DL>
-</DD>
+<DT><B>Parameters:</B><DD><CODE>noteString</CODE> - the invalid note string</DL>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
 <HR>
@@ -233,7 +203,7 @@ public java.lang.String <B>getNoteString</B>()</PRE>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/NoteStringParseException.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/NoteStringOnlyRestException.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -248,11 +218,11 @@ public java.lang.String <B>getNoteString</B>()</PRE>
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../com/myronmarston/music/NoteStringOnlyRestException.html" title="class in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../com/myronmarston/music/NoteStringInvalidPartException.NoteStringPart.html" title="enum in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/music/NoteStringParseException.html" title="class in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../index.html?com/myronmarston/music/NoteStringParseException.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="NoteStringParseException.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?com/myronmarston/music/NoteStringOnlyRestException.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="NoteStringOnlyRestException.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -269,9 +239,9 @@ public java.lang.String <B>getNoteString</B>()</PRE>
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#methods_inherited_from_class_com.myronmarston.music.NoteStringParseException">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;METHOD</FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_bottom"></A>

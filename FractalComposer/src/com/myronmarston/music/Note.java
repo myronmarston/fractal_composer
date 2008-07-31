@@ -379,9 +379,7 @@ public class Note implements Cloneable {
      */
     public void setIsFirstNoteOfGermCopy(boolean isFirstNoteOfGermCopy) {
         this.isFirstNoteOfGermCopy = isFirstNoteOfGermCopy;
-    }
-
-    
+    }   
     
     /**
      * Throws an exception if the changing field is not being changed to zero

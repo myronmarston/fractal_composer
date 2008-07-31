@@ -29,7 +29,7 @@ import org.simpleframework.xml.*;
  * @author Myron
  */
 @Root
-public class MinorPentatonicScale extends MinorScale {
+public class MinorPentatonicScale extends NaturalMinorScale {
     private final static int[] SCALE_STEPS = new int[] {0, 3, 5, 7, 10};
     private final static int[] LETTER_NUMBERS = new int[] {0, 2, 3, 4, 6};
     

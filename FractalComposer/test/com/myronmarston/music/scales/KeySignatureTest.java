@@ -52,7 +52,7 @@ public class KeySignatureTest {
     
     @Test(expected=InvalidKeySignatureException.class)
     public void minorScaleInvalidKeySignature() throws InvalidKeySignatureException {
-        MinorScale s = new MinorScale(NoteName.Gb);
+        NaturalMinorScale s = new NaturalMinorScale(NoteName.Gb);
     }
     
     @Test
@@ -66,16 +66,16 @@ public class KeySignatureTest {
     
     @Test
     public void minorScaleGetKeySignature() throws InvalidMidiDataException, InvalidKeySignatureException {
-        MinorScale s = new MinorScale(NoteName.D);
+        NaturalMinorScale s = new NaturalMinorScale(NoteName.D);
         assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(0), (byte) -1, (byte) 1, 0);
         
-        s = new MinorScale(NoteName.Gs);
+        s = new NaturalMinorScale(NoteName.Gs);
         assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(0), (byte) 5, (byte) 1, 0);
     }
     
     @Test
     public void laterKeySignatureEvent() throws Exception {
-        MinorScale s = new MinorScale(NoteName.D);
+        NaturalMinorScale s = new NaturalMinorScale(NoteName.D);
         assertKeySignatureEventEqual(s.getKeySignature().getKeySignatureMidiEvent(37), (byte) -1, (byte) 1, 37);
     }
     

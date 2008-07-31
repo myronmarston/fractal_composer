@@ -49,8 +49,8 @@ import java.util.*;
 public class FractalPiece {    
     private static interface InsertIndexProvider { int getInsertIndex(List l); }
        
-    @ElementList(type=Note.class, required=false)
-    private NoteList germ = new NoteList();
+    @Element
+    private NoteList germ = new NoteList().getReadOnlyCopy();
     
     @Attribute
     private String germString = "";
@@ -82,14 +82,19 @@ public class FractalPiece {
     private List<Section> tempIntroOutroSections = new ArrayList<Section>();    
                                     
     /**
-     * Returns the germ NoteList.  Guarenteed to never be null.  
+     * Returns the germ NoteList.  Guarenteed to never be null.  Is read-only.  
      * The germ is the short melody from which the entire piece is generated.
      * 
      * @return the germ NoteList
      */
     public NoteList getGerm() {   
         assert germ != null : germ; // germ should never be null!
-        //TODO: return a read-only version of the germ....
+        
+        // the germ should be read-only because we only support changing it
+        // through the setGermString() method.  Our section cached germs
+        // must be updated when the germ changes, and it's easiest to only
+        // do that the germ string changes
+        assert germ.isReadOnly();
         return germ;
     }
 
@@ -111,7 +116,7 @@ public class FractalPiece {
      *         string cannot be parsed
      */
     public void setGermString(String germString) throws NoteStringParseException {        
-        this.germ = NoteList.parseNoteListString(germString, this.getScale());
+        this.germ = NoteList.parseNoteListString(germString, this.getScale()).getReadOnlyCopy();
         this.germString = germString;
         
         // the germ string effects each section's germ for section, so clear them...
@@ -166,7 +171,7 @@ public class FractalPiece {
         
         if (this.getGermString() != null && !this.getGermString().isEmpty()) {
             try {
-                this.germ = NoteList.parseNoteListString(this.getGermString(), scale);
+                this.germ = NoteList.parseNoteListString(this.getGermString(), scale).getReadOnlyCopy();
             } catch (NoteStringParseException ex) {                
                 // All scales should be able to handle a valid note list string.
                 // if we have a germString, it was valid with the existing scale,
@@ -532,23 +537,9 @@ public class FractalPiece {
      * @return the new fractal piece
      * @throws java.lang.Exception if there is a deserialization error
      */
-    public static FractalPiece loadFromXml(String xml) throws Exception {
-        //TODO: I think this class loader business is no longer necessary
-        // because of changes to JRuby.  Try removing it.
-        
-        // Sometimes we get ClassNotFoundExceptions when this is called from
-        // JRuby, because the JRuby current thread context class loader doesn't
-        // seem to have our classes in it.
-        // We can work around this by temporarily changing the class loader to
-        // the class loader that was used to load this class.
-        ClassLoader oldLoader = Thread.currentThread().getContextClassLoader();
-        try {
-            Thread.currentThread().setContextClassLoader(FractalPiece.class.getClassLoader());
-            Serializer serializer = new Persister(new CycleStrategy());
-            return serializer.read(FractalPiece.class, xml);        
-        } finally {
-            Thread.currentThread().setContextClassLoader(oldLoader);
-        }
+    public static FractalPiece loadFromXml(String xml) throws Exception {        
+        Serializer serializer = new Persister(new CycleStrategy());
+        return serializer.read(FractalPiece.class, xml);        
     }
        
     /**

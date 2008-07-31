@@ -93,9 +93,9 @@ public class XmlSerializationTest {
         String expected = 
         "<voice id=\"0\" uniqueIndex=\"1\" instrumentName=\"Piano 1\">\n" +
         // fractal piece section that gets stripped goes here...
-        "   <settings id=\"40\" volumeAdjustment=\"0.0\" scaleStepOffset=\"0\" readOnly=\"false\" octaveAdjustment=\"1\">\n" +
-        "      <speedScaleFactor id=\"41\" numerator_=\"2\" denominator_=\"1\"/>\n" +
-        "      <selfSimilaritySettings id=\"42\" applyToPitch=\"true\" applyToRhythm=\"false\" applyToVolume=\"true\" selfSimilarityIterations=\"1\" readOnly=\"false\"/>\n" +
+        "   <settings id=\"41\" volumeAdjustment=\"0.0\" scaleStepOffset=\"0\" readOnly=\"false\" octaveAdjustment=\"1\">\n" +
+        "      <speedScaleFactor id=\"42\" numerator_=\"2\" denominator_=\"1\"/>\n" +
+        "      <selfSimilaritySettings id=\"43\" applyToPitch=\"true\" applyToRhythm=\"false\" applyToVolume=\"true\" selfSimilarityIterations=\"1\" readOnly=\"false\"/>\n" +
         "   </settings>\n" +
         "</voice>";                
         
@@ -116,9 +116,9 @@ public class XmlSerializationTest {
         
         String expected =   
         "<section id=\"0\" uniqueIndex=\"1\" overridePieceScale=\"true\">\n" +
-        "   <settings id=\"42\" volumeAdjustment=\"0.7575\" scaleStepOffset=\"2\" readOnly=\"false\" applyInversion=\"true\" applyRetrograde=\"false\"/>\n" +
-        "   <scale class=\"com.myronmarston.music.scales.MinorPentatonicScale\" id=\"43\">\n" +
-        "      <keySignature id=\"44\" keyName=\"G\" tonality=\"Minor\"/>\n" +
+        "   <settings id=\"43\" volumeAdjustment=\"0.7575\" scaleStepOffset=\"2\" readOnly=\"false\" applyInversion=\"true\" applyRetrograde=\"false\"/>\n" +
+        "   <scale class=\"com.myronmarston.music.scales.MinorPentatonicScale\" id=\"44\">\n" +
+        "      <keySignature id=\"45\" keyName=\"G\" tonality=\"Minor\"/>\n" +
         "   </scale>\n" +        
         // fractal piece section that gets stripped goes here...
         "</section>";
@@ -144,7 +144,7 @@ public class XmlSerializationTest {
     @Test
     public void serializeAndDeserializeFractalPiece() throws Exception {
         FractalPiece fp = this.fpWithDefaultSettings;
-        fp.setScale(new MinorScale(NoteName.A));
+        fp.setScale(new NaturalMinorScale(NoteName.A));
         fp.setGermString("A4,1/4 B4,1/8,F C4,1/2");        
         
         //modify the piece a bit...
@@ -189,7 +189,7 @@ public class XmlSerializationTest {
         assertEquals(fp.getGenerateLayeredIntro(), newFp.getGenerateLayeredIntro());
         assertEquals(fp.getGenerateLayeredOutro(), newFp.getGenerateLayeredOutro());
         assertEquals(fp.getGermString(), newFp.getGermString());
-        assertEquals(fp.getTempo(), newFp.getTempo());        
+        assertEquals(fp.getTempo(), newFp.getTempo());                        
         
         // check voices...
         assertEquals(((VoiceOrSectionList) fp.getVoices()).getNextUniqueIndex(), ((VoiceOrSectionList) newFp.getVoices()).getNextUniqueIndex());
