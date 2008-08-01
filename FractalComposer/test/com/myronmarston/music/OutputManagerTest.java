@@ -419,4 +419,65 @@ public class OutputManagerTest {
             assertEquals(expected, nn.getTimeLeftInBar());
         }       
     }
+    
+    @Test
+    public void transientFilesDeletedProperly() throws Exception {
+        testTransientFilesDeletedProperly(new OutputManagerTest.TransientFilesTest() {
+            public String createTransientFiles(OutputManager om, File directory) throws Exception {
+                String filename = "Test.pdf";
+                om.savePdfFile(directory.getCanonicalPath() + File.separator + filename);
+                return filename;
+            }
+        });
+        
+        testTransientFilesDeletedProperly(new OutputManagerTest.TransientFilesTest() {
+            public String createTransientFiles(OutputManager om, File directory) throws Exception {
+                String filename = "Test.png";
+                om.savePngFile(directory.getCanonicalPath() + File.separator + filename, 500);
+                return filename;
+            }
+        });        
+    }
+    
+    public void testTransientFilesDeletedProperly(final TransientFilesTest test) throws Exception {
+        FileHelper.createAndUseTempFile("TempDirectory", "", new FileHelper.TempFileUser() {
+            public void useTempFile(String tempFileName) throws Exception {
+                File directory = new File(tempFileName);
+                FileHelper.attemptTempFileDelete(directory);
+                assertFalse(directory.exists());
+                directory.mkdir();
+                assertTrue(directory.exists());
+                assertTrue(directory.isDirectory());
+                try {                    
+                    FractalPiece fp = new FractalPiece();
+                    fp.setGermString("G4");
+                    OutputManager om = fp.createGermOutputManager();
+                    final String nonTransientFileName = test.createTransientFiles(om, directory);
+                    
+                    File[] transientFilesNotDeleted = directory.listFiles(new java.io.FileFilter() {
+                        public boolean accept(File pathname) {
+                            String name = pathname.getName();
+                            return !name.endsWith(nonTransientFileName);
+                        }
+                    });
+                    
+                    assertEquals(0, transientFilesNotDeleted.length);
+                } finally {
+                    for (File f : directory.listFiles()) {
+                        f.delete();
+                    }
+                }                                               
+            }
+        });
+    }
+    
+    public interface TransientFilesTest {
+        /**
+         * Creates the transient files and returns the file name of the
+         * non-transient file.
+         * 
+         * @return the nontransient file
+         */
+        public String createTransientFiles(OutputManager om, File directory) throws Exception;
+    }
 }

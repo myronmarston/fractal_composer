@@ -113,7 +113,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment"> * Fractions are always maintained in reduced form.</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;48</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment"> **/</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;49</td>  <td class="nbHitsCovered">&nbsp;32</td>  <td class="src"><pre class="src">&nbsp;@Root</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;49</td>  <td class="nbHitsCovered">&nbsp;31</td>  <td class="src"><pre class="src">&nbsp;@Root</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;50</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> Fraction <span class="keyword">implements</span> Cloneable, Comparable, java.io.Serializable {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;51</td>  <td class="nbHits">&nbsp;</td>
@@ -138,17 +138,17 @@
   <td class="src"><pre class="src">&nbsp;  </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;61</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Regular expression string to parse a fraction string. */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;62</td>  <td class="nbHitsCovered">&nbsp;32</td>  <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String NON_NEGATIVE_FRACTION_REGEX_STRING = String.format(FRACTION_CORE_REGEX_STRING, <span class="string">"0|"</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;62</td>  <td class="nbHitsCovered">&nbsp;31</td>  <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String NON_NEGATIVE_FRACTION_REGEX_STRING = String.format(FRACTION_CORE_REGEX_STRING, <span class="string">"0|"</span>);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;63</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;64</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Regular expression string to parse a fraction string that disallows zeros. */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;65</td>  <td class="nbHitsCovered">&nbsp;32</td>  <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String POSITIVE_FRACTION_REGEX_STRING = String.format(FRACTION_CORE_REGEX_STRING, <span class="string">""</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;65</td>  <td class="nbHitsCovered">&nbsp;31</td>  <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String POSITIVE_FRACTION_REGEX_STRING = String.format(FRACTION_CORE_REGEX_STRING, <span class="string">""</span>);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;66</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;67</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Regular expression pattern to parse a fraction string. */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;68</td>  <td class="nbHitsCovered">&nbsp;32</td>  <td class="src"><pre class="src">&nbsp;  <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Pattern NON_NEGATIVE_FRACTION_REGEX_PATTERN = Pattern.compile(NON_NEGATIVE_FRACTION_REGEX_STRING);  </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;68</td>  <td class="nbHitsCovered">&nbsp;31</td>  <td class="src"><pre class="src">&nbsp;  <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Pattern NON_NEGATIVE_FRACTION_REGEX_PATTERN = Pattern.compile(NON_NEGATIVE_FRACTION_REGEX_STRING);  </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;69</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;70</td>  <td class="nbHits">&nbsp;</td>
@@ -183,12 +183,12 @@
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;85</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Return the numerator **/</span>  </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;86</td>  <td class="nbHitsCovered">&nbsp;90894</td>  <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">long</span> numerator() { <span class="keyword">return</span> numerator_; }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;86</td>  <td class="nbHitsCovered">&nbsp;90333</td>  <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">long</span> numerator() { <span class="keyword">return</span> numerator_; }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;87</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;88</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Return the denominator **/</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;89</td>  <td class="nbHitsCovered">&nbsp;93549</td>  <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">long</span> denominator() { <span class="keyword">return</span> denominator_; }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;89</td>  <td class="nbHitsCovered">&nbsp;93001</td>  <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">long</span> denominator() { <span class="keyword">return</span> denominator_; }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;90</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;91</td>  <td class="nbHits">&nbsp;</td>
@@ -248,20 +248,20 @@
   <td class="src"><pre class="src">&nbsp;  </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;127</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Create a Fraction equal in value to num / den **/</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;128</td>  <td class="nbHitsCovered">&nbsp;41285</td>  <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> Fraction(<span class="keyword">long</span> num, <span class="keyword">long</span> den) <span class="keyword">throws</span> IllegalArgumentException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;129</td>  <td class="nbHitsCovered"><a title="Line 129: Conditional coverage 100% (2/2).">&nbsp;41285</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 129: Conditional coverage 100% (2/2).">    <span class="keyword">if</span> (den == 0L) <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"The fraction denominator cannot be zero."</span>); </a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;128</td>  <td class="nbHitsCovered">&nbsp;41040</td>  <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> Fraction(<span class="keyword">long</span> num, <span class="keyword">long</span> den) <span class="keyword">throws</span> IllegalArgumentException {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;129</td>  <td class="nbHitsCovered"><a title="Line 129: Conditional coverage 100% (2/2).">&nbsp;41040</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 129: Conditional coverage 100% (2/2).">    <span class="keyword">if</span> (den == 0L) <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"The fraction denominator cannot be zero."</span>); </a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;130</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;      </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;131</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="comment">// normalize while constructing</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;132</td>  <td class="nbHitsCovered"><a title="Line 132: Conditional coverage 100% (2/2).">&nbsp;41283</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 132: Conditional coverage 100% (2/2).">    <span class="keyword">boolean</span> numNonnegative = (num &gt;= 0);</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;133</td>  <td class="nbHitsUncovered"><a title="Line 133: Conditional coverage 50% (1/2).">&nbsp;41283</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 133: Conditional coverage 50% (1/2).">    <span class="keyword">boolean</span> denNonnegative = (den &gt;= 0);</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;134</td>  <td class="nbHitsCovered"><a title="Line 134: Conditional coverage 100% (2/2).">&nbsp;41283</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 134: Conditional coverage 100% (2/2).">    <span class="keyword">long</span> a = numNonnegative? num : -num;</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;135</td>  <td class="nbHitsUncovered"><a title="Line 135: Conditional coverage 50% (1/2).">&nbsp;41283</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 135: Conditional coverage 50% (1/2).">    <span class="keyword">long</span> b = denNonnegative? den : -den;</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;136</td>  <td class="nbHitsCovered">&nbsp;41283</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> g = gcd(a, b);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;137</td>  <td class="nbHitsCovered"><a title="Line 137: Conditional coverage 100% (2/2).">&nbsp;41283</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 137: Conditional coverage 100% (2/2).">    numerator_ = (numNonnegative == denNonnegative)? (a / g) : (-a / g);</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;138</td>  <td class="nbHitsCovered">&nbsp;41283</td>  <td class="src"><pre class="src">&nbsp;    denominator_ = b / g;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;139</td>  <td class="nbHitsCovered">&nbsp;41283</td>  <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;132</td>  <td class="nbHitsCovered"><a title="Line 132: Conditional coverage 100% (2/2).">&nbsp;41038</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 132: Conditional coverage 100% (2/2).">    <span class="keyword">boolean</span> numNonnegative = (num &gt;= 0);</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;133</td>  <td class="nbHitsUncovered"><a title="Line 133: Conditional coverage 50% (1/2).">&nbsp;41038</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 133: Conditional coverage 50% (1/2).">    <span class="keyword">boolean</span> denNonnegative = (den &gt;= 0);</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;134</td>  <td class="nbHitsCovered"><a title="Line 134: Conditional coverage 100% (2/2).">&nbsp;41038</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 134: Conditional coverage 100% (2/2).">    <span class="keyword">long</span> a = numNonnegative? num : -num;</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;135</td>  <td class="nbHitsUncovered"><a title="Line 135: Conditional coverage 50% (1/2).">&nbsp;41038</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 135: Conditional coverage 50% (1/2).">    <span class="keyword">long</span> b = denNonnegative? den : -den;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;136</td>  <td class="nbHitsCovered">&nbsp;41038</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> g = gcd(a, b);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;137</td>  <td class="nbHitsCovered"><a title="Line 137: Conditional coverage 100% (2/2).">&nbsp;41038</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 137: Conditional coverage 100% (2/2).">    numerator_ = (numNonnegative == denNonnegative)? (a / g) : (-a / g);</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;138</td>  <td class="nbHitsCovered">&nbsp;41038</td>  <td class="src"><pre class="src">&nbsp;    denominator_ = b / g;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;139</td>  <td class="nbHitsCovered">&nbsp;41038</td>  <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;140</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;141</td>  <td class="nbHits">&nbsp;</td>
@@ -349,40 +349,40 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">   */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;187</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> String toLilypondString(Fraction timeLeftInBar, Fraction barLength, Fraction tupletMultiplier) <span class="keyword">throws</span> IllegalArgumentException, UnsupportedOperationException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;188</td>  <td class="nbHitsCovered">&nbsp;276</td>  <td class="src"><pre class="src">&nbsp;      String lilypondString = toLilypondString(timeLeftInBar, barLength, tupletMultiplier, <span class="keyword">true</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;188</td>  <td class="nbHitsCovered">&nbsp;278</td>  <td class="src"><pre class="src">&nbsp;      String lilypondString = toLilypondString(timeLeftInBar, barLength, tupletMultiplier, <span class="keyword">true</span>);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;189</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                  </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;190</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;      <span class="comment">// we should only have the dynamic placeholder once in this string...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;191</td>  <td class="nbHitsUncovered"><a title="Line 191: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;275</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 191: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">      <span class="keyword">assert</span> lilypondString.contains(NotationNote.NOTE_PLACEHOLDER_2) : lilypondString;</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;192</td>  <td class="nbHitsUncovered"><a title="Line 192: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;275</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 192: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">      <span class="keyword">assert</span> lilypondString.lastIndexOf(NotationNote.NOTE_PLACEHOLDER_2) == lilypondString.indexOf(NotationNote.NOTE_PLACEHOLDER_2) : lilypondString;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;191</td>  <td class="nbHitsUncovered"><a title="Line 191: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;277</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 191: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">      <span class="keyword">assert</span> lilypondString.contains(NotationNote.NOTE_PLACEHOLDER_2) : lilypondString;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;192</td>  <td class="nbHitsUncovered"><a title="Line 192: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;277</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 192: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">      <span class="keyword">assert</span> lilypondString.lastIndexOf(NotationNote.NOTE_PLACEHOLDER_2) == lilypondString.indexOf(NotationNote.NOTE_PLACEHOLDER_2) : lilypondString;</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;193</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;194</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;      <span class="comment">// the dynamic place holder should only be on the first of all the tied</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;195</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;      <span class="comment">// notes, so check that it is before the tie string...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;196</td>  <td class="nbHitsUncovered"><a title="Line 196: Conditional coverage 67% (4/6) [each condition: 50%, 100%, 50%].">&nbsp;275</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 196: Conditional coverage 67% (4/6) [each condition: 50%, 100%, 50%].">      <span class="keyword">assert</span> !lilypondString.contains(LILYPOND_TIE) || lilypondString.indexOf(NotationNote.NOTE_PLACEHOLDER_2) &lt; lilypondString.indexOf(LILYPOND_TIE);</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;196</td>  <td class="nbHitsUncovered"><a title="Line 196: Conditional coverage 67% (4/6) [each condition: 50%, 100%, 50%].">&nbsp;277</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 196: Conditional coverage 67% (4/6) [each condition: 50%, 100%, 50%].">      <span class="keyword">assert</span> !lilypondString.contains(LILYPOND_TIE) || lilypondString.indexOf(NotationNote.NOTE_PLACEHOLDER_2) &lt; lilypondString.indexOf(LILYPOND_TIE);</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;197</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;      </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;198</td>  <td class="nbHitsCovered">&nbsp;275</td>  <td class="src"><pre class="src">&nbsp;      <span class="keyword">return</span> lilypondString;      </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;198</td>  <td class="nbHitsCovered">&nbsp;277</td>  <td class="src"><pre class="src">&nbsp;      <span class="keyword">return</span> lilypondString;      </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;199</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;200</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;201</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> String toLilypondString(Fraction timeLeftInBar, Fraction barLength, Fraction tupletMultiplier, <span class="keyword">boolean</span> firstNoteInListOfTiedNotes) <span class="keyword">throws</span> IllegalArgumentException, UnsupportedOperationException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;202</td>  <td class="nbHitsUncovered"><a title="Line 202: Conditional coverage 50% (1/2).">&nbsp;314</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 202: Conditional coverage 50% (1/2).">      <span class="keyword">if</span> (!denomIsPowerOf2()) <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"Lilypond does not support note durations that do not have a denominator power of 2.  Instead, wrap the note in a Tuplet with the appropriate multiplier."</span>); </a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;203</td>  <td class="nbHitsCovered"><a title="Line 203: Conditional coverage 100% (2/2).">&nbsp;314</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 203: Conditional coverage 100% (2/2).">      <span class="keyword">if</span> (<span class="keyword">this</span>.denominator_ &gt; MAX_ALLOWED_DURATION_DENOM) <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"The given duration ("</span> + <span class="keyword">this</span>.toString() + <span class="string">") has a denominator that is outside of the allowed range.  The denominator cannot be greater than "</span> + MAX_ALLOWED_DURATION_DENOM + <span class="string">"."</span>);      </a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;204</td>  <td class="nbHitsUncovered"><a title="Line 204: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;313</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 204: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">      <span class="keyword">assert</span> timeLeftInBar.compareTo(barLength) &lt;= 0 : timeLeftInBar;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;202</td>  <td class="nbHitsUncovered"><a title="Line 202: Conditional coverage 50% (1/2).">&nbsp;316</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 202: Conditional coverage 50% (1/2).">      <span class="keyword">if</span> (!denomIsPowerOf2()) <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"Lilypond does not support note durations that do not have a denominator power of 2.  Instead, wrap the note in a Tuplet with the appropriate multiplier."</span>); </a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;203</td>  <td class="nbHitsCovered"><a title="Line 203: Conditional coverage 100% (2/2).">&nbsp;316</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 203: Conditional coverage 100% (2/2).">      <span class="keyword">if</span> (<span class="keyword">this</span>.denominator_ &gt; MAX_ALLOWED_DURATION_DENOM) <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"The given duration ("</span> + <span class="keyword">this</span>.toString() + <span class="string">") has a denominator that is outside of the allowed range.  The denominator cannot be greater than "</span> + MAX_ALLOWED_DURATION_DENOM + <span class="string">"."</span>);      </a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;204</td>  <td class="nbHitsUncovered"><a title="Line 204: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;315</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 204: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">      <span class="keyword">assert</span> timeLeftInBar.compareTo(barLength) &lt;= 0 : timeLeftInBar;</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;205</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                  </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;206</td>  <td class="nbHitsCovered">&nbsp;313</td>  <td class="src"><pre class="src">&nbsp;      Fraction tupletScaledTimeLeftInBar = timeLeftInBar.dividedBy(tupletMultiplier);          </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;206</td>  <td class="nbHitsCovered">&nbsp;315</td>  <td class="src"><pre class="src">&nbsp;      Fraction tupletScaledTimeLeftInBar = timeLeftInBar.dividedBy(tupletMultiplier);          </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;207</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;208</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;      <span class="comment">// this notationDuration should already be tuplet scaled, so compare it to the tupletScaledTimeLeftInBar...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;209</td>  <td class="nbHitsCovered"><a title="Line 209: Conditional coverage 100% (2/2).">&nbsp;313</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 209: Conditional coverage 100% (2/2).">      <span class="keyword">if</span> (<span class="keyword">this</span>.compareTo(tupletScaledTimeLeftInBar) &gt; 0) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;209</td>  <td class="nbHitsCovered"><a title="Line 209: Conditional coverage 100% (2/2).">&nbsp;315</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 209: Conditional coverage 100% (2/2).">      <span class="keyword">if</span> (<span class="keyword">this</span>.compareTo(tupletScaledTimeLeftInBar) &gt; 0) {</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;210</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;          <span class="comment">// this duration lasts longer than the time we have left in the bar,</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;211</td>  <td class="nbHits">&nbsp;</td>
@@ -401,15 +401,15 @@
   <td class="src"><pre class="src">&nbsp;          <span class="comment">// we only want to put a dynamic or articulation marking on the first</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;219</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;          <span class="comment">// note of the tied notes, so we have a special place holder for that</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;220</td>  <td class="nbHitsCovered"><a title="Line 220: Conditional coverage 100% (2/2).">&nbsp;297</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 220: Conditional coverage 100% (2/2).">          String afterFirstNoteString = (firstNoteInListOfTiedNotes ? NotationNote.NOTE_PLACEHOLDER_2 : <span class="string">""</span>);</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;220</td>  <td class="nbHitsCovered"><a title="Line 220: Conditional coverage 100% (2/2).">&nbsp;299</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 220: Conditional coverage 100% (2/2).">          String afterFirstNoteString = (firstNoteInListOfTiedNotes ? NotationNote.NOTE_PLACEHOLDER_2 : <span class="string">""</span>);</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;221</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;          </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;222</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;          <span class="comment">// take care of the easy cases: notes such as 1/4, 1/8, and</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;223</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;          <span class="comment">// notes using augmentation dots (3/8, 7/16, etc).</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;224</td>  <td class="nbHitsCovered"><a title="Line 224: Conditional coverage 100% (4/4).">&nbsp;297</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 224: Conditional coverage 100% (4/4).">          <span class="keyword">switch</span> ((<span class="keyword">int</span>) <span class="keyword">this</span>.numerator_) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;225</td>  <td class="nbHitsCovered">&nbsp;273</td>  <td class="src"><pre class="src">&nbsp;              <span class="keyword">case</span> 1: <span class="keyword">return</span> NotationNote.NOTE_PLACEHOLDER + </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;224</td>  <td class="nbHitsCovered"><a title="Line 224: Conditional coverage 100% (4/4).">&nbsp;299</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 224: Conditional coverage 100% (4/4).">          <span class="keyword">switch</span> ((<span class="keyword">int</span>) <span class="keyword">this</span>.numerator_) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;225</td>  <td class="nbHitsCovered">&nbsp;275</td>  <td class="src"><pre class="src">&nbsp;              <span class="keyword">case</span> 1: <span class="keyword">return</span> NotationNote.NOTE_PLACEHOLDER + </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;226</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                             Long.toString(<span class="keyword">this</span>.denominator_) + </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;227</td>  <td class="nbHits">&nbsp;</td>
@@ -488,7 +488,7 @@
   <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Return the value of the Fraction as a double **/</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;270</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">double</span> asDouble() { </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;271</td>  <td class="nbHitsCovered">&nbsp;10410</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> ((<span class="keyword">double</span>)(numerator())) / ((<span class="keyword">double</span>)(denominator()));</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;271</td>  <td class="nbHitsCovered">&nbsp;10311</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> ((<span class="keyword">double</span>)(numerator())) / ((<span class="keyword">double</span>)(denominator()));</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;272</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;273</td>  <td class="nbHits">&nbsp;</td>
@@ -511,20 +511,20 @@
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> y;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;282</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;283</td>  <td class="nbHitsUncovered"><a title="Line 283: Conditional coverage 50% (1/2).">&nbsp;41687</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 283: Conditional coverage 50% (1/2).">    <span class="keyword">if</span> (a &lt; 0) a = -a;</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;284</td>  <td class="nbHitsUncovered"><a title="Line 284: Conditional coverage 50% (1/2).">&nbsp;41687</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 284: Conditional coverage 50% (1/2).">    <span class="keyword">if</span> (b &lt; 0) b = -b;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;283</td>  <td class="nbHitsUncovered"><a title="Line 283: Conditional coverage 50% (1/2).">&nbsp;41442</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 283: Conditional coverage 50% (1/2).">    <span class="keyword">if</span> (a &lt; 0) a = -a;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;284</td>  <td class="nbHitsUncovered"><a title="Line 284: Conditional coverage 50% (1/2).">&nbsp;41442</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 284: Conditional coverage 50% (1/2).">    <span class="keyword">if</span> (b &lt; 0) b = -b;</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;285</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;286</td>  <td class="nbHitsCovered"><a title="Line 286: Conditional coverage 100% (2/2).">&nbsp;41687</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 286: Conditional coverage 100% (2/2).">    <span class="keyword">if</span> (a &gt;= b) { x = a; y = b; }</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;287</td>  <td class="nbHitsCovered">&nbsp;19814</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">else</span>        { x = b; y = a; }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;286</td>  <td class="nbHitsCovered"><a title="Line 286: Conditional coverage 100% (2/2).">&nbsp;41442</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 286: Conditional coverage 100% (2/2).">    <span class="keyword">if</span> (a &gt;= b) { x = a; y = b; }</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;287</td>  <td class="nbHitsCovered">&nbsp;19580</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">else</span>        { x = b; y = a; }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;288</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;289</td>  <td class="nbHitsCovered"><a title="Line 289: Conditional coverage 100% (2/2).">&nbsp;109041</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 289: Conditional coverage 100% (2/2).">    <span class="keyword">while</span> (y != 0) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;290</td>  <td class="nbHitsCovered">&nbsp;67354</td>  <td class="src"><pre class="src">&nbsp;      <span class="keyword">long</span> t = x % y;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;291</td>  <td class="nbHitsCovered">&nbsp;67354</td>  <td class="src"><pre class="src">&nbsp;      x = y;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;292</td>  <td class="nbHitsCovered">&nbsp;67354</td>  <td class="src"><pre class="src">&nbsp;      y = t;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;293</td>  <td class="nbHitsCovered">&nbsp;67354</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;294</td>  <td class="nbHitsCovered">&nbsp;41687</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> x;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;289</td>  <td class="nbHitsCovered"><a title="Line 289: Conditional coverage 100% (2/2).">&nbsp;108504</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 289: Conditional coverage 100% (2/2).">    <span class="keyword">while</span> (y != 0) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;290</td>  <td class="nbHitsCovered">&nbsp;67062</td>  <td class="src"><pre class="src">&nbsp;      <span class="keyword">long</span> t = x % y;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;291</td>  <td class="nbHitsCovered">&nbsp;67062</td>  <td class="src"><pre class="src">&nbsp;      x = y;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;292</td>  <td class="nbHitsCovered">&nbsp;67062</td>  <td class="src"><pre class="src">&nbsp;      y = t;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;293</td>  <td class="nbHitsCovered">&nbsp;67062</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;294</td>  <td class="nbHitsCovered">&nbsp;41442</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> x;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;295</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;296</td>  <td class="nbHits">&nbsp;</td>
@@ -555,11 +555,11 @@
   <td class="src"><pre class="src">&nbsp;  <span class="comment">/** return a Fraction representing this Fraction plus b **/</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;312</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> Fraction plus(Fraction b) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;313</td>  <td class="nbHitsCovered">&nbsp;22862</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> an = numerator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;314</td>  <td class="nbHitsCovered">&nbsp;22862</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> ad = denominator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;315</td>  <td class="nbHitsCovered">&nbsp;22862</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bn = b.numerator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;316</td>  <td class="nbHitsCovered">&nbsp;22862</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bd = b.denominator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;317</td>  <td class="nbHitsCovered">&nbsp;22862</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> <span class="keyword">new</span> Fraction(an*bd+bn*ad, ad*bd);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;313</td>  <td class="nbHitsCovered">&nbsp;22698</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> an = numerator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;314</td>  <td class="nbHitsCovered">&nbsp;22698</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> ad = denominator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;315</td>  <td class="nbHitsCovered">&nbsp;22698</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bn = b.numerator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;316</td>  <td class="nbHitsCovered">&nbsp;22698</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bd = b.denominator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;317</td>  <td class="nbHitsCovered">&nbsp;22698</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> <span class="keyword">new</span> Fraction(an*bd+bn*ad, ad*bd);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;318</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;319</td>  <td class="nbHits">&nbsp;</td>
@@ -581,11 +581,11 @@
   <td class="src"><pre class="src">&nbsp;  <span class="comment">/** return a Fraction representing this Fraction minus b **/</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;330</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> Fraction minus(Fraction b) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;331</td>  <td class="nbHitsCovered">&nbsp;2312</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> an = numerator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;332</td>  <td class="nbHitsCovered">&nbsp;2312</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> ad = denominator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;333</td>  <td class="nbHitsCovered">&nbsp;2312</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bn = b.numerator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;334</td>  <td class="nbHitsCovered">&nbsp;2312</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bd = b.denominator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;335</td>  <td class="nbHitsCovered">&nbsp;2312</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> <span class="keyword">new</span> Fraction(an*bd-bn*ad, ad*bd);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;331</td>  <td class="nbHitsCovered">&nbsp;2317</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> an = numerator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;332</td>  <td class="nbHitsCovered">&nbsp;2317</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> ad = denominator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;333</td>  <td class="nbHitsCovered">&nbsp;2317</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bn = b.numerator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;334</td>  <td class="nbHitsCovered">&nbsp;2317</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bd = b.denominator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;335</td>  <td class="nbHitsCovered">&nbsp;2317</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> <span class="keyword">new</span> Fraction(an*bd-bn*ad, ad*bd);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;336</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;337</td>  <td class="nbHits">&nbsp;</td>
@@ -620,11 +620,11 @@
   <td class="src"><pre class="src">&nbsp;  <span class="comment">/** return a Fraction representing this Fraction times n **/</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;357</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> Fraction times(<span class="keyword">long</span> n) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;358</td>  <td class="nbHitsCovered">&nbsp;4969</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> an = numerator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;359</td>  <td class="nbHitsCovered">&nbsp;4969</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> ad = denominator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;360</td>  <td class="nbHitsCovered">&nbsp;4969</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bn = n;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;361</td>  <td class="nbHitsCovered">&nbsp;4969</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bd = 1;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;362</td>  <td class="nbHitsCovered">&nbsp;4969</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> <span class="keyword">new</span> Fraction(an*bn, ad*bd);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;358</td>  <td class="nbHitsCovered">&nbsp;4979</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> an = numerator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;359</td>  <td class="nbHitsCovered">&nbsp;4979</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> ad = denominator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;360</td>  <td class="nbHitsCovered">&nbsp;4979</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bn = n;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;361</td>  <td class="nbHitsCovered">&nbsp;4979</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bd = 1;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;362</td>  <td class="nbHitsCovered">&nbsp;4979</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> <span class="keyword">new</span> Fraction(an*bn, ad*bd);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;363</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;364</td>  <td class="nbHits">&nbsp;</td>
@@ -633,11 +633,11 @@
   <td class="src"><pre class="src">&nbsp;  <span class="comment">/** return a Fraction representing this Fraction divided by b **/</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;366</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> Fraction dividedBy(Fraction b) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;367</td>  <td class="nbHitsCovered">&nbsp;2047</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> an = numerator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;368</td>  <td class="nbHitsCovered">&nbsp;2047</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> ad = denominator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;369</td>  <td class="nbHitsCovered">&nbsp;2047</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bn = b.numerator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;370</td>  <td class="nbHitsCovered">&nbsp;2047</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bd = b.denominator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;371</td>  <td class="nbHitsCovered">&nbsp;2047</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> <span class="keyword">new</span> Fraction(an*bd, ad*bn);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;367</td>  <td class="nbHitsCovered">&nbsp;2037</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> an = numerator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;368</td>  <td class="nbHitsCovered">&nbsp;2037</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> ad = denominator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;369</td>  <td class="nbHitsCovered">&nbsp;2037</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bn = b.numerator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;370</td>  <td class="nbHitsCovered">&nbsp;2037</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bd = b.denominator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;371</td>  <td class="nbHitsCovered">&nbsp;2037</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">return</span> <span class="keyword">new</span> Fraction(an*bd, ad*bn);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;372</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;373</td>  <td class="nbHits">&nbsp;</td>
@@ -665,14 +665,14 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">   **/</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;387</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">int</span> compareTo(Object other) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;388</td>  <td class="nbHitsCovered">&nbsp;4703</td>  <td class="src"><pre class="src">&nbsp;    Fraction b = (Fraction)(other);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;389</td>  <td class="nbHitsCovered">&nbsp;4703</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> an = numerator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;390</td>  <td class="nbHitsCovered">&nbsp;4703</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> ad = denominator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;391</td>  <td class="nbHitsCovered">&nbsp;4703</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bn = b.numerator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;392</td>  <td class="nbHitsCovered">&nbsp;4703</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bd = b.denominator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;393</td>  <td class="nbHitsCovered">&nbsp;4703</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> l = an*bd;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;394</td>  <td class="nbHitsCovered">&nbsp;4703</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> r = bn*ad;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;395</td>  <td class="nbHitsCovered"><a title="Line 395: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;4703</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 395: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">    <span class="keyword">return</span> (l &lt; r)? -1 : ((l == r)? 0: 1);</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;388</td>  <td class="nbHitsCovered">&nbsp;4643</td>  <td class="src"><pre class="src">&nbsp;    Fraction b = (Fraction)(other);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;389</td>  <td class="nbHitsCovered">&nbsp;4643</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> an = numerator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;390</td>  <td class="nbHitsCovered">&nbsp;4643</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> ad = denominator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;391</td>  <td class="nbHitsCovered">&nbsp;4643</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bn = b.numerator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;392</td>  <td class="nbHitsCovered">&nbsp;4643</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bd = b.denominator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;393</td>  <td class="nbHitsCovered">&nbsp;4643</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> l = an*bd;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;394</td>  <td class="nbHitsCovered">&nbsp;4643</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> r = bn*ad;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;395</td>  <td class="nbHitsCovered"><a title="Line 395: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;4643</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 395: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">    <span class="keyword">return</span> (l &lt; r)? -1 : ((l == r)? 0: 1);</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;396</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;397</td>  <td class="nbHits">&nbsp;</td>
@@ -695,13 +695,13 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">   */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;406</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">int</span> compareTo(<span class="keyword">long</span> n) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;407</td>  <td class="nbHitsCovered">&nbsp;3863</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> an = numerator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;408</td>  <td class="nbHitsCovered">&nbsp;3863</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> ad = denominator();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;409</td>  <td class="nbHitsCovered">&nbsp;3863</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bn = n;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;410</td>  <td class="nbHitsCovered">&nbsp;3863</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bd = 1;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;411</td>  <td class="nbHitsCovered">&nbsp;3863</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> l = an*bd;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;412</td>  <td class="nbHitsCovered">&nbsp;3863</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> r = bn*ad;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;413</td>  <td class="nbHitsCovered"><a title="Line 413: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;3863</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 413: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">    <span class="keyword">return</span> (l &lt; r)? -1 : ((l == r)? 0: 1);</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;407</td>  <td class="nbHitsCovered">&nbsp;3840</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> an = numerator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;408</td>  <td class="nbHitsCovered">&nbsp;3840</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> ad = denominator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;409</td>  <td class="nbHitsCovered">&nbsp;3840</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bn = n;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;410</td>  <td class="nbHitsCovered">&nbsp;3840</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> bd = 1;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;411</td>  <td class="nbHitsCovered">&nbsp;3840</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> l = an*bd;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;412</td>  <td class="nbHitsCovered">&nbsp;3840</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">long</span> r = bn*ad;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;413</td>  <td class="nbHitsCovered"><a title="Line 413: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;3840</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 413: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">    <span class="keyword">return</span> (l &lt; r)? -1 : ((l == r)? 0: 1);</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;414</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;415</td>  <td class="nbHits">&nbsp;</td>
@@ -722,8 +722,8 @@
   <td class="src"><pre class="src">&nbsp;  @Override</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;423</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">boolean</span> equals(Object other) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;424</td>  <td class="nbHitsUncovered"><a title="Line 424: Conditional coverage 50% (1/2).">&nbsp;2464</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 424: Conditional coverage 50% (1/2).">    <span class="keyword">if</span> (!(other <span class="keyword">instanceof</span> Fraction)) <span class="keyword">return</span> <span class="keyword">false</span>;</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;425</td>  <td class="nbHitsCovered"><a title="Line 425: Conditional coverage 100% (2/2).">&nbsp;2464</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 425: Conditional coverage 100% (2/2).">    <span class="keyword">return</span> compareTo((Fraction)other) == 0;</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;424</td>  <td class="nbHitsUncovered"><a title="Line 424: Conditional coverage 50% (1/2).">&nbsp;2432</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 424: Conditional coverage 50% (1/2).">    <span class="keyword">if</span> (!(other <span class="keyword">instanceof</span> Fraction)) <span class="keyword">return</span> <span class="keyword">false</span>;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;425</td>  <td class="nbHitsCovered"><a title="Line 425: Conditional coverage 100% (2/2).">&nbsp;2432</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 425: Conditional coverage 100% (2/2).">    <span class="keyword">return</span> compareTo((Fraction)other) == 0;</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;426</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;427</td>  <td class="nbHits">&nbsp;</td>
@@ -778,7 +778,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">   */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;453</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">boolean</span> denomIsPowerOf2() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;454</td>  <td class="nbHitsCovered">&nbsp;3523</td>  <td class="src"><pre class="src">&nbsp;      <span class="keyword">return</span> MathHelper.numIsPowerOf2(<span class="keyword">this</span>.denominator_);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;454</td>  <td class="nbHitsCovered">&nbsp;3533</td>  <td class="src"><pre class="src">&nbsp;      <span class="keyword">return</span> MathHelper.numIsPowerOf2(<span class="keyword">this</span>.denominator_);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;455</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;456</td>  <td class="nbHits">&nbsp;</td>
@@ -831,6 +831,6 @@
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 7/31/08 10:57 AM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 8/1/08 9:53 AM.</div>
 </body>
 </html>

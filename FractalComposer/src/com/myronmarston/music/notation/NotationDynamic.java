@@ -126,7 +126,8 @@ public class NotationDynamic extends AbstractNotationElement implements Cloneabl
             //TODO: the version of Guido I've installed on my dev machine
             // does not support ppp dynamics (but does support fff).  Check to
             // see if this is also the case with the guido note server, and if
-            // so, replace ppp with pp.
+            // so, replace ppp with pp. Update: the notation server also can't
+            // handle PPP
             guidoString = 
                 (this.dynamic == null ? 
                  this.articulation.toGuidoString() : 

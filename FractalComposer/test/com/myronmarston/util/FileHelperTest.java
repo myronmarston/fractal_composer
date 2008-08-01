@@ -145,6 +145,15 @@ public class FileHelperTest {
     }
     
     @Test
+    public void getRawFileName() throws Exception {
+        String fileName = "fileName";
+        String extension = ".extension";
+        String fullFileName = FileHelper.getTempDirectory().getCanonicalPath() + File.separator + fileName + extension;
+        
+        assertEquals(fileName, FileHelper.getRawFileName(fullFileName, extension));
+    }
+    
+    @Test
     public void fileExists() throws Exception {
         FileHelper.createAndUseTempFile("test", ".txt", new FileHelper.TempFileUser() {
             public void useTempFile(String tempFileName) throws Exception {

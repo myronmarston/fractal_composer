@@ -205,7 +205,7 @@ public class FileHelper {
         try {
             transientFileUser.doWork();
         } finally {            
-            List<File> filesMatchingTransientFilter = new ArrayList<File>(Arrays.asList(directory.listFiles(transientFileFilter)));//Arrays.asList(directory.listFiles(transientFileFilter));            
+            List<File> filesMatchingTransientFilter = new ArrayList<File>(Arrays.asList(directory.listFiles(transientFileFilter)));
             filesMatchingTransientFilter.removeAll(originalFilesMatchingTransientFilter);
             for (File file : filesMatchingTransientFilter) {                
                 attemptTempFileDelete(file);                
@@ -220,7 +220,7 @@ public class FileHelper {
      * 
      * @param tempFile the file to delete
      */
-    private static void attemptTempFileDelete(File tempFile) {
+    public static void attemptTempFileDelete(File tempFile) {
         if (tempFile == null || !tempFile.exists()) return;
         try { 
             tempFile.delete();
@@ -249,6 +249,19 @@ public class FileHelper {
         }
         
         return tempDirectory;
+    }
+    
+    /**
+     * Returns the file name without the extension or folder path.
+     * 
+     * @param fileName the full name of the file
+     * @param extension the file extension
+     * @return the raw file name
+     */
+    public static String getRawFileName(String fileName, String extension) {
+        String rawFileName = FileHelper.stripFileExtension(new File(fileName).getName(), extension);
+        assert !rawFileName.contains(File.separator);
+        return rawFileName;
     }
     
     /**

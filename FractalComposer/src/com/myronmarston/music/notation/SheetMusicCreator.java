@@ -36,7 +36,6 @@ public class SheetMusicCreator {
     private static final String GUIDO_2_GIF_EXE_FILE = "guido2gif.exe";
     private static final String GUIDO_SUB_DIRECTORY = "guido";
     private static final String CURRENT_DIR = System.getProperty("user.dir");    
-    private static String lilypondDirectory = CURRENT_DIR;
     private static String guidoParentDirectory = CURRENT_DIR;
     private static final String LILYPOND_EXE_FILE = "lilypond.exe";
     private static final Pattern LILYPOND_OR_GUIDO_OUTPUT_ERROR = Pattern.compile(".*?(warning|error).*", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);       
@@ -52,26 +51,6 @@ public class SheetMusicCreator {
         this.outputManager = outputManager;
     }       
     
-    /**
-     * Sets the directory to use while running the Lilypond process.  Defaults
-     * to the current working directory.
-     * 
-     * @param dir the directory
-     */
-    synchronized public static void setLilypondDirectory(String dir) {
-        lilypondDirectory = dir;
-    }
-    
-    /**
-     * Gets the directory to use while running the Lilypond process.  Defaults
-     * to the current working directory.
-     * 
-     * @return the directory
-     */
-    synchronized public static String getLilypondDirectory() {
-        return lilypondDirectory;
-    }
-
     /**
      * Gets the directory under which Guido is located.  Guido should be in a
      * directory called "Guido" under the specified directory.
@@ -163,8 +142,8 @@ public class SheetMusicCreator {
      * @param composer the composer of the piece
      * @throws java.lang.Exception if there is an error
      */
-    public void saveAsPdf(final String fileName, final String title, final String composer) throws Exception {       
-        final String fileNameWithoutExtension = FileHelper.stripFileExtension(fileName, ".pdf");
+    public void saveAsPdf(final String fileName, final String title, final String composer) throws Exception {               
+        final String rawFileName = FileHelper.getRawFileName(fileName, ".pdf");
         this.runLilypond(
             fileName, 
             title, 
@@ -173,19 +152,24 @@ public class SheetMusicCreator {
             ".pdf", 
             new java.io.FileFilter() {
                 public boolean accept(File pathname) {
-                    return pathname.getName().endsWith(fileNameWithoutExtension + ".ps");
+                    return pathname.getName().endsWith(rawFileName + ".ps");
                 }
             }, 
             "--pdf"
         );                    
     }
     
+    /**
+     * Saves the notation as a png image using lilypond.
+     * 
+     * @param fileName the name of the png file
+     * @param title the title of the piece
+     * @param composer the composer of the piece
+     * @param imageWidth the desired image width
+     * @throws java.lang.Exception if there is an error
+     */
     public void saveAsPng(final String fileName, final String title, final String composer, final int imageWidth) throws Exception {                       
-        String fileNameWithoutExtension = FileHelper.stripFileExtension(fileName, ".png");
-        String fileNameWithoutExtensionOrFolderPath = (new File(fileNameWithoutExtension)).getName();
-        assert !fileNameWithoutExtensionOrFolderPath.contains(File.separator);
-        final Pattern transientFilePattern = Pattern.compile(".*?" + fileNameWithoutExtensionOrFolderPath + "(.*?eps|-system.*?)", Pattern.DOTALL);
-        
+        final Pattern transientFilePattern = Pattern.compile(".*?" + FileHelper.getRawFileName(fileName, ".png") + "(.*?eps|-system.*?)", Pattern.DOTALL);        
         this.runLilypond(
             fileName, 
             title, 
@@ -220,11 +204,13 @@ public class SheetMusicCreator {
      *        to lilypond
      * @throws java.lang.Exception if an error occurs
      */
-    private void runLilypond(final String fileName, final String title, final String composer, final int imageWidth, final String fileExtension, final FileFilter transientFileFilter, final String ... lilypondCommandLineOptions) throws Exception {       
-        final String fileNameWithoutExtension = FileHelper.stripFileExtension(fileName, fileExtension);
-        final File lilypondDir = new File(getLilypondDirectory());
-        
-        FileHelper.deleteNewTransientFiles(lilypondDir, transientFileFilter, new FileHelper.TransientFileUser() {
+    private void runLilypond(final String fileName, final String title, final String composer, final int imageWidth, final String fileExtension, final FileFilter transientFileFilter, final String ... lilypondCommandLineOptions) throws Exception {               
+        File givenFile = new File(fileName);        
+        final String fileNameWithoutExtension = FileHelper.stripFileExtension(givenFile.getName(), fileExtension);        
+        final File directory = givenFile.getParentFile();
+        assert directory.isDirectory();
+                        
+        FileHelper.deleteNewTransientFiles(directory, transientFileFilter, new FileHelper.TransientFileUser() {
             public void doWork() throws Exception {
                 FileHelper.createAndUseTempFile("Lilypond", ".ly", new FileHelper.TempFileUser() {
                     public void useTempFile(String tempFileName) throws Exception {                    
@@ -237,7 +223,7 @@ public class SheetMusicCreator {
                         commandLineOptions.add(tempFileName);                        
                         
                         ProcessBuilder pb = new ProcessBuilder();                   
-                        pb.directory(lilypondDir);                        
+                        pb.directory(directory);                        
                         pb.command(commandLineOptions);
 
                         String output = ProcessRunner.runProcess(pb);                    

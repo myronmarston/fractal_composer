@@ -185,6 +185,14 @@ A class that provides static methods to manage temporary file resources.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/FileHelper.html#attemptTempFileDelete(java.io.File)">attemptTempFileDelete</A></B>(java.io.File&nbsp;tempFile)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Attempts to delete a temporary file.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/util/FileHelper.html#createAndUseFileBufferedWriter(java.lang.String, com.myronmarston.util.FileHelper.BufferedWriterUser)">createAndUseFileBufferedWriter</A></B>(java.lang.String&nbsp;fileName,
                                <A HREF="../../../com/myronmarston/util/FileHelper.BufferedWriterUser.html" title="interface in com.myronmarston.util">FileHelper.BufferedWriterUser</A>&nbsp;bufferedWriterUser)</CODE>
 
@@ -228,6 +236,15 @@ A class that provides static methods to manage temporary file resources.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checks to see if the given file exists.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/FileHelper.html#getRawFileName(java.lang.String, java.lang.String)">getRawFileName</A></B>(java.lang.String&nbsp;fileName,
+               java.lang.String&nbsp;extension)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the file name without the extension or folder path.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -413,6 +430,21 @@ public static void <B>deleteNewTransientFiles</B>(java.io.File&nbsp;directory,
 </DL>
 <HR>
 
+<A NAME="attemptTempFileDelete(java.io.File)"><!-- --></A><H3>
+attemptTempFileDelete</H3>
+<PRE>
+public static void <B>attemptTempFileDelete</B>(java.io.File&nbsp;tempFile)</PRE>
+<DL>
+<DD>Attempts to delete a temporary file.  If an error occurs, it is written
+ to the log rather than propigated up the call stack since it is usually
+ OK to leave temp files (but preferable to delete them, of course).
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>tempFile</CODE> - the file to delete</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="getTempDirectory()"><!-- --></A><H3>
 getTempDirectory</H3>
 <PRE>
@@ -427,6 +459,21 @@ public static java.io.File <B>getTempDirectory</B>()
 <DT><B>Throws:</B>
 <DD><CODE>java.io.IOException</CODE> - if an error occurred while getting the temp
          directory</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRawFileName(java.lang.String, java.lang.String)"><!-- --></A><H3>
+getRawFileName</H3>
+<PRE>
+public static java.lang.String <B>getRawFileName</B>(java.lang.String&nbsp;fileName,
+                                              java.lang.String&nbsp;extension)</PRE>
+<DL>
+<DD>Returns the file name without the extension or folder path.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the full name of the file<DD><CODE>extension</CODE> - the file extension
+<DT><B>Returns:</B><DD>the raw file name</DL>
 </DD>
 </DL>
 <HR>
