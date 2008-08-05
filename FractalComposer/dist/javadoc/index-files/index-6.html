@@ -283,6 +283,10 @@ Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music
 <DT><A HREF="../com/myronmarston/music/scales/Scale.html#getKeyName()"><B>getKeyName()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>
 <DD>Gets the tonal center of the scale.
+<DT><A HREF="../com/myronmarston/music/scales/KeySignature.html#getKeyNameWithSameNumAccidentals(com.myronmarston.music.scales.Tonality)"><B>getKeyNameWithSameNumAccidentals(Tonality)</B></A> - 
+Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>
+<DD>Gets the key name for the given tonality that has the same number of 
+ accidentals as this key signature.
 <DT><A HREF="../com/myronmarston/music/notation/Piece.html#getKeySignature()"><B>getKeySignature()</B></A> - 
 Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/music/notation/Piece.html" title="class in com.myronmarston.music.notation">Piece</A>
 <DD>Gets the key signature of this piece.
@@ -370,20 +374,17 @@ Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.h
 Method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>
 <DD>Gets the size of the interval of this note name's musical letter compared 
  to C.
+<DT><A HREF="../com/myronmarston/music/scales/AbstractDiatonicScale.html#getLetterNumberArray()"><B>getLetterNumberArray()</B></A> - 
+Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/AbstractDiatonicScale.html" title="class in com.myronmarston.music.scales">AbstractDiatonicScale</A>
+<DD>&nbsp;
 <DT><A HREF="../com/myronmarston/music/scales/ChromaticScale.html#getLetterNumberArray()"><B>getLetterNumberArray()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/ChromaticScale.html" title="class in com.myronmarston.music.scales">ChromaticScale</A>
 <DD>Note supported by Chromatic Scale.
 <DT><A HREF="../com/myronmarston/music/scales/MajorPentatonicScale.html#getLetterNumberArray()"><B>getLetterNumberArray()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/MajorPentatonicScale.html" title="class in com.myronmarston.music.scales">MajorPentatonicScale</A>
 <DD>&nbsp;
-<DT><A HREF="../com/myronmarston/music/scales/MajorScale.html#getLetterNumberArray()"><B>getLetterNumberArray()</B></A> - 
-Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/MajorScale.html" title="class in com.myronmarston.music.scales">MajorScale</A>
-<DD>&nbsp;
 <DT><A HREF="../com/myronmarston/music/scales/MinorPentatonicScale.html#getLetterNumberArray()"><B>getLetterNumberArray()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/MinorPentatonicScale.html" title="class in com.myronmarston.music.scales">MinorPentatonicScale</A>
-<DD>&nbsp;
-<DT><A HREF="../com/myronmarston/music/scales/NaturalMinorScale.html#getLetterNumberArray()"><B>getLetterNumberArray()</B></A> - 
-Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/NaturalMinorScale.html" title="class in com.myronmarston.music.scales">NaturalMinorScale</A>
 <DD>&nbsp;
 <DT><A HREF="../com/myronmarston/music/scales/Scale.html#getLetterNumberArray()"><B>getLetterNumberArray()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>
@@ -451,9 +452,12 @@ Method in enum com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/
 <DT><A HREF="../com/myronmarston/music/Dynamic.html#getMidiVolume()"><B>getMidiVolume()</B></A> - 
 Method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/Dynamic.html" title="enum in com.myronmarston.music">Dynamic</A>
 <DD>Gets the midi volume for this dynamic.
-<DT><A HREF="../com/myronmarston/music/NoteName.html#getMinorKeySharpsOrFlats()"><B>getMinorKeySharpsOrFlats()</B></A> - 
-Method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>
-<DD>Gets the number of sharps or flats for this minor key.
+<DT><A HREF="../com/myronmarston/music/scales/Tonality.html#getModeLetterNumberOffset()"><B>getModeLetterNumberOffset()</B></A> - 
+Method in enum com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/Tonality.html" title="enum in com.myronmarston.music.scales">Tonality</A>
+<DD>The number of letter names this tonality is offset from major tonality.
+<DT><A HREF="../com/myronmarston/music/scales/Tonality.html#getModeNoteNumberOffset()"><B>getModeNoteNumberOffset()</B></A> - 
+Method in enum com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/Tonality.html" title="enum in com.myronmarston.music.scales">Tonality</A>
+<DD>The number of half steps this tonality is offset from major tonality.
 <DT><A HREF="../com/myronmarston/music/Instrument.html#getName()"><B>getName()</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Instrument.html" title="class in com.myronmarston.music">Instrument</A>
 <DD>Gets the name of the instrument.
@@ -563,8 +567,8 @@ Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/Note.html#getOctave()"><B>getOctave()</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
 <DD>Gets which octave the note should be in.
-<DT><A HREF="../com/myronmarston/music/settings/VoiceSettings.html#getOctaveAdjustment()"><B>getOctaveAdjustment()</B></A> - 
-Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/VoiceSettings.html" title="class in com.myronmarston.music.settings">VoiceSettings</A>
+<DT><A HREF="../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#getOctaveAdjustment()"><B>getOctaveAdjustment()</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSectionSettings</A>
 <DD>Gets how many octaves to adjust the germ for use by this voice.
 <DT><A HREF="../com/myronmarston/music/transformers/OctaveTransformer.html#getOctaveChange()"><B>getOctaveChange()</B></A> - 
 Method in class com.myronmarston.music.transformers.<A HREF="../com/myronmarston/music/transformers/OctaveTransformer.html" title="class in com.myronmarston.music.transformers">OctaveTransformer</A>
@@ -653,9 +657,6 @@ Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music
 Static method in enum com.myronmarston.music.<A HREF="../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A>
 <DD>Gets a regular expression pattern for parsing the NoteName from a Note
  string.
-<DT><A HREF="../com/myronmarston/music/scales/KeySignature.html#getRelativeKeyName()"><B>getRelativeKeyName()</B></A> - 
-Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/KeySignature.html" title="class in com.myronmarston.music.scales">KeySignature</A>
-<DD>Gets the note name of the relative key.
 <DT><A HREF="../com/myronmarston/music/settings/VoiceSection.html#getRest()"><B>getRest()</B></A> - 
 Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/VoiceSection.html" title="class in com.myronmarston.music.settings">VoiceSection</A>
 <DD>Gets whether or not to make this VoiceSection one long rest.
@@ -681,8 +682,17 @@ Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.h
 <DT><A HREF="../com/myronmarston/music/scales/ChromaticScale.html#getScaleStepArray()"><B>getScaleStepArray()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/ChromaticScale.html" title="class in com.myronmarston.music.scales">ChromaticScale</A>
 <DD>&nbsp;
+<DT><A HREF="../com/myronmarston/music/scales/DorianScale.html#getScaleStepArray()"><B>getScaleStepArray()</B></A> - 
+Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/DorianScale.html" title="class in com.myronmarston.music.scales">DorianScale</A>
+<DD>&nbsp;
 <DT><A HREF="../com/myronmarston/music/scales/HarmonicMinorScale.html#getScaleStepArray()"><B>getScaleStepArray()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/HarmonicMinorScale.html" title="class in com.myronmarston.music.scales">HarmonicMinorScale</A>
+<DD>&nbsp;
+<DT><A HREF="../com/myronmarston/music/scales/LocrianScale.html#getScaleStepArray()"><B>getScaleStepArray()</B></A> - 
+Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/LocrianScale.html" title="class in com.myronmarston.music.scales">LocrianScale</A>
+<DD>&nbsp;
+<DT><A HREF="../com/myronmarston/music/scales/LydianScale.html#getScaleStepArray()"><B>getScaleStepArray()</B></A> - 
+Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/LydianScale.html" title="class in com.myronmarston.music.scales">LydianScale</A>
 <DD>&nbsp;
 <DT><A HREF="../com/myronmarston/music/scales/MajorPentatonicScale.html#getScaleStepArray()"><B>getScaleStepArray()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/MajorPentatonicScale.html" title="class in com.myronmarston.music.scales">MajorPentatonicScale</A>
@@ -693,8 +703,14 @@ Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music
 <DT><A HREF="../com/myronmarston/music/scales/MinorPentatonicScale.html#getScaleStepArray()"><B>getScaleStepArray()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/MinorPentatonicScale.html" title="class in com.myronmarston.music.scales">MinorPentatonicScale</A>
 <DD>&nbsp;
+<DT><A HREF="../com/myronmarston/music/scales/MixolydianScale.html#getScaleStepArray()"><B>getScaleStepArray()</B></A> - 
+Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/MixolydianScale.html" title="class in com.myronmarston.music.scales">MixolydianScale</A>
+<DD>&nbsp;
 <DT><A HREF="../com/myronmarston/music/scales/NaturalMinorScale.html#getScaleStepArray()"><B>getScaleStepArray()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/NaturalMinorScale.html" title="class in com.myronmarston.music.scales">NaturalMinorScale</A>
+<DD>&nbsp;
+<DT><A HREF="../com/myronmarston/music/scales/PhrygianScale.html#getScaleStepArray()"><B>getScaleStepArray()</B></A> - 
+Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/PhrygianScale.html" title="class in com.myronmarston.music.scales">PhrygianScale</A>
 <DD>&nbsp;
 <DT><A HREF="../com/myronmarston/music/scales/Scale.html#getScaleStepArray()"><B>getScaleStepArray()</B></A> - 
 Method in class com.myronmarston.music.scales.<A HREF="../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A>
@@ -758,8 +774,8 @@ Method in class com.myronmarston.music.notation.<A HREF="../com/myronmarston/mus
 <DT><A HREF="../com/myronmarston/music/Note.html#getSourceVoiceSection()"><B>getSourceVoiceSection()</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/Note.html" title="class in com.myronmarston.music">Note</A>
 <DD>Gets the voice section that generated this note.
-<DT><A HREF="../com/myronmarston/music/settings/VoiceSettings.html#getSpeedScaleFactor()"><B>getSpeedScaleFactor()</B></A> - 
-Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/VoiceSettings.html" title="class in com.myronmarston.music.settings">VoiceSettings</A>
+<DT><A HREF="../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#getSpeedScaleFactor()"><B>getSpeedScaleFactor()</B></A> - 
+Method in class com.myronmarston.music.settings.<A HREF="../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSectionSettings</A>
 <DD>Gets the speed scale factor to apply to the germ for use by this voice.
 <DT><A HREF="../com/myronmarston/music/MidiNote.html#getStartTime()"><B>getStartTime()</B></A> - 
 Method in class com.myronmarston.music.<A HREF="../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music">MidiNote</A>

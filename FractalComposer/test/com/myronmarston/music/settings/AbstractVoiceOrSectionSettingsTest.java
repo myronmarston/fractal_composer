@@ -56,7 +56,10 @@ public class AbstractVoiceOrSectionSettingsTest implements Subscriber {
     }        
     
     protected void setDefaultSettingsValues() {
-        throw new UnsupportedOperationException("This must be implemented on the subclass.");       
+        this.settings.setOctaveAdjustment(0);
+        this.settings.setSpeedScaleFactor(new Fraction(1, 1));
+        this.settings.setScaleStepOffset(0);
+        this.settings.setVolumeAdjustment(new Fraction(0, 1));
     }
     
     protected boolean isInstanceOfSubclass() {
@@ -68,15 +71,15 @@ public class AbstractVoiceOrSectionSettingsTest implements Subscriber {
         if (!isInstanceOfSubclass()) return;
         
         // set our fields to a known state
-        this.settings.setVolumeAdjustment(0.25d);
+        this.settings.setVolumeAdjustment(new Fraction(1, 4));
         this.subscriberNotificationCount = 0;
         
-        this.settings.setVolumeAdjustment(0.5d);
-        assertEquals(0.5d, this.settings.getVolumeAdjustment());
+        this.settings.setVolumeAdjustment(new Fraction(1, 2));
+        assertEquals(new Fraction(1, 2), this.settings.getVolumeAdjustment());
         assertEquals(1, this.subscriberNotificationCount);
         
-        this.settings.setVolumeAdjustment(-0.5d);
-        assertEquals(-0.5d, this.settings.getVolumeAdjustment());
+        this.settings.setVolumeAdjustment(new Fraction(-1, 2));
+        assertEquals(new Fraction(-1, 2), this.settings.getVolumeAdjustment());
         assertEquals(2, this.subscriberNotificationCount);          
     }
         
@@ -84,24 +87,24 @@ public class AbstractVoiceOrSectionSettingsTest implements Subscriber {
     public void volumeAdjustmentValidRange() {        
         if (!isInstanceOfSubclass()) return;
         
-        this.settings.setVolumeAdjustment(0d);
+        this.settings.setVolumeAdjustment(new Fraction(0, 1));
         try {
-            this.settings.setVolumeAdjustment(-1d);
+            this.settings.setVolumeAdjustment(new Fraction(-1, 1));
             fail();
         } catch (IllegalArgumentException ex) {}
-        assertEquals(0d, this.settings.getVolumeAdjustment());
+        assertEquals(new Fraction(0, 1), this.settings.getVolumeAdjustment());
         
-        this.settings.setVolumeAdjustment(-0.999999d);
-        assertEquals(-0.999999d, this.settings.getVolumeAdjustment());
+        this.settings.setVolumeAdjustment(new Fraction(-999999, 1000000));
+        assertEquals(new Fraction(-999999, 1000000), this.settings.getVolumeAdjustment());
         
-        this.settings.setVolumeAdjustment(1d);
-        assertEquals(1.0d, this.settings.getVolumeAdjustment());
+        this.settings.setVolumeAdjustment(new Fraction(1, 1));
+        assertEquals(new Fraction(1, 1), this.settings.getVolumeAdjustment());
         
         try {
-            this.settings.setVolumeAdjustment(1.000001d);
+            this.settings.setVolumeAdjustment(new Fraction(1000001, 1000000));
             fail();
         } catch (IllegalArgumentException ex) {}
-        assertEquals(1d, this.settings.getVolumeAdjustment());        
+        assertEquals(new Fraction(1, 1), this.settings.getVolumeAdjustment());        
     }
         
     @Test
@@ -146,13 +149,58 @@ public class AbstractVoiceOrSectionSettingsTest implements Subscriber {
     }
     
     @Test
+    public void setOctaveAdjustment() {
+        if (!isInstanceOfSubclass()) return;
+        
+        // set our fields to a known state
+        this.settings.setOctaveAdjustment(1);
+        this.subscriberNotificationCount = 0;
+        
+        this.settings.setOctaveAdjustment(3);
+        assertEquals(3, this.settings.getOctaveAdjustment());
+        assertEquals(1, this.subscriberNotificationCount);
+        
+        this.settings.setOctaveAdjustment(2);
+        assertEquals(2, this.settings.getOctaveAdjustment());
+        assertEquals(2, this.subscriberNotificationCount);          
+    }
+    
+    @Test
+    public void setSpeedScaleFactor() {
+        if (!isInstanceOfSubclass()) return;
+        
+        // set our fields to a known state
+        this.settings.setSpeedScaleFactor(new Fraction(1, 1));
+        this.subscriberNotificationCount = 0;
+        
+        this.settings.setSpeedScaleFactor(new Fraction(3, 1));
+        assertEquals(new Fraction(3, 1), this.settings.getSpeedScaleFactor());
+        assertEquals(1, this.subscriberNotificationCount);
+        
+        this.settings.setSpeedScaleFactor(new Fraction(1, 2));
+        assertEquals(new Fraction(1, 2), this.settings.getSpeedScaleFactor());
+        assertEquals(2, this.subscriberNotificationCount);  
+        
+        // test bad values...
+        try { 
+            this.settings.setSpeedScaleFactor(new Fraction(-1, 3));
+            fail();
+        } catch (IllegalArgumentException ex) {}
+                
+        try { 
+            this.settings.setSpeedScaleFactor(new Fraction(0, 3));
+            fail();
+        } catch (IllegalArgumentException ex) {}
+    }
+    
+    @Test
     public void applyVolumeSettingToNoteList() throws Exception {
         if (!this.isInstanceOfSubclass()) return;                        
         this.setDefaultSettingsValues();
         
         Scale scale = new MajorScale(NoteName.C);        
         NoteList input = NoteList.parseNoteListString("G4 A4", scale);        
-        this.settings.setVolumeAdjustment(0.5d);
+        this.settings.setVolumeAdjustment(new Fraction(1, 2));
         int expectedVolume = 99;
         
         NoteList expected = input.clone();
@@ -161,7 +209,7 @@ public class AbstractVoiceOrSectionSettingsTest implements Subscriber {
                 
         NoteListTest.assertNoteListsEqual(expected, settings.applySettingsToNoteList(input, scale));
 
-        this.settings.setVolumeAdjustment(-0.5d);
+        this.settings.setVolumeAdjustment(new Fraction(-1, 2));
         expectedVolume = 36;
         expected.get(0).setVolume(expectedVolume);
         expected.get(1).setVolume(expectedVolume);
@@ -239,7 +287,7 @@ public class AbstractVoiceOrSectionSettingsTest implements Subscriber {
         if (!this.isInstanceOfSubclass()) return;                
         this.setDefaultSettingsValues();
         this.settings.setScaleStepOffset(3);
-        this.settings.setVolumeAdjustment(0.5d);
+        this.settings.setVolumeAdjustment(new Fraction(1, 2));
         
         AbstractVoiceOrSectionSettings ros = this.settings.getReadOnlyCopy();
                
@@ -250,37 +298,37 @@ public class AbstractVoiceOrSectionSettingsTest implements Subscriber {
         assertEquals(3, ros.getScaleStepOffset()); 
         
         try {
-            ros.setVolumeAdjustment(-0.33d);
+            ros.setVolumeAdjustment(new Fraction(-1, 3));
             fail();
         } catch (UnsupportedOperationException ex) {}
-        assertEquals(0.5d, ros.getVolumeAdjustment());         
+        assertEquals(new Fraction(1, 2), ros.getVolumeAdjustment());         
     }
     
-    @Test
-    public void testEqualsAndHashCode() throws Exception {
-        if (!this.isInstanceOfSubclass()) return;                
+    protected static void assertEqualsAndHashCode(boolean equal, AbstractVoiceOrSectionSettings s1, AbstractVoiceOrSectionSettings s2) throws Exception {
+        assertEquals(equal, s1.equals(s2));
+        assertEquals(equal, s2.equals(s1));
+        assertEquals(equal, s1.hashCode() == s2.hashCode());
+    }
+            
+    public void testEqualsAndHashCode(AbstractVoiceOrSectionSettings s1, AbstractVoiceOrSectionSettings s2) throws Exception {
+        s2 = s1.clone();
+        assertEqualsAndHashCode(true, s1, s2);        
+        s2.setOctaveAdjustment(s1.getOctaveAdjustment() + 1);
+        assertEqualsAndHashCode(false, s1, s2);
         
-        this.setDefaultSettingsValues();
-        AbstractVoiceOrSectionSettings s1 = this.settings.clone();
-        AbstractVoiceOrSectionSettings s2 = this.settings.clone();
-        s1.setScaleStepOffset(3);
-        s1.setVolumeAdjustment(0.5d);
+        s2 = s1.clone();
+        assertEqualsAndHashCode(true, s1, s2);        
+        s2.setScaleStepOffset(s1.getScaleStepOffset() + 1);
+        assertEqualsAndHashCode(false, s1, s2);
         
-        s2.setScaleStepOffset(s1.getScaleStepOffset());
-        s2.setVolumeAdjustment(s1.getVolumeAdjustment());
-        assertTrue(s1.equals(s2));
-        assertTrue(s2.equals(s1));
-        assertEquals(s1.hashCode(), s2.hashCode());
+        s2 = s1.clone();
+        assertEqualsAndHashCode(true, s1, s2);        
+        s2.setSpeedScaleFactor(s1.getSpeedScaleFactor().times(new Fraction(3, 2)));
+        assertEqualsAndHashCode(false, s1, s2);
         
-        s2.setScaleStepOffset(s2.getScaleStepOffset() - 1);
-        assertFalse(s1.equals(s2));
-        assertFalse(s2.equals(s1));
-        assertFalse(s1.hashCode() == s2.hashCode());
-        
-        s2.setScaleStepOffset(s1.getScaleStepOffset());
-        s2.setVolumeAdjustment(s2.getVolumeAdjustment() * 0.5d);
-        assertFalse(s1.equals(s2));
-        assertFalse(s2.equals(s1));
-        assertFalse(s1.hashCode() == s2.hashCode());        
+        s2 = s1.clone();
+        assertEqualsAndHashCode(true, s1, s2);        
+        s2.setVolumeAdjustment(s1.getVolumeAdjustment().plus(new Fraction(1, 10)));
+        assertEqualsAndHashCode(false, s1, s2);        
     }
 }

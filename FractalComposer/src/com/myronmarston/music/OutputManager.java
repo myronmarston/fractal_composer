@@ -533,6 +533,7 @@ public class OutputManager {
      * @throws java.lang.Exception if there is an error
      */
     public void saveMp3File(String fileName) throws Exception {
+        // TODO: sometimes our germ mp3 file is way long (over a minute) when it should be only a few seconds
         this.getAudioFileCreator().saveMp3File(fileName);  
         this.lastMp3FileName = fileName;
     }

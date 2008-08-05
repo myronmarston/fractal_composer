@@ -31,12 +31,37 @@ public enum Tonality {
     /**
      * Major tonality.
      */    
-    Major((byte) 0, NoteName.C), 
+    Major((byte) 0, NoteName.C, 0, 0), 
 
+    /**
+     * Dorian tonality.
+     */    
+    Dorian((byte) 1, NoteName.D, 1, 2), 
+    
+    /**
+     * Phrygian tonality.
+     */    
+    Phrygian((byte) 1, NoteName.E, 2, 4), 
+    
+    /**
+     * Lydian tonality.
+     */    
+    Lydian((byte) 0, NoteName.F, 3, 5), 
+    
+    /**
+     * Mixolydian tonality.
+     */    
+    Mixolydian((byte) 0, NoteName.G, 4, 7), 
+    
     /**
      * Minor tonality.
      */    
-    Minor((byte) 1, NoteName.A);
+    Minor((byte) 1, NoteName.A, 5, 9),
+    
+    /**
+     * Locrian tonality.
+     */    
+    Locrian((byte) 1, NoteName.B, 6, 11);        
     
     /**
      * Value for a NoteName's sharps or flats that indicates it is an invalid
@@ -46,10 +71,14 @@ public enum Tonality {
     private List<NoteName> validKeyNames;
     private final byte midiValue;
     private final NoteName defaultKey;
+    private final int modeLetterNumberOffset;
+    private final int modeNoteNumberOffset;
 
-    private Tonality(byte midiValue, NoteName defaultKey) {
+    private Tonality(byte midiValue, NoteName defaultKey, int modeLetterNumberOffset, int modeNoteNumberOffset) {
         this.midiValue = midiValue;
         this.defaultKey = defaultKey;
+        this.modeLetterNumberOffset = modeLetterNumberOffset;
+        this.modeNoteNumberOffset = modeNoteNumberOffset;
     } 
     
     /**
@@ -59,6 +88,24 @@ public enum Tonality {
      */
     public byte getMidiValue() {
         return midiValue;
+    }
+    
+    /**
+     * The number of letter names this tonality is offset from major tonality.
+     * 
+     * @return the mode letter number offset
+     */
+    public int getModeLetterNumberOffset() {
+        return this.modeLetterNumberOffset;
+    }
+    
+    /**
+     * The number of half steps this tonality is offset from major tonality.
+     * 
+     * @return the mode note number offset
+     */
+    public int getModeNoteNumberOffset() {
+        return this.modeNoteNumberOffset;
     }
 
     /**
@@ -99,11 +146,10 @@ public enum Tonality {
 
             // sort the list...
             Collections.sort(validKeyNames, new Comparator<NoteName>() {
-                    public int compare(NoteName n1, NoteName n2) {        
-                        return getSharpsOrFlatsForKeyName(n1) - getSharpsOrFlatsForKeyName(n2);
-                    }
-                 }
-            );
+                public int compare(NoteName n1, NoteName n2) {        
+                    return getSharpsOrFlatsForKeyName(n1) - getSharpsOrFlatsForKeyName(n2);
+                }
+            });
         }        
 
         return validKeyNames;
@@ -117,10 +163,14 @@ public enum Tonality {
      * @return the number of flats (negative) or sharps (positive)
      */
     public int getSharpsOrFlatsForKeyName(NoteName keyName) {
-        switch (this) {
-            case Major: return keyName.getMajorKeySharpsOrFlats();
-            case Minor: return keyName.getMinorKeySharpsOrFlats();
-            default: throw new AssertionError("Unknown tonality.");
+        NoteName transposedKey;
+        
+        try {
+            transposedKey = keyName.getNoteNameFromInterval(-this.modeLetterNumberOffset, -this.modeNoteNumberOffset);
+        } catch (IllegalArgumentException ex) {
+            return Tonality.INVALID_KEY;
         }
+        
+        return transposedKey.getMajorKeySharpsOrFlats();
     }
 }

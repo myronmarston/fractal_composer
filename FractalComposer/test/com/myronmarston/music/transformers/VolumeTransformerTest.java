@@ -43,7 +43,7 @@ public class VolumeTransformerTest {
         input.add(Note.createRest(new Fraction(1, 2)));
         input.get(0).setIsFirstNoteOfGermCopy(true);
         
-        Transformer t = new VolumeTransformer(0.5d);
+        Transformer t = new VolumeTransformer(new Fraction(1, 2));
         NoteList expectedOutput = new NoteList();
         expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, scale, 0));
         expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 112, scale, 0));
@@ -53,7 +53,7 @@ public class VolumeTransformerTest {
         expectedOutput.get(0).setIsFirstNoteOfGermCopy(true);
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);
         
-        t = new VolumeTransformer(-0.5d);
+        t = new VolumeTransformer(new Fraction(-1, 2));
         expectedOutput.clear();
         expectedOutput.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 32, scale, 0));
         expectedOutput.add(new Note(1, 1, 4, 0, new Fraction(1, 2), 48, scale, 0));
@@ -64,9 +64,25 @@ public class VolumeTransformerTest {
         assertTransformerProducesExpectedOutput(t, input, expectedOutput);        
     }
     
-    @Test(expected=IllegalArgumentException.class)
+    @Test
     public void volumeTransformerBadScaleFactor() {
         // a scale factor <= -1 or > 1 should throw an exception
-        Transformer t = new VolumeTransformer(-1);
+        try {
+            Transformer t = new VolumeTransformer(new Fraction(-1, 1));
+            fail();
+        } catch(Exception ex) {}                
+        
+        try {
+            Transformer t = new VolumeTransformer(new Fraction(-9, 8));
+            fail();
+        } catch(Exception ex) {}                
+        
+        try {
+            Transformer t = new VolumeTransformer(new Fraction(101, 100));
+            fail();
+        } catch(Exception ex) {}                
+        
+        // but 1 should be ok...
+        Transformer t = new VolumeTransformer(new Fraction(1, 1));
     }    
 }

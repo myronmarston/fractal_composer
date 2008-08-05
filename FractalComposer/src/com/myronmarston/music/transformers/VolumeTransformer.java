@@ -22,6 +22,7 @@ package com.myronmarston.music.transformers;
 import com.myronmarston.music.MidiNote;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
+import com.myronmarston.util.Fraction;
 
 /**
  * Transformer that adjusts the volume of each note based on some scale factor.
@@ -34,7 +35,7 @@ import com.myronmarston.music.NoteList;
  * @author Myron
  */
 public class VolumeTransformer implements Transformer {        
-    private final double scaleFactor;
+    private final Fraction scaleFactor;
 
     /**
      * Gets the scale factor.  Should be between -1 and 1.  Negative values will
@@ -42,7 +43,7 @@ public class VolumeTransformer implements Transformer {
      * 
      * @return the scale factor.
      */
-    public double getScaleFactor() {
+    public Fraction getScaleFactor() {
         return scaleFactor;
     }
     
@@ -52,7 +53,7 @@ public class VolumeTransformer implements Transformer {
      * @param scaleFactor Should be between -1 and 1.  Negative values will
      *        reduce the volume; positive values will increase the volume.
      */
-    public VolumeTransformer(double scaleFactor) {
+    public VolumeTransformer(Fraction scaleFactor) {
         checkVolumeScaleFactorValidity(scaleFactor);        
         this.scaleFactor = scaleFactor;
     }
@@ -65,10 +66,10 @@ public class VolumeTransformer implements Transformer {
      * @throws IllegalArgumentException if the scale factor is outside the valid
      *         range
      */
-    public static void checkVolumeScaleFactorValidity(double scaleFactor) throws IllegalArgumentException {
+    public static void checkVolumeScaleFactorValidity(Fraction scaleFactor) throws IllegalArgumentException {
         // we specifically disallow -1 as that would make everything a rest, 
         // which would be very confusing to our users
-        if (Math.abs(scaleFactor) > 1 || scaleFactor == -1) throw new IllegalArgumentException("The volume scale factor must be between -1 and 1.");
+        if (scaleFactor.compareTo(1L) > 0 || scaleFactor.compareTo(-1L) <= 0) throw new IllegalArgumentException("The volume scale factor must be between -1 and 1.");
     }
     
     public NoteList transform(NoteList input) {
@@ -82,11 +83,11 @@ public class VolumeTransformer implements Transformer {
             
             if (!newNote.isRest()) { // don't change the volume of rests...                    
                 remainingVolumeRange = 
-                    (this.scaleFactor < 0) ?
+                    (this.scaleFactor.compareTo(0L) < 0) ?
                     newNote.getVolume() - MidiNote.MIN_VELOCITY :
                     MidiNote.MAX_VELOCITY - newNote.getVolume();
 
-                volumeAdjustment = (int) Math.round(remainingVolumeRange * this.scaleFactor);
+                volumeAdjustment = (int) Math.round(this.scaleFactor.times(remainingVolumeRange).asDouble());
 
                 newNote.setVolume(newNote.getVolume() + volumeAdjustment);
             }

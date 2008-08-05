@@ -21,9 +21,12 @@ package com.myronmarston.music.settings;
 
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.scales.Scale;
-import com.myronmarston.music.transformers.VolumeTransformer;
+import com.myronmarston.music.transformers.OctaveTransformer;
+import com.myronmarston.music.transformers.RhythmicDurationTransformer;
 import com.myronmarston.music.transformers.TransposeTransformer;
+import com.myronmarston.music.transformers.VolumeTransformer;
 import com.myronmarston.util.AbstractPublisher;
+import com.myronmarston.util.Fraction;
 
 import org.simpleframework.xml.*;
 
@@ -35,17 +38,45 @@ import org.simpleframework.xml.*;
  * @author Myron
  */
 @Root
-public class AbstractVoiceOrSectionSettings extends AbstractPublisher {
+public abstract class AbstractVoiceOrSectionSettings extends AbstractPublisher {
     
-    @Attribute
-    private double volumeAdjustment; 
+    @Element
+    private Fraction volumeAdjustment; 
     
     @Attribute
     private int scaleStepOffset;
     
     @Attribute
-    private boolean readOnly;    
-        
+    private int octaveAdjustment;
+    
+    @Element
+    private Fraction speedScaleFactor;    
+    
+    @Attribute
+    private boolean readOnly;
+
+    /**
+     * Default constructor.  Initializes the fields to default values.
+     */
+    protected AbstractVoiceOrSectionSettings() {
+        this(new Fraction(0, 1), 0, 0, new Fraction(1, 1));
+    }
+    
+    /**
+     * Constructor.
+     * 
+     * @param volumeAdjustment the volume adjustment
+     * @param scaleStepOffset the scale step offset
+     * @param octaveAdjustment the octave adjustment     
+     * @param speedScaleFactor the speed scale factor
+     */
+    protected AbstractVoiceOrSectionSettings(Fraction volumeAdjustment, int scaleStepOffset, int octaveAdjustment, Fraction speedScaleFactor) {
+        this.setVolumeAdjustment(volumeAdjustment);
+        this.setScaleStepOffset(scaleStepOffset);
+        this.setOctaveAdjustment(scaleStepOffset);
+        this.setSpeedScaleFactor(speedScaleFactor);        
+    }        
+    
     /**
      * Gets the scale step offset.  This can be used to move the music to a 
      * different pitch level.
@@ -81,7 +112,7 @@ public class AbstractVoiceOrSectionSettings extends AbstractPublisher {
      * 
      * @return the volume adjustment
      */
-    public double getVolumeAdjustment() {
+    public Fraction getVolumeAdjustment() {
         return volumeAdjustment;
     }
 
@@ -95,11 +126,57 @@ public class AbstractVoiceOrSectionSettings extends AbstractPublisher {
      *         the range -1 to 1
      * @throws UnsupportedOperationException if this is a read-only object
      */
-    public void setVolumeAdjustment(double volumeAdjustment) throws IllegalArgumentException, UnsupportedOperationException {        
+    public void setVolumeAdjustment(Fraction volumeAdjustment) throws IllegalArgumentException, UnsupportedOperationException {        
         this.readOnlyException();
         VolumeTransformer.checkVolumeScaleFactorValidity(volumeAdjustment);        
         this.volumeAdjustment = volumeAdjustment;
         this.notifySubscribers(null);
+    }
+    
+    /**
+     * Gets how many octaves to adjust the germ for use by this voice.
+     * 
+     * @return number of octaves to adjust
+     */
+    public int getOctaveAdjustment() {
+        return octaveAdjustment;
+    }
+    
+    /**
+     * Sets how many octaves to adjust the germ for use by this voice.
+     * 
+     * @param val number of octaves to adjust
+     * @throws UnsupportedOperationException if this object is read-only
+     */
+    public void setOctaveAdjustment(int val) throws UnsupportedOperationException {     
+        this.readOnlyException();
+        // TODO: is there a way to tell if the octave adjustment value would 
+        // give us a note outside of the standard midi range? should we 
+        // test and throw an IllegalArgumentException here?        
+        this.octaveAdjustment = val;
+        this.notifySubscribers(null);  
+    }
+    
+    /**
+     * Gets the speed scale factor to apply to the germ for use by this voice.
+     * 
+     * @return the speed scale factor
+     */
+    public Fraction getSpeedScaleFactor() {
+        return speedScaleFactor;
+    }
+    
+    /**
+     * Sets the speed scale factor to apply to the germ for use by this voice.
+     * 
+     * @param val the speed scale factor
+     * @throws UnsupportedOperationException if this object is read-only
+     */
+    public void setSpeedScaleFactor(Fraction val) throws UnsupportedOperationException {   
+        this.readOnlyException();
+        RhythmicDurationTransformer.checkScaleFactorValidity(val);
+        this.speedScaleFactor = val;
+        this.notifySubscribers(null);  
     }
     
     /**
@@ -135,10 +212,16 @@ public class AbstractVoiceOrSectionSettings extends AbstractPublisher {
         int offsetToUse = scale.getNormalizedScaleStep(scaleStepOffset);
         offsetToUse -= (scaleStepOffset < 0 ? scale.getScaleStepArray().length : 0);
         
-        TransposeTransformer tTrans = new TransposeTransformer(offsetToUse, scale.getRecommendedTransposeLetterNumber(this.scaleStepOffset));
-        VolumeTransformer vTrans = new VolumeTransformer(this.getVolumeAdjustment());                
-        NoteList temp = vTrans.transform(noteList);                
-        return tTrans.transform(temp);
+        OctaveTransformer octaveT = new OctaveTransformer(this.getOctaveAdjustment());
+        RhythmicDurationTransformer rhythmT = new RhythmicDurationTransformer(this.getSpeedScaleFactor());                        
+        TransposeTransformer transposeT = new TransposeTransformer(offsetToUse, scale.getRecommendedTransposeLetterNumber(this.scaleStepOffset));
+        VolumeTransformer volumeT = new VolumeTransformer(this.getVolumeAdjustment());                
+               
+        NoteList temp = octaveT.transform(noteList);
+        temp = volumeT.transform(temp);                
+        temp = rhythmT.transform(temp);                          
+        temp = transposeT.transform(temp);
+        return temp;
     }
     
     /**
@@ -156,7 +239,7 @@ public class AbstractVoiceOrSectionSettings extends AbstractPublisher {
     public AbstractVoiceOrSectionSettings clone() {
         return (AbstractVoiceOrSectionSettings) super.clone();
     }
-        
+
     // equals() and hashCode() were generated by Netbeans IDE
     @Override
     public boolean equals(Object obj) {
@@ -167,10 +250,16 @@ public class AbstractVoiceOrSectionSettings extends AbstractPublisher {
             return false;
         }
         final AbstractVoiceOrSectionSettings other = (AbstractVoiceOrSectionSettings) obj;
-        if (this.volumeAdjustment != other.volumeAdjustment) {
+        if (this.volumeAdjustment != other.volumeAdjustment && (this.volumeAdjustment == null || !this.volumeAdjustment.equals(other.volumeAdjustment))) {
             return false;
         }
         if (this.scaleStepOffset != other.scaleStepOffset) {
+            return false;
+        }
+        if (this.octaveAdjustment != other.octaveAdjustment) {
+            return false;
+        }
+        if (this.speedScaleFactor != other.speedScaleFactor && (this.speedScaleFactor == null || !this.speedScaleFactor.equals(other.speedScaleFactor))) {
             return false;
         }
         return true;
@@ -178,9 +267,12 @@ public class AbstractVoiceOrSectionSettings extends AbstractPublisher {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + (int) (Double.doubleToLongBits(this.volumeAdjustment) ^ (Double.doubleToLongBits(this.volumeAdjustment) >>> 32));
-        hash = 53 * hash + this.scaleStepOffset;
+        int hash = 7;
+        hash = 97 * hash + (this.volumeAdjustment != null ? this.volumeAdjustment.hashCode() : 0);
+        hash = 97 * hash + this.scaleStepOffset;
+        hash = 97 * hash + this.octaveAdjustment;
+        hash = 97 * hash + (this.speedScaleFactor != null ? this.speedScaleFactor.hashCode() : 0);
         return hash;
-    }        
+    }            
+
 }

@@ -22,8 +22,7 @@ package com.myronmarston.music;
 import com.myronmarston.music.scales.Scale;
 import com.myronmarston.music.scales.Tonality;
 import com.myronmarston.util.MathHelper;
-import java.util.HashMap;
-import java.util.Locale;
+import java.util.*;
 
 /**
  * Enumerates all the valid note names.  These are used to parse a note string
@@ -35,44 +34,44 @@ import java.util.Locale;
  */
 public enum NoteName {    
     Cbb(0, -2),
-    Cb(0, -1, -7, Tonality.INVALID_KEY),
-    C(0, 0, 0, -3, true), // C is 0 because the octave designations begin with C as the first note
-    Cs(0, 1, 7, 4, true),    
+    Cb(0, -1, -7),
+    C(0, 0, 0, true), // C is 0 because the octave designations begin with C as the first note
+    Cs(0, 1, 7, true),    
     Cx(0, 2),
     
     Dbb(1, 0),
-    Db(1, 1, -5, Tonality.INVALID_KEY),    
-    D(1, 2, 2, -1, true),
-    Ds(1, 3, Tonality.INVALID_KEY, 6),
+    Db(1, 1, -5),    
+    D(1, 2, 2, true),
+    Ds(1, 3, Tonality.INVALID_KEY),
     Dx(1, 4),
     
     Ebb(2, 2),
-    Eb(2, 3, -3, -6, true),           
-    E(2, 4, 4, 1, true),
+    Eb(2, 3, -3, true),           
+    E(2, 4, 4, true),
     Es(2, 5),
     Ex(2, 6),
     
     Fbb(3, 3),
     Fb(3, 4),    
-    F(3, 5, -1, -4, true),
-    Fs(3, 6, 6, 3, true),
+    F(3, 5, -1, true),
+    Fs(3, 6, 6, true),
     Fx(3, 7),
     
     Gbb(4, 5),
-    Gb(4, 6, -6, Tonality.INVALID_KEY),
-    G(4, 7, 1, -2, true),
-    Gs(4, 8, Tonality.INVALID_KEY, 5),
+    Gb(4, 6, -6),
+    G(4, 7, 1, true),
+    Gs(4, 8, Tonality.INVALID_KEY),
     Gx(4, 9),
     
     Abb(5, 7),
-    Ab(5, 8, -4, -7, true),
-    A(5, 9, 3, 0, true), 
-    As(5, 10, Tonality.INVALID_KEY, 7),
+    Ab(5, 8, -4, true),
+    A(5, 9, 3, true), 
+    As(5, 10, Tonality.INVALID_KEY),
     Ax(5, 11),
     
     Bbb(6, 9),
-    Bb(6, 10, -2, -5, true),
-    B(6, 11, 5, 2, true),  
+    Bb(6, 10, -2, true),
+    B(6, 11, 5, true),  
     Bs(6, 12),
     Bx(6, 13);
     
@@ -81,8 +80,7 @@ public enum NoteName {
     private final int noteNumber;
     private final int letterNumber;
     private final boolean defaultNoteNameForNumber;
-    private final int majorKeySharpsOrFlats;
-    private final int minorKeySharpsOrFlats;      
+    private final int majorKeySharpsOrFlats;    
     private final static HashMap<String, NoteName> NOTE_NAME_HASH;
     public final static int NUM_LETTER_NAMES = 7;
     private final static int MIDI_KEY_OFFSET = 12; //C0 is Midi pitch 12 (http://www.phys.unsw.edu.au/jw/notes.html)    
@@ -99,21 +97,20 @@ public enum NoteName {
     }
     
     private NoteName(int letterNumber, int noteNumber) {
-        this(letterNumber, noteNumber, Tonality.INVALID_KEY, Tonality.INVALID_KEY);
+        this(letterNumber, noteNumber, Tonality.INVALID_KEY);
     }
     
-    private NoteName(int letterNumber, int noteNumber, int majorKeySharpsOrFlats, int minorKeySharpsOrFlats) {
-        this(letterNumber, noteNumber, majorKeySharpsOrFlats, minorKeySharpsOrFlats, false);
+    private NoteName(int letterNumber, int noteNumber, int majorKeySharpsOrFlats) {
+        this(letterNumber, noteNumber, majorKeySharpsOrFlats, false);
     }
     
-    private NoteName(int letterNumber, int noteNumber, int majorKeySharpsOrFlats, int minorKeySharpsOrFlats, boolean defaultNoteNameForNumber) {
+    private NoteName(int letterNumber, int noteNumber, int majorKeySharpsOrFlats, boolean defaultNoteNameForNumber) {
         this.letterNumber = letterNumber;
         this.pitchNumberAtOctaveZero = noteNumber + MIDI_KEY_OFFSET;
         this.noteNumber = noteNumber;
         this.normalizedNoteNumber = MathHelper.getNormalizedValue(noteNumber, Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE);//getNormalizedValue(pitchNumberAtOctaveZero, Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE);
         this.defaultNoteNameForNumber = defaultNoteNameForNumber;
-        this.majorKeySharpsOrFlats = majorKeySharpsOrFlats;
-        this.minorKeySharpsOrFlats = minorKeySharpsOrFlats;
+        this.majorKeySharpsOrFlats = majorKeySharpsOrFlats;        
     }
 
     /**
@@ -180,17 +177,7 @@ public enum NoteName {
     public int getMajorKeySharpsOrFlats() {
         return majorKeySharpsOrFlats;
     }
-
-    /**
-     * Gets the number of sharps or flats for this minor key.  Positive 
-     * indicates sharps; negative indicates flats.
-     * 
-     * @return the number of sharps or flats for the minor key
-     */
-    public int getMinorKeySharpsOrFlats() {
-        return minorKeySharpsOrFlats;
-    }    
-    
+        
     /**
      * Gets the positive interval size of the given note name compared to this 
      * note name.  Note that this is 0-based, rather than 1-based, as intervals 
@@ -207,7 +194,7 @@ public enum NoteName {
 
     /**
      * Gets the NoteName that is the given interval away from this NoteName. The
-     * interva. is given using two parameters, the letter number offset, and the
+     * interval is given using two parameters, the letter number offset, and the
      * note number offset.
      * 
      * @param letterNumberOffset a value to add to the letter number to get the
@@ -229,7 +216,7 @@ public enum NoteName {
         }
         
         throw new IllegalArgumentException("No note for the given interval could be found.  letterNumberOffset: " + letterNumberOffset + "; noteNumberOffset: " + noteNumberOffset);
-    }
+    }        
     
     /**
      * Gets the number of positive chromatic steps between two notes.

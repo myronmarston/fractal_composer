@@ -29,7 +29,7 @@ import org.simpleframework.xml.*;
  * @author Myron
  */
 @Root
-public class MajorPentatonicScale extends MajorScale {
+public class MajorPentatonicScale extends Scale {
     private final static int[] SCALE_STEPS = new int[] {0, 2, 4, 7, 9};
     private final static int[] LETTER_NUMBERS = new int[] {0, 1, 2, 4, 5};
     
@@ -41,7 +41,7 @@ public class MajorPentatonicScale extends MajorScale {
      *         when the key is invalid
      */
     public MajorPentatonicScale(NoteName keyName) throws InvalidKeySignatureException {
-        super(keyName);
+        super(new KeySignature(Tonality.Major, keyName));
     }
     
     /**
@@ -51,7 +51,7 @@ public class MajorPentatonicScale extends MajorScale {
      *         when the key is invalid.
      */
     public MajorPentatonicScale() throws InvalidKeySignatureException {
-        super();
+        this(Tonality.Major.getDefaultKey());
     }
 
     @Override

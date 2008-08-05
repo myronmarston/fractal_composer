@@ -30,10 +30,9 @@ import org.simpleframework.xml.*;
  * @author Myron
  */
 @Root
-public class MajorScale extends Scale {     
+public class MajorScale extends AbstractDiatonicScale {     
     private final static int[] SCALE_STEPS = new int[] {0, 2, 4, 5, 7, 9, 11};    
-    private final static int[] LETTER_NUMBERS = new int[] {0, 1, 2, 3, 4, 5, 6};
-
+    
     /**
      * Constructor.
      * 
@@ -58,10 +57,5 @@ public class MajorScale extends Scale {
     @Override
     public int[] getScaleStepArray() {
         return Arrays.copyOf(SCALE_STEPS, SCALE_STEPS.length);
-    }
-    
-    @Override
-    public int[] getLetterNumberArray() {
-        return Arrays.copyOf(LETTER_NUMBERS, LETTER_NUMBERS.length);        
-    } 
+    }    
 }

@@ -215,11 +215,11 @@ public class Section extends AbstractVoiceOrSection<Section, Voice> {
             NoteList testGerm3 = null;
             int testGerm3AccidentalCount = Integer.MAX_VALUE;
             try {
-                scale3 = this.getScale().getCopyWithDifferentKey(this.getFractalPiece().getScale().getKeySignature().getRelativeKeyName());
+                scale3 = this.getScale().getCopyWithDifferentKey(this.getFractalPiece().getScale().getKeySignature().getKeyNameWithSameNumAccidentals(this.getScale().getKeySignature().getTonality()));                
                 testGerm3 = NoteList.parseNoteListString(germString, scale3);                                
                 testGerm3AccidentalCount = testGerm3.getNumberOfAccidentals();
                 if (testGerm3AccidentalCount == 0) return testGerm3;
-            } catch (InvalidKeySignatureException ivksex) {
+            } catch (InvalidKeySignatureException iksex) {
                 // there's no need to raise an exception here; we'll just keep trying other possibilities
                 
                 // set the accidental count to a value that will ensure testGerm3

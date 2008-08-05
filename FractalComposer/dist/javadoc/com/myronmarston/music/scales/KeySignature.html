@@ -55,7 +55,7 @@ function windowTitle()
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;<A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/scales/MajorPentatonicScale.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/myronmarston/music/scales/LocrianScale.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/myronmarston/music/scales/KeySignature.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="KeySignature.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
@@ -172,6 +172,15 @@ Represents a Midi key signature.  This is immutable.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/KeySignature.html#getKeyNameWithSameNumAccidentals(com.myronmarston.music.scales.Tonality)">getKeyNameWithSameNumAccidentals</A></B>(<A HREF="../../../../com/myronmarston/music/scales/Tonality.html" title="enum in com.myronmarston.music.scales">Tonality</A>&nbsp;tonality)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the key name for the given tonality that has the same number of 
+ accidentals as this key signature.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;javax.sound.midi.MidiEvent</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/KeySignature.html#getKeySignatureMidiEvent(long)">getKeySignatureMidiEvent</A></B>(long&nbsp;tick)</CODE>
 
@@ -185,14 +194,6 @@ Represents a Midi key signature.  This is immutable.
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the number of flats or sharps for this key.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/KeySignature.html#getRelativeKeyName()">getRelativeKeyName</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the note name of the relative key.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -357,18 +358,17 @@ public <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in
 </DL>
 <HR>
 
-<A NAME="getRelativeKeyName()"><!-- --></A><H3>
-getRelativeKeyName</H3>
+<A NAME="getKeyNameWithSameNumAccidentals(com.myronmarston.music.scales.Tonality)"><!-- --></A><H3>
+getKeyNameWithSameNumAccidentals</H3>
 <PRE>
-public <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A> <B>getRelativeKeyName</B>()</PRE>
+public <A HREF="../../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A> <B>getKeyNameWithSameNumAccidentals</B>(<A HREF="../../../../com/myronmarston/music/scales/Tonality.html" title="enum in com.myronmarston.music.scales">Tonality</A>&nbsp;tonality)</PRE>
 <DL>
-<DD>Gets the note name of the relative key.  For a major key, it will be the
- note a minor 3rd below.  For a minor key, it will be the note a minor
- 3rd above the key.
+<DD>Gets the key name for the given tonality that has the same number of 
+ accidentals as this key signature.
 <P>
 <DD><DL>
-
-<DT><B>Returns:</B><DD>the relative key name</DL>
+<DT><B>Parameters:</B><DD><CODE>tonality</CODE> - the tonality
+<DT><B>Returns:</B><DD>the key for the given tonality that has the same number of accidentals</DL>
 </DD>
 </DL>
 <HR>
@@ -488,7 +488,7 @@ public int <B>hashCode</B>()</PRE>
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;<A HREF="../../../../com/myronmarston/music/scales/InvalidKeySignatureException.html" title="class in com.myronmarston.music.scales"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/scales/MajorPentatonicScale.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/myronmarston/music/scales/LocrianScale.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/myronmarston/music/scales/KeySignature.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="KeySignature.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;

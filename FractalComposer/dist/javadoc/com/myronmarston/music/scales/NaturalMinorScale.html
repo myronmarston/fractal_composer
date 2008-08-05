@@ -54,8 +54,8 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/myronmarston/music/scales/MinorPentatonicScale.html" title="class in com.myronmarston.music.scales"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/myronmarston/music/scales/MixolydianScale.html" title="class in com.myronmarston.music.scales"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/myronmarston/music/scales/PhrygianScale.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/myronmarston/music/scales/NaturalMinorScale.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="NaturalMinorScale.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
@@ -93,17 +93,15 @@ Class NaturalMinorScale</H2>
 <PRE>
 java.lang.Object
   <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">com.myronmarston.music.scales.Scale</A>
-      <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.scales.NaturalMinorScale</B>
+      <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/myronmarston/music/scales/AbstractDiatonicScale.html" title="class in com.myronmarston.music.scales">com.myronmarston.music.scales.AbstractDiatonicScale</A>
+          <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.scales.NaturalMinorScale</B>
 </PRE>
 <DL>
 <DT><B>All Implemented Interfaces:</B> <DD>java.lang.Cloneable</DD>
 </DL>
-<DL>
-<DT><B>Direct Known Subclasses:</B> <DD><A HREF="../../../../com/myronmarston/music/scales/HarmonicMinorScale.html" title="class in com.myronmarston.music.scales">HarmonicMinorScale</A>, <A HREF="../../../../com/myronmarston/music/scales/MinorPentatonicScale.html" title="class in com.myronmarston.music.scales">MinorPentatonicScale</A></DD>
-</DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>NaturalMinorScale</B><DT>extends <A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></DL>
+<DT><PRE>public class <B>NaturalMinorScale</B><DT>extends <A HREF="../../../../com/myronmarston/music/scales/AbstractDiatonicScale.html" title="class in com.myronmarston.music.scales">AbstractDiatonicScale</A></DL>
 </PRE>
 
 <P>
@@ -167,19 +165,20 @@ A natural minor scale: WHWWHWW.  This is also known as Aeolian mode when
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;int[]</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/NaturalMinorScale.html#getLetterNumberArray()">getLetterNumberArray</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets an array of integers of letter numbers above the tonic letter number.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;int[]</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/scales/NaturalMinorScale.html#getScaleStepArray()">getScaleStepArray</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets an array of integers representing the number of half steps above
  the tonic for each scale step.</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.scales.AbstractDiatonicScale"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class com.myronmarston.music.scales.<A HREF="../../../../com/myronmarston/music/scales/AbstractDiatonicScale.html" title="class in com.myronmarston.music.scales">AbstractDiatonicScale</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../../com/myronmarston/music/scales/AbstractDiatonicScale.html#getLetterNumberArray()">getLetterNumberArray</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.myronmarston.music.scales.Scale"><!-- --></A>
@@ -271,24 +270,6 @@ public int[] <B>getScaleStepArray</B>()</PRE>
 <DT><B>Returns:</B><DD>array of integers</DL>
 </DD>
 </DL>
-<HR>
-
-<A NAME="getLetterNumberArray()"><!-- --></A><H3>
-getLetterNumberArray</H3>
-<PRE>
-public int[] <B>getLetterNumberArray</B>()</PRE>
-<DL>
-<DD><B>Description copied from class: <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getLetterNumberArray()">Scale</A></CODE></B></DD>
-<DD>Gets an array of integers of letter numbers above the tonic letter number.
-<P>
-<DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html#getLetterNumberArray()">getLetterNumberArray</A></CODE> in class <CODE><A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales">Scale</A></CODE></DL>
-</DD>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>letter number array.</DL>
-</DD>
-</DL>
 <!-- ========= END OF CLASS DATA ========= -->
 <HR>
 
@@ -320,8 +301,8 @@ public int[] <B>getLetterNumberArray</B>()</PRE>
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/myronmarston/music/scales/MinorPentatonicScale.html" title="class in com.myronmarston.music.scales"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/myronmarston/music/scales/Scale.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/myronmarston/music/scales/MixolydianScale.html" title="class in com.myronmarston.music.scales"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/myronmarston/music/scales/PhrygianScale.html" title="class in com.myronmarston.music.scales"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/myronmarston/music/scales/NaturalMinorScale.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="NaturalMinorScale.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;

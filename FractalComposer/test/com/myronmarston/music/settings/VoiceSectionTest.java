@@ -253,10 +253,10 @@ public class VoiceSectionTest {
         VoiceSettings vSettings = vs.getVoice().getSettings();
         SectionSettings sSettings = vs.getSection().getSettings();
         
-        vSettings.setVolumeAdjustment(0.5d);
+        vSettings.setVolumeAdjustment(new Fraction(1, 2));
         vSettings.setScaleStepOffset(2);        
         
-        sSettings.setVolumeAdjustment(0.5d);
+        sSettings.setVolumeAdjustment(new Fraction(1, 2));
         sSettings.setScaleStepOffset(1);
         
         int expectedVolume = 113;
@@ -274,7 +274,7 @@ public class VoiceSectionTest {
         expected.setSourceVoiceSectionOnAllNotes(vs);
         NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());
                 
-        sSettings.setVolumeAdjustment(-0.5d);
+        sSettings.setVolumeAdjustment(new Fraction(-1, 2));
         expectedVolume = 82;
         expected = NoteList.parseNoteListString("F4 G4", new MajorScale(NoteName.C));
         expected.get(0).setVolume(expectedVolume);
@@ -456,6 +456,37 @@ public class VoiceSectionTest {
         expected.setSourceVoiceSectionOnAllNotes(vs);
         expected.setfirstNotesOfGermCopy(0);
         NoteListTest.assertNoteListsEqual(expected, vs.getVoiceSectionResult());
+    }
+    
+    @Test
+    public void getVoiceSectionResult_withCompoundSettings() throws Exception {
+        FractalPiece fp = new FractalPiece();
+        fp.setScale(new MajorScale(NoteName.G));
+        fp.setGermString("G4,1/4 A4,1/8 B4,1/4");
+        Voice v1 = fp.createVoice();
+        Section s1 = fp.createSection();
+        VoiceSection vs1 = v1.getVoiceSections().get(0);
+        
+        v1.getSettings().setSelfSimilaritySettings(new SelfSimilaritySettings(true, true, false, 1));
+        v1.getSettings().setOctaveAdjustment(1);
+        v1.getSettings().setScaleStepOffset(1);
+        v1.getSettings().setSpeedScaleFactor(new Fraction(2, 1));        
+                
+        s1.getSettings().setApplyInversion(true);
+        s1.getSettings().setApplyRetrograde(true);
+        s1.getSettings().setOctaveAdjustment(1);
+        s1.getSettings().setScaleStepOffset(-2);
+        s1.getSettings().setSpeedScaleFactor(new Fraction(1, 3));                
+        
+        // totals: 
+        // 2 octave adjustment
+        // -1 scale step offset
+        // 2/3 speed scale factor
+        
+        NoteList expected = NoteList.parseNoteListString("D6,3/8 E6,3/16 F#6,3/8  E6,3/16 F#6,3/32 G6,3/16    F#6,3/8 G6,3/16 A6,3/8", new MajorScale(NoteName.G));
+        expected.setSourceVoiceSectionOnAllNotes(vs1);
+        expected.setfirstNotesOfGermCopy(0, 3, 6);
+        NoteListTest.assertNoteListsEqual(expected, vs1.getVoiceSectionResult());
     }
     
     @Test

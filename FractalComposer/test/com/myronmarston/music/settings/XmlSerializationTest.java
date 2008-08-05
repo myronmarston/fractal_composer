@@ -76,7 +76,6 @@ public class XmlSerializationTest {
     @Test
     public void serializeKeySignature() throws Exception {        
         KeySignature ks = new KeySignature(Tonality.Major, NoteName.G);
-        assertEquals(NoteName.E, ks.getRelativeKeyName());
         testSerialization(ks, "<keySignature id=\"0\" keyName=\"G\" tonality=\"Major\"/>");
     }
     
@@ -90,12 +89,14 @@ public class XmlSerializationTest {
     public void serializeVoice() throws Exception {
         Voice v = fpWithDefaultSettings.getVoices().get(0);
         
+        int idStart = 51;
         String expected = 
         "<voice id=\"0\" uniqueIndex=\"1\" instrumentName=\"Piano 1\">\n" +
         // fractal piece section that gets stripped goes here...
-        "   <settings id=\"41\" volumeAdjustment=\"0.0\" scaleStepOffset=\"0\" readOnly=\"false\" octaveAdjustment=\"1\">\n" +
-        "      <speedScaleFactor id=\"42\" numerator_=\"2\" denominator_=\"1\"/>\n" +
-        "      <selfSimilaritySettings id=\"43\" applyToPitch=\"true\" applyToRhythm=\"false\" applyToVolume=\"true\" selfSimilarityIterations=\"1\" readOnly=\"false\"/>\n" +
+        "   <settings id=\"" + idStart++ + "\" scaleStepOffset=\"0\" octaveAdjustment=\"1\" readOnly=\"false\">\n" +
+        "      <volumeAdjustment id=\"" + idStart++ + "\" numerator_=\"0\" denominator_=\"1\"/>\n" +
+        "      <speedScaleFactor id=\"" + idStart++ + "\" numerator_=\"2\" denominator_=\"1\"/>\n" +
+        "      <selfSimilaritySettings id=\"" + idStart++ + "\" applyToPitch=\"true\" applyToRhythm=\"false\" applyToVolume=\"true\" selfSimilarityIterations=\"1\" readOnly=\"false\"/>\n" +
         "   </settings>\n" +
         "</voice>";                
         
@@ -110,15 +111,22 @@ public class XmlSerializationTest {
         s.getSettings().setApplyRetrograde(false);
         s.setOverridePieceScale(true);
         s.setScale(new MinorPentatonicScale(NoteName.G));
-        s.getSettings().setVolumeAdjustment(0.7575d);
+        s.getSettings().setVolumeAdjustment(new Fraction(3, 4));
+        s.getSettings().setSpeedScaleFactor(new Fraction(1, 3));
+        s.getSettings().setOctaveAdjustment(3);
         s.getSettings().setScaleStepOffset(2);
         s.getGermForSection(); //cause it to get a value...
         
+        int idStart = 52;
+        
         String expected =   
         "<section id=\"0\" uniqueIndex=\"1\" overridePieceScale=\"true\">\n" +
-        "   <settings id=\"43\" volumeAdjustment=\"0.7575\" scaleStepOffset=\"2\" readOnly=\"false\" applyInversion=\"true\" applyRetrograde=\"false\"/>\n" +
-        "   <scale class=\"com.myronmarston.music.scales.MinorPentatonicScale\" id=\"44\">\n" +
-        "      <keySignature id=\"45\" keyName=\"G\" tonality=\"Minor\"/>\n" +
+        "   <settings id=\"" + idStart++ + "\" scaleStepOffset=\"2\" octaveAdjustment=\"3\" readOnly=\"false\" applyInversion=\"true\" applyRetrograde=\"false\">\n" +
+        "      <volumeAdjustment id=\"" + idStart++ + "\" numerator_=\"3\" denominator_=\"4\"/>\n" +
+        "      <speedScaleFactor id=\"" + idStart++ + "\" numerator_=\"1\" denominator_=\"3\"/>\n" + 
+        "   </settings>\n" +
+        "   <scale class=\"com.myronmarston.music.scales.MinorPentatonicScale\" id=\"" + idStart++ + "\">\n" +
+        "      <keySignature id=\"" + idStart++ + "\" keyName=\"G\" tonality=\"Minor\"/>\n" +
         "   </scale>\n" +        
         // fractal piece section that gets stripped goes here...
         "</section>";
@@ -155,14 +163,16 @@ public class XmlSerializationTest {
         fp.setGenerateLayeredOutro(false);
         fp.getVoices().get(0).setInstrumentName("Violin");
         fp.getVoices().get(0).getSettings().setScaleStepOffset(2);
-        fp.getVoices().get(1).getSettings().setVolumeAdjustment(0.25d);
+        fp.getVoices().get(1).getSettings().setVolumeAdjustment(new Fraction(1, 4));
         fp.getSections().get(2).setOverridePieceScale(true);
         fp.getSections().get(2).setScale(new MajorPentatonicScale(NoteName.B));
         fp.getSections().get(0).getSettings().setScaleStepOffset(-1);
-        fp.getSections().get(0).getSettings().setVolumeAdjustment(-0.25d);
+        fp.getSections().get(0).getSettings().setVolumeAdjustment(new Fraction(-1, 4));
+        fp.getSections().get(0).getSettings().setOctaveAdjustment(-1);
+        fp.getSections().get(0).getSettings().setSpeedScaleFactor(new Fraction(1, 3));
         fp.getVoices().get(0).getVoiceSections().get(0).setOverrideVoiceSettings(true);        
         fp.getVoices().get(0).getVoiceSections().get(0).getVoiceSettings().getSelfSimilaritySettings().setSelfSimilarityIterations(3);
-        fp.getVoices().get(0).getVoiceSections().get(0).getVoiceSettings().setVolumeAdjustment(0.3d);
+        fp.getVoices().get(0).getVoiceSections().get(0).getVoiceSettings().setVolumeAdjustment(new Fraction(3, 10));
         fp.getSections().get(0).getVoiceSections().get(0).setOverrideSectionSettings(true);
         fp.getSections().get(0).getVoiceSections().get(0).getSectionSettings().setApplyRetrograde(true);
         fp.getSections().get(0).getVoiceSections().get(0).getSectionSettings().setScaleStepOffset(4);

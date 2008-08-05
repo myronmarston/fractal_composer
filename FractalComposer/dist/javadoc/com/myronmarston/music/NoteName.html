@@ -402,14 +402,6 @@ Enumerates all the valid note names.  These are used to parse a note string
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteName.html#getMinorKeySharpsOrFlats()">getMinorKeySharpsOrFlats</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the number of sharps or flats for this minor key.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music">NoteName</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteName.html#getNaturalNoteNameForLetterNumber(int)">getNaturalNoteNameForLetterNumber</A></B>(int&nbsp;letterNumber)</CODE>
 
@@ -1042,21 +1034,6 @@ public int <B>getMajorKeySharpsOrFlats</B>()</PRE>
 </DL>
 <HR>
 
-<A NAME="getMinorKeySharpsOrFlats()"><!-- --></A><H3>
-getMinorKeySharpsOrFlats</H3>
-<PRE>
-public int <B>getMinorKeySharpsOrFlats</B>()</PRE>
-<DL>
-<DD>Gets the number of sharps or flats for this minor key.  Positive 
- indicates sharps; negative indicates flats.
-<P>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>the number of sharps or flats for the minor key</DL>
-</DD>
-</DL>
-<HR>
-
 <A NAME="getPositiveIntervalSize(com.myronmarston.music.NoteName)"><!-- --></A><H3>
 getPositiveIntervalSize</H3>
 <PRE>
@@ -1083,7 +1060,7 @@ public <A HREF="../../../com/myronmarston/music/NoteName.html" title="enum in co
                                  throws java.lang.IllegalArgumentException</PRE>
 <DL>
 <DD>Gets the NoteName that is the given interval away from this NoteName. The
- interva. is given using two parameters, the letter number offset, and the
+ interval is given using two parameters, the letter number offset, and the
  note number offset.
 <P>
 <DD><DL>

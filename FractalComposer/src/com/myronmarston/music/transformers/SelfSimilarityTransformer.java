@@ -23,6 +23,7 @@ import com.myronmarston.music.MidiNote;
 import com.myronmarston.music.Note;
 import com.myronmarston.music.NoteList;
 import com.myronmarston.music.settings.SelfSimilaritySettings;
+import com.myronmarston.util.Fraction;
 
 /**
  * Transformer that applies the self-similarity algorithm to the given NoteList.
@@ -160,7 +161,7 @@ public class SelfSimilarityTransformer implements Transformer {
         // method should check for this, so this should never occur...
         assert inputNote.getVolume() != 0 : inputNote.getVolume();
         
-        double scaleFactor = (inputNote.getVolume() - firstNote.getVolume()) / (double) remainingVolumeRange;
+        Fraction scaleFactor = new Fraction(inputNote.getVolume() - firstNote.getVolume(), remainingVolumeRange);
         VolumeTransformer volumeScaler = new VolumeTransformer(scaleFactor);
         return volumeScaler.transform(input);        
     }

@@ -61,51 +61,9 @@ public class VoiceSettingsTest extends AbstractVoiceOrSectionSettingsTest {
 
     @Override
     protected void setDefaultSettingsValues() {
-        this.settings.setOctaveAdjustment(0);
-        this.settings.setSpeedScaleFactor(new Fraction(1, 1));
+        super.setDefaultSettingsValues();
         this.settings.setSelfSimilaritySettings(new SelfSimilaritySettings(false, false, false, 1));
-    }        
-    
-    @Test
-    public void setOctaveAdjustment() {
-        // set our fields to a known state
-        this.settings.setOctaveAdjustment(1);
-        this.subscriberNotificationCount = 0;
-        
-        this.settings.setOctaveAdjustment(3);
-        assertEquals(3, this.settings.getOctaveAdjustment());
-        assertEquals(1, this.subscriberNotificationCount);
-        
-        this.settings.setOctaveAdjustment(2);
-        assertEquals(2, this.settings.getOctaveAdjustment());
-        assertEquals(2, this.subscriberNotificationCount);          
-    }
-    
-    @Test
-    public void setSpeedScaleFactor() {
-        // set our fields to a known state
-        this.settings.setSpeedScaleFactor(new Fraction(1, 1));
-        this.subscriberNotificationCount = 0;
-        
-        this.settings.setSpeedScaleFactor(new Fraction(3, 1));
-        assertEquals(new Fraction(3, 1), this.settings.getSpeedScaleFactor());
-        assertEquals(1, this.subscriberNotificationCount);
-        
-        this.settings.setSpeedScaleFactor(new Fraction(1, 2));
-        assertEquals(new Fraction(1, 2), this.settings.getSpeedScaleFactor());
-        assertEquals(2, this.subscriberNotificationCount);  
-        
-        // test bad values...
-        try { 
-            this.settings.setSpeedScaleFactor(new Fraction(-1, 3));
-            fail();
-        } catch (IllegalArgumentException ex) {}
-                
-        try { 
-            this.settings.setSpeedScaleFactor(new Fraction(0, 3));
-            fail();
-        } catch (IllegalArgumentException ex) {}
-    }
+    }                
     
     @Test
     public void updateSelfSimilaritySettings() {
@@ -149,22 +107,31 @@ public class VoiceSettingsTest extends AbstractVoiceOrSectionSettingsTest {
     }
     
     @Test
-    public void equalsAndHashCode() {        
+    public void equalsAndHashCode() throws Exception {        
         VoiceSettings vs1 = new VoiceSettings(3, new Fraction(3, 1), new SelfSimilaritySettings(true, false, true, 1));        
-        VoiceSettings vs3 = new VoiceSettings(1, new Fraction(3, 1), new SelfSimilaritySettings(true, false, true, 1));
-        VoiceSettings vs4 = new VoiceSettings(3, new Fraction(1, 1), new SelfSimilaritySettings(true, false, true, 1));     
-        VoiceSettings vs5 = new VoiceSettings(3, new Fraction(1, 1), new SelfSimilaritySettings(true, false, true, 2));     
-        VoiceSettings vs6 = new VoiceSettings(3, new Fraction(3, 1), new SelfSimilaritySettings(true, false, true, 1));
+        VoiceSettings vs2;
         
-        assertTrue(vs1.equals(vs6));        
-        assertFalse(vs1.equals(vs3));
-        assertFalse(vs1.equals(vs4));
-        assertFalse(vs1.equals(vs5));
+        vs2 = vs1.clone();
+        assertEqualsAndHashCode(true, vs1, vs2);
+        vs2.getSelfSimilaritySettings().setApplyToPitch(!vs1.getSelfSimilaritySettings().getApplyToPitch());
+        assertEqualsAndHashCode(false, vs1, vs2);
         
-        assertEquals(vs1.hashCode(), vs6.hashCode());        
-        assertNotSame(vs1.hashCode(), vs3.hashCode());
-        assertNotSame(vs1.hashCode(), vs4.hashCode());
-        assertNotSame(vs1.hashCode(), vs5.hashCode());               
+        vs2 = vs1.clone();
+        assertEqualsAndHashCode(true, vs1, vs2);
+        vs2.getSelfSimilaritySettings().setApplyToRhythm(!vs1.getSelfSimilaritySettings().getApplyToRhythm());
+        assertEqualsAndHashCode(false, vs1, vs2);
+        
+        vs2 = vs1.clone();
+        assertEqualsAndHashCode(true, vs1, vs2);
+        vs2.getSelfSimilaritySettings().setApplyToVolume(!vs1.getSelfSimilaritySettings().getApplyToVolume());
+        assertEqualsAndHashCode(false, vs1, vs2);
+
+        vs2 = vs1.clone();
+        assertEqualsAndHashCode(true, vs1, vs2);
+        vs2.getSelfSimilaritySettings().setSelfSimilarityIterations(vs1.getSelfSimilaritySettings().getSelfSimilarityIterations() + 1);
+        assertEqualsAndHashCode(false, vs1, vs2);
+        
+        super.testEqualsAndHashCode(vs1, vs2);
     }
     
     @Test

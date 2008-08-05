@@ -82,19 +82,21 @@ public class KeySignatureTest {
     @Test
     public void toGuidoString() throws Exception {
         KeySignature ks = new KeySignature(Tonality.Major, NoteName.Bb);
-        assertEquals("\\key<\"B&\">", ks.toGuidoString());
+        assertEquals("\\key<\"-2\">", ks.toGuidoString());
         
-        ks = new KeySignature(Tonality.Minor, NoteName.As);
-        assertEquals("\\key<\"a#\">", ks.toGuidoString());
+        ks = new KeySignature(Tonality.Locrian, NoteName.As);
+        assertEquals("\\key<\"5\">", ks.toGuidoString());
         
-        ks = new KeySignature(Tonality.Minor, NoteName.E);
-        assertEquals("\\key<\"e\">", ks.toGuidoString());
+        ks = new KeySignature(Tonality.Dorian, NoteName.E);
+        assertEquals("\\key<\"2\">", ks.toGuidoString());
     }
     
     @Test
     public void toLilypondString() throws Exception {
         testToLilypondString(Tonality.Major, NoteName.Cs, "\\key cs \\major" + FileHelper.NEW_LINE);        
         testToLilypondString(Tonality.Minor, NoteName.Ab, "\\key af \\minor" + FileHelper.NEW_LINE);
+        testToLilypondString(Tonality.Mixolydian, NoteName.D, "\\key d \\mixolydian" + FileHelper.NEW_LINE);
+        testToLilypondString(Tonality.Phrygian, NoteName.B, "\\key b \\phrygian" + FileHelper.NEW_LINE);
     }
     
     private static void testToLilypondString(Tonality tonality, NoteName key, String expected) throws Exception {
@@ -103,36 +105,25 @@ public class KeySignatureTest {
     }
     
     @Test
-    public void getRelativeKeyName() throws Exception {                
-        testRelativeKeyName(NoteName.Cb, NoteName.Ab);
-        testRelativeKeyName(NoteName.C, NoteName.A);
-        testRelativeKeyName(NoteName.Cs, NoteName.As);
-        
-        testRelativeKeyName(NoteName.Db, NoteName.Bb);
-        testRelativeKeyName(NoteName.D, NoteName.B);                
-        
-        testRelativeKeyName(NoteName.Eb, NoteName.C);
-        testRelativeKeyName(NoteName.E, NoteName.Cs);                
-        
-        testRelativeKeyName(NoteName.F, NoteName.D);
-        testRelativeKeyName(NoteName.Fs, NoteName.Ds);              
-        
-        testRelativeKeyName(NoteName.Gb, NoteName.Eb);
-        testRelativeKeyName(NoteName.G, NoteName.E);
-        
-        testRelativeKeyName(NoteName.Ab, NoteName.F);
-        testRelativeKeyName(NoteName.A, NoteName.Fs);
-        
-        testRelativeKeyName(NoteName.Bb, NoteName.G);
-        testRelativeKeyName(NoteName.B, NoteName.Gs);        
+    public void getKeyNameWithSameNumAccidentals() throws Exception {
+        testGetKeyNameWithSameNumAccidentals(NoteName.C, Tonality.Major, NoteName.C, NoteName.D, NoteName.E, NoteName.F, NoteName.G, NoteName.A, NoteName.B);
+        testGetKeyNameWithSameNumAccidentals(NoteName.G, Tonality.Dorian, NoteName.F, NoteName.G, NoteName.A, NoteName.Bb, NoteName.C, NoteName.D, NoteName.E);
+        testGetKeyNameWithSameNumAccidentals(NoteName.G, Tonality.Phrygian, NoteName.Eb, NoteName.F, NoteName.G, NoteName.Ab, NoteName.Bb, NoteName.C, NoteName.D);        
+        testGetKeyNameWithSameNumAccidentals(NoteName.Fs, Tonality.Lydian, NoteName.Cs, NoteName.Ds, NoteName.Es, NoteName.Fs, NoteName.Gs, NoteName.As, NoteName.Bs);
+        testGetKeyNameWithSameNumAccidentals(NoteName.A, Tonality.Mixolydian, NoteName.D, NoteName.E, NoteName.Fs, NoteName.G, NoteName.A, NoteName.B, NoteName.Cs);
+        testGetKeyNameWithSameNumAccidentals(NoteName.Ab, Tonality.Minor, NoteName.Cb, NoteName.Db, NoteName.Eb, NoteName.Fb, NoteName.Gb, NoteName.Ab, NoteName.Bb);                
+        testGetKeyNameWithSameNumAccidentals(NoteName.C, Tonality.Locrian, NoteName.Db, NoteName.Eb, NoteName.F, NoteName.Gb, NoteName.Ab, NoteName.Bb, NoteName.C);                
     }
     
-    static private void testRelativeKeyName(NoteName majorKey, NoteName minorKey) throws Exception {
-        KeySignature ks = new KeySignature(Tonality.Major, majorKey);
-        assertEquals(minorKey , ks.getRelativeKeyName());
-        
-        ks = new KeySignature(Tonality.Minor, minorKey);
-        assertEquals(majorKey , ks.getRelativeKeyName());
+    private static void testGetKeyNameWithSameNumAccidentals(NoteName orig, Tonality tonality, NoteName majorNN, NoteName dorianNN, NoteName phrygianNN, NoteName lydianNN, NoteName mixolydianNN, NoteName minorNN, NoteName locrianNN) throws Exception {
+        KeySignature ks = new KeySignature(tonality, orig);
+        assertEquals(majorNN, ks.getKeyNameWithSameNumAccidentals(Tonality.Major));
+        assertEquals(dorianNN, ks.getKeyNameWithSameNumAccidentals(Tonality.Dorian));
+        assertEquals(phrygianNN, ks.getKeyNameWithSameNumAccidentals(Tonality.Phrygian));
+        assertEquals(lydianNN, ks.getKeyNameWithSameNumAccidentals(Tonality.Lydian));
+        assertEquals(mixolydianNN, ks.getKeyNameWithSameNumAccidentals(Tonality.Mixolydian));
+        assertEquals(minorNN, ks.getKeyNameWithSameNumAccidentals(Tonality.Minor));
+        assertEquals(locrianNN, ks.getKeyNameWithSameNumAccidentals(Tonality.Locrian));
     }
     
     static public MidiEvent getIndexedKeySigEvent(Track t, int index) {

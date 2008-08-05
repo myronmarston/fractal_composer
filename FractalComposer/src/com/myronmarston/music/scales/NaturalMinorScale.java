@@ -30,10 +30,9 @@ import org.simpleframework.xml.*;
  * @author Myron
  */
 @Root
-public class NaturalMinorScale extends Scale {        
+public class NaturalMinorScale extends AbstractDiatonicScale {        
     private final static int[] SCALE_STEPS = new int[] {0, 2, 3, 5, 7, 8, 10};
-    private final static int[] LETTER_NUMBERS = new int[] {0, 1, 2, 3, 4, 5, 6};
-
+    
     /**
      * Constructor.
      * 
@@ -59,9 +58,4 @@ public class NaturalMinorScale extends Scale {
     public int[] getScaleStepArray() {
         return Arrays.copyOf(SCALE_STEPS, SCALE_STEPS.length);
     }
-
-    @Override
-    public int[] getLetterNumberArray() {
-        return Arrays.copyOf(LETTER_NUMBERS, LETTER_NUMBERS.length);        
-    }        
 }

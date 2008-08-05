@@ -40,42 +40,63 @@ public class TonalityTest {
     }
 
     @Test
-    public void testGetValidKeyNames() {
-        List<NoteName> majorKeyNames = Tonality.Major.getValidKeyNames();
-        assertEquals(15, majorKeyNames.size());
-        assertEquals(NoteName.Cb, majorKeyNames.get(0));
-        assertEquals(NoteName.Gb, majorKeyNames.get(1));
-        assertEquals(NoteName.Db, majorKeyNames.get(2));
-        assertEquals(NoteName.Ab, majorKeyNames.get(3));
-        assertEquals(NoteName.Eb, majorKeyNames.get(4));
-        assertEquals(NoteName.Bb, majorKeyNames.get(5));
-        assertEquals(NoteName.F, majorKeyNames.get(6));
-        assertEquals(NoteName.C, majorKeyNames.get(7));
-        assertEquals(NoteName.G, majorKeyNames.get(8));
-        assertEquals(NoteName.D, majorKeyNames.get(9));
-        assertEquals(NoteName.A, majorKeyNames.get(10));
-        assertEquals(NoteName.E, majorKeyNames.get(11));
-        assertEquals(NoteName.B, majorKeyNames.get(12));
-        assertEquals(NoteName.Fs, majorKeyNames.get(13));
-        assertEquals(NoteName.Cs, majorKeyNames.get(14));
+    public void getValidKeyNames() throws Exception {
+        testGetValidKeyNames(Tonality.Major, 
+            NoteName.Cb, NoteName.Gb, NoteName.Db, 
+            NoteName.Ab, NoteName.Eb, NoteName.Bb, 
+            NoteName.F, NoteName.C, NoteName.G, 
+            NoteName.D, NoteName.A, NoteName.E,
+            NoteName.B, NoteName.Fs, NoteName.Cs);        
         
-        List<NoteName> minorKeyNames = Tonality.Minor.getValidKeyNames();
-        assertEquals(15, minorKeyNames.size());
-        assertEquals(NoteName.Ab, minorKeyNames.get(0));
-        assertEquals(NoteName.Eb, minorKeyNames.get(1));
-        assertEquals(NoteName.Bb, minorKeyNames.get(2));
-        assertEquals(NoteName.F, minorKeyNames.get(3));
-        assertEquals(NoteName.C, minorKeyNames.get(4));
-        assertEquals(NoteName.G, minorKeyNames.get(5));
-        assertEquals(NoteName.D, minorKeyNames.get(6));
-        assertEquals(NoteName.A, minorKeyNames.get(7));
-        assertEquals(NoteName.E, minorKeyNames.get(8));
-        assertEquals(NoteName.B, minorKeyNames.get(9));
-        assertEquals(NoteName.Fs, minorKeyNames.get(10));
-        assertEquals(NoteName.Cs, minorKeyNames.get(11));
-        assertEquals(NoteName.Gs, minorKeyNames.get(12));
-        assertEquals(NoteName.Ds, minorKeyNames.get(13));
-        assertEquals(NoteName.As, minorKeyNames.get(14));
+        testGetValidKeyNames(Tonality.Dorian, 
+            NoteName.Db, 
+            NoteName.Ab, NoteName.Eb, NoteName.Bb, 
+            NoteName.F, NoteName.C, NoteName.G, 
+            NoteName.D, NoteName.A, NoteName.E,
+            NoteName.B, NoteName.Fs, NoteName.Cs, NoteName.Gs, NoteName.Ds);        
+        
+        testGetValidKeyNames(Tonality.Phrygian,             
+            NoteName.Eb, NoteName.Bb, 
+            NoteName.F, NoteName.C, NoteName.G, 
+            NoteName.D, NoteName.A, NoteName.E,
+            NoteName.B, NoteName.Fs, NoteName.Cs, 
+            NoteName.Gs, NoteName.Ds, NoteName.As, NoteName.Es);        
+        
+        testGetValidKeyNames(Tonality.Lydian, 
+            NoteName.Fb, NoteName.Cb, NoteName.Gb, NoteName.Db, 
+            NoteName.Ab, NoteName.Eb, NoteName.Bb, 
+            NoteName.F, NoteName.C, NoteName.G, 
+            NoteName.D, NoteName.A, NoteName.E,
+            NoteName.B, NoteName.Fs);        
+        
+        testGetValidKeyNames(Tonality.Mixolydian, 
+            NoteName.Gb, NoteName.Db, 
+            NoteName.Ab, NoteName.Eb, NoteName.Bb, 
+            NoteName.F, NoteName.C, NoteName.G, 
+            NoteName.D, NoteName.A, NoteName.E,
+            NoteName.B, NoteName.Fs, NoteName.Cs, NoteName.Gs);        
+        
+        testGetValidKeyNames(Tonality.Minor,             
+            NoteName.Ab, NoteName.Eb, NoteName.Bb, 
+            NoteName.F, NoteName.C, NoteName.G, 
+            NoteName.D, NoteName.A, NoteName.E,
+            NoteName.B, NoteName.Fs, NoteName.Cs, 
+            NoteName.Gs, NoteName.Ds, NoteName.As);        
+        
+        testGetValidKeyNames(Tonality.Locrian,             
+            NoteName.Bb, 
+            NoteName.F, NoteName.C, NoteName.G, 
+            NoteName.D, NoteName.A, NoteName.E,
+            NoteName.B, NoteName.Fs, NoteName.Cs, 
+            NoteName.Gs, NoteName.Ds, NoteName.As, NoteName.Es, NoteName.Bs);                
+    }
+    
+    private static void testGetValidKeyNames(Tonality tonality, NoteName ... expectedValidKeyNames) {
+        List<NoteName> keyNames = tonality.getValidKeyNames();
+        assertEquals(expectedValidKeyNames.length, keyNames.size());
+        for (int i = 0; i < keyNames.size(); i++) {
+           assertEquals(expectedValidKeyNames[i], keyNames.get(i));
+        }        
     }
 
     @Test

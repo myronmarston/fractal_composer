@@ -103,7 +103,7 @@ java.lang.Object
 </DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>AbstractVoiceOrSectionSettings</B><DT>extends <A HREF="../../../../com/myronmarston/util/AbstractPublisher.html" title="class in com.myronmarston.util">AbstractPublisher</A></DL>
+<DT><PRE>public abstract class <B>AbstractVoiceOrSectionSettings</B><DT>extends <A HREF="../../../../com/myronmarston/util/AbstractPublisher.html" title="class in com.myronmarston.util">AbstractPublisher</A></DL>
 </PRE>
 
 <P>
@@ -126,10 +126,23 @@ Class that has settings that can be set either on a voice or a section.  This
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected </CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#AbstractVoiceOrSectionSettings()">AbstractVoiceOrSectionSettings</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default constructor.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected </CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#AbstractVoiceOrSectionSettings(com.myronmarston.util.Fraction, int, int, com.myronmarston.util.Fraction)">AbstractVoiceOrSectionSettings</A></B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;volumeAdjustment,
+                               int&nbsp;scaleStepOffset,
+                               int&nbsp;octaveAdjustment,
+                               <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;speedScaleFactor)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -168,6 +181,14 @@ Class that has settings that can be set either on a voice or a section.  This
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#getOctaveAdjustment()">getOctaveAdjustment</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets how many octaves to adjust the germ for use by this voice.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html" title="class in com.myronmarston.music.settings">AbstractVoiceOrSectionSettings</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#getReadOnlyCopy()">getReadOnlyCopy</A></B>()</CODE>
 
@@ -184,7 +205,15 @@ Class that has settings that can be set either on a voice or a section.  This
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;double</CODE></FONT></TD>
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#getSpeedScaleFactor()">getSpeedScaleFactor</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the speed scale factor to apply to the germ for use by this voice.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#getVolumeAdjustment()">getVolumeAdjustment</A></B>()</CODE>
 
 <BR>
@@ -217,6 +246,14 @@ Class that has settings that can be set either on a voice or a section.  This
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#setOctaveAdjustment(int)">setOctaveAdjustment</A></B>(int&nbsp;val)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets how many octaves to adjust the germ for use by this voice.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#setScaleStepOffset(int)">setScaleStepOffset</A></B>(int&nbsp;scaleStepOffset)</CODE>
 
 <BR>
@@ -225,7 +262,15 @@ Class that has settings that can be set either on a voice or a section.  This
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#setVolumeAdjustment(double)">setVolumeAdjustment</A></B>(double&nbsp;volumeAdjustment)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#setSpeedScaleFactor(com.myronmarston.util.Fraction)">setSpeedScaleFactor</A></B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;val)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the speed scale factor to apply to the germ for use by this voice.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/settings/AbstractVoiceOrSectionSettings.html#setVolumeAdjustment(com.myronmarston.util.Fraction)">setVolumeAdjustment</A></B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;volumeAdjustment)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the volume adjustment.</TD>
@@ -265,8 +310,25 @@ Class that has settings that can be set either on a voice or a section.  This
 <A NAME="AbstractVoiceOrSectionSettings()"><!-- --></A><H3>
 AbstractVoiceOrSectionSettings</H3>
 <PRE>
-public <B>AbstractVoiceOrSectionSettings</B>()</PRE>
+protected <B>AbstractVoiceOrSectionSettings</B>()</PRE>
 <DL>
+<DD>Default constructor.  Initializes the fields to default values.
+<P>
+</DL>
+<HR>
+
+<A NAME="AbstractVoiceOrSectionSettings(com.myronmarston.util.Fraction, int, int, com.myronmarston.util.Fraction)"><!-- --></A><H3>
+AbstractVoiceOrSectionSettings</H3>
+<PRE>
+protected <B>AbstractVoiceOrSectionSettings</B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;volumeAdjustment,
+                                         int&nbsp;scaleStepOffset,
+                                         int&nbsp;octaveAdjustment,
+                                         <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;speedScaleFactor)</PRE>
+<DL>
+<DD>Constructor.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>volumeAdjustment</CODE> - the volume adjustment<DD><CODE>scaleStepOffset</CODE> - the scale step offset<DD><CODE>octaveAdjustment</CODE> - the octave adjustment<DD><CODE>speedScaleFactor</CODE> - the speed scale factor</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -317,7 +379,7 @@ public void <B>setScaleStepOffset</B>(int&nbsp;scaleStepOffset)
 <A NAME="getVolumeAdjustment()"><!-- --></A><H3>
 getVolumeAdjustment</H3>
 <PRE>
-public double <B>getVolumeAdjustment</B>()</PRE>
+public <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A> <B>getVolumeAdjustment</B>()</PRE>
 <DL>
 <DD>Gets the volume adjustment.  This will be used to scale the volume of
  this voice or section.  Should be between -1 and 1.  Negative values
@@ -330,10 +392,10 @@ public double <B>getVolumeAdjustment</B>()</PRE>
 </DL>
 <HR>
 
-<A NAME="setVolumeAdjustment(double)"><!-- --></A><H3>
+<A NAME="setVolumeAdjustment(com.myronmarston.util.Fraction)"><!-- --></A><H3>
 setVolumeAdjustment</H3>
 <PRE>
-public void <B>setVolumeAdjustment</B>(double&nbsp;volumeAdjustment)
+public void <B>setVolumeAdjustment</B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;volumeAdjustment)
                          throws java.lang.IllegalArgumentException,
                                 java.lang.UnsupportedOperationException</PRE>
 <DL>
@@ -347,6 +409,66 @@ public void <B>setVolumeAdjustment</B>(double&nbsp;volumeAdjustment)
 <DD><CODE>java.lang.IllegalArgumentException</CODE> - if the volume adjustment is outside of 
          the range -1 to 1
 <DD><CODE>java.lang.UnsupportedOperationException</CODE> - if this is a read-only object</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getOctaveAdjustment()"><!-- --></A><H3>
+getOctaveAdjustment</H3>
+<PRE>
+public int <B>getOctaveAdjustment</B>()</PRE>
+<DL>
+<DD>Gets how many octaves to adjust the germ for use by this voice.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>number of octaves to adjust</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setOctaveAdjustment(int)"><!-- --></A><H3>
+setOctaveAdjustment</H3>
+<PRE>
+public void <B>setOctaveAdjustment</B>(int&nbsp;val)
+                         throws java.lang.UnsupportedOperationException</PRE>
+<DL>
+<DD>Sets how many octaves to adjust the germ for use by this voice.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>val</CODE> - number of octaves to adjust
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.UnsupportedOperationException</CODE> - if this object is read-only</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getSpeedScaleFactor()"><!-- --></A><H3>
+getSpeedScaleFactor</H3>
+<PRE>
+public <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A> <B>getSpeedScaleFactor</B>()</PRE>
+<DL>
+<DD>Gets the speed scale factor to apply to the germ for use by this voice.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the speed scale factor</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setSpeedScaleFactor(com.myronmarston.util.Fraction)"><!-- --></A><H3>
+setSpeedScaleFactor</H3>
+<PRE>
+public void <B>setSpeedScaleFactor</B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;val)
+                         throws java.lang.UnsupportedOperationException</PRE>
+<DL>
+<DD>Sets the speed scale factor to apply to the germ for use by this voice.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>val</CODE> - the speed scale factor
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.UnsupportedOperationException</CODE> - if this object is read-only</DL>
 </DD>
 </DL>
 <HR>

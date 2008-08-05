@@ -29,7 +29,7 @@ import org.simpleframework.xml.*;
  * @author Myron
  */
 @Root
-public class HarmonicMinorScale extends NaturalMinorScale {
+public class HarmonicMinorScale extends AbstractDiatonicScale {
     private final static int[] SCALE_STEPS = new int[] {0, 2, 3, 5, 7, 8, 11};
     
     /**
@@ -40,7 +40,7 @@ public class HarmonicMinorScale extends NaturalMinorScale {
      *         when the key is invalid
      */
     public HarmonicMinorScale(NoteName keyName) throws InvalidKeySignatureException {        
-        super(keyName);        
+        super(new KeySignature(Tonality.Minor, keyName));
     }   
     
     /**
@@ -50,7 +50,7 @@ public class HarmonicMinorScale extends NaturalMinorScale {
      *         when the key is invalid.
      */
     public HarmonicMinorScale() throws InvalidKeySignatureException {
-        super();
+        this(Tonality.Minor.getDefaultKey());
     }
     
     @Override

@@ -22,7 +22,7 @@ package com.myronmarston.music.settings;
 import com.myronmarston.music.*;
 import com.myronmarston.music.scales.*;
 import com.myronmarston.util.Publisher;
-import com.myronmarston.util.Subscriber;
+import com.myronmarston.util.Fraction;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -59,6 +59,7 @@ public class SectionSettingsTest extends AbstractVoiceOrSectionSettingsTest {
     
     @Override
     protected void setDefaultSettingsValues() {
+        super.setDefaultSettingsValues();
         this.settings.setApplyInversion(false);
         this.settings.setApplyRetrograde(false);
     }        
@@ -116,37 +117,32 @@ public class SectionSettingsTest extends AbstractVoiceOrSectionSettingsTest {
         ss.setApplyInversion(false);
         expected = NoteList.parseNoteListString("G4,1/1 B4,1/2 A4,1/2 G4,1/1", scale);
         NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input, scale));
+        
+        ss.setOctaveAdjustment(1);
+        ss.setSpeedScaleFactor(new Fraction(4, 1));
+        ss.setVolumeAdjustment(new Fraction(1, 2));
+        ss.setScaleStepOffset(-2);
+        expected = NoteList.parseNoteListString("E5,1/4 G5,1/8 F#5,1/8 E5,1/4", scale);
+        for (Note n : expected) n.setVolume(99);
+        NoteListTest.assertNoteListsEqual(expected, ss.applySettingsToNoteList(input, scale));
     }        
     
     @Test
-    public void equalsAndHashCode() {
+    public void equalsAndHashCode() throws Exception {
         SectionSettings ss1 = new SectionSettings(true, true);
-        SectionSettings ss2 = new SectionSettings(false, true);
-        SectionSettings ss3 = new SectionSettings(true, false);
-        SectionSettings ss4 = new SectionSettings(false, false);
-        SectionSettings ss5 = new SectionSettings(true, true);
-        SectionSettings ss6 = new SectionSettings(false, true);
-        SectionSettings ss7 = new SectionSettings(true, false);
-        SectionSettings ss8 = new SectionSettings(false, false);
+        SectionSettings ss2;
+                
+        ss2 = ss1.clone();
+        assertEqualsAndHashCode(true, ss1, ss2);
+        ss2.setApplyInversion(!ss1.getApplyInversion());
+        assertEqualsAndHashCode(false, ss1, ss2);
         
-        assertTrue(ss1.equals(ss5));
-        assertTrue(ss2.equals(ss6));
-        assertTrue(ss3.equals(ss7));
-        assertTrue(ss4.equals(ss8));
+        ss2 = ss1.clone();
+        assertEqualsAndHashCode(true, ss1, ss2);
+        ss2.setApplyRetrograde(!ss1.getApplyRetrograde());
+        assertEqualsAndHashCode(false, ss1, ss2);
         
-        assertEquals(ss1.hashCode(), ss5.hashCode());
-        assertEquals(ss2.hashCode(), ss6.hashCode());
-        assertEquals(ss3.hashCode(), ss7.hashCode());
-        assertEquals(ss4.hashCode(), ss8.hashCode());
-        
-        assertFalse(ss1.equals(ss2));
-        assertFalse(ss1.equals(ss3));
-        assertFalse(ss1.equals(ss4));
-        
-        assertNotSame(ss1.hashCode(), ss4.hashCode());
-        assertNotSame(ss2.hashCode(), ss3.hashCode());
-        assertNotSame(ss3.hashCode(), ss2.hashCode());
-        assertNotSame(ss4.hashCode(), ss6.hashCode());        
+        super.testEqualsAndHashCode(ss1, ss2);            
     }
 
     @Test
@@ -154,6 +150,8 @@ public class SectionSettingsTest extends AbstractVoiceOrSectionSettingsTest {
         SectionSettings instance = new SectionSettings();
         instance.setApplyInversion(true);
         instance.setApplyRetrograde(false);
+        instance.setOctaveAdjustment(4);
+        instance.setSpeedScaleFactor(new Fraction(3, 1));        
         
         SectionSettings newInstance = instance.clone();
         assertTrue(instance != newInstance);

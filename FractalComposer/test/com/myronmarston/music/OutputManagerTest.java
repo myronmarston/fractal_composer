@@ -54,7 +54,7 @@ public class OutputManagerTest {
             
     @Test
     public void getGuidoNotation() throws Exception {
-        String guidoNotationFormatString = "{" + FileHelper.NEW_LINE + "[%s\\key<\"C\"> \\meter<\"C\"> \\clef<\"g2-8\"> %s\\intens<\"mf\"> d1/4 e1/4 c1/4]" + FileHelper.NEW_LINE + "}";
+        String guidoNotationFormatString = "{" + FileHelper.NEW_LINE + "[%s\\key<\"0\"> \\meter<\"C\"> \\clef<\"g2-8\"> %s\\intens<\"mf\"> d1/4 e1/4 c1/4]" + FileHelper.NEW_LINE + "}";
         String instrumentString = "\\instr<\"Piano 1\", \"MIDI 0\"> ";
         String tempoString = "\\tempo<\"Andante\",\"1/4=90\"> ";
         String fullGuidoString = String.format(guidoNotationFormatString, instrumentString, tempoString);

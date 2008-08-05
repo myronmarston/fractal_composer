@@ -217,15 +217,16 @@ public class SectionTest {
         s1.setScale(new MinorPentatonicScale(NoteName.Bb));
         // parsing it with Bb as the tonic will produce lots of accidentals,
         // so the original tonic should be used instead
-        NoteList expectedGerm = NoteList.parseNoteListString(germString, new MinorPentatonicScale(NoteName.E));                        
+        NoteList expectedGerm = NoteList.parseNoteListString(germString, new MinorPentatonicScale(NoteName.E));
         NoteListTest.assertNoteListsEqual(expectedGerm, s1.getGermForSection());
         
-        s1.setScale(new MajorPentatonicScale(NoteName.Bb));        
-        // parsing it with Bb as the tonic will produce lots of accidentals,
+        s1.setScale(new MajorPentatonicScale(NoteName.F));        
+        // parsing it with F as the tonic will produce lots of accidentals,
         // and parsing it with the original tonic of E will also produce accidentals,
-        // so try the relative tonic
+        // so try the relative tonic (G)
         expectedGerm = NoteList.parseNoteListString(germString, new MajorPentatonicScale(NoteName.G));                        
         NoteListTest.assertNoteListsEqual(expectedGerm, s1.getGermForSection());
+        
         
         germString = "G4 A4 B4 G4 F#4";
         fp.setScale(new ChromaticScale());

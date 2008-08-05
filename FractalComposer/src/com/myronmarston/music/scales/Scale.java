@@ -24,11 +24,10 @@ import com.myronmarston.music.NoteName;
 import com.myronmarston.util.ClassHelper;
 import com.myronmarston.util.MathHelper;
 
-import java.lang.reflect.Constructor;
 import org.simpleframework.xml.*;
 
+import java.lang.reflect.*;
 import java.util.*;
-import java.lang.reflect.UndeclaredThrowableException;
 
 /**
  * Scales are used to convert a Note to a MidiNote and to provide the midi file
@@ -82,9 +81,11 @@ public abstract class Scale implements Cloneable {
         //TODO: make SCALE_TYPES unmodifiable
         SCALE_TYPES = new LinkedHashMap<Class, List<NoteName>>(scaleTypeList.size());
         for (Class scaleType : scaleTypeList) {   
-            try {
+            try {                
+                if (Modifier.isAbstract(scaleType.getModifiers())) continue;
+                
                 @SuppressWarnings("unchecked")
-                Constructor constructor = scaleType.getDeclaredConstructor();
+                Constructor constructor = scaleType.getDeclaredConstructor();                
                 Scale s = (Scale) constructor.newInstance();
                 SCALE_TYPES.put(scaleType, s.getValidKeyNames());    
             } catch (Exception ex) {

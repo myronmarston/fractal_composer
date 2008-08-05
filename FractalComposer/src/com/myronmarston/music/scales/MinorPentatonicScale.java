@@ -29,7 +29,7 @@ import org.simpleframework.xml.*;
  * @author Myron
  */
 @Root
-public class MinorPentatonicScale extends NaturalMinorScale {
+public class MinorPentatonicScale extends Scale {
     private final static int[] SCALE_STEPS = new int[] {0, 3, 5, 7, 10};
     private final static int[] LETTER_NUMBERS = new int[] {0, 2, 3, 4, 6};
     
@@ -41,7 +41,7 @@ public class MinorPentatonicScale extends NaturalMinorScale {
      *         when the key is invalid
      */
     public MinorPentatonicScale(NoteName keyName) throws InvalidKeySignatureException {
-        super(keyName);
+        super(new KeySignature(Tonality.Minor, keyName));        
     }
     
     /**
@@ -51,7 +51,7 @@ public class MinorPentatonicScale extends NaturalMinorScale {
      *         when the key is invalid.
      */
     public MinorPentatonicScale() throws InvalidKeySignatureException {
-        super();
+        this(Tonality.Minor.getDefaultKey());
     }
 
     @Override

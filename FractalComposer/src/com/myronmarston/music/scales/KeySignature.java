@@ -43,9 +43,7 @@ public class KeySignature extends AbstractNotationElement {
     
     @Attribute
     private NoteName keyName;
-    
-    private NoteName relativeKeyName;
-    
+        
     @Attribute
     private Tonality tonality;    
     private MetaMessage keySignatureMidiMessage;    
@@ -104,24 +102,18 @@ public class KeySignature extends AbstractNotationElement {
     public NoteName getKeyName() {
         return keyName;
     }     
-    
-    /**
-     * Gets the note name of the relative key.  For a major key, it will be the
-     * note a minor 3rd below.  For a minor key, it will be the note a minor
-     * 3rd above the key.
-     * 
-     * @return the relative key name
-     */
-    public NoteName getRelativeKeyName() {
-        if (relativeKeyName == null) {
-            int tonalityMultiplier = (this.getTonality() == Tonality.Major ? -1 : 1);
-            int letterNumberOffset = 2 * tonalityMultiplier;
-            int noteNumberOffset = 3 * tonalityMultiplier;                        
             
-            relativeKeyName = this.getKeyName().getNoteNameFromInterval(letterNumberOffset, noteNumberOffset);
-        }
-        
-        return relativeKeyName;
+    /**
+     * Gets the key name for the given tonality that has the same number of 
+     * accidentals as this key signature.
+     * 
+     * @param tonality the tonality
+     * @return the key for the given tonality that has the same number of accidentals
+     */
+    public NoteName getKeyNameWithSameNumAccidentals(Tonality tonality) {
+        int letterNumberOffset = tonality.getModeLetterNumberOffset() - this.getTonality().getModeLetterNumberOffset();
+        int noteNumberOffset =  tonality.getModeNoteNumberOffset() - this.getTonality().getModeNoteNumberOffset();
+        return this.keyName.getNoteNameFromInterval(letterNumberOffset, noteNumberOffset);
     }
     
     /**
@@ -130,9 +122,7 @@ public class KeySignature extends AbstractNotationElement {
      * @return the Guido string
      */
     public String toGuidoString() {        
-        char keyLetterName = this.getKeyName().getLetter(this.getTonality() == Tonality.Minor);        
-        String accidentals = this.getKeyName().toString().substring(1).replaceAll("b", "&").replaceAll("s", "#").replaceAll("x", "##");        
-        return "\\key<\"" + keyLetterName + accidentals + "\">";
+        return "\\key<\"" + this.getNumberOfFlatsOrSharps() + "\">";
     }
     
     /**
@@ -142,10 +132,11 @@ public class KeySignature extends AbstractNotationElement {
      */
     public String toLilypondString() {                
         if (lilypondString == null) {
-            String key = this.getKeyName().toString().toLowerCase(Locale.ENGLISH);
+            String key = this.getKeyName().toString();
             key = key.replace('b', NotationNote.LILYPOND_FLAT_CHAR);
             key = key.replace("x", "##");
             key = key.replace('#', NotationNote.LILYPOND_SHARP_CHAR);
+            key = key.toLowerCase(Locale.ENGLISH);
 
             String tonalityStr = this.getTonality().toString().toLowerCase(Locale.ENGLISH);
             

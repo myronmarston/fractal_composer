@@ -207,7 +207,8 @@ public class SheetMusicCreator {
     private void runLilypond(final String fileName, final String title, final String composer, final int imageWidth, final String fileExtension, final FileFilter transientFileFilter, final String ... lilypondCommandLineOptions) throws Exception {               
         File givenFile = new File(fileName);        
         final String fileNameWithoutExtension = FileHelper.stripFileExtension(givenFile.getName(), fileExtension);        
-        final File directory = givenFile.getParentFile();
+        File parentFile = givenFile.getParentFile();
+        final File directory = (parentFile != null ? parentFile : new File(SheetMusicCreator.CURRENT_DIR));
         assert directory.isDirectory();
                         
         FileHelper.deleteNewTransientFiles(directory, transientFileFilter, new FileHelper.TransientFileUser() {
@@ -248,6 +249,8 @@ public class SheetMusicCreator {
      * @return true if there was an error
      */    
     private static boolean lilypondOrGuidoOutputIndicatesError(String output) {
+        // TODO: warning: Can't fit systems on page -- ignoring between-system-padding
+        //       why does this occur?  should I allow this as a non-error?
         Matcher errorMatches = SheetMusicCreator.LILYPOND_OR_GUIDO_OUTPUT_ERROR.matcher(output);
         return (errorMatches.matches());
     }        

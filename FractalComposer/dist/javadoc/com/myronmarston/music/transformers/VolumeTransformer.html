@@ -125,7 +125,7 @@ Transformer that adjusts the volume of each note based on some scale factor.
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/transformers/VolumeTransformer.html#VolumeTransformer(double)">VolumeTransformer</A></B>(double&nbsp;scaleFactor)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/transformers/VolumeTransformer.html#VolumeTransformer(com.myronmarston.util.Fraction)">VolumeTransformer</A></B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;scaleFactor)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
@@ -143,14 +143,14 @@ Transformer that adjusts the volume of each note based on some scale factor.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/myronmarston/music/transformers/VolumeTransformer.html#checkVolumeScaleFactorValidity(double)">checkVolumeScaleFactorValidity</A></B>(double&nbsp;scaleFactor)</CODE>
+<TD><CODE><B><A HREF="../../../../com/myronmarston/music/transformers/VolumeTransformer.html#checkVolumeScaleFactorValidity(com.myronmarston.util.Fraction)">checkVolumeScaleFactorValidity</A></B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;scaleFactor)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checks the given scale factor for validity.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;double</CODE></FONT></TD>
+<CODE>&nbsp;<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/transformers/VolumeTransformer.html#getScaleFactor()">getScaleFactor</A></B>()</CODE>
 
 <BR>
@@ -187,10 +187,10 @@ Transformer that adjusts the volume of each note based on some scale factor.
 </TR>
 </TABLE>
 
-<A NAME="VolumeTransformer(double)"><!-- --></A><H3>
+<A NAME="VolumeTransformer(com.myronmarston.util.Fraction)"><!-- --></A><H3>
 VolumeTransformer</H3>
 <PRE>
-public <B>VolumeTransformer</B>(double&nbsp;scaleFactor)</PRE>
+public <B>VolumeTransformer</B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;scaleFactor)</PRE>
 <DL>
 <DD>Constructor.
 <P>
@@ -212,7 +212,7 @@ public <B>VolumeTransformer</B>(double&nbsp;scaleFactor)</PRE>
 <A NAME="getScaleFactor()"><!-- --></A><H3>
 getScaleFactor</H3>
 <PRE>
-public double <B>getScaleFactor</B>()</PRE>
+public <A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A> <B>getScaleFactor</B>()</PRE>
 <DL>
 <DD>Gets the scale factor.  Should be between -1 and 1.  Negative values will
  reduce the volume; positive values will increase the volume.
@@ -227,10 +227,10 @@ public double <B>getScaleFactor</B>()</PRE>
 </DL>
 <HR>
 
-<A NAME="checkVolumeScaleFactorValidity(double)"><!-- --></A><H3>
+<A NAME="checkVolumeScaleFactorValidity(com.myronmarston.util.Fraction)"><!-- --></A><H3>
 checkVolumeScaleFactorValidity</H3>
 <PRE>
-public static void <B>checkVolumeScaleFactorValidity</B>(double&nbsp;scaleFactor)
+public static void <B>checkVolumeScaleFactorValidity</B>(<A HREF="../../../../com/myronmarston/util/Fraction.html" title="class in com.myronmarston.util">Fraction</A>&nbsp;scaleFactor)
                                            throws java.lang.IllegalArgumentException</PRE>
 <DL>
 <DD>Checks the given scale factor for validity.  If it is outside the valid
