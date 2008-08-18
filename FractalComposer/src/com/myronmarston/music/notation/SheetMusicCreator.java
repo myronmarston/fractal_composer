@@ -33,12 +33,13 @@ import java.util.regex.*;
  */
 public class SheetMusicCreator {        
     private final OutputManager outputManager;
-    private static final String GUIDO_2_GIF_EXE_FILE = "guido2gif.exe";
+    private static final String GUIDO_2_GIF_EXE_FILE = "guido2gif";
     private static final String GUIDO_SUB_DIRECTORY = "guido";
     private static final String CURRENT_DIR = System.getProperty("user.dir");    
     private static String guidoParentDirectory = CURRENT_DIR;
-    private static final String LILYPOND_EXE_FILE = "lilypond.exe";
-    private static final Pattern LILYPOND_OR_GUIDO_OUTPUT_ERROR = Pattern.compile(".*?(warning|error).*", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);       
+    private static final String LILYPOND_EXE_FILE = "lilypond";
+    private static final Pattern LILYPOND_OR_GUIDO_OUTPUT_ERROR = Pattern.compile(".*?error.*", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);       
+    private static final Pattern LILYPOND_OR_GUIDO_OUTPUT_WARNING = Pattern.compile(".*?warning.*", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);       
     
     /**
      * Constructor.
@@ -77,9 +78,12 @@ public class SheetMusicCreator {
      * @param gifFileName the name of the gif file to save the image to
      * @param title the title of the piece
      * @param composer the composer of the piece
+     * @return the output of the guido run, if there was a warning
      * @throws java.lang.Exception if an error occurs
      */
-    public void saveAsGifImage(final String gifFileName, final String title, final String composer) throws Exception {
+    public String saveAsGifImage(final String gifFileName, final String title, final String composer) throws Exception {
+        final StringBuilder returnStr = new StringBuilder();
+        
         // create a temp file...
         FileHelper.createAndUseTempFile("TempGuido", ".gmn", new FileHelper.TempFileUser() {
             public void useTempFile(String tempFileName) throws Exception {                    
@@ -98,11 +102,15 @@ public class SheetMusicCreator {
                 // if lilypond had a problem, throw an exception...
                 if (!FileHelper.fileExists(gifFileName) || lilypondOrGuidoOutputIndicatesError(output)) {                    
                     throw new GuidoRunException(output);
+                } else if (lilypondOrGuidoOutputIndicatesWarning(output)) {
+                    returnStr.append(output);
                 } else {
-                    System.out.println(output);   
+                    System.out.println(output);                       
                 }
-            }
+            }            
         });
+        
+        return returnStr.toString();
     }
     
     /**
@@ -140,11 +148,12 @@ public class SheetMusicCreator {
      * @param fileName the file name to save the results to. 
      * @param title the title of the piece
      * @param composer the composer of the piece
+     * @return the lilypond output if there was a warning
      * @throws java.lang.Exception if there is an error
      */
-    public void saveAsPdf(final String fileName, final String title, final String composer) throws Exception {               
+    public String saveAsPdf(final String fileName, final String title, final String composer) throws Exception {               
         final String rawFileName = FileHelper.getRawFileName(fileName, ".pdf");
-        this.runLilypond(
+        return this.runLilypond(
             fileName, 
             title, 
             composer, 
@@ -165,12 +174,13 @@ public class SheetMusicCreator {
      * @param fileName the name of the png file
      * @param title the title of the piece
      * @param composer the composer of the piece
-     * @param imageWidth the desired image width
+     * @param imageWidth the desired image width     
+     * @return the lilypond output if there was a warning
      * @throws java.lang.Exception if there is an error
      */
-    public void saveAsPng(final String fileName, final String title, final String composer, final int imageWidth) throws Exception {                       
+    public String saveAsPng(final String fileName, final String title, final String composer, final int imageWidth) throws Exception {                       
         final Pattern transientFilePattern = Pattern.compile(".*?" + FileHelper.getRawFileName(fileName, ".png") + "(.*?eps|-system.*?)", Pattern.DOTALL);        
-        this.runLilypond(
+        return this.runLilypond(
             fileName, 
             title, 
             composer, 
@@ -202,9 +212,12 @@ public class SheetMusicCreator {
      *        to delete
      * @param lilypondCommandLineOptions list of command line options to pass
      *        to lilypond
+     * @return the lilypond output, if there was a warning
      * @throws java.lang.Exception if an error occurs
      */
-    private void runLilypond(final String fileName, final String title, final String composer, final int imageWidth, final String fileExtension, final FileFilter transientFileFilter, final String ... lilypondCommandLineOptions) throws Exception {               
+    private String runLilypond(final String fileName, final String title, final String composer, final int imageWidth, final String fileExtension, final FileFilter transientFileFilter, final String ... lilypondCommandLineOptions) throws Exception {               
+        final StringBuilder returnStr = new StringBuilder();
+        
         File givenFile = new File(fileName);        
         final String fileNameWithoutExtension = FileHelper.stripFileExtension(givenFile.getName(), fileExtension);        
         File parentFile = givenFile.getParentFile();
@@ -232,26 +245,40 @@ public class SheetMusicCreator {
                         // if lilypond had a problem, throw an exception...
                         if (!FileHelper.fileExists(fileName) || lilypondOrGuidoOutputIndicatesError(output)) {
                             throw new LilypondRunException(output);
+                        } else if (lilypondOrGuidoOutputIndicatesWarning(output)) {
+                            returnStr.append(output);
                         } else {
                             System.out.println(output);   
                         }
                     }
                 });        
             }
-        });        
+        });    
+        
+        return returnStr.toString();
     }
     
     /**
      * Checks the logging messages produced by lilypond or guido to see if it 
      * there was an error.  
      * 
-     * @param lilypondOutput the logging messages produced by lilypond
+     * @param ouptut the logging messages produced by lilypond or guido
      * @return true if there was an error
      */    
-    private static boolean lilypondOrGuidoOutputIndicatesError(String output) {
-        // TODO: warning: Can't fit systems on page -- ignoring between-system-padding
-        //       why does this occur?  should I allow this as a non-error?
+    private static boolean lilypondOrGuidoOutputIndicatesError(String output) {        
         Matcher errorMatches = SheetMusicCreator.LILYPOND_OR_GUIDO_OUTPUT_ERROR.matcher(output);
         return (errorMatches.matches());
-    }        
+    }   
+    
+    /**
+     * Checks the logging messages produced by lilypond or guido to see if it 
+     * there was a warning.  
+     * 
+     * @param output the logging messages produced by lilypond or guido
+     * @return true if there was a warning
+     */    
+    private static boolean lilypondOrGuidoOutputIndicatesWarning(String output) {        
+        Matcher warningMatches = SheetMusicCreator.LILYPOND_OR_GUIDO_OUTPUT_WARNING.matcher(output);
+        return (warningMatches.matches());
+    }     
 }

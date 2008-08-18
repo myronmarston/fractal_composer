@@ -94,7 +94,7 @@ public class PartTest {
         if (expectedGuidoPartString != null) {
             expectedGuidoPartString.append("[");
             if (includeInstrument) expectedGuidoPartString.append("\\instr<\"Cello\", \"MIDI 42\"> ");
-            expectedGuidoPartString.append("\\key<\"0\"> \\meter<\"6/8\"> \\clef<\"g2-8\"> ");
+            expectedGuidoPartString.append("\\key<0> \\meter<\"6/8\"> \\clef<\"g2-8\"> ");
             if (includeTempo) expectedGuidoPartString.append("\\tempo<\"Andante\",\"1/4=93\"> ");
             if (title != null) expectedGuidoPartString.append("\\title<\"" + title + "\">");
             if (composer != null) expectedGuidoPartString.append("\\composer<\"" + composer + "\">");

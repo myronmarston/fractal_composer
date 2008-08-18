@@ -142,7 +142,7 @@ Class that manages the creation of sheet music files using Lilypond and GUIDO.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/SheetMusicCreator.html#saveAsGifImage(java.lang.String, java.lang.String, java.lang.String)">saveAsGifImage</A></B>(java.lang.String&nbsp;gifFileName,
                java.lang.String&nbsp;title,
                java.lang.String&nbsp;composer)</CODE>
@@ -152,7 +152,7 @@ Class that manages the creation of sheet music files using Lilypond and GUIDO.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/SheetMusicCreator.html#saveAsPdf(java.lang.String, java.lang.String, java.lang.String)">saveAsPdf</A></B>(java.lang.String&nbsp;fileName,
           java.lang.String&nbsp;title,
           java.lang.String&nbsp;composer)</CODE>
@@ -162,7 +162,7 @@ Class that manages the creation of sheet music files using Lilypond and GUIDO.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/myronmarston/music/notation/SheetMusicCreator.html#saveAsPng(java.lang.String, java.lang.String, java.lang.String, int)">saveAsPng</A></B>(java.lang.String&nbsp;fileName,
           java.lang.String&nbsp;title,
           java.lang.String&nbsp;composer,
@@ -277,15 +277,16 @@ public static void <B>setGuidoParentDirectory</B>(java.lang.String&nbsp;guidoPar
 <A NAME="saveAsGifImage(java.lang.String, java.lang.String, java.lang.String)"><!-- --></A><H3>
 saveAsGifImage</H3>
 <PRE>
-public void <B>saveAsGifImage</B>(java.lang.String&nbsp;gifFileName,
-                           java.lang.String&nbsp;title,
-                           java.lang.String&nbsp;composer)
-                    throws java.lang.Exception</PRE>
+public java.lang.String <B>saveAsGifImage</B>(java.lang.String&nbsp;gifFileName,
+                                       java.lang.String&nbsp;title,
+                                       java.lang.String&nbsp;composer)
+                                throws java.lang.Exception</PRE>
 <DL>
 <DD>Saves the sheet music as a gif image.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>gifFileName</CODE> - the name of the gif file to save the image to<DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece
+<DT><B>Returns:</B><DD>the output of the guido run, if there was a warning
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.Exception</CODE> - if an error occurs</DL>
 </DD>
@@ -332,15 +333,16 @@ public void <B>saveLilypondFile</B>(java.lang.String&nbsp;fileName,
 <A NAME="saveAsPdf(java.lang.String, java.lang.String, java.lang.String)"><!-- --></A><H3>
 saveAsPdf</H3>
 <PRE>
-public void <B>saveAsPdf</B>(java.lang.String&nbsp;fileName,
-                      java.lang.String&nbsp;title,
-                      java.lang.String&nbsp;composer)
-               throws java.lang.Exception</PRE>
+public java.lang.String <B>saveAsPdf</B>(java.lang.String&nbsp;fileName,
+                                  java.lang.String&nbsp;title,
+                                  java.lang.String&nbsp;composer)
+                           throws java.lang.Exception</PRE>
 <DL>
 <DD>Saves the notation to a PDF file using lilypond.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name to save the results to.<DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece
+<DT><B>Returns:</B><DD>the lilypond output if there was a warning
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.Exception</CODE> - if there is an error</DL>
 </DD>
@@ -350,16 +352,17 @@ public void <B>saveAsPdf</B>(java.lang.String&nbsp;fileName,
 <A NAME="saveAsPng(java.lang.String, java.lang.String, java.lang.String, int)"><!-- --></A><H3>
 saveAsPng</H3>
 <PRE>
-public void <B>saveAsPng</B>(java.lang.String&nbsp;fileName,
-                      java.lang.String&nbsp;title,
-                      java.lang.String&nbsp;composer,
-                      int&nbsp;imageWidth)
-               throws java.lang.Exception</PRE>
+public java.lang.String <B>saveAsPng</B>(java.lang.String&nbsp;fileName,
+                                  java.lang.String&nbsp;title,
+                                  java.lang.String&nbsp;composer,
+                                  int&nbsp;imageWidth)
+                           throws java.lang.Exception</PRE>
 <DL>
 <DD>Saves the notation as a png image using lilypond.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the png file<DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece<DD><CODE>imageWidth</CODE> - the desired image width
+<DT><B>Returns:</B><DD>the lilypond output if there was a warning
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.Exception</CODE> - if there is an error</DL>
 </DD>

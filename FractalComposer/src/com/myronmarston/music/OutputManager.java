@@ -22,8 +22,6 @@ package com.myronmarston.music;
 import com.myronmarston.music.notation.*;
 import com.myronmarston.music.settings.*;
 import com.myronmarston.music.scales.KeySignature;
-import com.myronmarston.music.scales.Scale;
-import com.myronmarston.util.FileHelper;
 import com.myronmarston.util.Fraction;
 import com.myronmarston.util.MathHelper;
 import java.io.*;
@@ -446,10 +444,11 @@ public class OutputManager {
      * Uses Lilypond to save sheet music notation to a PDF document.
      * 
      * @param fileName the file name to save the pdf file to
+     * @return the lilypond logging output if there was a warning
      * @throws java.lang.Exception if there is an error
      */
-    public void savePdfFile(String fileName) throws Exception {
-        this.savePdfFile(fileName, null, null);
+    public String savePdfFile(String fileName) throws Exception {
+        return this.savePdfFile(fileName, null, null);
     }
     
     /**
@@ -458,11 +457,13 @@ public class OutputManager {
      * @param fileName the file name to save the pdf file to
      * @param title the title of the piece
      * @param composer the composer of the piece
+     * @return the lilypond logging output if there was a warning
      * @throws java.lang.Exception if there is an error
      */
-    public void savePdfFile(String fileName, String title, String composer) throws Exception {
-        this.getSheetMusicCreator().saveAsPdf(fileName, title, composer);
+    public String savePdfFile(String fileName, String title, String composer) throws Exception {
+        String returnVal = this.getSheetMusicCreator().saveAsPdf(fileName, title, composer);
         this.lastPdfFileName = fileName;        
+        return returnVal;
     }
     
     /**
@@ -470,10 +471,11 @@ public class OutputManager {
      * 
      * @param fileName the name of the file
      * @param imageWidth the desired width of the image
+     * @return the logging output if there was a warning
      * @throws java.lang.Exception if an error occurs
      */
-    public void savePngFile(String fileName, int imageWidth) throws Exception {
-        this.savePngFile(fileName, null, null, imageWidth);
+    public String savePngFile(String fileName, int imageWidth) throws Exception {
+        return this.savePngFile(fileName, null, null, imageWidth);
     }
     
     /**
@@ -483,21 +485,24 @@ public class OutputManager {
      * @param title the title of the piece
      * @param composer the composer of the piece
      * @param imageWidth the desired width of the image
+     * @return the logging output from lilypond if there was a warning
      * @throws java.lang.Exception if an error occurs
      */
-    public void savePngFile(String fileName, String title, String composer, int imageWidth) throws Exception {
-        this.getSheetMusicCreator().saveAsPng(fileName, title, composer, imageWidth);
+    public String savePngFile(String fileName, String title, String composer, int imageWidth) throws Exception {
+        String returnVal = this.getSheetMusicCreator().saveAsPng(fileName, title, composer, imageWidth);
         this.lastPngFileName = fileName;
+        return returnVal;
     }
                 
     /**
      * Saves the music as a sheet music image in gif format.
      * 
      * @param fileName the file name to save to
+     * @return the guido logging output if there was a warning
      * @throws java.lang.Exception if an error occurs
      */
-    public void saveGifImage(String fileName) throws Exception {
-        this.saveGifImage(fileName, null, null);
+    public String saveGifImage(String fileName) throws Exception {
+        return this.saveGifImage(fileName, null, null);
     }
     
     /**
@@ -506,11 +511,13 @@ public class OutputManager {
      * @param fileName the file name to save to
      * @param title the title of the piece
      * @param composer the composer of the piece
+     * @return the guido logging output if there was a warning
      * @throws java.lang.Exception if an error occurs
      */
-    public void saveGifImage(String fileName, String title, String composer) throws Exception {
-        this.getSheetMusicCreator().saveAsGifImage(fileName, title, composer);    
+    public String saveGifImage(String fileName, String title, String composer) throws Exception {
+        String returnVal = this.getSheetMusicCreator().saveAsGifImage(fileName, title, composer);    
         this.lastGifFileName = fileName;
+        return returnVal;
     }
     
     /**

@@ -82,13 +82,13 @@ public class KeySignatureTest {
     @Test
     public void toGuidoString() throws Exception {
         KeySignature ks = new KeySignature(Tonality.Major, NoteName.Bb);
-        assertEquals("\\key<\"-2\">", ks.toGuidoString());
+        assertEquals("\\key<-2>", ks.toGuidoString());
         
         ks = new KeySignature(Tonality.Locrian, NoteName.As);
-        assertEquals("\\key<\"5\">", ks.toGuidoString());
+        assertEquals("\\key<5>", ks.toGuidoString());
         
         ks = new KeySignature(Tonality.Dorian, NoteName.E);
-        assertEquals("\\key<\"2\">", ks.toGuidoString());
+        assertEquals("\\key<2>", ks.toGuidoString());
     }
     
     @Test

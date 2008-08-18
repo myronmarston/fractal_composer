@@ -59,13 +59,16 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
   private final static String FRACTION_CORE_REGEX_STRING = "^(%s(?:[1-9](?:\\d)*))(?:\\/([1-9](?:\\d)*))?$";
   
   /** Regular expression string to parse a fraction string. */
+  public final static String FRACTION_REGEX_STRING = String.format(FRACTION_CORE_REGEX_STRING, "0|-?");
+  
+  /** Regular expression string to parse a fraction string. */
   public final static String NON_NEGATIVE_FRACTION_REGEX_STRING = String.format(FRACTION_CORE_REGEX_STRING, "0|");
   
   /** Regular expression string to parse a fraction string that disallows zeros. */
   public final static String POSITIVE_FRACTION_REGEX_STRING = String.format(FRACTION_CORE_REGEX_STRING, "");
   
   /** Regular expression pattern to parse a fraction string. */
-  private final static Pattern NON_NEGATIVE_FRACTION_REGEX_PATTERN = Pattern.compile(NON_NEGATIVE_FRACTION_REGEX_STRING);  
+  private final static Pattern FRACTION_REGEX_PATTERN = Pattern.compile(FRACTION_REGEX_STRING);  
   
   /**
    * The maximum duration denominator supported by lilypond.
@@ -101,7 +104,7 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
    *         the expected pattern or if the denominator is zero
    */
   public Fraction(String fractionStr) throws IllegalArgumentException {
-    Matcher match = NON_NEGATIVE_FRACTION_REGEX_PATTERN.matcher(fractionStr);
+    Matcher match = FRACTION_REGEX_PATTERN.matcher(fractionStr);
     if (!match.matches()) throw new IllegalArgumentException("The fraction string '" + fractionStr + "' is not in a recognized form.");
     String numStr = match.group(1);
     String denStr = match.group(2);

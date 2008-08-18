@@ -295,7 +295,7 @@ Class that manages the outputs from FractalComposer, such as Midi files, WAV
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#saveGifImage(java.lang.String)">saveGifImage</A></B>(java.lang.String&nbsp;fileName)</CODE>
 
 <BR>
@@ -303,7 +303,7 @@ Class that manages the outputs from FractalComposer, such as Midi files, WAV
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#saveGifImage(java.lang.String, java.lang.String, java.lang.String)">saveGifImage</A></B>(java.lang.String&nbsp;fileName,
              java.lang.String&nbsp;title,
              java.lang.String&nbsp;composer)</CODE>
@@ -366,7 +366,7 @@ Class that manages the outputs from FractalComposer, such as Midi files, WAV
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#savePdfFile(java.lang.String)">savePdfFile</A></B>(java.lang.String&nbsp;fileName)</CODE>
 
 <BR>
@@ -374,7 +374,7 @@ Class that manages the outputs from FractalComposer, such as Midi files, WAV
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#savePdfFile(java.lang.String, java.lang.String, java.lang.String)">savePdfFile</A></B>(java.lang.String&nbsp;fileName,
             java.lang.String&nbsp;title,
             java.lang.String&nbsp;composer)</CODE>
@@ -384,7 +384,7 @@ Class that manages the outputs from FractalComposer, such as Midi files, WAV
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#savePngFile(java.lang.String, int)">savePngFile</A></B>(java.lang.String&nbsp;fileName,
             int&nbsp;imageWidth)</CODE>
 
@@ -393,7 +393,7 @@ Class that manages the outputs from FractalComposer, such as Midi files, WAV
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/OutputManager.html#savePngFile(java.lang.String, java.lang.String, java.lang.String, int)">savePngFile</A></B>(java.lang.String&nbsp;fileName,
             java.lang.String&nbsp;title,
             java.lang.String&nbsp;composer,
@@ -733,13 +733,14 @@ public void <B>saveLilypondFile</B>(java.lang.String&nbsp;fileName,
 <A NAME="savePdfFile(java.lang.String)"><!-- --></A><H3>
 savePdfFile</H3>
 <PRE>
-public void <B>savePdfFile</B>(java.lang.String&nbsp;fileName)
-                 throws java.lang.Exception</PRE>
+public java.lang.String <B>savePdfFile</B>(java.lang.String&nbsp;fileName)
+                             throws java.lang.Exception</PRE>
 <DL>
 <DD>Uses Lilypond to save sheet music notation to a PDF document.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name to save the pdf file to
+<DT><B>Returns:</B><DD>the lilypond logging output if there was a warning
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.Exception</CODE> - if there is an error</DL>
 </DD>
@@ -749,15 +750,16 @@ public void <B>savePdfFile</B>(java.lang.String&nbsp;fileName)
 <A NAME="savePdfFile(java.lang.String, java.lang.String, java.lang.String)"><!-- --></A><H3>
 savePdfFile</H3>
 <PRE>
-public void <B>savePdfFile</B>(java.lang.String&nbsp;fileName,
-                        java.lang.String&nbsp;title,
-                        java.lang.String&nbsp;composer)
-                 throws java.lang.Exception</PRE>
+public java.lang.String <B>savePdfFile</B>(java.lang.String&nbsp;fileName,
+                                    java.lang.String&nbsp;title,
+                                    java.lang.String&nbsp;composer)
+                             throws java.lang.Exception</PRE>
 <DL>
 <DD>Uses Lilypond to save sheet music notation to a PDF document.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name to save the pdf file to<DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece
+<DT><B>Returns:</B><DD>the lilypond logging output if there was a warning
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.Exception</CODE> - if there is an error</DL>
 </DD>
@@ -767,14 +769,15 @@ public void <B>savePdfFile</B>(java.lang.String&nbsp;fileName,
 <A NAME="savePngFile(java.lang.String, int)"><!-- --></A><H3>
 savePngFile</H3>
 <PRE>
-public void <B>savePngFile</B>(java.lang.String&nbsp;fileName,
-                        int&nbsp;imageWidth)
-                 throws java.lang.Exception</PRE>
+public java.lang.String <B>savePngFile</B>(java.lang.String&nbsp;fileName,
+                                    int&nbsp;imageWidth)
+                             throws java.lang.Exception</PRE>
 <DL>
 <DD>Saves notation to a png file using lilypond.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the file<DD><CODE>imageWidth</CODE> - the desired width of the image
+<DT><B>Returns:</B><DD>the logging output if there was a warning
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.Exception</CODE> - if an error occurs</DL>
 </DD>
@@ -784,16 +787,17 @@ public void <B>savePngFile</B>(java.lang.String&nbsp;fileName,
 <A NAME="savePngFile(java.lang.String, java.lang.String, java.lang.String, int)"><!-- --></A><H3>
 savePngFile</H3>
 <PRE>
-public void <B>savePngFile</B>(java.lang.String&nbsp;fileName,
-                        java.lang.String&nbsp;title,
-                        java.lang.String&nbsp;composer,
-                        int&nbsp;imageWidth)
-                 throws java.lang.Exception</PRE>
+public java.lang.String <B>savePngFile</B>(java.lang.String&nbsp;fileName,
+                                    java.lang.String&nbsp;title,
+                                    java.lang.String&nbsp;composer,
+                                    int&nbsp;imageWidth)
+                             throws java.lang.Exception</PRE>
 <DL>
 <DD>Saves notation to a png file using lilypond.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the name of the file<DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece<DD><CODE>imageWidth</CODE> - the desired width of the image
+<DT><B>Returns:</B><DD>the logging output from lilypond if there was a warning
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.Exception</CODE> - if an error occurs</DL>
 </DD>
@@ -803,13 +807,14 @@ public void <B>savePngFile</B>(java.lang.String&nbsp;fileName,
 <A NAME="saveGifImage(java.lang.String)"><!-- --></A><H3>
 saveGifImage</H3>
 <PRE>
-public void <B>saveGifImage</B>(java.lang.String&nbsp;fileName)
-                  throws java.lang.Exception</PRE>
+public java.lang.String <B>saveGifImage</B>(java.lang.String&nbsp;fileName)
+                              throws java.lang.Exception</PRE>
 <DL>
 <DD>Saves the music as a sheet music image in gif format.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name to save to
+<DT><B>Returns:</B><DD>the guido logging output if there was a warning
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.Exception</CODE> - if an error occurs</DL>
 </DD>
@@ -819,15 +824,16 @@ public void <B>saveGifImage</B>(java.lang.String&nbsp;fileName)
 <A NAME="saveGifImage(java.lang.String, java.lang.String, java.lang.String)"><!-- --></A><H3>
 saveGifImage</H3>
 <PRE>
-public void <B>saveGifImage</B>(java.lang.String&nbsp;fileName,
-                         java.lang.String&nbsp;title,
-                         java.lang.String&nbsp;composer)
-                  throws java.lang.Exception</PRE>
+public java.lang.String <B>saveGifImage</B>(java.lang.String&nbsp;fileName,
+                                     java.lang.String&nbsp;title,
+                                     java.lang.String&nbsp;composer)
+                              throws java.lang.Exception</PRE>
 <DL>
 <DD>Saves the music as a sheet music image in gif format.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>fileName</CODE> - the file name to save to<DD><CODE>title</CODE> - the title of the piece<DD><CODE>composer</CODE> - the composer of the piece
+<DT><B>Returns:</B><DD>the guido logging output if there was a warning
 <DT><B>Throws:</B>
 <DD><CODE>java.lang.Exception</CODE> - if an error occurs</DL>
 </DD>

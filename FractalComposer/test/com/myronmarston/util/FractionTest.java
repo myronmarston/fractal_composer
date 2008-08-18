@@ -42,6 +42,7 @@ public class FractionTest {
         try{ Fraction f = new Fraction("1a3/3"); fail(); } catch (IllegalArgumentException ex) {} // success.
         try{ Fraction f = new Fraction("1/0"); fail(); } catch (IllegalArgumentException ex) {} // success.        
         try{ Fraction f = new Fraction("02"); fail(); } catch (IllegalArgumentException ex) {} // success.        
+        try{ Fraction f = new Fraction("23/-37"); fail(); } catch (IllegalArgumentException ex) {} // success.        
     }
     
     @Test
@@ -53,6 +54,7 @@ public class FractionTest {
        testStringConstructor("1", 1L, 1L);
        testStringConstructor("0", 0L, 1L);
        testStringConstructor("23422", 23422L, 1L);
+       testStringConstructor("-23/37", -23L, 37L);       
     }
     
     @Test

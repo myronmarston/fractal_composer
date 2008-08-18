@@ -48,6 +48,7 @@ public enum Clef implements NotationElement {
     /**
      * Treble clef, transposed one octave lower.
      */
+    //TODO: this doesn't seem to work with the guido note server
     TREBLE_8VB("g2-8", "treble_8", 'b', 3),   // middleLine = 27    
     
     /**

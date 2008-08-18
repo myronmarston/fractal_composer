@@ -122,7 +122,7 @@ public class KeySignature extends AbstractNotationElement {
      * @return the Guido string
      */
     public String toGuidoString() {        
-        return "\\key<\"" + this.getNumberOfFlatsOrSharps() + "\">";
+        return "\\key<" + this.getNumberOfFlatsOrSharps() + ">";
     }
     
     /**

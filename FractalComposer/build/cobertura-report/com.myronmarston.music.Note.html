@@ -99,7 +99,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment"> * @author Myron</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;41</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment"> */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;42</td>  <td class="nbHitsCovered">&nbsp;24</td>  <td class="src"><pre class="src">&nbsp;@Root</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;42</td>  <td class="nbHitsCovered">&nbsp;23</td>  <td class="src"><pre class="src">&nbsp;@Root</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;43</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> Note <span class="keyword">implements</span> Cloneable {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;44</td>  <td class="nbHits">&nbsp;</td>
@@ -162,7 +162,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     * How loud the note should be on a scale from 0 to 127.    </span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;73</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;74</td>  <td class="nbHitsCovered">&nbsp;5991</td>  <td class="src"><pre class="src">&nbsp;    @Attribute</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;74</td>  <td class="nbHitsCovered">&nbsp;5794</td>  <td class="src"><pre class="src">&nbsp;    @Attribute</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;75</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">int</span> volume = MidiNote.DEFAULT_VELOCITY; </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;76</td>  <td class="nbHits">&nbsp;</td>
@@ -219,7 +219,7 @@
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> VoiceSection sourceVoiceSection;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;102</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;103</td>  <td class="nbHitsCovered">&nbsp;5991</td>  <td class="src"><pre class="src">&nbsp;    @Attribute</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;103</td>  <td class="nbHitsCovered">&nbsp;5794</td>  <td class="src"><pre class="src">&nbsp;    @Attribute</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;104</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">boolean</span> isFirstNoteOfGermCopy = <span class="keyword">false</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;105</td>  <td class="nbHits">&nbsp;</td>
@@ -234,7 +234,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     * Default constructor.</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;110</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;111</td>  <td class="nbHitsCovered">&nbsp;11196</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> Note() {}</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;111</td>  <td class="nbHitsCovered">&nbsp;10802</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> Note() {}</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;112</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;     </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;113</td>  <td class="nbHits">&nbsp;</td>
@@ -299,15 +299,15 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;148</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">static</span> <span class="keyword">public</span> Note createRest(Fraction duration) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;149</td>  <td class="nbHitsCovered">&nbsp;256</td>  <td class="src"><pre class="src">&nbsp;        Note rest = <span class="keyword">new</span> Note();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;149</td>  <td class="nbHitsCovered">&nbsp;216</td>  <td class="src"><pre class="src">&nbsp;        Note rest = <span class="keyword">new</span> Note();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;150</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;151</td>  <td class="nbHitsCovered">&nbsp;256</td>  <td class="src"><pre class="src">&nbsp;        rest.setDuration(duration); <span class="comment">// use the setter so we get an exception if the duration is 0</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;152</td>  <td class="nbHitsCovered">&nbsp;255</td>  <td class="src"><pre class="src">&nbsp;        rest.setVolume(MidiNote.MIN_VELOCITY);              </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;151</td>  <td class="nbHitsCovered">&nbsp;216</td>  <td class="src"><pre class="src">&nbsp;        rest.setDuration(duration); <span class="comment">// use the setter so we get an exception if the duration is 0</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;152</td>  <td class="nbHitsCovered">&nbsp;215</td>  <td class="src"><pre class="src">&nbsp;        rest.setVolume(MidiNote.MIN_VELOCITY);              </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;153</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;154</td>  <td class="nbHitsUncovered"><a title="Line 154: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;255</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 154: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> rest.isRest() : rest;</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;155</td>  <td class="nbHitsCovered">&nbsp;255</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> rest;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;154</td>  <td class="nbHitsUncovered"><a title="Line 154: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;215</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 154: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> rest.isRest() : rest;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;155</td>  <td class="nbHitsCovered">&nbsp;215</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> rest;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;156</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;157</td>  <td class="nbHits">&nbsp;</td>
@@ -324,7 +324,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;163</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">int</span> getLetterNumber() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;164</td>  <td class="nbHitsCovered">&nbsp;30155</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> letterNumber;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;164</td>  <td class="nbHitsCovered">&nbsp;26062</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> letterNumber;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;165</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;166</td>  <td class="nbHits">&nbsp;</td>
@@ -343,9 +343,9 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;173</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> setLetterNumber(<span class="keyword">int</span> letterNumber) <span class="keyword">throws</span> UnsupportedOperationException {                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;174</td>  <td class="nbHitsCovered">&nbsp;32286</td>  <td class="src"><pre class="src">&nbsp;        throwUnsupportedOperationExceptionIfRest(<span class="string">"letterNumber"</span>, letterNumber);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;175</td>  <td class="nbHitsCovered">&nbsp;32285</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.letterNumber = letterNumber;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;176</td>  <td class="nbHitsCovered">&nbsp;32285</td>  <td class="src"><pre class="src">&nbsp;    }   </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;174</td>  <td class="nbHitsCovered">&nbsp;28353</td>  <td class="src"><pre class="src">&nbsp;        throwUnsupportedOperationExceptionIfRest(<span class="string">"letterNumber"</span>, letterNumber);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;175</td>  <td class="nbHitsCovered">&nbsp;28352</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.letterNumber = letterNumber;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;176</td>  <td class="nbHitsCovered">&nbsp;28352</td>  <td class="src"><pre class="src">&nbsp;    }   </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;177</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;178</td>  <td class="nbHits">&nbsp;</td>
@@ -362,7 +362,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;184</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">int</span> getScaleStep() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;185</td>  <td class="nbHitsCovered">&nbsp;102827</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> scaleStep;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;185</td>  <td class="nbHitsCovered">&nbsp;91276</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> scaleStep;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;186</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;187</td>  <td class="nbHits">&nbsp;</td>
@@ -383,9 +383,9 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;195</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> setScaleStep(<span class="keyword">int</span> scaleStep) <span class="keyword">throws</span> UnsupportedOperationException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;196</td>  <td class="nbHitsCovered">&nbsp;14333</td>  <td class="src"><pre class="src">&nbsp;        throwUnsupportedOperationExceptionIfRest(<span class="string">"scaleStep"</span>, scaleStep);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;197</td>  <td class="nbHitsCovered">&nbsp;14332</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.scaleStep = scaleStep;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;198</td>  <td class="nbHitsCovered">&nbsp;14332</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;196</td>  <td class="nbHitsCovered">&nbsp;12534</td>  <td class="src"><pre class="src">&nbsp;        throwUnsupportedOperationExceptionIfRest(<span class="string">"scaleStep"</span>, scaleStep);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;197</td>  <td class="nbHitsCovered">&nbsp;12533</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.scaleStep = scaleStep;        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;198</td>  <td class="nbHitsCovered">&nbsp;12533</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;199</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;200</td>  <td class="nbHits">&nbsp;</td>
@@ -402,7 +402,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;206</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">int</span> getOctave() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;207</td>  <td class="nbHitsCovered">&nbsp;26369</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> octave;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;207</td>  <td class="nbHitsCovered">&nbsp;22654</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> octave;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;208</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;209</td>  <td class="nbHits">&nbsp;</td>
@@ -423,9 +423,9 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;217</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> setOctave(<span class="keyword">int</span> octave) <span class="keyword">throws</span> UnsupportedOperationException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;218</td>  <td class="nbHitsCovered">&nbsp;19575</td>  <td class="src"><pre class="src">&nbsp;        throwUnsupportedOperationExceptionIfRest(<span class="string">"octave"</span>, octave);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;219</td>  <td class="nbHitsCovered">&nbsp;19575</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.octave = octave;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;220</td>  <td class="nbHitsCovered">&nbsp;19575</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;218</td>  <td class="nbHitsCovered">&nbsp;16708</td>  <td class="src"><pre class="src">&nbsp;        throwUnsupportedOperationExceptionIfRest(<span class="string">"octave"</span>, octave);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;219</td>  <td class="nbHitsCovered">&nbsp;16708</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.octave = octave;        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;220</td>  <td class="nbHitsCovered">&nbsp;16708</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;221</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;222</td>  <td class="nbHits">&nbsp;</td>
@@ -442,7 +442,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;228</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">int</span> getChromaticAdjustment() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;229</td>  <td class="nbHitsCovered">&nbsp;14432</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> chromaticAdjustment;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;229</td>  <td class="nbHitsCovered">&nbsp;12855</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> chromaticAdjustment;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;230</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;231</td>  <td class="nbHits">&nbsp;</td>
@@ -463,9 +463,9 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;239</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> setChromaticAdjustment(<span class="keyword">int</span> chromaticAdjustment) <span class="keyword">throws</span> UnsupportedOperationException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;240</td>  <td class="nbHitsCovered">&nbsp;6656</td>  <td class="src"><pre class="src">&nbsp;        throwUnsupportedOperationExceptionIfRest(<span class="string">"chromaticAdjustment"</span>, chromaticAdjustment);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;241</td>  <td class="nbHitsCovered">&nbsp;6656</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.chromaticAdjustment = chromaticAdjustment;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;242</td>  <td class="nbHitsCovered">&nbsp;6656</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;240</td>  <td class="nbHitsCovered">&nbsp;6339</td>  <td class="src"><pre class="src">&nbsp;        throwUnsupportedOperationExceptionIfRest(<span class="string">"chromaticAdjustment"</span>, chromaticAdjustment);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;241</td>  <td class="nbHitsCovered">&nbsp;6339</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.chromaticAdjustment = chromaticAdjustment;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;242</td>  <td class="nbHitsCovered">&nbsp;6339</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;243</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;244</td>  <td class="nbHits">&nbsp;</td>
@@ -482,7 +482,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;250</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">int</span> getSegmentChromaticAdjustment() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;251</td>  <td class="nbHitsCovered">&nbsp;13205</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">this</span>.segmentChromaticAdjustment;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;251</td>  <td class="nbHitsCovered">&nbsp;11789</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">this</span>.segmentChromaticAdjustment;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;252</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;253</td>  <td class="nbHits">&nbsp;</td>
@@ -503,8 +503,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;261</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> setSegmentChromaticAdjustment(<span class="keyword">int</span> segmentChromaticAdjustment) <span class="keyword">throws</span> UnsupportedOperationException {        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;262</td>  <td class="nbHitsCovered">&nbsp;3025</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.segmentChromaticAdjustment = segmentChromaticAdjustment;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;263</td>  <td class="nbHitsCovered">&nbsp;3025</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;262</td>  <td class="nbHitsCovered">&nbsp;2521</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.segmentChromaticAdjustment = segmentChromaticAdjustment;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;263</td>  <td class="nbHitsCovered">&nbsp;2521</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;264</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;265</td>  <td class="nbHits">&nbsp;</td>
@@ -519,8 +519,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;270</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> Scale getScale() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;271</td>  <td class="nbHitsUncovered"><a title="Line 271: Conditional coverage 50% (3/6) [each condition: 50%, 50%, 50%].">&nbsp;53897</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 271: Conditional coverage 50% (3/6) [each condition: 50%, 50%, 50%].">        <span class="keyword">assert</span> (<span class="keyword">this</span>.isRest() || scale != <span class="keyword">null</span>) : <span class="string">"The note did not have a scale as expected."</span>;</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;272</td>  <td class="nbHitsCovered">&nbsp;53897</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> scale;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;271</td>  <td class="nbHitsUncovered"><a title="Line 271: Conditional coverage 50% (3/6) [each condition: 50%, 50%, 50%].">&nbsp;47754</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 271: Conditional coverage 50% (3/6) [each condition: 50%, 50%, 50%].">        <span class="keyword">assert</span> (<span class="keyword">this</span>.isRest() || scale != <span class="keyword">null</span>) : <span class="string">"The note did not have a scale as expected."</span>;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;272</td>  <td class="nbHitsCovered">&nbsp;47754</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> scale;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;273</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;274</td>  <td class="nbHits">&nbsp;</td>
@@ -537,9 +537,9 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;280</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> setScale(Scale scale) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;281</td>  <td class="nbHitsUncovered"><a title="Line 281: Conditional coverage 50% (3/6) [each condition: 50%, 50%, 50%].">&nbsp;7147</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 281: Conditional coverage 50% (3/6) [each condition: 50%, 50%, 50%].">        <span class="keyword">assert</span> (<span class="keyword">this</span>.isRest() || scale != <span class="keyword">null</span>) : <span class="string">"The note did not have a scale as expected."</span>;</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;282</td>  <td class="nbHitsCovered">&nbsp;7147</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.scale = scale;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;283</td>  <td class="nbHitsCovered">&nbsp;7147</td>  <td class="src"><pre class="src">&nbsp;    }        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;281</td>  <td class="nbHitsUncovered"><a title="Line 281: Conditional coverage 50% (3/6) [each condition: 50%, 50%, 50%].">&nbsp;6600</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 281: Conditional coverage 50% (3/6) [each condition: 50%, 50%, 50%].">        <span class="keyword">assert</span> (<span class="keyword">this</span>.isRest() || scale != <span class="keyword">null</span>) : <span class="string">"The note did not have a scale as expected."</span>;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;282</td>  <td class="nbHitsCovered">&nbsp;6600</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.scale = scale;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;283</td>  <td class="nbHitsCovered">&nbsp;6600</td>  <td class="src"><pre class="src">&nbsp;    }        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;284</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;285</td>  <td class="nbHits">&nbsp;</td>
@@ -554,7 +554,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;290</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> Fraction getDuration() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;291</td>  <td class="nbHitsCovered">&nbsp;43629</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> duration;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;291</td>  <td class="nbHitsCovered">&nbsp;36077</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> duration;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;292</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }       </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;293</td>  <td class="nbHits">&nbsp;</td>
@@ -573,9 +573,9 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;300</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> setDuration(Fraction duration) <span class="keyword">throws</span> IllegalArgumentException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;301</td>  <td class="nbHitsUncovered"><a title="Line 301: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">&nbsp;9412</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 301: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">        <span class="keyword">if</span> (duration != <span class="keyword">null</span> &amp;&amp; duration.asDouble() &lt;= 0) <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"The duration must be greater than zero."</span>);</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;302</td>  <td class="nbHitsCovered">&nbsp;9409</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.duration = duration;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;303</td>  <td class="nbHitsCovered">&nbsp;9409</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;301</td>  <td class="nbHitsUncovered"><a title="Line 301: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">&nbsp;8531</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 301: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">        <span class="keyword">if</span> (duration != <span class="keyword">null</span> &amp;&amp; duration.asDouble() &lt;= 0) <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"The duration must be greater than zero."</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;302</td>  <td class="nbHitsCovered">&nbsp;8528</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.duration = duration;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;303</td>  <td class="nbHitsCovered">&nbsp;8528</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;304</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;305</td>  <td class="nbHits">&nbsp;</td>
@@ -590,7 +590,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;310</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">int</span> getVolume() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;311</td>  <td class="nbHitsCovered">&nbsp;228544</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> volume;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;311</td>  <td class="nbHitsCovered">&nbsp;199213</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> volume;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;312</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;313</td>  <td class="nbHits">&nbsp;</td>
@@ -609,13 +609,13 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;320</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> setVolume(<span class="keyword">int</span> volume) <span class="keyword">throws</span> IllegalArgumentException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;321</td>  <td class="nbHitsUncovered"><a title="Line 321: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">&nbsp;10918</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 321: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">        <span class="keyword">if</span> (volume &lt; MidiNote.MIN_VELOCITY || volume &gt; MidiNote.MAX_VELOCITY) {</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;321</td>  <td class="nbHitsUncovered"><a title="Line 321: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">&nbsp;9653</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 321: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">        <span class="keyword">if</span> (volume &lt; MidiNote.MIN_VELOCITY || volume &gt; MidiNote.MAX_VELOCITY) {</a></span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;322</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(<span class="string">"The volume must be between %d and %d.  The passed volume was %d."</span>, MidiNote.MIN_VELOCITY, MidiNote.MAX_VELOCITY, volume));</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;323</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;324</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;325</td>  <td class="nbHitsCovered">&nbsp;10917</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.volume = volume;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;325</td>  <td class="nbHitsCovered">&nbsp;9652</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.volume = volume;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;326</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;327</td>  <td class="nbHits">&nbsp;</td>
@@ -624,13 +624,13 @@
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// hashCode and equals work properly.  All rests of the same length</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;329</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// should be equal.</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;330</td>  <td class="nbHitsCovered"><a title="Line 330: Conditional coverage 100% (2/2).">&nbsp;10917</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 330: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (<span class="keyword">this</span>.isRest()) { </a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;331</td>  <td class="nbHitsCovered">&nbsp;255</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.setScaleStep(0);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;332</td>  <td class="nbHitsCovered">&nbsp;255</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.setOctave(0);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;333</td>  <td class="nbHitsCovered">&nbsp;255</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.setChromaticAdjustment(0);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;330</td>  <td class="nbHitsCovered"><a title="Line 330: Conditional coverage 100% (2/2).">&nbsp;9652</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 330: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (<span class="keyword">this</span>.isRest()) { </a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;331</td>  <td class="nbHitsCovered">&nbsp;215</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.setScaleStep(0);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;332</td>  <td class="nbHitsCovered">&nbsp;215</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.setOctave(0);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;333</td>  <td class="nbHitsCovered">&nbsp;215</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.setChromaticAdjustment(0);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;334</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;335</td>  <td class="nbHitsCovered">&nbsp;10917</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;335</td>  <td class="nbHitsCovered">&nbsp;9652</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;336</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;337</td>  <td class="nbHits">&nbsp;</td>
@@ -645,7 +645,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;342</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> VoiceSection getSourceVoiceSection() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;343</td>  <td class="nbHitsCovered">&nbsp;5159</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> sourceVoiceSection;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;343</td>  <td class="nbHitsCovered">&nbsp;4377</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> sourceVoiceSection;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;344</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;345</td>  <td class="nbHits">&nbsp;</td>
@@ -664,8 +664,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;352</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> setSourceVoiceSection(VoiceSection sourceVoiceSection) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;353</td>  <td class="nbHitsCovered">&nbsp;3733</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.sourceVoiceSection = sourceVoiceSection;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;354</td>  <td class="nbHitsCovered">&nbsp;3733</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;353</td>  <td class="nbHitsCovered">&nbsp;3049</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.sourceVoiceSection = sourceVoiceSection;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;354</td>  <td class="nbHitsCovered">&nbsp;3049</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;355</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;356</td>  <td class="nbHits">&nbsp;</td>
@@ -680,7 +680,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;361</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">boolean</span> isRest() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;362</td>  <td class="nbHitsCovered"><a title="Line 362: Conditional coverage 100% (2/2).">&nbsp;210214</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 362: Conditional coverage 100% (2/2).">        <span class="keyword">return</span> (<span class="keyword">this</span>.getVolume() == 0);</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;362</td>  <td class="nbHitsCovered"><a title="Line 362: Conditional coverage 100% (2/2).">&nbsp;184217</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 362: Conditional coverage 100% (2/2).">        <span class="keyword">return</span> (<span class="keyword">this</span>.getVolume() == 0);</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;363</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;364</td>  <td class="nbHits">&nbsp;</td>
@@ -699,7 +699,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;371</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">boolean</span> isFirstNoteOfGermCopy() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;372</td>  <td class="nbHitsCovered">&nbsp;447</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> isFirstNoteOfGermCopy;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;372</td>  <td class="nbHitsCovered">&nbsp;327</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> isFirstNoteOfGermCopy;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;373</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;374</td>  <td class="nbHits">&nbsp;</td>
@@ -716,8 +716,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;380</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> setIsFirstNoteOfGermCopy(<span class="keyword">boolean</span> isFirstNoteOfGermCopy) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;381</td>  <td class="nbHitsCovered">&nbsp;1630</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.isFirstNoteOfGermCopy = isFirstNoteOfGermCopy;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;382</td>  <td class="nbHitsCovered">&nbsp;1630</td>  <td class="src"><pre class="src">&nbsp;    }   </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;381</td>  <td class="nbHitsCovered">&nbsp;1427</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.isFirstNoteOfGermCopy = isFirstNoteOfGermCopy;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;382</td>  <td class="nbHitsCovered">&nbsp;1427</td>  <td class="src"><pre class="src">&nbsp;    }   </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;383</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;384</td>  <td class="nbHits">&nbsp;</td>
@@ -738,11 +738,11 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;392</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">void</span> throwUnsupportedOperationExceptionIfRest(String changingField, <span class="keyword">int</span> value) <span class="keyword">throws</span> UnsupportedOperationException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;393</td>  <td class="nbHitsCovered"><a title="Line 393: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;72850</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 393: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">        <span class="keyword">if</span> (<span class="keyword">this</span>.isRest() &amp;&amp; value != 0) { <span class="comment">// each of the fields can be zero...</span></a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;393</td>  <td class="nbHitsCovered"><a title="Line 393: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;63934</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 393: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">        <span class="keyword">if</span> (<span class="keyword">this</span>.isRest() &amp;&amp; value != 0) { <span class="comment">// each of the fields can be zero...</span></a></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;394</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(String.format(<span class="string">"The Note is a rest.  The %s field cannot be changed on a rest."</span>, changingField));</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;395</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;396</td>  <td class="nbHitsCovered">&nbsp;72848</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;396</td>  <td class="nbHitsCovered">&nbsp;63932</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;397</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;398</td>  <td class="nbHits">&nbsp;</td>
@@ -767,22 +767,22 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;408</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> performTransformerAdjustment(<span class="keyword">int</span> scaleStepAdjustment, <span class="keyword">int</span> letterNumberAdjustment, <span class="keyword">int</span> octaveAdjustment) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;409</td>  <td class="nbHitsUncovered"><a title="Line 409: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;5684</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 409: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> !<span class="keyword">this</span>.isRest() : <span class="string">"The performTransformationAdjustment should not be called on a rest."</span>;</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;410</td>  <td class="nbHitsCovered">&nbsp;5684</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.setScaleStep(<span class="keyword">this</span>.getScaleStep() + scaleStepAdjustment);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;411</td>  <td class="nbHitsCovered">&nbsp;5684</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.setLetterNumber(<span class="keyword">this</span>.getLetterNumber() + letterNumberAdjustment);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;412</td>  <td class="nbHitsCovered">&nbsp;5684</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.setOctave(<span class="keyword">this</span>.getOctave() + octaveAdjustment);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;409</td>  <td class="nbHitsUncovered"><a title="Line 409: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;4496</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 409: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> !<span class="keyword">this</span>.isRest() : <span class="string">"The performTransformationAdjustment should not be called on a rest."</span>;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;410</td>  <td class="nbHitsCovered">&nbsp;4496</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.setScaleStep(<span class="keyword">this</span>.getScaleStep() + scaleStepAdjustment);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;411</td>  <td class="nbHitsCovered">&nbsp;4496</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.setLetterNumber(<span class="keyword">this</span>.getLetterNumber() + letterNumberAdjustment);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;412</td>  <td class="nbHitsCovered">&nbsp;4496</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.setOctave(<span class="keyword">this</span>.getOctave() + octaveAdjustment);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;413</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;414</td>  <td class="nbHitsCovered"><a title="Line 414: Conditional coverage 100% (6/6) [each condition: 100%, 100%, 100%].">&nbsp;5684</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 414: Conditional coverage 100% (6/6) [each condition: 100%, 100%, 100%].">        <span class="keyword">if</span> (<span class="keyword">this</span>.getScale().getScaleStepArray().length &lt; NoteName.NUM_LETTER_NAMES &amp;&amp; </a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;414</td>  <td class="nbHitsCovered"><a title="Line 414: Conditional coverage 100% (6/6) [each condition: 100%, 100%, 100%].">&nbsp;4496</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 414: Conditional coverage 100% (6/6) [each condition: 100%, 100%, 100%].">        <span class="keyword">if</span> (<span class="keyword">this</span>.getScale().getScaleStepArray().length &lt; NoteName.NUM_LETTER_NAMES &amp;&amp; </a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;415</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.getChromaticAdjustment() == 0 &amp;&amp; <span class="keyword">this</span>.getSegmentChromaticAdjustment() == 0) {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;416</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;417</td>  <td class="nbHitsCovered">&nbsp;1573</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">int</span> normalizedScaleStep = <span class="keyword">this</span>.getNormalizedNote().getScaleStep();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;418</td>  <td class="nbHitsCovered">&nbsp;1573</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.setLetterNumber(<span class="keyword">this</span>.getScale().getLetterNumberArray()[normalizedScaleStep]);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;417</td>  <td class="nbHitsCovered">&nbsp;923</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">int</span> normalizedScaleStep = <span class="keyword">this</span>.getNormalizedNote().getScaleStep();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;418</td>  <td class="nbHitsCovered">&nbsp;923</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">this</span>.setLetterNumber(<span class="keyword">this</span>.getScale().getLetterNumberArray()[normalizedScaleStep]);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;419</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }         </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;420</td>  <td class="nbHitsCovered">&nbsp;5684</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;420</td>  <td class="nbHitsCovered">&nbsp;4496</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;421</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;422</td>  <td class="nbHits">&nbsp;</td>
@@ -799,10 +799,10 @@
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">static</span> <span class="keyword">private</span> Pattern getNoteParser() {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;428</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// TODO: make this thread safe</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;429</td>  <td class="nbHitsCovered"><a title="Line 429: Conditional coverage 100% (2/2).">&nbsp;5356</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 429: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (Note.noteParser == <span class="keyword">null</span>) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;429</td>  <td class="nbHitsCovered"><a title="Line 429: Conditional coverage 100% (2/2).">&nbsp;5197</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 429: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (Note.noteParser == <span class="keyword">null</span>) {</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;430</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                               </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;431</td>  <td class="nbHitsCovered">&nbsp;17</td>  <td class="src"><pre class="src">&nbsp;            Note.noteParser = Pattern.compile(                   </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;431</td>  <td class="nbHitsCovered">&nbsp;16</td>  <td class="src"><pre class="src">&nbsp;            Note.noteParser = Pattern.compile(                   </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;432</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                NoteName.getRegexPattern() +                <span class="comment">// NoteName--everything before the first digit or comma                </span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;433</td>  <td class="nbHits">&nbsp;</td>
@@ -817,7 +817,7 @@
   <td class="src"><pre class="src">&nbsp;        }        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;438</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;439</td>  <td class="nbHitsCovered">&nbsp;5356</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> Note.noteParser;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;439</td>  <td class="nbHitsCovered">&nbsp;5197</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> Note.noteParser;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;440</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;441</td>  <td class="nbHits">&nbsp;</td>
@@ -852,37 +852,37 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;456</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">static</span> Note parseNoteString(String noteString, Scale scale, Fraction defaultDuration, Integer defaultVolume) <span class="keyword">throws</span> NoteStringParseException {        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;457</td>  <td class="nbHitsCovered"><a title="Line 457: Conditional coverage 100% (2/2).">&nbsp;5356</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 457: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (defaultDuration == <span class="keyword">null</span>) defaultDuration = <span class="keyword">new</span> Fraction(1, 4);</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;458</td>  <td class="nbHitsCovered"><a title="Line 458: Conditional coverage 100% (2/2).">&nbsp;5356</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 458: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (defaultVolume == <span class="keyword">null</span>) defaultVolume = Dynamic.MF.getMidiVolume();</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;457</td>  <td class="nbHitsCovered"><a title="Line 457: Conditional coverage 100% (2/2).">&nbsp;5197</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 457: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (defaultDuration == <span class="keyword">null</span>) defaultDuration = <span class="keyword">new</span> Fraction(1, 4);</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;458</td>  <td class="nbHitsCovered"><a title="Line 458: Conditional coverage 100% (2/2).">&nbsp;5197</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 458: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (defaultVolume == <span class="keyword">null</span>) defaultVolume = Dynamic.MF.getMidiVolume();</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;459</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;460</td>  <td class="nbHitsCovered">&nbsp;5356</td>  <td class="src"><pre class="src">&nbsp;        Matcher match = Note.getNoteParser().matcher(noteString);        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;461</td>  <td class="nbHitsCovered"><a title="Line 461: Conditional coverage 100% (2/2).">&nbsp;5356</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 461: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (match.matches()) {     </a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;462</td>  <td class="nbHitsCovered">&nbsp;5355</td>  <td class="src"><pre class="src">&nbsp;            NoteName noteName = parseNoteString_getNoteName(noteString, match, 1);   </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;463</td>  <td class="nbHitsCovered">&nbsp;5352</td>  <td class="src"><pre class="src">&nbsp;            Fraction duration = parseNoteString_getDuration(noteString, match, 3, 4, defaultDuration);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;460</td>  <td class="nbHitsCovered">&nbsp;5197</td>  <td class="src"><pre class="src">&nbsp;        Matcher match = Note.getNoteParser().matcher(noteString);        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;461</td>  <td class="nbHitsCovered"><a title="Line 461: Conditional coverage 100% (2/2).">&nbsp;5197</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 461: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (match.matches()) {     </a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;462</td>  <td class="nbHitsCovered">&nbsp;5196</td>  <td class="src"><pre class="src">&nbsp;            NoteName noteName = parseNoteString_getNoteName(noteString, match, 1);   </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;463</td>  <td class="nbHitsCovered">&nbsp;5193</td>  <td class="src"><pre class="src">&nbsp;            Fraction duration = parseNoteString_getDuration(noteString, match, 3, 4, defaultDuration);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;464</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            Note newNote;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;465</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;466</td>  <td class="nbHitsCovered"><a title="Line 466: Conditional coverage 100% (2/2).">&nbsp;5350</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 466: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (noteName == <span class="keyword">null</span>) { <span class="comment">// indicates the note is a rest...</span></a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;467</td>  <td class="nbHitsCovered">&nbsp;14</td>  <td class="src"><pre class="src">&nbsp;                newNote = Note.createRest(duration);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;466</td>  <td class="nbHitsCovered"><a title="Line 466: Conditional coverage 100% (2/2).">&nbsp;5191</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 466: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (noteName == <span class="keyword">null</span>) { <span class="comment">// indicates the note is a rest...</span></a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;467</td>  <td class="nbHitsCovered">&nbsp;12</td>  <td class="src"><pre class="src">&nbsp;                newNote = Note.createRest(duration);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;468</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> {                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;469</td>  <td class="nbHitsCovered">&nbsp;5336</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">int</span> octave = parseNoteString_getOctave(noteString, match, 2);                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;470</td>  <td class="nbHitsCovered">&nbsp;5334</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">int</span> volume = parseNoteString_getVolume(noteString, match, 5, defaultVolume);                </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;469</td>  <td class="nbHitsCovered">&nbsp;5179</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">int</span> octave = parseNoteString_getOctave(noteString, match, 2);                </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;470</td>  <td class="nbHitsCovered">&nbsp;5177</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">int</span> volume = parseNoteString_getVolume(noteString, match, 5, defaultVolume);                </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;471</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;472</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                <span class="comment">// adjust the octave for a note like Cb, Cbb, B# and Bx</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;473</td>  <td class="nbHitsCovered">&nbsp;5333</td>  <td class="src"><pre class="src">&nbsp;                octave += (noteName.getNoteNumber() - noteName.getNormalizedNoteNumber()) / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;473</td>  <td class="nbHitsCovered">&nbsp;5176</td>  <td class="src"><pre class="src">&nbsp;                octave += (noteName.getNoteNumber() - noteName.getNormalizedNoteNumber()) / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;474</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;475</td>  <td class="nbHitsCovered">&nbsp;5333</td>  <td class="src"><pre class="src">&nbsp;                newNote = <span class="keyword">new</span> Note();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;476</td>  <td class="nbHitsCovered">&nbsp;5333</td>  <td class="src"><pre class="src">&nbsp;                newNote.setScale(scale);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;477</td>  <td class="nbHitsCovered">&nbsp;5333</td>  <td class="src"><pre class="src">&nbsp;                newNote.setDuration(duration);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;478</td>  <td class="nbHitsCovered">&nbsp;5333</td>  <td class="src"><pre class="src">&nbsp;                newNote.setVolume(volume);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;479</td>  <td class="nbHitsCovered">&nbsp;5333</td>  <td class="src"><pre class="src">&nbsp;                scale.setNotePitchValues(newNote, noteName);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;480</td>  <td class="nbHitsCovered">&nbsp;5333</td>  <td class="src"><pre class="src">&nbsp;                newNote.setLetterNumber(scale.getKeyName().getPositiveIntervalSize(noteName));</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;475</td>  <td class="nbHitsCovered">&nbsp;5176</td>  <td class="src"><pre class="src">&nbsp;                newNote = <span class="keyword">new</span> Note();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;476</td>  <td class="nbHitsCovered">&nbsp;5176</td>  <td class="src"><pre class="src">&nbsp;                newNote.setScale(scale);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;477</td>  <td class="nbHitsCovered">&nbsp;5176</td>  <td class="src"><pre class="src">&nbsp;                newNote.setDuration(duration);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;478</td>  <td class="nbHitsCovered">&nbsp;5176</td>  <td class="src"><pre class="src">&nbsp;                newNote.setVolume(volume);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;479</td>  <td class="nbHitsCovered">&nbsp;5176</td>  <td class="src"><pre class="src">&nbsp;                scale.setNotePitchValues(newNote, noteName);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;480</td>  <td class="nbHitsCovered">&nbsp;5176</td>  <td class="src"><pre class="src">&nbsp;                newNote.setLetterNumber(scale.getKeyName().getPositiveIntervalSize(noteName));</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;481</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                                </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;482</td>  <td class="nbHits">&nbsp;</td>
@@ -907,31 +907,31 @@
   <td class="src"><pre class="src">&nbsp;                <span class="comment">// and the midi pitch number we get from our scale to calculate</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;492</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                <span class="comment">// the correct octave.                </span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;493</td>  <td class="nbHitsCovered"><a title="Line 493: Conditional coverage 100% (2/2).">&nbsp;5333</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 493: Conditional coverage 100% (2/2).">                <span class="keyword">if</span> (scale == Scale.DEFAULT) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;493</td>  <td class="nbHitsCovered"><a title="Line 493: Conditional coverage 100% (2/2).">&nbsp;5176</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 493: Conditional coverage 100% (2/2).">                <span class="keyword">if</span> (scale == Scale.DEFAULT) {</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;494</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    <span class="comment">// this is the chromatic scale, so just set the octave directly...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;495</td>  <td class="nbHitsCovered">&nbsp;2817</td>  <td class="src"><pre class="src">&nbsp;                    newNote.setOctave(octave);                                </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;495</td>  <td class="nbHitsCovered">&nbsp;2686</td>  <td class="src"><pre class="src">&nbsp;                    newNote.setOctave(octave);                                </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;496</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                } <span class="keyword">else</span> {                    </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;497</td>  <td class="nbHitsCovered">&nbsp;2516</td>  <td class="src"><pre class="src">&nbsp;                    Note testNote = parseNoteString(noteString, Scale.DEFAULT, defaultDuration, defaultVolume);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;498</td>  <td class="nbHitsCovered">&nbsp;2516</td>  <td class="src"><pre class="src">&nbsp;                    <span class="keyword">int</span> midiPitchNum = testNote.getMidiPitchNumber(<span class="keyword">true</span>); </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;499</td>  <td class="nbHitsCovered">&nbsp;2516</td>  <td class="src"><pre class="src">&nbsp;                    <span class="keyword">int</span> midiPitchNumWithoutOctave = newNote.getMidiPitchNumber(<span class="keyword">true</span>);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;500</td>  <td class="nbHitsCovered">&nbsp;2516</td>  <td class="src"><pre class="src">&nbsp;                    <span class="keyword">int</span> difference = midiPitchNum - midiPitchNumWithoutOctave;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;497</td>  <td class="nbHitsCovered">&nbsp;2490</td>  <td class="src"><pre class="src">&nbsp;                    Note testNote = parseNoteString(noteString, Scale.DEFAULT, defaultDuration, defaultVolume);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;498</td>  <td class="nbHitsCovered">&nbsp;2490</td>  <td class="src"><pre class="src">&nbsp;                    <span class="keyword">int</span> midiPitchNum = testNote.getMidiPitchNumber(<span class="keyword">true</span>); </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;499</td>  <td class="nbHitsCovered">&nbsp;2490</td>  <td class="src"><pre class="src">&nbsp;                    <span class="keyword">int</span> midiPitchNumWithoutOctave = newNote.getMidiPitchNumber(<span class="keyword">true</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;500</td>  <td class="nbHitsCovered">&nbsp;2490</td>  <td class="src"><pre class="src">&nbsp;                    <span class="keyword">int</span> difference = midiPitchNum - midiPitchNumWithoutOctave;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;501</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;502</td>  <td class="nbHitsUncovered"><a title="Line 502: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;2516</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 502: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">                    <span class="keyword">assert</span> difference % Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE == 0 : difference;</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;503</td>  <td class="nbHitsCovered">&nbsp;2516</td>  <td class="src"><pre class="src">&nbsp;                    octave = difference / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;504</td>  <td class="nbHitsCovered">&nbsp;2516</td>  <td class="src"><pre class="src">&nbsp;                    newNote.setOctave(octave);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;502</td>  <td class="nbHitsUncovered"><a title="Line 502: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;2490</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 502: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">                    <span class="keyword">assert</span> difference % Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE == 0 : difference;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;503</td>  <td class="nbHitsCovered">&nbsp;2490</td>  <td class="src"><pre class="src">&nbsp;                    octave = difference / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;504</td>  <td class="nbHitsCovered">&nbsp;2490</td>  <td class="src"><pre class="src">&nbsp;                    newNote.setOctave(octave);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;505</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;506</td>  <td class="nbHitsUncovered"><a title="Line 506: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;2516</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 506: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">                    <span class="keyword">assert</span> newNote.getMidiPitchNumber(<span class="keyword">true</span>) == midiPitchNum;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;506</td>  <td class="nbHitsUncovered"><a title="Line 506: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;2490</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 506: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">                    <span class="keyword">assert</span> newNote.getMidiPitchNumber(<span class="keyword">true</span>) == midiPitchNum;</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;507</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                }                </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;508</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }            </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;509</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;510</td>  <td class="nbHitsCovered">&nbsp;5347</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> newNote;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;510</td>  <td class="nbHitsCovered">&nbsp;5188</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> newNote;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;511</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        } <span class="keyword">else</span> {</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;512</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">throw</span> <span class="keyword">new</span> IncorrectNoteStringException(noteString);            </pre></td></tr>
@@ -965,17 +965,17 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;527</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">static</span> <span class="keyword">private</span> NoteName parseNoteString_getNoteName(String noteString, Matcher match, <span class="keyword">int</span> matchGroupIndex) <span class="keyword">throws</span> NoteStringInvalidPartException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;528</td>  <td class="nbHitsUncovered"><a title="Line 528: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;5355</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 528: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> match.matches() : match;</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;529</td>  <td class="nbHitsCovered">&nbsp;5355</td>  <td class="src"><pre class="src">&nbsp;        String noteNameStr = match.group(matchGroupIndex);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;528</td>  <td class="nbHitsUncovered"><a title="Line 528: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;5196</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 528: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> match.matches() : match;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;529</td>  <td class="nbHitsCovered">&nbsp;5196</td>  <td class="src"><pre class="src">&nbsp;        String noteNameStr = match.group(matchGroupIndex);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;530</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;531</td>  <td class="nbHitsUncovered"><a title="Line 531: Conditional coverage 50% (1/2).">&nbsp;5355</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 531: Conditional coverage 50% (1/2).">        <span class="keyword">if</span> (noteNameStr == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NoteStringInvalidPartException(noteString, NoteStringPart.NOTE_NAME);</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;532</td>  <td class="nbHitsCovered"><a title="Line 532: Conditional coverage 100% (2/2).">&nbsp;5355</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 532: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (noteNameStr.toUpperCase(Locale.ENGLISH).contentEquals(<span class="string">"R"</span>)) <span class="keyword">return</span> <span class="keyword">null</span>;</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;531</td>  <td class="nbHitsUncovered"><a title="Line 531: Conditional coverage 50% (1/2).">&nbsp;5196</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 531: Conditional coverage 50% (1/2).">        <span class="keyword">if</span> (noteNameStr == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NoteStringInvalidPartException(noteString, NoteStringPart.NOTE_NAME);</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;532</td>  <td class="nbHitsCovered"><a title="Line 532: Conditional coverage 100% (2/2).">&nbsp;5196</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 532: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (noteNameStr.toUpperCase(Locale.ENGLISH).contentEquals(<span class="string">"R"</span>)) <span class="keyword">return</span> <span class="keyword">null</span>;</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;533</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;534</td>  <td class="nbHitsCovered">&nbsp;5341</td>  <td class="src"><pre class="src">&nbsp;        NoteName noteName = NoteName.getNoteName(noteNameStr);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;535</td>  <td class="nbHitsCovered"><a title="Line 535: Conditional coverage 100% (2/2).">&nbsp;5341</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 535: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (noteName == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NoteStringInvalidPartException(noteString, NoteStringPart.NOTE_NAME);</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;536</td>  <td class="nbHitsCovered">&nbsp;5338</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> noteName;         </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;534</td>  <td class="nbHitsCovered">&nbsp;5184</td>  <td class="src"><pre class="src">&nbsp;        NoteName noteName = NoteName.getNoteName(noteNameStr);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;535</td>  <td class="nbHitsCovered"><a title="Line 535: Conditional coverage 100% (2/2).">&nbsp;5184</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 535: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (noteName == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NoteStringInvalidPartException(noteString, NoteStringPart.NOTE_NAME);</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;536</td>  <td class="nbHitsCovered">&nbsp;5181</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> noteName;         </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;537</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;538</td>  <td class="nbHits">&nbsp;</td>
@@ -1004,14 +1004,14 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;550</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> parseNoteString_getOctave(String noteString, Matcher match, <span class="keyword">int</span> matchGroupIndex) <span class="keyword">throws</span> NoteStringInvalidPartException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;551</td>  <td class="nbHitsUncovered"><a title="Line 551: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;5336</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 551: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> match.matches() : match;</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;552</td>  <td class="nbHitsCovered">&nbsp;5336</td>  <td class="src"><pre class="src">&nbsp;        String octaveStr = match.group(matchGroupIndex);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;553</td>  <td class="nbHitsCovered"><a title="Line 553: Conditional coverage 100% (2/2).">&nbsp;5336</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 553: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (octaveStr == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NoteStringInvalidPartException(noteString, NoteStringPart.OCTAVE);</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;551</td>  <td class="nbHitsUncovered"><a title="Line 551: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;5179</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 551: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> match.matches() : match;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;552</td>  <td class="nbHitsCovered">&nbsp;5179</td>  <td class="src"><pre class="src">&nbsp;        String octaveStr = match.group(matchGroupIndex);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;553</td>  <td class="nbHitsCovered"><a title="Line 553: Conditional coverage 100% (2/2).">&nbsp;5179</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 553: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (octaveStr == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NoteStringInvalidPartException(noteString, NoteStringPart.OCTAVE);</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;554</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;555</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">try</span> {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;556</td>  <td class="nbHitsCovered">&nbsp;5335</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> Integer.parseInt(octaveStr);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;556</td>  <td class="nbHitsCovered">&nbsp;5178</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> Integer.parseInt(octaveStr);</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;557</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;        } <span class="keyword">catch</span> (NumberFormatException ex) {</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;558</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">throw</span> <span class="keyword">new</span> NoteStringInvalidPartException(noteString, NoteStringPart.OCTAVE);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;559</td>  <td class="nbHits">&nbsp;</td>
@@ -1054,28 +1054,28 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;578</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">static</span> Fraction parseNoteString_getDuration(String noteString, Matcher match, <span class="keyword">int</span> numeratorMatchGroupIndex, <span class="keyword">int</span> denominatorMatchGroupIndex, Fraction defaultDuration) <span class="keyword">throws</span> NoteStringInvalidPartException {        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;579</td>  <td class="nbHitsUncovered"><a title="Line 579: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;5352</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 579: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> match.matches() : match;</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;580</td>  <td class="nbHitsCovered">&nbsp;5352</td>  <td class="src"><pre class="src">&nbsp;        String durationNumStr = match.group(numeratorMatchGroupIndex);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;581</td>  <td class="nbHitsCovered">&nbsp;5352</td>  <td class="src"><pre class="src">&nbsp;        String durationDenStr = match.group(denominatorMatchGroupIndex);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;582</td>  <td class="nbHitsUncovered"><a title="Line 582: Conditional coverage 75% (3/4) [each condition: 100%, 50%].">&nbsp;5352</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 582: Conditional coverage 75% (3/4) [each condition: 100%, 50%].">        <span class="keyword">if</span> (durationNumStr == <span class="keyword">null</span> &amp;&amp; durationDenStr == <span class="keyword">null</span>) {</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;579</td>  <td class="nbHitsUncovered"><a title="Line 579: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;5193</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 579: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> match.matches() : match;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;580</td>  <td class="nbHitsCovered">&nbsp;5193</td>  <td class="src"><pre class="src">&nbsp;        String durationNumStr = match.group(numeratorMatchGroupIndex);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;581</td>  <td class="nbHitsCovered">&nbsp;5193</td>  <td class="src"><pre class="src">&nbsp;        String durationDenStr = match.group(denominatorMatchGroupIndex);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;582</td>  <td class="nbHitsUncovered"><a title="Line 582: Conditional coverage 75% (3/4) [each condition: 100%, 50%].">&nbsp;5193</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 582: Conditional coverage 75% (3/4) [each condition: 100%, 50%].">        <span class="keyword">if</span> (durationNumStr == <span class="keyword">null</span> &amp;&amp; durationDenStr == <span class="keyword">null</span>) {</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;583</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// This note doesn't have a duration; instead use the default duration</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;584</td>  <td class="nbHitsCovered">&nbsp;4358</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> defaultDuration;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;585</td>  <td class="nbHitsUncovered"><a title="Line 585: Conditional coverage 62% (5/8) [each condition: 50%, 50%, 50%, 100%].">&nbsp;994</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 585: Conditional coverage 62% (5/8) [each condition: 50%, 50%, 50%, 100%].">        } <span class="keyword">else</span> <span class="keyword">if</span> (durationNumStr == <span class="keyword">null</span> || durationNumStr.isEmpty() || durationDenStr == <span class="keyword">null</span> || durationDenStr.isEmpty()) {</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;584</td>  <td class="nbHitsCovered">&nbsp;4239</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> defaultDuration;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;585</td>  <td class="nbHitsUncovered"><a title="Line 585: Conditional coverage 62% (5/8) [each condition: 50%, 50%, 50%, 100%].">&nbsp;954</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 585: Conditional coverage 62% (5/8) [each condition: 50%, 50%, 50%, 100%].">        } <span class="keyword">else</span> <span class="keyword">if</span> (durationNumStr == <span class="keyword">null</span> || durationNumStr.isEmpty() || durationDenStr == <span class="keyword">null</span> || durationDenStr.isEmpty()) {</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;586</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// The note string contains part of a duration, but not a complete one.</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;587</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">throw</span> <span class="keyword">new</span> NoteStringInvalidPartException(noteString, NoteStringPart.RHYTHMIC_DURATION);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;588</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        } <span class="keyword">else</span> {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;589</td>  <td class="nbHitsCovered">&nbsp;993</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">int</span> durationNum = Integer.parseInt(durationNumStr);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;590</td>  <td class="nbHitsCovered">&nbsp;993</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">int</span> durationDen = Integer.parseInt(durationDenStr);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;589</td>  <td class="nbHitsCovered">&nbsp;953</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">int</span> durationNum = Integer.parseInt(durationNumStr);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;590</td>  <td class="nbHitsCovered">&nbsp;953</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">int</span> durationDen = Integer.parseInt(durationDenStr);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;591</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;592</td>  <td class="nbHitsCovered"><a title="Line 592: Conditional coverage 100% (2/2).">&nbsp;993</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 592: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (durationDen == 0) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;592</td>  <td class="nbHitsCovered"><a title="Line 592: Conditional coverage 100% (2/2).">&nbsp;953</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 592: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (durationDen == 0) {</a></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;593</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">throw</span> <span class="keyword">new</span> NoteStringInvalidPartException(noteString, NoteStringPart.RHYTHMIC_DURATION);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;594</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;595</td>  <td class="nbHitsCovered">&nbsp;992</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> <span class="keyword">new</span> Fraction(durationNum, durationDen);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;595</td>  <td class="nbHitsCovered">&nbsp;952</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> <span class="keyword">new</span> Fraction(durationNum, durationDen);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;596</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;597</td>  <td class="nbHits">&nbsp;</td>
@@ -1104,9 +1104,9 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;609</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> parseNoteString_getVolume(String noteString, Matcher match, <span class="keyword">int</span> matchGroupIndex, <span class="keyword">int</span> defaultVolume) <span class="keyword">throws</span> NoteStringInvalidPartException {        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;610</td>  <td class="nbHitsCovered">&nbsp;5334</td>  <td class="src"><pre class="src">&nbsp;        String dynamicStr = match.group(matchGroupIndex);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;611</td>  <td class="nbHitsUncovered"><a title="Line 611: Conditional coverage 75% (3/4) [each condition: 100%, 50%].">&nbsp;5334</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 611: Conditional coverage 75% (3/4) [each condition: 100%, 50%].">        <span class="keyword">if</span> (dynamicStr == <span class="keyword">null</span> || dynamicStr.isEmpty()) {</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;612</td>  <td class="nbHitsCovered">&nbsp;5234</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> defaultVolume;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;610</td>  <td class="nbHitsCovered">&nbsp;5177</td>  <td class="src"><pre class="src">&nbsp;        String dynamicStr = match.group(matchGroupIndex);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;611</td>  <td class="nbHitsUncovered"><a title="Line 611: Conditional coverage 75% (3/4) [each condition: 100%, 50%].">&nbsp;5177</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 611: Conditional coverage 75% (3/4) [each condition: 100%, 50%].">        <span class="keyword">if</span> (dynamicStr == <span class="keyword">null</span> || dynamicStr.isEmpty()) {</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;612</td>  <td class="nbHitsCovered">&nbsp;5077</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> defaultVolume;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;613</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        } <span class="keyword">else</span> {             </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;614</td>  <td class="nbHits">&nbsp;</td>
@@ -1142,32 +1142,32 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;631</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> Note getNormalizedNote() {        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;632</td>  <td class="nbHitsCovered">&nbsp;19353</td>  <td class="src"><pre class="src">&nbsp;        Note tempNote = <span class="keyword">this</span>.clone();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;633</td>  <td class="nbHitsCovered"><a title="Line 633: Conditional coverage 100% (2/2).">&nbsp;19353</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 633: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (tempNote.isRest()) <span class="keyword">return</span> tempNote; <span class="comment">// rests are always normalized!</span></a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;634</td>  <td class="nbHitsCovered">&nbsp;19293</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> numScaleStepsInOctave = <span class="keyword">this</span>.getScale().getScaleStepArray().length; <span class="comment">// cache it</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;632</td>  <td class="nbHitsCovered">&nbsp;17403</td>  <td class="src"><pre class="src">&nbsp;        Note tempNote = <span class="keyword">this</span>.clone();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;633</td>  <td class="nbHitsCovered"><a title="Line 633: Conditional coverage 100% (2/2).">&nbsp;17403</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 633: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (tempNote.isRest()) <span class="keyword">return</span> tempNote; <span class="comment">// rests are always normalized!</span></a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;634</td>  <td class="nbHitsCovered">&nbsp;17355</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> numScaleStepsInOctave = <span class="keyword">this</span>.getScale().getScaleStepArray().length; <span class="comment">// cache it</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;635</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;636</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// put the note's scaleStep into the normal range (0..numScaleSteps - 1), adjusting the octaves.</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;637</td>  <td class="nbHitsCovered"><a title="Line 637: Conditional coverage 100% (2/2).">&nbsp;20840</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 637: Conditional coverage 100% (2/2).">        <span class="keyword">while</span>(tempNote.getScaleStep() &lt; 0) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;638</td>  <td class="nbHitsCovered">&nbsp;1547</td>  <td class="src"><pre class="src">&nbsp;            tempNote.setScaleStep(tempNote.getScaleStep() + numScaleStepsInOctave);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;639</td>  <td class="nbHitsCovered">&nbsp;1547</td>  <td class="src"><pre class="src">&nbsp;            tempNote.setOctave(tempNote.getOctave() - 1);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;637</td>  <td class="nbHitsCovered"><a title="Line 637: Conditional coverage 100% (2/2).">&nbsp;18602</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 637: Conditional coverage 100% (2/2).">        <span class="keyword">while</span>(tempNote.getScaleStep() &lt; 0) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;638</td>  <td class="nbHitsCovered">&nbsp;1247</td>  <td class="src"><pre class="src">&nbsp;            tempNote.setScaleStep(tempNote.getScaleStep() + numScaleStepsInOctave);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;639</td>  <td class="nbHitsCovered">&nbsp;1247</td>  <td class="src"><pre class="src">&nbsp;            tempNote.setOctave(tempNote.getOctave() - 1);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;640</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }                </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;641</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;642</td>  <td class="nbHitsCovered"><a title="Line 642: Conditional coverage 100% (2/2).">&nbsp;20176</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 642: Conditional coverage 100% (2/2).">        <span class="keyword">while</span>(tempNote.getScaleStep() &gt; numScaleStepsInOctave - 1) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;643</td>  <td class="nbHitsCovered">&nbsp;883</td>  <td class="src"><pre class="src">&nbsp;            tempNote.setScaleStep(tempNote.getScaleStep() - numScaleStepsInOctave);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;644</td>  <td class="nbHitsCovered">&nbsp;883</td>  <td class="src"><pre class="src">&nbsp;            tempNote.setOctave(tempNote.getOctave() + 1);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;642</td>  <td class="nbHitsCovered"><a title="Line 642: Conditional coverage 100% (2/2).">&nbsp;18124</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 642: Conditional coverage 100% (2/2).">        <span class="keyword">while</span>(tempNote.getScaleStep() &gt; numScaleStepsInOctave - 1) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;643</td>  <td class="nbHitsCovered">&nbsp;769</td>  <td class="src"><pre class="src">&nbsp;            tempNote.setScaleStep(tempNote.getScaleStep() - numScaleStepsInOctave);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;644</td>  <td class="nbHitsCovered">&nbsp;769</td>  <td class="src"><pre class="src">&nbsp;            tempNote.setOctave(tempNote.getOctave() + 1);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;645</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;646</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;647</td>  <td class="nbHitsUncovered"><a title="Line 647: Conditional coverage 50% (3/6) [each condition: 50%, 50%, 50%].">&nbsp;19293</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 647: Conditional coverage 50% (3/6) [each condition: 50%, 50%, 50%].">        <span class="keyword">assert</span> tempNote.getScaleStep() &gt;= 0 &amp;&amp; tempNote.getScaleStep() &lt; numScaleStepsInOctave : tempNote.getScaleStep();</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;648</td>  <td class="nbHitsCovered">&nbsp;19293</td>  <td class="src"><pre class="src">&nbsp;        tempNote.setLetterNumber(MathHelper.getNormalizedValue(tempNote.getLetterNumber(), NoteName.NUM_LETTER_NAMES));</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;647</td>  <td class="nbHitsUncovered"><a title="Line 647: Conditional coverage 50% (3/6) [each condition: 50%, 50%, 50%].">&nbsp;17355</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 647: Conditional coverage 50% (3/6) [each condition: 50%, 50%, 50%].">        <span class="keyword">assert</span> tempNote.getScaleStep() &gt;= 0 &amp;&amp; tempNote.getScaleStep() &lt; numScaleStepsInOctave : tempNote.getScaleStep();</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;648</td>  <td class="nbHitsCovered">&nbsp;17355</td>  <td class="src"><pre class="src">&nbsp;        tempNote.setLetterNumber(MathHelper.getNormalizedValue(tempNote.getLetterNumber(), NoteName.NUM_LETTER_NAMES));</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;649</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;650</td>  <td class="nbHitsCovered">&nbsp;19293</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> tempNote;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;650</td>  <td class="nbHitsCovered">&nbsp;17355</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> tempNote;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;651</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;652</td>  <td class="nbHits">&nbsp;</td>
@@ -1188,7 +1188,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;660</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> convertWholeNotesToTicks(Fraction wholeNotes, <span class="keyword">int</span> midiTickResolution) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;661</td>  <td class="nbHitsCovered">&nbsp;7090</td>  <td class="src"><pre class="src">&nbsp;        Fraction converted = wholeNotes.times(midiTickResolution);        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;661</td>  <td class="nbHitsCovered">&nbsp;5916</td>  <td class="src"><pre class="src">&nbsp;        Fraction converted = wholeNotes.times(midiTickResolution);        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;662</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;663</td>  <td class="nbHits">&nbsp;</td>
@@ -1197,12 +1197,12 @@
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// because our tick resolution should be chosen based on what will</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;665</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// produce this.  Test that this is in fact the case...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;666</td>  <td class="nbHitsUncovered"><a title="Line 666: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;7090</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 666: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> converted.denominator() == 1 : converted;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;666</td>  <td class="nbHitsUncovered"><a title="Line 666: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">&nbsp;5916</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 666: Conditional coverage 50% (2/4) [each condition: 50%, 50%].">        <span class="keyword">assert</span> converted.denominator() == 1 : converted;</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;667</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;     </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;668</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// since the denominator is 1, the converted value is equal to the numerator...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;669</td>  <td class="nbHitsCovered">&nbsp;7090</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> converted.numerator();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;669</td>  <td class="nbHitsCovered">&nbsp;5916</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> converted.numerator();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;670</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;671</td>  <td class="nbHits">&nbsp;</td>
@@ -1227,13 +1227,13 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;681</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">int</span> getMidiPitchNumber(<span class="keyword">boolean</span> keepExactPitch) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;682</td>  <td class="nbHitsCovered"><a title="Line 682: Conditional coverage 100% (2/2).">&nbsp;11093</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 682: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (<span class="keyword">this</span>.isRest()) <span class="keyword">return</span> 0;</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;682</td>  <td class="nbHitsCovered"><a title="Line 682: Conditional coverage 100% (2/2).">&nbsp;10428</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 682: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (<span class="keyword">this</span>.isRest()) <span class="keyword">return</span> 0;</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;683</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;684</td>  <td class="nbHitsCovered">&nbsp;11026</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span>[] scaleSteps = <span class="keyword">this</span>.getScale().getScaleStepArray(); <span class="comment">// cache it</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;685</td>  <td class="nbHitsCovered">&nbsp;11026</td>  <td class="src"><pre class="src">&nbsp;        Note normalizedNote = <span class="keyword">this</span>.getNormalizedNote();        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;686</td>  <td class="nbHitsCovered">&nbsp;11026</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> chromaticAdj = normalizedNote.getChromaticAdjustment();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;687</td>  <td class="nbHitsCovered"><a title="Line 687: Conditional coverage 100% (2/2).">&nbsp;11026</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 687: Conditional coverage 100% (2/2).">        <span class="keyword">int</span> chromaticAdjDecrementer = chromaticAdj &gt; 0 ? 1 : -1;</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;684</td>  <td class="nbHitsCovered">&nbsp;10381</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span>[] scaleSteps = <span class="keyword">this</span>.getScale().getScaleStepArray(); <span class="comment">// cache it</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;685</td>  <td class="nbHitsCovered">&nbsp;10381</td>  <td class="src"><pre class="src">&nbsp;        Note normalizedNote = <span class="keyword">this</span>.getNormalizedNote();        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;686</td>  <td class="nbHitsCovered">&nbsp;10381</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> chromaticAdj = normalizedNote.getChromaticAdjustment();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;687</td>  <td class="nbHitsCovered"><a title="Line 687: Conditional coverage 100% (2/2).">&nbsp;10381</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 687: Conditional coverage 100% (2/2).">        <span class="keyword">int</span> chromaticAdjDecrementer = chromaticAdj &gt; 0 ? 1 : -1;</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;688</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> testPitchNum;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;689</td>  <td class="nbHits">&nbsp;</td>
@@ -1254,7 +1254,7 @@
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// wind up with two of the same pitches in a row.  This loses the "shape"</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;697</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// that we are dealing with, so we adjust the accidental as necessary.        </span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;698</td>  <td class="nbHitsCovered"><a title="Line 698: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;11065</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 698: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">        <span class="keyword">while</span> (!keepExactPitch &amp;&amp; Math.abs(chromaticAdj) &gt; 0) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;698</td>  <td class="nbHitsCovered"><a title="Line 698: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;10420</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 698: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">        <span class="keyword">while</span> (!keepExactPitch &amp;&amp; Math.abs(chromaticAdj) &gt; 0) {</a></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;699</td>  <td class="nbHitsCovered">&nbsp;46</td>  <td class="src"><pre class="src">&nbsp;            testPitchNum = (scaleSteps[normalizedNote.getScaleStep()] <span class="comment">// the raw (natural) pitch number                    </span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;700</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    + chromaticAdj                                    <span class="comment">// the chromatic adjustment to test...                    </span></pre></td></tr>
@@ -1279,7 +1279,7 @@
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;712</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;713</td>  <td class="nbHitsCovered">&nbsp;11026</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> scaleSteps[normalizedNote.getScaleStep()]       <span class="comment">// half steps above tonic</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;713</td>  <td class="nbHitsCovered">&nbsp;10381</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> scaleSteps[normalizedNote.getScaleStep()]       <span class="comment">// half steps above tonic</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;714</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                + chromaticAdj                                 <span class="comment">// the note's chromatic adjustment</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;715</td>  <td class="nbHits">&nbsp;</td>
@@ -1318,17 +1318,17 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;732</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> MidiNote convertToMidiNote(Fraction startTime, <span class="keyword">int</span> midiTickResolution, <span class="keyword">int</span> channel, <span class="keyword">boolean</span> keepExactPitch) {        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;733</td>  <td class="nbHitsCovered">&nbsp;3545</td>  <td class="src"><pre class="src">&nbsp;        MidiNote midiNote = <span class="keyword">new</span> MidiNote();       </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;733</td>  <td class="nbHitsCovered">&nbsp;2958</td>  <td class="src"><pre class="src">&nbsp;        MidiNote midiNote = <span class="keyword">new</span> MidiNote();       </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;734</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;735</td>  <td class="nbHitsCovered">&nbsp;3545</td>  <td class="src"><pre class="src">&nbsp;        midiNote.setDuration(convertWholeNotesToTicks(<span class="keyword">this</span>.getDuration(), midiTickResolution));</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;736</td>  <td class="nbHitsCovered">&nbsp;3545</td>  <td class="src"><pre class="src">&nbsp;        midiNote.setStartTime(convertWholeNotesToTicks(startTime, midiTickResolution) + MidiNote.MIDI_SEQUENCE_START_SILENCE_TICK_OFFSET);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;737</td>  <td class="nbHitsCovered">&nbsp;3545</td>  <td class="src"><pre class="src">&nbsp;        midiNote.setVelocity(<span class="keyword">this</span>.getVolume());        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;738</td>  <td class="nbHitsCovered">&nbsp;3545</td>  <td class="src"><pre class="src">&nbsp;        midiNote.setPitch(<span class="keyword">this</span>.getMidiPitchNumber(keepExactPitch));</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;739</td>  <td class="nbHitsCovered">&nbsp;3545</td>  <td class="src"><pre class="src">&nbsp;        midiNote.setChannel(channel);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;735</td>  <td class="nbHitsCovered">&nbsp;2958</td>  <td class="src"><pre class="src">&nbsp;        midiNote.setDuration(convertWholeNotesToTicks(<span class="keyword">this</span>.getDuration(), midiTickResolution));</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;736</td>  <td class="nbHitsCovered">&nbsp;2958</td>  <td class="src"><pre class="src">&nbsp;        midiNote.setStartTime(convertWholeNotesToTicks(startTime, midiTickResolution) + MidiNote.MIDI_SEQUENCE_START_SILENCE_TICK_OFFSET);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;737</td>  <td class="nbHitsCovered">&nbsp;2958</td>  <td class="src"><pre class="src">&nbsp;        midiNote.setVelocity(<span class="keyword">this</span>.getVolume());        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;738</td>  <td class="nbHitsCovered">&nbsp;2958</td>  <td class="src"><pre class="src">&nbsp;        midiNote.setPitch(<span class="keyword">this</span>.getMidiPitchNumber(keepExactPitch));</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;739</td>  <td class="nbHitsCovered">&nbsp;2958</td>  <td class="src"><pre class="src">&nbsp;        midiNote.setChannel(channel);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;740</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;741</td>  <td class="nbHitsCovered">&nbsp;3545</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> midiNote;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;741</td>  <td class="nbHitsCovered">&nbsp;2958</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> midiNote;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;742</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }      </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;743</td>  <td class="nbHits">&nbsp;</td>
@@ -1353,25 +1353,25 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;753</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> NotationNote toNotationNote(PartSection partSection, MidiNote midiNote, Fraction timeLeftInBar) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;754</td>  <td class="nbHitsCovered"><a title="Line 754: Conditional coverage 100% (2/2).">&nbsp;3480</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 754: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (<span class="keyword">this</span>.isRest()) <span class="keyword">return</span> NotationNote.createRest(partSection, duration, timeLeftInBar, <span class="keyword">this</span>.isFirstNoteOfGermCopy);</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;754</td>  <td class="nbHitsCovered"><a title="Line 754: Conditional coverage 100% (2/2).">&nbsp;2893</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 754: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (<span class="keyword">this</span>.isRest()) <span class="keyword">return</span> NotationNote.createRest(partSection, duration, timeLeftInBar, <span class="keyword">this</span>.isFirstNoteOfGermCopy);</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;755</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;756</td>  <td class="nbHitsCovered">&nbsp;3414</td>  <td class="src"><pre class="src">&nbsp;        Note normalizedNote = <span class="keyword">this</span>.getNormalizedNote();        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;756</td>  <td class="nbHitsCovered">&nbsp;2847</td>  <td class="src"><pre class="src">&nbsp;        Note normalizedNote = <span class="keyword">this</span>.getNormalizedNote();        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;757</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;758</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// get the letter</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;759</td>  <td class="nbHitsCovered">&nbsp;3414</td>  <td class="src"><pre class="src">&nbsp;        NoteName letterNoteName = <span class="keyword">this</span>.getScale().getKeyName().getNaturalNoteNameForLetterNumber(normalizedNote.getLetterNumber());        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;760</td>  <td class="nbHitsCovered">&nbsp;3414</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">char</span> letter = letterNoteName.getLetter(<span class="keyword">true</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;759</td>  <td class="nbHitsCovered">&nbsp;2847</td>  <td class="src"><pre class="src">&nbsp;        NoteName letterNoteName = <span class="keyword">this</span>.getScale().getKeyName().getNaturalNoteNameForLetterNumber(normalizedNote.getLetterNumber());        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;760</td>  <td class="nbHitsCovered">&nbsp;2847</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">char</span> letter = letterNoteName.getLetter(<span class="keyword">true</span>);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;761</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;762</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// get the chromatic adjustment</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;763</td>  <td class="nbHitsCovered">&nbsp;3414</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> chromAdjustment = (midiNote.getPitch() % Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE)  - letterNoteName.getNormalizedNoteNumber();                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;764</td>  <td class="nbHitsCovered">&nbsp;3414</td>  <td class="src"><pre class="src">&nbsp;        chromAdjustment = Scale.getNormalizedChromaticAdjustment(chromAdjustment);        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;763</td>  <td class="nbHitsCovered">&nbsp;2847</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> chromAdjustment = (midiNote.getPitch() % Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE)  - letterNoteName.getNormalizedNoteNumber();                </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;764</td>  <td class="nbHitsCovered">&nbsp;2847</td>  <td class="src"><pre class="src">&nbsp;        chromAdjustment = Scale.getNormalizedChromaticAdjustment(chromAdjustment);        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;765</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;766</td>  <td class="nbHitsCovered"><a title="Line 766: Conditional coverage 100% (2/2).">&nbsp;3414</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 766: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (Math.abs(chromAdjustment) &gt; 2) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;766</td>  <td class="nbHitsCovered"><a title="Line 766: Conditional coverage 100% (2/2).">&nbsp;2847</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 766: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (Math.abs(chromAdjustment) &gt; 2) {</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;767</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// lilypond does not support triple flats or sharps, so we have to</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;768</td>  <td class="nbHits">&nbsp;</td>
@@ -1385,10 +1385,10 @@
   <td class="src"><pre class="src">&nbsp;        } <span class="keyword">else</span> {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;774</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// get the octave, taking into account the chromatic adjustment for notes like B# and Cb</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;775</td>  <td class="nbHitsCovered">&nbsp;3412</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">int</span> notationOctave = ((midiNote.getPitch() - chromAdjustment) / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE) - 1;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;775</td>  <td class="nbHitsCovered">&nbsp;2845</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">int</span> notationOctave = ((midiNote.getPitch() - chromAdjustment) / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE) - 1;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;776</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;777</td>  <td class="nbHitsCovered">&nbsp;3412</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> <span class="keyword">new</span> NotationNote(partSection, letter, notationOctave, chromAdjustment, <span class="keyword">this</span>.duration, timeLeftInBar, <span class="keyword">this</span>.volume, <span class="keyword">this</span>.isFirstNoteOfGermCopy);        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;777</td>  <td class="nbHitsCovered">&nbsp;2845</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> <span class="keyword">new</span> NotationNote(partSection, letter, notationOctave, chromAdjustment, <span class="keyword">this</span>.duration, timeLeftInBar, <span class="keyword">this</span>.volume, <span class="keyword">this</span>.isFirstNoteOfGermCopy);        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;778</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }                        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;779</td>  <td class="nbHits">&nbsp;</td>
@@ -1424,7 +1424,7 @@
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> Note clone() {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;795</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">try</span> {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;796</td>  <td class="nbHitsCovered">&nbsp;46852</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> (Note) <span class="keyword">super</span>.clone();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;796</td>  <td class="nbHitsCovered">&nbsp;39359</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> (Note) <span class="keyword">super</span>.clone();</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;797</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        } <span class="keyword">catch</span> (CloneNotSupportedException ex) {</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;798</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="comment">// We have implemented the Cloneable interface, so we should never</span></pre></td></tr>
@@ -1521,6 +1521,6 @@
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 8/5/08 11:52 AM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 8/18/08 1:27 PM.</div>
 </body>
 </html>
