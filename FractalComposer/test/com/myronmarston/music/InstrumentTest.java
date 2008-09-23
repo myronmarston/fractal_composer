@@ -20,6 +20,7 @@
 package com.myronmarston.music;
 
 import com.myronmarston.util.FileHelper;
+import java.util.*;
 import javax.sound.midi.MidiEvent;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -39,6 +40,14 @@ public class InstrumentTest {
         assertTrue(Instrument.AVAILABLE_INSTRUMENTS.contains("Viola"));
         assertTrue(Instrument.AVAILABLE_INSTRUMENTS.contains("Cello"));
         assertTrue(Instrument.AVAILABLE_INSTRUMENTS.contains("Trumpet"));
+        
+        // test that it is sorted
+        List<String> copy = new ArrayList<String>(Instrument.AVAILABLE_INSTRUMENTS);
+        Collections.sort(copy);
+        
+        for (int i = 0; i < copy.size(); i++) {
+            assertEquals(copy.get(i), Instrument.AVAILABLE_INSTRUMENTS.get(i));
+        }
     }
     
     @Test
@@ -75,7 +84,7 @@ public class InstrumentTest {
         Instrument i = Instrument.getInstrument("Cello");
         assertEquals("\\set Staff.instrumentName = \"Cello\"" + FileHelper.NEW_LINE, i.toLilypondString());
     }
-    
+        
     public static void assertMidiProgramChangeEventEquals(MidiEvent event, long tick, int channel, int patch) {
         assertEquals(tick, event.getTick());
         javax.sound.midi.MidiMessage msg = event.getMessage();

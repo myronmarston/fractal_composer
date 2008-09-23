@@ -70,12 +70,13 @@ public class Instrument extends AbstractNotationElement {
         }
 
         INSTRUMENT_MAP = Collections.unmodifiableMap(map);            
+        Collections.sort(list);
         AVAILABLE_INSTRUMENTS = Collections.unmodifiableList(list);
         
         Instrument temp = null;
         // try to get a piano as the default instrument...
         for (String instrumentName : AVAILABLE_INSTRUMENTS) {
-            if (instrumentName.contains("Piano")) {
+            if (instrumentName.startsWith("Piano")) {
                 temp = getInstrument(instrumentName);
                 break;
             }
