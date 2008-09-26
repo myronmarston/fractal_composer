@@ -54,7 +54,7 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../com/myronmarston/music/NoteStringOnlyRestException.html" title="class in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
 &nbsp;<A HREF="../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../index.html?com/myronmarston/music/NoteStringParseException.html" target="_top"><B>FRAMES</B></A>  &nbsp;
@@ -99,16 +99,13 @@ java.lang.Object
 <DL>
 <DT><B>All Implemented Interfaces:</B> <DD>java.io.Serializable</DD>
 </DL>
-<DL>
-<DT><B>Direct Known Subclasses:</B> <DD><A HREF="../../../com/myronmarston/music/IncorrectNoteStringException.html" title="class in com.myronmarston.music">IncorrectNoteStringException</A>, <A HREF="../../../com/myronmarston/music/NoteStringInvalidPartException.html" title="class in com.myronmarston.music">NoteStringInvalidPartException</A>, <A HREF="../../../com/myronmarston/music/NoteStringOnlyRestException.html" title="class in com.myronmarston.music">NoteStringOnlyRestException</A></DD>
-</DL>
 <HR>
 <DL>
-<DT><PRE>public abstract class <B>NoteStringParseException</B><DT>extends java.lang.Exception</DL>
+<DT><PRE>public class <B>NoteStringParseException</B><DT>extends java.lang.Exception</DL>
 </PRE>
 
 <P>
-Base exception class for all errors encountered while parsing a note string.
+Exception thrown when errors are encountered while parsing a note string.
 <P>
 
 <P>
@@ -127,6 +124,16 @@ Base exception class for all errors encountered while parsing a note string.
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteStringParseException.html#NoteStringParseException(java.lang.String)">NoteStringParseException</A></B>(java.lang.String&nbsp;noteString)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Public constructor.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected </CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteStringParseException.html#NoteStringParseException(java.lang.String, java.lang.String)">NoteStringParseException</A></B>(java.lang.String&nbsp;noteString,
                          java.lang.String&nbsp;msg)</CODE>
 
@@ -183,11 +190,23 @@ Base exception class for all errors encountered while parsing a note string.
 </TR>
 </TABLE>
 
+<A NAME="NoteStringParseException(java.lang.String)"><!-- --></A><H3>
+NoteStringParseException</H3>
+<PRE>
+public <B>NoteStringParseException</B>(java.lang.String&nbsp;noteString)</PRE>
+<DL>
+<DD>Public constructor.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>noteString</CODE> - the note string being parsed</DL>
+</DL>
+<HR>
+
 <A NAME="NoteStringParseException(java.lang.String, java.lang.String)"><!-- --></A><H3>
 NoteStringParseException</H3>
 <PRE>
-public <B>NoteStringParseException</B>(java.lang.String&nbsp;noteString,
-                                java.lang.String&nbsp;msg)</PRE>
+protected <B>NoteStringParseException</B>(java.lang.String&nbsp;noteString,
+                                   java.lang.String&nbsp;msg)</PRE>
 <DL>
 <DD>Constructor.
 <P>
@@ -248,7 +267,7 @@ public java.lang.String <B>getNoteString</B>()</PRE>
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../com/myronmarston/music/NoteStringOnlyRestException.html" title="class in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
 &nbsp;<A HREF="../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../index.html?com/myronmarston/music/NoteStringParseException.html" target="_top"><B>FRAMES</B></A>  &nbsp;

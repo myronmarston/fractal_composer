@@ -55,8 +55,9 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
   @Attribute
   /** The denominator of this fraction. */
   protected final long denominator_;
-    
-  private final static String FRACTION_CORE_REGEX_STRING = "^(%s(?:[1-9](?:\\d)*))(?:\\/([1-9](?:\\d)*))?$";
+  
+  private final static String FRACTION_CORE_REGEX_STRING_WITHOUT_EDGE_ASSERTIONS = "(%s(?:[1-9](?:\\d)*))(?:\\/([1-9](?:\\d)*))?";
+  private final static String FRACTION_CORE_REGEX_STRING = String.format("^%s$", FRACTION_CORE_REGEX_STRING_WITHOUT_EDGE_ASSERTIONS);
   
   /** Regular expression string to parse a fraction string. */
   public final static String FRACTION_REGEX_STRING = String.format(FRACTION_CORE_REGEX_STRING, "0|-?");
@@ -66,6 +67,9 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
   
   /** Regular expression string to parse a fraction string that disallows zeros. */
   public final static String POSITIVE_FRACTION_REGEX_STRING = String.format(FRACTION_CORE_REGEX_STRING, "");
+  
+  /** Regular expression string to parse a fraction in the midst of other test. */
+  public final static String POSITIVE_FRACTION_REGEX_STRING_WITHOUT_EDGE_ASSERTIONS = String.format(FRACTION_CORE_REGEX_STRING_WITHOUT_EDGE_ASSERTIONS, "");
   
   /** Regular expression pattern to parse a fraction string. */
   private final static Pattern FRACTION_REGEX_PATTERN = Pattern.compile(FRACTION_REGEX_STRING);  

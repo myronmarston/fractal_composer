@@ -188,9 +188,43 @@ public class NoteListTest {
         assertFalse(readOnlyCopy.clone().isReadOnly());
     }
     
-    @Test(expected=NoteStringOnlyRestException.class)
+    @Test(expected=NoteStringParseException.class)
     public void errorIfOnlyRests() throws Exception {
         NoteList.parseNoteListString("R,1/4", Scale.DEFAULT);
+    }
+    
+    @Test
+    public void regexMatchesValidStrings() {
+        String[] validStrings = new String[] {
+            "Ab4",
+            "G4,3/8 A4,MF",
+            " A4 Gb4,1/4 c2,3/7,PPP   d#4,MF",            
+            " D#4,2 Gb4,4 c2,7,PPP   d#4,MF",    
+            // originally, we didn't properly match a 
+            // string with a note that has a dynamic
+            // after a rest, because of the lookahead...
+            " A4 GBb4,1/4 c2,3/7,PpP R d#4,MF",            
+        };
+        
+        for (String validString : validStrings) {
+            assertTrue("The note list string '" + validString + "' did not match the regex as expected.", NoteList.REGEX_PATTERN.matcher(validString).matches());
+        }
+    }
+    
+    @Test
+    public void regexDoesNotMatchInValidStrings() {
+        String[] invalidStrings = new String[] {
+            "Ab43",
+            "G4,3/8 A4,MF x",
+            "G4,3/8 %  A4,MF",
+            " A4 Gb4,1/4 c2,.3/7,PPP d#4,MF",            
+            " A4 Gb4,1/4 c2,3/7,PPP R2 d#4,MF",
+            "R,1/4"
+        };
+        
+        for (String invalidString : invalidStrings) {
+            assertFalse("The note list string '" + invalidString + "' did match the regex, and should not have.", NoteList.REGEX_PATTERN.matcher(invalidString).matches());
+        }
     }
                 
     public static void assertNoteListsEqual(NoteList expected, NoteList actual) {        

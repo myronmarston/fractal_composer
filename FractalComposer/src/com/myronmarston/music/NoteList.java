@@ -28,6 +28,7 @@ import org.simpleframework.xml.load.*;
 
 import java.lang.reflect.UndeclaredThrowableException;
 import java.util.*;
+import java.util.regex.*;
 
 /**
  * NoteList contains a sequence of notes.
@@ -48,6 +49,18 @@ public class NoteList extends AbstractList<Note> implements Cloneable {
     
     @Attribute
     private boolean readOnly;
+    
+    /**
+     * Regular expression strng for matching and parsing note list strings.
+     * (?=.*?[A-G]) is a look ahead assertion to make sure there is at least 
+     * one non-rest in the note list.
+     */
+    public static final String REGEX_STRING = String.format("^(?=.*?[A-G])(\\s*%s\\s*)+$", Note.REGEX_STRING);
+    
+    /**
+     * Regular expression pattern for matching and parsing note list strings.
+     */
+    public static final Pattern REGEX_PATTERN = Pattern.compile(REGEX_STRING, Note.REGEX_FLAGS);
     
     /**
      * Default constructor.
@@ -202,8 +215,8 @@ public class NoteList extends AbstractList<Note> implements Cloneable {
                 nonRestFound = !n.isRest();
                 if (nonRestFound) break;
             }
-            if (!nonRestFound) throw new NoteStringOnlyRestException(noteListString);
-            
+            if (!nonRestFound) throw new NoteStringParseException(noteListString);
+                        
             list.get(0).setIsFirstNoteOfGermCopy(true);                        
         }
         

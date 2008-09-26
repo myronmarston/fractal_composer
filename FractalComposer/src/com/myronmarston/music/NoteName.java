@@ -81,7 +81,11 @@ public enum NoteName {
     private final int letterNumber;
     private final boolean defaultNoteNameForNumber;
     private final int majorKeySharpsOrFlats;    
-    private final static HashMap<String, NoteName> NOTE_NAME_HASH;
+    private final static HashMap<String, NoteName> NOTE_NAME_HASH;    
+    
+    /**
+     * The number of letter names (i.e. A through G).
+     */
     public final static int NUM_LETTER_NAMES = 7;
     private final static int MIDI_KEY_OFFSET = 12; //C0 is Midi pitch 12 (http://www.phys.unsw.edu.au/jw/notes.html)    
     
@@ -93,7 +97,7 @@ public enum NoteName {
         for (NoteName nn : NoteName.values()) {
             // convert to upper case so that the case doesn't matter...
             NOTE_NAME_HASH.put(nn.toString().toUpperCase(Locale.ENGLISH), nn);
-        }        
+        }                
     }
     
     private NoteName(int letterNumber, int noteNumber) {
@@ -281,20 +285,4 @@ public enum NoteName {
         // convert to upper case so that the case doesn't matter...
         return NOTE_NAME_HASH.get(str.toUpperCase(Locale.ENGLISH));
     }        
-    
-    /**
-     * Gets a regular expression pattern for parsing the NoteName from a Note
-     * string.
-     * 
-     * @return the regular expression pattern string
-     */
-    public static String getRegexPattern() {
-        return "(" +             // opening paren for capturing group
-               "(?:" +           //     opening paren for non-capturing group
-               "[A-G]" +         //         letter name
-               "(?:bb|b||#|x)" + //         accidental (non-capturing group)
-               ")" +             //     closing parent for non-capturing group               
-               "|[^\\d,]*" +     //     or a Rest or whatever junk the user types for the note name--our parse code will handle this
-               ")";              // closing paren for capturing group
-    }
 }

@@ -21,7 +21,6 @@ package com.myronmarston.music;
 
 import com.myronmarston.music.notation.NotationNote;
 import com.myronmarston.music.notation.PartSection;
-import com.myronmarston.music.NoteStringInvalidPartException.NoteStringPart;
 import com.myronmarston.music.scales.Scale;
 import com.myronmarston.music.settings.VoiceSection;
 import com.myronmarston.util.Fraction;
@@ -102,8 +101,34 @@ public class Note implements Cloneable {
     
     @Attribute
     private boolean isFirstNoteOfGermCopy = false;
+       
+    /**
+     * Regular expression pattern for matching and parsing a note string.
+     */
+    public final static Pattern REGEX_PATTERN;
+    
+    /**
+     * Regular expression string for matching and parsing a note string.
+     */
+    public final static String REGEX_STRING;
+    
+    /**
+     * The flags used by the regular expression.
+     */
+    public final static int REGEX_FLAGS = Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE | Pattern.CANON_EQ;
+    
+    static {
+        // We put the dynamic regex in this one to use it in a negative lookahead.
+        // This prevents a dynamic from being used with a rest as that is nonsensical.
+        String noteNameOrRestWithOctave = String.format("(([A-G](?:bb|b||#|x))(\\d)|R(?!\\S*(?:%s)))", Dynamic.REGEX_STRING);
         
-    private static Pattern noteParser;
+        String optionalCommaPatternRegex = "(?:,(%s))?";
+        String duration = String.format(optionalCommaPatternRegex, Fraction.POSITIVE_FRACTION_REGEX_STRING_WITHOUT_EDGE_ASSERTIONS);
+        String dynamic = String.format(optionalCommaPatternRegex, Dynamic.REGEX_STRING);
+                
+        REGEX_STRING = noteNameOrRestWithOctave + duration + dynamic;
+        REGEX_PATTERN = Pattern.compile("^" + REGEX_STRING + "$", REGEX_FLAGS);
+    }
     
     /**
      * Default constructor.
@@ -418,27 +443,7 @@ public class Note implements Cloneable {
             this.setLetterNumber(this.getScale().getLetterNumberArray()[normalizedScaleStep]);
         }         
     }
-    
-    /**
-     * Gets a regular expression pattern that can be used to parse a note string.
-     * 
-     * @return the regEx pattern
-     */
-    static private Pattern getNoteParser() {
-        // TODO: make this thread safe
-        if (Note.noteParser == null) {
-                               
-            Note.noteParser = Pattern.compile(                   
-                NoteName.getRegexPattern() +                // NoteName--everything before the first digit or comma                
-                "([^,])?" +                                 // octave, optional if the note name is a rest; can be 0..9
-                "(?:,(\\d?\\d?\\d?)\\/?(\\d?\\d?\\d?))?" +  // duration in fractional form, e.g. 1/4; up to 3 digits allowed to allow for 128th notes                
-                "(?:,(.*))?",                               // the dynamic--this will catch the rest of the string; our parsing code will handle this or throw an exception as necessary
-                Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE | Pattern.CANON_EQ);
-        }        
-        
-        return Note.noteParser;
-    }
-    
+            
     /**
      * Parses a note string such as F#4,1/8,MF.
      * 
@@ -457,17 +462,27 @@ public class Note implements Cloneable {
         if (defaultDuration == null) defaultDuration = new Fraction(1, 4);
         if (defaultVolume == null) defaultVolume = Dynamic.MF.getMidiVolume();
         
-        Matcher match = Note.getNoteParser().matcher(noteString);        
+        Matcher match = Note.REGEX_PATTERN.matcher(noteString);        
         if (match.matches()) {     
-            NoteName noteName = parseNoteString_getNoteName(noteString, match, 1);   
-            Fraction duration = parseNoteString_getDuration(noteString, match, 3, 4, defaultDuration);
+            // Matche groups example: Gbb4,3/8,MF
+            //0. Gbb4,3/8,MF
+            //1. Gbb4
+            //2. Gbb
+            //3. 4
+            //4. 3/8
+            //5. 3
+            //6. 8
+            //7. MF
+            
+            Fraction duration = parseNoteString_getDuration(match, 5, 6, defaultDuration);
             Note newNote;
             
-            if (noteName == null) { // indicates the note is a rest...
+            if (match.group(1).toUpperCase(Locale.ENGLISH).startsWith("R")) { // indicates the note is a rest...
                 newNote = Note.createRest(duration);
             } else {                
-                int octave = parseNoteString_getOctave(noteString, match, 2);                
-                int volume = parseNoteString_getVolume(noteString, match, 5, defaultVolume);                
+                NoteName noteName = parseNoteString_getNoteName(match, 2);   
+                int octave = parseNoteString_getOctave(match, 3);                
+                int volume = parseNoteString_getVolume(match, 7, defaultVolume);                
                 
                 // adjust the octave for a note like Cb, Cbb, B# and Bx
                 octave += (noteName.getNoteNumber() - noteName.getNormalizedNoteNumber()) / Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE;
@@ -509,60 +524,49 @@ public class Note implements Cloneable {
             
             return newNote;
         } else {
-            throw new IncorrectNoteStringException(noteString);            
+            throw new NoteStringParseException(noteString);            
         }                
     }             
     
     /**
      * Gets the note name for the parseNoteString method.
-     * 
-     * @param noteString the noteString being parsed
+     *      
      * @param match the regex match object
      * @param matchGroupIndex the index for the captured group containing 
      *        noteName
-     * @return the NoteName, or null if the note should be a rest
-     * @throws com.myronmarston.music.NoteStringInvalidPartException
-     *         thrown if the noteString is missing a note name or 'R' for rest
+     * @return the NoteName, or null if the note should be a rest     
      */
-    static private NoteName parseNoteString_getNoteName(String noteString, Matcher match, int matchGroupIndex) throws NoteStringInvalidPartException {
+    static private NoteName parseNoteString_getNoteName(Matcher match, int matchGroupIndex) {
         assert match.matches() : match;
         String noteNameStr = match.group(matchGroupIndex);
-        
-        if (noteNameStr == null) throw new NoteStringInvalidPartException(noteString, NoteStringPart.NOTE_NAME);
+        assert noteNameStr != null;
+
         if (noteNameStr.toUpperCase(Locale.ENGLISH).contentEquals("R")) return null;
         
         NoteName noteName = NoteName.getNoteName(noteNameStr);
-        if (noteName == null) throw new NoteStringInvalidPartException(noteString, NoteStringPart.NOTE_NAME);
+        assert noteName != null;        
         return noteName;         
     }
     
     /**
      * Gets the octave for the parseNoteString method.
      * 
-     * @param noteString the noteString being parsed
      * @param match the regex match object
      * @param matchGroupIndex the index for the captured group containing the
      *        octave
      * @return the octave
-     * @throws com.myronmarston.music.NoteStringInvalidPartException 
-     *         thrown if the noteString does not contain an octave
      */
-    private static int parseNoteString_getOctave(String noteString, Matcher match, int matchGroupIndex) throws NoteStringInvalidPartException {
+    private static int parseNoteString_getOctave(Matcher match, int matchGroupIndex) {
         assert match.matches() : match;
         String octaveStr = match.group(matchGroupIndex);
-        if (octaveStr == null) throw new NoteStringInvalidPartException(noteString, NoteStringPart.OCTAVE);
-        
-        try {
-            return Integer.parseInt(octaveStr);
-        } catch (NumberFormatException ex) {
-            throw new NoteStringInvalidPartException(noteString, NoteStringPart.OCTAVE);
-        }        
+        assert octaveStr != null;
+                
+        return Integer.parseInt(octaveStr);        
     }
     
     /**
      * Gets the duration fraction for the parseNoteString method.
      * 
-     * @param noteString the noteString being parsed
      * @param match the regex match object
      * @param numeratorMatchGroupIndex the index for the captured group 
      *        containing the duration fraction numerator
@@ -571,27 +575,22 @@ public class Note implements Cloneable {
      * @param defaultDuration duration to use if the noteString does not have a
      *        duration
      * @return the duration fraction
-     * @throws com.myronmarston.music.NoteStringInvalidPartException
-     *         thrown if the noteString contains part of the duration fraction
-     *         but not all of it
      */
-    private static Fraction parseNoteString_getDuration(String noteString, Matcher match, int numeratorMatchGroupIndex, int denominatorMatchGroupIndex, Fraction defaultDuration) throws NoteStringInvalidPartException {        
+    private static Fraction parseNoteString_getDuration(Matcher match, int numeratorMatchGroupIndex, int denominatorMatchGroupIndex, Fraction defaultDuration) {        
         assert match.matches() : match;
         String durationNumStr = match.group(numeratorMatchGroupIndex);
         String durationDenStr = match.group(denominatorMatchGroupIndex);
+        
         if (durationNumStr == null && durationDenStr == null) {
             // This note doesn't have a duration; instead use the default duration
-            return defaultDuration;
-        } else if (durationNumStr == null || durationNumStr.isEmpty() || durationDenStr == null || durationDenStr.isEmpty()) {
-            // The note string contains part of a duration, but not a complete one.
-            throw new NoteStringInvalidPartException(noteString, NoteStringPart.RHYTHMIC_DURATION);
+            return defaultDuration;       
         } else {
+            assert durationNumStr != null;            
             int durationNum = Integer.parseInt(durationNumStr);
-            int durationDen = Integer.parseInt(durationDenStr);
-
-            if (durationDen == 0) {
-                throw new NoteStringInvalidPartException(noteString, NoteStringPart.RHYTHMIC_DURATION);
-            }
+            int durationDen = durationDenStr == null ? 1 : Integer.parseInt(durationDenStr);
+            assert durationDen != 0;
+            assert durationNum != 0;
+            
             return new Fraction(durationNum, durationDen);
         }
     }
@@ -606,16 +605,13 @@ public class Note implements Cloneable {
      *        dynamic
      * @return the volume
      */
-    private static int parseNoteString_getVolume(String noteString, Matcher match, int matchGroupIndex, int defaultVolume) throws NoteStringInvalidPartException {        
+    private static int parseNoteString_getVolume(Matcher match, int matchGroupIndex, int defaultVolume) {        
         String dynamicStr = match.group(matchGroupIndex);
+                
         if (dynamicStr == null || dynamicStr.isEmpty()) {
             return defaultVolume;
         } else {             
-            try {
-                return Dynamic.valueOf(dynamicStr.toUpperCase(Locale.ENGLISH)).getMidiVolume();
-            } catch (IllegalArgumentException ex) {
-                throw new NoteStringInvalidPartException(noteString, NoteStringPart.DYNAMIC);
-            }            
+            return Dynamic.valueOf(dynamicStr.toUpperCase(Locale.ENGLISH)).getMidiVolume();                        
         }
     }
             

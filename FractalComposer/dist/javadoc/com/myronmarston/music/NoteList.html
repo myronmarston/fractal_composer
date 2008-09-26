@@ -75,9 +75,9 @@ function windowTitle()
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_java.util.AbstractList">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_top"></A>
@@ -119,6 +119,22 @@ NoteList contains a sequence of notes.
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Field Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;java.util.regex.Pattern</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#REGEX_PATTERN">REGEX_PATTERN</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Regular expression pattern for matching and parsing note list strings.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteList.html#REGEX_STRING">REGEX_STRING</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Regular expression strng for matching and parsing note list strings.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="fields_inherited_from_class_java.util.AbstractList"><!-- --></A>
@@ -354,6 +370,41 @@ NoteList contains a sequence of notes.
 </TABLE>
 &nbsp;
 <P>
+
+<!-- ============ FIELD DETAIL =========== -->
+
+<A NAME="field_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Field Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="REGEX_STRING"><!-- --></A><H3>
+REGEX_STRING</H3>
+<PRE>
+public static final java.lang.String <B>REGEX_STRING</B></PRE>
+<DL>
+<DD>Regular expression strng for matching and parsing note list strings.
+ (?=.*?[A-G]) is a look ahead assertion to make sure there is at least 
+ one non-rest in the note list.
+<P>
+<DL>
+</DL>
+</DL>
+<HR>
+
+<A NAME="REGEX_PATTERN"><!-- --></A><H3>
+REGEX_PATTERN</H3>
+<PRE>
+public static final java.util.regex.Pattern <B>REGEX_PATTERN</B></PRE>
+<DL>
+<DD>Regular expression pattern for matching and parsing note list strings.
+<P>
+<DL>
+</DL>
+</DL>
 
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 
@@ -758,9 +809,9 @@ public <A HREF="../../../com/myronmarston/music/NoteList.html" title="class in c
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_java.util.AbstractList">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_bottom"></A>

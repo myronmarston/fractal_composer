@@ -24,7 +24,8 @@ package com.myronmarston.music;
  * 
  * @author Myron
  */
-public enum Dynamic {
+public enum Dynamic {    
+    // Be sure to update the regex below if you add or remove enum values.
     PPP(1),
     PP(2),
     P(3),
@@ -41,10 +42,11 @@ public enum Dynamic {
     
     /**
      * Regular expression pattern that can be used to parse a dynamic in a 
-     * note string.
+     * note string.  "FFF" must come before "FF and "F" so that the regex
+     * consumes as many characters as possible rather than stopping at the first match.
      */
-    public static String REGEX_PATTERN = "(?:,(.*))?";
-
+    public final static String REGEX_STRING = "PPP|FFF|PP|FF|MP|MF|P|F";
+    
     private Dynamic(int dynamicLevel) {
         this.dynamicLevel = dynamicLevel;
         this.midiVolume = (dynamicLevel * MIDI_VOLUME_PER_LEVEL) + ADDITIONAL_OFFSET;

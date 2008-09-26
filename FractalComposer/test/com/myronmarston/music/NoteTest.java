@@ -19,13 +19,12 @@
 
 package com.myronmarston.music;
 
-import com.myronmarston.music.NoteStringInvalidPartException.NoteStringPart;
 import com.myronmarston.music.scales.*;
 import com.myronmarston.music.settings.*;
 import com.myronmarston.util.Fraction;
 import com.myronmarston.music.notation.*;
-
 import com.myronmarston.music.settings.TimeSignature;
+
 import javax.sound.midi.InvalidMidiDataException;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -109,63 +108,42 @@ public class NoteTest {
         try {
             Note.parseNoteString("2342", s, null, null); //nonsense string beginning with a number
             fail("Exception was not thrown");
-        } catch (IncorrectNoteStringException ex) {}
+        } catch (NoteStringParseException ex) {}
         
         try {
             Note.parseNoteString("", s, null, null); //empty string
             fail("Exception was not thrown");
-        } catch (NoteStringInvalidPartException ex) {
-            assertEquals(ex.getNoteStringPart(), NoteStringPart.NOTE_NAME);
-        }
+        } catch (NoteStringParseException ex) {}
                 
         try {
             Note.parseNoteString("qadklfjalsdkf", s, null, null); //nonsense string beginning with a letter
             fail("Exception was not thrown");
-        } catch (NoteStringInvalidPartException ex) {
-            assertEquals(ex.getNoteStringPart(), NoteStringPart.NOTE_NAME);
-        } 
+        } catch (NoteStringParseException ex) {} 
         
         try {
             Note.parseNoteString("Hb4,1/4,MF", s, null, null);  //wrong note name
             fail("Exception was not thrown");
-        } catch (NoteStringInvalidPartException ex) {
-            assertEquals(ex.getNoteStringPart(), NoteStringPart.NOTE_NAME);
-        } 
+        } catch (NoteStringParseException ex) {} 
         
         try {
             Note.parseNoteString("GbT,1/4,P", s, null, null);  //T octave
             fail("Exception was not thrown");
-        } catch (NoteStringInvalidPartException ex) {
-            assertEquals(ex.getNoteStringPart(), NoteStringPart.OCTAVE);
-        }
+        } catch (NoteStringParseException ex) {}
         
         try {
             Note.parseNoteString("Gb,1/4,P", s, null, null);  //no octave
             fail("Exception was not thrown");
-        } catch (NoteStringInvalidPartException ex) {
-            assertEquals(ex.getNoteStringPart(), NoteStringPart.OCTAVE);
-        }
+        } catch (NoteStringParseException ex) {}
          
-        try {
-            Note.parseNoteString("Gb4,1,P", s, null, null);  // invalid duration
-            fail("Exception was not thrown");
-        } catch (NoteStringInvalidPartException ex) {
-            assertEquals(ex.getNoteStringPart(), NoteStringPart.RHYTHMIC_DURATION);
-        } 
-        
         try {
             Note.parseNoteString("Gb4,1/0,P", s, null, null);  //0 duration denominator
             fail("Exception was not thrown");
-        } catch (NoteStringInvalidPartException ex) {
-            assertEquals(ex.getNoteStringPart(), NoteStringPart.RHYTHMIC_DURATION);
-        }   
+        } catch (NoteStringParseException ex) {}   
         
         try {
             Note.parseNoteString("Gb4,1/4,MPF", s, null, null);  //wrong dynamic
             fail("Exception was not thrown");
-        } catch (NoteStringInvalidPartException ex) {
-            assertEquals(ex.getNoteStringPart(), NoteStringPart.DYNAMIC);
-        }                              
+        } catch (NoteStringParseException ex) {}                              
         
         Note.parseNoteString("Gb4,MF", s, null, null); // valid note string!
     }
@@ -356,6 +334,48 @@ public class NoteTest {
         expected.setScaleStep(3);
         expected.setLetterNumber(3);        
         assertEquals(expected, n);                 
+    }
+    
+    @Test
+    public void regexMatchesValidNotes() {
+        String[] validNotes = new String[] {
+            "A4",
+            "Gb4,1/4",
+            "d#4,MF",
+            "c2,3/7,PPP",
+            "R",
+            "R,3/2",
+            "C4,1"
+        };
+        
+        for (String validNote : validNotes) {
+            assertTrue("The note " + validNote + " did not match the regex as expected.", Note.REGEX_PATTERN.matcher(validNote).matches());
+        }
+    }
+    
+    @Test
+    public void regexDoesNotMatcheInValidNotes() {
+        String[] inValidNotes = new String[] {
+            "H4",
+            "C##4",
+            "Hbbb3",
+            "Gb4, 1/4",
+            "d#4,MF,1/4",
+            "c.2,3/7,PPP",
+            "c2,3\\7,PPP",
+            "R4",
+            "R,MF",
+            "R,3/2,MF",
+            "G4,MF,MF",
+            "G3,1/4,1/4",
+            "G4,0/4",
+            "G2,1/0",
+            "G2,0/0"
+        };
+        
+        for (String invalidNote : inValidNotes) {
+            assertFalse("The note " + invalidNote + " did match the regex, and should not have.", Note.REGEX_PATTERN.matcher(invalidNote).matches());
+        }
     }
     
     public static void assertNotesEqual(Note expected, Note actual, boolean allowDifferentVoiceSectionReferences) {                        
