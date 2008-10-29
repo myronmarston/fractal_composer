@@ -19,7 +19,6 @@
 
 package com.myronmarston.music.notation;
 
-import com.myronmarston.music.notation.SheetMusicCreator;
 import com.myronmarston.music.scales.KeySignature;
 import com.myronmarston.music.settings.TimeSignature;
 import com.myronmarston.music.settings.InvalidTimeSignatureException;
@@ -42,7 +41,7 @@ public class Piece {
     private final NotationElementList parts = new NotationElementList();
     private final boolean includeTempo;
     private final boolean includeInstruments;
-  
+        
     /**
      * Constructor.
      * 
@@ -170,11 +169,12 @@ public class Piece {
      * @return the lilypond string
      */
     public String toLilypondString(String title, String composer, int width) {
+        title = escapeLilypondString(title);
+        composer = escapeLilypondString(composer);
         this.scaleDurationsIfNecessary();        
         this.getParts().setElementSeperator(FileHelper.NEW_LINE);
-        
+                
         StringBuilder str = new StringBuilder();
-        str.append("\\version \"2.11.47\"" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);
         str.append("\\include \"english.ly\"" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);
         str.append("#(ly:set-option 'point-and-click #f)" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);
         str.append(getLilypondPaperSection(width));
@@ -259,6 +259,12 @@ public class Piece {
         }
         
         assert this.getParts().getLargestDurationDenominator() <= Fraction.MAX_ALLOWED_DURATION_DENOM : this.getParts().getLargestDurationDenominator();
+    }
+    
+    private static String escapeLilypondString(String input) {
+        if (input == null) return input;
+        // 4 \'s = 1 \ in the regex. see http://www.regular-expressions.info/java.html
+        return input.replaceAll("\"", "\\\\\"");        
     }
         
 }

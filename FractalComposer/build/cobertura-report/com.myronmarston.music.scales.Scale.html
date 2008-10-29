@@ -235,7 +235,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;120</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> NoteName getKeyName() {        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;121</td>  <td class="nbHitsCovered">&nbsp;26383</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> keySignature.getKeyName();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;121</td>  <td class="nbHitsCovered">&nbsp;26397</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> keySignature.getKeyName();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;122</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;123</td>  <td class="nbHits">&nbsp;</td>
@@ -252,7 +252,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;129</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> KeySignature getKeySignature() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;130</td>  <td class="nbHitsCovered">&nbsp;1604</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> keySignature;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;130</td>  <td class="nbHitsCovered">&nbsp;1607</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> keySignature;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;131</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }         </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;132</td>  <td class="nbHits">&nbsp;</td>
@@ -303,19 +303,19 @@
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">static</span> <span class="keyword">public</span> <span class="keyword">int</span> getNormalizedChromaticAdjustment(<span class="keyword">int</span> chromaticAdjustment) {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;155</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">// put it in the range -6..6 if it is outside of that...</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;156</td>  <td class="nbHitsCovered"><a title="Line 156: Conditional coverage 100% (2/2).">&nbsp;8549</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 156: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (chromaticAdjustment &gt; (Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE / 2)) {            </a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;156</td>  <td class="nbHitsCovered"><a title="Line 156: Conditional coverage 100% (2/2).">&nbsp;8556</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 156: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (chromaticAdjustment &gt; (Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE / 2)) {            </a></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;157</td>  <td class="nbHitsCovered">&nbsp;126</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> chromaticAdjustment - Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;158</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;159</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;160</td>  <td class="nbHitsCovered"><a title="Line 160: Conditional coverage 100% (2/2).">&nbsp;8423</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 160: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (chromaticAdjustment &lt; -(Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE / 2)) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;160</td>  <td class="nbHitsCovered"><a title="Line 160: Conditional coverage 100% (2/2).">&nbsp;8430</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 160: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (chromaticAdjustment &lt; -(Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE / 2)) {</a></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;161</td>  <td class="nbHitsCovered">&nbsp;251</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> chromaticAdjustment + Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;162</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;163</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;164</td>  <td class="nbHitsCovered">&nbsp;8172</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> chromaticAdjustment;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;164</td>  <td class="nbHitsCovered">&nbsp;8179</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> chromaticAdjustment;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;165</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;166</td>  <td class="nbHits">&nbsp;</td>
@@ -439,16 +439,16 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;234</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> <span class="keyword">void</span> setNotePitchValues_Helper(Note note, NoteName noteNameForPitch, <span class="keyword">int</span> scaleStepIndex) {        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;235</td>  <td class="nbHitsCovered">&nbsp;5386</td>  <td class="src"><pre class="src">&nbsp;        note.setScaleStep(scaleStepIndex);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;235</td>  <td class="nbHitsCovered">&nbsp;5390</td>  <td class="src"><pre class="src">&nbsp;        note.setScaleStep(scaleStepIndex);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;236</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;237</td>  <td class="nbHitsCovered">&nbsp;5386</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> givenNoteHalfStepAboveTonic = <span class="keyword">this</span>.getKeyName().getPositiveChromaticSteps(noteNameForPitch);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;238</td>  <td class="nbHitsCovered">&nbsp;5386</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> diatonicNoteHalfStepsAboveTonic = <span class="keyword">this</span>.getScaleStepArray()[scaleStepIndex];</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;239</td>  <td class="nbHitsCovered">&nbsp;5386</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> chromaticAdjustment = getNormalizedChromaticAdjustment(givenNoteHalfStepAboveTonic - diatonicNoteHalfStepsAboveTonic);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;237</td>  <td class="nbHitsCovered">&nbsp;5390</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> givenNoteHalfStepAboveTonic = <span class="keyword">this</span>.getKeyName().getPositiveChromaticSteps(noteNameForPitch);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;238</td>  <td class="nbHitsCovered">&nbsp;5390</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> diatonicNoteHalfStepsAboveTonic = <span class="keyword">this</span>.getScaleStepArray()[scaleStepIndex];</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;239</td>  <td class="nbHitsCovered">&nbsp;5390</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> chromaticAdjustment = getNormalizedChromaticAdjustment(givenNoteHalfStepAboveTonic - diatonicNoteHalfStepsAboveTonic);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;240</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;241</td>  <td class="nbHitsCovered">&nbsp;5386</td>  <td class="src"><pre class="src">&nbsp;        note.setChromaticAdjustment(chromaticAdjustment);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;242</td>  <td class="nbHitsCovered">&nbsp;5386</td>  <td class="src"><pre class="src">&nbsp;    }        </pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;241</td>  <td class="nbHitsCovered">&nbsp;5390</td>  <td class="src"><pre class="src">&nbsp;        note.setChromaticAdjustment(chromaticAdjustment);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;242</td>  <td class="nbHitsCovered">&nbsp;5390</td>  <td class="src"><pre class="src">&nbsp;    }        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;243</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;244</td>  <td class="nbHits">&nbsp;</td>
@@ -580,6 +580,6 @@
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 9/25/08 9:13 PM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9 on 10/28/08 8:48 PM.</div>
 </body>
 </html>

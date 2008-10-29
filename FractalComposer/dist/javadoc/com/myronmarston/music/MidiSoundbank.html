@@ -4,7 +4,7 @@
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <TITLE>
-AudioFileCreator
+MidiSoundbank
 </TITLE>
 
 
@@ -14,7 +14,7 @@ AudioFileCreator
 function windowTitle()
 {
     if (location.href.indexOf('is-external=true') == -1) {
-        parent.document.title="AudioFileCreator";
+        parent.document.title="MidiSoundbank";
     }
 }
 </SCRIPT>
@@ -39,7 +39,7 @@ function windowTitle()
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/AudioFileCreator.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/MidiSoundbank.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -54,11 +54,11 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;PREV CLASS&nbsp;
-&nbsp;<A HREF="../../../com/myronmarston/music/Dynamic.html" title="enum in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../index.html?com/myronmarston/music/AudioFileCreator.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="AudioFileCreator.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?com/myronmarston/music/MidiSoundbank.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="MidiSoundbank.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -75,9 +75,9 @@ function windowTitle()
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_top"></A>
@@ -89,19 +89,19 @@ DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&n
 <FONT SIZE="-1">
 com.myronmarston.music</FONT>
 <BR>
-Class AudioFileCreator</H2>
+Class MidiSoundbank</H2>
 <PRE>
 java.lang.Object
-  <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.AudioFileCreator</B>
+  <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.MidiSoundbank</B>
 </PRE>
 <HR>
 <DL>
-<DT><PRE>public class <B>AudioFileCreator</B><DT>extends java.lang.Object</DL>
+<DT><PRE>public class <B>MidiSoundbank</B><DT>extends java.lang.Object</DL>
 </PRE>
 
 <P>
-This class is used to create audio files, such as WAV files and mp3's.  It
- uses the Gervill, Tritonus and LAME open source projects.
+Wrapper around the java midi soundbank interface.  Lets you set the midi 
+ soundbank that will be used to generate the audio files.
 <P>
 
 <P>
@@ -109,22 +109,6 @@ This class is used to create audio files, such as WAV files and mp3's.  It
 
 <P>
 
-<!-- ======== CONSTRUCTOR SUMMARY ======== -->
-
-<A NAME="constructor_summary"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
-<B>Constructor Summary</B></FONT></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/AudioFileCreator.html#AudioFileCreator(com.myronmarston.music.OutputManager)">AudioFileCreator</A></B>(<A HREF="../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music">OutputManager</A>&nbsp;outputManager)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
-</TR>
-</TABLE>
-&nbsp;
 <!-- ========== METHOD SUMMARY =========== -->
 
 <A NAME="method_summary"><!-- --></A>
@@ -135,27 +119,35 @@ This class is used to create audio files, such as WAV files and mp3's.  It
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected static&nbsp;com.sun.media.sound.AudioSynthesizer</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/AudioFileCreator.html#getAudioSynthesizer()">getAudioSynthesizer</A></B>()</CODE>
+<CODE>static&nbsp;<A HREF="../../../com/myronmarston/music/MidiSoundbank.html" title="class in com.myronmarston.music">MidiSoundbank</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/MidiSoundbank.html#getCurrent()">getCurrent</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the audio synthesizer.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the current midi soundbank.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/AudioFileCreator.html#saveMp3File(java.lang.String)">saveMp3File</A></B>(java.lang.String&nbsp;mp3FileName)</CODE>
+<CODE>&nbsp;javax.sound.midi.Soundbank</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/MidiSoundbank.html#getSoundbank()">getSoundbank</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saves the music as a mp3 file.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the java soundbank instance for this soundbank.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/AudioFileCreator.html#saveWavFile(java.lang.String)">saveWavFile</A></B>(java.lang.String&nbsp;wavFileName)</CODE>
+<CODE>static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/MidiSoundbank.html#load(java.io.File)">load</A></B>(java.io.File&nbsp;soundbankFile)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the output to a wav file and saves it to disk.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lots a midi sound bank from the given soundbank file.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/MidiSoundbank.html#toString()">toString</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -164,33 +156,11 @@ This class is used to create audio files, such as WAV files and mp3's.  It
 <TH ALIGN="left"><B>Methods inherited from class java.lang.Object</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</CODE></TD>
+<TD><CODE>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;
 <P>
-
-<!-- ========= CONSTRUCTOR DETAIL ======== -->
-
-<A NAME="constructor_detail"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
-<B>Constructor Detail</B></FONT></TH>
-</TR>
-</TABLE>
-
-<A NAME="AudioFileCreator(com.myronmarston.music.OutputManager)"><!-- --></A><H3>
-AudioFileCreator</H3>
-<PRE>
-public <B>AudioFileCreator</B>(<A HREF="../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music">OutputManager</A>&nbsp;outputManager)</PRE>
-<DL>
-<DD>Constructor.
-<P>
-<DL>
-<DT><B>Parameters:</B><DD><CODE>outputManager</CODE> - the output manager containing the midi sequence
- to convert to a wav or mp3 file.</DL>
-</DL>
 
 <!-- ============ METHOD DETAIL ========== -->
 
@@ -202,55 +172,57 @@ public <B>AudioFileCreator</B>(<A HREF="../../../com/myronmarston/music/OutputMa
 </TR>
 </TABLE>
 
-<A NAME="saveWavFile(java.lang.String)"><!-- --></A><H3>
-saveWavFile</H3>
+<A NAME="load(java.io.File)"><!-- --></A><H3>
+load</H3>
 <PRE>
-protected void <B>saveWavFile</B>(java.lang.String&nbsp;wavFileName)
-                    throws javax.sound.midi.MidiUnavailableException,
-                           java.io.IOException</PRE>
+public static void <B>load</B>(java.io.File&nbsp;soundbankFile)</PRE>
 <DL>
-<DD>Converts the output to a wav file and saves it to disk.
+<DD>Lots a midi sound bank from the given soundbank file.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>wavFileName</CODE> - the file name to save to
-<DT><B>Throws:</B>
-<DD><CODE>javax.sound.midi.MidiUnavailableException</CODE> - if there is a midi 
-         error
-<DD><CODE>java.io.IOException</CODE> - if there is an I/O error</DL>
+<DT><B>Parameters:</B><DD><CODE>soundbankFile</CODE> - the sound bank file</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="saveMp3File(java.lang.String)"><!-- --></A><H3>
-saveMp3File</H3>
+<A NAME="getCurrent()"><!-- --></A><H3>
+getCurrent</H3>
 <PRE>
-protected void <B>saveMp3File</B>(java.lang.String&nbsp;mp3FileName)
-                    throws java.lang.Exception</PRE>
+public static <A HREF="../../../com/myronmarston/music/MidiSoundbank.html" title="class in com.myronmarston.music">MidiSoundbank</A> <B>getCurrent</B>()</PRE>
 <DL>
-<DD>Saves the music as a mp3 file.
+<DD>Gets the current midi soundbank.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>mp3FileName</CODE> - the file name to save to
-<DT><B>Throws:</B>
-<DD><CODE>java.lang.Exception</CODE> - if there is an error</DL>
+
+<DT><B>Returns:</B><DD>the current soundbank.</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="getAudioSynthesizer()"><!-- --></A><H3>
-getAudioSynthesizer</H3>
+<A NAME="getSoundbank()"><!-- --></A><H3>
+getSoundbank</H3>
 <PRE>
-protected static com.sun.media.sound.AudioSynthesizer <B>getAudioSynthesizer</B>()
-                                                                   throws javax.sound.midi.MidiUnavailableException</PRE>
+public javax.sound.midi.Soundbank <B>getSoundbank</B>()</PRE>
 <DL>
-<DD>Gets the audio synthesizer.
+<DD>Gets the java soundbank instance for this soundbank.
 <P>
 <DD><DL>
 
-<DT><B>Returns:</B><DD>the audio synthesizer
-<DT><B>Throws:</B>
-<DD><CODE>javax.sound.midi.MidiUnavailableException</CODE> - if the audio 
-         synthesizer cannot be found</DL>
+<DT><B>Returns:</B><DD>the java soundbank</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="toString()"><!-- --></A><H3>
+toString</H3>
+<PRE>
+public java.lang.String <B>toString</B>()</PRE>
+<DL>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>toString</CODE> in class <CODE>java.lang.Object</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
@@ -269,7 +241,7 @@ protected static com.sun.media.sound.AudioSynthesizer <B>getAudioSynthesizer</B>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/AudioFileCreator.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/MidiSoundbank.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -284,11 +256,11 @@ protected static com.sun.media.sound.AudioSynthesizer <B>getAudioSynthesizer</B>
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;PREV CLASS&nbsp;
-&nbsp;<A HREF="../../../com/myronmarston/music/Dynamic.html" title="enum in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../com/myronmarston/music/MidiNote.html" title="class in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/music/Note.html" title="class in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../index.html?com/myronmarston/music/AudioFileCreator.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="AudioFileCreator.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?com/myronmarston/music/MidiSoundbank.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="MidiSoundbank.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -305,9 +277,9 @@ protected static com.sun.media.sound.AudioSynthesizer <B>getAudioSynthesizer</B>
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_bottom"></A>

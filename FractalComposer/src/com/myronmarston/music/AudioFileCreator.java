@@ -21,9 +21,8 @@ package com.myronmarston.music;
 
 import com.myronmarston.util.FileHelper;
 
-import com.sun.media.sound.AudioSynthesizer;
+import com.sun.media.sound.*;
 import java.io.*;
-import java.lang.reflect.UndeclaredThrowableException;
 import javax.sound.midi.*;
 import javax.sound.sampled.*;
 import org.tritonus.share.sampled.*;
@@ -39,26 +38,7 @@ public class AudioFileCreator {
     private static final AudioFormat.Encoding MPEG1L3 = Encodings.getEncoding("MPEG1L3");
     private static final AudioFileFormat.Type MP3 = AudioFileTypes.getType("MP3", "mp3");
     private static final double MICROSECONDS_PER_SECOND = 1000000.0;
-    
-    /**
-     * The Midi sound bank used to generate the audio files.
-     */
-    public static final Soundbank SOUNDBANK;    
-    
-    static {        
-        Synthesizer synth = null;
-        try {
-            try {
-                synth = AudioFileCreator.getAudioSynthesizer();
-            } catch (MidiUnavailableException ex) {
-                throw new UndeclaredThrowableException(ex, "An error occured while getting the Midi synthesizer.");
-            }
-            SOUNDBANK = synth.getDefaultSoundbank();
-        } finally {
-            if (synth != null) synth.close();
-        }                                               
-    }
-
+        
     /**
      * Constructor.
      * 
@@ -68,7 +48,7 @@ public class AudioFileCreator {
     public AudioFileCreator(OutputManager outputManager) {
         this.outputManager = outputManager;
     }
-    
+                   
     /**
      * Converts the output to a wav file and saves it to disk.
      * 
@@ -83,6 +63,7 @@ public class AudioFileCreator {
         AudioInputStream stream2 = null;        
         try {
             synth = AudioFileCreator.getAudioSynthesizer();
+            synth.loadAllInstruments(MidiSoundbank.getCurrent().getSoundbank());
             
             // Open AudioStream from AudioSynthesizer with default values
             stream1 = synth.openStream(null, null);            
@@ -178,7 +159,7 @@ public class AudioFileCreator {
      * @throws javax.sound.midi.MidiUnavailableException if the audio 
      *         synthesizer cannot be found
      */
-    private static AudioSynthesizer getAudioSynthesizer() throws MidiUnavailableException {
+    protected static AudioSynthesizer getAudioSynthesizer() throws MidiUnavailableException {
         // First check if default synthesizer is AudioSynthesizer.
         Synthesizer synth = MidiSystem.getSynthesizer();
         if (synth instanceof AudioSynthesizer) return (AudioSynthesizer) synth;

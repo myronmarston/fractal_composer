@@ -224,6 +224,25 @@ public class OutputManagerTest {
         });
     }    
     
+    @Test
+    public void saveLilypondResults_withQuoteInTitle() throws Exception {
+        FileHelper.createAndUseTempFile("TestLilypond", "", new FileHelper.TempFileUser() {
+            public void useTempFile(String tempFileName) throws Exception {                
+                String title = "Title \" with quotes  ' ; :.";
+                String composer = "Composer with \" quotes ' :<> (^$";
+                
+                OutputManagerTest.this.outputManager.savePdfFile(tempFileName + ".pdf", title, composer);
+                File file = new File(tempFileName + ".pdf");
+                assertTrue(file.exists());
+                
+                OutputManagerTest.this.outputManager.savePngFile(tempFileName + ".png", "Title \" with quotes  ' ; :.", "Composer with \" quotes ' :<> (^$", 500);
+                file = new File(tempFileName + ".png");
+                BufferedImage image = ImageIO.read(file);
+                assertNotNull(image.getData());                
+            }
+        });
+    }
+    
     @Test(expected=GermIsEmptyException.class)
     public void errorIfGermIsEmpty() throws Exception {
         FractalPiece fp = new FractalPiece();        

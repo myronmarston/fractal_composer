@@ -40,7 +40,6 @@ public class PieceTest {
         Part part = PartTest.createTestPart(expectedLilypondPartString, null, true, true);
         
         StringBuilder expectedPieceString = new StringBuilder();
-        expectedPieceString.append("\\version \"2.11.47\"" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);
         expectedPieceString.append("\\include \"english.ly\"" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);
         expectedPieceString.append("#(ly:set-option 'point-and-click #f)" + FileHelper.NEW_LINE + FileHelper.NEW_LINE);
         expectedPieceString.append("\\paper{" + FileHelper.NEW_LINE);

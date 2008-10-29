@@ -59,7 +59,7 @@ public class Instrument extends AbstractNotationElement {
         List<String> list = new ArrayList<String>();
         String trimmedName;
            
-        for (javax.sound.midi.Instrument i : AudioFileCreator.SOUNDBANK.getInstruments()) {
+        for (javax.sound.midi.Instrument i : MidiSoundbank.getCurrent().getSoundbank().getInstruments()) {
             // there are several hundred instruments, but we only care about the
             // "regular" ones like piano, violin, cello, etc.
             if (i.getPatch().getBank() == REGULAR_INSTRUMENT_BANK) { 
@@ -74,11 +74,21 @@ public class Instrument extends AbstractNotationElement {
         AVAILABLE_INSTRUMENTS = Collections.unmodifiableList(list);
         
         Instrument temp = null;
-        // try to get a piano as the default instrument...
+        // try to get an instrument starting with Piano as the default instrument...
         for (String instrumentName : AVAILABLE_INSTRUMENTS) {
-            if (instrumentName.startsWith("Piano")) {
+            if (instrumentName.toLowerCase(Locale.ENGLISH).startsWith("piano")) {
                 temp = getInstrument(instrumentName);
                 break;
+            }
+        }
+        
+        if (temp == null) {
+            // try any instrument with piano in it, such as "Electric Piano"
+            for (String instrumentName : AVAILABLE_INSTRUMENTS) {
+                if (instrumentName.toLowerCase(Locale.ENGLISH).contains("piano")) {
+                    temp = getInstrument(instrumentName);
+                    break;
+                }
             }
         }
         
@@ -134,6 +144,11 @@ public class Instrument extends AbstractNotationElement {
     public String toLilypondString() {        
         return "\\set Staff.instrumentName = \"" + this.getName() + "\"" + FileHelper.NEW_LINE;
     }        
+    
+    @Override
+    public String toString() {
+        return "FractalComposer Instrument: " + this.getName() + "(bank " + this.getMidiInstrument().getPatch().getBank() + ", program " + this.getMidiInstrument().getPatch().getProgram() + ")";
+    }
     
     /**
      * Creates a midi program change event on the given channel using this 
