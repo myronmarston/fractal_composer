@@ -292,6 +292,19 @@ public class NoteTest {
     }  
     
     @Test
+    public void octaveOutOfRangeProducesValidMidiNote() throws Exception {
+        Note n = new Note(0, 0, -6, 0, new Fraction(1, 4), MidiNote.DEFAULT_VELOCITY, new MajorScale(NoteName.Cs), 1);
+        MidiNote mn = n.convertToMidiNote(new Fraction(1, 1), 480, 1, true);
+        assertTrue(mn.getPitch() >= MidiNote.MIN_PITCH_NUM);
+        assertTrue(mn.getPitch() <= MidiNote.MAX_PITCH_NUM);
+        
+        n = new Note(0, 0, 963, 0, new Fraction(1, 4), MidiNote.DEFAULT_VELOCITY, new MajorScale(NoteName.Cs), 1);
+        mn = n.convertToMidiNote(new Fraction(1, 1), 480, 1, true);
+        assertTrue(mn.getPitch() >= MidiNote.MIN_PITCH_NUM);
+        assertTrue(mn.getPitch() <= MidiNote.MAX_PITCH_NUM);        
+    }
+    
+    @Test
     public void performTransformerAdjustment() throws Exception {
         Scale scale = new MajorPentatonicScale(NoteName.G);        
         Note n = new Note(2, 2, 4, 0, new Fraction(1, 4), MidiNote.DEFAULT_VELOCITY, scale, 0);

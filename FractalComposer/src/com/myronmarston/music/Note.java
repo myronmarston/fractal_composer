@@ -240,7 +240,7 @@ public class Note implements Cloneable {
      * @throws UnsupportedOperationException if the note is a rest
      */
     public void setOctave(int octave) throws UnsupportedOperationException {
-        throwUnsupportedOperationExceptionIfRest("octave", octave);
+        throwUnsupportedOperationExceptionIfRest("octave", octave);        
         this.octave = octave;        
     }
 
@@ -706,10 +706,16 @@ public class Note implements Cloneable {
             chromaticAdj -= chromaticAdjDecrementer;
         }
         
-        return scaleSteps[normalizedNote.getScaleStep()]       // half steps above tonic
+        int pitchNum = scaleSteps[normalizedNote.getScaleStep()]       // half steps above tonic
                 + chromaticAdj                                 // the note's chromatic adjustment
                 + this.getSegmentChromaticAdjustment() // chromatic adjustment for the segment
                 + this.getScale().getKeyName().getMidiPitchNumberAtOctave(normalizedNote.getOctave()); // take into account the octave
+                
+        // if the pitch number is outside of the allowed midi range, transpose it by some number of octaves
+        // until it is valid...
+        while (pitchNum < MidiNote.MIN_PITCH_NUM) pitchNum += Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE;
+        while (pitchNum > MidiNote.MAX_PITCH_NUM) pitchNum -= Scale.NUM_CHROMATIC_PITCHES_PER_OCTAVE;
+        return pitchNum;
     }
     
     /**

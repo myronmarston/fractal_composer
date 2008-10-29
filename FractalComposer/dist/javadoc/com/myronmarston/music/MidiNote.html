@@ -144,6 +144,14 @@ This class is responsible to create the Midi events for a note.  You should
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/MidiNote.html#MAX_PITCH_NUM">MAX_PITCH_NUM</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The maximum allowed pitch number, 127.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/myronmarston/music/MidiNote.html#MAX_VELOCITY">MAX_VELOCITY</A></B></CODE>
 
 <BR>
@@ -165,6 +173,14 @@ This class is responsible to create the Midi events for a note.  You should
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The minimum chanel value.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/music/MidiNote.html#MIN_PITCH_NUM">MIN_PITCH_NUM</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The minimum allowed pitch number, 0.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -426,6 +442,30 @@ public static final int <B>MIN_VELOCITY</B></PRE>
 </DL>
 <HR>
 
+<A NAME="MAX_PITCH_NUM"><!-- --></A><H3>
+MAX_PITCH_NUM</H3>
+<PRE>
+public static final int <B>MAX_PITCH_NUM</B></PRE>
+<DL>
+<DD>The maximum allowed pitch number, 127.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../constant-values.html#com.myronmarston.music.MidiNote.MAX_PITCH_NUM">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="MIN_PITCH_NUM"><!-- --></A><H3>
+MIN_PITCH_NUM</H3>
+<PRE>
+public static final int <B>MIN_PITCH_NUM</B></PRE>
+<DL>
+<DD>The minimum allowed pitch number, 0.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../constant-values.html#com.myronmarston.music.MidiNote.MIN_PITCH_NUM">Constant Field Values</A></DL>
+</DL>
+<HR>
+
 <A NAME="MIDI_SEQUENCE_START_SILENCE_TICK_OFFSET"><!-- --></A><H3>
 MIDI_SEQUENCE_START_SILENCE_TICK_OFFSET</H3>
 <PRE>
@@ -531,12 +571,16 @@ public int <B>getPitch</B>()</PRE>
 <A NAME="setPitch(int)"><!-- --></A><H3>
 setPitch</H3>
 <PRE>
-public void <B>setPitch</B>(int&nbsp;pitch)</PRE>
+public void <B>setPitch</B>(int&nbsp;pitch)
+              throws java.lang.IllegalArgumentException</PRE>
 <DL>
 <DD>Sets the note's pitch, in half-step increments.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>pitch</CODE> - the pitch to use, in half-step increments; 60 = middle C</DL>
+<DT><B>Parameters:</B><DD><CODE>pitch</CODE> - the pitch to use, in half-step increments; 60 = middle C
+<DT><B>Throws:</B>
+<DD><CODE>java.lang.IllegalArgumentException</CODE> - if the pitch is outside of the 
+         allowed midi range (0-127)</DL>
 </DD>
 </DL>
 <HR>

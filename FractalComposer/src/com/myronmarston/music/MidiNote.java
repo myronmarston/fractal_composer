@@ -70,6 +70,16 @@ public class MidiNote {
     public static final int MIN_VELOCITY = 0;
     
     /**
+     * The maximum allowed pitch number, 127.
+     */
+    public static final int MAX_PITCH_NUM = 127;
+    
+    /**
+     * The minimum allowed pitch number, 0.
+     */
+    public static final int MIN_PITCH_NUM = 0;
+    
+    /**
      * An offset that provides a brief moment of silence at the start of a midi 
      * sequence.  Without this, sometimes there is a loud annoying sound at 
      * the start of playback.
@@ -138,8 +148,11 @@ public class MidiNote {
      * Sets the note's pitch, in half-step increments.
      * 
      * @param pitch the pitch to use, in half-step increments; 60 = middle C
+     * @throws IllegalArgumentException if the pitch is outside of the 
+     *         allowed midi range (0-127)
      */
-    public void setPitch(int pitch) {
+    public void setPitch(int pitch) throws IllegalArgumentException {
+        if (pitch < MIN_PITCH_NUM || pitch > MAX_PITCH_NUM) throw new IllegalArgumentException(String.format("The pitch (%d) should be between %d and %d.", pitch, MIN_PITCH_NUM, MAX_PITCH_NUM));
         if (this.pitch != pitch) clearNoteEvents();
         this.pitch = pitch;        
     }
