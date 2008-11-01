@@ -194,6 +194,20 @@ public class NoteListTest {
     }
     
     @Test
+    public void testReverseOfLongNoteList() throws Exception {
+        // at one point, a note list of 18 or more notes would blow up when we reversed it
+        // because I hdan't properly implemented the concurrent modification stuff using modCount,
+        // so this is a test for that...
+        NoteList nl = new NoteList();
+        
+        for (int i = 0; i < 18; i++) {
+            nl.add(new Note(0, 0, 4, 0, new Fraction(1, 1), 96, Scale.DEFAULT, 0));
+        }
+        
+        java.util.Collections.reverse(nl);            
+    }
+    
+    @Test
     public void regexMatchesValidStrings() {
         String[] validStrings = new String[] {
             "Ab4",

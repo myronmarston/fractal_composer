@@ -45,6 +45,7 @@ public class OutputManager {
     private SheetMusicCreator sheetMusicCreator;
     private AudioFileCreator audioFileCreator;
     private boolean testNotationError = false;
+    private boolean generateKeySignaturesForSections;
     private String lastMidiFileName;
     private String lastGuidoFileName;
     private String lastWavFileName;
@@ -151,7 +152,7 @@ public class OutputManager {
      * @throws com.myronmarston.music.GermIsEmptyException if the germ is empty
      */
     public OutputManager(FractalPiece fractalPiece, List<NoteList> noteLists) throws GermIsEmptyException {
-        this(fractalPiece, noteLists, true, true);
+        this(fractalPiece, noteLists, true, true, true);
     }
 
     /**
@@ -164,14 +165,17 @@ public class OutputManager {
      *        on the produced sheet music
      * @param includeInstrumentOnSheetMusic whether or not to include 
      *        instrument markings on the produced sheet music
+     * @param generateKeySignaturesForSections whether or not to generate seperate
+     *        key signatures for each section
      * @throws com.myronmarston.music.GermIsEmptyException if the germ is empty
      */
-    public OutputManager(FractalPiece fractalPiece, List<NoteList> noteLists, boolean includeTempoOnSheetMusic, boolean includeInstrumentOnSheetMusic) throws GermIsEmptyException {
+    public OutputManager(FractalPiece fractalPiece, List<NoteList> noteLists, boolean includeTempoOnSheetMusic, boolean includeInstrumentOnSheetMusic, boolean generateKeySignaturesForSections) throws GermIsEmptyException {
         this.fractalPiece = fractalPiece;
         this.timeSignatureFraction = this.fractalPiece.getTimeSignature().toFraction();
         this.noteLists = noteLists;
         this.tempo = this.fractalPiece.getTempo();        
         this.pieceNotation = new Piece(this.fractalPiece.getScale().getKeySignature(), this.fractalPiece.getTimeSignature(), this.tempo, includeTempoOnSheetMusic, includeInstrumentOnSheetMusic);
+        this.generateKeySignaturesForSections = generateKeySignaturesForSections;
         constructMidiSequence();
     }   
     
@@ -216,6 +220,8 @@ public class OutputManager {
      * @param sequenceResolution the midi sequence resolution
      */
     private void addSectionKeySigEventsToTrack(Track track, int sequenceResolution) {
+        if (!generateKeySignaturesForSections) return;
+        
         Fraction durationSoFar = new Fraction(0, 1);
         KeySignature lastKeySignature = this.fractalPiece.getScale().getKeySignature();
         KeySignature sectionKeySignature;

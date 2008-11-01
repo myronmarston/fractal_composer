@@ -62,7 +62,7 @@ public class OutputManagerTest {
                            
         testGuidoNotation(outputManager, fullGuidoString);
                        
-        OutputManager om = new OutputManager(this.outputManager.getFractalPiece(), this.outputManager.getNoteLists(), false, false);        
+        OutputManager om = new OutputManager(this.outputManager.getFractalPiece(), this.outputManager.getNoteLists(), false, false, false);        
         testGuidoNotation(om, noInstrOrTempoGuidoString);        
     }
     
@@ -81,7 +81,7 @@ public class OutputManagerTest {
     
     @Test
     public void testGuidoError() throws Exception {
-           final OutputManager om = new OutputManager(this.outputManager.getFractalPiece(), this.outputManager.getNoteLists(), false, false);        
+           final OutputManager om = new OutputManager(this.outputManager.getFractalPiece(), this.outputManager.getNoteLists(), false, false, false);        
            om.setTestNotationError(true);
            FileHelper.createAndUseTempFile("TestGif", ".gif", new FileHelper.TempFileUser() {
             public void useTempFile(String tempFileName) throws Exception {

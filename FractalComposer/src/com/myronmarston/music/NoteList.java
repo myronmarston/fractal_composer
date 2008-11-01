@@ -115,7 +115,6 @@ public class NoteList extends AbstractList<Note> implements Cloneable {
 
     @Override
     public Note set(int index, Note element) {        
-        this.modCount++;
         return this.internalList.set(index, element);
     }
 

@@ -527,7 +527,7 @@ public class FractalPiece {
      * @throws com.myronmarston.music.GermIsEmptyException if the germ is empty
      */
     public OutputManager createGermOutputManager() throws GermIsEmptyException {        
-        return new OutputManager(this, Arrays.asList(this.getGerm()), false, false);
+        return new OutputManager(this, Arrays.asList(this.getGerm()), false, false, false);
     }
    
     /**
