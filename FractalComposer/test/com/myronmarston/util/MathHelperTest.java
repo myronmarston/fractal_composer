@@ -64,17 +64,17 @@ public class MathHelperTest {
     
     @Test
     public void log2() {
-        assertEquals(-3d, MathHelper.log2(0.125d));
-        assertEquals(-2d, MathHelper.log2(0.25d));
-        assertEquals(-1d, MathHelper.log2(0.5d));
-        assertEquals(0d, MathHelper.log2(1));
-        assertEquals(1d, MathHelper.log2(2));
-        assertEquals(2d, MathHelper.log2(4));
-        assertEquals(3d, MathHelper.log2(8));
-        assertEquals(4d, MathHelper.log2(16));      
+        assertEquals(-3d, MathHelper.log2(0.125d), 0.0d);
+        assertEquals(-2d, MathHelper.log2(0.25d), 0.0d);
+        assertEquals(-1d, MathHelper.log2(0.5d), 0.0d);
+        assertEquals(0d, MathHelper.log2(1), 0.0d);
+        assertEquals(1d, MathHelper.log2(2), 0.0d);
+        assertEquals(2d, MathHelper.log2(4), 0.0d);
+        assertEquals(3d, MathHelper.log2(8), 0.0d);
+        assertEquals(4d, MathHelper.log2(16), 0.0d);
         
         // this should be 0.5, but doubles are not completely accurate....
-        assertEquals(0.5000000000000001d, MathHelper.log2(Math.sqrt(2)));
+        assertEquals(0.5000000000000001d, MathHelper.log2(Math.sqrt(2)), 0.0d);
     }
 
     @Test

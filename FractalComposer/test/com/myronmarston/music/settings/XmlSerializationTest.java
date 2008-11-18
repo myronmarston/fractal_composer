@@ -91,7 +91,7 @@ public class XmlSerializationTest {
         
         int idStart = 51;
         String expected = 
-        "<voice id=\"0\" uniqueIndex=\"1\" instrumentName=\"Piano 1\">\n" +
+        "<voice id=\"0\" uniqueIndex=\"1\" instrumentName=\"" + Instrument.DEFAULT.getName() + "\">\n" +
         // fractal piece section that gets stripped goes here...
         "   <settings id=\"" + idStart++ + "\" scaleStepOffset=\"0\" octaveAdjustment=\"1\" readOnly=\"false\">\n" +
         "      <volumeAdjustment id=\"" + idStart++ + "\" numerator_=\"0\" denominator_=\"1\"/>\n" +

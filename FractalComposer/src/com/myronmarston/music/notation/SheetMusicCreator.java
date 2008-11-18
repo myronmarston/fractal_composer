@@ -37,10 +37,18 @@ public class SheetMusicCreator {
     private static final String GUIDO_SUB_DIRECTORY = "guido";
     private static final String CURRENT_DIR = System.getProperty("user.dir");    
     private static String guidoParentDirectory = CURRENT_DIR;
-    private static final String LILYPOND_EXE_FILE = "lilypond";
+    private static final String LILYPOND_EXE_FILE;
     private static final Pattern LILYPOND_OR_GUIDO_OUTPUT_ERROR = Pattern.compile(".*?error.*", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);       
     private static final Pattern LILYPOND_OR_GUIDO_OUTPUT_WARNING = Pattern.compile(".*?warning.*", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);       
-    
+
+    static {
+        if (System.getProperty("os.name").equals("Mac OS X")) {
+            LILYPOND_EXE_FILE = "/Applications/LilyPond.app/Contents/Resources/bin/lilypond";
+        } else {
+            LILYPOND_EXE_FILE = "lilypond";
+        }
+    }
+
     /**
      * Constructor.
      * 

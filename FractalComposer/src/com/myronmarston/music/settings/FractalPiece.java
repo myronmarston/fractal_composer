@@ -31,7 +31,7 @@ import com.myronmarston.util.Fraction;
 
 import org.simpleframework.xml.*;
 import org.simpleframework.xml.graph.*;
-import org.simpleframework.xml.load.*;;
+import org.simpleframework.xml.load.*;
 
 import java.io.*;
 import java.lang.reflect.UndeclaredThrowableException;
