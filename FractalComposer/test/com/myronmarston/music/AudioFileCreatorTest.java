@@ -54,6 +54,9 @@ public class AudioFileCreatorTest {
 
     @Test
     public void saveMp3File() throws Exception {
+        // I haven't found a way to install tritonus on OS X...
+        if (OSHelper.isMacOSX()) return;
+
         final FractalPiece fp = new FractalPiece();
         fp.setGermString("G4 A4");
         

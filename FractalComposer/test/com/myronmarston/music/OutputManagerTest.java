@@ -81,9 +81,12 @@ public class OutputManagerTest {
     
     @Test
     public void testGuidoError() throws Exception {
-           final OutputManager om = new OutputManager(this.outputManager.getFractalPiece(), this.outputManager.getNoteLists(), false, false, false);        
-           om.setTestNotationError(true);
-           FileHelper.createAndUseTempFile("TestGif", ".gif", new FileHelper.TempFileUser() {
+        // Guido can only run on windows...
+        if (OSHelper.isMacOSX()) return;
+
+        final OutputManager om = new OutputManager(this.outputManager.getFractalPiece(), this.outputManager.getNoteLists(), false, false, false);
+        om.setTestNotationError(true);
+        FileHelper.createAndUseTempFile("TestGif", ".gif", new FileHelper.TempFileUser() {
             public void useTempFile(String tempFileName) throws Exception {
                 try {
                     om.saveGifImage(tempFileName);
@@ -185,6 +188,9 @@ public class OutputManagerTest {
     
     @Test
     public void saveGifImage() throws Exception {
+        // Guido can only run on windows...
+        if (OSHelper.isMacOSX()) return;
+
         FileHelper.createAndUseTempFile("TestGifFile", ".gif", new FileHelper.TempFileUser() {
             public void useTempFile(String tempFileName) throws Exception {
                 OutputManagerTest.this.outputManager.saveGifImage(tempFileName);
@@ -301,14 +307,25 @@ public class OutputManagerTest {
     
     @Test
     public void testLastFileNameMethods() throws Exception {
-        testALastFileNameMethod("GifTest", ".gif", new OutputManagerTest.LastFileName() {
+        if (!OSHelper.isMacOSX()) {
+            testALastFileNameMethod("GifTest", ".gif", new OutputManagerTest.LastFileName() {
+                public String getLastFileName() throws Exception {
+                    return outputManager.getLastGifFileName();
+                }
+                public void saveFile(String fileName) throws Exception {
+                    outputManager.saveGifImage(fileName);
+                }
+            });
+
+            testALastFileNameMethod("Mp3Test", ".mp3", new OutputManagerTest.LastFileName() {
             public String getLastFileName() throws Exception {
-                return outputManager.getLastGifFileName();
+                return outputManager.getLastMp3FileName();
             }
             public void saveFile(String fileName) throws Exception {
-                outputManager.saveGifImage(fileName);
+                outputManager.saveMp3File(fileName);
             }
         });
+        }
         
         testALastFileNameMethod("GmnTest", ".gmn", new OutputManagerTest.LastFileName() {
             public String getLastFileName() throws Exception {
@@ -334,15 +351,6 @@ public class OutputManagerTest {
             }
             public void saveFile(String fileName) throws Exception {
                 outputManager.saveWavFile(fileName);
-            }
-        });
-            
-        testALastFileNameMethod("Mp3Test", ".mp3", new OutputManagerTest.LastFileName() {
-            public String getLastFileName() throws Exception {
-                return outputManager.getLastMp3FileName();
-            }
-            public void saveFile(String fileName) throws Exception {
-                outputManager.saveMp3File(fileName);
             }
         });              
         
@@ -411,12 +419,14 @@ public class OutputManagerTest {
                 om.savePngFile(tempFileName, 500);
             }
         });
-        
-        FileHelper.createAndUseTempFile("GuidoTest", ".gif", new FileHelper.TempFileUser() {
-            public void useTempFile(String tempFileName) throws Exception {
-                om.saveGifImage(tempFileName);
-            }
-        });
+
+        if (!OSHelper.isMacOSX()) {
+            FileHelper.createAndUseTempFile("GuidoTest", ".gif", new FileHelper.TempFileUser() {
+                public void useTempFile(String tempFileName) throws Exception {
+                    om.saveGifImage(tempFileName);
+                }
+            });
+        }
     }
     
     @Test
