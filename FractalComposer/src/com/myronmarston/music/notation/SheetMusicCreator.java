@@ -22,6 +22,7 @@ package com.myronmarston.music.notation;
 import com.myronmarston.music.OutputManager;
 import com.myronmarston.util.ProcessRunner;
 import com.myronmarston.util.FileHelper;
+import com.myronmarston.util.OSHelper;
 import java.io.*;
 import java.util.*;
 import java.util.regex.*;
@@ -42,7 +43,10 @@ public class SheetMusicCreator {
     private static final Pattern LILYPOND_OR_GUIDO_OUTPUT_WARNING = Pattern.compile(".*?warning.*", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);       
 
     static {
-        if (System.getProperty("os.name").equals("Mac OS X")) {
+        if (OSHelper.isMacOSX()) {
+            // The path environment variable works a bit differently on OS X, and I haven't
+            // found a way to get changes to the path to be picked up by netbeans when it
+            // runs the test suite...so we'll just manually set it here.
             LILYPOND_EXE_FILE = "/Applications/LilyPond.app/Contents/Resources/bin/lilypond";
         } else {
             LILYPOND_EXE_FILE = "lilypond";
