@@ -4,7 +4,7 @@
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <TITLE>
-NoteStringParseException
+OSHelper
 </TITLE>
 
 
@@ -14,7 +14,7 @@ NoteStringParseException
 function windowTitle()
 {
     if (location.href.indexOf('is-external=true') == -1) {
-        parent.document.title="NoteStringParseException";
+        parent.document.title="OSHelper";
     }
 }
 </SCRIPT>
@@ -39,7 +39,7 @@ function windowTitle()
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/NoteStringParseException.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/OSHelper.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -54,11 +54,11 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../com/myronmarston/util/MathHelper.html" title="class in com.myronmarston.util"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/util/ProcessRunner.html" title="class in com.myronmarston.util"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../index.html?com/myronmarston/music/NoteStringParseException.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="NoteStringParseException.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?com/myronmarston/util/OSHelper.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="OSHelper.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -87,30 +87,23 @@ DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&n
 <!-- ======== START OF CLASS DATA ======== -->
 <H2>
 <FONT SIZE="-1">
-com.myronmarston.music</FONT>
+com.myronmarston.util</FONT>
 <BR>
-Class NoteStringParseException</H2>
+Class OSHelper</H2>
 <PRE>
 java.lang.Object
-  <IMG SRC="../../../resources/inherit.gif" ALT="extended by ">java.lang.Throwable
-      <IMG SRC="../../../resources/inherit.gif" ALT="extended by ">java.lang.Exception
-          <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.music.NoteStringParseException</B>
+  <IMG SRC="../../../resources/inherit.gif" ALT="extended by "><B>com.myronmarston.util.OSHelper</B>
 </PRE>
-<DL>
-<DT><B>All Implemented Interfaces:</B> <DD>java.io.Serializable</DD>
-</DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>NoteStringParseException</B><DT>extends java.lang.Exception</DL>
+<DT><PRE>public class <B>OSHelper</B><DT>extends java.lang.Object</DL>
 </PRE>
 
 <P>
-Exception thrown when errors are encountered while parsing a note string.
+Class with static helper methods to deal with operating system differences.
 <P>
 
 <P>
-<DL>
-<DT><B>See Also:</B><DD><A HREF="../../../serialized-form.html#com.myronmarston.music.NoteStringParseException">Serialized Form</A></DL>
 <HR>
 
 <P>
@@ -124,21 +117,10 @@ Exception thrown when errors are encountered while parsing a note string.
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteStringParseException.html#NoteStringParseException(java.lang.String)">NoteStringParseException</A></B>(java.lang.String&nbsp;noteString)</CODE>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/OSHelper.html#OSHelper()">OSHelper</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Public constructor.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected </CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteStringParseException.html#NoteStringParseException(java.lang.String, java.lang.String)">NoteStringParseException</A></B>(java.lang.String&nbsp;noteString,
-                         java.lang.String&nbsp;msg)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -152,20 +134,11 @@ Exception thrown when errors are encountered while parsing a note string.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;java.lang.String</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/myronmarston/music/NoteStringParseException.html#getNoteString()">getNoteString</A></B>()</CODE>
+<CODE>static&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/myronmarston/util/OSHelper.html#isMacOSX()">isMacOSX</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the note string that could not be parsed.</TD>
-</TR>
-</TABLE>
-&nbsp;<A NAME="methods_inherited_from_class_java.lang.Throwable"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TH ALIGN="left"><B>Methods inherited from class java.lang.Throwable</B></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>fillInStackTrace, getCause, getLocalizedMessage, getMessage, getStackTrace, initCause, printStackTrace, printStackTrace, printStackTrace, setStackTrace, toString</CODE></TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checks to see if the current operating system is Mac OS X.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -174,7 +147,7 @@ Exception thrown when errors are encountered while parsing a note string.
 <TH ALIGN="left"><B>Methods inherited from class java.lang.Object</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</CODE></TD>
+<TD><CODE>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -190,28 +163,11 @@ Exception thrown when errors are encountered while parsing a note string.
 </TR>
 </TABLE>
 
-<A NAME="NoteStringParseException(java.lang.String)"><!-- --></A><H3>
-NoteStringParseException</H3>
+<A NAME="OSHelper()"><!-- --></A><H3>
+OSHelper</H3>
 <PRE>
-public <B>NoteStringParseException</B>(java.lang.String&nbsp;noteString)</PRE>
+public <B>OSHelper</B>()</PRE>
 <DL>
-<DD>Public constructor.
-<P>
-<DL>
-<DT><B>Parameters:</B><DD><CODE>noteString</CODE> - the note string being parsed</DL>
-</DL>
-<HR>
-
-<A NAME="NoteStringParseException(java.lang.String, java.lang.String)"><!-- --></A><H3>
-NoteStringParseException</H3>
-<PRE>
-protected <B>NoteStringParseException</B>(java.lang.String&nbsp;noteString,
-                                   java.lang.String&nbsp;msg)</PRE>
-<DL>
-<DD>Constructor.
-<P>
-<DL>
-<DT><B>Parameters:</B><DD><CODE>noteString</CODE> - the note string being parsed<DD><CODE>msg</CODE> - the detail message</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -224,16 +180,16 @@ protected <B>NoteStringParseException</B>(java.lang.String&nbsp;noteString,
 </TR>
 </TABLE>
 
-<A NAME="getNoteString()"><!-- --></A><H3>
-getNoteString</H3>
+<A NAME="isMacOSX()"><!-- --></A><H3>
+isMacOSX</H3>
 <PRE>
-public java.lang.String <B>getNoteString</B>()</PRE>
+public static boolean <B>isMacOSX</B>()</PRE>
 <DL>
-<DD>Gets the note string that could not be parsed.
+<DD>Checks to see if the current operating system is Mac OS X.
 <P>
 <DD><DL>
 
-<DT><B>Returns:</B><DD>the note string</DL>
+<DT><B>Returns:</B><DD>true if the current OS is Mac OS X.</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
@@ -252,7 +208,7 @@ public java.lang.String <B>getNoteString</B>()</PRE>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/NoteStringParseException.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/OSHelper.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -267,11 +223,11 @@ public java.lang.String <B>getNoteString</B>()</PRE>
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../com/myronmarston/music/NoteName.html" title="enum in com.myronmarston.music"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../com/myronmarston/music/OutputManager.html" title="class in com.myronmarston.music"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../com/myronmarston/util/MathHelper.html" title="class in com.myronmarston.util"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../com/myronmarston/util/ProcessRunner.html" title="class in com.myronmarston.util"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../index.html?com/myronmarston/music/NoteStringParseException.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="NoteStringParseException.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../index.html?com/myronmarston/util/OSHelper.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="OSHelper.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
