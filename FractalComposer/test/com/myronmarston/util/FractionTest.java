@@ -94,12 +94,22 @@ public class FractionTest {
         testToLilypondString("1/4", "1/6", "4/4", "2/3", "%1$s4%2$s");
         testToLilypondString("1/4", "1/12", "4/4", "2/3", "%1$s8%2$s ~ %1$s8");
         
+        // tuplet-scaled notes that cross the bar line...
+        testToLilypondString("9/8", "3/4", "3/4", "2/3", "%1$s2.%2$s ~ %1$s4.");
+        testToLilypondString("3/2", "3/4", "3/4", "2/3", "%1$s2.%2$s ~ %1$s4. ~ %1$s4.");
+
+        // when the previous note used up all of the current bar, it should handle having no time left in the bar...
+        testToLilypondString("1/4", "0/1", "4/4", "1/1", "%1$s4%2$s");
+
+        // a single note split into a tuplet because of limited time left in the bar...
+        // note that no tie (~) is used because Lilypond can't handle tieing tuplets like this.
+        testToLilypondString("1/4", "1/6", "4/4", "1/1", "\\times 2/3 { %1$s4%2$s } \\times 2/3 { %1$s8 }");
+
         // durations with denoms greater than 64 are not allowed
         try {
             (new Fraction("1/128")).toLilypondString(new Fraction("4/4"), new Fraction("4/4"), new Fraction(1, 1));
             fail();
         } catch (IllegalArgumentException ex) { }
-              
     }
         
     public static void testToLilypondString(String durationFraction, String timeLeftInBarFraction, String barLengthFraction, String tupletMultiplier, String expectedString) {

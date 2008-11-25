@@ -193,7 +193,12 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
    */
   public String toLilypondString(Fraction timeLeftInBar, Fraction barLength, Fraction tupletMultiplier) throws IllegalArgumentException, UnsupportedOperationException {
       String lilypondString = toLilypondString(timeLeftInBar, barLength, tupletMultiplier, true);
-                  
+
+      // Lilypond blows up when a note with a tuplet multiplier is tied to another note,
+      // such as '/times 2/3 { c4 } ~ d4'.  We'll remove the tie here, which isn't strictly
+      // the correct notation, but it's better to have lilypond produce something than nothing...
+      if (lilypondString.contains("times")) lilypondString = lilypondString.replaceAll(LILYPOND_TIE, " ");
+
       // we should only have the dynamic placeholder once in this string...
       assert lilypondString.contains(NotationNote.NOTE_PLACEHOLDER_2) : lilypondString;
       assert lilypondString.lastIndexOf(NotationNote.NOTE_PLACEHOLDER_2) == lilypondString.indexOf(NotationNote.NOTE_PLACEHOLDER_2) : lilypondString;
@@ -206,10 +211,29 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
   }
   
     private String toLilypondString(Fraction timeLeftInBar, Fraction barLength, Fraction tupletMultiplier, boolean firstNoteInListOfTiedNotes) throws IllegalArgumentException, UnsupportedOperationException {
-      if (!denomIsPowerOf2()) throw new UnsupportedOperationException("Lilypond does not support note durations that do not have a denominator power of 2.  Instead, wrap the note in a Tuplet with the appropriate multiplier."); 
-      if (this.denominator_ > MAX_ALLOWED_DURATION_DENOM) throw new IllegalArgumentException("The given duration (" + this.toString() + ") has a denominator that is outside of the allowed range.  The denominator cannot be greater than " + MAX_ALLOWED_DURATION_DENOM + ".");      
+      if (this.denominator_ > MAX_ALLOWED_DURATION_DENOM) throw new IllegalArgumentException("The given duration (" + this.toString() + ") has a denominator that is outside of the allowed range.  The denominator cannot be greater than " + MAX_ALLOWED_DURATION_DENOM + ".");
       assert timeLeftInBar.compareTo(barLength) <= 0 : timeLeftInBar;
-                  
+
+      if (!denomIsPowerOf2()) {
+          // We shouldn't actually get here for tuplet notes--instead, we'll
+          // get here when a non-tuplet note is split across a bar, splitting
+          // at an irregular point, i.e. splitting 1/4 into 1/6 | 1/12.
+
+          // We'll wrap the note in an appropriate tuplet multiplier in this case.
+          Fraction desiredFraction = new Fraction(1, MathHelper.getLargestPowerOf2LessThanGivenNumber(this.denominator_));
+          Fraction tupletMultiplierForThisFraction = this.dividedBy(desiredFraction);
+          tupletMultiplier = tupletMultiplier.times(tupletMultiplierForThisFraction);
+
+          return "\\times " +
+                  tupletMultiplierForThisFraction.toString() +
+                  " { " +
+                  desiredFraction.toLilypondString(timeLeftInBar, barLength, tupletMultiplier, firstNoteInListOfTiedNotes) +
+                  " }";
+      }
+
+      // if there is no time left in the bar, start a whole new bar...
+      if (timeLeftInBar.numerator_ == 0) timeLeftInBar = barLength;
+
       Fraction tupletScaledTimeLeftInBar = timeLeftInBar.dividedBy(tupletMultiplier);          
 
       // this notationDuration should already be tuplet scaled, so compare it to the tupletScaledTimeLeftInBar...
@@ -225,28 +249,32 @@ public class Fraction implements Cloneable, Comparable, java.io.Serializable {
           // we only want to put a dynamic or articulation marking on the first
           // note of the tied notes, so we have a special place holder for that
           String afterFirstNoteString = (firstNoteInListOfTiedNotes ? NotationNote.NOTE_PLACEHOLDER_2 : "");
-          
+
           // take care of the easy cases: notes such as 1/4, 1/8, and
           // notes using augmentation dots (3/8, 7/16, etc).
           switch ((int) this.numerator_) {
-              case 1: return NotationNote.NOTE_PLACEHOLDER + 
-                             Long.toString(this.denominator_) + 
+              case 1: return NotationNote.NOTE_PLACEHOLDER +
+                             Long.toString(this.denominator_) +
                              afterFirstNoteString;
               case 3: if (this.denominator_ < 2) break;
-                      return NotationNote.NOTE_PLACEHOLDER + 
-                             Long.toString(this.denominator_ / 2) + 
-                             LILYPOND_AUGMENTATION_CHAR + 
+                      return NotationNote.NOTE_PLACEHOLDER +
+                             Long.toString(this.denominator_ / 2) +
+                             LILYPOND_AUGMENTATION_CHAR +
                              afterFirstNoteString;
               case 7: if (this.denominator_ < 4) break;
-                      return NotationNote.NOTE_PLACEHOLDER + 
-                             Long.toString(this.denominator_ / 4) + 
-                             LILYPOND_AUGMENTATION_CHAR + 
-                             LILYPOND_AUGMENTATION_CHAR + 
+                      return NotationNote.NOTE_PLACEHOLDER +
+                             Long.toString(this.denominator_ / 4) +
+                             LILYPOND_AUGMENTATION_CHAR +
+                             LILYPOND_AUGMENTATION_CHAR +
                              afterFirstNoteString;
-          }       
+          }
 
           // split the duration into two seperate durations that can be tied together
           Fraction d1 = this.getLargestPowerOf2FractionThatIsLessThanThis();
+          
+          // if splitting it this way gives us a duration longer than our time left in the bar,
+          // just use the time left in the bar instead...
+          if (d1.compareTo(timeLeftInBar) > 0) d1 = timeLeftInBar;
           Fraction d2 = this.minus(d1);        
           Fraction timeLeftInBar2 = timeLeftInBar.minus(d1);
           assert timeLeftInBar2.compareTo(0L) >= 0 : timeLeftInBar2;

@@ -304,6 +304,24 @@ public class OutputManagerTest {
         // the output manager should have the tempo at the time it was created
         assertEquals(87, outputManager.getTempo());
     }
+
+    @Test
+    public void testClairesError() throws Exception {
+        // Claire created a piece with really complicated rhythms that my Lilypond
+        // notation code couldn't originally handle.  This is a regression test
+        // to make sure this never breaks...
+        
+        final FractalPiece fp = new FractalPiece();
+        fp.setGermString("d4,1/12 c4,1/2 c4,1/12 b4 b4 c4,1/12 d4,p a4,pp");
+        fp.createDefaultSettings();
+
+        FileHelper.createAndUseTempFile("ClaireTest", ".pdf", new FileHelper.TempFileUser() {
+            @Override
+            public void useTempFile(String tempFileName) throws Exception {
+                fp.createPieceResultOutputManager().savePdfFile(tempFileName);
+            }
+        });
+    }
     
     @Test
     public void testLastFileNameMethods() throws Exception {
