@@ -681,4 +681,30 @@ is divided into following sections:
         <!-- You can override this target in the ../build.xml file. -->
     </target>
     <target depends="init,deps-clean,-do-clean,-post-clean" description="Clean build products." name="clean"/>
+
+    <property name="cobertura.dir" value="/usr/local/java-libraries/cobertura-1.9" />
+
+    <path id="cobertura.classpath">
+        <fileset dir="${cobertura.dir}">
+            <include name="cobertura.jar" />
+            <include name="lib/**/*.jar" />
+        </fileset>
+    </path>
+
+    <taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
+
+    <target name="cobertura-instrument" depends="init,compile-test,-pre-test-run">
+        <cobertura-instrument todir="${build.test.cobertura.classes.dir}">
+            <fileset dir="${build.classes.dir}">
+                <include name="**/*.class"/>
+            </fileset>
+        </cobertura-instrument>
+    </target>                             
+    <target name="test-coverage" depends="init,compile-test,-pre-test-run,cobertura-instrument,-do-test-run,test-report,-post-test-run,-test-browse"/>
+    <target name="cobertura-coverage-report" depends="init">
+        <cobertura-report srcdir="${src.dir}" destdir="${cobertura.report.dir}"/>
+       <delete file="Serialized" failonerror="false"/>
+       <delete file="cobertura.ser" failonerror="false"/>
+    </target>
+
 </project>
